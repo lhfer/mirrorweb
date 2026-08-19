@@ -1,0 +1,1290 @@
+{
+  "$schema": "../roi-mask.schema.json",
+  "schemaVersion": 1,
+  "referenceClass": "frozen-visual",
+  "source": {
+    "videoSha256": "b6e79250c75e0357e489de87b63ffd4a5097a573eb7baced35e5de8b050c2435",
+    "frameRate": {
+      "numerator": 30,
+      "denominator": 1
+    },
+    "frameCount": 538,
+    "durationSeconds": 17.933333
+  },
+  "algorithm": {
+    "id": "mirrorweb-frozen-visual-roi",
+    "version": "1.0.0",
+    "scriptSha256": "545c0ecd6087e76e1254630af817807d27510c1dea4a5d9e5773a412fb6e8f7f",
+    "runtime": {
+      "python": "3.14.6",
+      "ffmpeg": "ffmpeg version 8.1.2 Copyright (c) 2000-2026 the FFmpeg developers",
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "scikitImage": "0.26.0",
+      "pillow": "12.1.1"
+    },
+    "analysisStrideFrames": 3,
+    "zoneFallbacksOverCardMinor": {
+      "sidewallEnd": 0.012,
+      "lensRimEnd": 0.065,
+      "opticalShoulderEnd": 0.145
+    }
+  },
+  "categories": [
+    {
+      "id": "bright-front",
+      "frameIndex": 192,
+      "ptsSeconds": 6.4,
+      "frameSha256": "11bc11bc659ed827ec2569210425b0c67dc7751ba1674779a79178ad25b8a897",
+      "cropSha256": "44881960a341853caebef5a57063fec209d29ef6c771bd6cc72eb664978f3fab",
+      "overlaySha256": "f8d029879e28a63404345150fc3bd7a8175bf695e7904e486ea09ed3d34e13c6",
+      "geometry": {
+        "coordinateSpace": "source-frame-normalized",
+        "quadNormalized": [
+          [
+            0.346713,
+            0.682034
+          ],
+          [
+            0.741357,
+            0.677297
+          ],
+          [
+            0.73735,
+            0.952817
+          ],
+          [
+            0.346057,
+            0.904966
+          ]
+        ],
+        "centerNormalized": [
+          0.542869,
+          0.804279
+        ],
+        "widthNormalized": 0.393457,
+        "heightNormalized": 0.249271,
+        "topEdgeTiltDeg": -0.3958,
+        "perspectiveHeightAsymmetry": 0.211306,
+        "superellipseExponent": 3.2,
+        "clipped": false
+      },
+      "features": {
+        "medianLuminanceLinear": 0.324935,
+        "localContrast": 0.585939,
+        "edgeDensity": 0.073885,
+        "entropyBits": 4.455612,
+        "clarityScore": 0.717498
+      },
+      "metrics": {
+        "rimZoneFallbackWidthOverCardMinor": 0.065,
+        "opticalZoneFallbackWidthOverCardMinor": 0.145,
+        "zoneWidthSource": "configured-initial-mask-not-measured-target-optics",
+        "centerSharpness": 0.18609,
+        "rimSharpness": 0.178946,
+        "centerRimSharpnessRatio": 1.039923,
+        "dispersionOuterEnergyRatio": 0.201149,
+        "highlightCentroidNormalized": [
+          0.442694,
+          0.765226
+        ],
+        "typographyBoundsNormalized": {
+          "x": 0.36259,
+          "y": 0.70125,
+          "width": 0.338489,
+          "height": 0.179375
+        },
+        "naturalContentCaveat": true
+      },
+      "masks": {
+        "card-silhouette": {
+          "sha256": "67ab1135ad9ed778fa411acdf75ee90296506991a00159ba277dc1e21099ce1e",
+          "areaRatioOfFrame": 0.08671538,
+          "areaRatioOfCard": 1.0,
+          "centroidNormalized": [
+            0.545824,
+            0.804393
+          ],
+          "confidence": 0.5394
+        },
+        "center-face": {
+          "sha256": "22e7b641f88c7f580bf5d8877d8d3914700ae8c9df6fa5772cf540c72806b337",
+          "areaRatioOfFrame": 0.05190513,
+          "areaRatioOfCard": 0.59856887,
+          "centroidNormalized": [
+            0.538889,
+            0.804245
+          ],
+          "confidence": 0.7061
+        },
+        "optical-shoulder": {
+          "sha256": "9be8198afc1e51cbe04de9cf91261d0d593687ea3f0545d5ab3f07fc034aab5b",
+          "areaRatioOfFrame": 0.01820391,
+          "areaRatioOfCard": 0.20992715,
+          "centroidNormalized": [
+            0.553151,
+            0.804538
+          ],
+          "confidence": 0.6764,
+          "widthOverCardMinor": 0.08
+        },
+        "lens-rim": {
+          "sha256": "fdfa18c7c3990ed37edca2761522cdc53f7e42d87660333d6c7fe8a6a12e28e3",
+          "areaRatioOfFrame": 0.01360184,
+          "areaRatioOfCard": 0.15685619,
+          "centroidNormalized": [
+            0.558961,
+            0.80469
+          ],
+          "confidence": 0.6764,
+          "widthOverCardMinor": 0.053
+        },
+        "sidewall": {
+          "sha256": "3d5a1e626638183a6f081fab4a2816ac24c2efac46620a4f69c8b71a02f7a5f5",
+          "areaRatioOfFrame": 0.0030045,
+          "areaRatioOfCard": 0.03464779,
+          "centroidNormalized": [
+            0.561745,
+            0.804711
+          ],
+          "confidence": 0.6533,
+          "widthOverCardMinor": 0.012
+        },
+        "highlight": {
+          "sha256": "6c5179e4e14f496acfdd0ad6cb845e8b664bc14ba8b377d684ef3f8dc9944148",
+          "areaRatioOfFrame": 0.00065265,
+          "areaRatioOfCard": 0.00752638,
+          "centroidNormalized": [
+            0.442694,
+            0.765226
+          ],
+          "confidence": 1.0
+        },
+        "typography": {
+          "sha256": "3f91d4401c2338493cfd8d4f042b25c45252cfb9fdeb2118790d90582e81da25",
+          "areaRatioOfFrame": 0.00186511,
+          "areaRatioOfCard": 0.02150839,
+          "centroidNormalized": [
+            0.466294,
+            0.760628
+          ],
+          "confidence": 1.0
+        },
+        "gutter": {
+          "sha256": "40c2cd3fb25f7d4173c537577bad15f4925f7b3af6723108337d760eac016f1a",
+          "areaRatioOfFrame": 0.02149213,
+          "areaRatioOfCard": 0.24784683,
+          "centroidNormalized": [
+            0.522255,
+            0.725405
+          ],
+          "confidence": 0.7887
+        }
+      },
+      "confidence": 0.7388,
+      "needsHumanReview": true,
+      "reviewReasons": [
+        "silhouette-boundary-support-is-low"
+      ]
+    },
+    {
+      "id": "dark-front",
+      "frameIndex": 477,
+      "ptsSeconds": 15.9,
+      "frameSha256": "e3abcfafcced25e69a3ad587fc6c48bb15da9a45bcef7fe00615145a4d2acebe",
+      "cropSha256": "2f0d5e6242ff29e5107c73fda106f014be3eb448ccd9e2c2947ccfad7545e570",
+      "overlaySha256": "c91bb9742212439d3bc4a4804e9df2cafa74cbf2e7abfcb71d85f7194290d80c",
+      "geometry": {
+        "coordinateSpace": "source-frame-normalized",
+        "quadNormalized": [
+          [
+            0.172907,
+            0.504931
+          ],
+          [
+            0.316517,
+            0.504089
+          ],
+          [
+            0.31963,
+            0.935802
+          ],
+          [
+            0.170455,
+            0.97512
+          ]
+        ],
+        "centerNormalized": [
+          0.244877,
+          0.729986
+        ],
+        "widthNormalized": 0.147246,
+        "heightNormalized": 0.450978,
+        "topEdgeTiltDeg": -0.1932,
+        "perspectiveHeightAsymmetry": -0.085287,
+        "superellipseExponent": 3.2,
+        "clipped": false
+      },
+      "features": {
+        "medianLuminanceLinear": 0.006856,
+        "localContrast": 0.060815,
+        "edgeDensity": 0.046292,
+        "entropyBits": 3.043243,
+        "clarityScore": 0.728318
+      },
+      "metrics": {
+        "rimZoneFallbackWidthOverCardMinor": 0.065,
+        "opticalZoneFallbackWidthOverCardMinor": 0.145,
+        "zoneWidthSource": "configured-initial-mask-not-measured-target-optics",
+        "centerSharpness": 0.277249,
+        "rimSharpness": 0.118896,
+        "centerRimSharpnessRatio": 2.331858,
+        "dispersionOuterEnergyRatio": 0.079238,
+        "highlightCentroidNormalized": [
+          0.207413,
+          0.89437
+        ],
+        "typographyBoundsNormalized": {
+          "x": 0.179496,
+          "y": 0.54,
+          "width": 0.121223,
+          "height": 0.3825
+        },
+        "naturalContentCaveat": true
+      },
+      "masks": {
+        "card-silhouette": {
+          "sha256": "28d38c63b273c2f1be0238f18aa6e2f906213e9e89c76cb0e134621d0a747937",
+          "areaRatioOfFrame": 0.0585897,
+          "areaRatioOfCard": 1.0,
+          "centroidNormalized": [
+            0.244436,
+            0.73062
+          ],
+          "confidence": 0.43
+        },
+        "center-face": {
+          "sha256": "73f3a8d12c2c437b0d0e1270da64a0165b8122c7cea2f4600a6cc3afc05fc87e",
+          "areaRatioOfFrame": 0.03522325,
+          "areaRatioOfCard": 0.60118493,
+          "centroidNormalized": [
+            0.245446,
+            0.728111
+          ],
+          "confidence": 0.6564
+        },
+        "optical-shoulder": {
+          "sha256": "0c7deb79dc8c2e5ae51c33028f5e9ccbe34b74ee322afc34122b162c4c21fc76",
+          "areaRatioOfFrame": 0.01222954,
+          "areaRatioOfCard": 0.20873192,
+          "centroidNormalized": [
+            0.243415,
+            0.733083
+          ],
+          "confidence": 0.6207,
+          "widthOverCardMinor": 0.08
+        },
+        "lens-rim": {
+          "sha256": "e57fb6ff62df775299a2016ac573d13bad9ffccf4d5e0456db1523474706df07",
+          "areaRatioOfFrame": 0.00912612,
+          "areaRatioOfCard": 0.15576328,
+          "centroidNormalized": [
+            0.242437,
+            0.735745
+          ],
+          "confidence": 0.6207,
+          "widthOverCardMinor": 0.053
+        },
+        "sidewall": {
+          "sha256": "c7f53455ba12e162fdd9dd34720e0bdc30b4114433465adf6420156864399b71",
+          "areaRatioOfFrame": 0.00201079,
+          "areaRatioOfCard": 0.03431988,
+          "centroidNormalized": [
+            0.242037,
+            0.736335
+          ],
+          "confidence": 0.5937,
+          "widthOverCardMinor": 0.012
+        },
+        "highlight": {
+          "sha256": "3cffae5b1f351130400cae55c399ee85a2990a5914994303a728a91c7047a2b7",
+          "areaRatioOfFrame": 0.00036713,
+          "areaRatioOfCard": 0.00626614,
+          "centroidNormalized": [
+            0.207413,
+            0.89437
+          ],
+          "confidence": 1.0
+        },
+        "typography": {
+          "sha256": "5222c62cc1540381162b6095cc8c885e6067310014a30bff820a1e3f43703045",
+          "areaRatioOfFrame": 0.00148269,
+          "areaRatioOfCard": 0.0253063,
+          "centroidNormalized": [
+            0.236775,
+            0.716782
+          ],
+          "confidence": 1.0
+        },
+        "gutter": {
+          "sha256": "c16e1e86b639bf1fd41d412d9de457d47acbebcc77f2bfd79c6f0b21c3f2fbe5",
+          "areaRatioOfFrame": 0.01363422,
+          "areaRatioOfCard": 0.23270672,
+          "centroidNormalized": [
+            0.253156,
+            0.718403
+          ],
+          "confidence": 0.813
+        }
+      },
+      "confidence": 0.6967,
+      "needsHumanReview": true,
+      "reviewReasons": [
+        "silhouette-boundary-support-is-low"
+      ]
+    },
+    {
+      "id": "high-texture",
+      "frameIndex": 252,
+      "ptsSeconds": 8.4,
+      "frameSha256": "436e8fc42525f9e2f9baf3e8bf934861f0a1438e7c3d7dc9bbe62a3e7f10c202",
+      "cropSha256": "284a8d4c0d82e21f0ae540837c859ee080e20c21dbe621dd25dfb4558952dd73",
+      "overlaySha256": "74704eccf480e075b2363bfbf23e949c6f62e40101b538b3d5958a10651770f5",
+      "geometry": {
+        "coordinateSpace": "source-frame-normalized",
+        "quadNormalized": [
+          [
+            0.4247,
+            0.604266
+          ],
+          [
+            0.792224,
+            0.602997
+          ],
+          [
+            0.788586,
+            0.961404
+          ],
+          [
+            0.387332,
+            0.966241
+          ]
+        ],
+        "centerNormalized": [
+          0.59821,
+          0.783727
+        ],
+        "widthNormalized": 0.384394,
+        "heightNormalized": 0.363107,
+        "topEdgeTiltDeg": -0.1139,
+        "perspectiveHeightAsymmetry": -0.025581,
+        "superellipseExponent": 5.8,
+        "clipped": false
+      },
+      "features": {
+        "medianLuminanceLinear": 0.199675,
+        "localContrast": 0.615344,
+        "edgeDensity": 0.090934,
+        "entropyBits": 4.699659,
+        "clarityScore": 0.870572
+      },
+      "metrics": {
+        "rimZoneFallbackWidthOverCardMinor": 0.065,
+        "opticalZoneFallbackWidthOverCardMinor": 0.145,
+        "zoneWidthSource": "configured-initial-mask-not-measured-target-optics",
+        "centerSharpness": 0.186183,
+        "rimSharpness": 0.161258,
+        "centerRimSharpnessRatio": 1.154563,
+        "dispersionOuterEnergyRatio": 0.168141,
+        "highlightCentroidNormalized": [
+          0.48195,
+          0.735695
+        ],
+        "typographyBoundsNormalized": {
+          "x": 0.438129,
+          "y": 0.62625,
+          "width": 0.329496,
+          "height": 0.303125
+        },
+        "naturalContentCaveat": true
+      },
+      "masks": {
+        "card-silhouette": {
+          "sha256": "b151da1a937d6503a35d2ca5c4a7b8caf0fc6eebf704335f40199dd7b132869d",
+          "areaRatioOfFrame": 0.13190288,
+          "areaRatioOfCard": 1.0,
+          "centroidNormalized": [
+            0.597875,
+            0.785646
+          ],
+          "confidence": 0.5338
+        },
+        "center-face": {
+          "sha256": "6576290e4d2f8e8c0fd501e5c2f29875bb19498c2a414e3d8d05f23079d51c7b",
+          "areaRatioOfFrame": 0.07948022,
+          "areaRatioOfCard": 0.6025662,
+          "centroidNormalized": [
+            0.598467,
+            0.780924
+          ],
+          "confidence": 0.7035
+        },
+        "optical-shoulder": {
+          "sha256": "3acbf2d1c220ab0ee9cfd74d3e51d9ee70f4e54f07b46ae8ebb337aacf52e9b2",
+          "areaRatioOfFrame": 0.02745841,
+          "areaRatioOfCard": 0.20817141,
+          "centroidNormalized": [
+            0.597266,
+            0.790325
+          ],
+          "confidence": 0.6736,
+          "widthOverCardMinor": 0.08
+        },
+        "lens-rim": {
+          "sha256": "e3a25a0a12d91f301e5a76c660e80dd848c25d40cac934562a3539d3484b6c4c",
+          "areaRatioOfFrame": 0.02048179,
+          "areaRatioOfCard": 0.15527932,
+          "centroidNormalized": [
+            0.596704,
+            0.795038
+          ],
+          "confidence": 0.6736,
+          "widthOverCardMinor": 0.053
+        },
+        "sidewall": {
+          "sha256": "28f89afaba47ca225e17eac9bb9af3da62ce13e86cea3be5164952b5265f3873",
+          "areaRatioOfFrame": 0.00448246,
+          "areaRatioOfCard": 0.03398306,
+          "centroidNormalized": [
+            0.596471,
+            0.797774
+          ],
+          "confidence": 0.6502,
+          "widthOverCardMinor": 0.012
+        },
+        "highlight": {
+          "sha256": "58822616582a2a4d718eb8e2d0c1b74bc38d435b48afc8340fea0c4a1330ca2c",
+          "areaRatioOfFrame": 0.00089254,
+          "areaRatioOfCard": 0.00676661,
+          "centroidNormalized": [
+            0.48195,
+            0.735695
+          ],
+          "confidence": 1.0
+        },
+        "typography": {
+          "sha256": "7df4eb5a70f9b901078a27d1fa2bcd92778d259b7beecd5eff06688ac20ed208",
+          "areaRatioOfFrame": 0.00348584,
+          "areaRatioOfCard": 0.0264273,
+          "centroidNormalized": [
+            0.569875,
+            0.740424
+          ],
+          "confidence": 1.0
+        },
+        "gutter": {
+          "sha256": "520cb69752e28f85c91868700c3720d4cdca0dce7ab98ebfc71f8718a422e17c",
+          "areaRatioOfFrame": 0.02768323,
+          "areaRatioOfCard": 0.20987585,
+          "centroidNormalized": [
+            0.601413,
+            0.69604
+          ],
+          "confidence": 0.8127
+        }
+      },
+      "confidence": 0.7659,
+      "needsHumanReview": true,
+      "reviewReasons": [
+        "silhouette-boundary-support-is-low"
+      ]
+    },
+    {
+      "id": "low-texture",
+      "frameIndex": 363,
+      "ptsSeconds": 12.1,
+      "frameSha256": "25341575958cb6ac190b1da5522dfbb6947b31b8b9ddd87ee820d217a2fb1ce9",
+      "cropSha256": "6024a3667954335d0d5ecb52ab002d402ec09c58bcaf4208e59c971d2b4f6cd7",
+      "overlaySha256": "f355efc8c8cf285857c1ac510de6532780b41df61a58ec21ff6401a9efbf5244",
+      "geometry": {
+        "coordinateSpace": "source-frame-normalized",
+        "quadNormalized": [
+          [
+            0.113546,
+            0.842026
+          ],
+          [
+            0.42724,
+            0.85152
+          ],
+          [
+            0.45626,
+            0.945371
+          ],
+          [
+            0.099595,
+            0.968879
+          ]
+        ],
+        "centerNormalized": [
+          0.27416,
+          0.901949
+        ],
+        "widthNormalized": 0.335332,
+        "heightNormalized": 0.117843,
+        "topEdgeTiltDeg": 0.9979,
+        "perspectiveHeightAsymmetry": -0.191866,
+        "superellipseExponent": 5.8,
+        "clipped": false
+      },
+      "features": {
+        "medianLuminanceLinear": 0.205818,
+        "localContrast": 0.133923,
+        "edgeDensity": 0.009068,
+        "entropyBits": 2.836132,
+        "clarityScore": 0.172229
+      },
+      "metrics": {
+        "rimZoneFallbackWidthOverCardMinor": 0.065,
+        "opticalZoneFallbackWidthOverCardMinor": 0.145,
+        "zoneWidthSource": "configured-initial-mask-not-measured-target-optics",
+        "centerSharpness": 0.04281,
+        "rimSharpness": 0.032395,
+        "centerRimSharpnessRatio": 1.321519,
+        "dispersionOuterEnergyRatio": 0.295465,
+        "highlightCentroidNormalized": [
+          0.172473,
+          0.884164
+        ],
+        "typographyBoundsNormalized": {
+          "x": 0.376978,
+          "y": 0.864375,
+          "width": 0.008633,
+          "height": 0.00375
+        },
+        "naturalContentCaveat": true
+      },
+      "masks": {
+        "card-silhouette": {
+          "sha256": "b167e77b6b7cb86c6474a31c23188eafb340ef48c2a18ac29415be6d8eb538c7",
+          "areaRatioOfFrame": 0.03518975,
+          "areaRatioOfCard": 1.0,
+          "centroidNormalized": [
+            0.268267,
+            0.902914
+          ],
+          "confidence": 0.8486
+        },
+        "center-face": {
+          "sha256": "b0fc513718b08ff992f09838cd4f3a28504779924793f0e3c089d34878741437",
+          "areaRatioOfFrame": 0.02090647,
+          "areaRatioOfCard": 0.59410697,
+          "centroidNormalized": [
+            0.276994,
+            0.900475
+          ],
+          "confidence": 0.8467
+        },
+        "optical-shoulder": {
+          "sha256": "db91af18936bd3a827d3ab267b0dcc2cc57f471e0f13b0f5356071cb7a03152d",
+          "areaRatioOfFrame": 0.00743817,
+          "areaRatioOfCard": 0.21137334,
+          "centroidNormalized": [
+            0.259211,
+            0.90521
+          ],
+          "confidence": 0.8339,
+          "widthOverCardMinor": 0.08
+        },
+        "lens-rim": {
+          "sha256": "8a087303dd375810bd175ad398a638e8256c0076696d717451786a6e3d559f52",
+          "areaRatioOfFrame": 0.00560567,
+          "areaRatioOfCard": 0.15929825,
+          "centroidNormalized": [
+            0.252098,
+            0.907688
+          ],
+          "confidence": 0.8339,
+          "widthOverCardMinor": 0.053
+        },
+        "sidewall": {
+          "sha256": "74a4589eaa6b93ce43b9383c7d33e488385aab0ef4848fc1f2622648cd5f289b",
+          "areaRatioOfFrame": 0.00123943,
+          "areaRatioOfCard": 0.03522144,
+          "centroidNormalized": [
+            0.248532,
+            0.908688
+          ],
+          "confidence": 0.822,
+          "widthOverCardMinor": 0.012
+        },
+        "highlight": {
+          "sha256": "af4156959bacbb6f84161b2b569f6331eb29516c785d6b1c7c71ef5c327fda11",
+          "areaRatioOfFrame": 0.00026844,
+          "areaRatioOfCard": 0.00762822,
+          "centroidNormalized": [
+            0.172473,
+            0.884164
+          ],
+          "confidence": 1.0
+        },
+        "typography": {
+          "sha256": "538193eda443bad1ef9397630401125399b45893c7e0b9bb153515d357edcf14",
+          "areaRatioOfFrame": 2.248e-05,
+          "areaRatioOfCard": 0.00063888,
+          "centroidNormalized": [
+            0.381022,
+            0.865819
+          ],
+          "confidence": 0.68
+        },
+        "gutter": {
+          "sha256": "84485a72c9ee2a2cfe47378e67ed5aa61184734a45624350a1de8d22e997d48b",
+          "areaRatioOfFrame": 0.01094784,
+          "areaRatioOfCard": 0.31110884,
+          "centroidNormalized": [
+            0.30598,
+            0.86989
+          ],
+          "confidence": 0.9989
+        }
+      },
+      "confidence": 0.7361,
+      "needsHumanReview": false,
+      "reviewReasons": []
+    },
+    {
+      "id": "left-tilt",
+      "frameIndex": 471,
+      "ptsSeconds": 15.7,
+      "frameSha256": "dd187a9b38a0962209ab786dd068a900cb77888e25b346b88cef2725250d2822",
+      "cropSha256": "90f6b3eb16de5e7bb306d62e4aac5f05c2f369af2b78e3bcde6a5f4cda2b5f5f",
+      "overlaySha256": "980c1e9595732cc43f79b97dfcfda66fc72907e680fbc4a380ca3dc2b589f240",
+      "geometry": {
+        "coordinateSpace": "source-frame-normalized",
+        "quadNormalized": [
+          [
+            0.03249,
+            0.482508
+          ],
+          [
+            0.140056,
+            0.542548
+          ],
+          [
+            0.128175,
+            0.872643
+          ],
+          [
+            0.042766,
+            0.877816
+          ]
+        ],
+        "centerNormalized": [
+          0.085872,
+          0.693879
+        ],
+        "widthNormalized": 0.09922,
+        "heightNormalized": 0.363226,
+        "topEdgeTiltDeg": 17.8095,
+        "perspectiveHeightAsymmetry": -0.178871,
+        "superellipseExponent": 5.8,
+        "clipped": false
+      },
+      "features": {
+        "medianLuminanceLinear": 0.001601,
+        "localContrast": 0.127775,
+        "edgeDensity": 0.037095,
+        "entropyBits": 2.456639,
+        "clarityScore": 0.739221
+      },
+      "metrics": {
+        "rimZoneFallbackWidthOverCardMinor": 0.065,
+        "opticalZoneFallbackWidthOverCardMinor": 0.145,
+        "zoneWidthSource": "configured-initial-mask-not-measured-target-optics",
+        "centerSharpness": 0.249464,
+        "rimSharpness": 0.198278,
+        "centerRimSharpnessRatio": 1.25815,
+        "dispersionOuterEnergyRatio": 0.114148,
+        "highlightCentroidNormalized": [
+          0.071863,
+          0.862037
+        ],
+        "typographyBoundsNormalized": {
+          "x": 0.043165,
+          "y": 0.57375,
+          "width": 0.08705,
+          "height": 0.283125
+        },
+        "naturalContentCaveat": true
+      },
+      "masks": {
+        "card-silhouette": {
+          "sha256": "103036166a90c6e617b005b2b36c7b5a29d9230839ec134afe0a2f98cd37618c",
+          "areaRatioOfFrame": 0.03328889,
+          "areaRatioOfCard": 1.0,
+          "centroidNormalized": [
+            0.084954,
+            0.688677
+          ],
+          "confidence": 0.3691
+        },
+        "center-face": {
+          "sha256": "7a62382dd3baacc0b3041d699d6403029e776659c171b13325e87925ce556c0e",
+          "areaRatioOfFrame": 0.01978125,
+          "areaRatioOfCard": 0.59422972,
+          "centroidNormalized": [
+            0.08634,
+            0.701715
+          ],
+          "confidence": 0.6287
+        },
+        "optical-shoulder": {
+          "sha256": "bd71f49fc26f13f8dc069ab84dba8df204d6a9fe540dc2ba215129a479e76e56",
+          "areaRatioOfFrame": 0.00702338,
+          "areaRatioOfCard": 0.21098272,
+          "centroidNormalized": [
+            0.083519,
+            0.676375
+          ],
+          "confidence": 0.5897,
+          "widthOverCardMinor": 0.08
+        },
+        "lens-rim": {
+          "sha256": "00589407640189010de076d5b150874ed040388a0739678460331678c882fc8f",
+          "areaRatioOfFrame": 0.00531857,
+          "areaRatioOfCard": 0.15977011,
+          "centroidNormalized": [
+            0.082378,
+            0.663269
+          ],
+          "confidence": 0.5897,
+          "widthOverCardMinor": 0.053
+        },
+        "sidewall": {
+          "sha256": "f80432fea2b6287579f13ed6123059792a3c280e1dc21cefa603a95023d2d727",
+          "areaRatioOfFrame": 0.00116569,
+          "areaRatioOfCard": 0.03501746,
+          "centroidNormalized": [
+            0.081834,
+            0.657475
+          ],
+          "confidence": 0.5604,
+          "widthOverCardMinor": 0.012
+        },
+        "highlight": {
+          "sha256": "3ca1ed512fc2b8f4c2cdeffad04194e332da5473067a5228bb9a33319d4d7401",
+          "areaRatioOfFrame": 0.00024393,
+          "areaRatioOfCard": 0.00732766,
+          "centroidNormalized": [
+            0.071863,
+            0.862037
+          ],
+          "confidence": 1.0
+        },
+        "typography": {
+          "sha256": "47cdb870ea1effd51a64e7a2078942ef3385a8f2d4474fbec54b1441a6bf96eb",
+          "areaRatioOfFrame": 0.00092491,
+          "areaRatioOfCard": 0.02778434,
+          "centroidNormalized": [
+            0.088898,
+            0.759869
+          ],
+          "confidence": 1.0
+        },
+        "gutter": {
+          "sha256": "5800a232bad198996bf4e802c3309000d91cbfde6d6dea19e330ea7e83b0b5fb",
+          "areaRatioOfFrame": 0.00856857,
+          "areaRatioOfCard": 0.25740027,
+          "centroidNormalized": [
+            0.09398,
+            0.629854
+          ],
+          "confidence": 0.8689
+        }
+      },
+      "confidence": 0.6776,
+      "needsHumanReview": true,
+      "reviewReasons": [
+        "silhouette-boundary-support-is-low"
+      ]
+    },
+    {
+      "id": "right-tilt",
+      "frameIndex": 330,
+      "ptsSeconds": 11.0,
+      "frameSha256": "bd3f7f87019e231a8d2d565e0bcf6be48c7a23274e2a8690f3bddba5a4120caa",
+      "cropSha256": "43f526ce92ba138af1ce38527272f5281aa55f1b9540240a9f099d576cdee602",
+      "overlaySha256": "45be97fa491f38292bf027d9d811f69815660839941e86234e2514c66c254502",
+      "geometry": {
+        "coordinateSpace": "source-frame-normalized",
+        "quadNormalized": [
+          [
+            0.84359,
+            0.032976
+          ],
+          [
+            0.940523,
+            0.042774
+          ],
+          [
+            0.937595,
+            0.376726
+          ],
+          [
+            0.847877,
+            0.572822
+          ]
+        ],
+        "centerNormalized": [
+          0.892396,
+          0.256324
+        ],
+        "widthNormalized": 0.120637,
+        "heightNormalized": 0.436944,
+        "topEdgeTiltDeg": 3.3293,
+        "perspectiveHeightAsymmetry": -0.471243,
+        "superellipseExponent": 3.2,
+        "clipped": false
+      },
+      "features": {
+        "medianLuminanceLinear": 0.021128,
+        "localContrast": 0.073687,
+        "edgeDensity": 0.043333,
+        "entropyBits": 3.537372,
+        "clarityScore": 0.74
+      },
+      "metrics": {
+        "rimZoneFallbackWidthOverCardMinor": 0.065,
+        "opticalZoneFallbackWidthOverCardMinor": 0.145,
+        "zoneWidthSource": "configured-initial-mask-not-measured-target-optics",
+        "centerSharpness": 0.196007,
+        "rimSharpness": 0.032474,
+        "centerRimSharpnessRatio": 6.035856,
+        "dispersionOuterEnergyRatio": 0.103278,
+        "highlightCentroidNormalized": [
+          0.889087,
+          0.424076
+        ],
+        "typographyBoundsNormalized": {
+          "x": 0.856835,
+          "y": 0.085,
+          "width": 0.078417,
+          "height": 0.36375
+        },
+        "naturalContentCaveat": true
+      },
+      "masks": {
+        "card-silhouette": {
+          "sha256": "aea084a994c1002d62c96a45045117ba938141b21299c879b1a019b166e7950a",
+          "areaRatioOfFrame": 0.03559442,
+          "areaRatioOfCard": 1.0,
+          "centroidNormalized": [
+            0.890816,
+            0.257565
+          ],
+          "confidence": 0.4868
+        },
+        "center-face": {
+          "sha256": "42550a1963cf6bd9eac86ed55acb45efb2b674e4b4eb0e3f0a4584d3c893a00a",
+          "areaRatioOfFrame": 0.02074573,
+          "areaRatioOfCard": 0.58283646,
+          "centroidNormalized": [
+            0.89475,
+            0.258048
+          ],
+          "confidence": 0.6822
+        },
+        "optical-shoulder": {
+          "sha256": "5e09334accd3f790224d0c3d73da2750e0af969595e09268a08911ccf9a1613f",
+          "areaRatioOfFrame": 0.00767311,
+          "areaRatioOfCard": 0.2155706,
+          "centroidNormalized": [
+            0.887036,
+            0.257557
+          ],
+          "confidence": 0.6496,
+          "widthOverCardMinor": 0.08
+        },
+        "lens-rim": {
+          "sha256": "685801d3eeb3bbfa1e6619db3edf0b6a70b9fe935667c137e221b6250614093f",
+          "areaRatioOfFrame": 0.00587545,
+          "areaRatioOfCard": 0.16506657,
+          "centroidNormalized": [
+            0.883768,
+            0.256197
+          ],
+          "confidence": 0.6496,
+          "widthOverCardMinor": 0.053
+        },
+        "sidewall": {
+          "sha256": "9ff95a1030d3c7128af1f54ba8d61ddcc3eaf4e640c5fb826b10ae93baecdd29",
+          "areaRatioOfFrame": 0.00130013,
+          "areaRatioOfCard": 0.03652636,
+          "centroidNormalized": [
+            0.882217,
+            0.256076
+          ],
+          "confidence": 0.6246,
+          "widthOverCardMinor": 0.012
+        },
+        "highlight": {
+          "sha256": "2d326c2a06ab1c908334e23d4bb66d2e594e082789b853191d33e71c11d6186c",
+          "areaRatioOfFrame": 0.00035769,
+          "areaRatioOfCard": 0.01004901,
+          "centroidNormalized": [
+            0.889087,
+            0.424076
+          ],
+          "confidence": 1.0
+        },
+        "typography": {
+          "sha256": "6743b470fef842f9d9484b6f39577222cbf4b82e1c0105f7f77e31cd19844296",
+          "areaRatioOfFrame": 0.00093525,
+          "areaRatioOfCard": 0.02627523,
+          "centroidNormalized": [
+            0.897926,
+            0.222853
+          ],
+          "confidence": 1.0
+        },
+        "gutter": {
+          "sha256": "bbca15e61a952c60881bff57fff88c9cedd82ab230146f6a99e800587de412dc",
+          "areaRatioOfFrame": 0.00814906,
+          "areaRatioOfCard": 0.22894192,
+          "centroidNormalized": [
+            0.867033,
+            0.29814
+          ],
+          "confidence": 0.675
+        }
+      },
+      "confidence": 0.7117,
+      "needsHumanReview": true,
+      "reviewReasons": [
+        "silhouette-boundary-support-is-low"
+      ]
+    },
+    {
+      "id": "pointer-before",
+      "frameIndex": 504,
+      "ptsSeconds": 16.8,
+      "frameSha256": "02e5157c26ad46b9c54f616e3dd26594fa64867b7c31eb643e1ed0e61ad7dab3",
+      "cropSha256": "f770f96560d22af68f66c88e37c93ea7a35bd66dfdecbe803d9ef3d12ecdaf45",
+      "overlaySha256": "0c350804ae6ee8f1d25d94dadb8fd75699f9c0ceb8248605ab1682165008878e",
+      "geometry": {
+        "coordinateSpace": "source-frame-normalized",
+        "quadNormalized": [
+          [
+            0.893497,
+            0.092525
+          ],
+          [
+            0.989479,
+            0.127566
+          ],
+          [
+            0.993417,
+            0.45607
+          ],
+          [
+            0.907416,
+            0.471136
+          ]
+        ],
+        "centerNormalized": [
+          0.945952,
+          0.286824
+        ],
+        "widthNormalized": 0.092257,
+        "heightNormalized": 0.353979,
+        "topEdgeTiltDeg": 11.8663,
+        "perspectiveHeightAsymmetry": -0.143534,
+        "superellipseExponent": 5.8,
+        "clipped": true
+      },
+      "features": {
+        "medianLuminanceLinear": 0.066757,
+        "localContrast": 0.518248,
+        "edgeDensity": 0.125795,
+        "entropyBits": 4.720229,
+        "clarityScore": 0.822071
+      },
+      "metrics": {
+        "rimZoneFallbackWidthOverCardMinor": 0.065,
+        "opticalZoneFallbackWidthOverCardMinor": 0.145,
+        "zoneWidthSource": "configured-initial-mask-not-measured-target-optics",
+        "centerSharpness": 0.211901,
+        "rimSharpness": 0.254971,
+        "centerRimSharpnessRatio": 0.831079,
+        "dispersionOuterEnergyRatio": 0.173156,
+        "highlightCentroidNormalized": [
+          0.962982,
+          0.397083
+        ],
+        "typographyBoundsNormalized": {
+          "x": 0.906115,
+          "y": 0.1375,
+          "width": 0.083453,
+          "height": 0.2825
+        },
+        "naturalContentCaveat": true
+      },
+      "masks": {
+        "card-silhouette": {
+          "sha256": "729103f39e7fd663c916de86fba20b4fb60f42ebc3bd1663c6c0667146f27346",
+          "areaRatioOfFrame": 0.03055845,
+          "areaRatioOfCard": 1.0,
+          "centroidNormalized": [
+            0.945117,
+            0.284717
+          ],
+          "confidence": 0.6328
+        },
+        "center-face": {
+          "sha256": "873aa3eeb49f620f4b4802daa357193034c9a123c0af34c7551c87c7a8e1ab99",
+          "areaRatioOfFrame": 0.01836129,
+          "areaRatioOfCard": 0.60085783,
+          "centroidNormalized": [
+            0.94639,
+            0.289911
+          ],
+          "confidence": 0.7485
+        },
+        "optical-shoulder": {
+          "sha256": "ac033d78d259b3be0ddfc11e9987f2274e94e09af17e0b8d5846ff003e9f5127",
+          "areaRatioOfFrame": 0.00637545,
+          "areaRatioOfCard": 0.20863129,
+          "centroidNormalized": [
+            0.943773,
+            0.279585
+          ],
+          "confidence": 0.724,
+          "widthOverCardMinor": 0.08
+        },
+        "lens-rim": {
+          "sha256": "e0d6695167ab631e257fc611c3439b21a84d667e0f257f3878f81d9e8b2e6d43",
+          "areaRatioOfFrame": 0.00477496,
+          "areaRatioOfCard": 0.15625644,
+          "centroidNormalized": [
+            0.942713,
+            0.274479
+          ],
+          "confidence": 0.724,
+          "widthOverCardMinor": 0.053
+        },
+        "sidewall": {
+          "sha256": "120953396391662d05bd5e5e5f642cc186acb03cded54e61ad1067a16302c4de",
+          "areaRatioOfFrame": 0.00104676,
+          "areaRatioOfCard": 0.03425444,
+          "centroidNormalized": [
+            0.941941,
+            0.271578
+          ],
+          "confidence": 0.7042,
+          "widthOverCardMinor": 0.012
+        },
+        "highlight": {
+          "sha256": "7fa5adf46b8269e5918cfe5902464bbfcb87b13f62668e6b3abc59f41588d19e",
+          "areaRatioOfFrame": 0.00038287,
+          "areaRatioOfCard": 0.01252906,
+          "centroidNormalized": [
+            0.962982,
+            0.397083
+          ],
+          "confidence": 1.0
+        },
+        "typography": {
+          "sha256": "d9b2e644ff0e132ea21143b48ca2fb4f4f83d011218be0cde59060a082db817f",
+          "areaRatioOfFrame": 0.00080328,
+          "areaRatioOfCard": 0.02628675,
+          "centroidNormalized": [
+            0.943754,
+            0.287823
+          ],
+          "confidence": 1.0
+        },
+        "gutter": {
+          "sha256": "01953c4c1e4ddbfe72501c4bda7645183fff3249b32f961027e32be50e5fea03",
+          "areaRatioOfFrame": 0.00671313,
+          "areaRatioOfCard": 0.21968159,
+          "centroidNormalized": [
+            0.91013,
+            0.305208
+          ],
+          "confidence": 0.7533
+        }
+      },
+      "confidence": 0.794,
+      "needsHumanReview": true,
+      "reviewReasons": [
+        "selected-card-is-clipped"
+      ]
+    },
+    {
+      "id": "pointer-after",
+      "frameIndex": 516,
+      "ptsSeconds": 17.2,
+      "frameSha256": "7b8db4d33286a7e3ec387d4e8cded7b83c66a7952e34e1c6e8bf96f46a519d45",
+      "cropSha256": "1d28d9a604e21c6c729adf712a73b4a404bcf0ce9e824c3523f3c586299a487d",
+      "overlaySha256": "139938d98cb1046bd105f6e06d568b3954d51df918ef23b505ccef205d8544c2",
+      "geometry": {
+        "coordinateSpace": "source-frame-normalized",
+        "quadNormalized": [
+          [
+            0.893015,
+            0.09266
+          ],
+          [
+            0.990643,
+            0.128922
+          ],
+          [
+            0.992928,
+            0.445402
+          ],
+          [
+            0.907692,
+            0.487403
+          ]
+        ],
+        "centerNormalized": [
+          0.946069,
+          0.288597
+        ],
+        "widthNormalized": 0.094216,
+        "heightNormalized": 0.356036,
+        "topEdgeTiltDeg": 12.0666,
+        "perspectiveHeightAsymmetry": -0.222058,
+        "superellipseExponent": 4.8,
+        "clipped": true
+      },
+      "features": {
+        "medianLuminanceLinear": 0.068248,
+        "localContrast": 0.521868,
+        "edgeDensity": 0.121795,
+        "entropyBits": 4.717793,
+        "clarityScore": 0.841972
+      },
+      "metrics": {
+        "rimZoneFallbackWidthOverCardMinor": 0.065,
+        "opticalZoneFallbackWidthOverCardMinor": 0.145,
+        "zoneWidthSource": "configured-initial-mask-not-measured-target-optics",
+        "centerSharpness": 0.210214,
+        "rimSharpness": 0.242883,
+        "centerRimSharpnessRatio": 0.865496,
+        "dispersionOuterEnergyRatio": 0.170625,
+        "highlightCentroidNormalized": [
+          0.961703,
+          0.395958
+        ],
+        "typographyBoundsNormalized": {
+          "x": 0.906115,
+          "y": 0.14375,
+          "width": 0.083813,
+          "height": 0.308125
+        },
+        "naturalContentCaveat": true
+      },
+      "masks": {
+        "card-silhouette": {
+          "sha256": "b18d523b29e0b73b8039e02c20b40b4a43d630b39387e37d5db708a22e7673bb",
+          "areaRatioOfFrame": 0.03046223,
+          "areaRatioOfCard": 1.0,
+          "centroidNormalized": [
+            0.944912,
+            0.286525
+          ],
+          "confidence": 0.617
+        },
+        "center-face": {
+          "sha256": "64ca73da26e7fba0653ba797bf8abae96e23c90a37b3070ec1fc3cfad601f171",
+          "areaRatioOfFrame": 0.01823494,
+          "areaRatioOfCard": 0.59860808,
+          "centroidNormalized": [
+            0.946833,
+            0.292513
+          ],
+          "confidence": 0.7414
+        },
+        "optical-shoulder": {
+          "sha256": "5e4c1bd6c43020fd4856965cf3d57b95b1e72e3a78eeb9b10366ad3a2c20422e",
+          "areaRatioOfFrame": 0.00638557,
+          "areaRatioOfCard": 0.20962242,
+          "centroidNormalized": [
+            0.942908,
+            0.28072
+          ],
+          "confidence": 0.7159,
+          "widthOverCardMinor": 0.08
+        },
+        "lens-rim": {
+          "sha256": "9521e9ff6d4a7e10477530775ea753facea8dcbad7ab2fd76b5c28e954d20c6f",
+          "areaRatioOfFrame": 0.00478844,
+          "areaRatioOfCard": 0.15719283,
+          "centroidNormalized": [
+            0.941217,
+            0.274707
+          ],
+          "confidence": 0.7159,
+          "widthOverCardMinor": 0.053
+        },
+        "sidewall": {
+          "sha256": "669e2cfd10fecd392931773ffb7aea528b44b8959f1374913ea82460b67fa9a0",
+          "areaRatioOfFrame": 0.00105328,
+          "areaRatioOfCard": 0.03457667,
+          "centroidNormalized": [
+            0.940616,
+            0.271776
+          ],
+          "confidence": 0.6956,
+          "widthOverCardMinor": 0.012
+        },
+        "highlight": {
+          "sha256": "496e6af2bce36d563789c9885d9bd03e0153f26883801efdb4ad5ee33f9d5006",
+          "areaRatioOfFrame": 0.00044402,
+          "areaRatioOfCard": 0.01457608,
+          "centroidNormalized": [
+            0.961703,
+            0.395958
+          ],
+          "confidence": 1.0
+        },
+        "typography": {
+          "sha256": "8cdada01bba9f2684a4b246c738f001073ac129b2d699e42338cce353228ef16",
+          "areaRatioOfFrame": 0.00080441,
+          "areaRatioOfCard": 0.02640668,
+          "centroidNormalized": [
+            0.943278,
+            0.290673
+          ],
+          "confidence": 1.0
+        },
+        "gutter": {
+          "sha256": "341668d62e3ff89ea2c72c10695e1cde32b1e20552f80431b3d947f15cb46bcf",
+          "areaRatioOfFrame": 0.0064991,
+          "areaRatioOfCard": 0.21334947,
+          "centroidNormalized": [
+            0.907267,
+            0.344618
+          ],
+          "confidence": 0.6984
+        }
+      },
+      "confidence": 0.7866,
+      "needsHumanReview": true,
+      "reviewReasons": [
+        "selected-card-is-clipped"
+      ]
+    }
+  ],
+  "summary": {
+    "status": "CONDITIONAL",
+    "selectedCategoryCount": 8,
+    "uniqueFrameCount": 8,
+    "validCleanOpticalRoiCount": 1,
+    "opticalZoneWidthsMeasured": false,
+    "needsHumanReviewCount": 7,
+    "artifactSetSha256": "438e12eb7ca0c47e8a64a3dfa51efad007a0e51b91080939f0d5736c03369821"
+  }
+}

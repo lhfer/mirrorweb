@@ -1,13 +1,13 @@
 # MirrorWeb V4 source of truth
 
-Status: **Phase 0 source contract established; controlled Golden comparison is blocked pending capture provenance.**
+Status: **Phase 0 development gate passed: Controlled Local and Controlled Live are PASS, Frozen Visual is CONDITIONAL with one verified clean seed ROI, and final quantitative acceptance remains BLOCKED.**
 
 ## Authority order
 
-1. Private frozen assets verified against `$ILG_GOLDEN_DIR/manifest.lock.json`.
-2. The exact tested Git commit and the source fingerprints in `config/calibration.v4.json`.
-3. The user-provided annotated screenshot, used only to identify regions of interest.
-4. The live target URL, which is secondary and may change.
+1. **Frozen Visual Golden** — private target video plus clean extracted frames; authoritative for optics, style, typography depth relationship, and qualitative rhythm.
+2. **Controlled Live Reference** — same-machine target capture; authoritative for live layout, inputs, motion trajectory, viewport response, and relative performance. Its identity is URL + time + DOM/screenshot/network hashes and HTTP validators, not a source commit.
+3. **Controlled Local Baseline** — the accepted `e977134` runtime captured with the same Browser/GPU/Viewport/DPR/input matrix as the live target.
+4. The user-provided annotated screenshot, used only to identify regions of interest.
 5. `docs/archive/pre-v4/`, which is historical evidence only.
 
 No old report, green build, QA state string, live-site observation, or single screenshot can override a missing or mismatched Golden asset.
@@ -20,7 +20,7 @@ The private set has three logical roles:
 - `current.mp4`: frozen V3 current-state baseline.
 - `target-annotated.png`: target screenshot with red regions of interest. It is `annotation-only`; the red strokes contaminate pixels and cannot be used as a full-frame difference Golden.
 
-Actual paths, hashes, byte sizes, video metadata, and capture provenance remain in the ignored private lock. They must not be committed or hotlinked.
+Absolute paths and copyrighted pixels remain in the ignored private lock and must not be committed or hotlinked. The target video SHA-256, derived artifact hashes, normalized measurements, and sanitized capture identity are intentionally versioned so the private files can be verified without publishing them.
 
 The videos prove their encoded dimensions, duration, codec, color metadata, and recorded image sequence. They do **not** prove the browser viewport, DPR, rendering frame rate, GPU, or deterministic input path. The two supplied videos also differ in duration, encoded dimensions, content, and interaction, so Phase 0 does not perform frame-aligned pixel diff or fit motion constants.
 
@@ -69,7 +69,7 @@ The block below is verified against both `config/calibration.v4.json` and curren
   },
   "v4": {
     "optics": "not-implemented",
-    "motionFit": "blocked",
+    "motionFit": "deferred-to-phase-3",
     "gridRingBuffer": "not-implemented"
   }
 }
@@ -86,13 +86,17 @@ The block below is verified against both `config/calibration.v4.json` and curren
 - Motion: release velocity is based on the most recently accumulated RAF window and velocity is hard-zeroed below 70 px/s.
 - Typography: CSS3D is retained, but V4 target sizing and alignment are not implemented.
 
-## Phase gate
+## Development gate versus final gate
 
 Phase 1 may start only when:
 
 - the source contract test passes;
-- the Golden preflight is `READY`, including capture source commit, Browser/GPU/Viewport/DPR, clean pixel Golden, and input-script hash;
-- the manifest records a clean tested commit;
-- a clean, unannotated target screenshot exists for pixel metrics or an explicit red-line mask is defined.
+- the Frozen Visual source video is readable and hash-locked;
+- at least one clean optical ROI has been extracted from the unannotated video;
+- the controlled local baseline is captured from `e977134` with the frozen input matrix;
+- V3 still passes its runtime smoke check;
+- V4 work remains behind its own lab route and feature selector.
 
-Until then, the correct state is `final result: blocked`.
+Final quantitative acceptance is stricter. Missing strict Motion fit, controlled performance, or complete live-reference provenance still forbids `passed`, but does not by itself block the isolated Phase 1 optics experiment.
+
+The executable workflow, four-profile matrix, evidence retention policy, and replay commands are defined in `docs/v4/CONTROLLED_REFERENCE.md`.

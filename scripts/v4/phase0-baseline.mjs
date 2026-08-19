@@ -3,6 +3,7 @@ import { mkdir } from "node:fs/promises";
 import { resolve } from "node:path";
 import { REPO_ROOT, writeJson } from "./lib/common.mjs";
 import { verifyGolden, writeGoldenResult } from "./lib/golden.mjs";
+import { buildReferenceStatus } from "./lib/reference-status.mjs";
 import { runSourceContract } from "./lib/source-contract.mjs";
 
 const knownFailures = [
@@ -53,11 +54,16 @@ const knownFailures = [
 try {
   const source = await runSourceContract();
   const golden = await verifyGolden();
+  const references = await buildReferenceStatus({ sourceStatus: source.status });
   const resultsDir = resolve(REPO_ROOT, "qa-v4/results");
   await mkdir(resultsDir, { recursive: true });
   await writeGoldenResult(resolve(resultsDir, "golden-manifest.local.json"), golden);
 
-  const status = source.status !== "PASSED" ? "ERROR" : golden.status === "BLOCKED" ? "BLOCKED" : "FAILED";
+  const status = source.status !== "PASSED"
+    ? "ERROR"
+    : references.phase1Allowed
+      ? "DEVELOPMENT_READY_FINAL_BLOCKED"
+      : "BLOCKED";
   const result = {
     schemaVersion: 1,
     phase: 0,
@@ -72,6 +78,7 @@ try {
       blockers: golden.blockers,
       comparisonRan: golden.comparisonRan,
     },
+    referenceStatus: references,
     frozenMedia: {
       targetVideo: golden.observed?.targetVideo?.video ?? null,
       currentVideo: golden.observed?.currentVideo?.video ?? null,
@@ -83,11 +90,12 @@ try {
       },
     },
     frameTimeMs: {
-      p50: null,
-      p95: null,
-      p99: null,
-      status: "NOT_MEASURED",
-      reason: "A 30 fps screen recording does not contain page render frame timing",
+      status: "CONTROLLED_RAF_INTERVALS_CAPTURED",
+      metricName: "rafIntervalMs",
+      gpuExecutionTimeMeasured: false,
+      controlledLive: references.controlledLiveReference.cells,
+      controlledLocal: references.controlledLocalBaseline.cells,
+      warning: "These are browser RAF intervals from the controlled capture, not GPU execution time; the 30 fps frozen recording is not used for performance.",
     },
     visualChange: {
       expected: false,
@@ -96,12 +104,12 @@ try {
       status: "NOT_APPLICABLE_NO_VISUAL_CODE_CHANGED",
     },
     expectedV3Failures: knownFailures,
-    nextPhaseAllowed: false,
-    finalResult: status === "BLOCKED" ? "blocked" : "failed",
+    nextPhaseAllowed: references.phase1Allowed,
+    finalResult: "blocked",
   };
   await writeJson(resolve(resultsDir, "phase-0-baseline.local.json"), result);
   console.log(JSON.stringify(result, null, 2));
-  process.exitCode = status === "BLOCKED" ? 2 : status === "ERROR" ? 1 : 1;
+  process.exitCode = references.phase1Allowed ? 0 : status === "ERROR" ? 1 : 2;
 } catch (error) {
   console.error(JSON.stringify({
     schemaVersion: 1,

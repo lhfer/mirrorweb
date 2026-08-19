@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "id": "ilg-v4-controlled-reference-v1",
+  "inputScript": "qa-v4/input-sequence.v4.json",
+  "sites": [
+    {
+      "id": "target",
+      "referenceClass": "controlled-live",
+      "url": "https://infinite-liquid-glass.shader.se/?v=2",
+      "outputDirectory": "qa-v4/reference/controlled-live",
+      "sourceCommitRequired": false
+    },
+    {
+      "id": "local",
+      "referenceClass": "controlled-local",
+      "url": "http://127.0.0.1:5281/?optics=v3&qa=1",
+      "outputDirectory": "qa-v4/reference/local-e977134",
+      "sourceCommitRequired": true,
+      "expectedSourceCommit": "e9771340f849d232f30f87aa70ddac2062d0e332",
+      "expectedSourceTree": "6347bfc2b0343cf58f664693bd945f35cf57e01f"
+    }
+  ],
+  "browser": {
+    "name": "Google Chrome",
+    "channel": "chrome",
+    "headless": false,
+    "launchArgs": [
+      "--enable-unsafe-webgpu",
+      "--enable-webgpu-developer-features",
+      "--disable-software-rasterizer",
+      "--ignore-gpu-blocklist",
+      "--use-angle=metal"
+    ]
+  },
+  "profiles": [
+    {
+      "id": "desktop-1440x900-dpr1",
+      "width": 1440,
+      "height": 900,
+      "browserDpr": 1,
+      "mobile": false,
+      "hasTouch": false,
+      "expectedCanvasDpr": 1
+    },
+    {
+      "id": "desktop-1440x900-dpr2",
+      "width": 1440,
+      "height": 900,
+      "browserDpr": 2,
+      "mobile": false,
+      "hasTouch": false,
+      "expectedCanvasDpr": 2
+    },
+    {
+      "id": "mobile-390x844-dpr3-clamp1_5",
+      "width": 390,
+      "height": 844,
+      "browserDpr": 3,
+      "mobile": true,
+      "hasTouch": true,
+      "expectedCanvasDpr": 1.5
+    },
+    {
+      "id": "mobile-844x390-dpr3-clamp1_5",
+      "width": 844,
+      "height": 390,
+      "browserDpr": 3,
+      "mobile": true,
+      "hasTouch": true,
+      "expectedCanvasDpr": 1.5
+    }
+  ],
+  "passes": ["identity", "interaction", "performance"],
+  "capture": {
+    "targetWarmupMs": 8000,
+    "restMs": 5000,
+    "pointerSettleMs": 800,
+    "pointerPositions": [
+      { "id": "center", "positionNdc": [0, 0] },
+      { "id": "top-left", "positionNdc": [-0.8, -0.8] },
+      { "id": "top-right", "positionNdc": [0.8, -0.8] },
+      { "id": "bottom-left", "positionNdc": [-0.8, 0.8] },
+      { "id": "bottom-right", "positionNdc": [0.8, 0.8] }
+    ],
+    "releaseCheckpointsMs": [100, 300, 600, 1000, 1500],
+    "settle": {
+      "sampleEveryMs": 50,
+      "stableSampleCount": 8,
+      "maxCornerDeltaCssPx": 0.25,
+      "maxWaitMs": 5000
+    },
+    "inputResolution": {
+      "startPositionNdc": [0.4, 0],
+      "maxDeltaViewportFraction": 0.72
+    },
+    "performance": {
+      "idleDurationMs": 10000,
+      "metricName": "rafIntervalMs",
+      "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time"
+    },
+    "validation": {
+      "timedInputToleranceFraction": 0.12,
+      "wheelDeltaToleranceCssPx": 1,
+      "canvasDprTolerance": 0.05,
+      "minimumTrackedCardCorners": 8
+    }
+  },
+  "privacy": {
+    "rawArtifactsArePrivate": true,
+    "commitRawMedia": false,
+    "commitAbsolutePaths": false,
+    "commitFullNetworkUrls": false,
+    "sanitizedManifestDirectory": "qa-v4/reference/controlled-reference"
+  }
+}

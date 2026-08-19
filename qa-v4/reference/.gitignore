@@ -1,0 +1,20 @@
+# Private or copyrighted capture media. Sanitized JSON/Markdown schemas remain trackable.
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.mp4
+*.mov
+*.webm
+*.m4s
+*.zip
+*.har
+*.trace
+*.log
+*.raw.*
+dom-snapshot.json
+*.local.json
+*.private.json
+video-tmp/
+frames/
+private/

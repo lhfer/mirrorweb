@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mirrorweb.invalid/schemas/v4/frozen-visual-roi-mask.schema.json",
+  "title": "MirrorWeb V4 sanitized Frozen Visual ROI measurements",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "referenceClass",
+    "source",
+    "algorithm",
+    "categories",
+    "summary"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "referenceClass": { "const": "frozen-visual" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["videoSha256", "frameRate", "frameCount", "durationSeconds"],
+      "properties": {
+        "videoSha256": { "$ref": "#/$defs/sha256" },
+        "frameRate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["numerator", "denominator"],
+          "properties": {
+            "numerator": { "type": "integer", "minimum": 1 },
+            "denominator": { "type": "integer", "minimum": 1 }
+          }
+        },
+        "frameCount": { "type": "integer", "minimum": 1 },
+        "durationSeconds": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "algorithm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "scriptSha256", "runtime", "analysisStrideFrames", "zoneFallbacksOverCardMinor"],
+      "properties": {
+        "id": { "const": "mirrorweb-frozen-visual-roi" },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "scriptSha256": { "$ref": "#/$defs/sha256" },
+        "runtime": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["python", "ffmpeg", "numpy", "scipy", "scikitImage", "pillow"],
+          "properties": {
+            "python": { "type": "string" },
+            "ffmpeg": { "type": "string" },
+            "numpy": { "type": "string" },
+            "scipy": { "type": "string" },
+            "scikitImage": { "type": "string" },
+            "pillow": { "type": "string" }
+          }
+        },
+        "analysisStrideFrames": { "type": "integer", "minimum": 1 },
+        "zoneFallbacksOverCardMinor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sidewallEnd", "lensRimEnd", "opticalShoulderEnd"],
+          "properties": {
+            "sidewallEnd": { "$ref": "#/$defs/unit" },
+            "lensRimEnd": { "$ref": "#/$defs/unit" },
+            "opticalShoulderEnd": { "$ref": "#/$defs/unit" }
+          }
+        }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "minItems": 8,
+      "items": { "$ref": "#/$defs/category" }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "selectedCategoryCount",
+        "uniqueFrameCount",
+        "validCleanOpticalRoiCount",
+        "opticalZoneWidthsMeasured",
+        "needsHumanReviewCount",
+        "artifactSetSha256"
+      ],
+      "properties": {
+        "status": { "enum": ["PASS", "CONDITIONAL", "BLOCKED"] },
+        "selectedCategoryCount": { "type": "integer", "minimum": 8 },
+        "uniqueFrameCount": { "type": "integer", "minimum": 1 },
+        "validCleanOpticalRoiCount": { "type": "integer", "minimum": 0 },
+        "opticalZoneWidthsMeasured": { "const": false },
+        "needsHumanReviewCount": { "type": "integer", "minimum": 0 },
+        "artifactSetSha256": { "$ref": "#/$defs/sha256" }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "unit": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "point": {
+      "type": "array",
+      "prefixItems": [
+        { "$ref": "#/$defs/unit" },
+        { "$ref": "#/$defs/unit" }
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "normalizedBox": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "width", "height"],
+      "properties": {
+        "x": { "$ref": "#/$defs/unit" },
+        "y": { "$ref": "#/$defs/unit" },
+        "width": { "$ref": "#/$defs/unit" },
+        "height": { "$ref": "#/$defs/unit" }
+      }
+    },
+    "nullableNumber": {
+      "type": ["number", "null"]
+    },
+    "nullablePoint": {
+      "anyOf": [
+        { "$ref": "#/$defs/point" },
+        { "type": "null" }
+      ]
+    },
+    "nullableBox": {
+      "anyOf": [
+        { "$ref": "#/$defs/normalizedBox" },
+        { "type": "null" }
+      ]
+    },
+    "maskMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256", "areaRatioOfFrame", "areaRatioOfCard", "centroidNormalized", "confidence"],
+      "properties": {
+        "sha256": { "$ref": "#/$defs/sha256" },
+        "areaRatioOfFrame": { "$ref": "#/$defs/unit" },
+        "areaRatioOfCard": { "type": "number", "minimum": 0 },
+        "centroidNormalized": { "$ref": "#/$defs/nullablePoint" },
+        "widthOverCardMinor": { "$ref": "#/$defs/unit" },
+        "confidence": { "$ref": "#/$defs/unit" }
+      }
+    },
+    "category": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "frameIndex",
+        "ptsSeconds",
+        "frameSha256",
+        "cropSha256",
+        "overlaySha256",
+        "geometry",
+        "features",
+        "metrics",
+        "masks",
+        "confidence",
+        "needsHumanReview",
+        "reviewReasons"
+      ],
+      "properties": {
+        "id": {
+          "enum": [
+            "bright-front",
+            "dark-front",
+            "high-texture",
+            "low-texture",
+            "left-tilt",
+            "right-tilt",
+            "pointer-before",
+            "pointer-after"
+          ]
+        },
+        "frameIndex": { "type": "integer", "minimum": 0 },
+        "ptsSeconds": { "type": "number", "minimum": 0 },
+        "frameSha256": { "$ref": "#/$defs/sha256" },
+        "cropSha256": { "$ref": "#/$defs/sha256" },
+        "overlaySha256": { "$ref": "#/$defs/sha256" },
+        "geometry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "coordinateSpace",
+            "quadNormalized",
+            "centerNormalized",
+            "widthNormalized",
+            "heightNormalized",
+            "topEdgeTiltDeg",
+            "perspectiveHeightAsymmetry",
+            "superellipseExponent",
+            "clipped"
+          ],
+          "properties": {
+            "coordinateSpace": { "const": "source-frame-normalized" },
+            "quadNormalized": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/point" },
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "centerNormalized": { "$ref": "#/$defs/point" },
+            "widthNormalized": { "$ref": "#/$defs/unit" },
+            "heightNormalized": { "$ref": "#/$defs/unit" },
+            "topEdgeTiltDeg": { "type": "number", "minimum": -90, "maximum": 90 },
+            "perspectiveHeightAsymmetry": { "type": "number", "minimum": -2, "maximum": 2 },
+            "superellipseExponent": { "type": "number", "minimum": 2, "maximum": 12 },
+            "clipped": { "type": "boolean" }
+          }
+        },
+        "features": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["medianLuminanceLinear", "localContrast", "edgeDensity", "entropyBits", "clarityScore"],
+          "properties": {
+            "medianLuminanceLinear": { "$ref": "#/$defs/unit" },
+            "localContrast": { "$ref": "#/$defs/unit" },
+            "edgeDensity": { "type": "number", "minimum": 0 },
+            "entropyBits": { "type": "number", "minimum": 0 },
+            "clarityScore": { "$ref": "#/$defs/unit" }
+          }
+        },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "rimZoneFallbackWidthOverCardMinor",
+            "opticalZoneFallbackWidthOverCardMinor",
+            "zoneWidthSource",
+            "centerSharpness",
+            "rimSharpness",
+            "centerRimSharpnessRatio",
+            "dispersionOuterEnergyRatio",
+            "highlightCentroidNormalized",
+            "typographyBoundsNormalized",
+            "naturalContentCaveat"
+          ],
+          "properties": {
+            "rimZoneFallbackWidthOverCardMinor": { "$ref": "#/$defs/unit" },
+            "opticalZoneFallbackWidthOverCardMinor": { "$ref": "#/$defs/unit" },
+            "zoneWidthSource": { "const": "configured-initial-mask-not-measured-target-optics" },
+            "centerSharpness": { "$ref": "#/$defs/nullableNumber" },
+            "rimSharpness": { "$ref": "#/$defs/nullableNumber" },
+            "centerRimSharpnessRatio": { "$ref": "#/$defs/nullableNumber" },
+            "dispersionOuterEnergyRatio": { "$ref": "#/$defs/nullableNumber" },
+            "highlightCentroidNormalized": { "$ref": "#/$defs/nullablePoint" },
+            "typographyBoundsNormalized": { "$ref": "#/$defs/nullableBox" },
+            "naturalContentCaveat": { "const": true }
+          }
+        },
+        "masks": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "card-silhouette",
+            "center-face",
+            "optical-shoulder",
+            "lens-rim",
+            "sidewall",
+            "highlight",
+            "typography",
+            "gutter"
+          ],
+          "properties": {
+            "card-silhouette": { "$ref": "#/$defs/maskMetric" },
+            "center-face": { "$ref": "#/$defs/maskMetric" },
+            "optical-shoulder": { "$ref": "#/$defs/maskMetric" },
+            "lens-rim": { "$ref": "#/$defs/maskMetric" },
+            "sidewall": { "$ref": "#/$defs/maskMetric" },
+            "highlight": { "$ref": "#/$defs/maskMetric" },
+            "typography": { "$ref": "#/$defs/maskMetric" },
+            "gutter": { "$ref": "#/$defs/maskMetric" }
+          }
+        },
+        "confidence": { "$ref": "#/$defs/unit" },
+        "needsHumanReview": { "type": "boolean" },
+        "reviewReasons": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

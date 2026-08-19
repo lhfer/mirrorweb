@@ -1,0 +1,369 @@
+{
+  "schemaVersion": 1,
+  "phase": 0,
+  "generatedAt": "2026-08-19T09:25:54.016Z",
+  "sourceConsistency": {
+    "status": "PASS"
+  },
+  "frozenVisualReference": {
+    "status": "CONDITIONAL",
+    "sourceVideoSha256": "b6e79250c75e0357e489de87b63ffd4a5097a573eb7baced35e5de8b050c2435",
+    "privateVideoVerified": true,
+    "artifactSetSha256": "438e12eb7ca0c47e8a64a3dfa51efad007a0e51b91080939f0d5736c03369821",
+    "selectedCategoryCount": 8,
+    "verifiedArtifactCategoryCount": 8,
+    "cleanOpticalRoiCount": 1,
+    "opticalZoneWidthsMeasured": false,
+    "needsHumanReviewCount": 7,
+    "reasons": []
+  },
+  "controlledLocalBaseline": {
+    "status": "PASS",
+    "captureId": "20260819-e977134-controlled-r5",
+    "sourceCommit": "e9771340f849d232f30f87aa70ddac2062d0e332",
+    "sourceTree": "6347bfc2b0343cf58f664693bd945f35cf57e01f",
+    "cells": {
+      "desktop-1440x900-dpr1": {
+        "passed": true,
+        "failures": [],
+        "rafIntervalMs": {
+          "idle": {
+            "estimatedRefreshHz": 120.48192771082753,
+            "gpuExecutionTimeMeasured": false,
+            "max": 10.400000000000546,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.450000000001637,
+            "p50": 8.300000000001091,
+            "p95": 10.099999999998545,
+            "p99": 10.299999999999272,
+            "sampleCount": 1199
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771085394,
+            "gpuExecutionTimeMeasured": false,
+            "max": 22.5,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 1,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0011904761904761906,
+            "overBudgetThresholdMs": 12.449999999998909,
+            "p50": 8.299999999999272,
+            "p95": 9.900000000001455,
+            "p99": 10.30000000000291,
+            "sampleCount": 1680
+          },
+          "gpuExecutionTimeMeasured": false
+        },
+        "rawEvidenceVerified": true
+      },
+      "desktop-1440x900-dpr2": {
+        "passed": true,
+        "failures": [],
+        "rafIntervalMs": {
+          "idle": {
+            "estimatedRefreshHz": 120.48192771084074,
+            "gpuExecutionTimeMeasured": false,
+            "max": 10.400000000001455,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.450000000000273,
+            "p50": 8.300000000000182,
+            "p95": 9.900000000000546,
+            "p99": 10.299999999999272,
+            "sampleCount": 1200
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771080113,
+            "gpuExecutionTimeMeasured": false,
+            "max": 24.599999999998545,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 1,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0011918951132300357,
+            "overBudgetThresholdMs": 12.450000000004366,
+            "p50": 8.30000000000291,
+            "p95": 10,
+            "p99": 10.299999999999272,
+            "sampleCount": 1678
+          },
+          "gpuExecutionTimeMeasured": false
+        },
+        "rawEvidenceVerified": true
+      },
+      "mobile-390x844-dpr3-clamp1_5": {
+        "passed": true,
+        "failures": [],
+        "rafIntervalMs": {
+          "idle": {
+            "estimatedRefreshHz": 120.48192771084074,
+            "gpuExecutionTimeMeasured": false,
+            "max": 11.399999999999636,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.450000000000273,
+            "p50": 8.300000000000182,
+            "p95": 10.100000000000364,
+            "p99": 10.399999999999636,
+            "sampleCount": 1198
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771085394,
+            "gpuExecutionTimeMeasured": false,
+            "max": 24.5,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 1,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0011933174224343676,
+            "overBudgetThresholdMs": 12.449999999998909,
+            "p50": 8.299999999999272,
+            "p95": 9.900000000001455,
+            "p99": 10.299999999999272,
+            "sampleCount": 1676
+          },
+          "gpuExecutionTimeMeasured": false
+        },
+        "rawEvidenceVerified": true
+      },
+      "mobile-844x390-dpr3-clamp1_5": {
+        "passed": true,
+        "failures": [],
+        "rafIntervalMs": {
+          "idle": {
+            "estimatedRefreshHz": 120.48192771084074,
+            "gpuExecutionTimeMeasured": false,
+            "max": 10.400000000001455,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.450000000000273,
+            "p50": 8.300000000000182,
+            "p95": 9.900000000001455,
+            "p99": 10.299999999999272,
+            "sampleCount": 1200
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771085394,
+            "gpuExecutionTimeMeasured": false,
+            "max": 25,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 1,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0011926058437686344,
+            "overBudgetThresholdMs": 12.449999999998909,
+            "p50": 8.299999999999272,
+            "p95": 9.799999999999272,
+            "p99": 10.299999999999272,
+            "sampleCount": 1677
+          },
+          "gpuExecutionTimeMeasured": false
+        },
+        "rawEvidenceVerified": true
+      }
+    },
+    "reasons": []
+  },
+  "controlledLiveReference": {
+    "status": "PASS",
+    "captureId": "20260819-e977134-controlled-r5",
+    "cells": {
+      "desktop-1440x900-dpr1": {
+        "passed": true,
+        "failures": [],
+        "rafIntervalMs": {
+          "idle": {
+            "estimatedRefreshHz": 120.48192771082753,
+            "gpuExecutionTimeMeasured": false,
+            "max": 10.399999999997817,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.450000000001637,
+            "p50": 8.300000000001091,
+            "p95": 10.100000000002183,
+            "p99": 10.299999999999272,
+            "sampleCount": 1199
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771080113,
+            "gpuExecutionTimeMeasured": false,
+            "max": 20.299999999995634,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 1,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0011918951132300357,
+            "overBudgetThresholdMs": 12.450000000004366,
+            "p50": 8.30000000000291,
+            "p95": 10,
+            "p99": 10.30000000000291,
+            "sampleCount": 1678
+          },
+          "gpuExecutionTimeMeasured": false
+        },
+        "rawEvidenceVerified": true
+      },
+      "desktop-1440x900-dpr2": {
+        "passed": true,
+        "failures": [],
+        "rafIntervalMs": {
+          "idle": {
+            "estimatedRefreshHz": 120.48192771085394,
+            "gpuExecutionTimeMeasured": false,
+            "max": 10.400000000001455,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.449999999998909,
+            "p50": 8.299999999999272,
+            "p95": 9.899999999997817,
+            "p99": 10.299999999999272,
+            "sampleCount": 1199
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771080113,
+            "gpuExecutionTimeMeasured": false,
+            "max": 27.30000000000291,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 1,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0011918951132300357,
+            "overBudgetThresholdMs": 12.450000000004366,
+            "p50": 8.30000000000291,
+            "p95": 9.899999999997817,
+            "p99": 10.299999999999272,
+            "sampleCount": 1678
+          },
+          "gpuExecutionTimeMeasured": false
+        },
+        "rawEvidenceVerified": true
+      },
+      "mobile-390x844-dpr3-clamp1_5": {
+        "passed": true,
+        "failures": [],
+        "rafIntervalMs": {
+          "idle": {
+            "estimatedRefreshHz": 120.48192771085394,
+            "gpuExecutionTimeMeasured": false,
+            "max": 10.400000000001455,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.449999999998909,
+            "p50": 8.299999999999272,
+            "p95": 9.900000000001455,
+            "p99": 10.299999999999272,
+            "sampleCount": 1200
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771080113,
+            "gpuExecutionTimeMeasured": false,
+            "max": 26.400000000001455,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 1,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0005952380952380953,
+            "overBudgetThresholdMs": 12.450000000004366,
+            "p50": 8.30000000000291,
+            "p95": 9.80000000000291,
+            "p99": 10.299999999999272,
+            "sampleCount": 1680
+          },
+          "gpuExecutionTimeMeasured": false
+        },
+        "rawEvidenceVerified": true
+      },
+      "mobile-844x390-dpr3-clamp1_5": {
+        "passed": true,
+        "failures": [],
+        "rafIntervalMs": {
+          "idle": {
+            "estimatedRefreshHz": 120.48192771085394,
+            "gpuExecutionTimeMeasured": false,
+            "max": 10.400000000001455,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.449999999998909,
+            "p50": 8.299999999999272,
+            "p95": 10,
+            "p99": 10.299999999999272,
+            "sampleCount": 1199
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771080113,
+            "gpuExecutionTimeMeasured": false,
+            "max": 19.900000000001455,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0011933174224343676,
+            "overBudgetThresholdMs": 12.450000000004366,
+            "p50": 8.30000000000291,
+            "p95": 9.80000000000291,
+            "p99": 10.299999999999272,
+            "sampleCount": 1676
+          },
+          "gpuExecutionTimeMeasured": false
+        },
+        "rawEvidenceVerified": true
+      }
+    },
+    "reasons": []
+  },
+  "frozenVsControlledLive": {
+    "policy": "controlled-live-never-supersedes-frozen-visual",
+    "status": "different-capture-state-no-frame-alignment",
+    "observedDifferences": [
+      "card arrangement and media state differ across capture times",
+      "cursor and input timing differ from the frozen recording",
+      "no full-frame pixel diff is valid across these sources"
+    ]
+  },
+  "finalQuantitativeAcceptance": {
+    "status": "BLOCKED",
+    "blockers": [
+      "strict-motion-fit-not-run",
+      "final-optics-quantitative-comparison-not-run",
+      "target-highlight-centroid-not-directly-exposed",
+      "wheel-line-delta-is-synthetic-and-non-strict",
+      "frozen-roi-set-needs-human-review"
+    ]
+  },
+  "phase1Conditions": {
+    "sourceContractPassed": true,
+    "controlledLocalBaselinePassed": true,
+    "frozenVisualReadableAndHashLocked": true,
+    "cleanOpticalRoiPresent": true,
+    "v3RuntimeSmokePassed": true,
+    "v4IsolationContractPresent": true
+  },
+  "phase1Allowed": true,
+  "overallStatus": "DEVELOPMENT_READY_FINAL_BLOCKED"
+}

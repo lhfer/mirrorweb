@@ -21,6 +21,11 @@
     "v4:check": "node --test tests/v4/*.test.mjs",
     "v4:golden:lock": "node scripts/v4/golden-manifest.mjs --create-lock",
     "v4:golden:verify": "node scripts/v4/golden-manifest.mjs --verify --output qa-v4/results/golden-manifest.local.json",
+    "v4:extract:frozen": "node -e \"if(!process.env.ILG_GOLDEN_DIR)throw new Error('ILG_GOLDEN_DIR is required')\" && python3 scripts/v4/extract-frozen-visual.py \"$ILG_GOLDEN_DIR/target.mp4\" qa-v4/reference/frozen-visual",
+    "v4:serve:controlled-local": "node scripts/v4/serve-controlled-local.mjs",
+    "v4:capture:controlled": "node scripts/v4/capture-controlled-reference.mjs",
+    "v4:references": "node scripts/v4/reference-status.mjs",
+    "v4:schemas": "python3 scripts/v4/validate-reference-schemas.py",
     "qa:v4:baseline": "node scripts/v4/phase0-baseline.mjs"
   },
   "devDependencies": {

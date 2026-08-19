@@ -109,20 +109,58 @@ export async function runSourceContract() {
     stdio: "ignore",
   }).status === 0;
   addCheck(checks, "BASELINE_COMMIT_IS_ANCESTOR", ancestor, true, ancestor);
-  const protectedPaths = [
+  const runtimePaths = [
     "src",
     "public",
     "index.html",
     "glass-lab.html",
+    "glass-lab-v4.html",
     "vite.config.ts",
     "playwright.config.ts",
     "tsconfig.json",
     "package-lock.json",
   ];
-  const protectedDiff = execText("git", ["diff", "--name-only", calibration.baseline.sourceCommit, "--", ...protectedPaths])
+  const allowedV4Runtime = [
+    /^glass-lab-v4\.html$/,
+    /^vite\.config\.ts$/,
+    /^src\/lab-v4\//,
+    /^src\/v4\//,
+    /^src\/materials\/LiquidGlassMaterialV4\.ts$/,
+    /^src\/scene\/ConvexGlassGeometryV4\.ts$/,
+    /^src\/rendering\/SceneColorTargetV4\.ts$/,
+  ];
+  const runtimeDiff = execText("git", ["diff", "--name-only", calibration.baseline.sourceCommit, "--", ...runtimePaths])
     .split("\n")
     .filter(Boolean);
-  addCheck(checks, "PHASE0_RUNTIME_PATHS_UNCHANGED", protectedDiff.length === 0, [], protectedDiff);
+  const protectedDiff = runtimeDiff.filter((path) => !allowedV4Runtime.some((pattern) => pattern.test(path)));
+  addCheck(checks, "V3_RUNTIME_PATHS_UNCHANGED", protectedDiff.length === 0, [], protectedDiff);
+  const untrackedRuntime = execText("git", ["ls-files", "--others", "--exclude-standard", "--", ...runtimePaths])
+    .split("\n")
+    .filter(Boolean);
+  const protectedUntracked = untrackedRuntime.filter((path) => !allowedV4Runtime.some((pattern) => pattern.test(path)));
+  addCheck(checks, "NO_UNTRACKED_V3_RUNTIME", protectedUntracked.length === 0, [], protectedUntracked);
+  const vitePatch = execText("git", ["diff", "--unified=0", calibration.baseline.sourceCommit, "--", "vite.config.ts"]);
+  const removedViteLines = vitePatch.split("\n")
+    .filter((line) => line.startsWith("-") && !line.startsWith("---"))
+    .map((line) => line.slice(1).trim())
+    .filter(Boolean);
+  const addedViteLines = vitePatch.split("\n")
+    .filter((line) => line.startsWith("+") && !line.startsWith("+++"))
+    .map((line) => line.slice(1).trim())
+    .filter(Boolean);
+  const allowedViteLines = new Set(calibration.routing.viteConfigAllowedAdditions);
+  const unexpectedViteLines = addedViteLines.filter((line) => !allowedViteLines.has(line));
+  const viteSource = await readFile(resolve(REPO_ROOT, "vite.config.ts"), "utf8");
+  const expectedV4ViteStructure = addedViteLines.length === 0
+    || (viteSource.includes(calibration.routing.viteConfigExpectedRouteSnippet)
+      && viteSource.includes(calibration.routing.viteConfigExpectedInputLine));
+  addCheck(
+    checks,
+    "VITE_CONFIG_ADDITIVE_V4_ONLY",
+    removedViteLines.length === 0 && unexpectedViteLines.length === 0 && expectedV4ViteStructure,
+    { removed: [], unexpectedAdded: [], v4Structure: true },
+    { removed: removedViteLines, unexpectedAdded: unexpectedViteLines, v4Structure: expectedV4ViteStructure },
+  );
 
   addCheck(
     checks,
@@ -207,6 +245,9 @@ export async function runSourceContract() {
   addCheck(checks, "PRIVATE_GOLDEN_IGNORED", isIgnored(".private/ilg-golden-v4/target.mp4"), true, isIgnored(".private/ilg-golden-v4/target.mp4"));
   addCheck(checks, "LOCAL_MANIFEST_IGNORED", isIgnored("qa-v4/reference/manifest.local.json"), true, isIgnored("qa-v4/reference/manifest.local.json"));
   addCheck(checks, "REFERENCE_MEDIA_IGNORED", isIgnored("qa-v4/reference/target.mp4") && isIgnored("qa-v4/reference/target.png"), true, isIgnored("qa-v4/reference/target.mp4") && isIgnored("qa-v4/reference/target.png"));
+  addCheck(checks, "RAW_DOM_SNAPSHOT_IGNORED", isIgnored("qa-v4/reference/controlled-live/example/profile/identity/dom-snapshot.raw.json"), true, isIgnored("qa-v4/reference/controlled-live/example/profile/identity/dom-snapshot.raw.json"));
+  addCheck(checks, "RAW_CAPTURE_VIDEO_IGNORED", isIgnored("qa-v4/reference/local-e977134/example/profile/interaction/video/interaction.webm"), true, isIgnored("qa-v4/reference/local-e977134/example/profile/interaction/video/interaction.webm"));
+  addCheck(checks, "SANITIZED_REFERENCE_TRACKABLE", !isIgnored("qa-v4/reference/controlled-reference/example/manifest.sanitized.json"), true, !isIgnored("qa-v4/reference/controlled-reference/example/manifest.sanitized.json"));
   addCheck(checks, "LOCAL_RESULTS_IGNORED", isIgnored("qa-v4/results/example.local.json"), true, isIgnored("qa-v4/results/example.local.json"));
   addCheck(checks, "MANIFEST_EXAMPLE_TRACKABLE", !isIgnored("qa-v4/reference/manifest.example.json"), true, !isIgnored("qa-v4/reference/manifest.example.json"));
 

@@ -5,67 +5,104 @@
   "pointerSampleWindowMs": 100,
   "steps": [
     {
+      "id": "rest-5s",
+      "type": "wait",
+      "durationMs": 5000,
+      "capture": true
+    },
+    {
       "id": "pointer-center",
       "type": "pointer-move",
       "positionNdc": [0, 0],
-      "settleMs": 800
+      "settleMs": 500,
+      "capture": true
     },
     {
       "id": "pointer-top-left",
       "type": "pointer-move",
       "positionNdc": [-0.8, -0.8],
-      "settleMs": 800
+      "settleMs": 500,
+      "capture": true
+    },
+    {
+      "id": "pointer-top-right",
+      "type": "pointer-move",
+      "positionNdc": [0.8, -0.8],
+      "settleMs": 500,
+      "capture": true
+    },
+    {
+      "id": "pointer-bottom-left",
+      "type": "pointer-move",
+      "positionNdc": [-0.8, 0.8],
+      "settleMs": 500,
+      "capture": true
     },
     {
       "id": "pointer-bottom-right",
       "type": "pointer-move",
       "positionNdc": [0.8, 0.8],
-      "settleMs": 800
+      "settleMs": 500,
+      "capture": true
     },
     {
-      "id": "drag-horizontal-400",
+      "id": "slow-drag-horizontal-400",
       "type": "pointer-drag",
       "deltaCssPx": [-400, 0],
       "durationMs": 800,
-      "sampleHz": 120
+      "sampleHz": 120,
+      "capture": true
     },
     {
-      "id": "drag-diagonal",
+      "id": "slow-drag-diagonal",
       "type": "pointer-drag",
       "deltaCssPx": [-320, 240],
       "durationMs": 800,
-      "sampleHz": 120
+      "sampleHz": 120,
+      "capture": true
     },
     {
-      "id": "flick-horizontal-520",
+      "id": "fast-flick-horizontal-520",
       "type": "pointer-drag-release",
       "deltaCssPx": [-520, 0],
       "durationMs": 150,
-      "sampleHz": 120
-    },
-    {
-      "id": "post-release-2500",
-      "type": "wait",
-      "durationMs": 2500
+      "sampleHz": 120,
+      "releaseSamplesMs": [
+        100,
+        300,
+        600,
+        1000,
+        1500
+      ],
+      "settle": {
+        "maxWaitMs": 5000,
+        "stableFrames": 12,
+        "maxCenterDeltaCssPx": 0.25
+      }
     },
     {
       "id": "wheel-pixel",
       "type": "wheel",
       "deltaMode": 0,
-      "deltaCssPx": [0, 420]
+      "delta": [0, 420],
+      "capture": true
     },
     {
       "id": "wheel-line",
       "type": "wheel",
       "deltaMode": 1,
-      "delta": [0, 12]
+      "delta": [0, 12],
+      "dispatch": "synthetic-wheel-event",
+      "capture": true
     },
     {
       "id": "touch-flick",
       "type": "touch-drag-release",
-      "deltaCssPx": [-360, 220],
+      "deltaCssPx": [-320, 180],
       "durationMs": 180,
-      "sampleHz": 120
+      "sampleHz": 120,
+      "dispatch": "cdp-touch",
+      "capture": true
     },
     {
       "id": "resize",
@@ -75,13 +112,17 @@
         "width": 1100,
         "height": 720
       },
-      "settleMs": 500
+      "settleMs": 500,
+      "restore": true,
+      "capture": true
     },
     {
       "id": "blur-resume",
       "type": "visibility-cycle",
       "hiddenMs": 1000,
-      "settleMs": 500
+      "settleMs": 500,
+      "dispatch": "real-tab-switch",
+      "capture": true
     }
   ],
   "tracking": {

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "contractId": "mirrorweb-liquid-glass-v4",
   "phase": 0,
-  "status": "source-of-truth-only",
+  "status": "phase1-development-ready-final-acceptance-blocked",
   "baseline": {
     "branch": "rebuild/liquid-glass-v4",
     "sourceCommit": "e37bc539e127870d4c1428f12402319f1c98fbc3",
@@ -90,6 +90,15 @@
     "v4Query": "?optics=v4",
     "v3Lab": "/glass-lab",
     "v4Lab": "/glass-lab-v4",
+    "viteConfigAllowedAdditions": [
+      "if (req.url === \"/glass-lab-v4\" || req.url.startsWith(\"/glass-lab-v4?\")) {",
+      "req.url = req.url.replace(\"/glass-lab-v4\", \"/glass-lab-v4.html\");",
+      "return;",
+      "}",
+      "glassLabV4: resolve(root, \"glass-lab-v4.html\"),"
+    ],
+    "viteConfigExpectedRouteSnippet": "if (req.url === \"/glass-lab-v4\" || req.url.startsWith(\"/glass-lab-v4?\")) {\n      req.url = req.url.replace(\"/glass-lab-v4\", \"/glass-lab-v4.html\");\n      return;\n    }",
+    "viteConfigExpectedInputLine": "glassLabV4: resolve(root, \"glass-lab-v4.html\"),",
     "implementationStatus": "not-implemented"
   },
   "v4": {
@@ -115,8 +124,8 @@
       "deckCqw": 2.5
     },
     "motionFit": {
-      "status": "blocked",
-      "reason": "controlled target and local replay has not been captured"
+      "status": "deferred-to-phase-3",
+      "reason": "controlled capture establishes evidence but does not authorize motion fitting during the optics phase"
     },
     "gridRingBuffer": {
       "status": "not-implemented"
@@ -126,25 +135,106 @@
     "referenceSet": "ilg-v2-private",
     "directoryEnv": "ILG_GOLDEN_DIR",
     "lockFilename": "manifest.lock.json",
-    "assetIdentitySha256": "5f8e884cc232d407bba323999e3dbd01e05ba880ca195e81ddb20d9fa4bb510f",
+    "assetIdentitySha256": "eddf54144e23eea5eadbfe9f713b3bf088a7ca7024b7b960fe7a2f781ce5fa74",
     "required": true,
     "missingPolicy": "blocked",
     "inputScript": "qa-v4/input-sequence.v4.json",
     "annotatedScreenshotUse": "annotation-only",
     "referencePriority": [
-      "private-frozen-assets",
-      "tested-source-commit",
-      "user-annotated-roi",
-      "live-target-secondary",
+      "frozen-visual-golden-for-optics-and-style",
+      "controlled-live-for-interaction-layout-and-relative-performance",
+      "controlled-local-for-commit-bound-baseline",
+      "user-annotated-roi-for-problem-description-only",
       "archived-pre-v4-docs-historical-only"
     ]
+  },
+  "referenceClasses": {
+    "frozenVisual": {
+      "source": "private target video and clean extracted frames",
+      "videoSha256": "b6e79250c75e0357e489de87b63ffd4a5097a573eb7baced35e5de8b050c2435",
+      "sanitizedManifest": "qa-v4/reference/frozen-visual/frozen-visual.sanitized.json",
+      "primaryFor": [
+        "lens-structure",
+        "rim-width",
+        "refraction-style",
+        "highlight-shape",
+        "dispersion-zone",
+        "typography-depth-relationship",
+        "qualitative-animation-rhythm"
+      ],
+      "doesNotProvide": [
+        "render-frame-time",
+        "capture-viewport-provenance",
+        "strict-motion-fit"
+      ]
+    },
+    "controlledLive": {
+      "identity": [
+        "full-url",
+        "capture-time",
+        "dom-hash",
+        "screenshot-hash",
+        "network-url-size-manifest-hash",
+        "etag-or-last-modified"
+      ],
+      "primaryFor": [
+        "layout",
+        "pointer-input",
+        "motion-trajectory",
+        "viewport-response",
+        "same-device-relative-performance"
+      ],
+      "sourceCommitRequired": false
+    },
+    "controlledLocal": {
+      "sourceCommit": "e9771340f849d232f30f87aa70ddac2062d0e332",
+      "sourceTree": "6347bfc2b0343cf58f664693bd945f35cf57e01f",
+      "mustShareCaptureMatrixWith": "controlledLive"
+    },
+    "controlledCapture": {
+      "captureId": "20260819-e977134-controlled-r5",
+      "sanitizedManifest": "qa-v4/reference/controlled-reference/20260819-e977134-controlled-r5/manifest.sanitized.json",
+      "requiredProfiles": [
+        "desktop-1440x900-dpr1",
+        "desktop-1440x900-dpr2",
+        "mobile-390x844-dpr3-clamp1_5",
+        "mobile-844x390-dpr3-clamp1_5"
+      ]
+    },
+    "frozenVsControlledLive": {
+      "policy": "controlled-live-never-supersedes-frozen-visual",
+      "status": "different-capture-state-no-frame-alignment",
+      "observedDifferences": [
+        "card arrangement and media state differ across capture times",
+        "cursor and input timing differ from the frozen recording",
+        "no full-frame pixel diff is valid across these sources"
+      ]
+    }
   },
   "phaseGates": {
     "phase1": {
       "requires": [
         "source-contract-passed",
-        "golden-preflight-ready",
-        "clean-test-commit"
+        "controlled-local-baseline-passed",
+        "frozen-visual-readable-and-hash-locked",
+        "clean-optical-roi-present",
+        "v3-runtime-smoke-passed",
+        "v4-isolated-feature-route"
+      ],
+      "doesNotRequire": [
+        "final-quantitative-acceptance",
+        "strict-motion-fit",
+        "target-source-commit"
+      ]
+    },
+    "finalAcceptance": {
+      "requires": [
+        "frozen-visual-reference-passed",
+        "controlled-live-reference-passed",
+        "controlled-local-baseline-passed",
+        "strict-motion-fit-passed",
+        "controlled-performance-passed",
+        "all-p0-p1-p2-closed"
       ]
     }
   }

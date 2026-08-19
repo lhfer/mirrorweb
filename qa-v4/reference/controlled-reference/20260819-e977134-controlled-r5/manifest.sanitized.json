@@ -1,0 +1,2184 @@
+{
+  "$schema": "qa-v4/reference/controlled-reference.schema.json",
+  "browser": {
+    "jsVersion": "15.1.206.17",
+    "playwrightBrowserVersion": "151.0.7922.138",
+    "product": "Chrome/151.0.7922.138",
+    "protocolVersion": "1.3",
+    "revision": "@41fa82442390a4d4456c78f2d69a832d5720cb27"
+  },
+  "captureId": "20260819-e977134-controlled-r5",
+  "errors": [],
+  "finishedAt": "2026-08-19T09:16:48.399Z",
+  "generator": "controlled-reference-v6",
+  "harness": {
+    "baseCommit": "e9771340f849d232f30f87aa70ddac2062d0e332",
+    "captureScriptSha256": "7977d75eb2e484afd21b0db31e0f99facdfc68cac05d353320b32722177fbf2a",
+    "captureScriptVersion": "controlled-reference-v6"
+  },
+  "host": {
+    "architecture": "arm64",
+    "os": "macOS",
+    "osBuild": "26A5378n",
+    "osVersion": "27.0"
+  },
+  "inputScript": {
+    "canonicalSha256": "033334525a29378d6a0b8212fda65b61657e913f1b02d9eeaa857c01b3b71f9e",
+    "fileSha256": "fb54e598cd6e5f47e448a931f1afa28be3e232dd87fa5fcb6d6a25eddbdb3df3",
+    "path": "qa-v4/input-sequence.v4.json"
+  },
+  "launch": {
+    "args": [
+      "--enable-unsafe-webgpu",
+      "--enable-webgpu-developer-features",
+      "--disable-software-rasterizer",
+      "--ignore-gpu-blocklist",
+      "--use-angle=metal"
+    ],
+    "channel": "chrome",
+    "headed": true,
+    "realGpuRequired": true
+  },
+  "localSourceIdentity": {
+    "sourceCommit": "e9771340f849d232f30f87aa70ddac2062d0e332",
+    "sourceTree": "6347bfc2b0343cf58f664693bd945f35cf57e01f",
+    "trackedTreeClean": true
+  },
+  "matrix": {
+    "path": "qa-v4/reference/capture-matrix.json",
+    "sha256": "14b4f4b4fa5f569690d60c7e042f88f26f8668f4229400a121450ffbf269b6e9"
+  },
+  "profiles": {
+    "desktop-1440x900-dpr1": {
+      "local": {
+        "effectiveInputSha256": "119cdff1ba56ce478fe68611795b81b89fdaa19ec5d700a4a830a6fdab73fa1f",
+        "identity": {
+          "capturedAt": "2026-08-19T09:08:17.911Z",
+          "domSnapshotSha256": "b6fba7a6cf39410b49cd62c44fd9866a8f5ce351f883cb239bbaea73463964bd",
+          "environment": {
+            "canvases": [
+              {
+                "buffer": {
+                  "height": 900,
+                  "width": 1440
+                },
+                "css": {
+                  "height": 900,
+                  "width": 1440,
+                  "x": 0,
+                  "y": 0
+                },
+                "effectiveDpr": {
+                  "x": 1,
+                  "y": 1
+                }
+              }
+            ],
+            "highEntropyUserAgent": {
+              "architecture": "arm",
+              "bitness": "64",
+              "brands": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151"
+                }
+              ],
+              "fullVersionList": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99.0.0.0"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151.0.7922.138"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151.0.7922.138"
+                }
+              ],
+              "mobile": false,
+              "model": "",
+              "platform": "macOS",
+              "platformVersion": "27.0.0",
+              "wow64": false
+            },
+            "observedCanvasContextTypes": [
+              "webgpu"
+            ],
+            "qaBackend": "webgpu",
+            "refreshRate": {
+              "estimatedHz": 120.48192771084074,
+              "medianIntervalMs": 8.300000000000182,
+              "method": "120 requestAnimationFrame timestamps",
+              "p95IntervalMs": 9.800000000000182,
+              "sampleCount": 119
+            },
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+            "viewport": {
+              "browserDpr": 1,
+              "height": 900,
+              "screenHeight": 900,
+              "screenWidth": 1440,
+              "width": 1440
+            },
+            "webgpu": {
+              "architecture": "metal-3",
+              "available": true,
+              "description": "Apple M5 Max",
+              "device": "0x0000",
+              "inferredBackend": "metal",
+              "isFallbackAdapter": null,
+              "vendor": "apple"
+            }
+          },
+          "finalUrl": "http://127.0.0.1:5281/?optics=v3&qa=1",
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Media": 5,
+              "Other": 1,
+              "Script": 30
+            },
+            "coreResourceCount": 13,
+            "coreResourceManifestSha256": "191453b19b16e8eb7b11b971bd3b192d6bccfade0fc4c32476f2293cf4443454",
+            "encodedBytes": 4871275,
+            "fullNetworkManifestSha256": "cb20aaf2b5ea03d966c246eb5742a293e78c4b9351871fdf0b771870030f68fa",
+            "mediaResourceCount": 27,
+            "originsSha256": "8f5790520a0c0446f2c22e54bab00e70581207e2278711ee5e68a6997e32bf8d",
+            "resourceCount": 40,
+            "validators": {
+              "document": {
+                "etag": "W/\"2f1-mS3AzR41MicBKzLFiUYqLGwEW5Y\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 39,
+              "resourceValidatorManifestSha256": "0e370648cdb8a68c990295274023e4bf6d82b7bda668199a39bcff6567f850ce"
+            }
+          },
+          "rawManifestSha256": "bdc3a62c65696867cf132b1767a9405bf21c84ef08a6d9d6d7fbc4b5af227a77",
+          "screenshot": {
+            "sha256": "fc25d5add4f940d94c5b3aadd14fac4f92f98f718c59f024fa74374806dead04"
+          },
+          "sourceIdentity": {
+            "schemaVersion": 1,
+            "sourceCommit": "e9771340f849d232f30f87aa70ddac2062d0e332",
+            "sourceTree": "6347bfc2b0343cf58f664693bd945f35cf57e01f",
+            "trackedTreeClean": true
+          },
+          "status": "PASS"
+        },
+        "interaction": {
+          "capturedAt": "2026-08-19T09:08:40.782Z",
+          "effectiveInputSha256": "119cdff1ba56ce478fe68611795b81b89fdaa19ec5d700a4a830a6fdab73fa1f",
+          "landmarkSampleCount": 15,
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Media": 7,
+              "Other": 1,
+              "Script": 30
+            },
+            "coreResourceCount": 13,
+            "coreResourceManifestSha256": "191453b19b16e8eb7b11b971bd3b192d6bccfade0fc4c32476f2293cf4443454",
+            "encodedBytes": 4347713,
+            "fullNetworkManifestSha256": "7200eb53f64007c7a39b7ebc8f8092043355a13c97943e37e03109b66191d1e8",
+            "mediaResourceCount": 29,
+            "originsSha256": "8f5790520a0c0446f2c22e54bab00e70581207e2278711ee5e68a6997e32bf8d",
+            "resourceCount": 42,
+            "validators": {
+              "document": {
+                "etag": "W/\"2f1-mS3AzR41MicBKzLFiUYqLGwEW5Y\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 41,
+              "resourceValidatorManifestSha256": "1262b09496428948fed1745f04a499de529b4dd4a7e9919659f206dff2f18e65"
+            }
+          },
+          "rawManifestSha256": "f289c15d75cb5c3d800ab23fa29781381939cfd7e9aea7ebfae700e6fbced213",
+          "screenshotCount": 20,
+          "screenshotSetSha256": "0a5a45232ef58e21eb8a2b184e4451277bd3eb56421fcbfb9e8a4344f3ece72f",
+          "status": "PASS",
+          "telemetrySha256": "dbcbd33c083cc1ab7fe14943997f0dc6cb13b31656e367a17ebc29eaed765e1b",
+          "validation": {
+            "coverage": {
+              "cameraPosition": "qa-hook",
+              "gridOffset": "qa-hook",
+              "highlightCentroid": "unavailable",
+              "releaseVelocity": "qa-hook",
+              "rotation": "qa-hook",
+              "tileCornersAndCenters": "derived-from-dom"
+            },
+            "failures": [],
+            "landmarkSampleCount": 19,
+            "minimumObservedTrackedCardCorners": 32,
+            "minimumObservedTrackedCards": 8,
+            "minimumTrackedCardCorners": 8,
+            "minimumTrackedCards": 2,
+            "passed": true,
+            "timedInputToleranceFraction": 0.12,
+            "trustedEventTypes": [
+              "pointermove",
+              "pointerdown",
+              "pointerup",
+              "wheel",
+              "touchstart",
+              "touchmove",
+              "pointercancel",
+              "touchend",
+              "blur",
+              "focus"
+            ]
+          },
+          "video": {
+            "probe": {
+              "available": true,
+              "format": {
+                "duration": "23.480000",
+                "size": "4090496"
+              },
+              "streams": [
+                {
+                  "avg_frame_rate": "25/1",
+                  "codec_name": "vp8",
+                  "height": 900,
+                  "pix_fmt": "yuv420p",
+                  "r_frame_rate": "25/1",
+                  "width": 1440
+                }
+              ]
+            },
+            "sha256": "bf397894340c0dde428d90eab6f48fe62410a28f1acd9e0ceb51c9b25de16609",
+            "use": "human QA only; not frame-time or motion telemetry"
+          }
+        },
+        "performance": {
+          "capturedAt": "2026-08-19T09:09:10.213Z",
+          "gpuExecutionTimeMeasured": false,
+          "idle": {
+            "estimatedRefreshHz": 120.48192771082753,
+            "gpuExecutionTimeMeasured": false,
+            "max": 10.400000000000546,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.450000000001637,
+            "p50": 8.300000000001091,
+            "p95": 10.099999999998545,
+            "p99": 10.299999999999272,
+            "sampleCount": 1199
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771085394,
+            "gpuExecutionTimeMeasured": false,
+            "max": 22.5,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 1,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0011904761904761906,
+            "overBudgetThresholdMs": 12.449999999998909,
+            "p50": 8.299999999999272,
+            "p95": 9.900000000001455,
+            "p99": 10.30000000000291,
+            "sampleCount": 1680
+          },
+          "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+          "metricName": "rafIntervalMs",
+          "rawManifestSha256": "6a98a871179d39b1d3cf77a753afe3ba2ec3df6b87653e0061712699aad2f08e",
+          "status": "PASS"
+        },
+        "profile": {
+          "browserDpr": 1,
+          "expectedCanvasDpr": 1,
+          "height": 900,
+          "mobile": false,
+          "width": 1440
+        },
+        "referenceClass": "controlled-local",
+        "sourceCommit": "e9771340f849d232f30f87aa70ddac2062d0e332",
+        "status": "PASS",
+        "url": "http://127.0.0.1:5281/?optics=v3&qa=1"
+      },
+      "target": {
+        "effectiveInputSha256": "119cdff1ba56ce478fe68611795b81b89fdaa19ec5d700a4a830a6fdab73fa1f",
+        "identity": {
+          "capturedAt": "2026-08-19T09:07:00.535Z",
+          "domSnapshotSha256": "d5500d219dea6ce3a1a915456160d02db7dcc4b188fadcdfc44157e939c22cb1",
+          "environment": {
+            "canvases": [
+              {
+                "buffer": {
+                  "height": 900,
+                  "width": 1440
+                },
+                "css": {
+                  "height": 900,
+                  "width": 1440,
+                  "x": 0,
+                  "y": 0
+                },
+                "effectiveDpr": {
+                  "x": 1,
+                  "y": 1
+                }
+              }
+            ],
+            "highEntropyUserAgent": {
+              "architecture": "arm",
+              "bitness": "64",
+              "brands": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151"
+                }
+              ],
+              "fullVersionList": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99.0.0.0"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151.0.7922.138"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151.0.7922.138"
+                }
+              ],
+              "mobile": false,
+              "model": "",
+              "platform": "macOS",
+              "platformVersion": "27.0.0",
+              "wow64": false
+            },
+            "observedCanvasContextTypes": [
+              "webgpu"
+            ],
+            "qaBackend": null,
+            "refreshRate": {
+              "estimatedHz": 120.48192771082753,
+              "medianIntervalMs": 8.300000000001091,
+              "method": "120 requestAnimationFrame timestamps",
+              "p95IntervalMs": 9.699999999998909,
+              "sampleCount": 119
+            },
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+            "viewport": {
+              "browserDpr": 1,
+              "height": 900,
+              "screenHeight": 900,
+              "screenWidth": 1440,
+              "width": 1440
+            },
+            "webgpu": {
+              "architecture": "metal-3",
+              "available": true,
+              "description": "Apple M5 Max",
+              "device": "0x0000",
+              "inferredBackend": "metal",
+              "isFallbackAdapter": null,
+              "vendor": "apple"
+            }
+          },
+          "finalUrl": "https://infinite-liquid-glass.shader.se/?v=2",
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Image": 1,
+              "Other": 1,
+              "Script": 11,
+              "Stylesheet": 1,
+              "XHR": 154
+            },
+            "coreResourceCount": 18,
+            "coreResourceManifestSha256": "7e62f86783ce6a346ea72713489eac92f576936736d59cce71c49dab433e5a62",
+            "encodedBytes": 105596424,
+            "fullNetworkManifestSha256": "6c528500b7add72ef8b9f6ab1d3444bd455327ac9711cf534fe2131d79daace4",
+            "mediaResourceCount": 154,
+            "originsSha256": "3e32852147b0ce3cebed250309e8b5ad230007d79b5ef39d86f84c1f7dff5651",
+            "resourceCount": 172,
+            "validators": {
+              "document": {
+                "etag": "W/\"e8b11f92ae9b9e839a649d5270ae989d\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 134,
+              "resourceValidatorManifestSha256": "ea61ba70366f49a933c365c5f97e238b5d82c9e260b2d2b9805579ab590bca71"
+            }
+          },
+          "rawManifestSha256": "d0bd305687dab16b1c7d179ad16f78426b5becc2c66b0be85af5f74e006a4502",
+          "screenshot": {
+            "sha256": "65f9d34dec5c0bb3a605fa811f6b412871860d73ad91e50e8dc8a6fc629ab413"
+          },
+          "sourceIdentity": null,
+          "status": "PASS"
+        },
+        "interaction": {
+          "capturedAt": "2026-08-19T09:07:32.927Z",
+          "effectiveInputSha256": "119cdff1ba56ce478fe68611795b81b89fdaa19ec5d700a4a830a6fdab73fa1f",
+          "landmarkSampleCount": 15,
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Image": 1,
+              "Other": 1,
+              "Script": 11,
+              "Stylesheet": 1,
+              "XHR": 154
+            },
+            "coreResourceCount": 18,
+            "coreResourceManifestSha256": "88e35d1a0a0e7485d06ba14cf595a1c99af098df357a52a54fc16dadef254e23",
+            "encodedBytes": 105601203,
+            "fullNetworkManifestSha256": "3f750bde86c7e06c8af65a365e8e8fa3545df1fdc3d7d78f55708200d0769459",
+            "mediaResourceCount": 154,
+            "originsSha256": "1424b72624a2eb62fe140f04ca3e5a12e62f1d275be9a3591449894ea4e5202c",
+            "resourceCount": 172,
+            "validators": {
+              "document": {
+                "etag": "W/\"e8b11f92ae9b9e839a649d5270ae989d\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 134,
+              "resourceValidatorManifestSha256": "a1df591ae61ae6d830c521e0aab7bc9b4a0b148612391772f633e7809efd8177"
+            }
+          },
+          "rawManifestSha256": "e473fc9f829afe10273a03195577ca5b5445cb525acb2abc78ed5c97b62e6923",
+          "screenshotCount": 20,
+          "screenshotSetSha256": "1542a1c6f302571e1b4ff678c945231ef0675ce098bc68b8d2cb13f19f47ae86",
+          "status": "PASS",
+          "telemetrySha256": "ced165c8443b00bfede880e4cdbda4ad84e0bb9dfaede015d100fb67a2b9000a",
+          "validation": {
+            "coverage": {
+              "cameraPosition": "unavailable",
+              "gridOffset": "unavailable",
+              "highlightCentroid": "unavailable",
+              "releaseVelocity": "derived-from-landmarks-only",
+              "rotation": "unavailable",
+              "tileCornersAndCenters": "derived-from-dom"
+            },
+            "failures": [],
+            "landmarkSampleCount": 19,
+            "minimumObservedTrackedCardCorners": 32,
+            "minimumObservedTrackedCards": 8,
+            "minimumTrackedCardCorners": 8,
+            "minimumTrackedCards": 2,
+            "passed": true,
+            "timedInputToleranceFraction": 0.12,
+            "trustedEventTypes": [
+              "pointermove",
+              "pointerdown",
+              "pointerup",
+              "wheel",
+              "touchstart",
+              "touchmove",
+              "touchend",
+              "blur",
+              "focus"
+            ]
+          },
+          "video": {
+            "probe": {
+              "available": true,
+              "format": {
+                "duration": "32.960000",
+                "size": "4621656"
+              },
+              "streams": [
+                {
+                  "avg_frame_rate": "25/1",
+                  "codec_name": "vp8",
+                  "height": 900,
+                  "pix_fmt": "yuv420p",
+                  "r_frame_rate": "25/1",
+                  "width": 1440
+                }
+              ]
+            },
+            "sha256": "ba975658c2f8ad5fbad2ca525b6776b2ee70a693991879dc0f1dbdb7b22a8717",
+            "use": "human QA only; not frame-time or motion telemetry"
+          }
+        },
+        "performance": {
+          "capturedAt": "2026-08-19T09:08:11.322Z",
+          "gpuExecutionTimeMeasured": false,
+          "idle": {
+            "estimatedRefreshHz": 120.48192771082753,
+            "gpuExecutionTimeMeasured": false,
+            "max": 10.399999999997817,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.450000000001637,
+            "p50": 8.300000000001091,
+            "p95": 10.100000000002183,
+            "p99": 10.299999999999272,
+            "sampleCount": 1199
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771080113,
+            "gpuExecutionTimeMeasured": false,
+            "max": 20.299999999995634,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 1,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0011918951132300357,
+            "overBudgetThresholdMs": 12.450000000004366,
+            "p50": 8.30000000000291,
+            "p95": 10,
+            "p99": 10.30000000000291,
+            "sampleCount": 1678
+          },
+          "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+          "metricName": "rafIntervalMs",
+          "rawManifestSha256": "2649daa3919287d5fedae507659076f45b87f4f6b59c0b8815c0f2feb1bd03ca",
+          "status": "PASS"
+        },
+        "profile": {
+          "browserDpr": 1,
+          "expectedCanvasDpr": 1,
+          "height": 900,
+          "mobile": false,
+          "width": 1440
+        },
+        "referenceClass": "controlled-live",
+        "sourceCommit": null,
+        "status": "PASS",
+        "url": "https://infinite-liquid-glass.shader.se/?v=2"
+      }
+    },
+    "desktop-1440x900-dpr2": {
+      "local": {
+        "effectiveInputSha256": "0651114284742d61e20c0f30fef778637ba1467bb23929080fc3a3ce9e28e9c7",
+        "identity": {
+          "capturedAt": "2026-08-19T09:10:50.097Z",
+          "domSnapshotSha256": "9b7df225d3bd565ceea3f34460bf48911e09c801d3adc4b6a0cba841ea93e900",
+          "environment": {
+            "canvases": [
+              {
+                "buffer": {
+                  "height": 1800,
+                  "width": 2880
+                },
+                "css": {
+                  "height": 900,
+                  "width": 1440,
+                  "x": 0,
+                  "y": 0
+                },
+                "effectiveDpr": {
+                  "x": 2,
+                  "y": 2
+                }
+              }
+            ],
+            "highEntropyUserAgent": {
+              "architecture": "arm",
+              "bitness": "64",
+              "brands": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151"
+                }
+              ],
+              "fullVersionList": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99.0.0.0"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151.0.7922.138"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151.0.7922.138"
+                }
+              ],
+              "mobile": false,
+              "model": "",
+              "platform": "macOS",
+              "platformVersion": "27.0.0",
+              "wow64": false
+            },
+            "observedCanvasContextTypes": [
+              "webgpu"
+            ],
+            "qaBackend": "webgpu",
+            "refreshRate": {
+              "estimatedHz": 120.48192771084074,
+              "medianIntervalMs": 8.300000000000182,
+              "method": "120 requestAnimationFrame timestamps",
+              "p95IntervalMs": 10.099999999999454,
+              "sampleCount": 119
+            },
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+            "viewport": {
+              "browserDpr": 2,
+              "height": 900,
+              "screenHeight": 900,
+              "screenWidth": 1440,
+              "width": 1440
+            },
+            "webgpu": {
+              "architecture": "metal-3",
+              "available": true,
+              "description": "Apple M5 Max",
+              "device": "0x0000",
+              "inferredBackend": "metal",
+              "isFallbackAdapter": null,
+              "vendor": "apple"
+            }
+          },
+          "finalUrl": "http://127.0.0.1:5281/?optics=v3&qa=1",
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Media": 7,
+              "Other": 1,
+              "Script": 30
+            },
+            "coreResourceCount": 13,
+            "coreResourceManifestSha256": "191453b19b16e8eb7b11b971bd3b192d6bccfade0fc4c32476f2293cf4443454",
+            "encodedBytes": 4216170,
+            "fullNetworkManifestSha256": "3e62c8e5232e5132f5ecf0cd7a54f035a99cacec13ed0456c67e3d54e1628a0c",
+            "mediaResourceCount": 29,
+            "originsSha256": "8f5790520a0c0446f2c22e54bab00e70581207e2278711ee5e68a6997e32bf8d",
+            "resourceCount": 42,
+            "validators": {
+              "document": {
+                "etag": "W/\"2f1-mS3AzR41MicBKzLFiUYqLGwEW5Y\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 41,
+              "resourceValidatorManifestSha256": "9a51a8fec58048591cfd165c3011ca365003aecea27f99d2ff37aee3d46414b9"
+            }
+          },
+          "rawManifestSha256": "7898d9007deb175a9a6664f14a55218115f17f3bd93298c4f6fb696d76bfbab3",
+          "screenshot": {
+            "sha256": "4330a95fac62264b1c601a8cd1659d4df61592a0c945d629cb2c269e98c2fe4a"
+          },
+          "sourceIdentity": {
+            "schemaVersion": 1,
+            "sourceCommit": "e9771340f849d232f30f87aa70ddac2062d0e332",
+            "sourceTree": "6347bfc2b0343cf58f664693bd945f35cf57e01f",
+            "trackedTreeClean": true
+          },
+          "status": "PASS"
+        },
+        "interaction": {
+          "capturedAt": "2026-08-19T09:11:19.605Z",
+          "effectiveInputSha256": "0651114284742d61e20c0f30fef778637ba1467bb23929080fc3a3ce9e28e9c7",
+          "landmarkSampleCount": 15,
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Media": 7,
+              "Other": 1,
+              "Script": 30
+            },
+            "coreResourceCount": 13,
+            "coreResourceManifestSha256": "191453b19b16e8eb7b11b971bd3b192d6bccfade0fc4c32476f2293cf4443454",
+            "encodedBytes": 4970308,
+            "fullNetworkManifestSha256": "c72f2694794ba6781720c0d6fa8e13f85f20474ff1ef0ad98bebce9a08b077b3",
+            "mediaResourceCount": 29,
+            "originsSha256": "8f5790520a0c0446f2c22e54bab00e70581207e2278711ee5e68a6997e32bf8d",
+            "resourceCount": 42,
+            "validators": {
+              "document": {
+                "etag": "W/\"2f1-mS3AzR41MicBKzLFiUYqLGwEW5Y\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 41,
+              "resourceValidatorManifestSha256": "8dc3cb7d65ece02ea19dac9d17dc638fe44d6b71590159412c4dd355661e5be7"
+            }
+          },
+          "rawManifestSha256": "bd9284130996c40182affbc1d9d6d52661f5efb834cfca673dd2e653930a901d",
+          "screenshotCount": 20,
+          "screenshotSetSha256": "9830bd755abc0c0e568f5f3529b2fb5392d87e0901c6d8442ee50b2e5ee13764",
+          "status": "PASS",
+          "telemetrySha256": "dafc0093ce467dc06f5d9dcaa758f7c3c5f466110c820b37ab3b86c7758233a1",
+          "validation": {
+            "coverage": {
+              "cameraPosition": "qa-hook",
+              "gridOffset": "qa-hook",
+              "highlightCentroid": "unavailable",
+              "releaseVelocity": "qa-hook",
+              "rotation": "qa-hook",
+              "tileCornersAndCenters": "derived-from-dom"
+            },
+            "failures": [],
+            "landmarkSampleCount": 19,
+            "minimumObservedTrackedCardCorners": 32,
+            "minimumObservedTrackedCards": 8,
+            "minimumTrackedCardCorners": 8,
+            "minimumTrackedCards": 2,
+            "passed": true,
+            "timedInputToleranceFraction": 0.12,
+            "trustedEventTypes": [
+              "pointermove",
+              "pointerdown",
+              "pointerup",
+              "wheel",
+              "touchstart",
+              "touchmove",
+              "pointercancel",
+              "touchend",
+              "blur",
+              "focus"
+            ]
+          },
+          "video": {
+            "probe": {
+              "available": true,
+              "format": {
+                "duration": "30.080000",
+                "size": "5265990"
+              },
+              "streams": [
+                {
+                  "avg_frame_rate": "25/1",
+                  "codec_name": "vp8",
+                  "height": 900,
+                  "pix_fmt": "yuv420p",
+                  "r_frame_rate": "25/1",
+                  "width": 1440
+                }
+              ]
+            },
+            "sha256": "77e1a4264f35b27176d4db075b1d7a381e01a98ef6f2beb3a0a39b65be7f84a5",
+            "use": "human QA only; not frame-time or motion telemetry"
+          }
+        },
+        "performance": {
+          "capturedAt": "2026-08-19T09:11:49.036Z",
+          "gpuExecutionTimeMeasured": false,
+          "idle": {
+            "estimatedRefreshHz": 120.48192771084074,
+            "gpuExecutionTimeMeasured": false,
+            "max": 10.400000000001455,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.450000000000273,
+            "p50": 8.300000000000182,
+            "p95": 9.900000000000546,
+            "p99": 10.299999999999272,
+            "sampleCount": 1200
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771080113,
+            "gpuExecutionTimeMeasured": false,
+            "max": 24.599999999998545,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 1,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0011918951132300357,
+            "overBudgetThresholdMs": 12.450000000004366,
+            "p50": 8.30000000000291,
+            "p95": 10,
+            "p99": 10.299999999999272,
+            "sampleCount": 1678
+          },
+          "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+          "metricName": "rafIntervalMs",
+          "rawManifestSha256": "4aa69b0dfb321f5e2c157d47cb0c3ffc05660c508fa73a6b69782f6372bb2f8d",
+          "status": "PASS"
+        },
+        "profile": {
+          "browserDpr": 2,
+          "expectedCanvasDpr": 2,
+          "height": 900,
+          "mobile": false,
+          "width": 1440
+        },
+        "referenceClass": "controlled-local",
+        "sourceCommit": "e9771340f849d232f30f87aa70ddac2062d0e332",
+        "status": "PASS",
+        "url": "http://127.0.0.1:5281/?optics=v3&qa=1"
+      },
+      "target": {
+        "effectiveInputSha256": "0651114284742d61e20c0f30fef778637ba1467bb23929080fc3a3ce9e28e9c7",
+        "identity": {
+          "capturedAt": "2026-08-19T09:09:25.882Z",
+          "domSnapshotSha256": "dce08acc92a71e673ffac778bb9110bef5a5eee9d924c5285cd3413197f06d9b",
+          "environment": {
+            "canvases": [
+              {
+                "buffer": {
+                  "height": 1800,
+                  "width": 2880
+                },
+                "css": {
+                  "height": 900,
+                  "width": 1440,
+                  "x": 0,
+                  "y": 0
+                },
+                "effectiveDpr": {
+                  "x": 2,
+                  "y": 2
+                }
+              }
+            ],
+            "highEntropyUserAgent": {
+              "architecture": "arm",
+              "bitness": "64",
+              "brands": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151"
+                }
+              ],
+              "fullVersionList": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99.0.0.0"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151.0.7922.138"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151.0.7922.138"
+                }
+              ],
+              "mobile": false,
+              "model": "",
+              "platform": "macOS",
+              "platformVersion": "27.0.0",
+              "wow64": false
+            },
+            "observedCanvasContextTypes": [
+              "webgpu"
+            ],
+            "qaBackend": null,
+            "refreshRate": {
+              "estimatedHz": 120.48192771085394,
+              "medianIntervalMs": 8.299999999999272,
+              "method": "120 requestAnimationFrame timestamps",
+              "p95IntervalMs": 10.100000000000364,
+              "sampleCount": 119
+            },
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+            "viewport": {
+              "browserDpr": 2,
+              "height": 900,
+              "screenHeight": 900,
+              "screenWidth": 1440,
+              "width": 1440
+            },
+            "webgpu": {
+              "architecture": "metal-3",
+              "available": true,
+              "description": "Apple M5 Max",
+              "device": "0x0000",
+              "inferredBackend": "metal",
+              "isFallbackAdapter": null,
+              "vendor": "apple"
+            }
+          },
+          "finalUrl": "https://infinite-liquid-glass.shader.se/?v=2",
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Image": 1,
+              "Other": 1,
+              "Script": 11,
+              "Stylesheet": 1,
+              "XHR": 154
+            },
+            "coreResourceCount": 18,
+            "coreResourceManifestSha256": "69fcfe01b7bda3c315a71440bc7d8afb7ec03a2f1dd05c236bee4311256c87c8",
+            "encodedBytes": 105604771,
+            "fullNetworkManifestSha256": "9a6dce96c239a062fd17773a4a6fa2f1693881f446664a1a26959ac3d7be4767",
+            "mediaResourceCount": 154,
+            "originsSha256": "08ecfa420152f4b78ec4e38ece6970dbbdc19498777c71ba9cc20f52bd3766e4",
+            "resourceCount": 172,
+            "validators": {
+              "document": {
+                "etag": "W/\"e8b11f92ae9b9e839a649d5270ae989d\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 134,
+              "resourceValidatorManifestSha256": "a0dbc5b129c6e9b263c075174f8774e094861476dc7eeb9612e4be1741a4e83b"
+            }
+          },
+          "rawManifestSha256": "97df0677094849537d6410ea0dacdc3ae42c07f33b50d8fb28145cacf4d63926",
+          "screenshot": {
+            "sha256": "a83b85c18d169322c844c3101163708151b9d53c933e36dac261cd1bac2e9412"
+          },
+          "sourceIdentity": null,
+          "status": "PASS"
+        },
+        "interaction": {
+          "capturedAt": "2026-08-19T09:10:04.960Z",
+          "effectiveInputSha256": "0651114284742d61e20c0f30fef778637ba1467bb23929080fc3a3ce9e28e9c7",
+          "landmarkSampleCount": 15,
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Image": 1,
+              "Other": 1,
+              "Script": 11,
+              "Stylesheet": 1,
+              "XHR": 154
+            },
+            "coreResourceCount": 18,
+            "coreResourceManifestSha256": "bf732c40ce385113b5b293a603be9df3997250bcbabb9fb13b832ff6be8c74f9",
+            "encodedBytes": 105595565,
+            "fullNetworkManifestSha256": "ba70068b4e058422434148c60fd0d2c42d2890b92211b6d89c13b54508e25b67",
+            "mediaResourceCount": 154,
+            "originsSha256": "e5c85f3ffb8dc2e65bda3a69c18c9a1e4504bbed6597a177c9967a3efefd2fc9",
+            "resourceCount": 172,
+            "validators": {
+              "document": {
+                "etag": "W/\"e8b11f92ae9b9e839a649d5270ae989d\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 134,
+              "resourceValidatorManifestSha256": "8ce7acb70d481e77d248a54e181c34e987e5c288654dc22165015c6051880c11"
+            }
+          },
+          "rawManifestSha256": "65bbb6f93a279bdd7ba3b1006136233c16be39b85a4595727e45bec8d5230565",
+          "screenshotCount": 20,
+          "screenshotSetSha256": "fb0a3927d32631cddfe951b9f98d8401b40c3b03130d1b2952578509c40bae48",
+          "status": "PASS",
+          "telemetrySha256": "af25097be295202dca73708234c388420aa150d2e77364d517f63a4c953e7074",
+          "validation": {
+            "coverage": {
+              "cameraPosition": "unavailable",
+              "gridOffset": "unavailable",
+              "highlightCentroid": "unavailable",
+              "releaseVelocity": "derived-from-landmarks-only",
+              "rotation": "unavailable",
+              "tileCornersAndCenters": "derived-from-dom"
+            },
+            "failures": [],
+            "landmarkSampleCount": 19,
+            "minimumObservedTrackedCardCorners": 32,
+            "minimumObservedTrackedCards": 8,
+            "minimumTrackedCardCorners": 8,
+            "minimumTrackedCards": 2,
+            "passed": true,
+            "timedInputToleranceFraction": 0.12,
+            "trustedEventTypes": [
+              "pointermove",
+              "pointerdown",
+              "pointerup",
+              "wheel",
+              "touchstart",
+              "touchmove",
+              "touchend",
+              "blur",
+              "focus"
+            ]
+          },
+          "video": {
+            "probe": {
+              "available": true,
+              "format": {
+                "duration": "39.600000",
+                "size": "5253326"
+              },
+              "streams": [
+                {
+                  "avg_frame_rate": "25/1",
+                  "codec_name": "vp8",
+                  "height": 900,
+                  "pix_fmt": "yuv420p",
+                  "r_frame_rate": "25/1",
+                  "width": 1440
+                }
+              ]
+            },
+            "sha256": "2aab335d06f84f7018f513994a02a8de0e37e0231685add9f1e504186fec798c",
+            "use": "human QA only; not frame-time or motion telemetry"
+          }
+        },
+        "performance": {
+          "capturedAt": "2026-08-19T09:10:43.125Z",
+          "gpuExecutionTimeMeasured": false,
+          "idle": {
+            "estimatedRefreshHz": 120.48192771085394,
+            "gpuExecutionTimeMeasured": false,
+            "max": 10.400000000001455,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.449999999998909,
+            "p50": 8.299999999999272,
+            "p95": 9.899999999997817,
+            "p99": 10.299999999999272,
+            "sampleCount": 1199
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771080113,
+            "gpuExecutionTimeMeasured": false,
+            "max": 27.30000000000291,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 1,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0011918951132300357,
+            "overBudgetThresholdMs": 12.450000000004366,
+            "p50": 8.30000000000291,
+            "p95": 9.899999999997817,
+            "p99": 10.299999999999272,
+            "sampleCount": 1678
+          },
+          "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+          "metricName": "rafIntervalMs",
+          "rawManifestSha256": "36ac1545dc781fc86c7b76a6cec48d476b67fae489354261132661631c7aa485",
+          "status": "PASS"
+        },
+        "profile": {
+          "browserDpr": 2,
+          "expectedCanvasDpr": 2,
+          "height": 900,
+          "mobile": false,
+          "width": 1440
+        },
+        "referenceClass": "controlled-live",
+        "sourceCommit": null,
+        "status": "PASS",
+        "url": "https://infinite-liquid-glass.shader.se/?v=2"
+      }
+    },
+    "mobile-390x844-dpr3-clamp1_5": {
+      "local": {
+        "effectiveInputSha256": "98cc87f5664ad979f4c4673522d8fb43d72bc0028fd7d7564279fe595069b56a",
+        "identity": {
+          "capturedAt": "2026-08-19T09:13:23.938Z",
+          "domSnapshotSha256": "a4a742bdb65415ebbb8c014e04635932d61af557a46732c2e20cf8e4aebc68c3",
+          "environment": {
+            "canvases": [
+              {
+                "buffer": {
+                  "height": 1266,
+                  "width": 585
+                },
+                "css": {
+                  "height": 844,
+                  "width": 390,
+                  "x": 0,
+                  "y": 0
+                },
+                "effectiveDpr": {
+                  "x": 1.5,
+                  "y": 1.5
+                }
+              }
+            ],
+            "highEntropyUserAgent": {
+              "architecture": "arm",
+              "bitness": "64",
+              "brands": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151"
+                }
+              ],
+              "fullVersionList": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99.0.0.0"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151.0.7922.138"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151.0.7922.138"
+                }
+              ],
+              "mobile": false,
+              "model": "",
+              "platform": "macOS",
+              "platformVersion": "27.0.0",
+              "wow64": false
+            },
+            "observedCanvasContextTypes": [
+              "webgpu"
+            ],
+            "qaBackend": "webgpu",
+            "refreshRate": {
+              "estimatedHz": 120.48192771084074,
+              "medianIntervalMs": 8.300000000000182,
+              "method": "120 requestAnimationFrame timestamps",
+              "p95IntervalMs": 10,
+              "sampleCount": 119
+            },
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+            "viewport": {
+              "browserDpr": 3,
+              "height": 844,
+              "screenHeight": 844,
+              "screenWidth": 390,
+              "width": 390
+            },
+            "webgpu": {
+              "architecture": "metal-3",
+              "available": true,
+              "description": "Apple M5 Max",
+              "device": "0x0000",
+              "inferredBackend": "metal",
+              "isFallbackAdapter": null,
+              "vendor": "apple"
+            }
+          },
+          "finalUrl": "http://127.0.0.1:5281/?optics=v3&qa=1",
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Media": 5,
+              "Other": 1,
+              "Script": 30
+            },
+            "coreResourceCount": 13,
+            "coreResourceManifestSha256": "191453b19b16e8eb7b11b971bd3b192d6bccfade0fc4c32476f2293cf4443454",
+            "encodedBytes": 4871275,
+            "fullNetworkManifestSha256": "bdddcef928b85025fe1ef96610bf2e0510e52eba0f6c0f1237b50503a372933d",
+            "mediaResourceCount": 27,
+            "originsSha256": "8f5790520a0c0446f2c22e54bab00e70581207e2278711ee5e68a6997e32bf8d",
+            "resourceCount": 40,
+            "validators": {
+              "document": {
+                "etag": "W/\"2f1-mS3AzR41MicBKzLFiUYqLGwEW5Y\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 39,
+              "resourceValidatorManifestSha256": "0e370648cdb8a68c990295274023e4bf6d82b7bda668199a39bcff6567f850ce"
+            }
+          },
+          "rawManifestSha256": "c6fd439fe7633a51016e90fc04f7f0ad10668a435682fe0724001e94d0f2e143",
+          "screenshot": {
+            "sha256": "780e331037d35f35a1c8ce79537adc3b6f8b5ca304cb78cf28a1fcd99e808afe"
+          },
+          "sourceIdentity": {
+            "schemaVersion": 1,
+            "sourceCommit": "e9771340f849d232f30f87aa70ddac2062d0e332",
+            "sourceTree": "6347bfc2b0343cf58f664693bd945f35cf57e01f",
+            "trackedTreeClean": true
+          },
+          "status": "PASS"
+        },
+        "interaction": {
+          "capturedAt": "2026-08-19T09:13:49.183Z",
+          "effectiveInputSha256": "98cc87f5664ad979f4c4673522d8fb43d72bc0028fd7d7564279fe595069b56a",
+          "landmarkSampleCount": 15,
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Media": 5,
+              "Other": 1,
+              "Script": 30
+            },
+            "coreResourceCount": 13,
+            "coreResourceManifestSha256": "191453b19b16e8eb7b11b971bd3b192d6bccfade0fc4c32476f2293cf4443454",
+            "encodedBytes": 4871526,
+            "fullNetworkManifestSha256": "28023e985a1996c0777b60beab6d41bef1acd0dc12f276663cc6608595fb4672",
+            "mediaResourceCount": 27,
+            "originsSha256": "8f5790520a0c0446f2c22e54bab00e70581207e2278711ee5e68a6997e32bf8d",
+            "resourceCount": 40,
+            "validators": {
+              "document": {
+                "etag": "W/\"2f1-mS3AzR41MicBKzLFiUYqLGwEW5Y\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 39,
+              "resourceValidatorManifestSha256": "c686c93e1e4ad50817f7fc78f14ab82a7aaad2ef4f1fda3af052914c9cbd3717"
+            }
+          },
+          "rawManifestSha256": "24973377e32b8c7917ccad6c0513c8df72c7eb8802418573d79a2429f3eede17",
+          "screenshotCount": 20,
+          "screenshotSetSha256": "e66f5787ee61209575a6e7d598a73be069aa174e35a49567f834751aabaaf031",
+          "status": "PASS",
+          "telemetrySha256": "2f44268d40edb1b63169d6fba90cc10427a10374adad3753bd6d2514b66b4598",
+          "validation": {
+            "coverage": {
+              "cameraPosition": "qa-hook",
+              "gridOffset": "qa-hook",
+              "highlightCentroid": "unavailable",
+              "releaseVelocity": "qa-hook",
+              "rotation": "qa-hook",
+              "tileCornersAndCenters": "derived-from-dom"
+            },
+            "failures": [],
+            "landmarkSampleCount": 19,
+            "minimumObservedTrackedCardCorners": 32,
+            "minimumObservedTrackedCards": 8,
+            "minimumTrackedCardCorners": 8,
+            "minimumTrackedCards": 2,
+            "passed": true,
+            "timedInputToleranceFraction": 0.12,
+            "trustedEventTypes": [
+              "pointermove",
+              "pointerdown",
+              "pointerup",
+              "wheel",
+              "touchstart",
+              "touchmove",
+              "pointercancel",
+              "touchend",
+              "blur",
+              "focus"
+            ]
+          },
+          "video": {
+            "probe": {
+              "available": true,
+              "format": {
+                "duration": "25.960000",
+                "size": "3170261"
+              },
+              "streams": [
+                {
+                  "avg_frame_rate": "25/1",
+                  "codec_name": "vp8",
+                  "height": 844,
+                  "pix_fmt": "yuv420p",
+                  "r_frame_rate": "25/1",
+                  "width": 390
+                }
+              ]
+            },
+            "sha256": "2939c3fcd07b7056847ce5318c7141e4961fa21d0ba45c10fa0fb8411fcf08d8",
+            "use": "human QA only; not frame-time or motion telemetry"
+          }
+        },
+        "performance": {
+          "capturedAt": "2026-08-19T09:14:18.591Z",
+          "gpuExecutionTimeMeasured": false,
+          "idle": {
+            "estimatedRefreshHz": 120.48192771084074,
+            "gpuExecutionTimeMeasured": false,
+            "max": 11.399999999999636,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.450000000000273,
+            "p50": 8.300000000000182,
+            "p95": 10.100000000000364,
+            "p99": 10.399999999999636,
+            "sampleCount": 1198
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771085394,
+            "gpuExecutionTimeMeasured": false,
+            "max": 24.5,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 1,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0011933174224343676,
+            "overBudgetThresholdMs": 12.449999999998909,
+            "p50": 8.299999999999272,
+            "p95": 9.900000000001455,
+            "p99": 10.299999999999272,
+            "sampleCount": 1676
+          },
+          "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+          "metricName": "rafIntervalMs",
+          "rawManifestSha256": "45cb8a63db29409e2ed791317872ed0d7bd1c2ce57f891ca9e9bf1b6e2d5f3fe",
+          "status": "PASS"
+        },
+        "profile": {
+          "browserDpr": 3,
+          "expectedCanvasDpr": 1.5,
+          "height": 844,
+          "mobile": true,
+          "width": 390
+        },
+        "referenceClass": "controlled-local",
+        "sourceCommit": "e9771340f849d232f30f87aa70ddac2062d0e332",
+        "status": "PASS",
+        "url": "http://127.0.0.1:5281/?optics=v3&qa=1"
+      },
+      "target": {
+        "effectiveInputSha256": "98cc87f5664ad979f4c4673522d8fb43d72bc0028fd7d7564279fe595069b56a",
+        "identity": {
+          "capturedAt": "2026-08-19T09:12:04.933Z",
+          "domSnapshotSha256": "ea3a1199db7c62fa17bfa9dfc7b0a6be45b35976d67a640ef03138caa9d9f7d8",
+          "environment": {
+            "canvases": [
+              {
+                "buffer": {
+                  "height": 1266,
+                  "width": 585
+                },
+                "css": {
+                  "height": 844,
+                  "width": 390,
+                  "x": 0,
+                  "y": 0
+                },
+                "effectiveDpr": {
+                  "x": 1.5,
+                  "y": 1.5
+                }
+              }
+            ],
+            "highEntropyUserAgent": {
+              "architecture": "arm",
+              "bitness": "64",
+              "brands": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151"
+                }
+              ],
+              "fullVersionList": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99.0.0.0"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151.0.7922.138"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151.0.7922.138"
+                }
+              ],
+              "mobile": false,
+              "model": "",
+              "platform": "macOS",
+              "platformVersion": "27.0.0",
+              "wow64": false
+            },
+            "observedCanvasContextTypes": [
+              "webgpu"
+            ],
+            "qaBackend": null,
+            "refreshRate": {
+              "estimatedHz": 120.48192771085394,
+              "medianIntervalMs": 8.299999999999272,
+              "method": "120 requestAnimationFrame timestamps",
+              "p95IntervalMs": 10.200000000000728,
+              "sampleCount": 119
+            },
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+            "viewport": {
+              "browserDpr": 3,
+              "height": 844,
+              "screenHeight": 844,
+              "screenWidth": 390,
+              "width": 390
+            },
+            "webgpu": {
+              "architecture": "metal-3",
+              "available": true,
+              "description": "Apple M5 Max",
+              "device": "0x0000",
+              "inferredBackend": "metal",
+              "isFallbackAdapter": null,
+              "vendor": "apple"
+            }
+          },
+          "finalUrl": "https://infinite-liquid-glass.shader.se/?v=2",
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Image": 1,
+              "Other": 1,
+              "Script": 11,
+              "Stylesheet": 1,
+              "XHR": 78
+            },
+            "coreResourceCount": 18,
+            "coreResourceManifestSha256": "503dfc023ade475af1ba84a56dbc7e2b79861106f1dff010a79de875a1141edc",
+            "encodedBytes": 18255089,
+            "fullNetworkManifestSha256": "95c0882fffee9d2b08470552dac3942087dee8ede420bd68ee44478fbb03784a",
+            "mediaResourceCount": 78,
+            "originsSha256": "e5c85f3ffb8dc2e65bda3a69c18c9a1e4504bbed6597a177c9967a3efefd2fc9",
+            "resourceCount": 96,
+            "validators": {
+              "document": {
+                "etag": "W/\"e8b11f92ae9b9e839a649d5270ae989d\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 80,
+              "resourceValidatorManifestSha256": "c7f113702fe49ea34d3e82c0437045e9b40661ba387c417604c72b7ee6acd2c4"
+            }
+          },
+          "rawManifestSha256": "08d594d54e584a9e9d1e2ec5fd98f52e948608cf6c0d3cfe1250cc2095f41853",
+          "screenshot": {
+            "sha256": "39306d68ce466569634c0554f4d29a382ab10a7ed28772b987b1ea29192c7293"
+          },
+          "sourceIdentity": null,
+          "status": "PASS"
+        },
+        "interaction": {
+          "capturedAt": "2026-08-19T09:12:38.932Z",
+          "effectiveInputSha256": "98cc87f5664ad979f4c4673522d8fb43d72bc0028fd7d7564279fe595069b56a",
+          "landmarkSampleCount": 15,
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Image": 1,
+              "Other": 1,
+              "Script": 11,
+              "Stylesheet": 1,
+              "XHR": 71
+            },
+            "coreResourceCount": 18,
+            "coreResourceManifestSha256": "20ebd069e876d5c3f04ca4651e9578980b41f816a0dafef96b0e2ac651be9262",
+            "encodedBytes": 14065068,
+            "fullNetworkManifestSha256": "61d23077ec8dd02f2cfddbb5262e80fbc967e7d1b94720fc5c09572493b43732",
+            "mediaResourceCount": 71,
+            "originsSha256": "e5c85f3ffb8dc2e65bda3a69c18c9a1e4504bbed6597a177c9967a3efefd2fc9",
+            "resourceCount": 89,
+            "validators": {
+              "document": {
+                "etag": "W/\"e8b11f92ae9b9e839a649d5270ae989d\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 73,
+              "resourceValidatorManifestSha256": "322dda1fb0d6df17b4655ce53795a31586bed03b789f60085e675bf65fc6ad41"
+            }
+          },
+          "rawManifestSha256": "6302152c175ebd6293b710a805bbfcff35705d7085c7b19b68e38a0f3664916c",
+          "screenshotCount": 20,
+          "screenshotSetSha256": "5d1c573fad2298c2605ca26125d17b03da5e395958c4593ce364d3fb4bb937ef",
+          "status": "PASS",
+          "telemetrySha256": "ce814d5c56f99ae854af05aa4ed8139103f841c2c314d134a897e7c8f3f3440a",
+          "validation": {
+            "coverage": {
+              "cameraPosition": "unavailable",
+              "gridOffset": "unavailable",
+              "highlightCentroid": "unavailable",
+              "releaseVelocity": "derived-from-landmarks-only",
+              "rotation": "unavailable",
+              "tileCornersAndCenters": "derived-from-dom"
+            },
+            "failures": [],
+            "landmarkSampleCount": 19,
+            "minimumObservedTrackedCardCorners": 32,
+            "minimumObservedTrackedCards": 8,
+            "minimumTrackedCardCorners": 8,
+            "minimumTrackedCards": 2,
+            "passed": true,
+            "timedInputToleranceFraction": 0.12,
+            "trustedEventTypes": [
+              "pointermove",
+              "pointerdown",
+              "pointerup",
+              "wheel",
+              "touchstart",
+              "touchmove",
+              "touchend",
+              "blur",
+              "focus"
+            ]
+          },
+          "video": {
+            "probe": {
+              "available": true,
+              "format": {
+                "duration": "34.720000",
+                "size": "3914315"
+              },
+              "streams": [
+                {
+                  "avg_frame_rate": "25/1",
+                  "codec_name": "vp8",
+                  "height": 844,
+                  "pix_fmt": "yuv420p",
+                  "r_frame_rate": "25/1",
+                  "width": 390
+                }
+              ]
+            },
+            "sha256": "d65c312bc66b764007f3493ff6845f469024dcb0c8aaecd9e8c11e8d98526bcd",
+            "use": "human QA only; not frame-time or motion telemetry"
+          }
+        },
+        "performance": {
+          "capturedAt": "2026-08-19T09:13:17.232Z",
+          "gpuExecutionTimeMeasured": false,
+          "idle": {
+            "estimatedRefreshHz": 120.48192771085394,
+            "gpuExecutionTimeMeasured": false,
+            "max": 10.400000000001455,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.449999999998909,
+            "p50": 8.299999999999272,
+            "p95": 9.900000000001455,
+            "p99": 10.299999999999272,
+            "sampleCount": 1200
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771080113,
+            "gpuExecutionTimeMeasured": false,
+            "max": 26.400000000001455,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 1,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0005952380952380953,
+            "overBudgetThresholdMs": 12.450000000004366,
+            "p50": 8.30000000000291,
+            "p95": 9.80000000000291,
+            "p99": 10.299999999999272,
+            "sampleCount": 1680
+          },
+          "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+          "metricName": "rafIntervalMs",
+          "rawManifestSha256": "fcb6e790e2022ff687d85a10799dfcb6aacd8535f6f523128d136e1c5fffb3f8",
+          "status": "PASS"
+        },
+        "profile": {
+          "browserDpr": 3,
+          "expectedCanvasDpr": 1.5,
+          "height": 844,
+          "mobile": true,
+          "width": 390
+        },
+        "referenceClass": "controlled-live",
+        "sourceCommit": null,
+        "status": "PASS",
+        "url": "https://infinite-liquid-glass.shader.se/?v=2"
+      }
+    },
+    "mobile-844x390-dpr3-clamp1_5": {
+      "local": {
+        "effectiveInputSha256": "eb3fdd6e28eb12d8dab754da53c4e9f5dd29af06724dd8c5068ea1103e8652ea",
+        "identity": {
+          "capturedAt": "2026-08-19T09:15:53.716Z",
+          "domSnapshotSha256": "9642233892bd69fe3247634f15de844e77e83e4a25e565e8e65d5a0cb0ab704f",
+          "environment": {
+            "canvases": [
+              {
+                "buffer": {
+                  "height": 585,
+                  "width": 1266
+                },
+                "css": {
+                  "height": 390,
+                  "width": 844,
+                  "x": 0,
+                  "y": 0
+                },
+                "effectiveDpr": {
+                  "x": 1.5,
+                  "y": 1.5
+                }
+              }
+            ],
+            "highEntropyUserAgent": {
+              "architecture": "arm",
+              "bitness": "64",
+              "brands": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151"
+                }
+              ],
+              "fullVersionList": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99.0.0.0"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151.0.7922.138"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151.0.7922.138"
+                }
+              ],
+              "mobile": false,
+              "model": "",
+              "platform": "macOS",
+              "platformVersion": "27.0.0",
+              "wow64": false
+            },
+            "observedCanvasContextTypes": [
+              "webgpu"
+            ],
+            "qaBackend": "webgpu",
+            "refreshRate": {
+              "estimatedHz": 120.48192771084074,
+              "medianIntervalMs": 8.300000000000182,
+              "method": "120 requestAnimationFrame timestamps",
+              "p95IntervalMs": 10,
+              "sampleCount": 119
+            },
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+            "viewport": {
+              "browserDpr": 3,
+              "height": 390,
+              "screenHeight": 390,
+              "screenWidth": 844,
+              "width": 844
+            },
+            "webgpu": {
+              "architecture": "metal-3",
+              "available": true,
+              "description": "Apple M5 Max",
+              "device": "0x0000",
+              "inferredBackend": "metal",
+              "isFallbackAdapter": null,
+              "vendor": "apple"
+            }
+          },
+          "finalUrl": "http://127.0.0.1:5281/?optics=v3&qa=1",
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Media": 5,
+              "Other": 1,
+              "Script": 30
+            },
+            "coreResourceCount": 13,
+            "coreResourceManifestSha256": "191453b19b16e8eb7b11b971bd3b192d6bccfade0fc4c32476f2293cf4443454",
+            "encodedBytes": 4871275,
+            "fullNetworkManifestSha256": "52f1fb32aa83f0d14416105fa5a02660a6de442cd73fcb3ca598e91312cecaa2",
+            "mediaResourceCount": 27,
+            "originsSha256": "8f5790520a0c0446f2c22e54bab00e70581207e2278711ee5e68a6997e32bf8d",
+            "resourceCount": 40,
+            "validators": {
+              "document": {
+                "etag": "W/\"2f1-mS3AzR41MicBKzLFiUYqLGwEW5Y\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 39,
+              "resourceValidatorManifestSha256": "0e370648cdb8a68c990295274023e4bf6d82b7bda668199a39bcff6567f850ce"
+            }
+          },
+          "rawManifestSha256": "e13f553c31f08e3dc57a52d334ebf9484fd57b234c9fcbcdfae006cdf6d2abf5",
+          "screenshot": {
+            "sha256": "a9f5098baaa390296bee55a2c348c08f0e117b3a08062c2d30ac9ba4d20d8d0c"
+          },
+          "sourceIdentity": {
+            "schemaVersion": 1,
+            "sourceCommit": "e9771340f849d232f30f87aa70ddac2062d0e332",
+            "sourceTree": "6347bfc2b0343cf58f664693bd945f35cf57e01f",
+            "trackedTreeClean": true
+          },
+          "status": "PASS"
+        },
+        "interaction": {
+          "capturedAt": "2026-08-19T09:16:18.794Z",
+          "effectiveInputSha256": "eb3fdd6e28eb12d8dab754da53c4e9f5dd29af06724dd8c5068ea1103e8652ea",
+          "landmarkSampleCount": 15,
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Media": 5,
+              "Other": 1,
+              "Script": 30
+            },
+            "coreResourceCount": 13,
+            "coreResourceManifestSha256": "191453b19b16e8eb7b11b971bd3b192d6bccfade0fc4c32476f2293cf4443454",
+            "encodedBytes": 4871275,
+            "fullNetworkManifestSha256": "cb20aaf2b5ea03d966c246eb5742a293e78c4b9351871fdf0b771870030f68fa",
+            "mediaResourceCount": 27,
+            "originsSha256": "8f5790520a0c0446f2c22e54bab00e70581207e2278711ee5e68a6997e32bf8d",
+            "resourceCount": 40,
+            "validators": {
+              "document": {
+                "etag": "W/\"2f1-mS3AzR41MicBKzLFiUYqLGwEW5Y\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 39,
+              "resourceValidatorManifestSha256": "0e370648cdb8a68c990295274023e4bf6d82b7bda668199a39bcff6567f850ce"
+            }
+          },
+          "rawManifestSha256": "7e4630b5356db18253cfe8e21e9d36d07c692a525124da95a90daeb97152a882",
+          "screenshotCount": 20,
+          "screenshotSetSha256": "7c5f4f3c18b08336a4073d06f551bb34c8f6292f8cfd03ee6dccb659fab52f4f",
+          "status": "PASS",
+          "telemetrySha256": "be69d3e4f7ed491a5ccd1b9546223a105725f158ff942ddd131f34bbf975c017",
+          "validation": {
+            "coverage": {
+              "cameraPosition": "qa-hook",
+              "gridOffset": "qa-hook",
+              "highlightCentroid": "unavailable",
+              "releaseVelocity": "qa-hook",
+              "rotation": "qa-hook",
+              "tileCornersAndCenters": "derived-from-dom"
+            },
+            "failures": [],
+            "landmarkSampleCount": 19,
+            "minimumObservedTrackedCardCorners": 28,
+            "minimumObservedTrackedCards": 7,
+            "minimumTrackedCardCorners": 8,
+            "minimumTrackedCards": 2,
+            "passed": true,
+            "timedInputToleranceFraction": 0.12,
+            "trustedEventTypes": [
+              "pointermove",
+              "pointerdown",
+              "pointerup",
+              "wheel",
+              "touchstart",
+              "touchmove",
+              "pointercancel",
+              "touchend",
+              "blur",
+              "focus"
+            ]
+          },
+          "video": {
+            "probe": {
+              "available": true,
+              "format": {
+                "duration": "25.760000",
+                "size": "3084534"
+              },
+              "streams": [
+                {
+                  "avg_frame_rate": "25/1",
+                  "codec_name": "vp8",
+                  "height": 390,
+                  "pix_fmt": "yuv420p",
+                  "r_frame_rate": "25/1",
+                  "width": 844
+                }
+              ]
+            },
+            "sha256": "aa3bc7a4aaf47503a9677067ac46d69c04d5e3fc2b32e86763152f933996c90d",
+            "use": "human QA only; not frame-time or motion telemetry"
+          }
+        },
+        "performance": {
+          "capturedAt": "2026-08-19T09:16:48.221Z",
+          "gpuExecutionTimeMeasured": false,
+          "idle": {
+            "estimatedRefreshHz": 120.48192771084074,
+            "gpuExecutionTimeMeasured": false,
+            "max": 10.400000000001455,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.450000000000273,
+            "p50": 8.300000000000182,
+            "p95": 9.900000000001455,
+            "p99": 10.299999999999272,
+            "sampleCount": 1200
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771085394,
+            "gpuExecutionTimeMeasured": false,
+            "max": 25,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 1,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0011926058437686344,
+            "overBudgetThresholdMs": 12.449999999998909,
+            "p50": 8.299999999999272,
+            "p95": 9.799999999999272,
+            "p99": 10.299999999999272,
+            "sampleCount": 1677
+          },
+          "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+          "metricName": "rafIntervalMs",
+          "rawManifestSha256": "e60d82fda0f64b96b6b91d41a515b360766fa9ff05ba7e159d9746524567283c",
+          "status": "PASS"
+        },
+        "profile": {
+          "browserDpr": 3,
+          "expectedCanvasDpr": 1.5,
+          "height": 390,
+          "mobile": true,
+          "width": 844
+        },
+        "referenceClass": "controlled-local",
+        "sourceCommit": "e9771340f849d232f30f87aa70ddac2062d0e332",
+        "status": "PASS",
+        "url": "http://127.0.0.1:5281/?optics=v3&qa=1"
+      },
+      "target": {
+        "effectiveInputSha256": "eb3fdd6e28eb12d8dab754da53c4e9f5dd29af06724dd8c5068ea1103e8652ea",
+        "identity": {
+          "capturedAt": "2026-08-19T09:14:34.251Z",
+          "domSnapshotSha256": "3456c4a45daf7da12b5b70e2447bfdc19f6a8ea99c42cc5edb11d9cc435460ed",
+          "environment": {
+            "canvases": [
+              {
+                "buffer": {
+                  "height": 585,
+                  "width": 1266
+                },
+                "css": {
+                  "height": 390,
+                  "width": 844,
+                  "x": 0,
+                  "y": 0
+                },
+                "effectiveDpr": {
+                  "x": 1.5,
+                  "y": 1.5
+                }
+              }
+            ],
+            "highEntropyUserAgent": {
+              "architecture": "arm",
+              "bitness": "64",
+              "brands": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151"
+                }
+              ],
+              "fullVersionList": [
+                {
+                  "brand": "Not=A?Brand",
+                  "version": "99.0.0.0"
+                },
+                {
+                  "brand": "Google Chrome",
+                  "version": "151.0.7922.138"
+                },
+                {
+                  "brand": "Chromium",
+                  "version": "151.0.7922.138"
+                }
+              ],
+              "mobile": false,
+              "model": "",
+              "platform": "macOS",
+              "platformVersion": "27.0.0",
+              "wow64": false
+            },
+            "observedCanvasContextTypes": [
+              "webgpu"
+            ],
+            "qaBackend": null,
+            "refreshRate": {
+              "estimatedHz": 120.48192771082753,
+              "medianIntervalMs": 8.300000000001091,
+              "method": "120 requestAnimationFrame timestamps",
+              "p95IntervalMs": 10.099999999998545,
+              "sampleCount": 119
+            },
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+            "viewport": {
+              "browserDpr": 3,
+              "height": 390,
+              "screenHeight": 390,
+              "screenWidth": 844,
+              "width": 844
+            },
+            "webgpu": {
+              "architecture": "metal-3",
+              "available": true,
+              "description": "Apple M5 Max",
+              "device": "0x0000",
+              "inferredBackend": "metal",
+              "isFallbackAdapter": null,
+              "vendor": "apple"
+            }
+          },
+          "finalUrl": "https://infinite-liquid-glass.shader.se/?v=2",
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Image": 1,
+              "Other": 1,
+              "Script": 11,
+              "Stylesheet": 1,
+              "XHR": 79
+            },
+            "coreResourceCount": 18,
+            "coreResourceManifestSha256": "f892afeb64859827c94adc5ed2b4704e8f10b9e0aac568708ca3a70d336b3d55",
+            "encodedBytes": 18450237,
+            "fullNetworkManifestSha256": "7c9a5f605d7986b485df485222be5626a06c38df63eebaf6e2d6b2c4a52a6ec4",
+            "mediaResourceCount": 79,
+            "originsSha256": "e5c85f3ffb8dc2e65bda3a69c18c9a1e4504bbed6597a177c9967a3efefd2fc9",
+            "resourceCount": 97,
+            "validators": {
+              "document": {
+                "etag": "W/\"e8b11f92ae9b9e839a649d5270ae989d\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 81,
+              "resourceValidatorManifestSha256": "4d0e6c0f9c65a57fc6ec329273266e7b75a987bae685344f40aa7e6af338b35b"
+            }
+          },
+          "rawManifestSha256": "69bd8e78102cf0768e28f7a175c5452b2bf4647e8728ad5fd50fac777e0ba503",
+          "screenshot": {
+            "sha256": "6c34382c253dd6145adae22708ed35de8dda477465dfde05e932cf7880e6ce5c"
+          },
+          "sourceIdentity": null,
+          "status": "PASS"
+        },
+        "interaction": {
+          "capturedAt": "2026-08-19T09:15:08.830Z",
+          "effectiveInputSha256": "eb3fdd6e28eb12d8dab754da53c4e9f5dd29af06724dd8c5068ea1103e8652ea",
+          "landmarkSampleCount": 15,
+          "network": {
+            "byType": {
+              "Document": 1,
+              "Fetch": 1,
+              "Font": 2,
+              "Image": 1,
+              "Other": 1,
+              "Script": 11,
+              "Stylesheet": 1,
+              "XHR": 84
+            },
+            "coreResourceCount": 18,
+            "coreResourceManifestSha256": "b067c9bbc0d93152b44bb987ad2486d934374f81986dca454edb7fc2cd998d71",
+            "encodedBytes": 23895144,
+            "fullNetworkManifestSha256": "f8f479f2b56ef7784b68c5e09e2754318911237d1af542f4b90ecc487e9421f6",
+            "mediaResourceCount": 84,
+            "originsSha256": "e5c85f3ffb8dc2e65bda3a69c18c9a1e4504bbed6597a177c9967a3efefd2fc9",
+            "resourceCount": 102,
+            "validators": {
+              "document": {
+                "etag": "W/\"e8b11f92ae9b9e839a649d5270ae989d\"",
+                "lastModified": null,
+                "status": 200
+              },
+              "resourceValidatorCount": 86,
+              "resourceValidatorManifestSha256": "c5bf82f267defc50a1645b6ea7e485bc888cb1777be9e75615e2c8597200f644"
+            }
+          },
+          "rawManifestSha256": "d37b5d994f163a486a417a161bae39322ca834d98a57a83cf2c59720af87cc0c",
+          "screenshotCount": 20,
+          "screenshotSetSha256": "ba31fc8e023c751573c6a6b24d0423b61daa382dab105f29fdd3485863f10f81",
+          "status": "PASS",
+          "telemetrySha256": "63a07f8bfac338b398fa3a3e6c91de5b29a5d61a1d4f4ccb359d0a4d8bbb8953",
+          "validation": {
+            "coverage": {
+              "cameraPosition": "unavailable",
+              "gridOffset": "unavailable",
+              "highlightCentroid": "unavailable",
+              "releaseVelocity": "derived-from-landmarks-only",
+              "rotation": "unavailable",
+              "tileCornersAndCenters": "derived-from-dom"
+            },
+            "failures": [],
+            "landmarkSampleCount": 19,
+            "minimumObservedTrackedCardCorners": 32,
+            "minimumObservedTrackedCards": 8,
+            "minimumTrackedCardCorners": 8,
+            "minimumTrackedCards": 2,
+            "passed": true,
+            "timedInputToleranceFraction": 0.12,
+            "trustedEventTypes": [
+              "pointermove",
+              "pointerdown",
+              "pointerup",
+              "wheel",
+              "touchstart",
+              "touchmove",
+              "touchend",
+              "blur",
+              "focus"
+            ]
+          },
+          "video": {
+            "probe": {
+              "available": true,
+              "format": {
+                "duration": "35.240000",
+                "size": "3976694"
+              },
+              "streams": [
+                {
+                  "avg_frame_rate": "25/1",
+                  "codec_name": "vp8",
+                  "height": 390,
+                  "pix_fmt": "yuv420p",
+                  "r_frame_rate": "25/1",
+                  "width": 844
+                }
+              ]
+            },
+            "sha256": "fab59c300f23c5c1cfbb8bd4c3ffbc634befeec9ad748b8e22f0f7241b934e35",
+            "use": "human QA only; not frame-time or motion telemetry"
+          }
+        },
+        "performance": {
+          "capturedAt": "2026-08-19T09:15:47.015Z",
+          "gpuExecutionTimeMeasured": false,
+          "idle": {
+            "estimatedRefreshHz": 120.48192771085394,
+            "gpuExecutionTimeMeasured": false,
+            "max": 10.400000000001455,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0,
+            "overBudgetThresholdMs": 12.449999999998909,
+            "p50": 8.299999999999272,
+            "p95": 10,
+            "p99": 10.299999999999272,
+            "sampleCount": 1199
+          },
+          "interaction": {
+            "estimatedRefreshHz": 120.48192771080113,
+            "gpuExecutionTimeMeasured": false,
+            "max": 19.900000000001455,
+            "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+            "metricName": "rafIntervalMs",
+            "over20msCount": 0,
+            "over50msCount": 0,
+            "overBudgetRatio": 0.0011933174224343676,
+            "overBudgetThresholdMs": 12.450000000004366,
+            "p50": 8.30000000000291,
+            "p95": 9.80000000000291,
+            "p99": 10.299999999999272,
+            "sampleCount": 1676
+          },
+          "metricMeaning": "browser requestAnimationFrame interval; not GPU execution time",
+          "metricName": "rafIntervalMs",
+          "rawManifestSha256": "c0c8d1d1fa2e2a5af57eb8d7aad966afa62a2807d79790094a90afa10c29be3a",
+          "status": "PASS"
+        },
+        "profile": {
+          "browserDpr": 3,
+          "expectedCanvasDpr": 1.5,
+          "height": 390,
+          "mobile": true,
+          "width": 844
+        },
+        "referenceClass": "controlled-live",
+        "sourceCommit": null,
+        "status": "PASS",
+        "url": "https://infinite-liquid-glass.shader.se/?v=2"
+      }
+    }
+  },
+  "schemaVersion": 1,
+  "startedAt": "2026-08-19T09:06:44.297Z",
+  "status": "PASS"
+}

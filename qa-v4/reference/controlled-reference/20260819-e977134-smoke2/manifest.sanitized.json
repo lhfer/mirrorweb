@@ -1,0 +1,65 @@
+{
+  "browser": {
+    "jsVersion": "15.1.206.17",
+    "playwrightBrowserVersion": "151.0.7922.138",
+    "product": "Chrome/151.0.7922.138",
+    "protocolVersion": "1.3",
+    "revision": "@41fa82442390a4d4456c78f2d69a832d5720cb27"
+  },
+  "captureId": "20260819-e977134-smoke2",
+  "errors": [
+    {
+      "code": "CAPTURE_FAILED",
+      "profile": "desktop-1440x900-dpr1",
+      "site": "local"
+    }
+  ],
+  "finishedAt": "2026-08-19T08:25:43.126Z",
+  "generator": "controlled-reference-v2",
+  "host": {
+    "architecture": "arm64",
+    "os": "macOS",
+    "osBuild": "26A5378n",
+    "osVersion": "27.0"
+  },
+  "inputScript": {
+    "canonicalSha256": "033334525a29378d6a0b8212fda65b61657e913f1b02d9eeaa857c01b3b71f9e",
+    "fileSha256": "fb54e598cd6e5f47e448a931f1afa28be3e232dd87fa5fcb6d6a25eddbdb3df3",
+    "path": "qa-v4/input-sequence.v4.json"
+  },
+  "launch": {
+    "args": [
+      "--enable-unsafe-webgpu",
+      "--enable-webgpu-developer-features",
+      "--disable-software-rasterizer",
+      "--ignore-gpu-blocklist",
+      "--use-angle=metal"
+    ],
+    "channel": "chrome",
+    "headed": true,
+    "realGpuRequired": true
+  },
+  "localSourceIdentity": {
+    "sourceCommit": "e9771340f849d232f30f87aa70ddac2062d0e332",
+    "sourceTree": "6347bfc2b0343cf58f664693bd945f35cf57e01f",
+    "trackedTreeClean": true
+  },
+  "matrix": {
+    "path": "qa-v4/reference/capture-matrix.json",
+    "sha256": "0f032bf92c04252aea23e5582b3a98bcf9f914a7e8100cfabbc4c43de735e1a1"
+  },
+  "profiles": {
+    "desktop-1440x900-dpr1": {
+      "local": {
+        "code": "CAPTURE_FAILED",
+        "rawErrorSha256": "ee2ef4d7eda639e0ca42845f3d31d1fb7e2574b8cfb6db24852f57a80f1d243f",
+        "referenceClass": "controlled-local",
+        "status": "BLOCKED",
+        "url": "http://127.0.0.1:5281/?optics=v3&qa=1"
+      }
+    }
+  },
+  "schemaVersion": 1,
+  "startedAt": "2026-08-19T08:25:13.031Z",
+  "status": "BLOCKED"
+}

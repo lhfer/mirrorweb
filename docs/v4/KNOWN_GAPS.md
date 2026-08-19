@@ -2,15 +2,15 @@
 
 This list separates evidence blockers from expected V3 implementation failures. A successful build does not close either category.
 
-## Phase 0 evidence blockers
+## Final-acceptance blockers and development implications
 
 | ID | Status | Gap | Consequence |
 | --- | --- | --- | --- |
-| V4-P0-001 | BLOCKED | The supplied recordings do not carry a verified source commit, Browser, GPU, CSS Viewport, or DPR provenance. | Golden preflight cannot be `READY`. |
-| V4-P0-002 | BLOCKED | The target and current recordings differ in encoded dimensions, duration, content, and uncontrolled input. | No frame-aligned diff or motion fitting is valid. |
-| V4-P0-003 | BLOCKED | The only supplied target screenshot contains red annotation strokes. | It is ROI guidance only; full-frame pixel metrics need a clean source or mask. |
-| V4-P0-004 | BLOCKED | The target recording contains a cursor and no deterministic replay marker. | Highlight and difference metrics need a cursor mask or controlled recapture. |
-| V4-P0-005 | NOT MEASURED | P50/P95/P99 render frame time is not encoded in a 30 fps screen recording. | Performance remains unverified; 30 fps must not be reported as page FPS. |
+| V4-P0-001 | FINAL BLOCKED | Frozen recordings do not carry Browser/GPU/CSS Viewport/DPR provenance. | They remain valid visual Golden input, but not performance or strict Motion evidence. |
+| V4-P0-002 | LOCAL RESOLVED / FINAL CONDITIONAL | The legacy-current recording remains unbound, but a new local baseline is bound to `e977134` plus its Git tree and served-page attestation. | Use the controlled local baseline; whole-image diff against the differently composed frozen target remains invalid. |
+| V4-P0-003 | CONDITIONAL | Clean frames and eight-layer masks are generated from the unannotated target video; seven of eight initial masks retain review flags. | The one clean seed ROI permits the isolated optics lab. Review flags remain visible and cannot count as final quantitative acceptance. |
+| V4-P0-004 | CONDITIONAL | The frozen target recording contains a cursor and no deterministic replay marker. | Mask the cursor for frozen visual ROIs; use controlled live capture for causal Pointer measurements. |
+| V4-P0-005 | CONTROLLED RAF CAPTURED / FINAL BLOCKED | Controlled P50/P95/P99 RAF intervals are available for target/local comparison, but GPU execution time is not measured. | Never infer page FPS from the 30 fps frozen video or label RAF cadence as GPU frame time. |
 
 ## Expected V3 baseline failures
 
@@ -31,4 +31,4 @@ This list separates evidence blockers from expected V3 implementation failures. 
 
 ## Baseline verdict
 
-The V3 source is preserved and buildable, but it is not a V4 visual pass. Phase 1 is not authorized while the Phase 0 Golden preflight remains blocked.
+The V3 source is preserved and buildable, but it is not a V4 visual pass. Phase 1 is authorized by the controlled-reference development gate, not by final quantitative acceptance.

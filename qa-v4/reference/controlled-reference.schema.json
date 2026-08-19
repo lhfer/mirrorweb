@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mirrorweb.invalid/qa-v4/controlled-reference.schema.json",
+  "title": "MirrorWeb V4 sanitized controlled reference",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "generator",
+    "captureId",
+    "matrix",
+    "inputScript",
+    "host",
+    "browser",
+    "harness",
+    "launch",
+    "profiles",
+    "errors",
+    "status"
+  ],
+  "properties": {
+    "$schema": { "const": "qa-v4/reference/controlled-reference.schema.json" },
+    "schemaVersion": { "const": 1 },
+    "generator": { "type": "string", "pattern": "^controlled-reference-v[0-9]+$" },
+    "captureId": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$" },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "finishedAt": { "type": "string", "format": "date-time" },
+    "matrix": { "$ref": "#/$defs/hashedRepositoryFile" },
+    "inputScript": {
+      "type": "object",
+      "required": ["path", "fileSha256", "canonicalSha256"],
+      "properties": {
+        "path": { "type": "string", "not": { "pattern": "^(?:/|file:)" } },
+        "fileSha256": { "$ref": "#/$defs/sha256" },
+        "canonicalSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "localSourceIdentity": {
+      "type": ["object", "null"],
+      "properties": {
+        "sourceCommit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+        "sourceTree": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+        "trackedTreeClean": { "const": true }
+      }
+    },
+    "harness": {
+      "type": "object",
+      "required": ["baseCommit", "captureScriptSha256", "captureScriptVersion"],
+      "properties": {
+        "baseCommit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+        "captureScriptSha256": { "$ref": "#/$defs/sha256" },
+        "captureScriptVersion": { "type": "string", "pattern": "^controlled-reference-v[0-9]+$" }
+      }
+    },
+    "profiles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "target": { "$ref": "#/$defs/cell" },
+          "local": { "$ref": "#/$defs/cell" }
+        }
+      }
+    },
+    "errors": { "type": "array" },
+    "status": { "enum": ["PASS", "BLOCKED"] }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "hashedRepositoryFile": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "type": "string", "not": { "pattern": "^(?:/|file:)" } },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "cell": {
+      "type": "object",
+      "required": ["status", "referenceClass"],
+      "properties": {
+        "status": { "enum": ["PASS", "BLOCKED"] },
+        "referenceClass": { "enum": ["controlled-live", "controlled-local"] },
+        "identity": {
+          "type": "object",
+          "required": ["environment", "screenshot", "domSnapshotSha256", "network"]
+        },
+        "interaction": {
+          "type": "object",
+          "required": ["validation", "telemetrySha256"]
+        },
+        "performance": {
+          "type": "object",
+          "required": ["metricName", "metricMeaning", "gpuExecutionTimeMeasured", "idle", "interaction"]
+        }
+      }
+    }
+  }
+}
