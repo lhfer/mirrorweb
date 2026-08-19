@@ -1,0 +1,64 @@
+#lab-panel {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 30;
+  width: min(320px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  padding: 14px 14px 16px;
+  border-radius: 16px;
+  background: rgba(8, 10, 16, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f4f4f4;
+  pointer-events: auto;
+  font: 12px/1.4 "Geist Mono Variable", ui-monospace, monospace;
+}
+
+#lab-panel h1 {
+  margin: 0 0 10px;
+  font: 600 15px/1.2 "Geist Variable", sans-serif;
+}
+
+#lab-panel label {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px;
+  margin: 8px 0 0;
+}
+
+#lab-panel input[type="range"] {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+#lab-panel .lab-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+#lab-panel button,
+#lab-panel select {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font: inherit;
+  cursor: pointer;
+}
+
+#lab-panel button.is-on {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.lab-type {
+  outline: 2px solid transparent;
+}
+
+body[data-debug="typography"] .lab-type {
+  outline-color: #00e5ff;
+}

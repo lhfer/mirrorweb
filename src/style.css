@@ -1,0 +1,302 @@
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+
+:root {
+  color-scheme: dark;
+  --bg: #0a0a0a;
+  --gutter: #000417;
+  --text: #ededed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
+  font-family: "Geist Variable", Geist, ui-sans-serif, system-ui, sans-serif;
+  color: var(--text);
+}
+
+#viewport,
+#labels,
+#page-overlay,
+#loading-overlay {
+  position: fixed;
+  inset: 0;
+}
+
+#viewport {
+  z-index: 1;
+}
+
+#viewport canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#labels {
+  z-index: 5;
+  pointer-events: none;
+}
+
+#page-overlay {
+  z-index: 10;
+  pointer-events: none;
+}
+
+#debug-hud {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.debug-overscan-frame {
+  position: absolute;
+  inset: 0;
+  border: 2px dashed rgba(255, 230, 0, 0.85);
+  box-shadow: 0 0 0 120px rgba(255, 64, 160, 0.18);
+}
+
+.debug-stats {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  margin: 0;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.72);
+  color: #fff;
+  font: 12px/1.45 "Geist Mono Variable", ui-monospace, monospace;
+  white-space: pre;
+}
+
+#loading-overlay {
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background: #0a0a0a;
+  transition: opacity 420ms ease;
+}
+
+#loading-overlay.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-cluster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.loader-cluster::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(40, 48, 70, 0.45) 0%, rgba(10, 10, 10, 0) 70%);
+  z-index: -1;
+}
+
+.loader-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-mark {
+  width: 28px;
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    #ff3b30 0%,
+    #ff9500 16%,
+    #ffcc00 33%,
+    #34c759 50%,
+    #007aff 66%,
+    #5856d6 83%,
+    #af52de 100%
+  );
+  flex: 0 0 auto;
+}
+
+.brand-word {
+  margin: 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 22px;
+}
+
+.loader-percent {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+
+.page-footer {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.experiment-link,
+.cta-link {
+  pointer-events: auto;
+  text-decoration: none;
+  color: rgb(237, 237, 237);
+}
+
+.experiment-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.cta-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 8px 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(10, 12, 18, 0.42);
+  backdrop-filter: blur(28px) saturate(0.7);
+  -webkit-backdrop-filter: blur(28px) saturate(0.7);
+  font-family: "Geist Mono Variable", "Geist Mono", ui-monospace, monospace;
+  font-size: clamp(0.58rem, 0.8vw, 0.72rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+  transition: border-color 300ms, background-color 300ms, transform 300ms;
+}
+
+.cta-link:hover {
+  border-color: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.cta-link:active {
+  transform: scale(0.98);
+}
+
+.cta-arrow {
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+}
+
+.tile-card-debug h2 {
+  font-size: 8cqw;
+  letter-spacing: -0.04em;
+}
+
+.tile-card {
+  width: 540px;
+  height: 400px;
+  padding: 8% 8% 11%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  color: #fff;
+  text-align: left;
+  background: transparent;
+  pointer-events: none;
+}
+
+.tile-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: "Geist Mono Variable", "Geist Mono", ui-monospace, monospace;
+  font-size: 1.7cqw;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.tile-id {
+  color: var(--accent, #d7ff3f);
+}
+
+.tile-card-bottom {
+  margin-top: auto;
+}
+
+.tile-card-bottom h2 {
+  margin: 0 0 8px;
+  font-size: 9.2cqw;
+  line-height: 0.84;
+  font-weight: 600;
+  letter-spacing: -0.085em;
+  text-wrap: balance;
+}
+
+.tile-rule {
+  height: 0.2cqw;
+  background: rgba(255, 255, 255, 0.55);
+  margin: 0 0 10px;
+}
+
+.tile-deck {
+  margin: 0;
+  font-size: 2.5cqw;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.tile-card.is-type-debug {
+  outline: 2px solid #00e5ff;
+  outline-offset: -10px;
+}
+
+@media (max-width: 720px) {
+  .page-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    bottom: 16px;
+  }
+
+  .experiment-link {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .cta-link {
+    align-self: flex-end;
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "infinite-liquid-glass-replica",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "vite --port 5280 --strictPort",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 5280 --strictPort",
+    "capture:reference": "node scripts/capture-reference.mjs",
+    "capture:local": "node scripts/capture-local.mjs",
+    "test:visual": "playwright test tests/visual.spec.ts",
+    "test:interaction": "playwright test tests/interaction.spec.ts",
+    "test:performance": "playwright test tests/performance.spec.ts",
+    "test:responsive": "playwright test tests/responsive.spec.ts",
+    "test:infinite-loop": "playwright test tests/infinite-loop.spec.ts",
+    "qa": "node scripts/qa.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.21",
+    "@types/three": "0.185.4",
+    "playwright": "1.59.1"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "5.3.0",
+    "@fontsource-variable/geist-mono": "5.3.0",
+    "three": "0.185.0",
+    "typescript": "5.8.3",
+    "vite": "6.3.5"
+  }
+}
