@@ -32,6 +32,9 @@
     "v4:measure:optics": "python3 scripts/v4/measure-optics-lab.py",
     "v4:measure:phase1b": "python3 scripts/v4/measure-frozen-calibration.py",
     "v4:review:phase1b": "python3 scripts/v4/build-phase1b-review.py",
+    "v4:review:candidates": "python3 scripts/v4/build-reviewer-candidates.py",
+    "v4:review:serve": "node scripts/v4/serve-phase1b-review.mjs",
+    "v4:review:screens": "node scripts/v4/capture-reviewer-screens.mjs",
     "qa:v4:baseline": "node scripts/v4/phase0-baseline.mjs"
   },
   "devDependencies": {

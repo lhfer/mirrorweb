@@ -169,6 +169,40 @@ All PNG/JPG/MP4/WebM pixels, private annotations, and local manifests remain
 ignored. The committed result contains only hashes, aggregate metrics, evidence
 states, and caveats.
 
+## Human review surface
+
+The private review server (`npm run v4:review:serve`, `http://127.0.0.1:5282/`)
+opens in **Reviewer Mode**, a guided five-step target annotation written for a
+careful reviewer who is not a graphics engineer. The original dense surface is
+preserved as the **Advanced Inspector** at `?mode=advanced`.
+
+| Step | What the reviewer does | What stays hidden |
+| --- | --- | --- |
+| 0 · Tutorial | Learns Center Face / Optical Shoulder / Strong Lens Rim / Sidewall from a synthetic card, a real Frozen crop, one correct and one wrong annotation, and six things that are never a boundary. Writes nothing. | Local capture |
+| 1 · Target frame | Accepts, rejects (with a reason) or swaps in one of the neighbouring candidate frames decoded by `npm run v4:review:candidates`. | Local capture |
+| 2 · Card quad | Drags four corners on the centred, magnified card, with a loupe and a live rectified card plane. The card fills at least 65% of the review stage. | Local capture |
+| 3 · Optical zones | Drags three boundaries directly on the rectified target card. Percentages are derived from the drag; nothing is typed. | Local capture |
+| 4 · Lock | Reviews frame, quad, four zone widths, four edge crops and four corner crops, then locks. Locking computes a SHA-256 target-annotation hash. | Local capture |
+| 5 · Compare | Only now sees the local capture, at the same card-plane size, with edge/highlight/dispersion/sharpness overlays and per-edge/per-corner regions. | — |
+
+Target Frame, Card Quad, Optical Zones and Local Match are four independent
+states. A local mismatch never invalidates a correct target annotation.
+
+Optical boundaries are stored as three positive band *widths*, so the cumulative
+order `0 < Sidewall < Strong Rim < Shoulder < card half size` holds by
+construction and an illegal ordering cannot be produced by the UI or accepted by
+the server.
+
+Reviewer Mode autosaves to `qa-v4/review/phase-1b/reviewer-state.private.json`
+(private, ignored). It never reads or writes
+`qa-v4/reference/frozen-visual/annotations.private.json`; promoting a locked
+target annotation into that contract remains a separate, explicit step.
+
+`npm run v4:review:screens` replays the whole flow in a browser and records the
+acceptance evidence (stage coverage per role, local-hidden request audit,
+boundary legality, autosave/reload, annotation-file hash) next to the
+screenshots under `qa-v4/review/phase-1b/reviewer-screens/`.
+
 ## Gate
 
 `Final Target Match = BLOCKED`. No Phase 2, Typography, Motion, Grid, or

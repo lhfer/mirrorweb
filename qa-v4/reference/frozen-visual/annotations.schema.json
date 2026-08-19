@@ -4,277 +4,110 @@
   "title": "Private human-reviewed Frozen Visual calibration annotations",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "schemaVersion",
-    "referenceClass",
-    "private",
-    "sourceVideoSha256",
-    "reviewStatus",
-    "categories",
-    "approvals"
-  ],
+  "required": ["schemaVersion", "referenceClass", "private", "sourceVideoSha256", "evidenceBinding", "reviewStatus", "categories", "roles", "approvals"],
   "properties": {
-    "$schema": {
-      "type": "string"
-    },
-    "schemaVersion": {
-      "const": 1
-    },
-    "referenceClass": {
-      "const": "frozen-visual-human-calibration"
-    },
-    "private": {
-      "const": true
-    },
-    "sourceVideoSha256": {
-      "$ref": "#/$defs/sha256"
-    },
-    "reviewStatus": {
-      "$ref": "#/$defs/reviewStatus"
-    },
-    "reviewer": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "reviewedAt": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "roleMap": {
-      "type": "object",
-      "additionalProperties": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "localCaptureId": {
-            "type": "string",
-            "minLength": 1
-          }
-        }
-      }
-    },
-    "approvals": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "brightDarkPairedUse"
-      ],
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 2 },
+    "referenceClass": { "const": "frozen-visual-human-calibration" },
+    "private": { "const": true },
+    "sourceVideoSha256": { "$ref": "#/$defs/sha256" },
+    "evidenceBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["frozenManifestSha256", "reviewBundleSha256", "reviewAssetSetSha256", "localRuntimeSourceSetSha256"],
       "properties": {
-        "brightDarkPairedUse": {
-          "type": "boolean"
-        }
+        "frozenManifestSha256": { "$ref": "#/$defs/sha256" },
+        "reviewBundleSha256": { "$ref": "#/$defs/sha256" },
+        "reviewAssetSetSha256": { "$ref": "#/$defs/sha256" },
+        "localRuntimeSourceSetSha256": { "$ref": "#/$defs/sha256" }
       }
     },
-    "crossCategoryMetrics": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "brightDarkBackgroundResponseDifference": {
-          "$ref": "#/$defs/nullableNonnegative"
-        }
-      }
-    },
+    "reviewStatus": { "$ref": "#/$defs/aggregateReviewStatus" },
+    "reviewer": { "type": ["string", "null"], "maxLength": 200 },
+    "reviewedAt": { "type": ["string", "null"], "format": "date-time" },
+    "approvals": { "type": "object", "additionalProperties": false, "required": ["brightDarkPairedUse"], "properties": { "brightDarkPairedUse": { "type": "boolean" } } },
+    "crossCategoryMetrics": { "type": "object", "additionalProperties": false, "properties": { "brightDarkBackgroundResponseDifference": { "$ref": "#/$defs/nullableNonnegative" } } },
     "categories": {
-      "type": "object",
-      "minProperties": 8,
-      "maxProperties": 8,
-      "additionalProperties": false,
-      "required": [
-        "bright-front",
-        "dark-front",
-        "high-texture",
-        "low-texture",
-        "left-tilt",
-        "right-tilt",
-        "pointer-before",
-        "pointer-after"
-      ],
+      "type": "object", "additionalProperties": false,
+      "required": ["bright-front", "dark-front", "high-texture", "low-texture", "left-tilt", "right-tilt", "pointer-before", "pointer-after"],
       "properties": {
-        "bright-front": {
-          "$ref": "#/$defs/category"
-        },
-        "dark-front": {
-          "$ref": "#/$defs/category"
-        },
-        "high-texture": {
-          "$ref": "#/$defs/category"
-        },
-        "low-texture": {
-          "$ref": "#/$defs/category"
-        },
-        "left-tilt": {
-          "$ref": "#/$defs/category"
-        },
-        "right-tilt": {
-          "$ref": "#/$defs/category"
-        },
-        "pointer-before": {
-          "$ref": "#/$defs/category"
-        },
-        "pointer-after": {
-          "$ref": "#/$defs/category"
-        }
+        "bright-front": { "$ref": "#/$defs/category" }, "dark-front": { "$ref": "#/$defs/category" },
+        "high-texture": { "$ref": "#/$defs/category" }, "low-texture": { "$ref": "#/$defs/category" },
+        "left-tilt": { "$ref": "#/$defs/category" }, "right-tilt": { "$ref": "#/$defs/category" },
+        "pointer-before": { "$ref": "#/$defs/category" }, "pointer-after": { "$ref": "#/$defs/category" }
+      }
+    },
+    "roles": {
+      "type": "object", "additionalProperties": false,
+      "required": ["bright", "dark", "highTexture", "lowTexture", "front", "leftTilt", "rightTilt"],
+      "properties": {
+        "bright": { "$ref": "#/$defs/roleBright" }, "dark": { "$ref": "#/$defs/roleDark" },
+        "highTexture": { "$ref": "#/$defs/roleHighTexture" }, "lowTexture": { "$ref": "#/$defs/roleLowTexture" },
+        "front": { "$ref": "#/$defs/roleFront" }, "leftTilt": { "$ref": "#/$defs/roleLeftTilt" },
+        "rightTilt": { "$ref": "#/$defs/roleRightTilt" }
       }
     }
   },
   "$defs": {
-    "sha256": {
-      "type": "string",
-      "pattern": "^[0-9a-f]{64}$"
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "decision": { "enum": ["PENDING", "APPROVED", "REJECTED"] },
+    "aggregateReviewStatus": { "enum": ["PENDING", "PARTIAL", "APPROVED", "REJECTED"] },
+    "nullableRatio": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+    "nullableHalfRatio": { "type": ["number", "null"], "exclusiveMinimum": 0, "exclusiveMaximum": 0.5 },
+    "nullableNonnegative": { "type": ["number", "null"], "minimum": 0 },
+    "point": { "type": "array", "prefixItems": [{ "type": "number", "minimum": 0, "maximum": 1 }, { "type": "number", "minimum": 0, "maximum": 1 }], "items": false, "minItems": 2, "maxItems": 2 },
+    "nullablePoint": { "anyOf": [{ "$ref": "#/$defs/point" }, { "type": "null" }] },
+    "nullableQuad": { "anyOf": [{ "type": "array", "items": { "$ref": "#/$defs/point" }, "minItems": 4, "maxItems": 4 }, { "type": "null" }] },
+    "zoneBoundaries": {
+      "type": "object", "additionalProperties": false,
+      "required": ["coordinateSpace", "sidewallOuter", "sidewallToStrongLensRim", "strongLensRimToOpticalShoulder", "opticalShoulderToCenterFace"],
+      "properties": {
+        "coordinateSpace": { "const": "inward-ratio-of-card-minor-axis" }, "sidewallOuter": { "const": 0 },
+        "sidewallToStrongLensRim": { "$ref": "#/$defs/nullableHalfRatio" },
+        "strongLensRimToOpticalShoulder": { "$ref": "#/$defs/nullableHalfRatio" },
+        "opticalShoulderToCenterFace": { "$ref": "#/$defs/nullableHalfRatio" }
+      }
     },
-    "reviewStatus": {
-      "enum": [
-        "PENDING",
-        "APPROVED",
-        "REJECTED"
-      ]
-    },
-    "nullableRatio": {
-      "type": [
-        "number",
-        "null"
-      ],
-      "minimum": 0,
-      "maximum": 1
-    },
-    "nullableNonnegative": {
-      "type": [
-        "number",
-        "null"
-      ],
-      "minimum": 0
-    },
-    "nullablePoint": {
-      "anyOf": [
-        {
-          "type": "array",
-          "prefixItems": [
-            {
-              "type": "number",
-              "minimum": 0,
-              "maximum": 1
-            },
-            {
-              "type": "number",
-              "minimum": 0,
-              "maximum": 1
-            }
-          ],
-          "items": false,
-          "minItems": 2,
-          "maxItems": 2
-        },
-        {
-          "type": "null"
-        }
-      ]
+    "metrics": {
+      "type": "object", "additionalProperties": false,
+      "required": ["centerFaceRatio", "opticalShoulderWidthRatio", "strongLensRimWidthRatio", "sidewallScreenWidthRatio", "highlightWidthRatio", "highlightCentroidNormalized", "contentBendingWidthRatio", "centerRimSharpnessRatio", "dispersionWidthRatio", "cornerRefractionSignature", "sidewallContentCompression"],
+      "properties": {
+        "centerFaceRatio": { "$ref": "#/$defs/nullableRatio" }, "opticalShoulderWidthRatio": { "$ref": "#/$defs/nullableRatio" },
+        "strongLensRimWidthRatio": { "$ref": "#/$defs/nullableRatio" }, "sidewallScreenWidthRatio": { "$ref": "#/$defs/nullableRatio" },
+        "highlightWidthRatio": { "$ref": "#/$defs/nullableRatio" }, "highlightCentroidNormalized": { "$ref": "#/$defs/nullablePoint" },
+        "contentBendingWidthRatio": { "$ref": "#/$defs/nullableRatio" }, "centerRimSharpnessRatio": { "$ref": "#/$defs/nullableNonnegative" },
+        "dispersionWidthRatio": { "$ref": "#/$defs/nullableRatio" },
+        "cornerRefractionSignature": { "anyOf": [{ "type": "array", "items": { "type": "number", "minimum": 0 }, "minItems": 4, "maxItems": 4 }, { "type": "null" }] },
+        "sidewallContentCompression": { "$ref": "#/$defs/nullableNonnegative" }
+      }
     },
     "category": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "sourceFrameSha256",
-        "reviewStatus",
-        "quadReviewStatus",
-        "approvals",
-        "metrics"
-      ],
+      "type": "object", "additionalProperties": false,
+      "required": ["sourceFrameSha256", "reviewStatus", "quadReviewStatus", "zoneReviewStatus", "quadNormalized", "zoneBoundaries", "approvals", "metrics"],
       "properties": {
-        "sourceFrameSha256": {
-          "$ref": "#/$defs/sha256"
-        },
-        "reviewStatus": {
-          "$ref": "#/$defs/reviewStatus"
-        },
-        "quadReviewStatus": {
-          "$ref": "#/$defs/reviewStatus"
-        },
-        "approvals": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "existingHighlightMask",
-            "naturalFeatureSignature"
-          ],
-          "properties": {
-            "existingHighlightMask": {
-              "type": "boolean"
-            },
-            "naturalFeatureSignature": {
-              "type": "boolean"
-            }
-          }
-        },
-        "metrics": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "centerFaceRatio",
-            "opticalShoulderWidthRatio",
-            "strongLensRimWidthRatio",
-            "sidewallScreenWidthRatio",
-            "highlightWidthRatio",
-            "highlightCentroidNormalized",
-            "contentBendingWidthRatio",
-            "centerRimSharpnessRatio",
-            "dispersionWidthRatio",
-            "cornerRefractionSignature",
-            "sidewallContentCompression"
-          ],
-          "properties": {
-            "centerFaceRatio": {
-              "$ref": "#/$defs/nullableRatio"
-            },
-            "opticalShoulderWidthRatio": {
-              "$ref": "#/$defs/nullableRatio"
-            },
-            "strongLensRimWidthRatio": {
-              "$ref": "#/$defs/nullableRatio"
-            },
-            "sidewallScreenWidthRatio": {
-              "$ref": "#/$defs/nullableRatio"
-            },
-            "highlightWidthRatio": {
-              "$ref": "#/$defs/nullableRatio"
-            },
-            "highlightCentroidNormalized": {
-              "$ref": "#/$defs/nullablePoint"
-            },
-            "contentBendingWidthRatio": {
-              "$ref": "#/$defs/nullableRatio"
-            },
-            "centerRimSharpnessRatio": {
-              "$ref": "#/$defs/nullableNonnegative"
-            },
-            "dispersionWidthRatio": {
-              "$ref": "#/$defs/nullableRatio"
-            },
-            "cornerRefractionSignature": {
-              "anyOf": [
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "number",
-                    "minimum": 0
-                  },
-                  "minItems": 4,
-                  "maxItems": 4
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            },
-            "sidewallContentCompression": {
-              "$ref": "#/$defs/nullableNonnegative"
-            }
-          }
-        }
+        "sourceFrameSha256": { "$ref": "#/$defs/sha256" }, "reviewStatus": { "$ref": "#/$defs/aggregateReviewStatus" },
+        "quadReviewStatus": { "$ref": "#/$defs/decision" }, "zoneReviewStatus": { "$ref": "#/$defs/decision" },
+        "quadNormalized": { "$ref": "#/$defs/nullableQuad" }, "zoneBoundaries": { "$ref": "#/$defs/zoneBoundaries" },
+        "approvals": { "type": "object", "additionalProperties": false, "required": ["existingHighlightMask", "naturalFeatureSignature"], "properties": { "existingHighlightMask": { "type": "boolean" }, "naturalFeatureSignature": { "type": "boolean" } } },
+        "metrics": { "$ref": "#/$defs/metrics" }
       }
-    }
+    },
+    "featureDecisions": { "type": "object", "additionalProperties": false, "required": ["edge", "highlight", "dispersion", "sharpness"], "properties": { "edge": { "$ref": "#/$defs/decision" }, "highlight": { "$ref": "#/$defs/decision" }, "dispersion": { "$ref": "#/$defs/decision" }, "sharpness": { "$ref": "#/$defs/decision" } } },
+    "roleBase": {
+      "type": "object", "additionalProperties": false,
+      "required": ["targetCategory", "targetFrameSha256", "localCaptureId", "localCaptureSha256", "reviewStatus", "featureDecisions", "notes"],
+      "properties": {
+        "targetCategory": { "type": "string" }, "targetFrameSha256": { "$ref": "#/$defs/sha256" },
+        "localCaptureId": { "type": "string", "minLength": 1 }, "localCaptureSha256": { "$ref": "#/$defs/sha256" },
+        "reviewStatus": { "$ref": "#/$defs/decision" }, "featureDecisions": { "$ref": "#/$defs/featureDecisions" },
+        "notes": { "type": ["string", "null"], "maxLength": 2000 }
+      }
+    },
+    "roleBright": { "allOf": [{ "$ref": "#/$defs/roleBase" }, { "properties": { "targetCategory": { "const": "bright-front" }, "targetFrameSha256": { "const": "11bc11bc659ed827ec2569210425b0c67dc7751ba1674779a79178ad25b8a897" }, "localCaptureId": { "const": "v4-white" }, "localCaptureSha256": { "const": "849e49ac6fd840bd178bee44d5cc538ba4ed85821be9327142c62fced1706780" } } }] },
+    "roleDark": { "allOf": [{ "$ref": "#/$defs/roleBase" }, { "properties": { "targetCategory": { "const": "dark-front" }, "targetFrameSha256": { "const": "e3abcfafcced25e69a3ad587fc6c48bb15da9a45bcef7fe00615145a4d2acebe" }, "localCaptureId": { "const": "v4-black" }, "localCaptureSha256": { "const": "26b4356433fc1a2906fffce30c5c330d3f95f9f0aca6f87875aa158dbebbae45" } } }] },
+    "roleHighTexture": { "allOf": [{ "$ref": "#/$defs/roleBase" }, { "properties": { "targetCategory": { "const": "high-texture" }, "targetFrameSha256": { "const": "436e8fc42525f9e2f9baf3e8bf934861f0a1438e7c3d7dc9bbe62a3e7f10c202" }, "localCaptureId": { "const": "v4-high-frequency-photo" }, "localCaptureSha256": { "const": "31251ccd62d32b3e9e19f61e076da20f1203bf64a144957d017ca2ec00c9c92b" } } }] },
+    "roleLowTexture": { "allOf": [{ "$ref": "#/$defs/roleBase" }, { "properties": { "targetCategory": { "const": "low-texture" }, "targetFrameSha256": { "const": "25341575958cb6ac190b1da5522dfbb6947b31b8b9ddd87ee820d217a2fb1ce9" }, "localCaptureId": { "const": "v4-low-frequency-flat" }, "localCaptureSha256": { "const": "7a02bc4563b438c44e40347582144f663e8329dd79eecf487b5316a3c514e524" } } }] },
+    "roleFront": { "allOf": [{ "$ref": "#/$defs/roleBase" }, { "properties": { "targetCategory": { "const": "high-texture" }, "targetFrameSha256": { "const": "436e8fc42525f9e2f9baf3e8bf934861f0a1438e7c3d7dc9bbe62a3e7f10c202" }, "localCaptureId": { "const": "v4-checker" }, "localCaptureSha256": { "const": "13a95ddf84ee3ace1c70b1cfa9b33ac36a0d22003b68fe367de3bd29a5d93350" } } }] },
+    "roleLeftTilt": { "allOf": [{ "$ref": "#/$defs/roleBase" }, { "properties": { "targetCategory": { "const": "left-tilt" }, "targetFrameSha256": { "const": "dd187a9b38a0962209ab786dd068a900cb77888e25b346b88cef2725250d2822" }, "localCaptureId": { "const": "phase1b-pose-left" }, "localCaptureSha256": { "const": "fb74c2c21dc101573d69ff1b519e8f0b7e654dc472594d9fbb9c8c74fca646b4" } } }] },
+    "roleRightTilt": { "allOf": [{ "$ref": "#/$defs/roleBase" }, { "properties": { "targetCategory": { "const": "right-tilt" }, "targetFrameSha256": { "const": "bd3f7f87019e231a8d2d565e0bcf6be48c7a23274e2a8690f3bddba5a4120caa" }, "localCaptureId": { "const": "phase1b-pose-right" }, "localCaptureSha256": { "const": "22a4f0442f08ca8c11e4778af18b7ea442644244d41953a4bbda879a9af8617d" } } }] }
   }
 }

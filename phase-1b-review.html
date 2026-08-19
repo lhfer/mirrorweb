@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#07090a" />
+    <meta name="color-scheme" content="dark" />
+    <title>MirrorWeb · Phase 1B 人工审查 / Human Review</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <div id="reviewer-root"></div>
+
+    <!--
+      The Advanced Inspector is preserved verbatim. It is only cloned into the
+      document when the page is opened with ?mode=advanced, so Reviewer Mode is
+      the default entry and the dense technical surface stays available.
+    -->
+    <template id="advanced-inspector">
+    <main id="review-app" aria-label="Private Phase 1B frozen visual review">
+      <header class="topbar">
+        <div class="brand-block">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <p class="eyebrow">MIRRORWEB / V4 / CALIBRATION</p>
+            <h1>Frozen Visual Review</h1>
+          </div>
+        </div>
+
+        <div class="topbar-status" aria-live="polite">
+          <span class="privacy-pill"><i aria-hidden="true"></i> PRIVATE · LOCAL ONLY</span>
+          <span id="global-status" class="status-pill" data-status="PENDING">PENDING</span>
+          <span id="save-state" class="save-state">BOOTING</span>
+        </div>
+
+        <button id="save-button" class="primary-action" type="button" disabled>
+          <span>Save annotations</span>
+          <kbd>⌘S</kbd>
+        </button>
+      </header>
+
+      <section class="review-shell">
+        <aside class="role-rail" aria-label="Frozen visual roles">
+          <div class="rail-heading">
+            <span>01</span>
+            <div>
+              <h2>Review queue</h2>
+              <p id="role-progress">0 / 7 decided</p>
+            </div>
+          </div>
+          <nav id="role-list" class="role-list" aria-label="Review role selection"></nav>
+
+          <div class="evidence-card">
+            <div class="evidence-card__heading">
+              <span class="signal-dot" id="evidence-dot" aria-hidden="true"></span>
+              <strong>Evidence binding</strong>
+            </div>
+            <dl>
+              <div><dt>Frozen</dt><dd id="evidence-frozen">—</dd></div>
+              <div><dt>Local HEAD</dt><dd id="evidence-head">—</dd></div>
+              <div><dt>Runtime</dt><dd id="evidence-runtime">—</dd></div>
+              <div><dt>Bundle</dt><dd id="evidence-bundle">—</dd></div>
+              <div><dt>Output</dt><dd id="evidence-private">—</dd></div>
+            </dl>
+          </div>
+        </aside>
+
+        <section class="workspace" aria-label="Target and local image comparison">
+          <header class="workspace-toolbar">
+            <div class="view-switch" role="group" aria-label="Image coordinate view">
+              <button type="button" class="is-active" data-view="source">Source frame</button>
+              <button type="button" data-view="plane">Card plane</button>
+            </div>
+
+            <div class="overlay-switches" role="group" aria-label="Diagnostic overlays">
+              <span>Overlays</span>
+              <button type="button" aria-pressed="true" data-overlay="edge"><i class="key key--edge"></i>Edge</button>
+              <button type="button" aria-pressed="false" data-overlay="highlight"><i class="key key--highlight"></i>Highlight</button>
+              <button type="button" aria-pressed="false" data-overlay="dispersion"><i class="key key--dispersion"></i>Dispersion</button>
+              <button type="button" aria-pressed="false" data-overlay="sharpness"><i class="key key--sharpness"></i>Sharpness</button>
+            </div>
+
+            <button id="reset-view-button" class="quiet-button" type="button">Reset view</button>
+          </header>
+
+          <div class="comparison-grid">
+            <article class="specimen specimen--target" data-side="target">
+              <header class="specimen-header">
+                <div>
+                  <span class="specimen-index">A</span>
+                  <div>
+                    <h2>Frozen target</h2>
+                    <p id="target-evidence-label">HASH BOUND</p>
+                  </div>
+                </div>
+                <span class="reference-class">VISUAL GOLDEN</span>
+              </header>
+              <div class="image-stage" id="target-stage">
+                <div class="image-surface">
+                  <img class="base-bitmap" id="target-base" alt="Frozen target role frame" draggable="false" />
+                  <img class="bitmap-overlay overlay-edge" id="target-edge" alt="" draggable="false" hidden />
+                  <img class="bitmap-overlay overlay-highlight" id="target-highlight" alt="" draggable="false" hidden />
+                  <img class="bitmap-overlay overlay-dispersion" id="target-dispersion" alt="" draggable="false" hidden />
+                  <canvas class="computed-overlay overlay-sharpness" id="target-sharpness" aria-hidden="true" hidden></canvas>
+                  <svg id="target-annotation" class="annotation-layer" role="group" aria-label="Editable target card geometry"></svg>
+                </div>
+                <div class="stage-loading" aria-live="polite">LOADING TARGET</div>
+                <p class="stage-caption">TARGET PIXELS · NEVER WRITTEN TO PUBLIC OUTPUT</p>
+              </div>
+            </article>
+
+            <article class="specimen specimen--local" data-side="local">
+              <header class="specimen-header">
+                <div>
+                  <span class="specimen-index">B</span>
+                  <div>
+                    <h2>Local candidate</h2>
+                    <p id="local-evidence-label">CAPTURE HASH BOUND</p>
+                  </div>
+                </div>
+                <span class="reference-class">ENERGY CONTROLLED</span>
+              </header>
+              <div class="image-stage" id="local-stage">
+                <div class="image-surface">
+                  <img class="base-bitmap" id="local-base" alt="Local V4 role capture" draggable="false" />
+                  <img class="bitmap-overlay overlay-edge" id="local-edge" alt="" draggable="false" hidden />
+                  <img class="bitmap-overlay overlay-highlight" id="local-highlight" alt="" draggable="false" hidden />
+                  <img class="bitmap-overlay overlay-dispersion" id="local-dispersion" alt="" draggable="false" hidden />
+                  <canvas class="computed-overlay overlay-sharpness" id="local-sharpness" aria-hidden="true" hidden></canvas>
+                  <svg id="local-annotation" class="annotation-layer annotation-layer--readonly" aria-hidden="true"></svg>
+                </div>
+                <div class="stage-loading" aria-live="polite">LOADING LOCAL</div>
+                <p class="stage-caption">LOCAL CAPTURE · COMPARISON ONLY</p>
+              </div>
+            </article>
+          </div>
+
+          <section class="roi-console" aria-labelledby="roi-heading">
+            <div class="roi-console__intro">
+              <span>02</span>
+              <div>
+                <h2 id="roi-heading">Normalized edge ROI</h2>
+                <p>Inspect the same plane segment on both references. Center is context only.</p>
+              </div>
+            </div>
+            <div id="roi-grid" class="roi-grid" role="group" aria-label="Card edge and corner region">
+              <button type="button" data-roi="topLeft" aria-label="Top left corner"><i></i><span>TL</span></button>
+              <button type="button" data-roi="top" aria-label="Top edge"><i></i><span>TOP</span></button>
+              <button type="button" data-roi="topRight" aria-label="Top right corner"><i></i><span>TR</span></button>
+              <button type="button" data-roi="left" aria-label="Left edge"><i></i><span>LEFT</span></button>
+              <button type="button" class="is-active" data-roi="all" aria-label="Full card plane"><i></i><span>ALL</span></button>
+              <button type="button" data-roi="right" aria-label="Right edge"><i></i><span>RIGHT</span></button>
+              <button type="button" data-roi="bottomLeft" aria-label="Bottom left corner"><i></i><span>BL</span></button>
+              <button type="button" data-roi="bottom" aria-label="Bottom edge"><i></i><span>BOTTOM</span></button>
+              <button type="button" data-roi="bottomRight" aria-label="Bottom right corner"><i></i><span>BR</span></button>
+            </div>
+            <div class="roi-readout">
+              <span>ACTIVE REGION</span>
+              <strong id="roi-output">FULL CARD PLANE</strong>
+              <small id="roi-hint">Select an edge or corner to magnify it in Card Plane view.</small>
+            </div>
+          </section>
+        </section>
+
+        <aside class="inspector" aria-label="Human annotation controls">
+          <section class="inspector-hero">
+            <div class="inspector-hero__meta">
+              <span id="active-role-index">ROLE 01 / 07</span>
+              <span id="active-role-status" class="status-pill" data-status="PENDING">PENDING</span>
+            </div>
+            <h2 id="active-role-name">Bright</h2>
+            <p id="active-role-category">bright-front</p>
+            <div id="reused-frame-note" class="reused-frame-note" hidden>
+              <strong>REUSED FRAME</strong>
+              <span>Front and High Texture intentionally share one Frozen source frame.</span>
+            </div>
+          </section>
+
+          <section class="inspector-section" aria-labelledby="corners-heading">
+            <div class="section-heading">
+              <div>
+                <span>03</span>
+                <h3 id="corners-heading">Card corners</h3>
+              </div>
+              <output id="quad-status" data-status="PENDING">UNVERIFIED</output>
+            </div>
+            <p class="section-copy">Drag handles on the Target source frame, use arrow keys, or enter normalized coordinates.</p>
+            <div id="corner-inputs" class="corner-inputs"></div>
+            <p id="quad-error" class="field-error" role="alert" hidden></p>
+            <label class="approval-check">
+              <input id="quad-approval" type="checkbox" />
+              <span><i></i><b>Human-verified card plane</b><small>This approval is never inferred from the initial mask.</small></span>
+            </label>
+          </section>
+
+          <section class="inspector-section" aria-labelledby="zones-heading">
+            <div class="section-heading">
+              <div>
+                <span>04</span>
+                <h3 id="zones-heading">Optical boundaries</h3>
+              </div>
+              <output id="zone-status" data-status="PENDING">SUGGESTED</output>
+            </div>
+            <p class="section-copy">Sliders are cumulative inward distance over the card minor axis; the legend shows each band width. Ordering is enforced by the model, so a slider stops at its neighbour instead of producing an invalid state.</p>
+            <div class="zone-scale" aria-hidden="true">
+              <i class="zone-scale__sidewall"></i>
+              <i class="zone-scale__rim"></i>
+              <i class="zone-scale__shoulder"></i>
+              <i class="zone-scale__center"></i>
+            </div>
+            <div id="zone-inputs" class="zone-inputs"></div>
+            <dl class="zone-legend">
+              <div><dt><i class="key key--sidewall"></i>Sidewall</dt><dd id="zone-width-sidewall">—</dd></div>
+              <div><dt><i class="key key--rim"></i>Strong rim</dt><dd id="zone-width-rim">—</dd></div>
+              <div><dt><i class="key key--shoulder"></i>Shoulder</dt><dd id="zone-width-shoulder">—</dd></div>
+              <div><dt><i class="key key--center"></i>Center face</dt><dd id="zone-width-center">—</dd></div>
+            </dl>
+            <p id="zone-error" class="field-error" role="alert" hidden></p>
+            <label class="approval-check">
+              <input id="zone-approval" type="checkbox" />
+              <span><i></i><b>Human-marked optical zones</b><small>Confirms these boundaries came from Frozen pixels, not the provisional prior.</small></span>
+            </label>
+          </section>
+
+          <section class="inspector-section" aria-labelledby="feature-heading">
+            <div class="section-heading">
+              <div>
+                <span>05</span>
+                <h3 id="feature-heading">Feature decisions</h3>
+              </div>
+              <output id="feature-status">0 / 4</output>
+            </div>
+            <p class="section-copy">Make an explicit decision for each signal. A visible effect is not evidence of target agreement.</p>
+            <div id="feature-decisions" class="feature-decisions"></div>
+          </section>
+
+          <section class="inspector-section inspector-section--decision" aria-labelledby="decision-heading">
+            <div class="section-heading">
+              <div>
+                <span>06</span>
+                <h3 id="decision-heading">Role decision</h3>
+              </div>
+              <output id="decision-readiness">NOT READY</output>
+            </div>
+            <label class="notes-field">
+              <span>Review note / rejection reason</span>
+              <textarea id="role-notes" rows="4" maxlength="1200" placeholder="Record the visual evidence behind this decision…"></textarea>
+              <small><span id="notes-count">0</span> / 1200</small>
+            </label>
+            <div class="decision-actions">
+              <button id="reject-role" class="reject-action" type="button" disabled>Reject role</button>
+              <button id="approve-role" class="approve-action" type="button" disabled>Approve role</button>
+            </div>
+            <p id="decision-help" class="decision-help">Verify geometry, zones, every feature, and all role assets before approval.</p>
+          </section>
+        </aside>
+      </section>
+
+      <div id="precision-gate" class="precision-gate" role="status" hidden>
+        <strong>PRECISION APPROVAL DISABLED</strong>
+        <span>Use a fine-pointer desktop viewport at least 980px wide to approve target geometry.</span>
+      </div>
+
+      <div id="blocking-gate" class="blocking-gate" role="alert" aria-live="assertive">
+        <div>
+          <span class="blocking-code">FAIL-CLOSED REVIEW GATE</span>
+          <h2 id="blocking-title">Binding private evidence…</h2>
+          <p id="blocking-message">The review surface remains locked until the API, evidence identity, geometry and private output contract are validated.</p>
+          <pre id="blocking-details"></pre>
+          <button id="retry-button" type="button">Retry binding</button>
+        </div>
+      </div>
+
+      <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    </main>
+    </template>
+
+    <script type="module" src="/src/review-phase1b/entry.ts"></script>
+  </body>
+</html>

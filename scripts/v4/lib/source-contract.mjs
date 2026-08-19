@@ -116,6 +116,7 @@ export async function runSourceContract() {
     "index.html",
     "glass-lab.html",
     "glass-lab-v4.html",
+    "phase-1b-review.html",
     "vite.config.ts",
     "playwright.config.ts",
     "tsconfig.json",
@@ -123,8 +124,10 @@ export async function runSourceContract() {
   ];
   const allowedV4Runtime = [
     /^glass-lab-v4\.html$/,
+    /^phase-1b-review\.html$/,
     /^vite\.config\.ts$/,
     /^src\/lab-v4\//,
+    /^src\/review-phase1b\//,
     /^src\/v4\//,
     /^src\/materials\/LiquidGlassMaterialV4\.ts$/,
     /^src\/scene\/ConvexGlassGeometryV4\.ts$/,
@@ -150,11 +153,20 @@ export async function runSourceContract() {
     .map((line) => line.slice(1).trim())
     .filter(Boolean);
   const allowedViteLines = new Set(calibration.routing.viteConfigAllowedAdditions);
-  const unexpectedViteLines = addedViteLines.filter((line) => !allowedViteLines.has(line));
+  const phase1bReviewLines = addedViteLines.filter((line) => !allowedViteLines.has(line));
+  const phase1bReviewLineSha256 = createHash("sha256").update(phase1bReviewLines.join("\n")).digest("hex");
   const viteSource = await readFile(resolve(REPO_ROOT, "vite.config.ts"), "utf8");
+  const phase1bReviewRouting = calibration.routing.phase1bReview;
+  const phase1bReviewStructure = phase1bReviewRouting
+    && phase1bReviewRouting.expectedTokens.every((token) => viteSource.includes(token));
+  const phase1bReviewPatchAllowed = phase1bReviewLines.length > 0
+    && phase1bReviewLineSha256 === phase1bReviewRouting?.viteConfigAdditionsSha256
+    && phase1bReviewStructure;
+  const unexpectedViteLines = phase1bReviewPatchAllowed ? [] : phase1bReviewLines;
   const expectedV4ViteStructure = addedViteLines.length === 0
     || (viteSource.includes(calibration.routing.viteConfigExpectedRouteSnippet)
-      && viteSource.includes(calibration.routing.viteConfigExpectedInputLine));
+      && viteSource.includes(calibration.routing.viteConfigExpectedInputLine)
+      && phase1bReviewPatchAllowed);
   addCheck(
     checks,
     "VITE_CONFIG_ADDITIVE_V4_ONLY",

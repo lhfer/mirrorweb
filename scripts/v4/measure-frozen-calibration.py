@@ -471,7 +471,7 @@ def load_annotations(path: Path, frozen: Mapping[str, Any]) -> tuple[dict[str, A
         raise MeasurementUnavailable("Frozen annotations have the wrong reference class")
     if annotations.get("private") is not True:
         raise MeasurementUnavailable("Frozen annotations are not marked private")
-    if annotations.get("reviewStatus") not in ("PENDING", "APPROVED", "REJECTED"):
+    if annotations.get("reviewStatus") not in ("PENDING", "PARTIAL", "APPROVED", "REJECTED"):
         raise MeasurementUnavailable("Frozen annotations have an invalid review status")
     if annotations.get("sourceVideoSha256") != frozen.get("source", {}).get("videoSha256"):
         raise MeasurementUnavailable("Frozen annotations are bound to a different source video")
@@ -488,7 +488,7 @@ def load_annotations(path: Path, frozen: Mapping[str, Any]) -> tuple[dict[str, A
         if value.get("sourceFrameSha256") != frozen_categories[category_id]["frameSha256"]:
             raise MeasurementUnavailable(f"Frozen annotation frame hash differs for {category_id}")
         if (
-            annotations.get("reviewStatus") == "APPROVED"
+            annotations.get("reviewStatus") in ("PARTIAL", "APPROVED")
             and value.get("reviewStatus") == "APPROVED"
             and value.get("quadReviewStatus") == "APPROVED"
         ):
@@ -668,7 +668,7 @@ def measured(value: Any, *, evidence: Any = None) -> dict[str, Any]:
 def annotation_category(annotations: Mapping[str, Any] | None, category_id: str) -> Mapping[str, Any] | None:
     if not annotations:
         return None
-    if annotations.get("reviewStatus") != "APPROVED":
+    if annotations.get("reviewStatus") not in ("PARTIAL", "APPROVED"):
         return None
     value = annotations.get("categories", {}).get(category_id)
     if not isinstance(value, dict):
@@ -682,6 +682,18 @@ def annotation_metric(annotations: Mapping[str, Any] | None, category_id: str, n
     category = feature_annotation_category(annotations, category_id)
     if category is None:
         return None
+    if name in ("sidewallScreenWidthRatio", "strongLensRimWidthRatio", "opticalShoulderWidthRatio"):
+        zone = category.get("zoneBoundaries", {})
+        sidewall_end = zone.get("sidewallToStrongLensRim")
+        rim_end = zone.get("strongLensRimToOpticalShoulder")
+        shoulder_end = zone.get("opticalShoulderToCenterFace")
+        if not all(isinstance(value, (int, float)) for value in (sidewall_end, rim_end, shoulder_end)):
+            return None
+        return {
+            "sidewallScreenWidthRatio": sidewall_end,
+            "strongLensRimWidthRatio": rim_end - sidewall_end,
+            "opticalShoulderWidthRatio": shoulder_end - rim_end,
+        }[name]
     return category.get("metrics", {}).get(name)
 
 
@@ -701,10 +713,14 @@ def target_card(
     frozen: Mapping[str, Any],
     files: Mapping[str, Mapping[str, Path]],
     category_id: str,
+    annotations: Mapping[str, Any] | None = None,
 ) -> tuple[np.ndarray, np.ndarray, Any, dict[str, Any]]:
     category = next(item for item in frozen["categories"] if item["id"] == category_id)
     rgb = load_rgb(files[category_id]["frame"])
-    mapping = card_transform(category["geometry"]["quadNormalized"], source_shape=rgb.shape, normalized=True)
+    reviewed = annotation_category(annotations, category_id)
+    reviewed_quad = reviewed.get("quadNormalized") if reviewed else None
+    quad = reviewed_quad if isinstance(reviewed_quad, list) else category["geometry"]["quadNormalized"]
+    mapping = card_transform(quad, source_shape=rgb.shape, normalized=True)
     rectified = mapping.rectify(rgb)
     source_mask = load_mask(files[category_id]["card-silhouette"])
     silhouette = mapping.rectify(source_mask.astype(np.float32), order=0) >= 0.5
@@ -743,15 +759,11 @@ def role_mapping(
     artifacts: dict[str, Any] = {}
     for role, specification in ROLE_SPECS.items():
         target_id = specification["targetCategory"]
-        target_rgb, target_silhouette, _, target_category = target_card(frozen, files, target_id)
+        target_rgb, target_silhouette, target_mapping, target_category = target_card(
+            frozen, files, target_id, annotations,
+        )
         typography = load_mask(files[target_id]["typography"])
         highlight = load_mask(files[target_id]["highlight"])
-        target_image = load_rgb(files[target_id]["frame"])
-        target_mapping = card_transform(
-            target_category["geometry"]["quadNormalized"],
-            source_shape=target_image.shape,
-            normalized=True,
-        )
         exclusions = [
             target_mapping.rectify(typography.astype(np.float32), order=0) >= 0.5,
             target_mapping.rectify(highlight.astype(np.float32), order=0) >= 0.5,
@@ -761,10 +773,16 @@ def role_mapping(
         target_annotation = annotation_category(annotations, target_id)
         target_boundaries = None
         if target_annotation:
-            target_boundaries = {
-                name: target_annotation.get("metrics", {}).get(name)
-                for name in ("sidewallScreenWidthRatio", "strongLensRimWidthRatio", "opticalShoulderWidthRatio")
-            }
+            zone = target_annotation.get("zoneBoundaries", {})
+            sidewall_end = zone.get("sidewallToStrongLensRim")
+            rim_end = zone.get("strongLensRimToOpticalShoulder")
+            shoulder_end = zone.get("opticalShoulderToCenterFace")
+            if all(isinstance(value, (int, float)) for value in (sidewall_end, rim_end, shoulder_end)):
+                target_boundaries = {
+                    "sidewallScreenWidthRatio": sidewall_end,
+                    "strongLensRimWidthRatio": rim_end - sidewall_end,
+                    "opticalShoulderWidthRatio": shoulder_end - rim_end,
+                }
         draw_private_edge_overlay(
             target_rgb,
             target_silhouette,
@@ -1011,7 +1029,7 @@ def target_highlight_metric(
     category_annotation = annotation_category(annotations, category_id)
     if category_annotation is None or category_annotation.get("approvals", {}).get("existingHighlightMask") is not True:
         return None
-    target_rgb, silhouette, mapping, _ = target_card(frozen, files, category_id)
+    target_rgb, silhouette, mapping, _ = target_card(frozen, files, category_id, annotations)
     del target_rgb
     mask = mapping.rectify(load_mask(files[category_id]["highlight"]).astype(np.float32), order=0)
     return highlight_mask_metrics(mask, silhouette)

@@ -99,6 +99,20 @@
     ],
     "viteConfigExpectedRouteSnippet": "if (req.url === \"/glass-lab-v4\" || req.url.startsWith(\"/glass-lab-v4?\")) {\n      req.url = req.url.replace(\"/glass-lab-v4\", \"/glass-lab-v4.html\");\n      return;\n    }",
     "viteConfigExpectedInputLine": "glassLabV4: resolve(root, \"glass-lab-v4.html\"),",
+    "phase1bReview": {
+      "route": "/phase-1b-review",
+      "privateApiOrigin": "http://127.0.0.1:5282",
+      "ordinaryVitePrivateApi": "disabled",
+      "viteConfigAdditionsSha256": "012a6da4bcba64c167960bc7258ac8f5f9178951cf7cc58305e5eb8fcd3b3f0e",
+      "expectedTokens": [
+        "__phase1b_review__",
+        "Private review assets are available only through the local Phase 1B review server.",
+        "if (req.url === \"/phase-1b-review\" || req.url.startsWith(\"/phase-1b-review?\")) {",
+        "phase1bReview: resolve(root, \"phase-1b-review.html\"),",
+        "**/qa-v4/review/**",
+        "**/.private/**"
+      ]
+    },
     "implementationStatus": "lab-only",
     "queryScope": "/glass-lab-v4",
     "mainPageRoutingStatus": "deferred-until-integration"
