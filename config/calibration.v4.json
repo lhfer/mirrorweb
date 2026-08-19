@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "contractId": "mirrorweb-liquid-glass-v4",
+  "phase": 0,
+  "status": "source-of-truth-only",
+  "baseline": {
+    "branch": "rebuild/liquid-glass-v4",
+    "sourceCommit": "e37bc539e127870d4c1428f12402319f1c98fbc3",
+    "v3": {
+      "opticsMaterial": {
+        "version": "v3",
+        "status": "current-unflagged-implementation",
+        "materialId": "liquid-glass-v3-direct-media-hybrid",
+        "materialClass": "MeshBasicNodeMaterial",
+        "factory": "createGlassMaterial",
+        "source": "src/materials/LiquidGlassMaterial.ts",
+        "sourceSha256": "70de5d3b93349900e6477d5c9b1ae46b933c7ed15807a117d8937c68ee90563d",
+        "sceneTargetSource": "src/rendering/RenderPipeline.ts",
+        "sceneTargetSourceSha256": "6ccc6858a88ce83b17286d6e43206e138f9d057668c2151d6cff15e3d772ca63",
+        "sceneTargetColorSpace": "SRGBColorSpace",
+        "sceneTargetType": "default",
+        "directMediaRole": "primary-hybrid"
+      },
+      "geometry": {
+        "geometryId": "convex-glass-v3",
+        "factory": "createConvexGlassGeometry",
+        "source": "src/scene/ConvexGlassGeometry.ts",
+        "sourceSha256": "e4543a5313d7c2a3b5066cffb61621062e23401dfa8a13e180d54516a8131bda",
+        "explicitAttributes": [
+          "position",
+          "uv",
+          "uv1"
+        ],
+        "computedAttributes": [
+          "normal"
+        ]
+      },
+      "grid": {
+        "cols": 9,
+        "rows": 9,
+        "slots": 81,
+        "recycling": "full-pool-remap",
+        "source": "src/scene/InfiniteGlassGrid.ts",
+        "sourceSha256": "7d12aa20910b835c3f2a699c7dd08b698981b11539737054260f7c66ff37605d",
+        "domBinding": "innerHTML-on-remap",
+        "domSource": "src/ui/TileLabelLayer.ts",
+        "domSourceSha256": "e4e093d9bb7f46a875e7dbdbe234f6f45fa2d251e3f0af095f4ade6f7d6e501a"
+      },
+      "motion": {
+        "source": "src/interaction/MotionController.ts",
+        "sourceSha256": "8990173395adf1600c65ac2d68ffe9b5a2cc01710a696dcb5773842849fa5f3d",
+        "values": {
+          "dragGain": 0.58,
+          "damping": 11,
+          "stopThreshold": 70,
+          "maxSpeed": 1800,
+          "wheelGain": 0.055,
+          "tiltDeg": 1.05,
+          "parallax": 0.016,
+          "pointerDamping": 6,
+          "lightTravel": 120
+        },
+        "releaseEstimator": "raf-window-delta-over-dt",
+        "wheelDeltaModeNormalized": false,
+        "hardStop": true
+      },
+      "videoUpload": {
+        "source": "src/content/VideoClips.ts",
+        "sourceSha256": "f6aa50ff44cabfe98f30242cf95f776e3d2cc531ad12cb05c5e73d4d0c2b9c7a",
+        "mode": "unconditional-texture-update-per-raf"
+      },
+      "adaptiveQuality": {
+        "source": "src/quality/AdaptiveQuality.ts",
+        "sourceSha256": "79089e16ba84dd3446a7ed4edc8dd41e56487cd9363db76135648f8c392b1925",
+        "hysteresisMs": 2500,
+        "changes": [
+          "geometry"
+        ]
+      }
+    }
+  },
+  "routing": {
+    "queryKey": "optics",
+    "default": "v3",
+    "allowed": [
+      "v3",
+      "v4"
+    ],
+    "v3Query": "?optics=v3",
+    "v4Query": "?optics=v4",
+    "v3Lab": "/glass-lab",
+    "v4Lab": "/glass-lab-v4",
+    "implementationStatus": "not-implemented"
+  },
+  "v4": {
+    "optics": {
+      "status": "not-implemented",
+      "sceneTarget": {
+        "colorSpace": "linear",
+        "type": "half-float",
+        "resolutionScale": {
+          "high": 1,
+          "medium": 0.75,
+          "low": 0.55
+        }
+      }
+    },
+    "typography": {
+      "status": "specified-not-implemented",
+      "paddingCqw": 7,
+      "titleCqw": 12,
+      "lineHeight": 0.82,
+      "letterSpacingEm": -0.085,
+      "metaCqw": 1.7,
+      "deckCqw": 2.5
+    },
+    "motionFit": {
+      "status": "blocked",
+      "reason": "controlled target and local replay has not been captured"
+    },
+    "gridRingBuffer": {
+      "status": "not-implemented"
+    }
+  },
+  "golden": {
+    "referenceSet": "ilg-v2-private",
+    "directoryEnv": "ILG_GOLDEN_DIR",
+    "lockFilename": "manifest.lock.json",
+    "assetIdentitySha256": "5f8e884cc232d407bba323999e3dbd01e05ba880ca195e81ddb20d9fa4bb510f",
+    "required": true,
+    "missingPolicy": "blocked",
+    "inputScript": "qa-v4/input-sequence.v4.json",
+    "annotatedScreenshotUse": "annotation-only",
+    "referencePriority": [
+      "private-frozen-assets",
+      "tested-source-commit",
+      "user-annotated-roi",
+      "live-target-secondary",
+      "archived-pre-v4-docs-historical-only"
+    ]
+  },
+  "phaseGates": {
+    "phase1": {
+      "requires": [
+        "source-contract-passed",
+        "golden-preflight-ready",
+        "clean-test-commit"
+      ]
+    }
+  }
+}

@@ -7,3 +7,12 @@ dist/
 .DS_Store
 artifacts/
 qa/
+
+# V4 private Golden inputs/manifests and local-only QA output.
+.private/
+qa-v4/reference/*
+!qa-v4/reference/manifest.example.json
+qa-v4/results/*.local.json
+.env
+.env.local
+.env.*.local

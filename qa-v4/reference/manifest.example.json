@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "referenceSet": "ilg-v2-private",
+  "private": true,
+  "assets": {
+    "targetVideo": {
+      "role": "frozen-target",
+      "path": "target.mp4",
+      "sourceAlias": "第二次案例视频(1).mp4",
+      "sha256": "<64-hex-sha256>",
+      "bytes": 0,
+      "video": {
+        "codec": "h264",
+        "width": 0,
+        "height": 0,
+        "frameRate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "durationSeconds": 0,
+        "pixelFormat": "yuv420p",
+        "colorSpace": "bt709"
+      }
+    },
+    "currentVideo": {
+      "role": "frozen-current-baseline",
+      "path": "current.mp4",
+      "sha256": "<64-hex-sha256>",
+      "bytes": 0,
+      "video": {
+        "codec": "h264",
+        "width": 0,
+        "height": 0,
+        "frameRate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "durationSeconds": 0,
+        "pixelFormat": "yuv420p",
+        "colorSpace": "bt709"
+      }
+    },
+    "referenceScreenshots": [
+      {
+        "role": "target-annotated-roi",
+        "path": "target-annotated.png",
+        "sha256": "<64-hex-sha256>",
+        "bytes": 0,
+        "width": 0,
+        "height": 0,
+        "comparisonUse": "annotation-only"
+      }
+    ]
+  },
+  "capture": {
+    "currentSourceCommit": null,
+    "browser": {
+      "name": null,
+      "version": null,
+      "channel": null
+    },
+    "gpu": {
+      "api": null,
+      "vendor": null,
+      "architecture": null,
+      "description": null
+    },
+    "viewport": {
+      "width": null,
+      "height": null
+    },
+    "dpr": null
+  },
+  "inputScript": {
+    "path": "qa-v4/input-sequence.v4.json",
+    "sha256": "<64-hex-sha256>"
+  }
+}

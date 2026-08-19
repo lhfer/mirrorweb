@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "id": "ilg-v4-deterministic-input-v1",
+  "coordinateSpace": "css-pixels-at-manifest-viewport",
+  "pointerSampleWindowMs": 100,
+  "steps": [
+    {
+      "id": "pointer-center",
+      "type": "pointer-move",
+      "positionNdc": [0, 0],
+      "settleMs": 800
+    },
+    {
+      "id": "pointer-top-left",
+      "type": "pointer-move",
+      "positionNdc": [-0.8, -0.8],
+      "settleMs": 800
+    },
+    {
+      "id": "pointer-bottom-right",
+      "type": "pointer-move",
+      "positionNdc": [0.8, 0.8],
+      "settleMs": 800
+    },
+    {
+      "id": "drag-horizontal-400",
+      "type": "pointer-drag",
+      "deltaCssPx": [-400, 0],
+      "durationMs": 800,
+      "sampleHz": 120
+    },
+    {
+      "id": "drag-diagonal",
+      "type": "pointer-drag",
+      "deltaCssPx": [-320, 240],
+      "durationMs": 800,
+      "sampleHz": 120
+    },
+    {
+      "id": "flick-horizontal-520",
+      "type": "pointer-drag-release",
+      "deltaCssPx": [-520, 0],
+      "durationMs": 150,
+      "sampleHz": 120
+    },
+    {
+      "id": "post-release-2500",
+      "type": "wait",
+      "durationMs": 2500
+    },
+    {
+      "id": "wheel-pixel",
+      "type": "wheel",
+      "deltaMode": 0,
+      "deltaCssPx": [0, 420]
+    },
+    {
+      "id": "wheel-line",
+      "type": "wheel",
+      "deltaMode": 1,
+      "delta": [0, 12]
+    },
+    {
+      "id": "touch-flick",
+      "type": "touch-drag-release",
+      "deltaCssPx": [-360, 220],
+      "durationMs": 180,
+      "sampleHz": 120
+    },
+    {
+      "id": "resize",
+      "type": "viewport-resize",
+      "from": "manifest-primary",
+      "to": {
+        "width": 1100,
+        "height": 720
+      },
+      "settleMs": 500
+    },
+    {
+      "id": "blur-resume",
+      "type": "visibility-cycle",
+      "hiddenMs": 1000,
+      "settleMs": 500
+    }
+  ],
+  "tracking": {
+    "tileCornerCountMinimum": 8,
+    "fields": [
+      "tileCorners",
+      "tileCenter",
+      "gridOffset",
+      "rotation",
+      "cameraPosition",
+      "highlightCentroid",
+      "releaseVelocity",
+      "velocityDecayCurve"
+    ]
+  }
+}

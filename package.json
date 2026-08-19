@@ -16,7 +16,12 @@
     "test:performance": "playwright test tests/performance.spec.ts",
     "test:responsive": "playwright test tests/responsive.spec.ts",
     "test:infinite-loop": "playwright test tests/infinite-loop.spec.ts",
-    "qa": "node scripts/qa.mjs"
+    "qa": "node scripts/qa.mjs",
+    "v4:source": "node scripts/v4/check-source-of-truth.mjs",
+    "v4:check": "node --test tests/v4/*.test.mjs",
+    "v4:golden:lock": "node scripts/v4/golden-manifest.mjs --create-lock",
+    "v4:golden:verify": "node scripts/v4/golden-manifest.mjs --verify --output qa-v4/results/golden-manifest.local.json",
+    "qa:v4:baseline": "node scripts/v4/phase0-baseline.mjs"
   },
   "devDependencies": {
     "@types/node": "22.15.21",
