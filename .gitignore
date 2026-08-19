@@ -12,6 +12,8 @@ qa/
 .private/
 qa-v4/results/*.local.json
 qa-v4/results/optics-lab-foundation*.private/
+qa-v4/results/*.private/
+qa-v4/review/
 .env
 .env.local
 .env.*.local

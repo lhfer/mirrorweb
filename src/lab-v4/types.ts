@@ -1,18 +1,21 @@
+import {
+  V4_DEBUG_MODES,
+  V4_SHELL_MODES,
+  type V4DebugMode,
+  type V4ShellMode,
+} from "../v4/OpticsConfigV4";
+
 export const LAB_MODES = ["v3", "v4", "split", "difference"] as const;
 export type LabMode = (typeof LAB_MODES)[number];
 
-export const LAB_DEBUG_VIEWS = [
-  "beauty",
-  "edge-mask",
-  "normals",
-  "thickness",
-  "refraction-offset",
-  "reflection",
-  "fresnel",
-  "dispersion",
-  "adaptivity",
-] as const;
-export type LabDebugView = (typeof LAB_DEBUG_VIEWS)[number];
+export const LAB_SHELL_MODES = V4_SHELL_MODES;
+export type LabShellMode = V4ShellMode;
+
+export const LAB_POSES = ["front", "left", "right"] as const;
+export type LabPose = (typeof LAB_POSES)[number];
+
+export const LAB_DEBUG_VIEWS = V4_DEBUG_MODES;
+export type LabDebugView = V4DebugMode;
 
 export const LAB_PATTERNS = [
   "checker",
@@ -30,15 +33,44 @@ export type LabPattern = (typeof LAB_PATTERNS)[number];
 
 export type LabPointer = { x: number; y: number };
 
+export type LabOpticalZoneCoefficients = {
+  center: number;
+  shoulder: number;
+  strongLensRim: number;
+  sidewall: number;
+};
+
 export type LabState = {
   ready: boolean;
   route: "/glass-lab-v4";
   mode: LabMode;
   pattern: LabPattern;
   debug: LabDebugView;
+  shellMode: LabShellMode;
+  pose: LabPose;
   backend: "webgpu" | "blocked";
   v3Preserved: true;
   normalPathDirectMedia: false;
+  opticalConfig: {
+    shoulderOuterPx: number;
+    rolloverInsetPx: number;
+    rolloverDepthPx: number;
+    lensRimWidthPx: number;
+    maxRefractionUv: number;
+    blurLod: number;
+    refractionCoefficients: LabOpticalZoneCoefficients;
+    blurCoefficients: LabOpticalZoneCoefficients;
+    dispersionCoefficients: LabOpticalZoneCoefficients;
+    shellCoefficients: LabOpticalZoneCoefficients;
+    shell: {
+      fresnelOpacity: number;
+      zoneOpacity: number;
+      opacityMax: number;
+      clearcoat: number;
+      adaptivityMin: number;
+      adaptivityMax: number;
+    };
+  };
   sceneTarget: {
     type: "half-float" | "unexpected";
     colorSpace: "linear" | "unexpected";
@@ -68,6 +100,8 @@ export type LabQaApi = {
   setPattern: (pattern: LabPattern | string) => LabState;
   setMode: (mode: LabMode | string) => LabState;
   setDebug: (debug: LabDebugView | "difference" | string) => LabState;
+  setShellMode: (mode: LabShellMode | string) => LabState;
+  setPose: (pose: LabPose | string) => LabState;
   setPointer: (x: number, y: number) => LabState;
   getMeasurementState: () => LabState;
   reset: () => LabState;

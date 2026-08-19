@@ -5,6 +5,7 @@ export type V4QualityLevel = QualityLevel;
 export const V4_DEBUG_MODES = [
   "beauty",
   "edge-mask",
+  "optical-zones",
   "normals",
   "thickness",
   "refraction-offset",
@@ -19,14 +20,18 @@ export type V4DebugMode = (typeof V4_DEBUG_MODES)[number];
 export const V4_DEBUG_CODE: Readonly<Record<V4DebugMode, number>> = {
   beauty: 0,
   "edge-mask": 1,
-  normals: 2,
-  thickness: 3,
-  "refraction-offset": 4,
-  reflection: 5,
-  fresnel: 6,
-  dispersion: 7,
-  adaptivity: 8,
+  "optical-zones": 2,
+  normals: 3,
+  thickness: 4,
+  "refraction-offset": 5,
+  reflection: 6,
+  fresnel: 7,
+  dispersion: 8,
+  adaptivity: 9,
 };
+
+export const V4_SHELL_MODES = ["additive", "energy-controlled", "off"] as const;
+export type V4ShellMode = (typeof V4_SHELL_MODES)[number];
 
 export type V4GeometryConfig = {
   width: number;
@@ -56,9 +61,9 @@ export const V4_OPTICS_CONFIG = {
     baseThickness: TILE.thickness,
     superellipseN: TILE.superellipseN,
     centerFrontZ: TILE.thickness * 0.5 + TILE.frontBulge,
-    shoulderOuterPx: 78,
-    rolloverInsetPx: 14,
-    rolloverDepthPx: 29,
+    shoulderOuterPx: 64,
+    rolloverInsetPx: 16,
+    rolloverDepthPx: 27,
     backDishPx: TILE.backDish,
     lensRimWidthPx: 30,
   } satisfies V4GeometryConfig,
@@ -74,13 +79,29 @@ export const V4_OPTICS_CONFIG = {
     ior: 1.48,
     refractionDistance: 118,
     maxRefractionUv: 0.125,
-    blurLod: 2.6,
+    blurLod: 2.35,
     dispersionUv: 0.0065,
     reflectionStrength: 1.15,
     roughnessCenter: 0.16,
     roughnessRim: 0.055,
     fresnelPower: 5,
     adaptivityRadiusUv: 0.0035,
+    zoneCoefficients: {
+      // Center remains on the same scene-color path. Its near-zero projected
+      // normal only produces a deliberately tiny refraction displacement.
+      refraction: { center: 0.025, shoulder: 0.72, strongLensRim: 1, sidewall: 0.9 },
+      blur: { center: 0, shoulder: 0.46, strongLensRim: 1, sidewall: 0.68 },
+      dispersion: { center: 0, shoulder: 0, strongLensRim: 1, sidewall: 0 },
+      shell: { center: 0.012, shoulder: 0.48, strongLensRim: 1, sidewall: 0.3 },
+    },
+    shell: {
+      fresnelOpacity: 0.2,
+      zoneOpacity: 0.13,
+      opacityMax: 0.42,
+      clearcoat: 0.68,
+      adaptivityMin: 0.7,
+      adaptivityMax: 1.18,
+    },
   },
   pointerLight: {
     baseX: -360,

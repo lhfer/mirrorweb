@@ -211,31 +211,94 @@ export async function runSourceContract() {
     materialTokens.filter((token) => materialSource.includes(token)),
   );
 
-  if (calibration.v4.optics.status === "lab-foundation-structural-pass") {
-    const result = await readJson(resolve(REPO_ROOT, calibration.v4.optics.qaResult));
+  if (["lab-foundation-structural-pass", "frozen-visual-calibration-conditional"].includes(calibration.v4.optics.status)) {
+    const foundationResult = await readJson(resolve(
+      REPO_ROOT,
+      calibration.v4.optics.foundationQaResult ?? calibration.v4.optics.qaResult,
+    ));
     addCheck(
       checks,
-      "V4_OPTICS_LAB_RESULT",
-      result.status === "PASS" && result.finalQuantitativeAcceptance === "BLOCKED",
-      { status: "PASS", finalQuantitativeAcceptance: "BLOCKED" },
-      { status: result.status, finalQuantitativeAcceptance: result.finalQuantitativeAcceptance },
+      "V4_FOUNDATION_CLEAN_RESULT",
+      foundationResult.status === "PASS"
+        && foundationResult.finalQuantitativeAcceptance === "BLOCKED"
+        && foundationResult.sourceIdentity?.head === calibration.v4.optics.foundationSourceCommit
+        && foundationResult.sourceIdentity?.dirtyWithinRuntimeScope === false
+        && foundationResult.sourceIdentity?.runtimeSourceSetSha256
+          === (calibration.v4.optics.foundationRuntimeSourceSetSha256 ?? calibration.v4.optics.runtimeSourceSetSha256),
+      {
+        status: "PASS",
+        finalQuantitativeAcceptance: "BLOCKED",
+        head: calibration.v4.optics.foundationSourceCommit,
+        dirtyWithinRuntimeScope: false,
+        runtimeSourceSetSha256: calibration.v4.optics.foundationRuntimeSourceSetSha256,
+      },
+      {
+        status: foundationResult.status,
+        finalQuantitativeAcceptance: foundationResult.finalQuantitativeAcceptance,
+        head: foundationResult.sourceIdentity?.head,
+        dirtyWithinRuntimeScope: foundationResult.sourceIdentity?.dirtyWithinRuntimeScope,
+        runtimeSourceSetSha256: foundationResult.sourceIdentity?.runtimeSourceSetSha256,
+      },
     );
+
+    const result = calibration.v4.optics.status === "frozen-visual-calibration-conditional"
+      ? await readJson(resolve(REPO_ROOT, calibration.v4.optics.qaResult))
+      : foundationResult;
+    if (calibration.v4.optics.status === "frozen-visual-calibration-conditional") {
+      addCheck(
+        checks,
+        "V4_FROZEN_CALIBRATION_RESULT",
+        result.status === "CONDITIONAL"
+          && result.evidenceIntegrity?.status === "PASS"
+          && result.captureAttestation?.status === "PASS"
+          && result.captureAttestation?.sourceIdentityCheckPassed === true
+          && result.captureAttestation?.previewPassed === true
+          && result.captureAttestation?.runtimeContractPassed === true
+          && result.captureAttestation?.hardwareWebGpu === true
+          && result.captureAttestation?.adapter?.isFallbackAdapter === false
+          && result.captureAttestation?.pageErrorCount === 0
+          && result.finalTargetMatch === "BLOCKED"
+          && result.sourceIdentity?.localDirtyWithinRuntimeScope === false,
+        {
+          status: "CONDITIONAL",
+          evidenceIntegrity: "PASS",
+          captureAttestation: "PASS",
+          previewPassed: true,
+          hardwareWebGpu: true,
+          finalTargetMatch: "BLOCKED",
+          dirty: false,
+        },
+        {
+          status: result.status,
+          evidenceIntegrity: result.evidenceIntegrity?.status,
+          captureAttestation: result.captureAttestation?.status,
+          previewPassed: result.captureAttestation?.previewPassed,
+          hardwareWebGpu: result.captureAttestation?.hardwareWebGpu,
+          finalTargetMatch: result.finalTargetMatch,
+          dirty: result.sourceIdentity?.localDirtyWithinRuntimeScope,
+        },
+      );
+    }
     const identityLines = [];
     const drifted = [];
-    for (const entry of result.sourceIdentity?.files ?? []) {
+    const runtimeFiles = result.sourceIdentity?.runtimeFiles ?? result.sourceIdentity?.files ?? [];
+    for (const entry of runtimeFiles) {
       const actual = await sha256File(resolve(REPO_ROOT, entry.path));
       identityLines.push(`${entry.path}:${actual}`);
       if (actual !== entry.sha256) drifted.push(entry.path);
     }
     const sourceSet = createHash("sha256").update(identityLines.join("\n")).digest("hex");
+    const capturedSourceSet = result.sourceIdentity?.localRuntimeSourceSetSha256
+      ?? result.sourceIdentity?.runtimeSourceSetSha256;
     addCheck(
       checks,
       "V4_CAPTURED_RUNTIME_IDENTITY",
-      drifted.length === 0
-        && sourceSet === result.sourceIdentity?.runtimeSourceSetSha256
+      runtimeFiles.length > 0
+        && drifted.length === 0
+        && sourceSet === capturedSourceSet
         && sourceSet === calibration.v4.optics.runtimeSourceSetSha256,
       { drifted: [], sourceSet: calibration.v4.optics.runtimeSourceSetSha256 },
-      { drifted, sourceSet },
+      { runtimeFileCount: runtimeFiles.length, drifted, sourceSet, capturedSourceSet },
     );
 
     const v4Material = await readFile(resolve(REPO_ROOT, calibration.v4.optics.materialSource), "utf8");
@@ -246,6 +309,8 @@ export async function runSourceContract() {
       "MeshPhysicalNodeMaterial",
       "sceneColorTexture",
       "createPointerKeyLightV4",
+      "NormalBlending",
+      "setShellMode",
     ];
     const requiredGeometryTokens = calibration.v4.optics.explicitAttributes;
     addCheck(
@@ -315,6 +380,7 @@ export async function runSourceContract() {
   addCheck(checks, "RAW_CAPTURE_VIDEO_IGNORED", isIgnored("qa-v4/reference/local-e977134/example/profile/interaction/video/interaction.webm"), true, isIgnored("qa-v4/reference/local-e977134/example/profile/interaction/video/interaction.webm"));
   addCheck(checks, "SANITIZED_REFERENCE_TRACKABLE", !isIgnored("qa-v4/reference/controlled-reference/example/manifest.sanitized.json"), true, !isIgnored("qa-v4/reference/controlled-reference/example/manifest.sanitized.json"));
   addCheck(checks, "LOCAL_RESULTS_IGNORED", isIgnored("qa-v4/results/example.local.json"), true, isIgnored("qa-v4/results/example.local.json"));
+  addCheck(checks, "PRIVATE_REVIEW_BUNDLE_IGNORED", isIgnored("qa-v4/review/phase-1b/example.png"), true, isIgnored("qa-v4/review/phase-1b/example.png"));
   addCheck(checks, "MANIFEST_EXAMPLE_TRACKABLE", !isIgnored("qa-v4/reference/manifest.example.json"), true, !isIgnored("qa-v4/reference/manifest.example.json"));
 
   const failed = checks.filter((check) => check.status === "FAILED");

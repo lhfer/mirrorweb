@@ -33,7 +33,17 @@ def main() -> None:
     results = [
         validate(ROOT / "qa-v4/reference/roi-mask.schema.json", frozen_path),
         validate(ROOT / "qa-v4/reference/controlled-reference.schema.json", controlled_path),
+        validate(
+            ROOT / "qa-v4/reference/frozen-visual/annotations.schema.json",
+            ROOT / "qa-v4/reference/frozen-visual/annotations.example.json",
+        ),
     ]
+    calibration_result = ROOT / calibration["v4"]["optics"]["qaResult"]
+    if calibration_result.is_file():
+        results.append(validate(
+            ROOT / "qa-v4/results/frozen-visual-calibration.schema.json",
+            calibration_result,
+        ))
     print(json.dumps({"status": "PASSED", "results": results}, indent=2))
 
 

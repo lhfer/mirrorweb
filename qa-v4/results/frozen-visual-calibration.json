@@ -1,0 +1,1953 @@
+{
+  "$schema": "frozen-visual-calibration.schema.json",
+  "schemaVersion": 1,
+  "phase": "phase-1b-frozen-visual-calibration",
+  "generator": "phase1b-frozen-calibration-v1",
+  "generatedAt": "2026-08-19T14:45:47.792093+00:00",
+  "status": "CONDITIONAL",
+  "sourceIdentity": {
+    "frozenVideoSha256": "b6e79250c75e0357e489de87b63ffd4a5097a573eb7baced35e5de8b050c2435",
+    "frozenSanitizedManifestSha256": "fc52e6524c22cccfbabbf05e037f3588f9d2329e92fac3eddb22cfc98a1b58e7",
+    "frozenCanonicalManifestSha256": "4d05c3fdae8fff0160710b40aa375732d851d61b3612fd4bb1a4c0a732e14669",
+    "frozenArtifactSetSha256": "438e12eb7ca0c47e8a64a3dfa51efad007a0e51b91080939f0d5736c03369821",
+    "frozenPrivateManifestSha256": "4d5d07c7cf62e850dd0613b9078470955bbf74d72f01b14a4707e177e411f5d5",
+    "localCaptureManifestSha256": "6c6bd2e60784d4845556b4ff80a2ee86a1d158d85b772b7e009f1667fa83a5c2",
+    "localHead": "7f9295b45d21349930037643ecc5ce71139c5d79",
+    "localRuntimeSourceSetSha256": "1d6bfdb59f1a125ec85c33971d2f5e13c175511568cf1469fe58eba6ce2aefbb",
+    "localDirtyRepository": false,
+    "localDirtyWithinRuntimeScope": false,
+    "files": [
+      {
+        "path": "glass-lab-v4.html",
+        "sha256": "208b4ccfdae775543d59acb46a55ac93e905969046b09c7b563f1c6708b74399"
+      },
+      {
+        "path": "vite.config.ts",
+        "sha256": "8e0bb832943f7ef74d998484f09f72b117e04ca77f18ab9dfefc7198775371e3"
+      },
+      {
+        "path": "src/config.ts",
+        "sha256": "4732f33ac0debaebff458b2b7b4f553e5b3f4be9df451e7491410796cdac7775"
+      },
+      {
+        "path": "src/lab-v4/lab.css",
+        "sha256": "51f8665155e80773012952c568bd874bba3c2abe220f5f089badcbd0d53dc0a2"
+      },
+      {
+        "path": "src/lab-v4/main.ts",
+        "sha256": "14c2193e71b15d9f9515f0b4d704842754a5c0286af66c253f7a95b69e65ea97"
+      },
+      {
+        "path": "src/lab-v4/patterns.ts",
+        "sha256": "66288bbd149eb2551f839e5393c4b844c689dcf8a812d914c9a349f9b33f7444"
+      },
+      {
+        "path": "src/lab-v4/types.ts",
+        "sha256": "3d3c7735279671288a1117043971670344e4edea8eecca0863aa3b1cf09f4e00"
+      },
+      {
+        "path": "src/materials/LiquidGlassMaterial.ts",
+        "sha256": "70de5d3b93349900e6477d5c9b1ae46b933c7ed15807a117d8937c68ee90563d"
+      },
+      {
+        "path": "src/materials/LiquidGlassMaterialV4.ts",
+        "sha256": "f5ab91ca0d07482f576e0353f009273b9ec489b260e228ebccc5d1f4fe5e3db4"
+      },
+      {
+        "path": "src/rendering/SceneColorTargetV4.ts",
+        "sha256": "a7ea5d7c415e82b173abe59ef9c38264ec63a3f66d2dc838324a1af3388e8457"
+      },
+      {
+        "path": "src/scene/ConvexGlassGeometry.ts",
+        "sha256": "e4543a5313d7c2a3b5066cffb61621062e23401dfa8a13e180d54516a8131bda"
+      },
+      {
+        "path": "src/scene/ConvexGlassGeometryV4.ts",
+        "sha256": "f5bee08c681db8e7bee0076dc39f4b4440064f39e80fdda21d22a8a46bb5b118"
+      },
+      {
+        "path": "src/v4/OpticsConfigV4.ts",
+        "sha256": "03e4a25dd5f719e1714ffae417bb5a8204b762a5e27b360aa161434711224986"
+      },
+      {
+        "path": "src/v4/StripLightEnvironmentV4.ts",
+        "sha256": "8b78be55c636ef9f629a7c08fe95834e9de8087bcdbe84a7d803d8f623846ef2"
+      }
+    ],
+    "calibrationPriorSha256": "70052da01c71d5447c32b9053100d033be4ac380296e354e9a883cab4477af8b",
+    "annotationSetSha256": null
+  },
+  "captureAttestation": {
+    "status": "PASS",
+    "sourceIdentityCheckPassed": true,
+    "sourceIdentityStartDigest": "2055c106e0088b487b1b7c51cca17be310e0c9e369ac5c87d819ecb28a03e8bc",
+    "sourceIdentityEndDigest": "2055c106e0088b487b1b7c51cca17be310e0c9e369ac5c87d819ecb28a03e8bc",
+    "previewPassed": true,
+    "previewOriginPublished": false,
+    "distTreeSha256": "2f7cc92fbd42ba62ae7018ec94627a9837a9212fda018c1491815b52b590536f",
+    "distFileCount": 31,
+    "servedResourceManifestSha256": "ecebecb81bde6ee98da65e28a4ec5ab15e88c106255b7765af7d65b8a00c2856",
+    "servedResourceCount": 7,
+    "runtimeContractPassed": true,
+    "hardwareWebGpu": true,
+    "adapter": {
+      "vendor": "apple",
+      "architecture": "metal-3",
+      "isFallbackAdapter": false
+    },
+    "pageErrorCount": 0,
+    "captureScriptSha256": "1fb9acf5d5d826a740177f50201463154b7cae9c93da954856fe166133bfcfe4",
+    "captureScriptVersion": "optics-lab-capture-phase1b-v2",
+    "screenshotSetSha256": "759c3190bc740d9b89d7c8bd70dee2a66685f3b4f293a6eef51e957370ce75f5",
+    "sessionVideoSha256": "2f3fec6b832920b01cae8f4f79396c07f8358ea13f23a7494408260776a76c7b",
+    "captureCount": 58
+  },
+  "evidenceIntegrity": {
+    "status": "PASS",
+    "frozenArtifactCategoryCount": 8,
+    "frozenArtifactHashCount": 88,
+    "localCaptureHashCount": 58,
+    "privatePixelsCommittedByThisReport": false
+  },
+  "targetTruth": {
+    "status": "MISSING",
+    "approvedCategoryCount": 0,
+    "reason": "private-human-reviewed-annotations-missing",
+    "fallbackZoneSourcesObserved": [
+      "configured-initial-mask-not-measured-target-optics"
+    ],
+    "fallbackZonesAcceptedAsTargetTruth": false,
+    "provisionalStrongLensRim": {
+      "status": "CONDITIONAL",
+      "evidenceClass": "provisional-user-measurement",
+      "unit": "card-short-side",
+      "min": 0.046,
+      "max": 0.049,
+      "center": 0.0475,
+      "initialLocalGate": [
+        0.045,
+        0.055
+      ],
+      "maximumResultStatus": "CONDITIONAL",
+      "mayClaimPixelTruth": false,
+      "note": "User-provided 4.6%-4.9% estimate; provisional Phase 1B calibration prior, not measured Frozen pixel truth."
+    },
+    "finalTargetTruthStatus": "BLOCKED"
+  },
+  "roleMapping": {
+    "bright": {
+      "targetCategory": "bright-front",
+      "targetFrameSha256": "11bc11bc659ed827ec2569210425b0c67dc7751ba1674779a79178ad25b8a897",
+      "frameReuse": [
+        "bright"
+      ],
+      "targetReviewStatus": "PENDING",
+      "targetProfileSummary": {
+        "top": {
+          "coverage": 0.9710040952978806,
+          "sampleCount": 32483,
+          "medianLuma": 0.45417292416095734,
+          "medianChroma": 0.12035800144076347,
+          "medianSharpness": 0.06451116129755974
+        },
+        "right": {
+          "coverage": 0.9984068916686335,
+          "sampleCount": 16921,
+          "medianLuma": 0.08329520002007484,
+          "medianChroma": 0.06490684300661087,
+          "medianSharpness": 0.034041352570056915
+        },
+        "bottom": {
+          "coverage": 0.9977680564235336,
+          "sampleCount": 33528,
+          "medianLuma": 0.10074492543935776,
+          "medianChroma": 0.06169256567955017,
+          "medianSharpness": 0.03167141601443291
+        },
+        "left": {
+          "coverage": 0.8571428571428571,
+          "sampleCount": 14538,
+          "medianLuma": 0.4419707804918289,
+          "medianChroma": 0.15854163467884064,
+          "medianSharpness": 0.08013727515935898
+        },
+        "topLeft": {
+          "coverage": 0.9407012719147473,
+          "sampleCount": 10946,
+          "medianLuma": 0.3507433384656906,
+          "medianChroma": 0.19905780255794525,
+          "medianSharpness": 0.0732194222509861
+        },
+        "topRight": {
+          "coverage": 0.9285221589929298,
+          "sampleCount": 10769,
+          "medianLuma": 0.2666208744049072,
+          "medianChroma": 0.0975760817527771,
+          "medianSharpness": 0.09127843007445335
+        },
+        "bottomRight": {
+          "coverage": 1.0,
+          "sampleCount": 11599,
+          "medianLuma": 0.01827702671289444,
+          "medianChroma": 0.012536473572254181,
+          "medianSharpness": 0.009656219277530909
+        },
+        "bottomLeft": {
+          "coverage": 0.9878803506962351,
+          "sampleCount": 11493,
+          "medianLuma": 0.24756520241498947,
+          "medianChroma": 0.09993136674165726,
+          "medianSharpness": 0.04132096283137798
+        }
+      },
+      "local": {
+        "status": "MEASURED",
+        "value": {
+          "captureId": "v4-white",
+          "captureSha256": "849e49ac6fd840bd178bee44d5cc538ba4ed85821be9327142c62fced1706780",
+          "pose": "front",
+          "poseOpticalZonesCaptureId": "phase1b-optical-zones-front",
+          "poseOpticalZonesSha256": "31ff6b33a3d875d7b8824e060ded01125f547016f1011318e0f3281872d28be7",
+          "profileSummary": {
+            "top": {
+              "coverage": 1.0,
+              "sampleCount": 33120,
+              "medianLuma": 0.7363052666187286,
+              "medianChroma": 0.019319080747663975,
+              "medianSharpness": 0.0002484162396285683
+            },
+            "right": {
+              "coverage": 1.0,
+              "sampleCount": 16480,
+              "medianLuma": 0.7287186980247498,
+              "medianChroma": 0.0219419002532959,
+              "medianSharpness": 0.0007390886312350631
+            },
+            "bottom": {
+              "coverage": 1.0,
+              "sampleCount": 33120,
+              "medianLuma": 0.7363035380840302,
+              "medianChroma": 0.01939716748893261,
+              "medianSharpness": 0.0002528766854084097
+            },
+            "left": {
+              "coverage": 1.0,
+              "sampleCount": 16480,
+              "medianLuma": 0.728723794221878,
+              "medianChroma": 0.021939539350569248,
+              "medianSharpness": 0.0007390674145426601
+            },
+            "topLeft": {
+              "coverage": 1.0,
+              "sampleCount": 14365,
+              "medianLuma": 0.7326954007148743,
+              "medianChroma": 0.019902889616787434,
+              "medianSharpness": 0.0016891149571165442
+            },
+            "topRight": {
+              "coverage": 1.0,
+              "sampleCount": 14364,
+              "medianLuma": 0.7326789200305939,
+              "medianChroma": 0.020709616132080555,
+              "medianSharpness": 0.0012584099313244224
+            },
+            "bottomRight": {
+              "coverage": 1.0,
+              "sampleCount": 14364,
+              "medianLuma": 0.7326960861682892,
+              "medianChroma": 0.020535271614789963,
+              "medianSharpness": 0.0012434942182153463
+            },
+            "bottomLeft": {
+              "coverage": 1.0,
+              "sampleCount": 14365,
+              "medianLuma": 0.7326659858226776,
+              "medianChroma": 0.02067442797124386,
+              "medianSharpness": 0.0012611793354153633
+            }
+          }
+        },
+        "evidence": null
+      }
+    },
+    "dark": {
+      "targetCategory": "dark-front",
+      "targetFrameSha256": "e3abcfafcced25e69a3ad587fc6c48bb15da9a45bcef7fe00615145a4d2acebe",
+      "frameReuse": [
+        "dark"
+      ],
+      "targetReviewStatus": "PENDING",
+      "targetProfileSummary": {
+        "top": {
+          "coverage": 0.9304055675545956,
+          "sampleCount": 31016,
+          "medianLuma": 0.0011243827175348997,
+          "medianChroma": 0.00999249704182148,
+          "medianSharpness": 0.0035848761908710003
+        },
+        "right": {
+          "coverage": 1.0,
+          "sampleCount": 17087,
+          "medianLuma": 0.03186730667948723,
+          "medianChroma": 0.12285412475466728,
+          "medianSharpness": 0.013897354248911142
+        },
+        "bottom": {
+          "coverage": 0.951135375108738,
+          "sampleCount": 31708,
+          "medianLuma": 0.004449442843906581,
+          "medianChroma": 0.009337987750768661,
+          "medianSharpness": 0.012447560671716928
+        },
+        "left": {
+          "coverage": 0.9878319878319878,
+          "sampleCount": 16886,
+          "medianLuma": 0.03782886825501919,
+          "medianChroma": 0.101370420306921,
+          "medianSharpness": 0.03575710207223892
+        },
+        "topLeft": {
+          "coverage": 0.9684618698836708,
+          "sampleCount": 11239,
+          "medianLuma": 0.00038585100264754146,
+          "medianChroma": 0.0051414379850029945,
+          "medianSharpness": 0.000596175086684525
+        },
+        "topRight": {
+          "coverage": 0.9638242894056848,
+          "sampleCount": 11190,
+          "medianLuma": 0.007653312757611275,
+          "medianChroma": 0.02193413395434618,
+          "medianSharpness": 0.010408456902951002
+        },
+        "bottomRight": {
+          "coverage": 0.9983633387888707,
+          "sampleCount": 11590,
+          "medianLuma": 0.01387597480788827,
+          "medianChroma": 0.03760500252246857,
+          "medianSharpness": 0.002668131492100656
+        },
+        "bottomLeft": {
+          "coverage": 0.884131633356306,
+          "sampleCount": 10263,
+          "medianLuma": 0.10348372161388397,
+          "medianChroma": 0.00802316702902317,
+          "medianSharpness": 0.058519940823316574
+        }
+      },
+      "local": {
+        "status": "MEASURED",
+        "value": {
+          "captureId": "v4-black",
+          "captureSha256": "26b4356433fc1a2906fffce30c5c330d3f95f9f0aca6f87875aa158dbebbae45",
+          "pose": "front",
+          "poseOpticalZonesCaptureId": "phase1b-optical-zones-front",
+          "poseOpticalZonesSha256": "31ff6b33a3d875d7b8824e060ded01125f547016f1011318e0f3281872d28be7",
+          "profileSummary": {
+            "top": {
+              "coverage": 1.0,
+              "sampleCount": 33120,
+              "medianLuma": 1.0836127330549061e-05,
+              "medianChroma": 0.0,
+              "medianSharpness": 0.00010940522770397365
+            },
+            "right": {
+              "coverage": 1.0,
+              "sampleCount": 16480,
+              "medianLuma": 0.00040077952144201845,
+              "medianChroma": 3.654925058071967e-05,
+              "medianSharpness": 0.00024431316705886275
+            },
+            "bottom": {
+              "coverage": 1.0,
+              "sampleCount": 33120,
+              "medianLuma": 1.0836127330549061e-05,
+              "medianChroma": 0.0,
+              "medianSharpness": 0.00010940522770397365
+            },
+            "left": {
+              "coverage": 1.0,
+              "sampleCount": 16480,
+              "medianLuma": 0.00043394726526457816,
+              "medianChroma": 7.247224493767135e-05,
+              "medianSharpness": 0.0002438183655613102
+            },
+            "topLeft": {
+              "coverage": 1.0,
+              "sampleCount": 14365,
+              "medianLuma": 0.00027460519049782306,
+              "medianChroma": 4.6711264076293446e-05,
+              "medianSharpness": 0.00027110427618026733
+            },
+            "topRight": {
+              "coverage": 1.0,
+              "sampleCount": 14364,
+              "medianLuma": 0.00012239889110787772,
+              "medianChroma": 3.445388847467257e-05,
+              "medianSharpness": 0.0002273808277095668
+            },
+            "bottomRight": {
+              "coverage": 1.0,
+              "sampleCount": 14364,
+              "medianLuma": 0.00012031755613861606,
+              "medianChroma": 3.366590590303531e-05,
+              "medianSharpness": 0.00018839273980120197
+            },
+            "bottomLeft": {
+              "coverage": 1.0,
+              "sampleCount": 14365,
+              "medianLuma": 0.00011645571066765115,
+              "medianChroma": 3.4131441680074204e-05,
+              "medianSharpness": 0.00018463783635525033
+            }
+          }
+        },
+        "evidence": null
+      }
+    },
+    "highTexture": {
+      "targetCategory": "high-texture",
+      "targetFrameSha256": "436e8fc42525f9e2f9baf3e8bf934861f0a1438e7c3d7dc9bbe62a3e7f10c202",
+      "frameReuse": [
+        "highTexture",
+        "front"
+      ],
+      "targetReviewStatus": "PENDING",
+      "targetProfileSummary": {
+        "top": {
+          "coverage": 0.9799951722889385,
+          "sampleCount": 32479,
+          "medianLuma": 0.40539537370204926,
+          "medianChroma": 0.10997439175844193,
+          "medianSharpness": 0.06869184970855713
+        },
+        "right": {
+          "coverage": 1.0,
+          "sampleCount": 16490,
+          "medianLuma": 0.01171377720311284,
+          "medianChroma": 0.003920428222045302,
+          "medianSharpness": 0.0024189110845327377
+        },
+        "bottom": {
+          "coverage": 0.9716371975137288,
+          "sampleCount": 32202,
+          "medianLuma": 0.03951244615018368,
+          "medianChroma": 0.020904498174786568,
+          "medianSharpness": 0.029895175248384476
+        },
+        "left": {
+          "coverage": 0.9582171012734991,
+          "sampleCount": 15801,
+          "medianLuma": 0.35283052921295166,
+          "medianChroma": 0.14457308501005173,
+          "medianSharpness": 0.10382053628563881
+        },
+        "topLeft": {
+          "coverage": 0.8727907932593506,
+          "sampleCount": 12741,
+          "medianLuma": 0.31437310576438904,
+          "medianChroma": 0.1679062470793724,
+          "medianSharpness": 0.09370497986674309
+        },
+        "topRight": {
+          "coverage": 0.9233456637895602,
+          "sampleCount": 13479,
+          "medianLuma": 0.059079546481370926,
+          "medianChroma": 0.03382365591824055,
+          "medianSharpness": 0.043522052466869354
+        },
+        "bottomRight": {
+          "coverage": 0.9832168790245239,
+          "sampleCount": 14353,
+          "medianLuma": 0.013632805552333593,
+          "medianChroma": 0.009929440449923277,
+          "medianSharpness": 0.014249985571950674
+        },
+        "bottomLeft": {
+          "coverage": 0.972598986162488,
+          "sampleCount": 14198,
+          "medianLuma": 0.03041772823780775,
+          "medianChroma": 0.020799528807401657,
+          "medianSharpness": 0.013160350266844034
+        }
+      },
+      "local": {
+        "status": "MEASURED",
+        "value": {
+          "captureId": "v4-high-frequency-photo",
+          "captureSha256": "31251ccd62d32b3e9e19f61e076da20f1203bf64a144957d017ca2ec00c9c92b",
+          "pose": "front",
+          "poseOpticalZonesCaptureId": "phase1b-optical-zones-front",
+          "poseOpticalZonesSha256": "31ff6b33a3d875d7b8824e060ded01125f547016f1011318e0f3281872d28be7",
+          "profileSummary": {
+            "top": {
+              "coverage": 1.0,
+              "sampleCount": 33120,
+              "medianLuma": 0.04794975556433201,
+              "medianChroma": 0.09791161119937897,
+              "medianSharpness": 0.0016998068895190954
+            },
+            "right": {
+              "coverage": 1.0,
+              "sampleCount": 16480,
+              "medianLuma": 0.20211680233478546,
+              "medianChroma": 0.15735936909914017,
+              "medianSharpness": 0.03222716599702835
+            },
+            "bottom": {
+              "coverage": 1.0,
+              "sampleCount": 33120,
+              "medianLuma": 0.008444227743893862,
+              "medianChroma": 0.003142416477203369,
+              "medianSharpness": 0.017897605895996094
+            },
+            "left": {
+              "coverage": 1.0,
+              "sampleCount": 16480,
+              "medianLuma": 0.2437305673956871,
+              "medianChroma": 0.18843837827444077,
+              "medianSharpness": 0.027480676770210266
+            },
+            "topLeft": {
+              "coverage": 1.0,
+              "sampleCount": 14365,
+              "medianLuma": 0.08698004111647606,
+              "medianChroma": 0.14088433235883713,
+              "medianSharpness": 0.0028988196281716228
+            },
+            "topRight": {
+              "coverage": 1.0,
+              "sampleCount": 14364,
+              "medianLuma": 0.08145491406321526,
+              "medianChroma": 0.14086248725652695,
+              "medianSharpness": 0.0025878911837935448
+            },
+            "bottomRight": {
+              "coverage": 1.0,
+              "sampleCount": 14364,
+              "medianLuma": 0.009652560576796532,
+              "medianChroma": 0.0034089606488123536,
+              "medianSharpness": 0.013345122803002596
+            },
+            "bottomLeft": {
+              "coverage": 1.0,
+              "sampleCount": 14365,
+              "medianLuma": 0.012423421256244183,
+              "medianChroma": 0.004574577556923032,
+              "medianSharpness": 0.017407194711267948
+            }
+          }
+        },
+        "evidence": null
+      }
+    },
+    "lowTexture": {
+      "targetCategory": "low-texture",
+      "targetFrameSha256": "25341575958cb6ac190b1da5522dfbb6947b31b8b9ddd87ee820d217a2fb1ce9",
+      "frameReuse": [
+        "lowTexture"
+      ],
+      "targetReviewStatus": "PENDING",
+      "targetProfileSummary": {
+        "top": {
+          "coverage": 1.0,
+          "sampleCount": 33476,
+          "medianLuma": 0.3736715167760849,
+          "medianChroma": 0.16424836963415146,
+          "medianSharpness": 0.0024493071250617504
+        },
+        "right": {
+          "coverage": 0.9795942864001921,
+          "sampleCount": 16322,
+          "medianLuma": 0.2992863059043884,
+          "medianChroma": 0.082039013504982,
+          "medianSharpness": 0.008956590667366982
+        },
+        "bottom": {
+          "coverage": 1.0,
+          "sampleCount": 33558,
+          "medianLuma": 0.1519232764840126,
+          "medianChroma": 0.06828470528125763,
+          "medianSharpness": 0.0010397611767984927
+        },
+        "left": {
+          "coverage": 0.9377766996179271,
+          "sampleCount": 15463,
+          "medianLuma": 0.16563497483730316,
+          "medianChroma": 0.043225981295108795,
+          "medianSharpness": 0.012662312481552362
+        },
+        "topLeft": {
+          "coverage": 0.9838786802377212,
+          "sampleCount": 14403,
+          "medianLuma": 0.2759537696838379,
+          "medianChroma": 0.10823677480220795,
+          "medianSharpness": 0.005776715464890003
+        },
+        "topRight": {
+          "coverage": 0.9807430593358737,
+          "sampleCount": 14413,
+          "medianLuma": 0.3875666707754135,
+          "medianChroma": 0.11823887377977371,
+          "medianSharpness": 0.005160301923751831
+        },
+        "bottomRight": {
+          "coverage": 1.0,
+          "sampleCount": 14673,
+          "medianLuma": 0.1953619420528412,
+          "medianChroma": 0.05388713628053665,
+          "medianSharpness": 0.0013345120241865516
+        },
+        "bottomLeft": {
+          "coverage": 1.0,
+          "sampleCount": 14655,
+          "medianLuma": 0.11155201122164726,
+          "medianChroma": 0.06642187014222145,
+          "medianSharpness": 0.0012213520822115242
+        }
+      },
+      "local": {
+        "status": "MEASURED",
+        "value": {
+          "captureId": "v4-low-frequency-flat",
+          "captureSha256": "7a02bc4563b438c44e40347582144f663e8329dd79eecf487b5316a3c514e524",
+          "pose": "front",
+          "poseOpticalZonesCaptureId": "phase1b-optical-zones-front",
+          "poseOpticalZonesSha256": "31ff6b33a3d875d7b8824e060ded01125f547016f1011318e0f3281872d28be7",
+          "profileSummary": {
+            "top": {
+              "coverage": 1.0,
+              "sampleCount": 33120,
+              "medianLuma": 0.30888865888118744,
+              "medianChroma": 0.3281511664390564,
+              "medianSharpness": 0.015622411388903856
+            },
+            "right": {
+              "coverage": 1.0,
+              "sampleCount": 16480,
+              "medianLuma": 0.11134665086865425,
+              "medianChroma": 0.13629420846700668,
+              "medianSharpness": 0.007757148938253522
+            },
+            "bottom": {
+              "coverage": 1.0,
+              "sampleCount": 33120,
+              "medianLuma": 0.23945394158363342,
+              "medianChroma": 0.2430373653769493,
+              "medianSharpness": 0.022065920755267143
+            },
+            "left": {
+              "coverage": 1.0,
+              "sampleCount": 16480,
+              "medianLuma": 0.4892849624156952,
+              "medianChroma": 0.5078850090503693,
+              "medianSharpness": 0.0014644470065832138
+            },
+            "topLeft": {
+              "coverage": 1.0,
+              "sampleCount": 14365,
+              "medianLuma": 0.4965333789587021,
+              "medianChroma": 0.5037821233272552,
+              "medianSharpness": 0.0019007536466233432
+            },
+            "topRight": {
+              "coverage": 1.0,
+              "sampleCount": 14364,
+              "medianLuma": 0.14427464455366135,
+              "medianChroma": 0.17716719955205917,
+              "medianSharpness": 0.0013011531555093825
+            },
+            "bottomRight": {
+              "coverage": 1.0,
+              "sampleCount": 14364,
+              "medianLuma": 0.015049907844513655,
+              "medianChroma": 0.01615054067224264,
+              "medianSharpness": 0.0005240445316303521
+            },
+            "bottomLeft": {
+              "coverage": 1.0,
+              "sampleCount": 14365,
+              "medianLuma": 0.4953945577144623,
+              "medianChroma": 0.5051798522472382,
+              "medianSharpness": 0.0015792849590070546
+            }
+          }
+        },
+        "evidence": null
+      }
+    },
+    "front": {
+      "targetCategory": "high-texture",
+      "targetFrameSha256": "436e8fc42525f9e2f9baf3e8bf934861f0a1438e7c3d7dc9bbe62a3e7f10c202",
+      "frameReuse": [
+        "highTexture",
+        "front"
+      ],
+      "targetReviewStatus": "PENDING",
+      "targetProfileSummary": {
+        "top": {
+          "coverage": 0.9799951722889385,
+          "sampleCount": 32479,
+          "medianLuma": 0.40539537370204926,
+          "medianChroma": 0.10997439175844193,
+          "medianSharpness": 0.06869184970855713
+        },
+        "right": {
+          "coverage": 1.0,
+          "sampleCount": 16490,
+          "medianLuma": 0.01171377720311284,
+          "medianChroma": 0.003920428222045302,
+          "medianSharpness": 0.0024189110845327377
+        },
+        "bottom": {
+          "coverage": 0.9716371975137288,
+          "sampleCount": 32202,
+          "medianLuma": 0.03951244615018368,
+          "medianChroma": 0.020904498174786568,
+          "medianSharpness": 0.029895175248384476
+        },
+        "left": {
+          "coverage": 0.9582171012734991,
+          "sampleCount": 15801,
+          "medianLuma": 0.35283052921295166,
+          "medianChroma": 0.14457308501005173,
+          "medianSharpness": 0.10382053628563881
+        },
+        "topLeft": {
+          "coverage": 0.8727907932593506,
+          "sampleCount": 12741,
+          "medianLuma": 0.31437310576438904,
+          "medianChroma": 0.1679062470793724,
+          "medianSharpness": 0.09370497986674309
+        },
+        "topRight": {
+          "coverage": 0.9233456637895602,
+          "sampleCount": 13479,
+          "medianLuma": 0.059079546481370926,
+          "medianChroma": 0.03382365591824055,
+          "medianSharpness": 0.043522052466869354
+        },
+        "bottomRight": {
+          "coverage": 0.9832168790245239,
+          "sampleCount": 14353,
+          "medianLuma": 0.013632805552333593,
+          "medianChroma": 0.009929440449923277,
+          "medianSharpness": 0.014249985571950674
+        },
+        "bottomLeft": {
+          "coverage": 0.972598986162488,
+          "sampleCount": 14198,
+          "medianLuma": 0.03041772823780775,
+          "medianChroma": 0.020799528807401657,
+          "medianSharpness": 0.013160350266844034
+        }
+      },
+      "local": {
+        "status": "MEASURED",
+        "value": {
+          "captureId": "v4-checker",
+          "captureSha256": "13a95ddf84ee3ace1c70b1cfa9b33ac36a0d22003b68fe367de3bd29a5d93350",
+          "pose": "front",
+          "poseOpticalZonesCaptureId": "phase1b-optical-zones-front",
+          "poseOpticalZonesSha256": "31ff6b33a3d875d7b8824e060ded01125f547016f1011318e0f3281872d28be7",
+          "profileSummary": {
+            "top": {
+              "coverage": 1.0,
+              "sampleCount": 33120,
+              "medianLuma": 0.36111102998256683,
+              "medianChroma": 0.007828683126717806,
+              "medianSharpness": 0.116459671407938
+            },
+            "right": {
+              "coverage": 1.0,
+              "sampleCount": 16480,
+              "medianLuma": 0.3490735590457916,
+              "medianChroma": 0.008128836750984192,
+              "medianSharpness": 0.1204625777900219
+            },
+            "bottom": {
+              "coverage": 1.0,
+              "sampleCount": 33120,
+              "medianLuma": 0.3666311055421829,
+              "medianChroma": 0.008042558562010527,
+              "medianSharpness": 0.11829427629709244
+            },
+            "left": {
+              "coverage": 1.0,
+              "sampleCount": 16480,
+              "medianLuma": 0.34908807277679443,
+              "medianChroma": 0.008107907138764858,
+              "medianSharpness": 0.12047037854790688
+            },
+            "topLeft": {
+              "coverage": 1.0,
+              "sampleCount": 14365,
+              "medianLuma": 0.38539084792137146,
+              "medianChroma": 0.009844424203038216,
+              "medianSharpness": 0.1497785896062851
+            },
+            "topRight": {
+              "coverage": 1.0,
+              "sampleCount": 14364,
+              "medianLuma": 0.3841773569583893,
+              "medianChroma": 0.009730988647788763,
+              "medianSharpness": 0.1510765179991722
+            },
+            "bottomRight": {
+              "coverage": 1.0,
+              "sampleCount": 14364,
+              "medianLuma": 0.3857073485851288,
+              "medianChroma": 0.008257739245891571,
+              "medianSharpness": 0.1470828503370285
+            },
+            "bottomLeft": {
+              "coverage": 1.0,
+              "sampleCount": 14365,
+              "medianLuma": 0.3871404826641083,
+              "medianChroma": 0.008239172399044037,
+              "medianSharpness": 0.14701997488737106
+            }
+          }
+        },
+        "evidence": null
+      }
+    },
+    "leftTilt": {
+      "targetCategory": "left-tilt",
+      "targetFrameSha256": "dd187a9b38a0962209ab786dd068a900cb77888e25b346b88cef2725250d2822",
+      "frameReuse": [
+        "leftTilt"
+      ],
+      "targetReviewStatus": "PENDING",
+      "targetProfileSummary": {
+        "top": {
+          "coverage": 0.9974652987326493,
+          "sampleCount": 33056,
+          "medianLuma": 0.001415206992533058,
+          "medianChroma": 0.017154323868453503,
+          "medianSharpness": 0.0013844005879946053
+        },
+        "right": {
+          "coverage": 0.9652534835458049,
+          "sampleCount": 16279,
+          "medianLuma": 0.03162112459540367,
+          "medianChroma": 0.1059647798538208,
+          "medianSharpness": 0.01803930290043354
+        },
+        "bottom": {
+          "coverage": 0.8931933381607531,
+          "sampleCount": 29604,
+          "medianLuma": 0.05840529873967171,
+          "medianChroma": 0.1084904596209526,
+          "medianSharpness": 0.0256124185398221
+        },
+        "left": {
+          "coverage": 0.9962858683280417,
+          "sampleCount": 16631,
+          "medianLuma": 0.0022692768834531307,
+          "medianChroma": 0.02345004677772522,
+          "medianSharpness": 0.0030602504266425967
+        },
+        "topLeft": {
+          "coverage": 0.9565425677525322,
+          "sampleCount": 13977,
+          "medianLuma": 0.0020133918151259422,
+          "medianChroma": 0.019594749435782433,
+          "medianSharpness": 0.010523713193833828
+        },
+        "topRight": {
+          "coverage": 1.0,
+          "sampleCount": 14645,
+          "medianLuma": 0.001015207846648991,
+          "medianChroma": 0.013626192696392536,
+          "medianSharpness": 3.1468700399273075e-05
+        },
+        "bottomRight": {
+          "coverage": 0.9664915034463932,
+          "sampleCount": 14162,
+          "medianLuma": 0.031478237360715866,
+          "medianChroma": 0.11019664257764816,
+          "medianSharpness": 0.014845667872577906
+        },
+        "bottomLeft": {
+          "coverage": 0.8707185342175429,
+          "sampleCount": 12736,
+          "medianLuma": 0.08792948722839355,
+          "medianChroma": 0.22738118469715118,
+          "medianSharpness": 0.047108838334679604
+        }
+      },
+      "local": {
+        "status": "MEASURED",
+        "value": {
+          "captureId": "phase1b-pose-left",
+          "captureSha256": "fb74c2c21dc101573d69ff1b519e8f0b7e654dc472594d9fbb9c8c74fca646b4",
+          "pose": "left",
+          "poseOpticalZonesCaptureId": "phase1b-optical-zones-left",
+          "poseOpticalZonesSha256": "ea7fb1071191e01c2a4434b798228d57580a88ea69fd7f8f232b86126c5cf081",
+          "profileSummary": {
+            "top": {
+              "coverage": 1.0,
+              "sampleCount": 33142,
+              "medianLuma": 0.0491469781845808,
+              "medianChroma": 0.10091280564665794,
+              "medianSharpness": 0.0022016128059476614
+            },
+            "right": {
+              "coverage": 1.0,
+              "sampleCount": 16480,
+              "medianLuma": 0.18220283091068268,
+              "medianChroma": 0.1386432647705078,
+              "medianSharpness": 0.02768010925501585
+            },
+            "bottom": {
+              "coverage": 1.0,
+              "sampleCount": 33135,
+              "medianLuma": 0.008143038023263216,
+              "medianChroma": 0.003050248371437192,
+              "medianSharpness": 0.017816822975873947
+            },
+            "left": {
+              "coverage": 1.0,
+              "sampleCount": 16482,
+              "medianLuma": 0.22456663846969604,
+              "medianChroma": 0.18780221045017242,
+              "medianSharpness": 0.026828578673303127
+            },
+            "topLeft": {
+              "coverage": 1.0,
+              "sampleCount": 14055,
+              "medianLuma": 0.04965274967253208,
+              "medianChroma": 0.08805428072810173,
+              "medianSharpness": 0.00243850564584136
+            },
+            "topRight": {
+              "coverage": 1.0,
+              "sampleCount": 14449,
+              "medianLuma": 0.12221940234303474,
+              "medianChroma": 0.16712845116853714,
+              "medianSharpness": 0.021401982754468918
+            },
+            "bottomRight": {
+              "coverage": 1.0,
+              "sampleCount": 14308,
+              "medianLuma": 0.010676078964024782,
+              "medianChroma": 0.003280648961663246,
+              "medianSharpness": 0.012591738253831863
+            },
+            "bottomLeft": {
+              "coverage": 1.0,
+              "sampleCount": 14125,
+              "medianLuma": 0.01268388470634818,
+              "medianChroma": 0.004970144014805555,
+              "medianSharpness": 0.018183519132435322
+            }
+          }
+        },
+        "evidence": null
+      }
+    },
+    "rightTilt": {
+      "targetCategory": "right-tilt",
+      "targetFrameSha256": "bd3f7f87019e231a8d2d565e0bcf6be48c7a23274e2a8690f3bddba5a4120caa",
+      "frameReuse": [
+        "rightTilt"
+      ],
+      "targetReviewStatus": "PENDING",
+      "targetProfileSummary": {
+        "top": {
+          "coverage": 0.8985063883390318,
+          "sampleCount": 29958,
+          "medianLuma": 0.005674079526215792,
+          "medianChroma": 0.011962335091084242,
+          "medianSharpness": 0.008708738256245852
+        },
+        "right": {
+          "coverage": 1.0,
+          "sampleCount": 17230,
+          "medianLuma": 0.021365594118833542,
+          "medianChroma": 0.030621102079749107,
+          "medianSharpness": 0.004430847009643912
+        },
+        "bottom": {
+          "coverage": 0.8794400023779092,
+          "sampleCount": 29587,
+          "medianLuma": 0.18554902076721191,
+          "medianChroma": 0.00618913653306663,
+          "medianSharpness": 0.12938717752695084
+        },
+        "left": {
+          "coverage": 0.9932076355545146,
+          "sampleCount": 16962,
+          "medianLuma": 0.5708042681217194,
+          "medianChroma": 0.061866505071520805,
+          "medianSharpness": 0.014166416134685278
+        },
+        "topLeft": {
+          "coverage": 0.980236471908173,
+          "sampleCount": 11358,
+          "medianLuma": 0.011907815001904964,
+          "medianChroma": 0.023466071113944054,
+          "medianSharpness": 0.01113938307389617
+        },
+        "topRight": {
+          "coverage": 0.9271631510977185,
+          "sampleCount": 10769,
+          "medianLuma": 0.07162231206893921,
+          "medianChroma": 0.014536814764142036,
+          "medianSharpness": 0.12000131979584694
+        },
+        "bottomRight": {
+          "coverage": 0.9904052086010452,
+          "sampleCount": 11561,
+          "medianLuma": 0.010706586763262749,
+          "medianChroma": 0.0037749591283500195,
+          "medianSharpness": 0.002772928331978619
+        },
+        "bottomLeft": {
+          "coverage": 1.0,
+          "sampleCount": 11621,
+          "medianLuma": 0.003377808490768075,
+          "medianChroma": 0.003096782951615751,
+          "medianSharpness": 0.0041408296674489975
+        }
+      },
+      "local": {
+        "status": "MEASURED",
+        "value": {
+          "captureId": "phase1b-pose-right",
+          "captureSha256": "22a4f0442f08ca8c11e4778af18b7ea442644244d41953a4bbda879a9af8617d",
+          "pose": "right",
+          "poseOpticalZonesCaptureId": "phase1b-optical-zones-right",
+          "poseOpticalZonesSha256": "c7f011238cfa89a9ce963c383bc73932beb97de7086f74afcc8171e2e3ee874d",
+          "profileSummary": {
+            "top": {
+              "coverage": 1.0,
+              "sampleCount": 33137,
+              "medianLuma": 0.04774756170809269,
+              "medianChroma": 0.09703154116868973,
+              "medianSharpness": 0.002044013934209943
+            },
+            "right": {
+              "coverage": 1.0,
+              "sampleCount": 16484,
+              "medianLuma": 0.18660296499729156,
+              "medianChroma": 0.1586584597826004,
+              "medianSharpness": 0.03290905989706516
+            },
+            "bottom": {
+              "coverage": 1.0,
+              "sampleCount": 33131,
+              "medianLuma": 0.008350642397999763,
+              "medianChroma": 0.0032326694345101714,
+              "medianSharpness": 0.017455430701375008
+            },
+            "left": {
+              "coverage": 1.0,
+              "sampleCount": 16480,
+              "medianLuma": 0.27649495005607605,
+              "medianChroma": 0.2042786404490471,
+              "medianSharpness": 0.02146198134869337
+            },
+            "topLeft": {
+              "coverage": 1.0,
+              "sampleCount": 14418,
+              "medianLuma": 0.11180717870593071,
+              "medianChroma": 0.1767335757613182,
+              "medianSharpness": 0.0027492555091157556
+            },
+            "topRight": {
+              "coverage": 1.0,
+              "sampleCount": 14129,
+              "medianLuma": 0.05754276551306248,
+              "medianChroma": 0.09802757203578949,
+              "medianSharpness": 0.004055303288623691
+            },
+            "bottomRight": {
+              "coverage": 1.0,
+              "sampleCount": 14036,
+              "medianLuma": 0.009653240907937288,
+              "medianChroma": 0.003561897436156869,
+              "medianSharpness": 0.011605279054492712
+            },
+            "bottomLeft": {
+              "coverage": 1.0,
+              "sampleCount": 14404,
+              "medianLuma": 0.01370869530364871,
+              "medianChroma": 0.004181575030088425,
+              "medianSharpness": 0.015257620718330145
+            }
+          }
+        },
+        "evidence": null
+      }
+    }
+  },
+  "opticalZoneMetrics": {
+    "local": {
+      "status": "MEASURED",
+      "value": {
+        "method": "categorical optical-zones palette; four-side screen-normal width P10/P50/P90",
+        "paletteDecode": {
+          "method": "mutually-exclusive palette; neutral-gray nearest match plus RGB channel argmax",
+          "recognizedRatio": 0.9999877179299799,
+          "pixelCounts": {
+            "centerFace": 199832,
+            "opticalShoulder": 72200,
+            "strongLensRim": 53646,
+            "sidewall": 0
+          }
+        },
+        "centerFaceRatio": 0.6135876540632158,
+        "opticalShoulderWidthRatio": 0.07366071428571429,
+        "strongLensRimWidthRatio": 0.049107142857142856,
+        "sidewallScreenWidthRatio": 0.006696428571428571,
+        "widthDistributions": {
+          "opticalShoulder": {
+            "p10": 0.06919642857142858,
+            "p50": 0.07366071428571429,
+            "p90": 0.109375,
+            "sampleCount": 1460,
+            "resolutionLimited": false
+          },
+          "strongLensRim": {
+            "p10": 0.049107142857142856,
+            "p50": 0.049107142857142856,
+            "p90": 0.06941964285714317,
+            "sampleCount": 1460,
+            "resolutionLimited": false
+          },
+          "sidewall": {
+            "p10": 0.004464285714285714,
+            "p50": 0.006696428571428571,
+            "p90": 0.011160714285714286,
+            "sampleCount": 538,
+            "resolutionLimited": false,
+            "poseCount": 2
+          }
+        },
+        "highlightWidthRatio": 0.020579340306457337,
+        "contentBendingWidthRatio": 0.1980357142857143,
+        "unit": "card-short-side",
+        "sidewallByPose": {
+          "left": {
+            "status": "MEASURED",
+            "captureId": "phase1b-optical-zones-left",
+            "captureSha256": "ea7fb1071191e01c2a4434b798228d57580a88ea69fd7f8f232b86126c5cf081",
+            "distribution": {
+              "p10": 0.004464285714285714,
+              "p50": 0.006696428571428571,
+              "p90": 0.011160714285714286,
+              "sampleCount": 269,
+              "resolutionLimited": false
+            }
+          },
+          "right": {
+            "status": "MEASURED",
+            "captureId": "phase1b-optical-zones-right",
+            "captureSha256": "c7f011238cfa89a9ce963c383bc73932beb97de7086f74afcc8171e2e3ee874d",
+            "distribution": {
+              "p10": 0.004464285714285714,
+              "p50": 0.006696428571428571,
+              "p90": 0.011160714285714286,
+              "sampleCount": 269,
+              "resolutionLimited": false
+            }
+          }
+        }
+      },
+      "evidence": null
+    },
+    "target": {
+      "bright": {
+        "targetCategory": "bright-front",
+        "reviewStatus": "BLOCKED",
+        "metrics": null
+      },
+      "dark": {
+        "targetCategory": "dark-front",
+        "reviewStatus": "BLOCKED",
+        "metrics": null
+      },
+      "highTexture": {
+        "targetCategory": "high-texture",
+        "reviewStatus": "BLOCKED",
+        "metrics": null
+      },
+      "lowTexture": {
+        "targetCategory": "low-texture",
+        "reviewStatus": "BLOCKED",
+        "metrics": null
+      },
+      "front": {
+        "targetCategory": "high-texture",
+        "reviewStatus": "BLOCKED",
+        "metrics": null
+      },
+      "leftTilt": {
+        "targetCategory": "left-tilt",
+        "reviewStatus": "BLOCKED",
+        "metrics": null
+      },
+      "rightTilt": {
+        "targetCategory": "right-tilt",
+        "reviewStatus": "BLOCKED",
+        "metrics": null
+      }
+    }
+  },
+  "normalizedEdgeProfiles": {
+    "coordinateSpace": "canonical-card-768x448-short-side-normalized",
+    "regions": [
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "topLeft",
+      "topRight",
+      "bottomRight",
+      "bottomLeft"
+    ],
+    "localSummary": {
+      "top": {
+        "coverage": 1.0,
+        "sampleCount": 33120,
+        "medianLuma": 0.3140428960323334,
+        "medianChroma": 0.6758676171302795,
+        "medianSharpness": 0.00015328411245718598
+      },
+      "right": {
+        "coverage": 1.0,
+        "sampleCount": 16480,
+        "medianLuma": 0.2093154639005661,
+        "medianChroma": 0.9594894051551819,
+        "medianSharpness": 0.00014859612565487623
+      },
+      "bottom": {
+        "coverage": 1.0,
+        "sampleCount": 33120,
+        "medianLuma": 0.3140428960323334,
+        "medianChroma": 0.6758676171302795,
+        "medianSharpness": 0.00015328411245718598
+      },
+      "left": {
+        "coverage": 1.0,
+        "sampleCount": 16480,
+        "medianLuma": 0.2093154639005661,
+        "medianChroma": 0.9593380093574524,
+        "medianSharpness": 0.00014859612565487623
+      },
+      "topLeft": {
+        "coverage": 1.0,
+        "sampleCount": 14365,
+        "medianLuma": 0.281765952706337,
+        "medianChroma": 0.6758312880992889,
+        "medianSharpness": 0.011819883715361357
+      },
+      "topRight": {
+        "coverage": 1.0,
+        "sampleCount": 14364,
+        "medianLuma": 0.28438903391361237,
+        "medianChroma": 0.6758332550525665,
+        "medianSharpness": 0.011355838738381863
+      },
+      "bottomRight": {
+        "coverage": 1.0,
+        "sampleCount": 14364,
+        "medianLuma": 0.28161464631557465,
+        "medianChroma": 0.6758471131324768,
+        "medianSharpness": 0.011826267465949059
+      },
+      "bottomLeft": {
+        "coverage": 1.0,
+        "sampleCount": 14365,
+        "medianLuma": 0.284160852432251,
+        "medianChroma": 0.6758514046669006,
+        "medianSharpness": 0.011260897386819124
+      }
+    },
+    "wholeCardSsimComputed": false
+  },
+  "localMetrics": {
+    "opticalZones": {
+      "status": "MEASURED",
+      "value": {
+        "method": "categorical optical-zones palette; four-side screen-normal width P10/P50/P90",
+        "paletteDecode": {
+          "method": "mutually-exclusive palette; neutral-gray nearest match plus RGB channel argmax",
+          "recognizedRatio": 0.9999877179299799,
+          "pixelCounts": {
+            "centerFace": 199832,
+            "opticalShoulder": 72200,
+            "strongLensRim": 53646,
+            "sidewall": 0
+          }
+        },
+        "centerFaceRatio": 0.6135876540632158,
+        "opticalShoulderWidthRatio": 0.07366071428571429,
+        "strongLensRimWidthRatio": 0.049107142857142856,
+        "sidewallScreenWidthRatio": 0.006696428571428571,
+        "widthDistributions": {
+          "opticalShoulder": {
+            "p10": 0.06919642857142858,
+            "p50": 0.07366071428571429,
+            "p90": 0.109375,
+            "sampleCount": 1460,
+            "resolutionLimited": false
+          },
+          "strongLensRim": {
+            "p10": 0.049107142857142856,
+            "p50": 0.049107142857142856,
+            "p90": 0.06941964285714317,
+            "sampleCount": 1460,
+            "resolutionLimited": false
+          },
+          "sidewall": {
+            "p10": 0.004464285714285714,
+            "p50": 0.006696428571428571,
+            "p90": 0.011160714285714286,
+            "sampleCount": 538,
+            "resolutionLimited": false,
+            "poseCount": 2
+          }
+        },
+        "highlightWidthRatio": 0.020579340306457337,
+        "contentBendingWidthRatio": 0.1980357142857143,
+        "unit": "card-short-side",
+        "sidewallByPose": {
+          "left": {
+            "status": "MEASURED",
+            "captureId": "phase1b-optical-zones-left",
+            "captureSha256": "ea7fb1071191e01c2a4434b798228d57580a88ea69fd7f8f232b86126c5cf081",
+            "distribution": {
+              "p10": 0.004464285714285714,
+              "p50": 0.006696428571428571,
+              "p90": 0.011160714285714286,
+              "sampleCount": 269,
+              "resolutionLimited": false
+            }
+          },
+          "right": {
+            "status": "MEASURED",
+            "captureId": "phase1b-optical-zones-right",
+            "captureSha256": "c7f011238cfa89a9ce963c383bc73932beb97de7086f74afcc8171e2e3ee874d",
+            "distribution": {
+              "p10": 0.004464285714285714,
+              "p50": 0.006696428571428571,
+              "p90": 0.011160714285714286,
+              "sampleCount": 269,
+              "resolutionLimited": false
+            }
+          }
+        }
+      },
+      "evidence": null
+    },
+    "contentBending": {
+      "status": "MEASURED",
+      "value": {
+        "method": "inward support of deterministic line-profile deviation from the center reference",
+        "widthRatio": 0.1980357142857143,
+        "axisSampleCount": 2
+      },
+      "evidence": null
+    },
+    "sidewallContentCompression": {
+      "status": "MEASURED",
+      "value": {
+        "method": "median of matched left/right tilted deterministic-line compression",
+        "compressionRatio": 1.0625,
+        "byPose": {
+          "left": {
+            "status": "MEASURED",
+            "value": {
+              "method": "sidewall-to-center deterministic line-spacing ratio",
+              "horizontalCenterSpacingPx": 8.0,
+              "horizontalSidewallSpacingPx": 9.0,
+              "verticalCenterSpacingPx": 9.0,
+              "verticalSidewallSpacingPx": 9.0,
+              "compressionRatio": 1.0625,
+              "axisSampleCount": 2
+            },
+            "evidence": null
+          },
+          "right": {
+            "status": "MEASURED",
+            "value": {
+              "method": "sidewall-to-center deterministic line-spacing ratio",
+              "horizontalCenterSpacingPx": 8.0,
+              "horizontalSidewallSpacingPx": 9.0,
+              "verticalCenterSpacingPx": 9.0,
+              "verticalSidewallSpacingPx": 9.0,
+              "compressionRatio": 1.0625,
+              "axisSampleCount": 2
+            },
+            "evidence": null
+          }
+        }
+      },
+      "evidence": null
+    },
+    "highlight": {
+      "status": "MEASURED",
+      "value": {
+        "method": "positive local-linear-luma residual in the canonical outer optical ROI",
+        "centroidNormalized": [
+          0.13457723553916615,
+          0.06495135206320944
+        ],
+        "widthRatio": 0.020579340306457337,
+        "reflectionEnergy": 0.00019402040977933198,
+        "highlightClippedPixelRatio": 0.0,
+        "sampleCount": 181
+      },
+      "evidence": null
+    },
+    "highlightPath": {
+      "status": "MEASURED",
+      "value": {
+        "method": "canonical highlight centroid path",
+        "requestedSampleCount": 3,
+        "validSampleCount": 3,
+        "travelNormalized": 0.7407280216141676,
+        "maxToMedianJumpRatio": 1.6723429699162882,
+        "medianHighlightWidthRatio": 0.020579340306457337,
+        "meanClippedPixelRatio": 0.0,
+        "samples": [
+          {
+            "pointer": [
+              -0.85,
+              0.0
+            ],
+            "centroidNormalized": [
+              0.05096464011497421,
+              0.15290208847527886
+            ],
+            "widthRatio": 0.045233267137898193,
+            "clippedPixelRatio": 0.0
+          },
+          {
+            "pointer": [
+              0.0,
+              0.0
+            ],
+            "centroidNormalized": [
+              0.13457723553916615,
+              0.06495135206320944
+            ],
+            "widthRatio": 0.020579340306457337,
+            "clippedPixelRatio": 0.0
+          },
+          {
+            "pointer": [
+              0.85,
+              0.0
+            ],
+            "centroidNormalized": [
+              0.7533868972186881,
+              0.038478759510345975
+            ],
+            "widthRatio": 0.020089285714285716,
+            "clippedPixelRatio": 0.0
+          }
+        ]
+      },
+      "evidence": null
+    },
+    "sharpness": {
+      "status": "MEASURED",
+      "value": {
+        "method": "RMS Sobel-plus-Laplacian energy in measured canonical zones",
+        "center": 0.17396007478237152,
+        "rim": 0.1249907985329628,
+        "centerRimSharpnessRatio": 1.3917830498258195,
+        "centerSampleCount": 165688,
+        "rimSampleCount": 46940
+      },
+      "evidence": null
+    },
+    "dispersion": {
+      "status": "MEASURED",
+      "value": {
+        "method": "linear-RGB chroma-energy radial CDF",
+        "widthRatio": 0.030026462466396005,
+        "outerEnergyRatio": 0.9999984810508563,
+        "centerLeakageRatio": 1.5792893164709114e-07,
+        "totalEnergyPerCardPixel": 0.035533737742877936
+      },
+      "evidence": null
+    },
+    "backgroundResponse": {
+      "bright": {
+        "status": "MEASURED",
+        "value": {
+          "background": "white",
+          "rimMeanLuma": 0.6901050806045532,
+          "centerMeanLuma": 0.7368379831314087,
+          "discernibility": 0.04673290252685547,
+          "haloWidthRatio": 0.09151785714285714,
+          "neutralPerimeterChroma": 0.02442382462322712,
+          "whiteOutlineLumaBias": 0.0
+        },
+        "evidence": null
+      },
+      "dark": {
+        "status": "MEASURED",
+        "value": {
+          "background": "black",
+          "rimMeanLuma": 0.018077947199344635,
+          "centerMeanLuma": 2.080039666907396e-05,
+          "discernibility": 0.01805714680267556,
+          "haloWidthRatio": 0.029947338984372185,
+          "neutralPerimeterChroma": 0.0002799304493237287,
+          "whiteOutlineLumaBias": 0.01805714680267556
+        },
+        "evidence": null
+      }
+    },
+    "backgroundResponseDifference": {
+      "status": "MEASURED",
+      "value": 0.028675755724179908,
+      "evidence": null
+    },
+    "cornerSignature": {
+      "status": "MEASURED",
+      "value": {
+        "method": "four-corner normalized edge-energy signature (not whole-card pixels)",
+        "vector": [
+          1.0047940771627506,
+          1.00399195949704,
+          0.9963136345001191,
+          0.9949003288400905
+        ],
+        "coverage": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "minCoverage": 1.0
+      },
+      "evidence": null
+    }
+  },
+  "targetRelativeMetrics": {
+    "rimWidthRelativeError": {
+      "status": "CONDITIONAL",
+      "value": {
+        "absoluteError": 0.0016071428571428556,
+        "relativeError": 0.033834586466165384,
+        "local": 0.049107142857142856,
+        "targetCenter": 0.0475,
+        "targetRange": [
+          0.046,
+          0.049
+        ],
+        "initialLocalGate": [
+          0.045,
+          0.055
+        ],
+        "withinTargetRange": false,
+        "withinInitialLocalGate": true
+      },
+      "reason": "provisional-user-measurement-cannot-claim-automatic-pixel-truth",
+      "evidence": {
+        "priorSetSha256": "2a42b4e4795e27821c0d8c9d99500d4dfcb2aaf0d6b57d43fe8225e727b64441"
+      }
+    },
+    "shoulderWidthRelativeError": {
+      "status": "BLOCKED",
+      "value": null,
+      "reason": "target-truth-unavailable",
+      "evidence": null
+    },
+    "highlightWidthRelativeError": {
+      "status": "BLOCKED",
+      "value": null,
+      "reason": "target-truth-unavailable",
+      "evidence": null
+    },
+    "highlightPositionRelativeError": {
+      "status": "BLOCKED",
+      "value": null,
+      "reason": "target-truth-unavailable",
+      "evidence": null
+    },
+    "centerRimSharpnessRatioError": {
+      "status": "BLOCKED",
+      "value": null,
+      "reason": "target-truth-unavailable",
+      "evidence": null
+    },
+    "dispersionWidthRelativeError": {
+      "status": "BLOCKED",
+      "value": null,
+      "reason": "target-truth-unavailable",
+      "evidence": null
+    },
+    "brightDarkBackgroundResponseDifference": {
+      "status": "BLOCKED",
+      "value": null,
+      "reason": "Frozen bright/dark frames use different cards, media, and geometry; paired material response is not approved",
+      "evidence": null
+    },
+    "cornerRefractionSignature": {
+      "status": "BLOCKED",
+      "value": null,
+      "reason": "target-truth-unavailable",
+      "evidence": null
+    },
+    "sidewallContentCompression": {
+      "status": "BLOCKED",
+      "value": null,
+      "reason": "target-truth-unavailable",
+      "evidence": null
+    },
+    "targetLocalEdgeRoiOverlay": {
+      "status": "CONDITIONAL",
+      "value": {
+        "artifactHashes": {
+          "target-bright": "da3fe0662bd2d505a8482447a9d902e33e263732545a73f7890f2789bd279313",
+          "target-dark": "02744e030973ffacdfbeb4d64c9069b61570d19b2dc2e21f08cb8fee3e42f187",
+          "target-highTexture": "01efdc5637351bcb9cba950b7cd2535b4cc983a029a5e710e94614c92cfb57c9",
+          "target-lowTexture": "f71b53d93d3e7bb74c7f7c580f6b97988f309c9ad4f0309ae7e2edb759bd50d8",
+          "target-front": "5d46885a67baaafce559eb3f07b36a8453f5712309fc77e01d92b8beddb1bd29",
+          "target-leftTilt": "4f6bef77ad42b13d4f67bff6fdffdc21b26fec88412c4272c20ae663f57b985b",
+          "target-rightTilt": "431eb0a8a3fdfb36d3e4dad8ce8c2c31a4e36cb71300840a892c30bc9a6e9e26",
+          "local-bright": "0ab56b07b0f79ed7832f3fe8c360291a3a63f5a6819f2542be6873d45fc36631",
+          "local-dark": "073c6e9a694317ffc8191e77dcf100d10b5f73067420c16f21ee88a192852277",
+          "local-highTexture": "d9c581316ab1050f30157fedfde1851dbaeea85b1d2446580ab0b9d435dd528e",
+          "local-lowTexture": "55f1b5b8aab966c5a696865125f0f72c055a3e9578ff717270676682de0531e7",
+          "local-front": "da8fa80b989232f90d63a623743a2dc6bd6c27880d5554f06c33e9914178b037",
+          "local-leftTilt": "d4542f821a0635b309b95db4dc8a3778243ac8be697a7bb349a7ef0cd9bfbab1",
+          "local-rightTilt": "490ee7108841d197c884153cc52d0810b7e768bf97a4da4e59dc06c2d9dc9fdc"
+        }
+      },
+      "reason": "edge overlays are reviewable observations but the Frozen category set is not fully human-approved",
+      "evidence": null
+    }
+  },
+  "reflectionShellAB": {
+    "additive": {
+      "status": "MEASURED",
+      "value": {
+        "shellMode": "additive",
+        "pointerView": "reflection-lighting-invariant",
+        "energyView": "beauty-minus-matched-shell-off",
+        "pointerExperimentFamily": "reflection-shell-ab-pointer",
+        "highlightClippedPixelRatio": 0.0,
+        "rimMeanLuma": {
+          "bright": 0.7138442397117615,
+          "dark": 0.02149442955851555
+        },
+        "brightBackgroundDiscernibility": 0.022993743419647217,
+        "darkBackgroundHaloWidth": 0.0310099196193076,
+        "reflectionEnergy": 0.0002477341087585456,
+        "highlightWidth": 0.03800195391118902,
+        "highlightPath": {
+          "method": "canonical highlight centroid path",
+          "requestedSampleCount": 3,
+          "validSampleCount": 3,
+          "travelNormalized": 0.7410155009292863,
+          "maxToMedianJumpRatio": 1.6717760658332463,
+          "medianHighlightWidthRatio": 0.020579340306457337,
+          "meanClippedPixelRatio": 0.0,
+          "samples": [
+            {
+              "pointer": [
+                -0.85,
+                0.0
+              ],
+              "centroidNormalized": [
+                0.05086687946269499,
+                0.15317528377249967
+              ],
+              "widthRatio": 0.045233267137898193,
+              "clippedPixelRatio": 0.0
+            },
+            {
+              "pointer": [
+                0.0,
+                0.0
+              ],
+              "centroidNormalized": [
+                0.13457000281271791,
+                0.06495589572238857
+              ],
+              "widthRatio": 0.020579340306457337,
+              "clippedPixelRatio": 0.0
+            },
+            {
+              "pointer": [
+                0.85,
+                0.0
+              ],
+              "centroidNormalized": [
+                0.7534100620772674,
+                0.0384840088551447
+              ],
+              "widthRatio": 0.020089285714285716,
+              "clippedPixelRatio": 0.0
+            }
+          ]
+        },
+        "shellContribution": {
+          "color": {
+            "method": "positive linear-luma shell contribution against matched shell-off beauty baseline",
+            "reflectionEnergy": 0.0002477341087585456,
+            "highlightWidthRatio": 0.03800195391118902,
+            "highlightCentroidNormalized": [
+              0.2415990338205019,
+              0.1805397971979766
+            ],
+            "highlightClippedPixelRatio": 0.0,
+            "rimMeanLumaDelta": 0.0011647262144833803,
+            "whiteOutlinePixelRatio": 0.0077202297106945495,
+            "sampleCount": 573
+          },
+          "white": {
+            "method": "positive linear-luma shell contribution against matched shell-off beauty baseline",
+            "reflectionEnergy": 8.438885336762246e-05,
+            "highlightWidthRatio": 0.021069394898628958,
+            "highlightCentroidNormalized": [
+              0.20055511050637842,
+              0.15298591713785048
+            ],
+            "highlightClippedPixelRatio": 0.0,
+            "rimMeanLumaDelta": 0.0004015187150798738,
+            "whiteOutlinePixelRatio": 0.004442518149311951,
+            "sampleCount": 329
+          }
+        },
+        "neutralPerimeter": {
+          "meanChroma": 0.011842270861961879,
+          "whiteOutlineLumaBias": 0.0004015187150798738,
+          "whiteOutlinePixelRatio": 0.004442518149311951
+        },
+        "evidenceHashes": {
+          "background": [
+            "3a9bd4f502de8d2b7bce7d26db5f9e1a21973eb7755b7a49f8d67b2810f41fa4",
+            "75000b5178752030c5dcbbde313f41eaf1ff783edc1b5c3f219a7c68bab2efba",
+            "069ae977455ba3801049e40f4c2953d400152b28c3f49e3a3a9dac38fb772201"
+          ],
+          "shellOff": [
+            "742ffb830ec60df10bd43da4ac9cc269eb5ab6cb84f949f0e3bf580cf9c6dad0",
+            "566028b7146e6ea68de233abec0383f86292c22ff535df708122ea0b08c08eee"
+          ],
+          "pointerPath": [
+            "3796c5ff3718f0644d92020d5931b79c4bb6dec1801dcd60a1a69b47db93d5c1",
+            "b94261a72203a4ec66e8d66eba72eab0abe895f345bcee3ddd20ab4a5811e73b",
+            "5b020335ba6bbc1504a6828fbab50d4044c7ffe4def83376ecce20306edc56cc"
+          ]
+        }
+      },
+      "evidence": null
+    },
+    "energyControlled": {
+      "status": "MEASURED",
+      "value": {
+        "shellMode": "energy-controlled",
+        "pointerView": "reflection-lighting-invariant",
+        "energyView": "beauty-minus-matched-shell-off",
+        "pointerExperimentFamily": "reflection-shell-ab-pointer",
+        "highlightClippedPixelRatio": 0.0,
+        "rimMeanLuma": {
+          "bright": 0.6901050806045532,
+          "dark": 0.018077947199344635
+        },
+        "brightBackgroundDiscernibility": 0.04673290252685547,
+        "darkBackgroundHaloWidth": 0.029947338984372185,
+        "reflectionEnergy": 0.00011792869104735328,
+        "highlightWidth": 0.020945767358143654,
+        "highlightPath": {
+          "method": "canonical highlight centroid path",
+          "requestedSampleCount": 3,
+          "validSampleCount": 3,
+          "travelNormalized": 0.7403925228237308,
+          "maxToMedianJumpRatio": 1.6717072168728893,
+          "medianHighlightWidthRatio": 0.020579340306457337,
+          "meanClippedPixelRatio": 0.0,
+          "samples": [
+            {
+              "pointer": [
+                -0.85,
+                0.0
+              ],
+              "centroidNormalized": [
+                0.05096464011497421,
+                0.15290208847527886
+              ],
+              "widthRatio": 0.045233267137898193,
+              "clippedPixelRatio": 0.0
+            },
+            {
+              "pointer": [
+                0.0,
+                0.0
+              ],
+              "centroidNormalized": [
+                0.13476349987200217,
+                0.06487957379576235
+              ],
+              "widthRatio": 0.020579340306457337,
+              "clippedPixelRatio": 0.0
+            },
+            {
+              "pointer": [
+                0.85,
+                0.0
+              ],
+              "centroidNormalized": [
+                0.7530570109624949,
+                0.038411876601636294
+              ],
+              "widthRatio": 0.020089285714285716,
+              "clippedPixelRatio": 0.0
+            }
+          ]
+        },
+        "shellContribution": {
+          "color": {
+            "method": "positive linear-luma shell contribution against matched shell-off beauty baseline",
+            "reflectionEnergy": 0.00011792869104735328,
+            "highlightWidthRatio": 0.020945767358143654,
+            "highlightCentroidNormalized": [
+              0.13131080865348596,
+              0.09173626937903917
+            ],
+            "highlightClippedPixelRatio": 0.0,
+            "rimMeanLumaDelta": 0.0005044587887823582,
+            "whiteOutlinePixelRatio": 0.0038465705926969337,
+            "sampleCount": 287
+          },
+          "white": {
+            "method": "positive linear-luma shell contribution against matched shell-off beauty baseline",
+            "reflectionEnergy": 3.7539672120665385e-05,
+            "highlightWidthRatio": 0.020945767358143654,
+            "highlightCentroidNormalized": [
+              0.13846928538743403,
+              0.05434648935928964
+            ],
+            "highlightClippedPixelRatio": 0.0,
+            "rimMeanLumaDelta": 0.00016455330478493124,
+            "whiteOutlinePixelRatio": 0.0023296131758587064,
+            "sampleCount": 172
+          }
+        },
+        "neutralPerimeter": {
+          "meanChroma": 0.012351877536275424,
+          "whiteOutlineLumaBias": 0.00016455330478493124,
+          "whiteOutlinePixelRatio": 0.0023296131758587064
+        },
+        "evidenceHashes": {
+          "background": [
+            "849e49ac6fd840bd178bee44d5cc538ba4ed85821be9327142c62fced1706780",
+            "26b4356433fc1a2906fffce30c5c330d3f95f9f0aca6f87875aa158dbebbae45",
+            "7a02bc4563b438c44e40347582144f663e8329dd79eecf487b5316a3c514e524"
+          ],
+          "shellOff": [
+            "742ffb830ec60df10bd43da4ac9cc269eb5ab6cb84f949f0e3bf580cf9c6dad0",
+            "566028b7146e6ea68de233abec0383f86292c22ff535df708122ea0b08c08eee"
+          ],
+          "pointerPath": [
+            "b9a3c3f3972e7f192a036cd17a86aafef1bd3b9d9b5a6ee65ac9cb7cb061859e",
+            "a55c0affc20db7ba28842631b5e17b0c14a2005412b5f5d97352852c7d75e1e1",
+            "512269d7090e2652356ff051f8759b545f7d4ae573b983e771f793e42eb5ebb8"
+          ]
+        }
+      },
+      "evidence": null
+    },
+    "comparison": {
+      "status": "CONDITIONAL",
+      "value": {
+        "energyControlledMinusAdditive": {
+          "highlightClippedPixelRatio": 0.0,
+          "brightBackgroundDiscernibility": 0.023739159107208252,
+          "darkBackgroundHaloWidth": -0.0010625806349354137,
+          "reflectionEnergy": -0.00012980541771119233,
+          "highlightWidth": -0.017056186553045364,
+          "neutralPerimeterChroma": 0.0005096066743135452,
+          "whiteOutlineLumaBias": -0.00023696541029494256
+        },
+        "preferredVariant": "energy-controlled"
+      },
+      "reason": "A/B metrics are local controlled evidence and do not establish final Frozen target match",
+      "evidence": null
+    }
+  },
+  "privateReviewArtifacts": {
+    "artifactCount": 14,
+    "artifacts": {
+      "target-bright": {
+        "sha256": "da3fe0662bd2d505a8482447a9d902e33e263732545a73f7890f2789bd279313",
+        "privatePixelArtifact": true
+      },
+      "local-bright": {
+        "sha256": "0ab56b07b0f79ed7832f3fe8c360291a3a63f5a6819f2542be6873d45fc36631",
+        "privatePixelArtifact": true
+      },
+      "target-dark": {
+        "sha256": "02744e030973ffacdfbeb4d64c9069b61570d19b2dc2e21f08cb8fee3e42f187",
+        "privatePixelArtifact": true
+      },
+      "local-dark": {
+        "sha256": "073c6e9a694317ffc8191e77dcf100d10b5f73067420c16f21ee88a192852277",
+        "privatePixelArtifact": true
+      },
+      "target-highTexture": {
+        "sha256": "01efdc5637351bcb9cba950b7cd2535b4cc983a029a5e710e94614c92cfb57c9",
+        "privatePixelArtifact": true
+      },
+      "local-highTexture": {
+        "sha256": "d9c581316ab1050f30157fedfde1851dbaeea85b1d2446580ab0b9d435dd528e",
+        "privatePixelArtifact": true
+      },
+      "target-lowTexture": {
+        "sha256": "f71b53d93d3e7bb74c7f7c580f6b97988f309c9ad4f0309ae7e2edb759bd50d8",
+        "privatePixelArtifact": true
+      },
+      "local-lowTexture": {
+        "sha256": "55f1b5b8aab966c5a696865125f0f72c055a3e9578ff717270676682de0531e7",
+        "privatePixelArtifact": true
+      },
+      "target-front": {
+        "sha256": "5d46885a67baaafce559eb3f07b36a8453f5712309fc77e01d92b8beddb1bd29",
+        "privatePixelArtifact": true
+      },
+      "local-front": {
+        "sha256": "da8fa80b989232f90d63a623743a2dc6bd6c27880d5554f06c33e9914178b037",
+        "privatePixelArtifact": true
+      },
+      "target-leftTilt": {
+        "sha256": "4f6bef77ad42b13d4f67bff6fdffdc21b26fec88412c4272c20ae663f57b985b",
+        "privatePixelArtifact": true
+      },
+      "local-leftTilt": {
+        "sha256": "d4542f821a0635b309b95db4dc8a3778243ac8be697a7bb349a7ef0cd9bfbab1",
+        "privatePixelArtifact": true
+      },
+      "target-rightTilt": {
+        "sha256": "431eb0a8a3fdfb36d3e4dad8ce8c2c31a4e36cb71300840a892c30bc9a6e9e26",
+        "privatePixelArtifact": true
+      },
+      "local-rightTilt": {
+        "sha256": "490ee7108841d197c884153cc52d0810b7e768bf97a4da4e59dc06c2d9dc9fdc",
+        "privatePixelArtifact": true
+      }
+    },
+    "pathsPublished": false,
+    "pixelsPublished": false
+  },
+  "finalTargetMatch": "BLOCKED",
+  "caveats": {
+    "frozenConfiguredZonesAreNotTargetTruth": true,
+    "naturalTargetHasNoUnrefractedMediaSource": true,
+    "featureDisplacementPolicy": "absolute displacement is local deterministic-line evidence; Frozen natural-media comparison uses reviewed signatures only",
+    "brightDarkTargetPairControlled": false,
+    "pointerTargetStateKnown": false,
+    "tiltRequiresRealLabPose": true,
+    "wholeCardSsimForbidden": true,
+    "scope": "Phase 1B Lab calibration only; no Typography, Motion, Grid, main-page integration, Phase 2, or final target PASS is implied."
+  }
+}

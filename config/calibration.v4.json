@@ -105,17 +105,24 @@
   },
   "v4": {
     "optics": {
-      "status": "lab-foundation-structural-pass",
+      "status": "frozen-visual-calibration-conditional",
       "route": "/glass-lab-v4",
       "normalPath": "scene-color-target-only",
       "materialSource": "src/materials/LiquidGlassMaterialV4.ts",
       "geometrySource": "src/scene/ConvexGlassGeometryV4.ts",
       "sceneTargetSource": "src/rendering/SceneColorTargetV4.ts",
       "environmentSource": "src/v4/StripLightEnvironmentV4.ts",
-      "reflection": "mesh-physical-shell-plus-pointer-directional-key",
+      "reflection": "energy-controlled-mesh-physical-shell-plus-pointer-directional-key",
+      "shellModes": [
+        "energy-controlled",
+        "additive",
+        "off"
+      ],
+      "defaultShellMode": "energy-controlled",
       "explicitAttributes": [
         "aEdgeDistance",
         "aShoulder",
+        "aLensRim",
         "aSidewall",
         "aThickness",
         "aCurvature"
@@ -123,6 +130,7 @@
       "debugViews": [
         "beauty",
         "edge-mask",
+        "optical-zones",
         "normals",
         "thickness",
         "refraction-offset",
@@ -131,8 +139,19 @@
         "dispersion",
         "adaptivity"
       ],
-      "qaResult": "qa-v4/results/optics-lab-foundation.json",
-      "runtimeSourceSetSha256": "e50dd5f0d82689125056865d2e043e6072ddceff775d8c326eab765c67e503b3",
+      "foundationSourceCommit": "3f57807cd6927935bd854a8a5ae7dbb1e551f4dd",
+      "foundationQaResult": "qa-v4/results/optics-lab-foundation.json",
+      "foundationRuntimeSourceSetSha256": "e50dd5f0d82689125056865d2e043e6072ddceff775d8c326eab765c67e503b3",
+      "qaResult": "qa-v4/results/frozen-visual-calibration.json",
+      "runtimeSourceSetSha256": "1d6bfdb59f1a125ec85c33971d2f5e13c175511568cf1469fe58eba6ce2aefbb",
+      "targetStrongLensRimPrior": {
+        "min": 0.046,
+        "max": 0.049,
+        "center": 0.0475,
+        "evidenceClass": "provisional-user-measurement",
+        "maximumStatus": "CONDITIONAL"
+      },
+      "humanReviewStatus": "required-before-phase-2",
       "mainIntegrationStatus": "not-started",
       "sceneTarget": {
         "colorSpace": "linear",
@@ -256,9 +275,10 @@
         "strict-motion-fit",
         "target-source-commit"
       ],
-      "foundationStatus": "structural-pass",
+      "foundationStatus": "frozen-visual-calibration-conditional",
       "mainPageIntegrationAllowed": false,
-      "reason": "deterministic lab gate passed; Frozen Visual crop calibration and user visual review remain"
+      "phase2Allowed": false,
+      "reason": "deterministic lab calibration may proceed, but Frozen Visual ROI annotations and the private Review Bundle still require human acceptance"
     },
     "finalAcceptance": {
       "requires": [

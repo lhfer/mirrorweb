@@ -19,7 +19,7 @@ linear RGBA16F Scene Color Target + mip chain
                 ↓
 V4 Snell/projected lens refraction body
                 +
-MeshPhysical reflection shell
+energy-controlled MeshPhysical reflection shell
   ↙ procedural strip environment   ↘ pointer Directional Key Light
                 ↓
 linear V4 comparison target
@@ -27,9 +27,11 @@ linear V4 comparison target
 ACES tone map and output conversion
 ```
 
-The V4 material factory has no `mediaMap` argument. Direct media sampling exists only in the isolated V3 control. Five geometry attributes partition center face, shoulder, lens rim, and sidewall. Blur and dispersion scale with the outer lens zone; adaptive neutral lift/shadow responds to local luminance and contrast instead of applying a fixed blue or black body.
+The V4 material factory has no `mediaMap` argument. Direct media sampling exists only in the isolated V3 control. Six geometry attributes partition center face, shoulder, independent strong lens rim, and sidewall. Refraction, blur, dispersion, and shell energy have separate zone coefficients; dispersion is zero in Center and Shoulder. Adaptive neutral lift/shadow responds to local luminance and contrast instead of applying a fixed blue or black body.
 
-The lab emits nine diagnostic views and captures V3, V4, Split, Difference, a pure-black Edge Mask, line patterns, flat bright/dark patterns, synthetic high/low-frequency content, and a seven-point pointer path. Raw pixels and WebM stay ignored. The committed result contains hashes, aggregate metrics, and sanitized SVG plots only.
+The Lab emits both a continuous Edge Mask and a mutually exclusive `optical-zones` view, alongside normals, thickness, refraction, reflection, Fresnel, dispersion, and adaptivity diagnostics. It captures V3/V4 controls, deterministic lines, flat bright/dark/color backgrounds, synthetic high/low-frequency content, front/left/right poses, shell-off baselines, and matched Additive/Energy-controlled pointer paths. Raw pixels and video stay ignored; public results contain hashes and aggregate measurements only.
+
+Phase 1B normalizes target and local cards with homographies before edge analysis. Metrics are calculated on normalized top/right/bottom/left bands and four corners, excluding target typography/highlight contamination where masks exist. Whole-card SSIM is forbidden because target and local media differ. Frozen v1 zone masks remain search windows until a private human annotation file approves the card quad and change points.
 
 ## Reference classes and evidence pipeline
 
@@ -94,7 +96,7 @@ Final quantitative acceptance additionally requires complete controlled live evi
 
 ## Phase isolation
 
-- Phase 1: `/glass-lab-v4` foundation is implemented and structurally measured; Frozen Visual crop fitting and visual review remain before any main integration.
+- Phase 1: `/glass-lab-v4` foundation and Phase 1B calibration tooling are implemented; private Frozen/local ROI overlays and the Review Bundle require user acceptance before any main integration or Phase 2.
 - Phase 2: typography only, preserving CSS3D and the V3 route.
 - Phase 3: deterministic motion fitting only.
 - Phase 4: 2D ring buffer, DOM reuse, video-frame updates, and real adaptive quality.

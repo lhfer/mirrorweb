@@ -31,27 +31,42 @@ import { createGlassMaterial, createGlassParams } from "../materials/LiquidGlass
 import { SceneColorTargetV4 } from "../rendering/SceneColorTargetV4";
 import { createConvexGlassGeometryV4 } from "../scene/ConvexGlassGeometryV4";
 import { createConvexGlassGeometry } from "../scene/ConvexGlassGeometry";
-import { V4_DEBUG_MODES, type V4DebugMode } from "../v4/OpticsConfigV4";
+import {
+  V4_OPTICS_CONFIG,
+  type V4DebugMode,
+  type V4ShellMode,
+} from "../v4/OpticsConfigV4";
 import { createStripLightEnvironmentV4 } from "../v4/StripLightEnvironmentV4";
 import { LabPatternTexture, parseLabPattern } from "./patterns";
 import {
   LAB_DEBUG_VIEWS,
   LAB_MODES,
   LAB_PATTERNS,
+  LAB_POSES,
+  LAB_SHELL_MODES,
   type LabDebugView,
   type LabMode,
   type LabPattern,
   type LabPointer,
+  type LabPose,
   type LabQaApi,
+  type LabShellMode,
   type LabState,
 } from "./types";
 
 const DEFAULT_MODE: LabMode = "split";
 const DEFAULT_PATTERN: LabPattern = "checker";
 const DEFAULT_DEBUG: LabDebugView = "beauty";
+const DEFAULT_SHELL_MODE: LabShellMode = "energy-controlled";
+const DEFAULT_POSE: LabPose = "front";
 const DPR_LIMIT = 2;
 const POINTER_SPRING = 10.5;
 const FRAME_SAMPLE_LIMIT = 240;
+const LAB_POSE_ROTATIONS: Readonly<Record<LabPose, readonly [number, number, number]>> = {
+  front: [0, 0, 0],
+  left: [-0.04, 0.48, -0.025],
+  right: [0.04, -0.48, 0.025],
+};
 
 function requireElement<T extends Element>(selector: string): T {
   const element = document.querySelector<T>(selector);
@@ -65,13 +80,17 @@ const blocked = requireElement<HTMLElement>("#lab-blocked");
 
 const ui = {
   modeControls: document.querySelector<HTMLElement>("#mode-controls")!,
+  poseControls: document.querySelector<HTMLElement>("#pose-controls")!,
   patternControls: document.querySelector<HTMLElement>("#pattern-controls")!,
+  shellControls: document.querySelector<HTMLElement>("#shell-controls")!,
   debugSelect: document.querySelector<HTMLSelectElement>("#debug-select")!,
   videoInput: document.querySelector<HTMLInputElement>("#video-input")!,
   resetButton: document.querySelector<HTMLButtonElement>("#reset-button")!,
   modeOutput: document.querySelector<HTMLOutputElement>("#mode-output")!,
+  poseOutput: document.querySelector<HTMLOutputElement>("#pose-output")!,
   patternOutput: document.querySelector<HTMLOutputElement>("#pattern-output")!,
   debugOutput: document.querySelector<HTMLOutputElement>("#debug-output")!,
+  shellOutput: document.querySelector<HTMLOutputElement>("#shell-output")!,
   readyOutput: document.querySelector<HTMLOutputElement>("#ready-output")!,
   stageProfile: document.querySelector<HTMLElement>("#stage-profile")!,
   stagePattern: document.querySelector<HTMLElement>("#stage-pattern")!,
@@ -104,6 +123,14 @@ function parseDebug(value: string | null): LabDebugView {
   return LAB_DEBUG_VIEWS.includes(value as LabDebugView) ? (value as LabDebugView) : DEFAULT_DEBUG;
 }
 
+function parseShellMode(value: string | null): LabShellMode {
+  return LAB_SHELL_MODES.includes(value as LabShellMode) ? (value as LabShellMode) : DEFAULT_SHELL_MODE;
+}
+
+function parsePose(value: string | null): LabPose {
+  return LAB_POSES.includes(value as LabPose) ? (value as LabPose) : DEFAULT_POSE;
+}
+
 function readInitialState() {
   const query = new URLSearchParams(location.search);
   const optics = query.get("optics");
@@ -111,6 +138,8 @@ function readInitialState() {
     mode: optics === "v3" || optics === "v4" ? optics : parseMode(query.get("mode")),
     pattern: parseLabPattern(query.get("pattern") ?? "") ?? DEFAULT_PATTERN,
     debug: parseDebug(query.get("debug")),
+    shellMode: parseShellMode(query.get("shell")),
+    pose: parsePose(query.get("pose")),
   };
 }
 
@@ -153,13 +182,21 @@ function createCompositeMaterial(
   return material;
 }
 
-function setQueryState(mode: LabMode, pattern: LabPattern, debug: LabDebugView) {
+function setQueryState(
+  mode: LabMode,
+  pattern: LabPattern,
+  debug: LabDebugView,
+  shellMode: LabShellMode,
+  pose: LabPose,
+) {
   const url = new URL(location.href);
   url.searchParams.set("mode", mode);
   if (mode === "v3" || mode === "v4") url.searchParams.set("optics", mode);
   else url.searchParams.delete("optics");
   url.searchParams.set("pattern", pattern);
   url.searchParams.set("debug", debug);
+  url.searchParams.set("shell", shellMode);
+  url.searchParams.set("pose", pose);
   history.replaceState(null, "", url);
 }
 
@@ -214,6 +251,8 @@ async function startLab() {
   let mode = initial.mode;
   let pattern = initial.pattern;
   let debug = initial.debug;
+  let shellMode = initial.shellMode;
+  let pose = initial.pose;
   let ready = false;
   let paused = false;
   let disposed = false;
@@ -279,7 +318,12 @@ async function startLab() {
   worldScene.add(v3Glass);
 
   const v4Params = createLiquidGlassParamsV4();
-  const v4Handle = createLiquidGlassMaterialV4(sceneColor.texture, v4Params, debug as V4DebugMode);
+  const v4Handle = createLiquidGlassMaterialV4(
+    sceneColor.texture,
+    v4Params,
+    debug as V4DebugMode,
+    shellMode as V4ShellMode,
+  );
   const v4Geometry = createConvexGlassGeometryV4("high");
   const v4Body = new Mesh(v4Geometry, v4Handle.bodyMaterial);
   const v4Reflection = new Mesh(v4Geometry, v4Handle.reflectionMaterial);
@@ -288,6 +332,15 @@ async function startLab() {
   v4Body.renderOrder = 10;
   v4Reflection.renderOrder = 11;
   worldScene.add(v4Body, v4Reflection);
+
+  const applyPose = () => {
+    const [x, y, z] = LAB_POSE_ROTATIONS[pose];
+    for (const specimen of [v3Glass, v4Body, v4Reflection]) {
+      specimen.rotation.set(x, y, z);
+      specimen.updateMatrixWorld();
+    }
+  };
+  applyPose();
 
   const compositeScene = new Scene();
   const compositeCamera = new OrthographicCamera(-1, 1, 1, -1, 0, 2);
@@ -303,32 +356,59 @@ async function startLab() {
     document.body.dataset.mode = mode;
     document.body.dataset.pattern = pattern;
     document.body.dataset.debug = debug;
-    for (const button of document.querySelectorAll<HTMLButtonElement>("[data-value]")) {
-      const active = button.closest("#mode-controls") ? button.dataset.value === mode : button.dataset.value === pattern;
-      button.setAttribute("aria-pressed", String(active));
-    }
+    document.body.dataset.shell = shellMode;
+    document.body.dataset.pose = pose;
+    const syncButtons = (host: HTMLElement, value: string) => {
+      for (const button of host.querySelectorAll<HTMLButtonElement>("[data-value]")) {
+        button.setAttribute("aria-pressed", String(button.dataset.value === value));
+      }
+    };
+    syncButtons(ui.modeControls, mode);
+    syncButtons(ui.poseControls, pose);
+    syncButtons(ui.patternControls, pattern);
+    syncButtons(ui.shellControls, shellMode);
     ui.debugSelect.value = debug;
     ui.modeOutput.textContent = title(mode);
+    ui.poseOutput.textContent = title(pose);
     ui.patternOutput.textContent = title(pattern);
     ui.debugOutput.textContent = title(debug);
+    ui.shellOutput.textContent = title(shellMode);
     ui.stagePattern.textContent = `PATTERN · ${title(pattern)}`;
     compositeQuad.material = compositeMaterials[mode];
     v4Handle.setDebugMode(debug as V4DebugMode);
-    v4Reflection.visible = debug === "beauty" || debug === "reflection";
-    setQueryState(mode, pattern, debug);
+    v4Reflection.visible = shellMode !== "off" && (debug === "beauty" || debug === "reflection");
+    setQueryState(mode, pattern, debug, shellMode, pose);
   };
 
   const state = (): LabState => {
     const target = sceneColor.describe();
+    const geometryConfig = V4_OPTICS_CONFIG.geometry;
+    const materialConfig = V4_OPTICS_CONFIG.material;
+    const coefficients = materialConfig.zoneCoefficients;
     return {
       ready,
       route: "/glass-lab-v4",
       mode,
       pattern,
       debug,
+      shellMode,
+      pose,
       backend: ready && isWebGpuBackend ? "webgpu" : "blocked",
       v3Preserved: true,
       normalPathDirectMedia: false,
+      opticalConfig: {
+        shoulderOuterPx: geometryConfig.shoulderOuterPx,
+        rolloverInsetPx: geometryConfig.rolloverInsetPx,
+        rolloverDepthPx: geometryConfig.rolloverDepthPx,
+        lensRimWidthPx: geometryConfig.lensRimWidthPx,
+        maxRefractionUv: materialConfig.maxRefractionUv,
+        blurLod: materialConfig.blurLod,
+        refractionCoefficients: { ...coefficients.refraction },
+        blurCoefficients: { ...coefficients.blur },
+        dispersionCoefficients: { ...coefficients.dispersion },
+        shellCoefficients: { ...coefficients.shell },
+        shell: { ...materialConfig.shell },
+      },
       sceneTarget: {
         type: target.type === HalfFloatType ? "half-float" : "unexpected",
         colorSpace: target.colorSpace === LinearSRGBColorSpace ? "linear" : "unexpected",
@@ -383,6 +463,24 @@ async function startLab() {
     return state();
   };
 
+  const setShellMode = (value: LabShellMode | string) => {
+    const next = parseShellMode(value);
+    if (next !== value) throw new Error(`Unknown V4 shell mode: ${value}`);
+    shellMode = next;
+    v4Handle.setShellMode(next as V4ShellMode);
+    syncUi();
+    return state();
+  };
+
+  const setPose = (value: LabPose | string) => {
+    const next = parsePose(value);
+    if (next !== value) throw new Error(`Unknown V4 lab pose: ${value}`);
+    pose = next;
+    applyPose();
+    syncUi();
+    return state();
+  };
+
   const setPointer = (x: number, y: number) => {
     pointerTarget.x = clampPointer(x);
     pointerTarget.y = clampPointer(y);
@@ -392,6 +490,8 @@ async function startLab() {
   const reset = () => {
     mode = DEFAULT_MODE;
     debug = DEFAULT_DEBUG;
+    shellMode = DEFAULT_SHELL_MODE;
+    pose = DEFAULT_POSE;
     pointerTarget.x = 0;
     pointerTarget.y = 0;
     pointerCurrent.x = 0;
@@ -399,6 +499,8 @@ async function startLab() {
     pattern = DEFAULT_PATTERN;
     patternHandle.setPattern(pattern);
     scenePatternTexture.needsUpdate = true;
+    v4Handle.setShellMode(shellMode as V4ShellMode);
+    applyPose();
     syncUi();
     return state();
   };
@@ -413,6 +515,8 @@ async function startLab() {
     setPattern,
     setMode,
     setDebug,
+    setShellMode,
+    setPose,
     setPointer,
     getMeasurementState: state,
     reset,
@@ -429,7 +533,9 @@ async function startLab() {
   host.__LIQUID_GLASS_QA__ = qa;
 
   mountButtons(ui.modeControls, LAB_MODES, (value) => setMode(value));
+  mountButtons(ui.poseControls, LAB_POSES, (value) => setPose(value));
   mountButtons(ui.patternControls, LAB_PATTERNS, (value) => setPattern(value));
+  mountButtons(ui.shellControls, LAB_SHELL_MODES, (value) => setShellMode(value));
   mountDebugOptions();
   ui.debugSelect.addEventListener("change", () => setDebug(ui.debugSelect.value));
   ui.videoInput.addEventListener("change", async () => {
@@ -493,7 +599,9 @@ async function startLab() {
   const renderWorldPass = (target: RenderTarget, version: "v3" | "v4") => {
     v3Glass.visible = version === "v3";
     v4Body.visible = version === "v4";
-    v4Reflection.visible = version === "v4" && (debug === "beauty" || debug === "reflection");
+    v4Reflection.visible = version === "v4"
+      && shellMode !== "off"
+      && (debug === "beauty" || debug === "reflection");
     renderer.setRenderTarget(target);
     renderer.clear();
     renderer.render(worldScene, camera);

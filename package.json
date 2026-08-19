@@ -27,7 +27,11 @@
     "v4:references": "node scripts/v4/reference-status.mjs",
     "v4:schemas": "python3 scripts/v4/validate-reference-schemas.py",
     "v4:capture:optics": "node scripts/v4/capture-optics-lab.mjs",
+    "v4:preview:phase1b": "vite preview --host 127.0.0.1 --port 5281 --strictPort",
+    "v4:capture:phase1b": "node scripts/v4/capture-optics-lab.mjs '--url=http://127.0.0.1:5281/glass-lab-v4?qa=1'",
     "v4:measure:optics": "python3 scripts/v4/measure-optics-lab.py",
+    "v4:measure:phase1b": "python3 scripts/v4/measure-frozen-calibration.py",
+    "v4:review:phase1b": "python3 scripts/v4/build-phase1b-review.py",
     "qa:v4:baseline": "node scripts/v4/phase0-baseline.mjs"
   },
   "devDependencies": {

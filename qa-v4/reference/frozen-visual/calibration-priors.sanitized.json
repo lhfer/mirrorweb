@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "referenceClass": "frozen-visual-calibration-priors",
+  "targetStrongLensRim": {
+    "status": "CONDITIONAL",
+    "evidenceClass": "provisional-user-measurement",
+    "unit": "card-short-side",
+    "min": 0.046,
+    "max": 0.049,
+    "center": 0.0475,
+    "initialLocalGate": [
+      0.045,
+      0.055
+    ],
+    "maximumResultStatus": "CONDITIONAL",
+    "mayClaimPixelTruth": false,
+    "note": "User-provided 4.6%-4.9% estimate; provisional Phase 1B calibration prior, not measured Frozen pixel truth."
+  }
+}

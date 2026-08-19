@@ -1,6 +1,6 @@
 # MirrorWeb V4 source of truth
 
-Status: **Phase 1 optics-lab foundation passed its deterministic structural gate. Controlled Local and Controlled Live remain PASS, Frozen Visual remains CONDITIONAL, main-page integration is not authorized, and final quantitative acceptance remains BLOCKED.**
+Status: **Phase 1B Frozen Visual calibration is CONDITIONAL. The clean `3f57807` foundation evidence is rebound, the isolated Lab now exposes measured optical zones and Reflection Shell A/B, but private ROI review is still required. Phase 2, main-page integration, and final quantitative acceptance remain BLOCKED.**
 
 ## Authority order
 
@@ -68,7 +68,7 @@ The block below is verified against both `config/calibration.v4.json` and curren
     "missingPolicy": "blocked"
   },
   "v4": {
-    "optics": "lab-foundation-structural-pass",
+    "optics": "frozen-visual-calibration-conditional",
     "motionFit": "deferred-to-phase-3",
     "gridRingBuffer": "not-implemented"
   }
@@ -90,11 +90,12 @@ The block below is verified against both `config/calibration.v4.json` and curren
 
 - Route: `/glass-lab-v4`; its `?optics=v3` and `?optics=v4` selectors, Split, and Difference views are lab-only. The production root still defaults to the untouched V3 implementation.
 - Normal V4 optical path: background test media → linear half-float Scene Color Target → V4 refraction body. `LiquidGlassMaterialV4` has no direct-media parameter.
-- V4 geometry exposes `aEdgeDistance`, `aShoulder`, `aSidewall`, `aThickness`, and `aCurvature`, using the implicit superellipse boundary and a continuous front rollover.
-- Reflection uses a `MeshPhysicalNodeMaterial` shell, a procedural strip-light environment, and a real pointer-driven Directional Light. Actual highlight centroids are measured from captured pixels; the runtime QA hook labels its pointer value as a light proxy rather than a centroid.
+- V4 geometry exposes `aEdgeDistance`, `aShoulder`, `aLensRim`, `aSidewall`, `aThickness`, and `aCurvature`, using the implicit superellipse boundary and a continuous front rollover. The `optical-zones` view emits mutually exclusive Center/Shoulder/Strong Rim/Sidewall regions instead of treating the old combined edge band as a Rim measurement.
+- Reflection uses a `MeshPhysicalNodeMaterial` shell, a procedural strip-light environment, and a real pointer-driven Directional Light. The Lab keeps Additive as an A/B control, uses energy-controlled premultiplied composition as the calibrated default, and can disable the shell for a body-only baseline.
 - Deterministic content is registered identically between the V3 control and V4 candidate. The lab also supports local-session video loading without publishing or hotlinking private media.
-- The accepted structural run is bound to runtime source-set SHA-256 `e50dd5f0d82689125056865d2e043e6072ddceff775d8c326eab765c67e503b3` and sanitized metrics at `qa-v4/results/optics-lab-foundation.json`.
-- Its nine structural checks pass, but the result explicitly keeps `finalQuantitativeAcceptance: BLOCKED`; it is not a Frozen Visual equivalence result and contains no GPU timestamp-query measurement.
+- The accepted clean foundation rerun is bound to commit `3f57807cd6927935bd854a8a5ae7dbb1e551f4dd`, runtime source-set SHA-256 `e50dd5f0d82689125056865d2e043e6072ddceff775d8c326eab765c67e503b3`, and sanitized metrics at `qa-v4/results/optics-lab-foundation.json`; its runtime scope is explicitly clean.
+- Phase 1B records its own content-addressed runtime set and sanitized aggregate at `qa-v4/results/frozen-visual-calibration.json`. The user-measured `4.6%–4.9%` Strong Rim range is a provisional CONDITIONAL prior, not automatically promoted to Frozen pixel truth.
+- Human-reviewed Frozen zone boundaries and seven-role ROI acceptance are still absent. The result therefore keeps `finalTargetMatch: BLOCKED`; rAF cadence remains distinct from GPU execution time.
 
 ## Development gate versus final gate
 
@@ -107,6 +108,6 @@ Phase 1 may start only when:
 - V3 still passes its runtime smoke check;
 - V4 work remains behind its own lab route and feature selector.
 
-Final quantitative acceptance is stricter. Missing Frozen Visual crop calibration, strict Motion fit, and controlled GPU performance still forbids final `passed`. The deterministic foundation result permits another isolated Phase 1 optics iteration only; it does not authorize main-page integration, Typography, Motion, or Grid work.
+Final quantitative acceptance is stricter. Missing human acceptance of the private Phase 1B Review Bundle, strict Motion fit, and controlled GPU performance still forbids final `passed`. The conditional calibration result permits another isolated Phase 1 optics iteration only; it does not authorize Phase 2, main-page integration, Typography, Motion, or Grid work.
 
-The executable workflow, four-profile matrix, evidence retention policy, and replay commands are defined in `docs/v4/CONTROLLED_REFERENCE.md`. The measured foundation result and its limitations are recorded in `docs/v4/OPTICS_LAB_FOUNDATION.md`.
+The executable workflow, four-profile matrix, evidence retention policy, and replay commands are defined in `docs/v4/CONTROLLED_REFERENCE.md`. The measured foundation result and its limitations are recorded in `docs/v4/OPTICS_LAB_FOUNDATION.md`; Phase 1B evidence and the manual-review boundary are recorded in `docs/v4/FROZEN_VISUAL_CALIBRATION.md`.

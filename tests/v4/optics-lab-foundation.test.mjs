@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const BASE_COMMIT = "e37bc539e127870d4c1428f12402319f1c98fbc3";
+const CLEAN_FOUNDATION_COMMIT = "3f57807cd6927935bd854a8a5ae7dbb1e551f4dd";
 
 async function source(relativePath) {
   return readFile(path.join(REPO_ROOT, relativePath), "utf8");
@@ -122,17 +123,22 @@ test("capture and measurement scripts parse, and blocked results contain no inve
     assert.ok(result.metrics.centerSharpness);
     assert.ok(result.metrics.highlightPath);
     assert.ok(result.metrics.dispersionLocalization);
+    assert.equal(result.sourceIdentity.head, CLEAN_FOUNDATION_COMMIT);
+    assert.equal(result.sourceIdentity.dirtyWithinRuntimeScope, false);
     assert.match(result.sourceIdentity.runtimeSourceSetSha256, /^[a-f0-9]{64}$/);
-    const currentRuntimeIdentityLines = [];
+    const capturedRuntimeIdentityLines = [];
     for (const entry of result.sourceIdentity.files) {
-      const currentHash = await sha256File(entry.path);
-      assert.equal(currentHash, entry.sha256, `captured runtime source drifted: ${entry.path}`);
-      currentRuntimeIdentityLines.push(`${entry.path}:${currentHash}`);
+      const committedBytes = execFileSync("git", ["show", `${CLEAN_FOUNDATION_COMMIT}:${entry.path}`], {
+        cwd: REPO_ROOT,
+      });
+      const committedHash = createHash("sha256").update(committedBytes).digest("hex");
+      assert.equal(committedHash, entry.sha256, `clean foundation source mismatch: ${entry.path}`);
+      capturedRuntimeIdentityLines.push(`${entry.path}:${committedHash}`);
     }
     assert.equal(
-      createHash("sha256").update(currentRuntimeIdentityLines.join("\n")).digest("hex"),
+      createHash("sha256").update(capturedRuntimeIdentityLines.join("\n")).digest("hex"),
       result.sourceIdentity.runtimeSourceSetSha256,
-      "captured runtime source-set identity drifted",
+      "clean foundation runtime source-set identity drifted",
     );
     assert.match(result.servedResourceIdentity.manifestSha256, /^[a-f0-9]{64}$/);
     assert.equal(

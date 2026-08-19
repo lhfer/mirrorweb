@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mirrorweb.invalid/schemas/v4/frozen-visual-human-calibration.schema.json",
+  "title": "Private human-reviewed Frozen Visual calibration annotations",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "referenceClass",
+    "private",
+    "sourceVideoSha256",
+    "reviewStatus",
+    "categories",
+    "approvals"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "referenceClass": {
+      "const": "frozen-visual-human-calibration"
+    },
+    "private": {
+      "const": true
+    },
+    "sourceVideoSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "reviewStatus": {
+      "$ref": "#/$defs/reviewStatus"
+    },
+    "reviewer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reviewedAt": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "roleMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "localCaptureId": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "approvals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "brightDarkPairedUse"
+      ],
+      "properties": {
+        "brightDarkPairedUse": {
+          "type": "boolean"
+        }
+      }
+    },
+    "crossCategoryMetrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "brightDarkBackgroundResponseDifference": {
+          "$ref": "#/$defs/nullableNonnegative"
+        }
+      }
+    },
+    "categories": {
+      "type": "object",
+      "minProperties": 8,
+      "maxProperties": 8,
+      "additionalProperties": false,
+      "required": [
+        "bright-front",
+        "dark-front",
+        "high-texture",
+        "low-texture",
+        "left-tilt",
+        "right-tilt",
+        "pointer-before",
+        "pointer-after"
+      ],
+      "properties": {
+        "bright-front": {
+          "$ref": "#/$defs/category"
+        },
+        "dark-front": {
+          "$ref": "#/$defs/category"
+        },
+        "high-texture": {
+          "$ref": "#/$defs/category"
+        },
+        "low-texture": {
+          "$ref": "#/$defs/category"
+        },
+        "left-tilt": {
+          "$ref": "#/$defs/category"
+        },
+        "right-tilt": {
+          "$ref": "#/$defs/category"
+        },
+        "pointer-before": {
+          "$ref": "#/$defs/category"
+        },
+        "pointer-after": {
+          "$ref": "#/$defs/category"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "reviewStatus": {
+      "enum": [
+        "PENDING",
+        "APPROVED",
+        "REJECTED"
+      ]
+    },
+    "nullableRatio": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "nullableNonnegative": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "nullablePoint": {
+      "anyOf": [
+        {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          ],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "category": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceFrameSha256",
+        "reviewStatus",
+        "quadReviewStatus",
+        "approvals",
+        "metrics"
+      ],
+      "properties": {
+        "sourceFrameSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "reviewStatus": {
+          "$ref": "#/$defs/reviewStatus"
+        },
+        "quadReviewStatus": {
+          "$ref": "#/$defs/reviewStatus"
+        },
+        "approvals": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "existingHighlightMask",
+            "naturalFeatureSignature"
+          ],
+          "properties": {
+            "existingHighlightMask": {
+              "type": "boolean"
+            },
+            "naturalFeatureSignature": {
+              "type": "boolean"
+            }
+          }
+        },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "centerFaceRatio",
+            "opticalShoulderWidthRatio",
+            "strongLensRimWidthRatio",
+            "sidewallScreenWidthRatio",
+            "highlightWidthRatio",
+            "highlightCentroidNormalized",
+            "contentBendingWidthRatio",
+            "centerRimSharpnessRatio",
+            "dispersionWidthRatio",
+            "cornerRefractionSignature",
+            "sidewallContentCompression"
+          ],
+          "properties": {
+            "centerFaceRatio": {
+              "$ref": "#/$defs/nullableRatio"
+            },
+            "opticalShoulderWidthRatio": {
+              "$ref": "#/$defs/nullableRatio"
+            },
+            "strongLensRimWidthRatio": {
+              "$ref": "#/$defs/nullableRatio"
+            },
+            "sidewallScreenWidthRatio": {
+              "$ref": "#/$defs/nullableRatio"
+            },
+            "highlightWidthRatio": {
+              "$ref": "#/$defs/nullableRatio"
+            },
+            "highlightCentroidNormalized": {
+              "$ref": "#/$defs/nullablePoint"
+            },
+            "contentBendingWidthRatio": {
+              "$ref": "#/$defs/nullableRatio"
+            },
+            "centerRimSharpnessRatio": {
+              "$ref": "#/$defs/nullableNonnegative"
+            },
+            "dispersionWidthRatio": {
+              "$ref": "#/$defs/nullableRatio"
+            },
+            "cornerRefractionSignature": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "minItems": 4,
+                  "maxItems": 4
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "sidewallContentCompression": {
+              "$ref": "#/$defs/nullableNonnegative"
+            }
+          }
+        }
+      }
+    }
+  }
+}

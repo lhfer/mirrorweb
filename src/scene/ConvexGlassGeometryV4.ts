@@ -164,6 +164,7 @@ export function createConvexGlassGeometryV4(
   const uvs: number[] = [];
   const edgeDistances: number[] = [];
   const shoulders: number[] = [];
+  const lensRims: number[] = [];
   const sidewalls: number[] = [];
   const thicknesses: number[] = [];
   const curvatures: number[] = [];
@@ -174,6 +175,7 @@ export function createConvexGlassGeometryV4(
     normal: Vector3,
     distance: number,
     shoulder: number,
+    lensRim: number,
     sidewall: number,
     thickness: number,
     curvature: number,
@@ -183,6 +185,7 @@ export function createConvexGlassGeometryV4(
     uvs.push(point.x / config.width + 0.5, point.y / config.height + 0.5);
     edgeDistances.push(distance);
     shoulders.push(shoulder);
+    lensRims.push(lensRim);
     sidewalls.push(sidewall);
     thicknesses.push(thickness);
     curvatures.push(curvature);
@@ -225,6 +228,7 @@ export function createConvexGlassGeometryV4(
       centerDistance,
       0,
       0,
+      0,
       config.centerFrontZ - backZ(0, config),
       0,
     ),
@@ -242,6 +246,7 @@ export function createConvexGlassGeometryV4(
         frontNormal(rho, theta, config),
         distance,
         weights.shoulder,
+        weights.rim,
         0,
         point.z - backZ(rho, config),
         Math.max(profileCurvature(distance, config), weights.rim * 0.35),
@@ -270,6 +275,7 @@ export function createConvexGlassGeometryV4(
         sideNormal(theta, config),
         0,
         0,
+        0,
         smootherstep(t),
         boundaryThickness,
         0,
@@ -285,6 +291,7 @@ export function createConvexGlassGeometryV4(
       { x: 0, y: 0, z: backZ(0, config) },
       new Vector3(0, 0, -1),
       centerDistance,
+      0,
       0,
       0,
       config.centerFrontZ - backZ(0, config),
@@ -304,6 +311,7 @@ export function createConvexGlassGeometryV4(
         distance,
         0,
         0,
+        0,
         frontZ(distance, config) - point.z,
         0,
       ));
@@ -321,6 +329,7 @@ export function createConvexGlassGeometryV4(
   geometry.setAttribute("uv", new BufferAttribute(new Float32Array(uvs), 2));
   geometry.setAttribute("aEdgeDistance", new BufferAttribute(new Float32Array(edgeDistances), 1));
   geometry.setAttribute("aShoulder", new BufferAttribute(new Float32Array(shoulders), 1));
+  geometry.setAttribute("aLensRim", new BufferAttribute(new Float32Array(lensRims), 1));
   geometry.setAttribute("aSidewall", new BufferAttribute(new Float32Array(sidewalls), 1));
   geometry.setAttribute("aThickness", new BufferAttribute(new Float32Array(thicknesses), 1));
   geometry.setAttribute("aCurvature", new BufferAttribute(new Float32Array(curvatures), 1));
@@ -332,7 +341,7 @@ export function createConvexGlassGeometryV4(
     quality,
     profile: "c1-superellipse-rollover",
     edgeDistance: "implicit-superellipse-gradient",
-    attributes: ["aEdgeDistance", "aShoulder", "aSidewall", "aThickness", "aCurvature"],
+    attributes: ["aEdgeDistance", "aShoulder", "aLensRim", "aSidewall", "aThickness", "aCurvature"],
   };
   return geometry;
 }

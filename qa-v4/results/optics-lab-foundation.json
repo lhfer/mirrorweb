@@ -2,15 +2,15 @@
   "schemaVersion": 1,
   "phase": "v4-02-optics-lab-foundation",
   "generator": "optics-lab-measure-v1",
-  "generatedAt": "2026-08-19T10:42:00.303730+00:00",
+  "generatedAt": "2026-08-19T13:25:12.239282+00:00",
   "status": "PASS",
   "measurementRun": {
     "executed": true,
-    "inputManifestSha256": "278af3fdf21e5d2f634f9d13ece2017869774db448a1a5f22556093f70e609e0",
-    "screenshotSetSha256": "c59e75e33eaa5065786b62b840d4706973ee7410e430ca41a596a3e93ea597d7",
-    "evidenceSetSha256": "bd09bfeef4b6a24a79ff918927e02bd2720be18fb7b1c4323dabd07920b60c0c",
-    "privateSessionVideoSha256": "64d83840682a9098d87d800a6718bac2b8b73ff5c42642a934137355228d8b7b",
-    "privateUiPreviewSha256": "c5197c44792374d768ba7f766da4ea1c2d3c158936d134add239221033bb3033",
+    "inputManifestSha256": "4ad727a12ffe63f16541ef7d3ebf85bfe14f46fbdb5700f0ca282fe58285642e",
+    "screenshotSetSha256": "8e45f6053260124ad158bda7e81c93266777bb9b85aa5fd6a0d4da0580367722",
+    "evidenceSetSha256": "108cb070d54dcc27882d96a297d2b351158f10ce195f98eb2bd558bc50be00f3",
+    "privateSessionVideoSha256": "26993e2a4b8c4fd5b75fa2c6ec2206697900d1e8935c397ac5326e291eab31b0",
+    "privateUiPreviewSha256": "e60446d8c7b729c4324de15421ff653f4ac85f6ec28bf6a19439d755c00e882b",
     "privatePixelsCommitted": false
   },
   "runtimeContract": {
@@ -27,9 +27,9 @@
     "v3Preserved": true
   },
   "sourceIdentity": {
-    "head": "d7f4e31995716ab1982d20e3789391da482fede8",
+    "head": "3f57807cd6927935bd854a8a5ae7dbb1e551f4dd",
     "branch": "rebuild/liquid-glass-v4",
-    "dirtyWithinRuntimeScope": true,
+    "dirtyWithinRuntimeScope": false,
     "runtimeSourceSetSha256": "e50dd5f0d82689125056865d2e043e6072ddceff775d8c326eab765c67e503b3",
     "files": [
       {
@@ -91,18 +91,13 @@
     ]
   },
   "servedResourceIdentity": {
-    "resourceCount": 51,
-    "manifestSha256": "af3a1fc067a01fd5346969a9d605106a658f28d57fa6e883119ed444e8acee6f",
+    "resourceCount": 50,
+    "manifestSha256": "596a09ede0f0dcb7fcc9255f60ab80d8e107042203bd566de84ed2bac426b768",
     "resources": [
       {
         "path": "/@vite/client",
-        "bytes": 182631,
-        "sha256": "b69010c817ebddf57ca537827b3d53d842cf06004a6ae35f5b35b7d1ceaf296f"
-      },
-      {
-        "path": "/favicon.svg",
-        "bytes": 311,
-        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+        "bytes": 182615,
+        "sha256": "3fa4acb7ff1bb5efe0dc6697dd83a0257576d8d191b771ebe7382ff63f199907"
       },
       {
         "path": "/favicon.svg",
@@ -402,8 +397,8 @@
     "centerSharpness": {
       "method": "RMS Sobel plus Laplacian energy on display-encoded deterministic checker capture",
       "center": 0.20859766006469727,
-      "rim": 0.1413121521472931,
-      "centerToRimRatio": 1.476148065788927,
+      "rim": 0.1413600593805313,
+      "centerToRimRatio": 1.475647795981516,
       "centerSampleCount": 185084,
       "rimSampleCount": 218648
     },
@@ -430,7 +425,7 @@
         "continuityScore": 0.9282633654577475,
         "outerEdgeDisplacementPx": 2.3155160629349636,
         "outerSymmetricCompressionPx": 0.11900708362658463,
-        "outerLineBendingP90Px": 0.9617879565124404,
+        "outerLineBendingP90Px": 0.9592570269670948,
         "effectiveOuterDisplacementPx": 2.3155160629349636,
         "maxAbsoluteDisplacementPx": 2.0433833035865065,
         "sideMetrics": {
@@ -509,12 +504,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6102434992790222,
             "medianAbsoluteDisplacementPx": 0.002351046963042336,
-            "p90AbsoluteDisplacementPx": 1.133948896904954,
+            "p90AbsoluteDisplacementPx": 1.1338755029359504,
             "outerLineP90AbsoluteDisplacementPx": 2.057290261706833,
             "upperMedianShiftPx": 0.006334904808539932,
             "lowerMedianShiftPx": -0.005058186452799873,
             "symmetricCompressionPx": 0.0056965456306699025,
-            "displacementSlopePx": -0.7665563449949616
+            "displacementSlopePx": -0.7665443969534107
           },
           {
             "position": 0.1564102564102564,
@@ -528,7 +523,7 @@
             "upperMedianShiftPx": 0.0008001198060725301,
             "lowerMedianShiftPx": 0.0,
             "symmetricCompressionPx": 0.00040005990303626504,
-            "displacementSlopePx": -1.0161651937393523
+            "displacementSlopePx": -1.0160304668283633
           },
           {
             "position": 0.18076923076923077,
@@ -537,12 +532,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 0.00035622782212385573,
-            "p90AbsoluteDisplacementPx": 1.3220151582992608,
+            "p90AbsoluteDisplacementPx": 1.3210348650347477,
             "outerLineP90AbsoluteDisplacementPx": 2.271715155321439,
             "upperMedianShiftPx": 0.00035947368681377156,
             "lowerMedianShiftPx": 0.0,
             "symmetricCompressionPx": 0.00017973684340688578,
-            "displacementSlopePx": -0.9573658289889834
+            "displacementSlopePx": -0.9577328066781844
           },
           {
             "position": 0.20512820512820512,
@@ -551,12 +546,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 8.539861551071226e-05,
-            "p90AbsoluteDisplacementPx": 1.2571321769416022,
+            "p90AbsoluteDisplacementPx": 1.2575203977424572,
             "outerLineP90AbsoluteDisplacementPx": 2.2470740617725253,
             "upperMedianShiftPx": 0.00035947368681377156,
             "lowerMedianShiftPx": 0.0,
             "symmetricCompressionPx": 0.00017973684340688578,
-            "displacementSlopePx": -0.928377134729138
+            "displacementSlopePx": -0.9283792628654245
           },
           {
             "position": 0.23076923076923078,
@@ -565,12 +560,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 8.539861551071226e-05,
-            "p90AbsoluteDisplacementPx": 1.229926114516764,
+            "p90AbsoluteDisplacementPx": 1.2287935419799743,
             "outerLineP90AbsoluteDisplacementPx": 2.166198087383509,
             "upperMedianShiftPx": 0.00035947368681377156,
             "lowerMedianShiftPx": 0.0,
             "symmetricCompressionPx": 0.00017973684340688578,
-            "displacementSlopePx": -0.9139328595291207
+            "displacementSlopePx": -0.9140025878721961
           },
           {
             "position": 0.2551282051282051,
@@ -579,12 +574,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 8.539861551071226e-05,
-            "p90AbsoluteDisplacementPx": 1.2377813770843522,
+            "p90AbsoluteDisplacementPx": 1.2357830056405965,
             "outerLineP90AbsoluteDisplacementPx": 2.1404665069400637,
             "upperMedianShiftPx": 0.00035947368681377156,
             "lowerMedianShiftPx": 0.0,
             "symmetricCompressionPx": 0.00017973684340688578,
-            "displacementSlopePx": -0.9127461557529295
+            "displacementSlopePx": -0.9127086114801929
           },
           {
             "position": 0.2794871794871795,
@@ -593,68 +588,68 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 8.539861551071226e-05,
-            "p90AbsoluteDisplacementPx": 1.250241036080522,
+            "p90AbsoluteDisplacementPx": 1.2485760283722476,
             "outerLineP90AbsoluteDisplacementPx": 2.148416205018728,
             "upperMedianShiftPx": 0.00035947368681377156,
             "lowerMedianShiftPx": 0.0,
             "symmetricCompressionPx": 0.00017973684340688578,
-            "displacementSlopePx": -0.9199753323858673
+            "displacementSlopePx": -0.9192848958760275
           },
           {
             "position": 0.3038461538461538,
-            "matchedLineCount": 54,
+            "matchedLineCount": 53,
             "possibleLineCount": 54,
-            "matchCoverage": 1.0,
+            "matchCoverage": 0.9814814814814815,
             "medianPeakContrast": 0.6138782799243927,
-            "medianAbsoluteDisplacementPx": 0.00035594150006090786,
-            "p90AbsoluteDisplacementPx": 1.2795032619883677,
-            "outerLineP90AbsoluteDisplacementPx": 2.1544893479782132,
-            "upperMedianShiftPx": 0.00035947368681377156,
+            "medianAbsoluteDisplacementPx": 0.00010876184956032375,
+            "p90AbsoluteDisplacementPx": 1.3005145761913137,
+            "outerLineP90AbsoluteDisplacementPx": 2.1701304847316294,
+            "upperMedianShiftPx": 0.00010876184956032375,
             "lowerMedianShiftPx": -0.000301560575280746,
-            "symmetricCompressionPx": 0.00033051713104725877,
-            "displacementSlopePx": -0.9297605700739553
+            "symmetricCompressionPx": 0.00020516121242053487,
+            "displacementSlopePx": -0.9199465606416745
           },
           {
             "position": 0.3282051282051282,
-            "matchedLineCount": 54,
+            "matchedLineCount": 52,
             "possibleLineCount": 54,
-            "matchCoverage": 1.0,
-            "medianPeakContrast": 0.6138782799243927,
-            "medianAbsoluteDisplacementPx": 0.000372187297799087,
-            "p90AbsoluteDisplacementPx": 1.3045474225052296,
-            "outerLineP90AbsoluteDisplacementPx": 2.1882113197161486,
-            "upperMedianShiftPx": 0.0003757194845519507,
+            "matchCoverage": 0.9629629629629629,
+            "medianPeakContrast": 0.6138824447989464,
+            "medianAbsoluteDisplacementPx": 0.0001250076472985029,
+            "p90AbsoluteDisplacementPx": 1.3525080418831235,
+            "outerLineP90AbsoluteDisplacementPx": 2.2096614364136173,
+            "upperMedianShiftPx": 0.0001250076472985029,
             "lowerMedianShiftPx": -0.0007043939199888882,
-            "symmetricCompressionPx": 0.0005400567022704195,
-            "displacementSlopePx": -0.943934068796323
+            "symmetricCompressionPx": 0.00041470078364369556,
+            "displacementSlopePx": -0.9383644844553203
           },
           {
             "position": 0.3525641025641026,
-            "matchedLineCount": 54,
+            "matchedLineCount": 52,
             "possibleLineCount": 54,
-            "matchCoverage": 1.0,
-            "medianPeakContrast": 0.6138782799243927,
-            "medianAbsoluteDisplacementPx": 0.000372187297799087,
-            "p90AbsoluteDisplacementPx": 1.3321235043798572,
-            "outerLineP90AbsoluteDisplacementPx": 2.2249443666336646,
-            "upperMedianShiftPx": 0.0003757194845519507,
+            "matchCoverage": 0.9629629629629629,
+            "medianPeakContrast": 0.6138824447989464,
+            "medianAbsoluteDisplacementPx": 0.0001250076472985029,
+            "p90AbsoluteDisplacementPx": 1.3749544781447636,
+            "outerLineP90AbsoluteDisplacementPx": 2.243616147857793,
+            "upperMedianShiftPx": 0.0001250076472985029,
             "lowerMedianShiftPx": -0.0007043939199888882,
-            "symmetricCompressionPx": 0.0005400567022704195,
-            "displacementSlopePx": -0.9577670610105795
+            "symmetricCompressionPx": 0.00041470078364369556,
+            "displacementSlopePx": -0.9517914825982361
           },
           {
             "position": 0.3769230769230769,
-            "matchedLineCount": 54,
+            "matchedLineCount": 53,
             "possibleLineCount": 54,
-            "matchCoverage": 1.0,
+            "matchCoverage": 0.9814814814814815,
             "medianPeakContrast": 0.6138782799243927,
-            "medianAbsoluteDisplacementPx": 0.000372187297799087,
-            "p90AbsoluteDisplacementPx": 1.3596630016265983,
-            "outerLineP90AbsoluteDisplacementPx": 2.2467073314337456,
-            "upperMedianShiftPx": 0.0003757194845519507,
+            "medianAbsoluteDisplacementPx": 0.00014125344503668202,
+            "p90AbsoluteDisplacementPx": 1.3783675529426898,
+            "outerLineP90AbsoluteDisplacementPx": 2.2565732085089336,
+            "upperMedianShiftPx": 0.00014125344503668202,
             "lowerMedianShiftPx": -0.0007043939199888882,
-            "symmetricCompressionPx": 0.0005400567022704195,
-            "displacementSlopePx": -0.9702668425433066
+            "symmetricCompressionPx": 0.0004228236825127851,
+            "displacementSlopePx": -0.9634353946042492
           },
           {
             "position": 0.4012820512820513,
@@ -663,12 +658,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 0.000372187297799087,
-            "p90AbsoluteDisplacementPx": 1.3830564553210571,
-            "outerLineP90AbsoluteDisplacementPx": 2.260966110202122,
+            "p90AbsoluteDisplacementPx": 1.3820621286205415,
+            "outerLineP90AbsoluteDisplacementPx": 2.261633846110442,
             "upperMedianShiftPx": 0.0003757194845519507,
             "lowerMedianShiftPx": -0.0007043939199888882,
             "symmetricCompressionPx": 0.0005400567022704195,
-            "displacementSlopePx": -0.9802944057799393
+            "displacementSlopePx": -0.9802080118416786
           },
           {
             "position": 0.4256410256410256,
@@ -677,12 +672,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 0.000372187297799087,
-            "p90AbsoluteDisplacementPx": 1.3973759867158868,
+            "p90AbsoluteDisplacementPx": 1.3943747945008034,
             "outerLineP90AbsoluteDisplacementPx": 2.289816413321111,
             "upperMedianShiftPx": 0.0003757194845519507,
             "lowerMedianShiftPx": -0.0007043939199888882,
             "symmetricCompressionPx": 0.0005400567022704195,
-            "displacementSlopePx": -0.9899970223734614
+            "displacementSlopePx": -0.9898940239932279
           },
           {
             "position": 0.45,
@@ -691,12 +686,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 0.000372187297799087,
-            "p90AbsoluteDisplacementPx": 1.4092518079010807,
-            "outerLineP90AbsoluteDisplacementPx": 2.3032804428992817,
+            "p90AbsoluteDisplacementPx": 1.4100385869054213,
+            "outerLineP90AbsoluteDisplacementPx": 2.303275592429807,
             "upperMedianShiftPx": 0.0003757194845519507,
             "lowerMedianShiftPx": -0.0007043939199888882,
             "symmetricCompressionPx": 0.0005400567022704195,
-            "displacementSlopePx": -0.995031996354308
+            "displacementSlopePx": -0.9955409904729309
           },
           {
             "position": 0.47435897435897434,
@@ -705,12 +700,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 0.000372187297799087,
-            "p90AbsoluteDisplacementPx": 1.419756740129137,
+            "p90AbsoluteDisplacementPx": 1.419476537621515,
             "outerLineP90AbsoluteDisplacementPx": 2.3063846043634726,
             "upperMedianShiftPx": 0.0003757194845519507,
             "lowerMedianShiftPx": -0.0007043939199888882,
             "symmetricCompressionPx": 0.0005400567022704195,
-            "displacementSlopePx": -0.9997199720412177
+            "displacementSlopePx": -0.9998537436139632
           },
           {
             "position": 0.5,
@@ -719,12 +714,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 0.000372187297799087,
-            "p90AbsoluteDisplacementPx": 1.4252838216795316,
+            "p90AbsoluteDisplacementPx": 1.422833564769778,
             "outerLineP90AbsoluteDisplacementPx": 2.306804128788468,
             "upperMedianShiftPx": 0.0003757194845519507,
             "lowerMedianShiftPx": -0.0007043939199888882,
             "symmetricCompressionPx": 0.0005400567022704195,
-            "displacementSlopePx": -1.0011200893158996
+            "displacementSlopePx": -1.000754572483499
           },
           {
             "position": 0.5243589743589744,
@@ -733,12 +728,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 0.000372187297799087,
-            "p90AbsoluteDisplacementPx": 1.4172942159665958,
+            "p90AbsoluteDisplacementPx": 1.419756740129137,
             "outerLineP90AbsoluteDisplacementPx": 2.306804128788468,
             "upperMedianShiftPx": 0.0003757194845519507,
             "lowerMedianShiftPx": -0.0007043939199888882,
             "symmetricCompressionPx": 0.0005400567022704195,
-            "displacementSlopePx": -0.9989483560241729
+            "displacementSlopePx": -0.9991211486957096
           },
           {
             "position": 0.5487179487179488,
@@ -747,12 +742,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 0.000372187297799087,
-            "p90AbsoluteDisplacementPx": 1.4068261159241138,
-            "outerLineP90AbsoluteDisplacementPx": 2.299196457648409,
+            "p90AbsoluteDisplacementPx": 1.4092518135433472,
+            "outerLineP90AbsoluteDisplacementPx": 2.3005875243386327,
             "upperMedianShiftPx": 0.0003757194845519507,
             "lowerMedianShiftPx": -0.0007043939199888882,
             "symmetricCompressionPx": 0.0005400567022704195,
-            "displacementSlopePx": -0.9939328138281175
+            "displacementSlopePx": -0.9943762908342825
           },
           {
             "position": 0.573076923076923,
@@ -761,54 +756,54 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 0.000372187297799087,
-            "p90AbsoluteDisplacementPx": 1.3959711439718723,
-            "outerLineP90AbsoluteDisplacementPx": 2.2908929683682144,
+            "p90AbsoluteDisplacementPx": 1.3993291623306965,
+            "outerLineP90AbsoluteDisplacementPx": 2.291210993584147,
             "upperMedianShiftPx": 0.0003757194845519507,
             "lowerMedianShiftPx": -0.0007043939199888882,
             "symmetricCompressionPx": 0.0005400567022704195,
-            "displacementSlopePx": -0.9893749597272128
+            "displacementSlopePx": -0.9904477675446165
           },
           {
             "position": 0.5974358974358974,
-            "matchedLineCount": 52,
+            "matchedLineCount": 54,
             "possibleLineCount": 54,
-            "matchCoverage": 0.9629629629629629,
-            "medianPeakContrast": 0.6138824447989464,
-            "medianAbsoluteDisplacementPx": 0.0001250076472985029,
-            "p90AbsoluteDisplacementPx": 1.4254503335421018,
-            "outerLineP90AbsoluteDisplacementPx": 2.2755127608449275,
-            "upperMedianShiftPx": 0.0001250076472985029,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.000372187297799087,
+            "p90AbsoluteDisplacementPx": 1.3831092276237662,
+            "outerLineP90AbsoluteDisplacementPx": 2.255696352379115,
+            "upperMedianShiftPx": 0.0003757194845519507,
             "lowerMedianShiftPx": -0.0007043939199888882,
-            "symmetricCompressionPx": 0.00041470078364369556,
-            "displacementSlopePx": -0.9726396531200941
+            "symmetricCompressionPx": 0.0005400567022704195,
+            "displacementSlopePx": -0.9789965594808688
           },
           {
             "position": 0.6217948717948718,
-            "matchedLineCount": 52,
+            "matchedLineCount": 54,
             "possibleLineCount": 54,
-            "matchCoverage": 0.9629629629629629,
-            "medianPeakContrast": 0.6142850518226624,
-            "medianAbsoluteDisplacementPx": 0.0001250076472985029,
-            "p90AbsoluteDisplacementPx": 1.4016989903720056,
-            "outerLineP90AbsoluteDisplacementPx": 2.2597242721324933,
-            "upperMedianShiftPx": 0.0,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.000372187297799087,
+            "p90AbsoluteDisplacementPx": 1.3590064539893496,
+            "outerLineP90AbsoluteDisplacementPx": 2.2390528386465602,
+            "upperMedianShiftPx": 5.438092478016188e-05,
             "lowerMedianShiftPx": -0.0007043939199888882,
-            "symmetricCompressionPx": 0.0003521969599944441,
-            "displacementSlopePx": -0.9629945928609248
+            "symmetricCompressionPx": 0.00037938742238452505,
+            "displacementSlopePx": -0.969268037861862
           },
           {
             "position": 0.6461538461538462,
-            "matchedLineCount": 52,
+            "matchedLineCount": 54,
             "possibleLineCount": 54,
-            "matchCoverage": 0.9629629629629629,
-            "medianPeakContrast": 0.6142850518226624,
-            "medianAbsoluteDisplacementPx": 0.0001250076472985029,
-            "p90AbsoluteDisplacementPx": 1.374979667143992,
-            "outerLineP90AbsoluteDisplacementPx": 2.234642685604277,
-            "upperMedianShiftPx": 0.0,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.000372187297799087,
+            "p90AbsoluteDisplacementPx": 1.3298639254258666,
+            "outerLineP90AbsoluteDisplacementPx": 2.2136368065425556,
+            "upperMedianShiftPx": 5.438092478016188e-05,
             "lowerMedianShiftPx": -0.0007043939199888882,
-            "symmetricCompressionPx": 0.0003521969599944441,
-            "displacementSlopePx": -0.9505597405630112
+            "symmetricCompressionPx": 0.00037938742238452505,
+            "displacementSlopePx": -0.9564291294393565
           },
           {
             "position": 0.6705128205128205,
@@ -817,12 +812,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6129869595170021,
             "medianAbsoluteDisplacementPx": 0.0006062325215339115,
-            "p90AbsoluteDisplacementPx": 1.3043946725164097,
+            "p90AbsoluteDisplacementPx": 1.304323181683052,
             "outerLineP90AbsoluteDisplacementPx": 2.20103835854423,
             "upperMedianShiftPx": 5.438092478016188e-05,
             "lowerMedianShiftPx": -0.0007043939199888882,
             "symmetricCompressionPx": 0.00037938742238452505,
-            "displacementSlopePx": -0.9447277700740733
+            "displacementSlopePx": -0.9452703757259592
           },
           {
             "position": 0.6948717948717948,
@@ -831,12 +826,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 8.5401916066985e-05,
-            "p90AbsoluteDisplacementPx": 1.279181558231287,
-            "outerLineP90AbsoluteDisplacementPx": 2.158371975994015,
+            "p90AbsoluteDisplacementPx": 1.2785922392602862,
+            "outerLineP90AbsoluteDisplacementPx": 2.159651939268585,
             "upperMedianShiftPx": 0.0,
             "lowerMedianShiftPx": -0.000301560575280746,
             "symmetricCompressionPx": 0.000150780287640373,
-            "displacementSlopePx": -0.9295414877292912
+            "displacementSlopePx": -0.9296247339428136
           },
           {
             "position": 0.7192307692307692,
@@ -845,12 +840,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 8.5401916066985e-05,
-            "p90AbsoluteDisplacementPx": 1.2497192423322336,
-            "outerLineP90AbsoluteDisplacementPx": 2.154793248666175,
+            "p90AbsoluteDisplacementPx": 1.250603273041563,
+            "outerLineP90AbsoluteDisplacementPx": 2.1551704115121706,
             "upperMedianShiftPx": 0.0,
             "lowerMedianShiftPx": -0.000301560575280746,
             "symmetricCompressionPx": 0.000150780287640373,
-            "displacementSlopePx": -0.9206252574976477
+            "displacementSlopePx": -0.9205558170418096
           },
           {
             "position": 0.7435897435897436,
@@ -859,12 +854,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 8.5401916066985e-05,
-            "p90AbsoluteDisplacementPx": 1.239476859064482,
+            "p90AbsoluteDisplacementPx": 1.238963651935294,
             "outerLineP90AbsoluteDisplacementPx": 2.1467625304866886,
             "upperMedianShiftPx": 0.0,
             "lowerMedianShiftPx": -0.000301560575280746,
             "symmetricCompressionPx": 0.000150780287640373,
-            "displacementSlopePx": -0.9130599419814117
+            "displacementSlopePx": -0.9130284035225614
           },
           {
             "position": 0.767948717948718,
@@ -878,7 +873,7 @@
             "upperMedianShiftPx": 0.0,
             "lowerMedianShiftPx": -0.000301560575280746,
             "symmetricCompressionPx": 0.000150780287640373,
-            "displacementSlopePx": -0.9151913449188734
+            "displacementSlopePx": -0.9154035709546174
           },
           {
             "position": 0.7935897435897435,
@@ -887,12 +882,12 @@
             "matchCoverage": 1.0,
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 8.5401916066985e-05,
-            "p90AbsoluteDisplacementPx": 1.2645380614513875,
+            "p90AbsoluteDisplacementPx": 1.2672087593475148,
             "outerLineP90AbsoluteDisplacementPx": 2.2423488693273925,
             "upperMedianShiftPx": 0.0,
             "lowerMedianShiftPx": -0.000301560575280746,
             "symmetricCompressionPx": 0.000150780287640373,
-            "displacementSlopePx": -0.9265657759084978
+            "displacementSlopePx": -0.9268860945018038
           },
           {
             "position": 0.8179487179487179,
@@ -902,11 +897,11 @@
             "medianPeakContrast": 0.6138782799243927,
             "medianAbsoluteDisplacementPx": 0.00035594150006090786,
             "p90AbsoluteDisplacementPx": 1.319690372849258,
-            "outerLineP90AbsoluteDisplacementPx": 2.272277798425523,
+            "outerLineP90AbsoluteDisplacementPx": 2.2722778667449917,
             "upperMedianShiftPx": 0.0,
             "lowerMedianShiftPx": -0.0007043939199888882,
             "symmetricCompressionPx": 0.0003521969599944441,
-            "displacementSlopePx": -0.9578550871520537
+            "displacementSlopePx": -0.9573519099077624
           },
           {
             "position": 0.8423076923076923,
@@ -920,7 +915,7 @@
             "upperMedianShiftPx": 5.438092478016188e-05,
             "lowerMedianShiftPx": -0.0017784300391667784,
             "symmetricCompressionPx": 0.0009164054819734702,
-            "displacementSlopePx": -1.0177082996374194
+            "displacementSlopePx": -1.0180495103456306
           },
           {
             "position": 0.8666666666666667,
@@ -1001,23 +996,23 @@
         "expectedSampleCount": 39,
         "referenceLineCount": 90,
         "lineSpacingPx": 9.0,
-        "lineMatchCount": 3336,
+        "lineMatchCount": 3337,
         "possibleLineMatchCount": 3420,
-        "coverage": 0.9754385964912281,
+        "coverage": 0.9757309941520468,
         "profileCoverage": 1.0,
-        "lineMatchCoverage": 0.9754385964912281,
-        "p95AdjacentShiftJumpPx": 0.5176794695157609,
-        "continuityScore": 0.8356573112648378,
+        "lineMatchCoverage": 0.9757309941520468,
+        "p95AdjacentShiftJumpPx": 0.5445055578610605,
+        "continuityScore": 0.8271410927425205,
         "outerEdgeDisplacementPx": 2.463564627144638,
-        "outerSymmetricCompressionPx": 0.32128310558144335,
-        "outerLineBendingP90Px": 1.5268858877826363,
+        "outerSymmetricCompressionPx": 0.3198621841853111,
+        "outerLineBendingP90Px": 1.5326619875106684,
         "effectiveOuterDisplacementPx": 2.463564627144638,
         "maxAbsoluteDisplacementPx": 2.4349682120387572,
         "sideMetrics": {
           "leading": {
             "sampleCount": 20,
-            "outerMedianAbsoluteDisplacementPx": 0.20360965266888797,
-            "outerMedianSymmetricCompressionPx": 0.3215867426307
+            "outerMedianAbsoluteDisplacementPx": 0.20127508190955723,
+            "outerMedianSymmetricCompressionPx": 0.31874489983843546
           },
           "trailing": {
             "sampleCount": 20,
@@ -1034,53 +1029,53 @@
             "medianPeakContrast": 0.11565230786800385,
             "medianAbsoluteDisplacementPx": 1.2914277564827898,
             "p90AbsoluteDisplacementPx": 2.4349682120387572,
-            "outerLineP90AbsoluteDisplacementPx": 2.8517044405072625,
+            "outerLineP90AbsoluteDisplacementPx": 2.8517782357782835,
             "upperMedianShiftPx": 1.6039590593727553,
             "lowerMedianShiftPx": -1.677368968237488,
             "symmetricCompressionPx": 1.6406640138051216,
-            "displacementSlopePx": -3.44547960485617
+            "displacementSlopePx": -3.445011355495952
           },
           {
             "position": 0.05927051671732523,
             "matchedLineCount": 78,
             "possibleLineCount": 79,
             "matchCoverage": 0.9873417721518988,
-            "medianPeakContrast": 0.1173657476902008,
-            "medianAbsoluteDisplacementPx": 0.8880152667435937,
+            "medianPeakContrast": 0.11708692461252213,
+            "medianAbsoluteDisplacementPx": 0.883832420912313,
             "p90AbsoluteDisplacementPx": 2.1078974681928058,
-            "outerLineP90AbsoluteDisplacementPx": 2.8926877787497403,
-            "upperMedianShiftPx": 0.9536669539010347,
-            "lowerMedianShiftPx": -1.0692143506856269,
-            "symmetricCompressionPx": 1.0114406522933308,
-            "displacementSlopePx": -2.4338509675152125
+            "outerLineP90AbsoluteDisplacementPx": 2.8924754165658726,
+            "upperMedianShiftPx": 0.950359136704094,
+            "lowerMedianShiftPx": -1.0549916248168074,
+            "symmetricCompressionPx": 1.0026753807604507,
+            "displacementSlopePx": -2.4321970215672057
           },
           {
             "position": 0.08358662613981763,
-            "matchedLineCount": 71,
+            "matchedLineCount": 72,
             "possibleLineCount": 82,
-            "matchCoverage": 0.8658536585365854,
-            "medianPeakContrast": 0.1811804324388504,
-            "medianAbsoluteDisplacementPx": 0.7391801638320885,
-            "p90AbsoluteDisplacementPx": 2.0775139554562543,
+            "matchCoverage": 0.8780487804878049,
+            "medianPeakContrast": 0.18292279541492462,
+            "medianAbsoluteDisplacementPx": 0.6822426618787176,
+            "p90AbsoluteDisplacementPx": 2.0662352020290484,
             "outerLineP90AbsoluteDisplacementPx": 2.8695982505839766,
-            "upperMedianShiftPx": 0.7463396413062924,
-            "lowerMedianShiftPx": -0.8955449542252154,
-            "symmetricCompressionPx": 0.8209422977657539,
-            "displacementSlopePx": -1.949300975569462
+            "upperMedianShiftPx": 0.9392311125741344,
+            "lowerMedianShiftPx": -0.7600900052441375,
+            "symmetricCompressionPx": 0.8496605589091359,
+            "displacementSlopePx": -1.9643226818012964
           },
           {
             "position": 0.10790273556231003,
             "matchedLineCount": 86,
             "possibleLineCount": 86,
             "matchCoverage": 1.0,
-            "medianPeakContrast": 0.30407706648111343,
-            "medianAbsoluteDisplacementPx": 0.20360965266888797,
+            "medianPeakContrast": 0.30320531129837036,
+            "medianAbsoluteDisplacementPx": 0.20127508190955723,
             "p90AbsoluteDisplacementPx": 1.751009373098725,
             "outerLineP90AbsoluteDisplacementPx": 2.591005079832101,
-            "upperMedianShiftPx": 0.2752346924361291,
-            "lowerMedianShiftPx": -0.36793879282527087,
-            "symmetricCompressionPx": 0.3215867426307,
-            "displacementSlopePx": -1.3727881267585282
+            "upperMedianShiftPx": 0.26904975848168533,
+            "lowerMedianShiftPx": -0.3684400411951856,
+            "symmetricCompressionPx": 0.31874489983843546,
+            "displacementSlopePx": -1.3720444560226681
           },
           {
             "position": 0.13221884498480244,
@@ -1094,7 +1089,7 @@
             "upperMedianShiftPx": 0.0713686154598463,
             "lowerMedianShiftPx": -0.06492248999217054,
             "symmetricCompressionPx": 0.06814555272600842,
-            "displacementSlopePx": -1.0594875315314907
+            "displacementSlopePx": -1.0595101945005656
           },
           {
             "position": 0.15653495440729484,
@@ -1604,11 +1599,11 @@
       "method": "bright reflection-energy centroid inside the measured card silhouette",
       "requestedSampleCount": 7,
       "validSampleCount": 7,
-      "travelNormalized": 0.6939536347073171,
-      "medianSegmentNormalized": 0.12027631954147047,
-      "maxJumpNormalized": 0.21509600297508968,
-      "maxToMedianJumpRatio": 1.788348727289797,
-      "pointerXToCentroidXCorrelation": 0.912937598885506,
+      "travelNormalized": 0.6942934533701587,
+      "medianSegmentNormalized": 0.12118973894794174,
+      "maxJumpNormalized": 0.2146337550546006,
+      "maxToMedianJumpRatio": 1.7710555111171473,
+      "pointerXToCentroidXCorrelation": 0.911380438756532,
       "samples": [
         {
           "pointer": [
@@ -1616,14 +1611,14 @@
             0
           ],
           "centroidPx": [
-            226.5604811422252,
-            285.3825156187529
+            226.59731367513396,
+            285.136335232861
           ],
           "centroidNormalized": [
-            0.07635959120798103,
-            0.2498214523081351
+            0.0764068124040179,
+            0.24944731798307138
           ],
-          "screenshotSha256": "9f740ddb8a9e589af117803fea8ff0cd0ba111adcb6d6aa512648c247e71e28f"
+          "screenshotSha256": "123bbe38787426486e0db14a48dca0e900462df1c651d02e416a0ef985af617a"
         },
         {
           "pointer": [
@@ -1631,14 +1626,14 @@
             -0.5
           ],
           "centroidPx": [
-            240.35219547335953,
-            276.59290111125574
+            240.07647108400417,
+            276.71457057972947
           ],
           "centroidNormalized": [
-            0.09404127624789684,
-            0.2364633755490209
+            0.09368778344103099,
+            0.23664828355581985
           ],
-          "screenshotSha256": "4c07d80c78720bc8b6fc0994d79132381e3c3801733352a4899939a33f84b797"
+          "screenshotSha256": "db55440ff57c9ca848a187dea6279a267634f89cf191b86ba8ade5e49c4bda71"
         },
         {
           "pointer": [
@@ -1646,14 +1641,14 @@
             0.35
           ],
           "centroidPx": [
-            214.53910100262695,
-            274.7088702022724
+            214.26871678445727,
+            275.48279432562856
           ],
           "centroidNormalized": [
-            0.060947565387983266,
-            0.23360010669038359
+            0.0606009189544324,
+            0.23477628316964827
           ],
-          "screenshotSha256": "a0316923573643b0856aa1a5c0eeed8b7249e06a86e04c5244c47fb11238249d"
+          "screenshotSha256": "6b89f32720f45836ac140bcc86ffa3870122005ffcce87bfbe4d6af192fc9ac0"
         },
         {
           "pointer": [
@@ -1661,14 +1656,14 @@
             0
           ],
           "centroidPx": [
-            266.0644106170212,
-            227.51439533202324
+            264.26074152104724,
+            228.42534037334093
           ],
           "centroidNormalized": [
-            0.1270056546372067,
-            0.1618759807477557
+            0.12469325836031697,
+            0.16326039570416553
           ],
-          "screenshotSha256": "05ebccb5cbd14d279e3b48e233406acc01c49c277752769724064f4870a885b3"
+          "screenshotSha256": "612885867b1f97e51b592b5815afe991602cc9babca2bc66fa85cafbd4372063"
         },
         {
           "pointer": [
@@ -1676,14 +1671,14 @@
             -0.35
           ],
           "centroidPx": [
-            402.4877521145049,
-            192.25276441199486
+            400.1711594797076,
+            192.4162039901524
           ],
           "centroidNormalized": [
-            0.3019073745057755,
-            0.10828687600607122
+            0.2989373839483431,
+            0.10853526442272403
           ],
-          "screenshotSha256": "607066703f7fe51eb676e16b0078003b69cabbe274c31c3687000485eb24716d"
+          "screenshotSha256": "b44be405a51bb65e4ecac0c84cfa78c4a08fbaa93f9f564f0a227772257c0542"
         },
         {
           "pointer": [
@@ -1691,14 +1686,14 @@
             0.5
           ],
           "centroidPx": [
-            568.6204986018486,
-            172.49903953938122
+            566.0385933802042,
+            173.26185087185968
           ],
           "centroidNormalized": [
-            0.5148980751305751,
-            0.07826601753705352
+            0.511587940231031,
+            0.07942530527638249
           ],
-          "screenshotSha256": "af1522aa7416c0207cd85799d30776e0bc382cb3bb396b48e07079bcccda9517"
+          "screenshotSha256": "92fb0e79326493133ea6e7a1fb48e2456d891bc5cbaf0d2d4ca94fbfe2735a3c"
         },
         {
           "pointer": [
@@ -1706,14 +1701,14 @@
             0
           ],
           "centroidPx": [
-            676.996702882184,
-            194.8716669258067
+            677.3510644604582,
+            194.5998676418216
           ],
           "centroidNormalized": [
-            0.6538419267720307,
-            0.11226697101186428
+            0.654296236487767,
+            0.11185390219121823
           ],
-          "screenshotSha256": "09d3192e9711fda2fa6bc77c56b2b4c297be5f42cb8d7c5833c40b56977d5f60"
+          "screenshotSha256": "e9fc73bdaec3c33cf1b71183fa8ec557fa8d1c4f67c7913d0b6f468bc557a91a"
         }
       ]
     },
@@ -1729,7 +1724,7 @@
         "background": "black",
         "method": "maximum of rim/gutter contrast, center/gutter contrast and boundary-gradient energy",
         "discernibilityScore": 0.1771639883518219,
-        "rimToGutterLumaDifference": 0.056152748060412705,
+        "rimToGutterLumaDifference": 0.05600288335699588,
         "centerToGutterLumaDifference": 6.535212742164731e-05,
         "boundaryGradientP75": 0.1771639883518219,
         "measurable": true
@@ -1738,7 +1733,7 @@
         "background": "white",
         "method": "maximum of rim/gutter contrast, center/gutter contrast and boundary-gradient energy",
         "discernibilityScore": 0.01690731942653656,
-        "rimToGutterLumaDifference": 0.005477726459503174,
+        "rimToGutterLumaDifference": 0.005475342273712158,
         "centerToGutterLumaDifference": 1.0728836059570312e-06,
         "boundaryGradientP75": 0.01690731942653656,
         "measurable": true
@@ -1746,26 +1741,26 @@
     },
     "differenceView": {
       "method": "display-encoded difference-view energy relative to border baseline",
-      "meanAbsoluteLuma": 0.2949659526348114,
+      "meanAbsoluteLuma": 0.29479357600212097,
       "p95AbsoluteLuma": 0.9647059440612793,
-      "nontrivialPixelRatio": 0.4993506882106523
+      "nontrivialPixelRatio": 0.49930281268701376
     },
     "rafIntervalMs": {
       "metricName": "rafIntervalMs",
       "metricMeaning": "browser requestAnimationFrame interval; not CPU frame cost or GPU execution time",
       "gpuExecutionTimeMeasured": false,
-      "sampleCount": 1739,
+      "sampleCount": 1741,
       "p50": 8.300000000000182,
-      "p95": 9,
-      "p99": 9.299999999999955,
-      "max": 76
+      "p95": 9.200000000000728,
+      "p99": 9.300000000001091,
+      "max": 83
     }
   },
   "checks": [
     {
       "id": "center-sharpness",
       "status": "PASS",
-      "value": 1.476148065788927,
+      "value": 1.475647795981516,
       "threshold": {
         "min": 1.0
       }
@@ -1797,8 +1792,8 @@
       "id": "vertical-line-displacement-continuity",
       "status": "PASS",
       "value": {
-        "coverage": 0.9754385964912281,
-        "score": 0.8356573112648378,
+        "coverage": 0.9757309941520468,
+        "score": 0.8271410927425205,
         "outerDisplacementPx": 2.463564627144638
       },
       "threshold": {
@@ -1821,8 +1816,8 @@
       "value": {
         "valid": 7,
         "requested": 7,
-        "travel": 0.6939536347073171,
-        "jumpRatio": 1.788348727289797
+        "travel": 0.6942934533701587,
+        "jumpRatio": 1.7710555111171473
       },
       "threshold": {
         "travelMin": 0.03,
@@ -1871,122 +1866,122 @@
     {
       "id": "split-checker",
       "role": "v3-v4-split",
-      "sha256": "eeb77c830638b2d0bd664786737e104ef5bb56a1bc0d7fe7f7dadf6f8a721055"
+      "sha256": "5d702b761abc9cd95d4f6a21687f03c90c6537647da1383415850b9ec0317049"
     },
     {
       "id": "v3-checker",
       "role": "v3-control-crop",
-      "sha256": "17fc378151c0d9601661e1412ba79a17b202221a414f973f6979ce5a460c3669"
+      "sha256": "b4d7760a36bb6af1d84b9e3febc84f01ac9dbcd1d376ba89fffdc538f74c589f"
     },
     {
       "id": "difference-checker",
       "role": "v3-v4-difference",
-      "sha256": "2a992cdf0a46db8ce2aac20983eaac2842691a9b718cb6f747258020f1e69065"
+      "sha256": "3d3117cc391a31e17bcbf46c9ed24fd1bf4131e7c28e1fe211a5be27ce1fcfe9"
     },
     {
       "id": "edge-mask-black",
       "role": "zone-mask",
-      "sha256": "d5a730e5c5c713a1047d9c46e0042aa33f804067ebedb3e2bfe1369c3fbfe3bd"
+      "sha256": "1dfb066e109c34352055a3e8cd8ead56d4b094976fd5180e5d18d6e1ba367b43"
     },
     {
       "id": "normals-checker",
       "role": "surface-normal-debug",
-      "sha256": "6ed29b9cc4022d60a63f5b24b18270c02a5c486c57b7a46aca8573d5a901bd4e"
+      "sha256": "b0b8ad11e5be7b92b19e157ef88ff0d325b6b99846f7457d154778216fb57ff3"
     },
     {
       "id": "thickness-checker",
       "role": "optical-thickness-debug",
-      "sha256": "2f0184528c3c298c7a70665c2bf3f501e906a2459f8f075fe4f5accc5404fdba"
+      "sha256": "e997f0995304ec519fb4f60f1fbfc5dc0ec3286b74259d31e9ec054a139490e0"
     },
     {
       "id": "refraction-offset-checker",
       "role": "projected-refraction-debug",
-      "sha256": "92c49795c076fcba2cb881d633820c65deaca7de4dd39c57fd55b44877414360"
+      "sha256": "5bde3b5113b69d594e2c583aa2c62241bbb1db4e3fe7952901fedb512b7f12d6"
     },
     {
       "id": "fresnel-black",
       "role": "fresnel-debug",
-      "sha256": "bcfc0071b3593527ca1f551c3ef0b5d4eb775d8d1221fbfdce15a72e69b24f1f"
+      "sha256": "3b552c07424ee6f2d6614926aba7a8224295d7101b6f0c578755e2db223fa812"
     },
     {
       "id": "adaptivity-flat",
       "role": "content-adaptivity-debug",
-      "sha256": "8b2dcb9fa28dba283b053f90a5e34eaf5204478d28ab10015d7bf03a53fd9366"
+      "sha256": "564a7b199dfbff44bf92e455bbbe51c10403294344498249cfec449e355bc004"
     },
     {
       "id": "v4-checker",
       "role": "sharpness-and-rim",
-      "sha256": "14833adead27ab0ee60fb0e620afee755d5721bf19c68bba0d34f5214223cd3f"
+      "sha256": "55d0d4a3f6b23988684bb656d910b799fe9c2c9793254dab5a62847dc881ad72"
     },
     {
       "id": "v4-horizontal-lines",
       "role": "horizontal-line-displacement",
-      "sha256": "bf07d857d71507afd94b3077577bf99f53294527e6eff07b3dd469053c4f746a"
+      "sha256": "8046a8b2a42454ea259a61f52a3bf726faed0b4ad1d3c42a8d51a2138c429e54"
     },
     {
       "id": "v4-vertical-lines",
       "role": "vertical-line-displacement",
-      "sha256": "d922e0b4776698a8e372243e8cae9a7a1c894200a61ed8b5326d6287daf5d09f"
+      "sha256": "bd39bac930812812df7e4a847bd25f481d79266875f8341b96c76e6f80e0833c"
     },
     {
       "id": "v4-high-frequency-photo",
       "role": "high-frequency-adaptivity",
-      "sha256": "5324e962b70f6f3c37e766ac60314b8952a25ba5cb5b88305e3c02da7ca2600f"
+      "sha256": "f34d4d3e23d2e86f587beb0758f7984985aad570ae78a5c88835078e623adfd9"
     },
     {
       "id": "v4-low-frequency-flat",
       "role": "low-frequency-adaptivity",
-      "sha256": "f177c4482495236f866fbc3ef093536746122b0c944a5beef668581fec875f9b"
+      "sha256": "427cfa89f5ab81aa6cd62094f9dc0fb7a0d5a6b906debc22f6427f82040ffbbb"
     },
     {
       "id": "v4-white",
       "role": "light-background-discernibility",
-      "sha256": "dc46981ddf224137fe3635cd3898b0c16c471882ecd256a43c8362a9e29724d4"
+      "sha256": "935ff012cfd99212acf6012310d5ab0bd85f37885eea5d23a8ef4419aac19cc6"
     },
     {
       "id": "v4-black",
       "role": "dark-background-discernibility",
-      "sha256": "71d5abd3ec40f42636088ac2e334fc1f76f44a9445cbac9307553b0eaf9d960d"
+      "sha256": "73e44f0fa016aea0cb46d8a2b6f2d2aec5bf7411645d2b995d5d3d33dab12af0"
     },
     {
       "id": "dispersion-checker",
       "role": "dispersion-localization",
-      "sha256": "6c6ca6074e885f0172e138b1003c3300f03f7d5c159f3484f0f38d942be4a804"
+      "sha256": "cf8ca6c896b36d0201c03099b18964972c490349fc2726028619159fed14aa08"
     },
     {
       "id": "reflection-pointer-00",
       "role": "pointer-highlight-path",
-      "sha256": "9f740ddb8a9e589af117803fea8ff0cd0ba111adcb6d6aa512648c247e71e28f"
+      "sha256": "123bbe38787426486e0db14a48dca0e900462df1c651d02e416a0ef985af617a"
     },
     {
       "id": "reflection-pointer-01",
       "role": "pointer-highlight-path",
-      "sha256": "4c07d80c78720bc8b6fc0994d79132381e3c3801733352a4899939a33f84b797"
+      "sha256": "db55440ff57c9ca848a187dea6279a267634f89cf191b86ba8ade5e49c4bda71"
     },
     {
       "id": "reflection-pointer-02",
       "role": "pointer-highlight-path",
-      "sha256": "a0316923573643b0856aa1a5c0eeed8b7249e06a86e04c5244c47fb11238249d"
+      "sha256": "6b89f32720f45836ac140bcc86ffa3870122005ffcce87bfbe4d6af192fc9ac0"
     },
     {
       "id": "reflection-pointer-03",
       "role": "pointer-highlight-path",
-      "sha256": "05ebccb5cbd14d279e3b48e233406acc01c49c277752769724064f4870a885b3"
+      "sha256": "612885867b1f97e51b592b5815afe991602cc9babca2bc66fa85cafbd4372063"
     },
     {
       "id": "reflection-pointer-04",
       "role": "pointer-highlight-path",
-      "sha256": "607066703f7fe51eb676e16b0078003b69cabbe274c31c3687000485eb24716d"
+      "sha256": "b44be405a51bb65e4ecac0c84cfa78c4a08fbaa93f9f564f0a227772257c0542"
     },
     {
       "id": "reflection-pointer-05",
       "role": "pointer-highlight-path",
-      "sha256": "af1522aa7416c0207cd85799d30776e0bc382cb3bb396b48e07079bcccda9517"
+      "sha256": "92fb0e79326493133ea6e7a1fb48e2456d891bc5cbaf0d2d4ca94fbfe2735a3c"
     },
     {
       "id": "reflection-pointer-06",
       "role": "pointer-highlight-path",
-      "sha256": "09d3192e9711fda2fa6bc77c56b2b4c297be5f42cb8d7c5833c40b56977d5f60"
+      "sha256": "e9fc73bdaec3c33cf1b71183fa8ec557fa8d1c4f67c7913d0b6f468bc557a91a"
     }
   ],
   "finalQuantitativeAcceptance": "BLOCKED",
@@ -2002,12 +1997,12 @@
   "artifacts": {
     "displacementPlot": {
       "path": "qa-v4/results/optics-lab-foundation-artifacts/displacement-plot.svg",
-      "sha256": "0d42810a601d9e0a97720758022e02eaa7dee395326503c40abc5eed35a5eb96",
+      "sha256": "403a61588957bb88f35c10f8a9ee38fc9e6d675dbd6137ae4301922cc0273423",
       "source": "sanitized metrics only; no screenshot or private pixel embedding"
     },
     "highlightPath": {
       "path": "qa-v4/results/optics-lab-foundation-artifacts/highlight-path.svg",
-      "sha256": "937535eda26ee3ac895b155521670c874865408927d353cc3ae99a872af6cab4",
+      "sha256": "b724b43ddad92670091ff61531bc0d7ac5a91741a84346a135c38ec16add4329",
       "source": "sanitized metrics only; no screenshot or private pixel embedding"
     }
   }

@@ -1,0 +1,195 @@
+{
+  "$schema": "annotations.schema.json",
+  "schemaVersion": 1,
+  "referenceClass": "frozen-visual-human-calibration",
+  "private": true,
+  "sourceVideoSha256": "b6e79250c75e0357e489de87b63ffd4a5097a573eb7baced35e5de8b050c2435",
+  "reviewStatus": "PENDING",
+  "reviewer": null,
+  "reviewedAt": null,
+  "roleMap": {},
+  "approvals": {
+    "brightDarkPairedUse": false
+  },
+  "crossCategoryMetrics": {
+    "brightDarkBackgroundResponseDifference": null
+  },
+  "categories": {
+    "bright-front": {
+      "sourceFrameSha256": "11bc11bc659ed827ec2569210425b0c67dc7751ba1674779a79178ad25b8a897",
+      "reviewStatus": "PENDING",
+      "quadReviewStatus": "PENDING",
+      "approvals": {
+        "existingHighlightMask": false,
+        "naturalFeatureSignature": false
+      },
+      "metrics": {
+        "centerFaceRatio": null,
+        "opticalShoulderWidthRatio": null,
+        "strongLensRimWidthRatio": null,
+        "sidewallScreenWidthRatio": null,
+        "highlightWidthRatio": null,
+        "highlightCentroidNormalized": null,
+        "contentBendingWidthRatio": null,
+        "centerRimSharpnessRatio": null,
+        "dispersionWidthRatio": null,
+        "cornerRefractionSignature": null,
+        "sidewallContentCompression": null
+      }
+    },
+    "dark-front": {
+      "sourceFrameSha256": "e3abcfafcced25e69a3ad587fc6c48bb15da9a45bcef7fe00615145a4d2acebe",
+      "reviewStatus": "PENDING",
+      "quadReviewStatus": "PENDING",
+      "approvals": {
+        "existingHighlightMask": false,
+        "naturalFeatureSignature": false
+      },
+      "metrics": {
+        "centerFaceRatio": null,
+        "opticalShoulderWidthRatio": null,
+        "strongLensRimWidthRatio": null,
+        "sidewallScreenWidthRatio": null,
+        "highlightWidthRatio": null,
+        "highlightCentroidNormalized": null,
+        "contentBendingWidthRatio": null,
+        "centerRimSharpnessRatio": null,
+        "dispersionWidthRatio": null,
+        "cornerRefractionSignature": null,
+        "sidewallContentCompression": null
+      }
+    },
+    "high-texture": {
+      "sourceFrameSha256": "436e8fc42525f9e2f9baf3e8bf934861f0a1438e7c3d7dc9bbe62a3e7f10c202",
+      "reviewStatus": "PENDING",
+      "quadReviewStatus": "PENDING",
+      "approvals": {
+        "existingHighlightMask": false,
+        "naturalFeatureSignature": false
+      },
+      "metrics": {
+        "centerFaceRatio": null,
+        "opticalShoulderWidthRatio": null,
+        "strongLensRimWidthRatio": null,
+        "sidewallScreenWidthRatio": null,
+        "highlightWidthRatio": null,
+        "highlightCentroidNormalized": null,
+        "contentBendingWidthRatio": null,
+        "centerRimSharpnessRatio": null,
+        "dispersionWidthRatio": null,
+        "cornerRefractionSignature": null,
+        "sidewallContentCompression": null
+      }
+    },
+    "low-texture": {
+      "sourceFrameSha256": "25341575958cb6ac190b1da5522dfbb6947b31b8b9ddd87ee820d217a2fb1ce9",
+      "reviewStatus": "PENDING",
+      "quadReviewStatus": "PENDING",
+      "approvals": {
+        "existingHighlightMask": false,
+        "naturalFeatureSignature": false
+      },
+      "metrics": {
+        "centerFaceRatio": null,
+        "opticalShoulderWidthRatio": null,
+        "strongLensRimWidthRatio": null,
+        "sidewallScreenWidthRatio": null,
+        "highlightWidthRatio": null,
+        "highlightCentroidNormalized": null,
+        "contentBendingWidthRatio": null,
+        "centerRimSharpnessRatio": null,
+        "dispersionWidthRatio": null,
+        "cornerRefractionSignature": null,
+        "sidewallContentCompression": null
+      }
+    },
+    "left-tilt": {
+      "sourceFrameSha256": "dd187a9b38a0962209ab786dd068a900cb77888e25b346b88cef2725250d2822",
+      "reviewStatus": "PENDING",
+      "quadReviewStatus": "PENDING",
+      "approvals": {
+        "existingHighlightMask": false,
+        "naturalFeatureSignature": false
+      },
+      "metrics": {
+        "centerFaceRatio": null,
+        "opticalShoulderWidthRatio": null,
+        "strongLensRimWidthRatio": null,
+        "sidewallScreenWidthRatio": null,
+        "highlightWidthRatio": null,
+        "highlightCentroidNormalized": null,
+        "contentBendingWidthRatio": null,
+        "centerRimSharpnessRatio": null,
+        "dispersionWidthRatio": null,
+        "cornerRefractionSignature": null,
+        "sidewallContentCompression": null
+      }
+    },
+    "right-tilt": {
+      "sourceFrameSha256": "bd3f7f87019e231a8d2d565e0bcf6be48c7a23274e2a8690f3bddba5a4120caa",
+      "reviewStatus": "PENDING",
+      "quadReviewStatus": "PENDING",
+      "approvals": {
+        "existingHighlightMask": false,
+        "naturalFeatureSignature": false
+      },
+      "metrics": {
+        "centerFaceRatio": null,
+        "opticalShoulderWidthRatio": null,
+        "strongLensRimWidthRatio": null,
+        "sidewallScreenWidthRatio": null,
+        "highlightWidthRatio": null,
+        "highlightCentroidNormalized": null,
+        "contentBendingWidthRatio": null,
+        "centerRimSharpnessRatio": null,
+        "dispersionWidthRatio": null,
+        "cornerRefractionSignature": null,
+        "sidewallContentCompression": null
+      }
+    },
+    "pointer-before": {
+      "sourceFrameSha256": "02e5157c26ad46b9c54f616e3dd26594fa64867b7c31eb643e1ed0e61ad7dab3",
+      "reviewStatus": "PENDING",
+      "quadReviewStatus": "PENDING",
+      "approvals": {
+        "existingHighlightMask": false,
+        "naturalFeatureSignature": false
+      },
+      "metrics": {
+        "centerFaceRatio": null,
+        "opticalShoulderWidthRatio": null,
+        "strongLensRimWidthRatio": null,
+        "sidewallScreenWidthRatio": null,
+        "highlightWidthRatio": null,
+        "highlightCentroidNormalized": null,
+        "contentBendingWidthRatio": null,
+        "centerRimSharpnessRatio": null,
+        "dispersionWidthRatio": null,
+        "cornerRefractionSignature": null,
+        "sidewallContentCompression": null
+      }
+    },
+    "pointer-after": {
+      "sourceFrameSha256": "7b8db4d33286a7e3ec387d4e8cded7b83c66a7952e34e1c6e8bf96f46a519d45",
+      "reviewStatus": "PENDING",
+      "quadReviewStatus": "PENDING",
+      "approvals": {
+        "existingHighlightMask": false,
+        "naturalFeatureSignature": false
+      },
+      "metrics": {
+        "centerFaceRatio": null,
+        "opticalShoulderWidthRatio": null,
+        "strongLensRimWidthRatio": null,
+        "sidewallScreenWidthRatio": null,
+        "highlightWidthRatio": null,
+        "highlightCentroidNormalized": null,
+        "contentBendingWidthRatio": null,
+        "centerRimSharpnessRatio": null,
+        "dispersionWidthRatio": null,
+        "cornerRefractionSignature": null,
+        "sidewallContentCompression": null
+      }
+    }
+  }
+}

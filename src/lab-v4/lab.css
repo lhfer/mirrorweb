@@ -251,6 +251,8 @@ body[data-mode="split"] #split-marker { opacity: 1; }
 .segment-grid,
 .pattern-grid { display: grid; gap: 5px; }
 .segment-grid--four { grid-template-columns: repeat(4, 1fr); }
+.segment-grid--three { grid-template-columns: repeat(3, 1fr); }
+#shell-controls { grid-template-columns: 0.9fr 1.65fr 0.7fr; }
 .pattern-grid { grid-template-columns: repeat(2, 1fr); }
 
 .video-loader {

@@ -3,6 +3,7 @@ import {
   DirectionalLight,
   MeshBasicNodeMaterial,
   MeshPhysicalNodeMaterial,
+  NormalBlending,
   type Texture,
 } from "three/webgpu";
 import {
@@ -20,7 +21,6 @@ import {
   positionViewDirection,
   pow,
   screenUV,
-  smoothstep,
   texture,
   uniform,
   vec2,
@@ -31,6 +31,7 @@ import {
   V4_DEBUG_CODE,
   V4_OPTICS_CONFIG,
   type V4DebugMode,
+  type V4ShellMode,
 } from "../v4/OpticsConfigV4";
 
 export function createLiquidGlassParamsV4() {
@@ -58,6 +59,8 @@ export type LiquidGlassMaterialV4Handle = {
   setSceneColorTexture: (texture: Texture) => void;
   setDebugMode: (mode: V4DebugMode) => void;
   getDebugMode: () => V4DebugMode;
+  setShellMode: (mode: V4ShellMode) => void;
+  getShellMode: () => V4ShellMode;
   dispose: () => void;
 };
 
@@ -74,18 +77,52 @@ export function createLiquidGlassMaterialV4(
   sceneColorTexture: Texture,
   params: LiquidGlassParamsV4 = createLiquidGlassParamsV4(),
   initialDebugMode: V4DebugMode = "beauty",
+  initialShellMode: V4ShellMode = "energy-controlled",
 ): LiquidGlassMaterialV4Handle {
   const sceneColor = texture(sceneColorTexture);
   const debugCode = uniform(V4_DEBUG_CODE[initialDebugMode]);
   let debugMode = initialDebugMode;
+  let shellMode = initialShellMode;
 
-  const edgeDistance = attribute<"float">("aEdgeDistance", "float");
   const shoulder = clamp(attribute<"float">("aShoulder", "float"), 0, 1);
+  const strongLensRim = clamp(attribute<"float">("aLensRim", "float"), 0, 1);
   const sidewall = clamp(attribute<"float">("aSidewall", "float"), 0, 1);
   const thickness = max(attribute<"float">("aThickness", "float"), 0);
   const curvature = clamp(attribute<"float">("aCurvature", "float"), 0, 1);
-  const rim = float(1).sub(smoothstep(0, V4_OPTICS_CONFIG.geometry.lensRimWidthPx, edgeDistance));
-  const lensZone = clamp(max(max(shoulder, rim), sidewall), 0, 1);
+  const centerFace = float(1).sub(clamp(shoulder.add(strongLensRim).add(sidewall), 0, 1));
+  const zoneCoefficients = V4_OPTICS_CONFIG.material.zoneCoefficients;
+  const refractionZone = clamp(
+    centerFace.mul(zoneCoefficients.refraction.center)
+      .add(shoulder.mul(zoneCoefficients.refraction.shoulder))
+      .add(strongLensRim.mul(zoneCoefficients.refraction.strongLensRim))
+      .add(sidewall.mul(zoneCoefficients.refraction.sidewall)),
+    0,
+    1,
+  );
+  const blurZone = clamp(
+    centerFace.mul(zoneCoefficients.blur.center)
+      .add(shoulder.mul(zoneCoefficients.blur.shoulder))
+      .add(strongLensRim.mul(zoneCoefficients.blur.strongLensRim))
+      .add(sidewall.mul(zoneCoefficients.blur.sidewall)),
+    0,
+    1,
+  );
+  const dispersionZone = clamp(
+    centerFace.mul(zoneCoefficients.dispersion.center)
+      .add(shoulder.mul(zoneCoefficients.dispersion.shoulder))
+      .add(strongLensRim.mul(zoneCoefficients.dispersion.strongLensRim))
+      .add(sidewall.mul(zoneCoefficients.dispersion.sidewall)),
+    0,
+    1,
+  );
+  const shellZone = clamp(
+    centerFace.mul(zoneCoefficients.shell.center)
+      .add(shoulder.mul(zoneCoefficients.shell.shoulder))
+      .add(strongLensRim.mul(zoneCoefficients.shell.strongLensRim))
+      .add(sidewall.mul(zoneCoefficients.shell.sidewall)),
+    0,
+    1,
+  );
   const thicknessNorm = clamp(
     thickness.div(V4_OPTICS_CONFIG.geometry.baseThickness + V4_OPTICS_CONFIG.geometry.rolloverDepthPx),
     0,
@@ -97,7 +134,7 @@ export function createLiquidGlassMaterialV4(
   const incident = positionViewDirection.negate();
   const refracted = incident.refract(normalView, float(1).div(params.ior));
   const opticalTravel = params.refractionDistance
-    .mul(lensZone)
+    .mul(refractionZone)
     .mul(mix(0.35, 1, thicknessNorm))
     .mul(mix(0.82, 1.12, curvature));
   const surfaceClip = cameraProjectionMatrix.mul(vec4(positionView, 1));
@@ -107,12 +144,12 @@ export function createLiquidGlassMaterialV4(
   const exitNdc = exitClip.xy.div(exitClip.w);
   const rawOffset = exitNdc.sub(surfaceNdc).mul(vec2(0.5, -0.5));
   // A finite scene plane needs a projected thin-lens correction in addition
-  // to the local Snell exit point. This keeps the center untouched while
+  // to the local Snell exit point. This keeps the center nearly untouched while
   // producing measurable, continuous compression across the optical shoulder
   // and the strong rim instead of only blurring otherwise straight lines.
   const projectedNormalOffset = vec2(normalView.x, normalView.y.negate())
     .mul(params.maxRefractionUv)
-    .mul(lensZone)
+    .mul(refractionZone)
     .mul(mix(0.06, 0.3, curvature))
     .mul(mix(0.65, 1, thicknessNorm));
   const surfaceUv = attribute<"vec2">("uv", "vec2");
@@ -122,7 +159,8 @@ export function createLiquidGlassMaterialV4(
   ).add(vec2(1e-6, 0)).normalize();
   const radialLensOffset = radialScreenDirection
     .mul(params.maxRefractionUv)
-    .mul(rim.mul(0.04).add(shoulder.mul(0.024)).add(sidewall.mul(0.028)))
+    .mul(refractionZone)
+    .mul(0.04)
     .mul(mix(0.65, 1, thicknessNorm));
   const refractionOffset = clamp(
     rawOffset.mul(2).add(projectedNormalOffset).add(radialLensOffset),
@@ -131,7 +169,7 @@ export function createLiquidGlassMaterialV4(
   );
   const refractedUv = clamp(screenUV.add(refractionOffset), vec2(0.001), vec2(0.999));
   const blurLod = params.blurLod
-    .mul(pow(lensZone, 1.6))
+    .mul(pow(blurZone, 1.6))
     .mul(mix(0.4, 1, thicknessNorm));
 
   const fallbackDirection = vec2(normalView.x, normalView.y.negate())
@@ -139,10 +177,9 @@ export function createLiquidGlassMaterialV4(
     .normalize();
   const dispersionDirection = refractionOffset.length().greaterThan(1e-5)
     .select(refractionOffset.normalize(), fallbackDirection);
-  const dispersionMask = rim.mul(float(1).sub(sidewall.mul(0.35)));
   const dispersionDelta = dispersionDirection
     .mul(params.dispersionUv)
-    .mul(dispersionMask);
+    .mul(dispersionZone);
   const uvR = clamp(refractedUv.add(dispersionDelta), vec2(0.001), vec2(0.999));
   const uvB = clamp(refractedUv.sub(dispersionDelta), vec2(0.001), vec2(0.999));
 
@@ -174,7 +211,7 @@ export function createLiquidGlassMaterialV4(
   const adaptivity = clamp(darkBoost.mul(0.55).add(flatBoost.mul(0.3)).add(localChroma.mul(0.15)), 0, 1);
 
   // Neutral contrast shaping only; V4 deliberately has no fixed blue/black body tint.
-  const contrastGain = float(1).add(localContrast.mul(lensZone).mul(0.08));
+  const contrastGain = float(1).add(localContrast.mul(blurZone).mul(0.08));
   const contrastShaped = refractedColor
     .sub(vec3(localLuma))
     .mul(contrastGain)
@@ -183,23 +220,32 @@ export function createLiquidGlassMaterialV4(
   // curvature lift, while bright flat content receives an equally local
   // internal shadow. Both vanish on the clear center face and neither can
   // become a fixed dark/blue body rim.
-  const adaptiveVolume = flatBoost.mul(curvature).mul(lensZone);
+  const adaptiveVolume = flatBoost.mul(curvature).mul(blurZone);
   const adaptiveEdgeLift = adaptiveVolume.mul(darkBoost).mul(0.08);
   const adaptiveInternalShadow = flatBoost
-    .mul(lensZone)
+    .mul(blurZone)
     .mul(clamp(localLuma, 0, 1))
     .mul(mix(0.06, 0.2, curvature));
   const beauty = contrastShaped
     .add(vec3(adaptiveEdgeLift))
     .sub(vec3(adaptiveInternalShadow));
 
-  const edgeDebug = vec3(shoulder, rim, sidewall);
+  const edgeDebug = vec3(shoulder, strongLensRim, sidewall);
+  // Unlike edge-mask's continuous weights, this palette is deliberately
+  // one-hot so screen-space QA can measure each optical band independently.
+  const opticalZonesDebug = sidewall.greaterThan(0.001).select(
+    vec3(0, 0, 1),
+    strongLensRim.greaterThan(0.01).select(
+      vec3(0, 1, 0),
+      shoulder.greaterThan(0.001).select(vec3(1, 0, 0), vec3(0.25)),
+    ),
+  );
   const normalsDebug = normalView.mul(0.5).add(0.5);
   const thicknessDebug = vec3(thicknessNorm);
   const offsetDebug = vec3(
     refractionOffset.x.div(params.maxRefractionUv).mul(0.5).add(0.5),
     refractionOffset.y.div(params.maxRefractionUv).mul(0.5).add(0.5),
-    lensZone,
+    refractionZone,
   );
   const reflectionDebugBody = vec3(0);
   const fresnelDebug = vec3(fresnel);
@@ -212,19 +258,22 @@ export function createLiquidGlassMaterialV4(
 
   const bodyColorNode = Fn(() => debugCode.equal(V4_DEBUG_CODE["edge-mask"]).select(
     edgeDebug,
-    debugCode.equal(V4_DEBUG_CODE.normals).select(
-      normalsDebug,
-      debugCode.equal(V4_DEBUG_CODE.thickness).select(
-        thicknessDebug,
-        debugCode.equal(V4_DEBUG_CODE["refraction-offset"]).select(
-          offsetDebug,
-          debugCode.equal(V4_DEBUG_CODE.reflection).select(
-            reflectionDebugBody,
-            debugCode.equal(V4_DEBUG_CODE.fresnel).select(
-              fresnelDebug,
-              debugCode.equal(V4_DEBUG_CODE.dispersion).select(
-                dispersionDebug,
-                debugCode.equal(V4_DEBUG_CODE.adaptivity).select(adaptivityDebug, beauty),
+    debugCode.equal(V4_DEBUG_CODE["optical-zones"]).select(
+      opticalZonesDebug,
+      debugCode.equal(V4_DEBUG_CODE.normals).select(
+        normalsDebug,
+        debugCode.equal(V4_DEBUG_CODE.thickness).select(
+          thicknessDebug,
+          debugCode.equal(V4_DEBUG_CODE["refraction-offset"]).select(
+            offsetDebug,
+            debugCode.equal(V4_DEBUG_CODE.reflection).select(
+              reflectionDebugBody,
+              debugCode.equal(V4_DEBUG_CODE.fresnel).select(
+                fresnelDebug,
+                debugCode.equal(V4_DEBUG_CODE.dispersion).select(
+                  dispersionDebug,
+                  debugCode.equal(V4_DEBUG_CODE.adaptivity).select(adaptivityDebug, beauty),
+                ),
               ),
             ),
           ),
@@ -243,10 +292,10 @@ export function createLiquidGlassMaterialV4(
   const shellEnabled = debugCode.equal(V4_DEBUG_CODE.beauty)
     .or(debugCode.equal(V4_DEBUG_CODE.reflection))
     .select(1, 0);
-  const shellZone = clamp(max(rim, shoulder.mul(0.72)).add(sidewall.mul(0.35)), 0, 1);
+  const shellConfig = V4_OPTICS_CONFIG.material.shell;
   const shellOpacity = fresnel
-    .mul(0.24)
-    .add(shellZone.mul(0.17))
+    .mul(shellConfig.fresnelOpacity)
+    .add(shellZone.mul(shellConfig.zoneOpacity))
     .mul(shellEnabled);
   const reflectionMaterial = new MeshPhysicalNodeMaterial();
   reflectionMaterial.name = "MirrorWeb.LiquidGlassV4.ReflectionShell";
@@ -256,15 +305,28 @@ export function createLiquidGlassMaterialV4(
   reflectionMaterial.iorNode = params.ior;
   reflectionMaterial.specularColorNode = vec3(1);
   reflectionMaterial.specularIntensityNode = params.reflectionStrength
-    .mul(mix(0.72, 1.35, adaptivity));
-  reflectionMaterial.clearcoatNode = shellZone.mul(0.7);
+    .mul(mix(shellConfig.adaptivityMin, shellConfig.adaptivityMax, adaptivity));
+  reflectionMaterial.clearcoatNode = shellZone.mul(shellConfig.clearcoat);
   reflectionMaterial.clearcoatRoughnessNode = params.roughnessRim;
   reflectionMaterial.transmissionNode = float(0);
-  reflectionMaterial.opacityNode = clamp(shellOpacity, 0, 0.52);
+  reflectionMaterial.opacityNode = clamp(shellOpacity, 0, shellConfig.opacityMax);
   reflectionMaterial.transparent = true;
   reflectionMaterial.depthWrite = false;
   reflectionMaterial.blending = AdditiveBlending;
   reflectionMaterial.toneMapped = true;
+
+  const setShellMode = (mode: V4ShellMode) => {
+    shellMode = mode;
+    const energyControlled = mode !== "additive";
+    reflectionMaterial.blending = energyControlled ? NormalBlending : AdditiveBlending;
+    reflectionMaterial.premultipliedAlpha = energyControlled;
+    reflectionMaterial.visible = mode !== "off";
+    reflectionMaterial.name = energyControlled
+      ? "MirrorWeb.LiquidGlassV4.ReflectionShell.EnergyControlled"
+      : "MirrorWeb.LiquidGlassV4.ReflectionShell.Additive";
+    reflectionMaterial.needsUpdate = true;
+  };
+  setShellMode(initialShellMode);
 
   return {
     bodyMaterial,
@@ -278,6 +340,8 @@ export function createLiquidGlassMaterialV4(
       debugCode.value = V4_DEBUG_CODE[mode];
     },
     getDebugMode: () => debugMode,
+    setShellMode,
+    getShellMode: () => shellMode,
     dispose: () => {
       bodyMaterial.dispose();
       reflectionMaterial.dispose();
