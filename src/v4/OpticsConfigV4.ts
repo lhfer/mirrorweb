@@ -39,6 +39,8 @@ export type V4GeometryConfig = {
   baseThickness: number;
   superellipseN: number;
   centerFrontZ: number;
+  /** Front-surface sag between the clear centre and the rollover crown. */
+  shoulderDropPx: number;
   shoulderOuterPx: number;
   rolloverInsetPx: number;
   rolloverDepthPx: number;
@@ -61,11 +63,16 @@ export const V4_OPTICS_CONFIG = {
     baseThickness: TILE.thickness,
     superellipseN: TILE.superellipseN,
     centerFrontZ: TILE.thickness * 0.5 + TILE.frontBulge,
-    shoulderOuterPx: 64,
+    // Round 1 Stage A: the previous profile sagged only 10px between the centre
+    // and the crown, so the normal stayed near (0,0,1) until the last 16px and
+    // the card read as flat media with a coloured outline. The shoulder now
+    // carries a real lens-edge slope across a wider band.
+    shoulderDropPx: 24,
+    shoulderOuterPx: 88,
     rolloverInsetPx: 16,
-    rolloverDepthPx: 27,
+    rolloverDepthPx: 18,
     backDishPx: TILE.backDish,
-    lensRimWidthPx: 30,
+    lensRimWidthPx: 38,
   } satisfies V4GeometryConfig,
   quality: {
     high: { radialSegments: 26, outlineSegments: 96, sidewallSegments: 7, shaderSamples: 3 },
@@ -77,7 +84,7 @@ export const V4_OPTICS_CONFIG = {
   >,
   material: {
     ior: 1.48,
-    refractionDistance: 118,
+    refractionDistance: 165,
     maxRefractionUv: 0.125,
     blurLod: 2.35,
     dispersionUv: 0.0065,

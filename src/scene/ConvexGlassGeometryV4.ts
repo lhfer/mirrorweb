@@ -50,7 +50,11 @@ function edgeDistance(x: number, y: number, config: V4GeometryConfig) {
 
 function frontZ(distance: number, config: V4GeometryConfig) {
   const half = config.baseThickness * 0.5;
-  const crownZ = half + 12;
+  // How far the front surface sags between the clear centre and the crown at
+  // the start of the rollover. This is the slope the view-space normal — and
+  // therefore every refraction term — is built on, so it is an explicit config
+  // value rather than a constant buried in the profile.
+  const crownZ = config.centerFrontZ - config.shoulderDropPx;
   if (distance >= config.shoulderOuterPx) return config.centerFrontZ;
   if (distance >= config.rolloverInsetPx) {
     const t = (config.shoulderOuterPx - distance)
