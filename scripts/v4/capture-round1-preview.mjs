@@ -19,9 +19,7 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const OUT_ROOT = path.join(REPO_ROOT, "qa-v4/review/round-1");
-const STATES_DIR = path.join(OUT_ROOT, "states");
-const VIDEO_DIR = path.join(OUT_ROOT, "session");
+const DEFAULT_OUT_ROOT = path.join(REPO_ROOT, "qa-v4/review/round-1");
 
 // Grid geometry, mirrored from src/config.ts so the harness can centre a chosen
 // card without reaching into the page.
@@ -31,13 +29,22 @@ const REST_Y0 = -211.05;
 const brickColumn = (i, j) => i + (((j % 2) + 2) % 2 === 1 ? 0.5 : 0);
 const centerOn = (i, j) => ({ x: brickColumn(i, j) * CELL_W, y: j * CELL_H + REST_Y0 });
 
-const options = { port: 5288, headless: process.env.ILG_CAPTURE_HEADLESS === "1", videoSeconds: 26 };
+const options = {
+  port: 5288,
+  headless: process.env.ILG_CAPTURE_HEADLESS === "1",
+  videoSeconds: 26,
+  out: DEFAULT_OUT_ROOT,
+};
 for (const argument of process.argv.slice(2)) {
   if (argument.startsWith("--port=")) options.port = Number(argument.slice("--port=".length));
   else if (argument === "--headless") options.headless = true;
   else if (argument.startsWith("--video-seconds=")) options.videoSeconds = Number(argument.slice("--video-seconds=".length));
+  else if (argument.startsWith("--out=")) options.out = path.resolve(REPO_ROOT, argument.slice("--out=".length));
   else throw new Error(`Unknown argument: ${argument}`);
 }
+const OUT_ROOT = options.out;
+const STATES_DIR = path.join(OUT_ROOT, "states");
+const VIDEO_DIR = path.join(OUT_ROOT, "session");
 
 function startPreview(port) {
   const child = spawn("npx", ["vite", "preview", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
