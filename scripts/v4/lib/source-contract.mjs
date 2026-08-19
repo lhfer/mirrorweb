@@ -1,4 +1,5 @@
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { readFile, readdir } from "node:fs/promises";
 import { isDeepStrictEqual } from "node:util";
 import { resolve } from "node:path";
@@ -209,6 +210,71 @@ export async function runSourceContract() {
     materialTokens,
     materialTokens.filter((token) => materialSource.includes(token)),
   );
+
+  if (calibration.v4.optics.status === "lab-foundation-structural-pass") {
+    const result = await readJson(resolve(REPO_ROOT, calibration.v4.optics.qaResult));
+    addCheck(
+      checks,
+      "V4_OPTICS_LAB_RESULT",
+      result.status === "PASS" && result.finalQuantitativeAcceptance === "BLOCKED",
+      { status: "PASS", finalQuantitativeAcceptance: "BLOCKED" },
+      { status: result.status, finalQuantitativeAcceptance: result.finalQuantitativeAcceptance },
+    );
+    const identityLines = [];
+    const drifted = [];
+    for (const entry of result.sourceIdentity?.files ?? []) {
+      const actual = await sha256File(resolve(REPO_ROOT, entry.path));
+      identityLines.push(`${entry.path}:${actual}`);
+      if (actual !== entry.sha256) drifted.push(entry.path);
+    }
+    const sourceSet = createHash("sha256").update(identityLines.join("\n")).digest("hex");
+    addCheck(
+      checks,
+      "V4_CAPTURED_RUNTIME_IDENTITY",
+      drifted.length === 0
+        && sourceSet === result.sourceIdentity?.runtimeSourceSetSha256
+        && sourceSet === calibration.v4.optics.runtimeSourceSetSha256,
+      { drifted: [], sourceSet: calibration.v4.optics.runtimeSourceSetSha256 },
+      { drifted, sourceSet },
+    );
+
+    const v4Material = await readFile(resolve(REPO_ROOT, calibration.v4.optics.materialSource), "utf8");
+    const v4Geometry = await readFile(resolve(REPO_ROOT, calibration.v4.optics.geometrySource), "utf8");
+    const v4Target = await readFile(resolve(REPO_ROOT, calibration.v4.optics.sceneTargetSource), "utf8");
+    const requiredV4MaterialTokens = [
+      "createLiquidGlassMaterialV4",
+      "MeshPhysicalNodeMaterial",
+      "sceneColorTexture",
+      "createPointerKeyLightV4",
+    ];
+    const requiredGeometryTokens = calibration.v4.optics.explicitAttributes;
+    addCheck(
+      checks,
+      "V4_SCENE_COLOR_NORMAL_PATH",
+      requiredV4MaterialTokens.every((token) => v4Material.includes(token))
+        && !v4Material.includes("directMediaTexture")
+        && !v4Material.includes("mediaMap"),
+      { required: requiredV4MaterialTokens, forbidden: ["directMediaTexture", "mediaMap"] },
+      {
+        required: requiredV4MaterialTokens.filter((token) => v4Material.includes(token)),
+        forbidden: ["directMediaTexture", "mediaMap"].filter((token) => v4Material.includes(token)),
+      },
+    );
+    addCheck(
+      checks,
+      "V4_OPTICAL_ATTRIBUTES",
+      requiredGeometryTokens.every((token) => v4Geometry.includes(token)),
+      requiredGeometryTokens,
+      requiredGeometryTokens.filter((token) => v4Geometry.includes(token)),
+    );
+    addCheck(
+      checks,
+      "V4_LINEAR_HALF_FLOAT_TARGET",
+      v4Target.includes("HalfFloatType") && v4Target.includes("LinearSRGBColorSpace"),
+      ["HalfFloatType", "LinearSRGBColorSpace"],
+      ["HalfFloatType", "LinearSRGBColorSpace"].filter((token) => v4Target.includes(token)),
+    );
+  }
 
   const docContract = await readDocContract(resolve(REPO_ROOT, "docs/v4/SOURCE_OF_TRUTH.md"));
   const expectedDocs = expectedDocContract(calibration);

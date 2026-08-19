@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "contractId": "mirrorweb-liquid-glass-v4",
-  "phase": 0,
-  "status": "phase1-development-ready-final-acceptance-blocked",
+  "phase": 1,
+  "status": "phase1-optics-lab-foundation-pass-final-acceptance-blocked",
   "baseline": {
     "branch": "rebuild/liquid-glass-v4",
     "sourceCommit": "e37bc539e127870d4c1428f12402319f1c98fbc3",
@@ -99,11 +99,41 @@
     ],
     "viteConfigExpectedRouteSnippet": "if (req.url === \"/glass-lab-v4\" || req.url.startsWith(\"/glass-lab-v4?\")) {\n      req.url = req.url.replace(\"/glass-lab-v4\", \"/glass-lab-v4.html\");\n      return;\n    }",
     "viteConfigExpectedInputLine": "glassLabV4: resolve(root, \"glass-lab-v4.html\"),",
-    "implementationStatus": "not-implemented"
+    "implementationStatus": "lab-only",
+    "queryScope": "/glass-lab-v4",
+    "mainPageRoutingStatus": "deferred-until-integration"
   },
   "v4": {
     "optics": {
-      "status": "not-implemented",
+      "status": "lab-foundation-structural-pass",
+      "route": "/glass-lab-v4",
+      "normalPath": "scene-color-target-only",
+      "materialSource": "src/materials/LiquidGlassMaterialV4.ts",
+      "geometrySource": "src/scene/ConvexGlassGeometryV4.ts",
+      "sceneTargetSource": "src/rendering/SceneColorTargetV4.ts",
+      "environmentSource": "src/v4/StripLightEnvironmentV4.ts",
+      "reflection": "mesh-physical-shell-plus-pointer-directional-key",
+      "explicitAttributes": [
+        "aEdgeDistance",
+        "aShoulder",
+        "aSidewall",
+        "aThickness",
+        "aCurvature"
+      ],
+      "debugViews": [
+        "beauty",
+        "edge-mask",
+        "normals",
+        "thickness",
+        "refraction-offset",
+        "reflection",
+        "fresnel",
+        "dispersion",
+        "adaptivity"
+      ],
+      "qaResult": "qa-v4/results/optics-lab-foundation.json",
+      "runtimeSourceSetSha256": "e50dd5f0d82689125056865d2e043e6072ddceff775d8c326eab765c67e503b3",
+      "mainIntegrationStatus": "not-started",
       "sceneTarget": {
         "colorSpace": "linear",
         "type": "half-float",
@@ -225,7 +255,10 @@
         "final-quantitative-acceptance",
         "strict-motion-fit",
         "target-source-commit"
-      ]
+      ],
+      "foundationStatus": "structural-pass",
+      "mainPageIntegrationAllowed": false,
+      "reason": "deterministic lab gate passed; Frozen Visual crop calibration and user visual review remain"
     },
     "finalAcceptance": {
       "requires": [

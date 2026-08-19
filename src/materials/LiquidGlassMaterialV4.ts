@@ -1,0 +1,307 @@
+import {
+  AdditiveBlending,
+  DirectionalLight,
+  MeshBasicNodeMaterial,
+  MeshPhysicalNodeMaterial,
+  type Texture,
+} from "three/webgpu";
+import {
+  Fn,
+  abs,
+  attribute,
+  cameraProjectionMatrix,
+  clamp,
+  float,
+  max,
+  min,
+  mix,
+  normalView,
+  positionView,
+  positionViewDirection,
+  pow,
+  screenUV,
+  smoothstep,
+  texture,
+  uniform,
+  vec2,
+  vec3,
+  vec4,
+} from "three/tsl";
+import {
+  V4_DEBUG_CODE,
+  V4_OPTICS_CONFIG,
+  type V4DebugMode,
+} from "../v4/OpticsConfigV4";
+
+export function createLiquidGlassParamsV4() {
+  const defaults = V4_OPTICS_CONFIG.material;
+  return {
+    ior: uniform(defaults.ior),
+    refractionDistance: uniform(defaults.refractionDistance),
+    maxRefractionUv: uniform(defaults.maxRefractionUv),
+    blurLod: uniform(defaults.blurLod),
+    dispersionUv: uniform(defaults.dispersionUv),
+    reflectionStrength: uniform(defaults.reflectionStrength),
+    roughnessCenter: uniform(defaults.roughnessCenter),
+    roughnessRim: uniform(defaults.roughnessRim),
+    fresnelPower: uniform(defaults.fresnelPower),
+    adaptivityRadiusUv: uniform(defaults.adaptivityRadiusUv),
+  };
+}
+
+export type LiquidGlassParamsV4 = ReturnType<typeof createLiquidGlassParamsV4>;
+
+export type LiquidGlassMaterialV4Handle = {
+  bodyMaterial: MeshBasicNodeMaterial;
+  reflectionMaterial: MeshPhysicalNodeMaterial;
+  params: LiquidGlassParamsV4;
+  setSceneColorTexture: (texture: Texture) => void;
+  setDebugMode: (mode: V4DebugMode) => void;
+  getDebugMode: () => V4DebugMode;
+  dispose: () => void;
+};
+
+function luminanceNode(color: any) {
+  return color.dot(vec3(0.2126, 0.7152, 0.0722));
+}
+
+/**
+ * V4's normal path accepts only the linear scene-color target. There is no
+ * media-map parameter by design, so direct media cannot become the optical
+ * body accidentally.
+ */
+export function createLiquidGlassMaterialV4(
+  sceneColorTexture: Texture,
+  params: LiquidGlassParamsV4 = createLiquidGlassParamsV4(),
+  initialDebugMode: V4DebugMode = "beauty",
+): LiquidGlassMaterialV4Handle {
+  const sceneColor = texture(sceneColorTexture);
+  const debugCode = uniform(V4_DEBUG_CODE[initialDebugMode]);
+  let debugMode = initialDebugMode;
+
+  const edgeDistance = attribute<"float">("aEdgeDistance", "float");
+  const shoulder = clamp(attribute<"float">("aShoulder", "float"), 0, 1);
+  const sidewall = clamp(attribute<"float">("aSidewall", "float"), 0, 1);
+  const thickness = max(attribute<"float">("aThickness", "float"), 0);
+  const curvature = clamp(attribute<"float">("aCurvature", "float"), 0, 1);
+  const rim = float(1).sub(smoothstep(0, V4_OPTICS_CONFIG.geometry.lensRimWidthPx, edgeDistance));
+  const lensZone = clamp(max(max(shoulder, rim), sidewall), 0, 1);
+  const thicknessNorm = clamp(
+    thickness.div(V4_OPTICS_CONFIG.geometry.baseThickness + V4_OPTICS_CONFIG.geometry.rolloverDepthPx),
+    0,
+    1,
+  );
+  const facing = clamp(normalView.dot(positionViewDirection), 0, 1);
+  const fresnel = pow(float(1).sub(facing), params.fresnelPower);
+
+  const incident = positionViewDirection.negate();
+  const refracted = incident.refract(normalView, float(1).div(params.ior));
+  const opticalTravel = params.refractionDistance
+    .mul(lensZone)
+    .mul(mix(0.35, 1, thicknessNorm))
+    .mul(mix(0.82, 1.12, curvature));
+  const surfaceClip = cameraProjectionMatrix.mul(vec4(positionView, 1));
+  const exitView = positionView.add(refracted.mul(opticalTravel));
+  const exitClip = cameraProjectionMatrix.mul(vec4(exitView, 1));
+  const surfaceNdc = surfaceClip.xy.div(surfaceClip.w);
+  const exitNdc = exitClip.xy.div(exitClip.w);
+  const rawOffset = exitNdc.sub(surfaceNdc).mul(vec2(0.5, -0.5));
+  // A finite scene plane needs a projected thin-lens correction in addition
+  // to the local Snell exit point. This keeps the center untouched while
+  // producing measurable, continuous compression across the optical shoulder
+  // and the strong rim instead of only blurring otherwise straight lines.
+  const projectedNormalOffset = vec2(normalView.x, normalView.y.negate())
+    .mul(params.maxRefractionUv)
+    .mul(lensZone)
+    .mul(mix(0.06, 0.3, curvature))
+    .mul(mix(0.65, 1, thicknessNorm));
+  const surfaceUv = attribute<"vec2">("uv", "vec2");
+  const radialScreenDirection = vec2(
+    surfaceUv.x.sub(0.5),
+    surfaceUv.y.sub(0.5).negate(),
+  ).add(vec2(1e-6, 0)).normalize();
+  const radialLensOffset = radialScreenDirection
+    .mul(params.maxRefractionUv)
+    .mul(rim.mul(0.04).add(shoulder.mul(0.024)).add(sidewall.mul(0.028)))
+    .mul(mix(0.65, 1, thicknessNorm));
+  const refractionOffset = clamp(
+    rawOffset.mul(2).add(projectedNormalOffset).add(radialLensOffset),
+    vec2(params.maxRefractionUv.negate()),
+    vec2(params.maxRefractionUv),
+  );
+  const refractedUv = clamp(screenUV.add(refractionOffset), vec2(0.001), vec2(0.999));
+  const blurLod = params.blurLod
+    .mul(pow(lensZone, 1.6))
+    .mul(mix(0.4, 1, thicknessNorm));
+
+  const fallbackDirection = vec2(normalView.x, normalView.y.negate())
+    .add(vec2(1e-5, 0))
+    .normalize();
+  const dispersionDirection = refractionOffset.length().greaterThan(1e-5)
+    .select(refractionOffset.normalize(), fallbackDirection);
+  const dispersionMask = rim.mul(float(1).sub(sidewall.mul(0.35)));
+  const dispersionDelta = dispersionDirection
+    .mul(params.dispersionUv)
+    .mul(dispersionMask);
+  const uvR = clamp(refractedUv.add(dispersionDelta), vec2(0.001), vec2(0.999));
+  const uvB = clamp(refractedUv.sub(dispersionDelta), vec2(0.001), vec2(0.999));
+
+  const sampleR = sceneColor.sample(uvR).level(blurLod);
+  const sampleG = sceneColor.sample(refractedUv).level(blurLod);
+  const sampleB = sceneColor.sample(uvB).level(blurLod);
+  const refractedColor = vec3(sampleR.r, sampleG.g, sampleB.b);
+
+  const adaptRadius = params.adaptivityRadiusUv;
+  const sampleLeft = sceneColor.sample(clamp(refractedUv.sub(vec2(adaptRadius, 0)), vec2(0.001), vec2(0.999))).level(float(0));
+  const sampleRight = sceneColor.sample(clamp(refractedUv.add(vec2(adaptRadius, 0)), vec2(0.001), vec2(0.999))).level(float(0));
+  const sampleTop = sceneColor.sample(clamp(refractedUv.sub(vec2(0, adaptRadius)), vec2(0.001), vec2(0.999))).level(float(0));
+  const sampleBottom = sceneColor.sample(clamp(refractedUv.add(vec2(0, adaptRadius)), vec2(0.001), vec2(0.999))).level(float(0));
+  const localLuma = luminanceNode(refractedColor);
+  const lumaLeft = luminanceNode(sampleLeft.rgb);
+  const lumaRight = luminanceNode(sampleRight.rgb);
+  const lumaTop = luminanceNode(sampleTop.rgb);
+  const lumaBottom = luminanceNode(sampleBottom.rgb);
+  const localContrast = clamp(
+    abs(lumaLeft.sub(lumaRight)).add(abs(lumaTop.sub(lumaBottom))).mul(1.8),
+    0,
+    1,
+  );
+  const maxChannel = max(max(refractedColor.r, refractedColor.g), refractedColor.b);
+  const minChannel = min(min(refractedColor.r, refractedColor.g), refractedColor.b);
+  const localChroma = clamp(maxChannel.sub(minChannel), 0, 1);
+  const darkBoost = float(1).sub(clamp(localLuma, 0, 1));
+  const flatBoost = float(1).sub(localContrast);
+  const adaptivity = clamp(darkBoost.mul(0.55).add(flatBoost.mul(0.3)).add(localChroma.mul(0.15)), 0, 1);
+
+  // Neutral contrast shaping only; V4 deliberately has no fixed blue/black body tint.
+  const contrastGain = float(1).add(localContrast.mul(lensZone).mul(0.08));
+  const contrastShaped = refractedColor
+    .sub(vec3(localLuma))
+    .mul(contrastGain)
+    .add(vec3(localLuma));
+  // Content-adaptive neutral volume cue: dark flat content receives a faint
+  // curvature lift, while bright flat content receives an equally local
+  // internal shadow. Both vanish on the clear center face and neither can
+  // become a fixed dark/blue body rim.
+  const adaptiveVolume = flatBoost.mul(curvature).mul(lensZone);
+  const adaptiveEdgeLift = adaptiveVolume.mul(darkBoost).mul(0.08);
+  const adaptiveInternalShadow = flatBoost
+    .mul(lensZone)
+    .mul(clamp(localLuma, 0, 1))
+    .mul(mix(0.06, 0.2, curvature));
+  const beauty = contrastShaped
+    .add(vec3(adaptiveEdgeLift))
+    .sub(vec3(adaptiveInternalShadow));
+
+  const edgeDebug = vec3(shoulder, rim, sidewall);
+  const normalsDebug = normalView.mul(0.5).add(0.5);
+  const thicknessDebug = vec3(thicknessNorm);
+  const offsetDebug = vec3(
+    refractionOffset.x.div(params.maxRefractionUv).mul(0.5).add(0.5),
+    refractionOffset.y.div(params.maxRefractionUv).mul(0.5).add(0.5),
+    lensZone,
+  );
+  const reflectionDebugBody = vec3(0);
+  const fresnelDebug = vec3(fresnel);
+  const dispersionDebug = vec3(
+    abs(sampleR.r.sub(sampleG.r)).mul(5),
+    0,
+    abs(sampleB.b.sub(sampleG.b)).mul(5),
+  );
+  const adaptivityDebug = vec3(localLuma, localContrast, localChroma);
+
+  const bodyColorNode = Fn(() => debugCode.equal(V4_DEBUG_CODE["edge-mask"]).select(
+    edgeDebug,
+    debugCode.equal(V4_DEBUG_CODE.normals).select(
+      normalsDebug,
+      debugCode.equal(V4_DEBUG_CODE.thickness).select(
+        thicknessDebug,
+        debugCode.equal(V4_DEBUG_CODE["refraction-offset"]).select(
+          offsetDebug,
+          debugCode.equal(V4_DEBUG_CODE.reflection).select(
+            reflectionDebugBody,
+            debugCode.equal(V4_DEBUG_CODE.fresnel).select(
+              fresnelDebug,
+              debugCode.equal(V4_DEBUG_CODE.dispersion).select(
+                dispersionDebug,
+                debugCode.equal(V4_DEBUG_CODE.adaptivity).select(adaptivityDebug, beauty),
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  ))();
+
+  const bodyMaterial = new MeshBasicNodeMaterial();
+  bodyMaterial.name = "MirrorWeb.LiquidGlassV4.Body";
+  bodyMaterial.colorNode = bodyColorNode;
+  bodyMaterial.transparent = false;
+  bodyMaterial.depthWrite = true;
+  bodyMaterial.toneMapped = true;
+
+  const shellEnabled = debugCode.equal(V4_DEBUG_CODE.beauty)
+    .or(debugCode.equal(V4_DEBUG_CODE.reflection))
+    .select(1, 0);
+  const shellZone = clamp(max(rim, shoulder.mul(0.72)).add(sidewall.mul(0.35)), 0, 1);
+  const shellOpacity = fresnel
+    .mul(0.24)
+    .add(shellZone.mul(0.17))
+    .mul(shellEnabled);
+  const reflectionMaterial = new MeshPhysicalNodeMaterial();
+  reflectionMaterial.name = "MirrorWeb.LiquidGlassV4.ReflectionShell";
+  reflectionMaterial.colorNode = vec3(0);
+  reflectionMaterial.metalnessNode = float(0);
+  reflectionMaterial.roughnessNode = mix(params.roughnessCenter, params.roughnessRim, shellZone);
+  reflectionMaterial.iorNode = params.ior;
+  reflectionMaterial.specularColorNode = vec3(1);
+  reflectionMaterial.specularIntensityNode = params.reflectionStrength
+    .mul(mix(0.72, 1.35, adaptivity));
+  reflectionMaterial.clearcoatNode = shellZone.mul(0.7);
+  reflectionMaterial.clearcoatRoughnessNode = params.roughnessRim;
+  reflectionMaterial.transmissionNode = float(0);
+  reflectionMaterial.opacityNode = clamp(shellOpacity, 0, 0.52);
+  reflectionMaterial.transparent = true;
+  reflectionMaterial.depthWrite = false;
+  reflectionMaterial.blending = AdditiveBlending;
+  reflectionMaterial.toneMapped = true;
+
+  return {
+    bodyMaterial,
+    reflectionMaterial,
+    params,
+    setSceneColorTexture: (next: Texture) => {
+      sceneColor.value = next;
+    },
+    setDebugMode: (mode: V4DebugMode) => {
+      debugMode = mode;
+      debugCode.value = V4_DEBUG_CODE[mode];
+    },
+    getDebugMode: () => debugMode,
+    dispose: () => {
+      bodyMaterial.dispose();
+      reflectionMaterial.dispose();
+    },
+  };
+}
+
+export function createPointerKeyLightV4(): DirectionalLight {
+  const config = V4_OPTICS_CONFIG.pointerLight;
+  const light = new DirectionalLight(0xffffff, config.intensity);
+  light.name = "MirrorWeb.V4.PointerKeyLight";
+  light.position.set(config.baseX, config.baseY, config.z);
+  light.target.position.set(0, 0, 0);
+  return light;
+}
+
+export function updatePointerKeyLightV4(light: DirectionalLight, x: number, y: number): void {
+  const config = V4_OPTICS_CONFIG.pointerLight;
+  const px = Math.max(-1, Math.min(1, x));
+  const py = Math.max(-1, Math.min(1, y));
+  light.position.set(
+    config.baseX + px * config.travelX,
+    config.baseY - py * config.travelY,
+    config.z,
+  );
+  light.updateMatrixWorld();
+}

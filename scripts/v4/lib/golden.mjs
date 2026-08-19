@@ -342,7 +342,7 @@ export async function createGoldenLock({ env = process.env } = {}) {
       private: true,
       createdAt: startedAt,
       assets: {
-        targetVideo: await inspectVideo(root, "frozen-target", env.ILG_TARGET_VIDEO ?? "target.mp4", "第二次案例视频(1).mp4"),
+        targetVideo: await inspectVideo(root, "frozen-target", env.ILG_TARGET_VIDEO ?? "target.mp4", "private-frozen-target.mp4"),
         currentVideo: await inspectVideo(root, "frozen-current-baseline", env.ILG_CURRENT_VIDEO ?? "current.mp4"),
         referenceScreenshots: [
           await inspectScreenshot(root, "target-annotated-roi", env.ILG_TARGET_SCREENSHOT ?? "target-annotated.png", "annotation-only"),

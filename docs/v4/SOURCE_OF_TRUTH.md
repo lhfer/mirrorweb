@@ -1,6 +1,6 @@
 # MirrorWeb V4 source of truth
 
-Status: **Phase 0 development gate passed: Controlled Local and Controlled Live are PASS, Frozen Visual is CONDITIONAL with one verified clean seed ROI, and final quantitative acceptance remains BLOCKED.**
+Status: **Phase 1 optics-lab foundation passed its deterministic structural gate. Controlled Local and Controlled Live remain PASS, Frozen Visual remains CONDITIONAL, main-page integration is not authorized, and final quantitative acceptance remains BLOCKED.**
 
 ## Authority order
 
@@ -16,7 +16,7 @@ No old report, green build, QA state string, live-site observation, or single sc
 
 The private set has three logical roles:
 
-- `target.mp4`: frozen target motion reference. The user-facing alias included `(1)`, while the provided local basename did not; path plus SHA-256 is authoritative.
+- `target.mp4`: frozen target motion reference. The requested alias and provided local basename differed; the private manifest path plus SHA-256 is authoritative, while public examples use a generic alias.
 - `current.mp4`: frozen V3 current-state baseline.
 - `target-annotated.png`: target screenshot with red regions of interest. It is `annotation-only`; the red strokes contaminate pixels and cannot be used as a full-frame difference Golden.
 
@@ -68,7 +68,7 @@ The block below is verified against both `config/calibration.v4.json` and curren
     "missingPolicy": "blocked"
   },
   "v4": {
-    "optics": "not-implemented",
+    "optics": "lab-foundation-structural-pass",
     "motionFit": "deferred-to-phase-3",
     "gridRingBuffer": "not-implemented"
   }
@@ -86,6 +86,16 @@ The block below is verified against both `config/calibration.v4.json` and curren
 - Motion: release velocity is based on the most recently accumulated RAF window and velocity is hard-zeroed below 70 px/s.
 - Typography: CSS3D is retained, but V4 target sizing and alignment are not implemented.
 
+## Isolated V4 optics-lab facts
+
+- Route: `/glass-lab-v4`; its `?optics=v3` and `?optics=v4` selectors, Split, and Difference views are lab-only. The production root still defaults to the untouched V3 implementation.
+- Normal V4 optical path: background test media → linear half-float Scene Color Target → V4 refraction body. `LiquidGlassMaterialV4` has no direct-media parameter.
+- V4 geometry exposes `aEdgeDistance`, `aShoulder`, `aSidewall`, `aThickness`, and `aCurvature`, using the implicit superellipse boundary and a continuous front rollover.
+- Reflection uses a `MeshPhysicalNodeMaterial` shell, a procedural strip-light environment, and a real pointer-driven Directional Light. Actual highlight centroids are measured from captured pixels; the runtime QA hook labels its pointer value as a light proxy rather than a centroid.
+- Deterministic content is registered identically between the V3 control and V4 candidate. The lab also supports local-session video loading without publishing or hotlinking private media.
+- The accepted structural run is bound to runtime source-set SHA-256 `e50dd5f0d82689125056865d2e043e6072ddceff775d8c326eab765c67e503b3` and sanitized metrics at `qa-v4/results/optics-lab-foundation.json`.
+- Its nine structural checks pass, but the result explicitly keeps `finalQuantitativeAcceptance: BLOCKED`; it is not a Frozen Visual equivalence result and contains no GPU timestamp-query measurement.
+
 ## Development gate versus final gate
 
 Phase 1 may start only when:
@@ -97,6 +107,6 @@ Phase 1 may start only when:
 - V3 still passes its runtime smoke check;
 - V4 work remains behind its own lab route and feature selector.
 
-Final quantitative acceptance is stricter. Missing strict Motion fit, controlled performance, or complete live-reference provenance still forbids `passed`, but does not by itself block the isolated Phase 1 optics experiment.
+Final quantitative acceptance is stricter. Missing Frozen Visual crop calibration, strict Motion fit, and controlled GPU performance still forbids final `passed`. The deterministic foundation result permits another isolated Phase 1 optics iteration only; it does not authorize main-page integration, Typography, Motion, or Grid work.
 
-The executable workflow, four-profile matrix, evidence retention policy, and replay commands are defined in `docs/v4/CONTROLLED_REFERENCE.md`.
+The executable workflow, four-profile matrix, evidence retention policy, and replay commands are defined in `docs/v4/CONTROLLED_REFERENCE.md`. The measured foundation result and its limitations are recorded in `docs/v4/OPTICS_LAB_FOUNDATION.md`.

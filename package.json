@@ -26,6 +26,8 @@
     "v4:capture:controlled": "node scripts/v4/capture-controlled-reference.mjs",
     "v4:references": "node scripts/v4/reference-status.mjs",
     "v4:schemas": "python3 scripts/v4/validate-reference-schemas.py",
+    "v4:capture:optics": "node scripts/v4/capture-optics-lab.mjs",
+    "v4:measure:optics": "python3 scripts/v4/measure-optics-lab.py",
     "qa:v4:baseline": "node scripts/v4/phase0-baseline.mjs"
   },
   "devDependencies": {

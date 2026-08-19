@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#050708" />
+    <meta name="color-scheme" content="dark" />
+    <title>MirrorWeb · Optics Bench V4</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <main id="lab-v4" aria-label="Liquid Glass V4 optical comparison lab">
+      <section id="lab-stage" aria-label="Live optical viewport">
+        <div id="lab-canvas" aria-hidden="true"></div>
+        <div class="stage-grid" aria-hidden="true"></div>
+        <div id="split-marker" aria-hidden="true">
+          <span>V3 / CONTROL</span>
+          <i></i>
+          <span>V4 / CANDIDATE</span>
+        </div>
+        <div class="stage-readout stage-readout--top" aria-hidden="true">
+          <span>OPTICAL AXIS · 0°</span>
+          <span id="stage-profile">RT 1.00 · DPR —</span>
+        </div>
+        <div class="stage-readout stage-readout--bottom" aria-hidden="true">
+          <span id="stage-pattern">PATTERN · CHECKER</span>
+          <span id="stage-pointer">POINTER · +0.000 / +0.000</span>
+        </div>
+        <div id="lab-blocked" role="alert" hidden>
+          <span>DEVICE GATE</span>
+          <strong>WebGPU unavailable</strong>
+          <p>The V4 optical bench requires a hardware WebGPU adapter.</p>
+        </div>
+      </section>
+
+      <aside id="lab-console" aria-label="Optical bench controls">
+        <header class="console-header">
+          <div class="console-kicker"><i></i> MIRRORWEB / V4</div>
+          <h1>Optics<br />Bench</h1>
+          <p>Isolated single-lens comparison. The production V3 route remains untouched.</p>
+        </header>
+
+        <section class="console-section" aria-labelledby="mode-label">
+          <div class="section-heading">
+            <h2 id="mode-label">Comparison</h2>
+            <output id="mode-output">SPLIT</output>
+          </div>
+          <div id="mode-controls" class="segment-grid segment-grid--four" role="group" aria-label="Comparison mode"></div>
+        </section>
+
+        <section class="console-section" aria-labelledby="pattern-label">
+          <div class="section-heading">
+            <h2 id="pattern-label">Scene source</h2>
+            <output id="pattern-output">CHECKER</output>
+          </div>
+          <div id="pattern-controls" class="pattern-grid" role="group" aria-label="Test pattern"></div>
+          <label class="video-loader">
+            <input id="video-input" type="file" accept="video/mp4,video/webm,video/quicktime" />
+            <span>Load local video</span>
+            <small>Private file stays in this browser session</small>
+          </label>
+        </section>
+
+        <section class="console-section" aria-labelledby="debug-label">
+          <div class="section-heading">
+            <h2 id="debug-label">V4 diagnostic</h2>
+            <output id="debug-output">BEAUTY</output>
+          </div>
+          <label class="select-shell">
+            <span class="sr-only">V4 diagnostic view</span>
+            <select id="debug-select"></select>
+          </label>
+        </section>
+
+        <section class="console-section console-section--telemetry" aria-labelledby="telemetry-label">
+          <div class="section-heading">
+            <h2 id="telemetry-label">Signal</h2>
+            <output id="ready-output">INITIALIZING</output>
+          </div>
+          <dl class="telemetry-grid">
+            <div><dt>Backend</dt><dd id="metric-backend">WEBGPU</dd></div>
+            <div><dt>Target</dt><dd id="metric-target">RGBA16F</dd></div>
+            <div><dt>Frame</dt><dd id="metric-frame">— MS</dd></div>
+            <div><dt>Light</dt><dd id="metric-light">0.00 / 0.00</dd></div>
+          </dl>
+        </section>
+
+        <footer class="console-footer">
+          <span><kbd>1–4</kbd> view</span>
+          <span><kbd>D</kbd> diagnostic</span>
+          <button id="reset-button" type="button">Reset bench</button>
+        </footer>
+      </aside>
+    </main>
+    <script type="module" src="/src/lab-v4/main.ts"></script>
+  </body>
+</html>

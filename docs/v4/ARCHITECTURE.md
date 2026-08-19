@@ -4,7 +4,32 @@
 
 This phase changes documentation, calibration, QA tooling, tests, and private-reference plumbing only. It does not modify `src/**`, HTML entry points, Vite routes, the V3 shader, geometry, typography, motion, grid recycling, or runtime quality behavior.
 
-The existing implementation remains the unflagged V3 baseline. `?optics=v3`, `?optics=v4`, and `/glass-lab-v4` are declared routes but are intentionally marked `not-implemented` until the optics-lab phase.
+The existing implementation remains the unflagged V3 baseline. Phase 0 declared the V4 boundary without changing runtime code.
+
+## Phase 1 isolated optics boundary
+
+`/glass-lab-v4` is now implemented as a single-lens test bench. Its `?optics=v3|v4`, V3, V4, Split, and Difference selectors are confined to the lab. The production root, main grid, CSS3D typography, motion controller, and adaptive quality implementation remain byte-identical to the accepted V3 baseline.
+
+```text
+Procedural pattern or local-session video
+                ↓
+registered background media plane
+                ↓
+linear RGBA16F Scene Color Target + mip chain
+                ↓
+V4 Snell/projected lens refraction body
+                +
+MeshPhysical reflection shell
+  ↙ procedural strip environment   ↘ pointer Directional Key Light
+                ↓
+linear V4 comparison target
+                ↓
+ACES tone map and output conversion
+```
+
+The V4 material factory has no `mediaMap` argument. Direct media sampling exists only in the isolated V3 control. Five geometry attributes partition center face, shoulder, lens rim, and sidewall. Blur and dispersion scale with the outer lens zone; adaptive neutral lift/shadow responds to local luminance and contrast instead of applying a fixed blue or black body.
+
+The lab emits nine diagnostic views and captures V3, V4, Split, Difference, a pure-black Edge Mask, line patterns, flat bright/dark patterns, synthetic high/low-frequency content, and a seven-point pointer path. Raw pixels and WebM stay ignored. The committed result contains hashes, aggregate metrics, and sanitized SVG plots only.
 
 ## Reference classes and evidence pipeline
 
@@ -67,9 +92,9 @@ The Phase 1 development gate requires source consistency, a commit-bound control
 
 Final quantitative acceptance additionally requires complete controlled live evidence, strict Motion fitting, controlled performance evidence, and closure of all P0/P1/P2 findings. A final `BLOCKED` does not automatically prevent the isolated optics lab from starting.
 
-## Planned phase isolation
+## Phase isolation
 
-- Phase 1: add V4 feature routing and `/glass-lab-v4`; implement and measure optics only.
+- Phase 1: `/glass-lab-v4` foundation is implemented and structurally measured; Frozen Visual crop fitting and visual review remain before any main integration.
 - Phase 2: typography only, preserving CSS3D and the V3 route.
 - Phase 3: deterministic motion fitting only.
 - Phase 4: 2D ring buffer, DOM reuse, video-frame updates, and real adaptive quality.

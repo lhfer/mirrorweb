@@ -1,0 +1,2014 @@
+{
+  "schemaVersion": 1,
+  "phase": "v4-02-optics-lab-foundation",
+  "generator": "optics-lab-measure-v1",
+  "generatedAt": "2026-08-19T10:42:00.303730+00:00",
+  "status": "PASS",
+  "measurementRun": {
+    "executed": true,
+    "inputManifestSha256": "278af3fdf21e5d2f634f9d13ece2017869774db448a1a5f22556093f70e609e0",
+    "screenshotSetSha256": "c59e75e33eaa5065786b62b840d4706973ee7410e430ca41a596a3e93ea597d7",
+    "evidenceSetSha256": "bd09bfeef4b6a24a79ff918927e02bd2720be18fb7b1c4323dabd07920b60c0c",
+    "privateSessionVideoSha256": "64d83840682a9098d87d800a6718bac2b8b73ff5c42642a934137355228d8b7b",
+    "privateUiPreviewSha256": "c5197c44792374d768ba7f766da4ea1c2d3c158936d134add239221033bb3033",
+    "privatePixelsCommitted": false
+  },
+  "runtimeContract": {
+    "passed": true,
+    "normalPathDirectMedia": false,
+    "sceneTarget": {
+      "type": "half-float",
+      "colorSpace": "linear",
+      "quality": "high",
+      "scale": 1,
+      "width": 1114,
+      "height": 900
+    },
+    "v3Preserved": true
+  },
+  "sourceIdentity": {
+    "head": "d7f4e31995716ab1982d20e3789391da482fede8",
+    "branch": "rebuild/liquid-glass-v4",
+    "dirtyWithinRuntimeScope": true,
+    "runtimeSourceSetSha256": "e50dd5f0d82689125056865d2e043e6072ddceff775d8c326eab765c67e503b3",
+    "files": [
+      {
+        "path": "glass-lab-v4.html",
+        "sha256": "8fc3fe394d9c54c69b66950db7131dbf7d44dc179e7c17320e050b403f170da5"
+      },
+      {
+        "path": "vite.config.ts",
+        "sha256": "8e0bb832943f7ef74d998484f09f72b117e04ca77f18ab9dfefc7198775371e3"
+      },
+      {
+        "path": "src/config.ts",
+        "sha256": "4732f33ac0debaebff458b2b7b4f553e5b3f4be9df451e7491410796cdac7775"
+      },
+      {
+        "path": "src/lab-v4/lab.css",
+        "sha256": "7920e3d75fdfd33594d10387838860e1dd295aca57d15bd2a88a00cbc117fa68"
+      },
+      {
+        "path": "src/lab-v4/main.ts",
+        "sha256": "33d99dc0bb34dbdc68710f4f6aa07971a4771ca00d813be119a0055f2c723390"
+      },
+      {
+        "path": "src/lab-v4/patterns.ts",
+        "sha256": "66288bbd149eb2551f839e5393c4b844c689dcf8a812d914c9a349f9b33f7444"
+      },
+      {
+        "path": "src/lab-v4/types.ts",
+        "sha256": "445bc5732c7c835c19902cfec1d3eb8068ac56e1f1930fad4b5d83c745ac08ff"
+      },
+      {
+        "path": "src/materials/LiquidGlassMaterial.ts",
+        "sha256": "70de5d3b93349900e6477d5c9b1ae46b933c7ed15807a117d8937c68ee90563d"
+      },
+      {
+        "path": "src/materials/LiquidGlassMaterialV4.ts",
+        "sha256": "ab51ad35ae887edd77e43c08619d4b024b04524df722bfbd3a4e4d1efdf772f1"
+      },
+      {
+        "path": "src/rendering/SceneColorTargetV4.ts",
+        "sha256": "a7ea5d7c415e82b173abe59ef9c38264ec63a3f66d2dc838324a1af3388e8457"
+      },
+      {
+        "path": "src/scene/ConvexGlassGeometry.ts",
+        "sha256": "e4543a5313d7c2a3b5066cffb61621062e23401dfa8a13e180d54516a8131bda"
+      },
+      {
+        "path": "src/scene/ConvexGlassGeometryV4.ts",
+        "sha256": "7a78196852361a574ae6260827939742ccb6acd36be0b222ba82030b45bbb50e"
+      },
+      {
+        "path": "src/v4/OpticsConfigV4.ts",
+        "sha256": "0acb52200ddfaa9753ad161d8de8eba359960cafed26e798523259e95c30a6a2"
+      },
+      {
+        "path": "src/v4/StripLightEnvironmentV4.ts",
+        "sha256": "8b78be55c636ef9f629a7c08fe95834e9de8087bcdbe84a7d803d8f623846ef2"
+      }
+    ]
+  },
+  "servedResourceIdentity": {
+    "resourceCount": 51,
+    "manifestSha256": "af3a1fc067a01fd5346969a9d605106a658f28d57fa6e883119ed444e8acee6f",
+    "resources": [
+      {
+        "path": "/@vite/client",
+        "bytes": 182631,
+        "sha256": "b69010c817ebddf57ca537827b3d53d842cf06004a6ae35f5b35b7d1ceaf296f"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/favicon.svg",
+        "bytes": 311,
+        "sha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5"
+      },
+      {
+        "path": "/glass-lab-v4",
+        "bytes": 4284,
+        "sha256": "1a6d2bfa8419d1d04c3ff6e875cb34916137de66c88e24c1017dd5c2d854790d"
+      },
+      {
+        "path": "/node_modules/.vite/deps/chunk-2WHRUISP.js",
+        "bytes": 1085055,
+        "sha256": "c760df3d38b9237f3d05be29762244c20c92d76667091494bcf0ccc683eab771"
+      },
+      {
+        "path": "/node_modules/.vite/deps/chunk-UGMCYUPN.js",
+        "bytes": 1712936,
+        "sha256": "4cc8e713b6ff0bdf686b309a3fefc5e5f1489cb9a7d00e4a44e2cf2c012044ad"
+      },
+      {
+        "path": "/node_modules/.vite/deps/three_tsl.js",
+        "bytes": 34264,
+        "sha256": "dcdbd38ba645e46136f6ef3911c66a8ffb784b54c1f049f7dbadc2da85313a5c"
+      },
+      {
+        "path": "/node_modules/.vite/deps/three_webgpu.js",
+        "bytes": 93330,
+        "sha256": "a13ff297baaf7a40c25131b187ef61d78e979325288129e6559f143614bb7d93"
+      },
+      {
+        "path": "/node_modules/@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2",
+        "bytes": 23128,
+        "sha256": "684ad5b531f81d43c1e8c7038262d5db7cdc1f68006e04d6c7769efa8d33c8cc"
+      },
+      {
+        "path": "/node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2",
+        "bytes": 29400,
+        "sha256": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1"
+      },
+      {
+        "path": "/node_modules/vite/dist/client/env.mjs",
+        "bytes": 3861,
+        "sha256": "004862df937de3eaacc341fe72d9b0b72454278a7accf493998a6b35a7c61217"
+      },
+      {
+        "path": "/src/config.ts",
+        "bytes": 4869,
+        "sha256": "3eb3213c81769d73c8d1f44505ef3370f40e5a2c71b5bc8b386cbabe3c411e9d"
+      },
+      {
+        "path": "/src/lab-v4/lab.css",
+        "bytes": 15165,
+        "sha256": "7baf04efa6cb48772c00585f2b63ea86e98388e3c1fbab09c079e6ad68e52129"
+      },
+      {
+        "path": "/src/lab-v4/main.ts",
+        "bytes": 67277,
+        "sha256": "e74fc521e1be7fd1002c3c2b777082b3793f31fc0e8a3cf5a5b99a0606d5a5d0"
+      },
+      {
+        "path": "/src/lab-v4/patterns.ts",
+        "bytes": 28914,
+        "sha256": "6d51bd66958258fdd6289b9c36580033ef30aa131858dbe88eb17f3fbf47d456"
+      },
+      {
+        "path": "/src/lab-v4/types.ts",
+        "bytes": 3601,
+        "sha256": "54ca03710cf8216a5c4b2cb5ed60caf6173ee39e48b62e51643e9868b72b742d"
+      },
+      {
+        "path": "/src/materials/LiquidGlassMaterial.ts",
+        "bytes": 16062,
+        "sha256": "9a4dd41b62c6624b2e8f91f39a4158da7a94d562219472092a84fa28e3123736"
+      },
+      {
+        "path": "/src/materials/LiquidGlassMaterialV4.ts",
+        "bytes": 37475,
+        "sha256": "7d1930a00213455f1baeb95f2fe93ebefab7a1b8a62b7872b071172d6253e286"
+      },
+      {
+        "path": "/src/rendering/SceneColorTargetV4.ts",
+        "bytes": 8094,
+        "sha256": "c7b7224b4392d18438942c5ab57ad0c4049ae4b4d0f9babe366b61ad99d41da7"
+      },
+      {
+        "path": "/src/scene/ConvexGlassGeometry.ts",
+        "bytes": 12657,
+        "sha256": "71e963725cd268c1ba1e540fcef454c830e4f3ae5a4085282b976b53a53db28d"
+      },
+      {
+        "path": "/src/scene/ConvexGlassGeometryV4.ts",
+        "bytes": 37258,
+        "sha256": "c8a7ac5f30f57b727f3ad3dfb29a068805003298053bad4bf89628306b167b1b"
+      },
+      {
+        "path": "/src/v4/OpticsConfigV4.ts",
+        "bytes": 6805,
+        "sha256": "6275990d87610ac302db72ed90ea0e1061220df34beeb0db65990662eaa36b58"
+      },
+      {
+        "path": "/src/v4/StripLightEnvironmentV4.ts",
+        "bytes": 8474,
+        "sha256": "7669b78e76973b55d58dc1f7d9deb14981f6a7c10ce95a37a1e43e199928feee"
+      }
+    ]
+  },
+  "environment": {
+    "browser": {
+      "product": "Chrome/151.0.7922.138",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+      "playwrightBrowserVersion": "151.0.7922.138",
+      "headed": true
+    },
+    "viewport": {
+      "width": 1440,
+      "height": 900,
+      "dpr": 1
+    },
+    "canvas": {
+      "index": 0,
+      "cssBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1114,
+        "height": 900
+      },
+      "cssWidth": 1114,
+      "cssHeight": 900,
+      "bufferWidth": 1114,
+      "bufferHeight": 900
+    },
+    "graphics": {
+      "webgpuAvailable": true,
+      "adapter": {
+        "vendor": "apple",
+        "architecture": "metal-3",
+        "device": null,
+        "description": null,
+        "isFallbackAdapter": false
+      },
+      "device": {
+        "vendorString": "Google Inc. (Apple)",
+        "deviceString": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5 Max, Version 27.0 (Build 26A5378n))",
+        "driverVendor": "Apple",
+        "driverVersion": "27.0"
+      },
+      "softwareRendererDetected": false
+    },
+    "observedCanvasContextTypes": [
+      "2d",
+      "webgpu"
+    ]
+  },
+  "metrics": {
+    "centerSharpness": {
+      "method": "RMS Sobel plus Laplacian energy on display-encoded deterministic checker capture",
+      "center": 0.20859766006469727,
+      "rim": 0.1413121521472931,
+      "centerToRimRatio": 1.476148065788927,
+      "centerSampleCount": 185084,
+      "rimSampleCount": 218648
+    },
+    "rimWidth": {
+      "method": "92nd-percentile inward distance of the measured edge-mask lens zone",
+      "pixels": 71.0,
+      "normalizedToShortCardSide": 0.10790273556231003,
+      "silhouetteAreaRatio": 0.48746459206064235
+    },
+    "lineDisplacement": {
+      "horizontal": {
+        "orientation": "horizontal",
+        "method": "per-line gutter peak matching with leading/trailing half-zone continuity and signed symmetric compression",
+        "sampleCount": 39,
+        "expectedSampleCount": 39,
+        "referenceLineCount": 54,
+        "lineSpacingPx": 12.0,
+        "lineMatchCount": 2060,
+        "possibleLineMatchCount": 2066,
+        "coverage": 0.9970958373668926,
+        "profileCoverage": 1.0,
+        "lineMatchCoverage": 0.9970958373668926,
+        "p95AdjacentShiftJumpPx": 0.30129386507746053,
+        "continuityScore": 0.9282633654577475,
+        "outerEdgeDisplacementPx": 2.3155160629349636,
+        "outerSymmetricCompressionPx": 0.11900708362658463,
+        "outerLineBendingP90Px": 0.9617879565124404,
+        "effectiveOuterDisplacementPx": 2.3155160629349636,
+        "maxAbsoluteDisplacementPx": 2.0433833035865065,
+        "sideMetrics": {
+          "leading": {
+            "sampleCount": 20,
+            "outerMedianAbsoluteDisplacementPx": 0.08495567104142765,
+            "outerMedianSymmetricCompressionPx": 0.11846555882611653
+          },
+          "trailing": {
+            "sampleCount": 20,
+            "outerMedianAbsoluteDisplacementPx": 0.08630086053165087,
+            "outerMedianSymmetricCompressionPx": 0.11954860842705273
+          }
+        },
+        "samples": [
+          {
+            "position": 0.03461538461538462,
+            "matchedLineCount": 45,
+            "possibleLineCount": 45,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.1907920390367508,
+            "medianAbsoluteDisplacementPx": 0.8100105157653843,
+            "p90AbsoluteDisplacementPx": 2.039770649457762,
+            "outerLineP90AbsoluteDisplacementPx": 2.406119966389059,
+            "upperMedianShiftPx": 0.9533343182796727,
+            "lowerMedianShiftPx": -1.2301658273297562,
+            "symmetricCompressionPx": 1.0917500728047145,
+            "displacementSlopePx": -2.4962831240759495
+          },
+          {
+            "position": 0.05897435897435897,
+            "matchedLineCount": 48,
+            "possibleLineCount": 48,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.26395314931869507,
+            "medianAbsoluteDisplacementPx": 0.6354905317695625,
+            "p90AbsoluteDisplacementPx": 1.945171861626373,
+            "outerLineP90AbsoluteDisplacementPx": 2.332634005146079,
+            "upperMedianShiftPx": 0.761388920983336,
+            "lowerMedianShiftPx": -0.8648035497415094,
+            "symmetricCompressionPx": 0.8130962353624227,
+            "displacementSlopePx": -1.9080832023321068
+          },
+          {
+            "position": 0.08333333333333333,
+            "matchedLineCount": 51,
+            "possibleLineCount": 51,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.4207129329442978,
+            "medianAbsoluteDisplacementPx": 0.3061622343259387,
+            "p90AbsoluteDisplacementPx": 1.4295543974287455,
+            "outerLineP90AbsoluteDisplacementPx": 2.225061576161039,
+            "upperMedianShiftPx": 0.3306981067583479,
+            "lowerMedianShiftPx": -0.4331749103444622,
+            "symmetricCompressionPx": 0.38193650855140504,
+            "displacementSlopePx": -1.358246894124303
+          },
+          {
+            "position": 0.1076923076923077,
+            "matchedLineCount": 52,
+            "possibleLineCount": 52,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.5684783309698105,
+            "medianAbsoluteDisplacementPx": 0.08495567104142765,
+            "p90AbsoluteDisplacementPx": 1.5447064396259345,
+            "outerLineP90AbsoluteDisplacementPx": 2.4491098100368514,
+            "upperMedianShiftPx": 0.11772694279747498,
+            "lowerMedianShiftPx": -0.1192041748547581,
+            "symmetricCompressionPx": 0.11846555882611653,
+            "displacementSlopePx": -1.2123473782225958
+          },
+          {
+            "position": 0.13205128205128205,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6102434992790222,
+            "medianAbsoluteDisplacementPx": 0.002351046963042336,
+            "p90AbsoluteDisplacementPx": 1.133948896904954,
+            "outerLineP90AbsoluteDisplacementPx": 2.057290261706833,
+            "upperMedianShiftPx": 0.006334904808539932,
+            "lowerMedianShiftPx": -0.005058186452799873,
+            "symmetricCompressionPx": 0.0056965456306699025,
+            "displacementSlopePx": -0.7665563449949616
+          },
+          {
+            "position": 0.1564102564102564,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6129869595170021,
+            "medianAbsoluteDisplacementPx": 0.0006506301542401616,
+            "p90AbsoluteDisplacementPx": 1.4370094009367853,
+            "outerLineP90AbsoluteDisplacementPx": 2.3254726803193106,
+            "upperMedianShiftPx": 0.0008001198060725301,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.00040005990303626504,
+            "displacementSlopePx": -1.0161651937393523
+          },
+          {
+            "position": 0.18076923076923077,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.00035622782212385573,
+            "p90AbsoluteDisplacementPx": 1.3220151582992608,
+            "outerLineP90AbsoluteDisplacementPx": 2.271715155321439,
+            "upperMedianShiftPx": 0.00035947368681377156,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.00017973684340688578,
+            "displacementSlopePx": -0.9573658289889834
+          },
+          {
+            "position": 0.20512820512820512,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 8.539861551071226e-05,
+            "p90AbsoluteDisplacementPx": 1.2571321769416022,
+            "outerLineP90AbsoluteDisplacementPx": 2.2470740617725253,
+            "upperMedianShiftPx": 0.00035947368681377156,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.00017973684340688578,
+            "displacementSlopePx": -0.928377134729138
+          },
+          {
+            "position": 0.23076923076923078,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 8.539861551071226e-05,
+            "p90AbsoluteDisplacementPx": 1.229926114516764,
+            "outerLineP90AbsoluteDisplacementPx": 2.166198087383509,
+            "upperMedianShiftPx": 0.00035947368681377156,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.00017973684340688578,
+            "displacementSlopePx": -0.9139328595291207
+          },
+          {
+            "position": 0.2551282051282051,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 8.539861551071226e-05,
+            "p90AbsoluteDisplacementPx": 1.2377813770843522,
+            "outerLineP90AbsoluteDisplacementPx": 2.1404665069400637,
+            "upperMedianShiftPx": 0.00035947368681377156,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.00017973684340688578,
+            "displacementSlopePx": -0.9127461557529295
+          },
+          {
+            "position": 0.2794871794871795,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 8.539861551071226e-05,
+            "p90AbsoluteDisplacementPx": 1.250241036080522,
+            "outerLineP90AbsoluteDisplacementPx": 2.148416205018728,
+            "upperMedianShiftPx": 0.00035947368681377156,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.00017973684340688578,
+            "displacementSlopePx": -0.9199753323858673
+          },
+          {
+            "position": 0.3038461538461538,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.00035594150006090786,
+            "p90AbsoluteDisplacementPx": 1.2795032619883677,
+            "outerLineP90AbsoluteDisplacementPx": 2.1544893479782132,
+            "upperMedianShiftPx": 0.00035947368681377156,
+            "lowerMedianShiftPx": -0.000301560575280746,
+            "symmetricCompressionPx": 0.00033051713104725877,
+            "displacementSlopePx": -0.9297605700739553
+          },
+          {
+            "position": 0.3282051282051282,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.000372187297799087,
+            "p90AbsoluteDisplacementPx": 1.3045474225052296,
+            "outerLineP90AbsoluteDisplacementPx": 2.1882113197161486,
+            "upperMedianShiftPx": 0.0003757194845519507,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.0005400567022704195,
+            "displacementSlopePx": -0.943934068796323
+          },
+          {
+            "position": 0.3525641025641026,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.000372187297799087,
+            "p90AbsoluteDisplacementPx": 1.3321235043798572,
+            "outerLineP90AbsoluteDisplacementPx": 2.2249443666336646,
+            "upperMedianShiftPx": 0.0003757194845519507,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.0005400567022704195,
+            "displacementSlopePx": -0.9577670610105795
+          },
+          {
+            "position": 0.3769230769230769,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.000372187297799087,
+            "p90AbsoluteDisplacementPx": 1.3596630016265983,
+            "outerLineP90AbsoluteDisplacementPx": 2.2467073314337456,
+            "upperMedianShiftPx": 0.0003757194845519507,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.0005400567022704195,
+            "displacementSlopePx": -0.9702668425433066
+          },
+          {
+            "position": 0.4012820512820513,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.000372187297799087,
+            "p90AbsoluteDisplacementPx": 1.3830564553210571,
+            "outerLineP90AbsoluteDisplacementPx": 2.260966110202122,
+            "upperMedianShiftPx": 0.0003757194845519507,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.0005400567022704195,
+            "displacementSlopePx": -0.9802944057799393
+          },
+          {
+            "position": 0.4256410256410256,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.000372187297799087,
+            "p90AbsoluteDisplacementPx": 1.3973759867158868,
+            "outerLineP90AbsoluteDisplacementPx": 2.289816413321111,
+            "upperMedianShiftPx": 0.0003757194845519507,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.0005400567022704195,
+            "displacementSlopePx": -0.9899970223734614
+          },
+          {
+            "position": 0.45,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.000372187297799087,
+            "p90AbsoluteDisplacementPx": 1.4092518079010807,
+            "outerLineP90AbsoluteDisplacementPx": 2.3032804428992817,
+            "upperMedianShiftPx": 0.0003757194845519507,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.0005400567022704195,
+            "displacementSlopePx": -0.995031996354308
+          },
+          {
+            "position": 0.47435897435897434,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.000372187297799087,
+            "p90AbsoluteDisplacementPx": 1.419756740129137,
+            "outerLineP90AbsoluteDisplacementPx": 2.3063846043634726,
+            "upperMedianShiftPx": 0.0003757194845519507,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.0005400567022704195,
+            "displacementSlopePx": -0.9997199720412177
+          },
+          {
+            "position": 0.5,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.000372187297799087,
+            "p90AbsoluteDisplacementPx": 1.4252838216795316,
+            "outerLineP90AbsoluteDisplacementPx": 2.306804128788468,
+            "upperMedianShiftPx": 0.0003757194845519507,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.0005400567022704195,
+            "displacementSlopePx": -1.0011200893158996
+          },
+          {
+            "position": 0.5243589743589744,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.000372187297799087,
+            "p90AbsoluteDisplacementPx": 1.4172942159665958,
+            "outerLineP90AbsoluteDisplacementPx": 2.306804128788468,
+            "upperMedianShiftPx": 0.0003757194845519507,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.0005400567022704195,
+            "displacementSlopePx": -0.9989483560241729
+          },
+          {
+            "position": 0.5487179487179488,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.000372187297799087,
+            "p90AbsoluteDisplacementPx": 1.4068261159241138,
+            "outerLineP90AbsoluteDisplacementPx": 2.299196457648409,
+            "upperMedianShiftPx": 0.0003757194845519507,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.0005400567022704195,
+            "displacementSlopePx": -0.9939328138281175
+          },
+          {
+            "position": 0.573076923076923,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.000372187297799087,
+            "p90AbsoluteDisplacementPx": 1.3959711439718723,
+            "outerLineP90AbsoluteDisplacementPx": 2.2908929683682144,
+            "upperMedianShiftPx": 0.0003757194845519507,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.0005400567022704195,
+            "displacementSlopePx": -0.9893749597272128
+          },
+          {
+            "position": 0.5974358974358974,
+            "matchedLineCount": 52,
+            "possibleLineCount": 54,
+            "matchCoverage": 0.9629629629629629,
+            "medianPeakContrast": 0.6138824447989464,
+            "medianAbsoluteDisplacementPx": 0.0001250076472985029,
+            "p90AbsoluteDisplacementPx": 1.4254503335421018,
+            "outerLineP90AbsoluteDisplacementPx": 2.2755127608449275,
+            "upperMedianShiftPx": 0.0001250076472985029,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.00041470078364369556,
+            "displacementSlopePx": -0.9726396531200941
+          },
+          {
+            "position": 0.6217948717948718,
+            "matchedLineCount": 52,
+            "possibleLineCount": 54,
+            "matchCoverage": 0.9629629629629629,
+            "medianPeakContrast": 0.6142850518226624,
+            "medianAbsoluteDisplacementPx": 0.0001250076472985029,
+            "p90AbsoluteDisplacementPx": 1.4016989903720056,
+            "outerLineP90AbsoluteDisplacementPx": 2.2597242721324933,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.0003521969599944441,
+            "displacementSlopePx": -0.9629945928609248
+          },
+          {
+            "position": 0.6461538461538462,
+            "matchedLineCount": 52,
+            "possibleLineCount": 54,
+            "matchCoverage": 0.9629629629629629,
+            "medianPeakContrast": 0.6142850518226624,
+            "medianAbsoluteDisplacementPx": 0.0001250076472985029,
+            "p90AbsoluteDisplacementPx": 1.374979667143992,
+            "outerLineP90AbsoluteDisplacementPx": 2.234642685604277,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.0003521969599944441,
+            "displacementSlopePx": -0.9505597405630112
+          },
+          {
+            "position": 0.6705128205128205,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6129869595170021,
+            "medianAbsoluteDisplacementPx": 0.0006062325215339115,
+            "p90AbsoluteDisplacementPx": 1.3043946725164097,
+            "outerLineP90AbsoluteDisplacementPx": 2.20103835854423,
+            "upperMedianShiftPx": 5.438092478016188e-05,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.00037938742238452505,
+            "displacementSlopePx": -0.9447277700740733
+          },
+          {
+            "position": 0.6948717948717948,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 8.5401916066985e-05,
+            "p90AbsoluteDisplacementPx": 1.279181558231287,
+            "outerLineP90AbsoluteDisplacementPx": 2.158371975994015,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": -0.000301560575280746,
+            "symmetricCompressionPx": 0.000150780287640373,
+            "displacementSlopePx": -0.9295414877292912
+          },
+          {
+            "position": 0.7192307692307692,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 8.5401916066985e-05,
+            "p90AbsoluteDisplacementPx": 1.2497192423322336,
+            "outerLineP90AbsoluteDisplacementPx": 2.154793248666175,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": -0.000301560575280746,
+            "symmetricCompressionPx": 0.000150780287640373,
+            "displacementSlopePx": -0.9206252574976477
+          },
+          {
+            "position": 0.7435897435897436,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 8.5401916066985e-05,
+            "p90AbsoluteDisplacementPx": 1.239476859064482,
+            "outerLineP90AbsoluteDisplacementPx": 2.1467625304866886,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": -0.000301560575280746,
+            "symmetricCompressionPx": 0.000150780287640373,
+            "displacementSlopePx": -0.9130599419814117
+          },
+          {
+            "position": 0.767948717948718,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 8.5401916066985e-05,
+            "p90AbsoluteDisplacementPx": 1.2378387558744612,
+            "outerLineP90AbsoluteDisplacementPx": 2.175490862695443,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": -0.000301560575280746,
+            "symmetricCompressionPx": 0.000150780287640373,
+            "displacementSlopePx": -0.9151913449188734
+          },
+          {
+            "position": 0.7935897435897435,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 8.5401916066985e-05,
+            "p90AbsoluteDisplacementPx": 1.2645380614513875,
+            "outerLineP90AbsoluteDisplacementPx": 2.2423488693273925,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": -0.000301560575280746,
+            "symmetricCompressionPx": 0.000150780287640373,
+            "displacementSlopePx": -0.9265657759084978
+          },
+          {
+            "position": 0.8179487179487179,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6138782799243927,
+            "medianAbsoluteDisplacementPx": 0.00035594150006090786,
+            "p90AbsoluteDisplacementPx": 1.319690372849258,
+            "outerLineP90AbsoluteDisplacementPx": 2.272277798425523,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": -0.0007043939199888882,
+            "symmetricCompressionPx": 0.0003521969599944441,
+            "displacementSlopePx": -0.9578550871520537
+          },
+          {
+            "position": 0.8423076923076923,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6129869595170021,
+            "medianAbsoluteDisplacementPx": 0.0006498638741447849,
+            "p90AbsoluteDisplacementPx": 1.4261051080492173,
+            "outerLineP90AbsoluteDisplacementPx": 2.3233149254626113,
+            "upperMedianShiftPx": 5.438092478016188e-05,
+            "lowerMedianShiftPx": -0.0017784300391667784,
+            "symmetricCompressionPx": 0.0009164054819734702,
+            "displacementSlopePx": -1.0177082996374194
+          },
+          {
+            "position": 0.8666666666666667,
+            "matchedLineCount": 54,
+            "possibleLineCount": 54,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.6102434992790222,
+            "medianAbsoluteDisplacementPx": 0.002856491392861926,
+            "p90AbsoluteDisplacementPx": 1.135806185232471,
+            "outerLineP90AbsoluteDisplacementPx": 2.0752640585795175,
+            "upperMedianShiftPx": 0.005620243132256064,
+            "lowerMedianShiftPx": -0.006637639723010125,
+            "symmetricCompressionPx": 0.0061289414276330945,
+            "displacementSlopePx": -0.7687852357365161
+          },
+          {
+            "position": 0.8910256410256411,
+            "matchedLineCount": 52,
+            "possibleLineCount": 52,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.5684783309698105,
+            "medianAbsoluteDisplacementPx": 0.08630086053165087,
+            "p90AbsoluteDisplacementPx": 1.5515813404442207,
+            "outerLineP90AbsoluteDisplacementPx": 2.449477681920997,
+            "upperMedianShiftPx": 0.11772694279747498,
+            "lowerMedianShiftPx": -0.12137027405663048,
+            "symmetricCompressionPx": 0.11954860842705273,
+            "displacementSlopePx": -1.212184298151216
+          },
+          {
+            "position": 0.9153846153846154,
+            "matchedLineCount": 51,
+            "possibleLineCount": 51,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.4214753210544586,
+            "medianAbsoluteDisplacementPx": 0.3061622343259387,
+            "p90AbsoluteDisplacementPx": 1.4297637457221413,
+            "outerLineP90AbsoluteDisplacementPx": 2.23390892624991,
+            "upperMedianShiftPx": 0.3307834134220684,
+            "lowerMedianShiftPx": -0.4344136357792081,
+            "symmetricCompressionPx": 0.38259852460063826,
+            "displacementSlopePx": -1.3599025916191128
+          },
+          {
+            "position": 0.9397435897435897,
+            "matchedLineCount": 48,
+            "possibleLineCount": 48,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.2635485455393791,
+            "medianAbsoluteDisplacementPx": 0.6385798694042819,
+            "p90AbsoluteDisplacementPx": 1.9465680420858869,
+            "outerLineP90AbsoluteDisplacementPx": 2.3284334187291704,
+            "upperMedianShiftPx": 0.7595682094799372,
+            "lowerMedianShiftPx": -0.8648035497415094,
+            "symmetricCompressionPx": 0.8121858796107233,
+            "displacementSlopePx": -1.9094563187650702
+          },
+          {
+            "position": 0.9641025641025641,
+            "matchedLineCount": 45,
+            "possibleLineCount": 45,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.19163353741168976,
+            "medianAbsoluteDisplacementPx": 0.8100105157653843,
+            "p90AbsoluteDisplacementPx": 2.0433833035865065,
+            "outerLineP90AbsoluteDisplacementPx": 2.4052672427534447,
+            "upperMedianShiftPx": 0.9457038782288691,
+            "lowerMedianShiftPx": -1.201282616106596,
+            "symmetricCompressionPx": 1.0734932471677325,
+            "displacementSlopePx": -2.498416454217466
+          }
+        ]
+      },
+      "vertical": {
+        "orientation": "vertical",
+        "method": "per-line gutter peak matching with leading/trailing half-zone continuity and signed symmetric compression",
+        "sampleCount": 39,
+        "expectedSampleCount": 39,
+        "referenceLineCount": 90,
+        "lineSpacingPx": 9.0,
+        "lineMatchCount": 3336,
+        "possibleLineMatchCount": 3420,
+        "coverage": 0.9754385964912281,
+        "profileCoverage": 1.0,
+        "lineMatchCoverage": 0.9754385964912281,
+        "p95AdjacentShiftJumpPx": 0.5176794695157609,
+        "continuityScore": 0.8356573112648378,
+        "outerEdgeDisplacementPx": 2.463564627144638,
+        "outerSymmetricCompressionPx": 0.32128310558144335,
+        "outerLineBendingP90Px": 1.5268858877826363,
+        "effectiveOuterDisplacementPx": 2.463564627144638,
+        "maxAbsoluteDisplacementPx": 2.4349682120387572,
+        "sideMetrics": {
+          "leading": {
+            "sampleCount": 20,
+            "outerMedianAbsoluteDisplacementPx": 0.20360965266888797,
+            "outerMedianSymmetricCompressionPx": 0.3215867426307
+          },
+          "trailing": {
+            "sampleCount": 20,
+            "outerMedianAbsoluteDisplacementPx": 0.20278757983950868,
+            "outerMedianSymmetricCompressionPx": 0.32097946853218673
+          }
+        },
+        "samples": [
+          {
+            "position": 0.034954407294832825,
+            "matchedLineCount": 69,
+            "possibleLineCount": 72,
+            "matchCoverage": 0.9583333333333334,
+            "medianPeakContrast": 0.11565230786800385,
+            "medianAbsoluteDisplacementPx": 1.2914277564827898,
+            "p90AbsoluteDisplacementPx": 2.4349682120387572,
+            "outerLineP90AbsoluteDisplacementPx": 2.8517044405072625,
+            "upperMedianShiftPx": 1.6039590593727553,
+            "lowerMedianShiftPx": -1.677368968237488,
+            "symmetricCompressionPx": 1.6406640138051216,
+            "displacementSlopePx": -3.44547960485617
+          },
+          {
+            "position": 0.05927051671732523,
+            "matchedLineCount": 78,
+            "possibleLineCount": 79,
+            "matchCoverage": 0.9873417721518988,
+            "medianPeakContrast": 0.1173657476902008,
+            "medianAbsoluteDisplacementPx": 0.8880152667435937,
+            "p90AbsoluteDisplacementPx": 2.1078974681928058,
+            "outerLineP90AbsoluteDisplacementPx": 2.8926877787497403,
+            "upperMedianShiftPx": 0.9536669539010347,
+            "lowerMedianShiftPx": -1.0692143506856269,
+            "symmetricCompressionPx": 1.0114406522933308,
+            "displacementSlopePx": -2.4338509675152125
+          },
+          {
+            "position": 0.08358662613981763,
+            "matchedLineCount": 71,
+            "possibleLineCount": 82,
+            "matchCoverage": 0.8658536585365854,
+            "medianPeakContrast": 0.1811804324388504,
+            "medianAbsoluteDisplacementPx": 0.7391801638320885,
+            "p90AbsoluteDisplacementPx": 2.0775139554562543,
+            "outerLineP90AbsoluteDisplacementPx": 2.8695982505839766,
+            "upperMedianShiftPx": 0.7463396413062924,
+            "lowerMedianShiftPx": -0.8955449542252154,
+            "symmetricCompressionPx": 0.8209422977657539,
+            "displacementSlopePx": -1.949300975569462
+          },
+          {
+            "position": 0.10790273556231003,
+            "matchedLineCount": 86,
+            "possibleLineCount": 86,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.30407706648111343,
+            "medianAbsoluteDisplacementPx": 0.20360965266888797,
+            "p90AbsoluteDisplacementPx": 1.751009373098725,
+            "outerLineP90AbsoluteDisplacementPx": 2.591005079832101,
+            "upperMedianShiftPx": 0.2752346924361291,
+            "lowerMedianShiftPx": -0.36793879282527087,
+            "symmetricCompressionPx": 0.3215867426307,
+            "displacementSlopePx": -1.3727881267585282
+          },
+          {
+            "position": 0.13221884498480244,
+            "matchedLineCount": 88,
+            "possibleLineCount": 88,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.46611347049474716,
+            "medianAbsoluteDisplacementPx": 0.03956729277919635,
+            "p90AbsoluteDisplacementPx": 1.3233205764353881,
+            "outerLineP90AbsoluteDisplacementPx": 2.585526631513655,
+            "upperMedianShiftPx": 0.0713686154598463,
+            "lowerMedianShiftPx": -0.06492248999217054,
+            "symmetricCompressionPx": 0.06814555272600842,
+            "displacementSlopePx": -1.0594875315314907
+          },
+          {
+            "position": 0.15653495440729484,
+            "matchedLineCount": 87,
+            "possibleLineCount": 88,
+            "matchCoverage": 0.9886363636363636,
+            "medianPeakContrast": 0.5240553319454193,
+            "medianAbsoluteDisplacementPx": 0.0027896719136606407,
+            "p90AbsoluteDisplacementPx": 1.5926628552417417,
+            "outerLineP90AbsoluteDisplacementPx": 2.49595368719631,
+            "upperMedianShiftPx": 0.003723524396832545,
+            "lowerMedianShiftPx": -0.0035028896672884002,
+            "symmetricCompressionPx": 0.0036132070320604726,
+            "displacementSlopePx": -0.9703429137908941
+          },
+          {
+            "position": 0.18085106382978725,
+            "matchedLineCount": 89,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9888888888888889,
+            "medianPeakContrast": 0.5259046703577042,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.235196330229394,
+            "outerLineP90AbsoluteDisplacementPx": 2.127890122572923,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.7968035476727118
+          },
+          {
+            "position": 0.20516717325227962,
+            "matchedLineCount": 87,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9666666666666667,
+            "medianPeakContrast": 0.5290467143058777,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.1520006968654124,
+            "outerLineP90AbsoluteDisplacementPx": 2.132744255125805,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.7923570826822308
+          },
+          {
+            "position": 0.22948328267477203,
+            "matchedLineCount": 87,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9666666666666667,
+            "medianPeakContrast": 0.5292675346136093,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.1137909775341437,
+            "outerLineP90AbsoluteDisplacementPx": 2.050191763717657,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.7642984949606618
+          },
+          {
+            "position": 0.25379939209726443,
+            "matchedLineCount": 87,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9666666666666667,
+            "medianPeakContrast": 0.5292675346136093,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.1065026202536457,
+            "outerLineP90AbsoluteDisplacementPx": 2.0228287505419185,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.754152914477591
+          },
+          {
+            "position": 0.2796352583586626,
+            "matchedLineCount": 87,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9666666666666667,
+            "medianPeakContrast": 0.5294448882341385,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.1057637745361446,
+            "outerLineP90AbsoluteDisplacementPx": 2.0251956314211608,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.753075134711548
+          },
+          {
+            "position": 0.303951367781155,
+            "matchedLineCount": 87,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9666666666666667,
+            "medianPeakContrast": 0.5292675346136093,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.1158593425438381,
+            "outerLineP90AbsoluteDisplacementPx": 2.0364931090140197,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.7589128758818575
+          },
+          {
+            "position": 0.3282674772036474,
+            "matchedLineCount": 87,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9666666666666667,
+            "medianPeakContrast": 0.5292241275310516,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.1285191363623042,
+            "outerLineP90AbsoluteDisplacementPx": 2.0505025705998485,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.764512511301332
+          },
+          {
+            "position": 0.3525835866261398,
+            "matchedLineCount": 88,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9777777777777777,
+            "medianPeakContrast": 0.5282292738556862,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.346878746371439,
+            "outerLineP90AbsoluteDisplacementPx": 2.346222632211101,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.6243913642936311
+          },
+          {
+            "position": 0.3768996960486322,
+            "matchedLineCount": 88,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9777777777777777,
+            "medianPeakContrast": 0.5282292738556862,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.371590804693528,
+            "outerLineP90AbsoluteDisplacementPx": 2.3855684292776487,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.6330099670737857
+          },
+          {
+            "position": 0.4012158054711246,
+            "matchedLineCount": 88,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9777777777777777,
+            "medianPeakContrast": 0.5282292738556862,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.4012283736948201,
+            "outerLineP90AbsoluteDisplacementPx": 2.418167365112484,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.6399660949501368
+          },
+          {
+            "position": 0.425531914893617,
+            "matchedLineCount": 88,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9777777777777777,
+            "medianPeakContrast": 0.5282292738556862,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.4141273640634748,
+            "outerLineP90AbsoluteDisplacementPx": 2.4353948447463467,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.6465391863507928
+          },
+          {
+            "position": 0.44984802431610943,
+            "matchedLineCount": 88,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9777777777777777,
+            "medianPeakContrast": 0.5282292738556862,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.4278555497801189,
+            "outerLineP90AbsoluteDisplacementPx": 2.4560441965152453,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.6518566760487449
+          },
+          {
+            "position": 0.47416413373860183,
+            "matchedLineCount": 88,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9777777777777777,
+            "medianPeakContrast": 0.5282292738556862,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.4392625985536338,
+            "outerLineP90AbsoluteDisplacementPx": 2.464575937550629,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.6531765466026823
+          },
+          {
+            "position": 0.5,
+            "matchedLineCount": 88,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9777777777777777,
+            "medianPeakContrast": 0.5282292738556862,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.449435461669287,
+            "outerLineP90AbsoluteDisplacementPx": 2.464713884932104,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.6543689500167924
+          },
+          {
+            "position": 0.5243161094224924,
+            "matchedLineCount": 88,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9777777777777777,
+            "medianPeakContrast": 0.5291354209184647,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.4392625985536338,
+            "outerLineP90AbsoluteDisplacementPx": 2.464575937550629,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.6536155972419131
+          },
+          {
+            "position": 0.5486322188449848,
+            "matchedLineCount": 88,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9777777777777777,
+            "medianPeakContrast": 0.5282292738556862,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.431324731115745,
+            "outerLineP90AbsoluteDisplacementPx": 2.4543655267387523,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.6511869273312927
+          },
+          {
+            "position": 0.5729483282674772,
+            "matchedLineCount": 88,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9777777777777777,
+            "medianPeakContrast": 0.5282292738556862,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.4141273640634748,
+            "outerLineP90AbsoluteDisplacementPx": 2.4353948447463467,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.6467231391745347
+          },
+          {
+            "position": 0.5972644376899696,
+            "matchedLineCount": 88,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9777777777777777,
+            "medianPeakContrast": 0.5282292738556862,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.4012283736948201,
+            "outerLineP90AbsoluteDisplacementPx": 2.4163718871460134,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.6400397720292117
+          },
+          {
+            "position": 0.621580547112462,
+            "matchedLineCount": 88,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9777777777777777,
+            "medianPeakContrast": 0.5282292738556862,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.371590804693528,
+            "outerLineP90AbsoluteDisplacementPx": 2.3848713286789036,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.6328156440941145
+          },
+          {
+            "position": 0.6458966565349544,
+            "matchedLineCount": 88,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9777777777777777,
+            "medianPeakContrast": 0.5291571244597435,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.346878746371439,
+            "outerLineP90AbsoluteDisplacementPx": 2.346222632211101,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.6244679868411358
+          },
+          {
+            "position": 0.6702127659574468,
+            "matchedLineCount": 87,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9666666666666667,
+            "medianPeakContrast": 0.5292675346136093,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.1287964232366292,
+            "outerLineP90AbsoluteDisplacementPx": 2.0498053196037853,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.7637352921724488
+          },
+          {
+            "position": 0.6945288753799392,
+            "matchedLineCount": 87,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9666666666666667,
+            "medianPeakContrast": 0.5292675346136093,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.1168404554666223,
+            "outerLineP90AbsoluteDisplacementPx": 2.0320110216232248,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.7590663365736099
+          },
+          {
+            "position": 0.7188449848024316,
+            "matchedLineCount": 87,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9666666666666667,
+            "medianPeakContrast": 0.5294448882341385,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.1061309169814035,
+            "outerLineP90AbsoluteDisplacementPx": 2.026037679147441,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.7528006549853347
+          },
+          {
+            "position": 0.7446808510638298,
+            "matchedLineCount": 87,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9666666666666667,
+            "medianPeakContrast": 0.5292675346136093,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.1066142537414247,
+            "outerLineP90AbsoluteDisplacementPx": 2.0231763499703104,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.753681434041697
+          },
+          {
+            "position": 0.7689969604863222,
+            "matchedLineCount": 87,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9666666666666667,
+            "medianPeakContrast": 0.5292675346136093,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.1146123139188613,
+            "outerLineP90AbsoluteDisplacementPx": 2.0405272281415927,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.7635315001973217
+          },
+          {
+            "position": 0.7933130699088146,
+            "matchedLineCount": 87,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9666666666666667,
+            "medianPeakContrast": 0.5290467143058777,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.1520620078169326,
+            "outerLineP90AbsoluteDisplacementPx": 2.13163972937375,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.7932435609413614
+          },
+          {
+            "position": 0.817629179331307,
+            "matchedLineCount": 89,
+            "possibleLineCount": 90,
+            "matchCoverage": 0.9888888888888889,
+            "medianPeakContrast": 0.5259046703577042,
+            "medianAbsoluteDisplacementPx": 0.0,
+            "p90AbsoluteDisplacementPx": 1.2387427142055687,
+            "outerLineP90AbsoluteDisplacementPx": 2.129738282096266,
+            "upperMedianShiftPx": 0.0,
+            "lowerMedianShiftPx": 0.0,
+            "symmetricCompressionPx": 0.0,
+            "displacementSlopePx": -0.7974468444013713
+          },
+          {
+            "position": 0.8419452887537994,
+            "matchedLineCount": 87,
+            "possibleLineCount": 88,
+            "matchCoverage": 0.9886363636363636,
+            "medianPeakContrast": 0.5240553319454193,
+            "medianAbsoluteDisplacementPx": 0.002723312688090118,
+            "p90AbsoluteDisplacementPx": 1.595536553343863,
+            "outerLineP90AbsoluteDisplacementPx": 2.498810362406038,
+            "upperMedianShiftPx": 0.004989539973450974,
+            "lowerMedianShiftPx": -0.0030699288377036282,
+            "symmetricCompressionPx": 0.004029734405577301,
+            "displacementSlopePx": -0.9714098433645241
+          },
+          {
+            "position": 0.8662613981762918,
+            "matchedLineCount": 88,
+            "possibleLineCount": 88,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.4657498151063919,
+            "medianAbsoluteDisplacementPx": 0.0403834323139165,
+            "p90AbsoluteDisplacementPx": 1.3216034282286484,
+            "outerLineP90AbsoluteDisplacementPx": 2.588762448426123,
+            "upperMedianShiftPx": 0.0762315544056662,
+            "lowerMedianShiftPx": -0.06072556826950404,
+            "symmetricCompressionPx": 0.06847856133758512,
+            "displacementSlopePx": -1.0591643934994814
+          },
+          {
+            "position": 0.8905775075987842,
+            "matchedLineCount": 86,
+            "possibleLineCount": 86,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.31817204505205154,
+            "medianAbsoluteDisplacementPx": 0.20278757983950868,
+            "p90AbsoluteDisplacementPx": 1.750284915292923,
+            "outerLineP90AbsoluteDisplacementPx": 2.591005079832101,
+            "upperMedianShiftPx": 0.27324887068687076,
+            "lowerMedianShiftPx": -0.3687100663775027,
+            "symmetricCompressionPx": 0.32097946853218673,
+            "displacementSlopePx": -1.3728539585232136
+          },
+          {
+            "position": 0.9148936170212766,
+            "matchedLineCount": 81,
+            "possibleLineCount": 82,
+            "matchCoverage": 0.9878048780487805,
+            "medianPeakContrast": 0.19502542912960052,
+            "medianAbsoluteDisplacementPx": 0.6353680619089346,
+            "p90AbsoluteDisplacementPx": 1.9658549089682538,
+            "outerLineP90AbsoluteDisplacementPx": 2.8695982505839766,
+            "upperMedianShiftPx": 0.7463396413062924,
+            "lowerMedianShiftPx": -0.7580844008617191,
+            "symmetricCompressionPx": 0.7522120210840058,
+            "displacementSlopePx": -1.9396167617252391
+          },
+          {
+            "position": 0.939209726443769,
+            "matchedLineCount": 79,
+            "possibleLineCount": 79,
+            "matchCoverage": 1.0,
+            "medianPeakContrast": 0.11969111859798431,
+            "medianAbsoluteDisplacementPx": 0.8970422191180774,
+            "p90AbsoluteDisplacementPx": 2.2056024127374037,
+            "outerLineP90AbsoluteDisplacementPx": 2.912935275355244,
+            "upperMedianShiftPx": 0.9863575222466352,
+            "lowerMedianShiftPx": -1.050800985521164,
+            "symmetricCompressionPx": 1.0185792538838996,
+            "displacementSlopePx": -2.4907814394294467
+          },
+          {
+            "position": 0.9635258358662614,
+            "matchedLineCount": 70,
+            "possibleLineCount": 72,
+            "matchCoverage": 0.9722222222222222,
+            "medianPeakContrast": 0.1142922192811966,
+            "medianAbsoluteDisplacementPx": 1.2618960897166858,
+            "p90AbsoluteDisplacementPx": 2.4229587177544603,
+            "outerLineP90AbsoluteDisplacementPx": 2.8539575928750196,
+            "upperMedianShiftPx": 1.6021765802838104,
+            "lowerMedianShiftPx": -1.6780118961635253,
+            "symmetricCompressionPx": 1.6400942382236678,
+            "displacementSlopePx": -3.44677635571582
+          }
+        ]
+      }
+    },
+    "cornerContinuity": {
+      "method": "four-corner outer-zone signal and connected-ring coverage",
+      "score": 0.9996541775813483,
+      "edgeSignalBalance": 0.9996541775813483,
+      "coverageBalance": 1.0,
+      "largestConnectedOuterZoneFraction": 1.0,
+      "corners": {
+        "topLeft": {
+          "meanEdgeSignal": 0.339438796043396,
+          "outerZoneCoverage": 0.6563753007217321
+        },
+        "topRight": {
+          "meanEdgeSignal": 0.33933818340301514,
+          "outerZoneCoverage": 0.6563753007217321
+        },
+        "bottomLeft": {
+          "meanEdgeSignal": 0.3393635153770447,
+          "outerZoneCoverage": 0.6563753007217321
+        },
+        "bottomRight": {
+          "meanEdgeSignal": 0.33945557475090027,
+          "outerZoneCoverage": 0.6563753007217321
+        }
+      }
+    },
+    "highlightPath": {
+      "method": "bright reflection-energy centroid inside the measured card silhouette",
+      "requestedSampleCount": 7,
+      "validSampleCount": 7,
+      "travelNormalized": 0.6939536347073171,
+      "medianSegmentNormalized": 0.12027631954147047,
+      "maxJumpNormalized": 0.21509600297508968,
+      "maxToMedianJumpRatio": 1.788348727289797,
+      "pointerXToCentroidXCorrelation": 0.912937598885506,
+      "samples": [
+        {
+          "pointer": [
+            -0.85,
+            0
+          ],
+          "centroidPx": [
+            226.5604811422252,
+            285.3825156187529
+          ],
+          "centroidNormalized": [
+            0.07635959120798103,
+            0.2498214523081351
+          ],
+          "screenshotSha256": "9f740ddb8a9e589af117803fea8ff0cd0ba111adcb6d6aa512648c247e71e28f"
+        },
+        {
+          "pointer": [
+            -0.6,
+            -0.5
+          ],
+          "centroidPx": [
+            240.35219547335953,
+            276.59290111125574
+          ],
+          "centroidNormalized": [
+            0.09404127624789684,
+            0.2364633755490209
+          ],
+          "screenshotSha256": "4c07d80c78720bc8b6fc0994d79132381e3c3801733352a4899939a33f84b797"
+        },
+        {
+          "pointer": [
+            -0.3,
+            0.35
+          ],
+          "centroidPx": [
+            214.53910100262695,
+            274.7088702022724
+          ],
+          "centroidNormalized": [
+            0.060947565387983266,
+            0.23360010669038359
+          ],
+          "screenshotSha256": "a0316923573643b0856aa1a5c0eeed8b7249e06a86e04c5244c47fb11238249d"
+        },
+        {
+          "pointer": [
+            0,
+            0
+          ],
+          "centroidPx": [
+            266.0644106170212,
+            227.51439533202324
+          ],
+          "centroidNormalized": [
+            0.1270056546372067,
+            0.1618759807477557
+          ],
+          "screenshotSha256": "05ebccb5cbd14d279e3b48e233406acc01c49c277752769724064f4870a885b3"
+        },
+        {
+          "pointer": [
+            0.3,
+            -0.35
+          ],
+          "centroidPx": [
+            402.4877521145049,
+            192.25276441199486
+          ],
+          "centroidNormalized": [
+            0.3019073745057755,
+            0.10828687600607122
+          ],
+          "screenshotSha256": "607066703f7fe51eb676e16b0078003b69cabbe274c31c3687000485eb24716d"
+        },
+        {
+          "pointer": [
+            0.6,
+            0.5
+          ],
+          "centroidPx": [
+            568.6204986018486,
+            172.49903953938122
+          ],
+          "centroidNormalized": [
+            0.5148980751305751,
+            0.07826601753705352
+          ],
+          "screenshotSha256": "af1522aa7416c0207cd85799d30776e0bc382cb3bb396b48e07079bcccda9517"
+        },
+        {
+          "pointer": [
+            0.85,
+            0
+          ],
+          "centroidPx": [
+            676.996702882184,
+            194.8716669258067
+          ],
+          "centroidNormalized": [
+            0.6538419267720307,
+            0.11226697101186428
+          ],
+          "screenshotSha256": "09d3192e9711fda2fa6bc77c56b2b4c297be5f42cb8d7c5833c40b56977d5f60"
+        }
+      ]
+    },
+    "dispersionLocalization": {
+      "method": "display-encoded RGB range energy inside measured silhouette",
+      "totalEnergy": 19287.66796875,
+      "outerZoneEnergy": 19287.6640625,
+      "outerZoneRatio": 0.99999979747422,
+      "energyPresent": true
+    },
+    "flatBackgroundDiscernibility": {
+      "dark": {
+        "background": "black",
+        "method": "maximum of rim/gutter contrast, center/gutter contrast and boundary-gradient energy",
+        "discernibilityScore": 0.1771639883518219,
+        "rimToGutterLumaDifference": 0.056152748060412705,
+        "centerToGutterLumaDifference": 6.535212742164731e-05,
+        "boundaryGradientP75": 0.1771639883518219,
+        "measurable": true
+      },
+      "light": {
+        "background": "white",
+        "method": "maximum of rim/gutter contrast, center/gutter contrast and boundary-gradient energy",
+        "discernibilityScore": 0.01690731942653656,
+        "rimToGutterLumaDifference": 0.005477726459503174,
+        "centerToGutterLumaDifference": 1.0728836059570312e-06,
+        "boundaryGradientP75": 0.01690731942653656,
+        "measurable": true
+      }
+    },
+    "differenceView": {
+      "method": "display-encoded difference-view energy relative to border baseline",
+      "meanAbsoluteLuma": 0.2949659526348114,
+      "p95AbsoluteLuma": 0.9647059440612793,
+      "nontrivialPixelRatio": 0.4993506882106523
+    },
+    "rafIntervalMs": {
+      "metricName": "rafIntervalMs",
+      "metricMeaning": "browser requestAnimationFrame interval; not CPU frame cost or GPU execution time",
+      "gpuExecutionTimeMeasured": false,
+      "sampleCount": 1739,
+      "p50": 8.300000000000182,
+      "p95": 9,
+      "p99": 9.299999999999955,
+      "max": 76
+    }
+  },
+  "checks": [
+    {
+      "id": "center-sharpness",
+      "status": "PASS",
+      "value": 1.476148065788927,
+      "threshold": {
+        "min": 1.0
+      }
+    },
+    {
+      "id": "rim-width",
+      "status": "PASS",
+      "value": 0.10790273556231003,
+      "threshold": {
+        "min": 0.015,
+        "max": 0.25
+      }
+    },
+    {
+      "id": "horizontal-line-displacement-continuity",
+      "status": "PASS",
+      "value": {
+        "coverage": 0.9970958373668926,
+        "score": 0.9282633654577475,
+        "outerDisplacementPx": 2.3155160629349636
+      },
+      "threshold": {
+        "coverageMin": 0.8,
+        "scoreMin": 0.7,
+        "outerDisplacementPxMin": 1.5
+      }
+    },
+    {
+      "id": "vertical-line-displacement-continuity",
+      "status": "PASS",
+      "value": {
+        "coverage": 0.9754385964912281,
+        "score": 0.8356573112648378,
+        "outerDisplacementPx": 2.463564627144638
+      },
+      "threshold": {
+        "coverageMin": 0.8,
+        "scoreMin": 0.7,
+        "outerDisplacementPxMin": 1.5
+      }
+    },
+    {
+      "id": "corner-continuity",
+      "status": "PASS",
+      "value": 0.9996541775813483,
+      "threshold": {
+        "min": 0.4
+      }
+    },
+    {
+      "id": "pointer-highlight-path",
+      "status": "PASS",
+      "value": {
+        "valid": 7,
+        "requested": 7,
+        "travel": 0.6939536347073171,
+        "jumpRatio": 1.788348727289797
+      },
+      "threshold": {
+        "travelMin": 0.03,
+        "jumpRatioMax": 3.5
+      }
+    },
+    {
+      "id": "dispersion-localization",
+      "status": "PASS",
+      "value": 0.99999979747422,
+      "threshold": {
+        "min": 0.9
+      }
+    },
+    {
+      "id": "dark-background-discernibility",
+      "status": "PASS",
+      "value": 0.1771639883518219,
+      "threshold": {
+        "min": 0.015
+      }
+    },
+    {
+      "id": "light-background-discernibility",
+      "status": "PASS",
+      "value": 0.01690731942653656,
+      "threshold": {
+        "min": 0.015
+      }
+    }
+  ],
+  "thresholds": {
+    "centerToRimSharpnessRatioMin": 1.0,
+    "rimWidthNormalizedMin": 0.015,
+    "rimWidthNormalizedMax": 0.25,
+    "lineCoverageMin": 0.8,
+    "lineContinuityScoreMin": 0.7,
+    "lineOuterDisplacementPxMin": 1.5,
+    "cornerContinuityScoreMin": 0.4,
+    "highlightTravelNormalizedMin": 0.03,
+    "highlightJumpRatioMax": 3.5,
+    "dispersionOuterZoneRatioMin": 0.9,
+    "flatBackgroundDiscernibilityMin": 0.015
+  },
+  "evidence": [
+    {
+      "id": "split-checker",
+      "role": "v3-v4-split",
+      "sha256": "eeb77c830638b2d0bd664786737e104ef5bb56a1bc0d7fe7f7dadf6f8a721055"
+    },
+    {
+      "id": "v3-checker",
+      "role": "v3-control-crop",
+      "sha256": "17fc378151c0d9601661e1412ba79a17b202221a414f973f6979ce5a460c3669"
+    },
+    {
+      "id": "difference-checker",
+      "role": "v3-v4-difference",
+      "sha256": "2a992cdf0a46db8ce2aac20983eaac2842691a9b718cb6f747258020f1e69065"
+    },
+    {
+      "id": "edge-mask-black",
+      "role": "zone-mask",
+      "sha256": "d5a730e5c5c713a1047d9c46e0042aa33f804067ebedb3e2bfe1369c3fbfe3bd"
+    },
+    {
+      "id": "normals-checker",
+      "role": "surface-normal-debug",
+      "sha256": "6ed29b9cc4022d60a63f5b24b18270c02a5c486c57b7a46aca8573d5a901bd4e"
+    },
+    {
+      "id": "thickness-checker",
+      "role": "optical-thickness-debug",
+      "sha256": "2f0184528c3c298c7a70665c2bf3f501e906a2459f8f075fe4f5accc5404fdba"
+    },
+    {
+      "id": "refraction-offset-checker",
+      "role": "projected-refraction-debug",
+      "sha256": "92c49795c076fcba2cb881d633820c65deaca7de4dd39c57fd55b44877414360"
+    },
+    {
+      "id": "fresnel-black",
+      "role": "fresnel-debug",
+      "sha256": "bcfc0071b3593527ca1f551c3ef0b5d4eb775d8d1221fbfdce15a72e69b24f1f"
+    },
+    {
+      "id": "adaptivity-flat",
+      "role": "content-adaptivity-debug",
+      "sha256": "8b2dcb9fa28dba283b053f90a5e34eaf5204478d28ab10015d7bf03a53fd9366"
+    },
+    {
+      "id": "v4-checker",
+      "role": "sharpness-and-rim",
+      "sha256": "14833adead27ab0ee60fb0e620afee755d5721bf19c68bba0d34f5214223cd3f"
+    },
+    {
+      "id": "v4-horizontal-lines",
+      "role": "horizontal-line-displacement",
+      "sha256": "bf07d857d71507afd94b3077577bf99f53294527e6eff07b3dd469053c4f746a"
+    },
+    {
+      "id": "v4-vertical-lines",
+      "role": "vertical-line-displacement",
+      "sha256": "d922e0b4776698a8e372243e8cae9a7a1c894200a61ed8b5326d6287daf5d09f"
+    },
+    {
+      "id": "v4-high-frequency-photo",
+      "role": "high-frequency-adaptivity",
+      "sha256": "5324e962b70f6f3c37e766ac60314b8952a25ba5cb5b88305e3c02da7ca2600f"
+    },
+    {
+      "id": "v4-low-frequency-flat",
+      "role": "low-frequency-adaptivity",
+      "sha256": "f177c4482495236f866fbc3ef093536746122b0c944a5beef668581fec875f9b"
+    },
+    {
+      "id": "v4-white",
+      "role": "light-background-discernibility",
+      "sha256": "dc46981ddf224137fe3635cd3898b0c16c471882ecd256a43c8362a9e29724d4"
+    },
+    {
+      "id": "v4-black",
+      "role": "dark-background-discernibility",
+      "sha256": "71d5abd3ec40f42636088ac2e334fc1f76f44a9445cbac9307553b0eaf9d960d"
+    },
+    {
+      "id": "dispersion-checker",
+      "role": "dispersion-localization",
+      "sha256": "6c6ca6074e885f0172e138b1003c3300f03f7d5c159f3484f0f38d942be4a804"
+    },
+    {
+      "id": "reflection-pointer-00",
+      "role": "pointer-highlight-path",
+      "sha256": "9f740ddb8a9e589af117803fea8ff0cd0ba111adcb6d6aa512648c247e71e28f"
+    },
+    {
+      "id": "reflection-pointer-01",
+      "role": "pointer-highlight-path",
+      "sha256": "4c07d80c78720bc8b6fc0994d79132381e3c3801733352a4899939a33f84b797"
+    },
+    {
+      "id": "reflection-pointer-02",
+      "role": "pointer-highlight-path",
+      "sha256": "a0316923573643b0856aa1a5c0eeed8b7249e06a86e04c5244c47fb11238249d"
+    },
+    {
+      "id": "reflection-pointer-03",
+      "role": "pointer-highlight-path",
+      "sha256": "05ebccb5cbd14d279e3b48e233406acc01c49c277752769724064f4870a885b3"
+    },
+    {
+      "id": "reflection-pointer-04",
+      "role": "pointer-highlight-path",
+      "sha256": "607066703f7fe51eb676e16b0078003b69cabbe274c31c3687000485eb24716d"
+    },
+    {
+      "id": "reflection-pointer-05",
+      "role": "pointer-highlight-path",
+      "sha256": "af1522aa7416c0207cd85799d30776e0bc382cb3bb396b48e07079bcccda9517"
+    },
+    {
+      "id": "reflection-pointer-06",
+      "role": "pointer-highlight-path",
+      "sha256": "09d3192e9711fda2fa6bc77c56b2b4c297be5f42cb8d7c5833c40b56977d5f60"
+    }
+  ],
+  "finalQuantitativeAcceptance": "BLOCKED",
+  "caveats": {
+    "naturalMediaTextureCoverage": false,
+    "naturalMediaTextureReason": "No natural/high-frequency photo or licensed video is measured in this first structural round.",
+    "displayEncodedReadback": true,
+    "displayEncodedReadbackReason": "PNG diagnostics are measured after presentation; the runtime contract separately verifies linear HDR scene sampling.",
+    "gpuExecutionTimeMeasured": false,
+    "gpuTimingReason": "Reported P50/P95/P99 are browser rAF intervals, not WebGPU timestamp-query measurements.",
+    "scope": "PASS, if present, applies only to the Phase-1 deterministic optics-lab structural gate and never to final Frozen Visual Golden acceptance."
+  },
+  "artifacts": {
+    "displacementPlot": {
+      "path": "qa-v4/results/optics-lab-foundation-artifacts/displacement-plot.svg",
+      "sha256": "0d42810a601d9e0a97720758022e02eaa7dee395326503c40abc5eed35a5eb96",
+      "source": "sanitized metrics only; no screenshot or private pixel embedding"
+    },
+    "highlightPath": {
+      "path": "qa-v4/results/optics-lab-foundation-artifacts/highlight-path.svg",
+      "sha256": "937535eda26ee3ac895b155521670c874865408927d353cc3ae99a872af6cab4",
+      "source": "sanitized metrics only; no screenshot or private pixel embedding"
+    }
+  }
+}

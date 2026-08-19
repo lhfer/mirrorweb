@@ -15,8 +15,8 @@ Hashes generated 2026-08-18T19:49:50Z. Manifest: `qa/reference/GOLDEN.json`.
 
 | Role | Path | Bytes | SHA-256 |
 | --- | --- | --- | --- |
-| Frozen target video | `/Users/xiaoli/Downloads/案例.mp4` | 27,416,575 | `3fe0369d8983be0c7cc41b717d1a1df91c37ce64ea152aeafa5648cf697483bc` |
-| Frozen local baseline video | `/Users/xiaoli/Downloads/我的.mp4` | 16,599,123 | `18131e787c52fadc24a6e4ce1c3e2bfc6162e935f732616242c8728983a9e5f9` |
+| Frozen target video | `<private-golden>/legacy-target.mp4` | 27,416,575 | `3fe0369d8983be0c7cc41b717d1a1df91c37ce64ea152aeafa5648cf697483bc` |
+| Frozen local baseline video | `<private-golden>/legacy-local.mp4` | 16,599,123 | `18131e787c52fadc24a6e4ce1c3e2bfc6162e935f732616242c8728983a9e5f9` |
 | User current screenshot | `…/assets/image-9aedbe35-88fc-44f9-9658-78099c802f00.png` | 58,647 | `9ef94aac91f203e33cd38c1d0326434b7f64a7c5d098aed874b1a83bfd1045f6` |
 | User target screenshot | `…/assets/image-db3f635a-00bd-4266-8e99-f2c73d204e87.png` | 183,830 | `b8389f6d2ee2fd7ab9ddb15b79ab6b3250fb3a3ae39e0c23b4dc587e3624c283` |
 | Auditor origin rest | `artifacts/auditor/reference/A-1440x900-dpr1/01-rest.png` | 1,535,778 | `fe8059af241c172027f9b21aa698071b888768c4a0cf3600a2b766e49e3a5c43` |

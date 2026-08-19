@@ -11,15 +11,18 @@ This list separates evidence blockers from expected V3 implementation failures. 
 | V4-P0-003 | CONDITIONAL | Clean frames and eight-layer masks are generated from the unannotated target video; seven of eight initial masks retain review flags. | The one clean seed ROI permits the isolated optics lab. Review flags remain visible and cannot count as final quantitative acceptance. |
 | V4-P0-004 | CONDITIONAL | The frozen target recording contains a cursor and no deterministic replay marker. | Mask the cursor for frozen visual ROIs; use controlled live capture for causal Pointer measurements. |
 | V4-P0-005 | CONTROLLED RAF CAPTURED / FINAL BLOCKED | Controlled P50/P95/P99 RAF intervals are available for target/local comparison, but GPU execution time is not measured. | Never infer page FPS from the 30 fps frozen video or label RAF cadence as GPU frame time. |
+| V4-P1-001 | LAB STRUCTURAL PASS / FINAL BLOCKED | Deterministic patterns pass the first optics-lab gate, but no frame-aligned Frozen Visual crop fit has been accepted. | Continue inside Phase 1 only; do not integrate V4 into the main page or claim visual equivalence. |
+| V4-P1-002 | LAB RAF CAPTURED / FINAL BLOCKED | The V4 lab reports rAF P50/P95/P99, not WebGPU timestamp-query execution cost. | Treat the values as scheduling evidence only; controlled GPU performance remains unresolved. |
+| V4-P1-003 | PRIVATE REVIEW AVAILABLE | V3/V4 crops, Debug views, and the session video are retained as ignored evidence; the commit contains hashes and sanitized SVG plots. | A clean checkout can validate source contracts but needs the private capture directory to re-inspect pixels. |
 
-## Expected V3 baseline failures
+## Implementation gaps and lab-only resolutions
 
 | ID | Phase | Current evidence | Required direction |
 | --- | --- | --- | --- |
-| V4-GAP-OPTICS-01 | 1 | Normal path mixes direct `mediaMap` with the scene target. | Scene Color Target becomes the normal-path body and rim source. |
-| V4-GAP-OPTICS-02 | 1 | Fixed dark body tint and `normal.y` highlight remain in the material. | Content-adaptive optical body plus view/reflection/key-light response. |
-| V4-GAP-OPTICS-03 | 1 | Scene target is sRGB/default type, not linear half-float HDR. | Linear HDR optical mixing with quality-dependent target scale. |
-| V4-GAP-GEOMETRY-01 | 1 | Geometry exposes only `position`, `uv`, and packed `uv1`. | Add measured edge, shoulder, sidewall, thickness, and curvature attributes with C1 continuity. |
+| V4-GAP-OPTICS-01 | 1 | LAB RESOLVED: V4 normal path accepts only Scene Color; V3 direct media remains isolated to the control. | Keep this invariant during Frozen Visual fitting and later integration. |
+| V4-GAP-OPTICS-02 | 1 | LAB RESOLVED / VISUAL CONDITIONAL: adaptive neutral volume and a physical shell replace the fixed V3 body; captured highlight travel passes. | Fit highlight shape and intensity to Frozen crops without reintroducing a fixed rim. |
+| V4-GAP-OPTICS-03 | 1 | LAB RESOLVED: V4 uses linear half-float Scene Color with 1.0/0.75/0.55 presets. | Validate tone mapping and quality switching again at integration time. |
+| V4-GAP-GEOMETRY-01 | 1 | LAB RESOLVED: all five optical attributes and the continuous superellipse profile are present. | Frozen crop comparison still decides whether the measured zone widths match the target. |
 | V4-GAP-TYPE-01 | 2 | Title scale, padding, vertical placement, `.tile-id`, and wrapping do not match the target. | Apply the frozen CSS3D typography contract and edge-crop QA. |
 | V4-GAP-MOTION-01 | 3 | Release velocity uses the latest accumulated RAF window; speed below 70 px/s hard-stops. | Fit a controlled replay and use 80–120 ms weighted regression plus stable low-speed settling. |
 | V4-GAP-MOTION-02 | 3 | Wheel `deltaMode` is not normalized. | Compare pixel and line deltas under the same deterministic script. |
@@ -27,8 +30,8 @@ This list separates evidence blockers from expected V3 implementation failures. 
 | V4-GAP-DOM-01 | 4 | CSS3D content is rebound with `innerHTML`. | Pre-create nodes and update `textContent` only for recycled visible slots. |
 | V4-GAP-VIDEO-01 | 4 | Every RAF calls `VideoTexture.update()`. | Gate uploads with `requestVideoFrameCallback`. |
 | V4-GAP-QUALITY-01 | 4 | Hysteresis is 2.5 seconds and runtime adaptation changes geometry only. | Use at least 3 seconds and change RT scale, DPR, samples, geometry, dispersion, and DOM overscan. |
-| V4-GAP-ROUTING-01 | 1 | `?optics=v3`, `?optics=v4`, and `/glass-lab-v4` do not exist. | Add isolation without deleting or overwriting V3. |
+| V4-GAP-ROUTING-01 | 1 | LAB RESOLVED / MAIN DEFERRED: `/glass-lab-v4?optics=v3|v4` and Split/Difference exist; the production root remains V3. | Add main-page routing only after the full Phase 1 visual gate permits integration. |
 
 ## Baseline verdict
 
-The V3 source is preserved and buildable, but it is not a V4 visual pass. Phase 1 is authorized by the controlled-reference development gate, not by final quantitative acceptance.
+The V3 source is preserved and buildable. The V4 lab foundation passes its deterministic structural checks, but this is not a Frozen Visual pass. Further Phase 1 optics work is authorized; main integration and Phases 2–4 remain gated.

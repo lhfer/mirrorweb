@@ -11,6 +11,7 @@ qa/
 # V4 private Golden inputs/manifests and local-only QA output.
 .private/
 qa-v4/results/*.local.json
+qa-v4/results/optics-lab-foundation*.private/
 .env
 .env.local
 .env.*.local

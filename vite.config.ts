@@ -10,6 +10,10 @@ function glassLabRoute() {
     if (req.url === "/glass-lab" || req.url.startsWith("/glass-lab?")) {
       req.url = req.url.replace("/glass-lab", "/glass-lab.html");
     }
+    if (req.url === "/glass-lab-v4" || req.url.startsWith("/glass-lab-v4?")) {
+      req.url = req.url.replace("/glass-lab-v4", "/glass-lab-v4.html");
+      return;
+    }
   };
   return {
     name: "glass-lab-route",
@@ -47,6 +51,7 @@ export default defineConfig({
       input: {
         main: resolve(root, "index.html"),
         glassLab: resolve(root, "glass-lab.html"),
+        glassLabV4: resolve(root, "glass-lab-v4.html"),
       },
     },
   },

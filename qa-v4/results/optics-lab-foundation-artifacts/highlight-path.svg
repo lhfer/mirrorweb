@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="520" viewBox="0 0 720 520">
+  <style>
+    .bg { fill: #080a0b; } .frame { fill: #111516; stroke: #394043; stroke-width: 1; }
+    text { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; fill: #d9dfdc; }
+    .title { font-size: 18px; font-weight: 700; } .legend { font-size: 11px; } .index { font-size: 9px; fill: #9cff38; }
+  </style>
+  <rect class="bg" width="100%" height="100%"/>
+  <text x="34" y="36" class="title">V4 OPTICS · HIGHLIGHT CENTROID PATH</text>
+  <rect x="70" y="74" width="604" height="392" class="frame"/>
+  <polyline points="115.30,270.00 190.80,172.00 281.40,338.60 372.00,270.00 462.60,201.40 553.20,368.00 628.70,270.00" fill="none" stroke="#5a6570" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <polyline points="116.12,171.93 126.80,166.69 106.81,165.57 146.71,137.46 252.35,116.45 381.00,104.68 464.92,118.01" fill="none" stroke="#9cff38" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="116.12" cy="171.93" r="4" fill="#9cff38"/><text x="123.12" y="164.93" class="index">00</text><circle cx="126.80" cy="166.69" r="4" fill="#9cff38"/><text x="133.80" y="159.69" class="index">01</text><circle cx="106.81" cy="165.57" r="4" fill="#9cff38"/><text x="113.81" y="158.57" class="index">02</text><circle cx="146.71" cy="137.46" r="4" fill="#9cff38"/><text x="153.71" y="130.46" class="index">03</text><circle cx="252.35" cy="116.45" r="4" fill="#9cff38"/><text x="259.35" y="109.45" class="index">04</text><circle cx="381.00" cy="104.68" r="4" fill="#9cff38"/><text x="388.00" y="97.68" class="index">05</text><circle cx="464.92" cy="118.01" r="4" fill="#9cff38"/><text x="471.92" y="111.01" class="index">06</text>
+  <line x1="70" y1="487" x2="106" y2="487" stroke="#5a6570" stroke-width="2"/><text x="116" y="491" class="legend">POINTER INPUT</text>
+  <line x1="245" y1="487" x2="281" y2="487" stroke="#9cff38" stroke-width="3"/><text x="291" y="491" class="legend">MEASURED HIGHLIGHT</text>
+</svg>
