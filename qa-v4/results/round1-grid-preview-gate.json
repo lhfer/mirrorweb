@@ -11,9 +11,9 @@
   "failed": [],
   "desktopMetrics": {
     "backend": "webgpu",
-    "medianFrameMs": 16.699999999999818,
-    "p95FrameMs": 18.200000000000273,
-    "drawCalls": 912,
+    "medianFrameMs": 8.300000000000182,
+    "p95FrameMs": 9.699999999999818,
+    "drawCalls": 1833,
     "triangles": 311845,
     "quality": "high"
   },
@@ -89,30 +89,30 @@
       "id": "NO_FIXED_BLACK_BODY_RIM",
       "status": "PASSED",
       "evidence": {
-        "minRimToCenterLuma": 0.5755840539932251,
-        "maxRimToCenterLuma": 1.3892675638198853,
-        "spread": 0.8136835098266602,
-        "minRimLuma": 0.29210135340690613
+        "minRimToCenterLuma": 0.6480640769004822,
+        "maxRimToCenterLuma": 1.3972028493881226,
+        "spread": 0.7491387724876404,
+        "minRimLuma": 0.32861942052841187
       }
     },
     {
       "id": "POINTER_CHANGES_REFLECTION",
       "status": "PASSED",
       "evidence": {
-        "meanAbsDelta": 0.1354859471321106,
-        "rimMeanAbsDelta": 0.13305974006652832,
-        "rimChangedPixelRatio": 0.7482028440869237
+        "meanAbsDelta": 0.13520537316799164,
+        "rimMeanAbsDelta": 0.1322132796049118,
+        "rimChangedPixelRatio": 0.7519099510029135
       }
     },
     {
       "id": "NO_FULL_SCREEN_DISPERSION",
       "status": "PASSED",
       "evidence": {
-        "interiorMean": 0.026760544627904892,
-        "rimMean": 0.09357476234436035,
-        "interiorActiveRatio": 0.038879566388616886,
-        "rimActiveRatio": 0.26190114563443845,
-        "frameActiveRatio": 0.08570524691358025
+        "interiorMean": 0.02683752030134201,
+        "rimMean": 0.2550904154777527,
+        "interiorActiveRatio": 0.039395576936360054,
+        "rimActiveRatio": 0.5699712144882254,
+        "frameActiveRatio": 0.18430246913580248
       }
     },
     {
@@ -123,7 +123,7 @@
         "clampHeadroomWithOverscan": 0.01154,
         "clampHeadroomWithoutOverscan": -0.135,
         "contentRunRatioPartialViewport": 0.08888888888888889,
-        "contentRunRatioRest": 0.08888888888888889,
+        "contentRunRatioRest": 0.09555555555555556,
         "note": "positive headroom means no screen-UV sample can leave the scene target"
       }
     },
@@ -163,11 +163,11 @@
       "id": "VIDEO_UPLOAD_NOT_PER_RENDER_FRAME",
       "status": "PASSED",
       "evidence": {
-        "videoFramesTotal": 6157,
+        "videoFramesTotal": 6156,
         "clips": 3,
         "perClipFrames": 2052,
-        "renderedFrames": 4410,
-        "ratio": 0.465,
+        "renderedFrames": 8796,
+        "ratio": 0.233,
         "videoFrameCallback": true
       }
     },
@@ -177,9 +177,9 @@
       "evidence": {
         "seconds": 60,
         "samples": 24,
-        "heapFloorStartMb": 10.44,
-        "heapFloorEndMb": 11.82,
-        "growth": 1.132,
+        "heapFloorStartMb": 12.62,
+        "heapFloorEndMb": 12.34,
+        "growth": 0.978,
         "poolStable": true
       }
     },
@@ -199,12 +199,12 @@
       "evidence": {
         "desktop": {
           "backend": "webgpu",
-          "medianFrameMs": 16.699999999999818,
+          "medianFrameMs": 8.300000000000182,
           "quality": "high"
         },
         "mobile": {
           "backend": "webgpu",
-          "medianFrameMs": 16.699999999999818,
+          "medianFrameMs": 8.300000000000182,
           "quality": "high",
           "dpr": 1,
           "consoleErrors": 0

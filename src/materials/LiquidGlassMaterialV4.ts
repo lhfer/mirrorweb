@@ -153,20 +153,27 @@ export function createLiquidGlassMaterialV4(
   // to the local Snell exit point. This keeps the center nearly untouched while
   // producing measurable, continuous compression across the optical shoulder
   // and the strong rim instead of only blurring otherwise straight lines.
+  // This is the only term that tracks the surface normal directly, so it is
+  // what can put a depth-dependent gradient across the shoulder. Its old
+  // curvature floor of 0.06 suppressed it five-fold exactly where the shoulder
+  // is gentlest, which is most of the band.
   const projectedNormalOffset = vec2(normalView.x, normalView.y.negate())
     .mul(params.maxRefractionUv)
     .mul(refractionZone)
-    .mul(mix(0.06, 0.3, curvature))
+    .mul(mix(0.3, 0.55, curvature))
     .mul(mix(0.65, 1, thicknessNorm));
   const surfaceUv = attribute<"vec2">("uv", "vec2");
   const radialScreenDirection = vec2(
     surfaceUv.x.sub(0.5),
     surfaceUv.y.sub(0.5).negate(),
   ).add(vec2(1e-6, 0)).normalize();
+  // A constant-magnitude radial push is a zoom, not a compression: it shifts
+  // the whole band by the same amount and so hides the gradient the shoulder is
+  // supposed to show. Halved.
   const radialLensOffset = radialScreenDirection
     .mul(params.maxRefractionUv)
     .mul(refractionZone)
-    .mul(0.04)
+    .mul(0.02)
     .mul(mix(0.65, 1, thicknessNorm));
   const refractionOffset = clamp(
     rawOffset.mul(2).add(projectedNormalOffset).add(radialLensOffset),
@@ -190,16 +197,9 @@ export function createLiquidGlassMaterialV4(
     .normalize();
   const dispersionDirection = refractionOffset.length().greaterThan(1e-5)
     .select(refractionOffset.normalize(), fallbackDirection);
-  // Chroma follows how far the sample is actually displaced, not which zone the
-  // fragment belongs to. Gating it one-hot on the strong rim painted a
-  // saturated contour along the silhouette, which reads as an outline rather
-  // than as glass; grading it by displacement gives the same band a soft inner
-  // falloff instead of a hard edge.
-  const dispersionFalloff = clamp(refractionOffset.length().div(params.maxRefractionUv), 0, 1);
   const dispersionDelta = dispersionDirection
     .mul(params.dispersionUv)
     .mul(dispersionZone)
-    .mul(mix(0.15, 1, dispersionFalloff))
     .mul(params.sceneUvScale);
   const uvR = clamp(refractedUv.add(dispersionDelta), vec2(0.001), vec2(0.999));
   const uvB = clamp(refractedUv.sub(dispersionDelta), vec2(0.001), vec2(0.999));

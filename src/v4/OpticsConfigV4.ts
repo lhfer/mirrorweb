@@ -33,26 +33,13 @@ export const V4_DEBUG_CODE: Readonly<Record<V4DebugMode, number>> = {
 export const V4_SHELL_MODES = ["additive", "energy-controlled", "off"] as const;
 export type V4ShellMode = (typeof V4_SHELL_MODES)[number];
 
-export type V4FrontProfile = "two-piece" | "monotonic-arc";
-
 export type V4GeometryConfig = {
   width: number;
   height: number;
   baseThickness: number;
   superellipseN: number;
   centerFrontZ: number;
-  /**
-   * Shape of the front surface between the clear centre and the silhouette.
-   * `two-piece` is the original shoulder-plus-rollover pair, kept so the
-   * change is reviewable; `monotonic-arc` is a single arc whose slope only
-   * ever increases toward the silhouette.
-   */
-  frontProfile: V4FrontProfile;
-  /** monotonic-arc: distance from the silhouette that the arc spans. */
-  edgeArcPx: number;
-  /** monotonic-arc: total sag across the arc. */
-  edgeArcDropPx: number;
-  /** two-piece: front-surface sag between the clear centre and the crown. */
+  /** Front-surface sag between the clear centre and the rollover crown. */
   shoulderDropPx: number;
   shoulderOuterPx: number;
   rolloverInsetPx: number;
@@ -76,16 +63,6 @@ export const V4_OPTICS_CONFIG = {
     baseThickness: TILE.thickness,
     superellipseN: TILE.superellipseN,
     centerFrontZ: TILE.thickness * 0.5 + TILE.frontBulge,
-    // Round 2 Stage A: the two-piece profile put a dead flat ring at
-    // rolloverInsetPx, where the shoulder's smootherstep and the rollover
-    // ellipse met tangent-to-tangent at zero slope. Measured slope against
-    // distance from the silhouette went 33 deg at 8px, 0.5 deg at 16px, back up
-    // to 32 deg at 52px. Refraction is built on that normal, so the card bent,
-    // un-bent, then creased. A single arc spans the same band with the same
-    // total sag and the same silhouette z, but its slope only increases.
-    frontProfile: "monotonic-arc",
-    edgeArcPx: 88,
-    edgeArcDropPx: 42,
     // Round 1 Stage A: the previous profile sagged only 10px between the centre
     // and the crown, so the normal stayed near (0,0,1) until the last 16px and
     // the card read as flat media with a coloured outline. The shoulder now
@@ -107,7 +84,14 @@ export const V4_OPTICS_CONFIG = {
   >,
   material: {
     ior: 1.48,
-    refractionDistance: 165,
+    // Round 3 Stage A: measured on baab179, the refraction offset varies by
+    // only 3 of 255 levels across the whole 88px shoulder while the 38px strong
+    // rim swings 100, and no zone is pinned against the maxRefractionUv clamp
+    // (0 of 64973 shoulder pixels, 0 of 58846 strong-rim pixels). The shoulder
+    // was doing no optical work, so the card read as flat media with a crease
+    // at its edge. Displacement magnitude is raised here; the clamp and the
+    // scene-target overscan are deliberately left alone.
+    refractionDistance: 300,
     maxRefractionUv: 0.125,
     blurLod: 2.35,
     dispersionUv: 0.0065,
@@ -121,12 +105,6 @@ export const V4_OPTICS_CONFIG = {
       // normal only produces a deliberately tiny refraction displacement.
       refraction: { center: 0.025, shoulder: 0.72, strongLensRim: 1, sidewall: 0.9 },
       blur: { center: 0, shoulder: 0.46, strongLensRim: 1, sidewall: 0.68 },
-      // Round 2 Stage A: one-hot on strongLensRim painted chroma along the
-      // silhouette, which reads as an outlined sticker. It now carries into the
-      // shoulder and the sidewall and is graded by displacement in the material,
-      // so the band has a soft inner falloff. The shoulder share is kept small
-      // on purpose: the gate's full-screen-dispersion guard treats anything
-      // inside 0.86 of the card half-size as interior.
       dispersion: { center: 0, shoulder: 0, strongLensRim: 1, sidewall: 0 },
       shell: { center: 0.012, shoulder: 0.48, strongLensRim: 1, sidewall: 0.3 },
     },
