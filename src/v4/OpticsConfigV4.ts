@@ -84,13 +84,18 @@ export const V4_OPTICS_CONFIG = {
   >,
   material: {
     ior: 1.48,
-    // Round 3 Stage A: measured on baab179, the refraction offset varies by
-    // only 3 of 255 levels across the whole 88px shoulder while the 38px strong
-    // rim swings 100, and no zone is pinned against the maxRefractionUv clamp
-    // (0 of 64973 shoulder pixels, 0 of 58846 strong-rim pixels). The shoulder
-    // was doing no optical work, so the card read as flat media with a crease
-    // at its edge. Displacement magnitude is raised here; the clamp and the
-    // scene-target overscan are deliberately left alone.
+    // Round 3 Stage A. What is measured: no zone is pinned against the
+    // maxRefractionUv clamp (0 of 64973 shoulder pixels, 0 of 58846 strong-rim
+    // pixels), read at the 8-bit endpoints and so independent of the output
+    // transfer. The clamp is not the limit, and neither it nor the scene-target
+    // overscan is touched here.
+    //
+    // What is NOT measured: how far the sample actually moves. The
+    // refraction-offset debug view appears to show a flat shoulder, but that
+    // view is unsound - it moves by at most 2 of 255 levels while this very
+    // change moves the beauty render on 34.9% of pixels. See GATE-005. The
+    // displacement increase below is therefore an experiment justified by the
+    // blind A/B and the engineering gate, not by that view.
     refractionDistance: 300,
     maxRefractionUv: 0.125,
     blurLod: 2.35,
