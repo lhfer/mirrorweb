@@ -12,8 +12,8 @@
   "desktopMetrics": {
     "backend": "webgpu",
     "medianFrameMs": 16.699999999999818,
-    "p95FrameMs": 17.40000000000009,
-    "drawCalls": 933,
+    "p95FrameMs": 18.200000000000273,
+    "drawCalls": 912,
     "triangles": 311845,
     "quality": "high"
   },
@@ -89,30 +89,30 @@
       "id": "NO_FIXED_BLACK_BODY_RIM",
       "status": "PASSED",
       "evidence": {
-        "minRimToCenterLuma": 0.6358579397201538,
-        "maxRimToCenterLuma": 1.395917534828186,
-        "spread": 0.7600595951080322,
-        "minRimLuma": 0.32268956303596497
+        "minRimToCenterLuma": 0.5755840539932251,
+        "maxRimToCenterLuma": 1.3892675638198853,
+        "spread": 0.8136835098266602,
+        "minRimLuma": 0.29210135340690613
       }
     },
     {
       "id": "POINTER_CHANGES_REFLECTION",
       "status": "PASSED",
       "evidence": {
-        "meanAbsDelta": 0.13749021291732788,
-        "rimMeanAbsDelta": 0.13642561435699463,
-        "rimChangedPixelRatio": 0.7581453185911068
+        "meanAbsDelta": 0.1354859471321106,
+        "rimMeanAbsDelta": 0.13305974006652832,
+        "rimChangedPixelRatio": 0.7482028440869237
       }
     },
     {
       "id": "NO_FULL_SCREEN_DISPERSION",
       "status": "PASSED",
       "evidence": {
-        "interiorMean": 0.026822319254279137,
-        "rimMean": 0.2566193640232086,
-        "interiorActiveRatio": 0.039367135410106495,
-        "rimActiveRatio": 0.5610498756003008,
-        "frameActiveRatio": 0.18299614197530864
+        "interiorMean": 0.026760544627904892,
+        "rimMean": 0.09357476234436035,
+        "interiorActiveRatio": 0.038879566388616886,
+        "rimActiveRatio": 0.26190114563443845,
+        "frameActiveRatio": 0.08570524691358025
       }
     },
     {
@@ -123,7 +123,7 @@
         "clampHeadroomWithOverscan": 0.01154,
         "clampHeadroomWithoutOverscan": -0.135,
         "contentRunRatioPartialViewport": 0.08888888888888889,
-        "contentRunRatioRest": 0.09444444444444444,
+        "contentRunRatioRest": 0.08888888888888889,
         "note": "positive headroom means no screen-UV sample can leave the scene target"
       }
     },
@@ -163,11 +163,11 @@
       "id": "VIDEO_UPLOAD_NOT_PER_RENDER_FRAME",
       "status": "PASSED",
       "evidence": {
-        "videoFramesTotal": 6183,
+        "videoFramesTotal": 6157,
         "clips": 3,
-        "perClipFrames": 2061,
-        "renderedFrames": 4425,
-        "ratio": 0.466,
+        "perClipFrames": 2052,
+        "renderedFrames": 4410,
+        "ratio": 0.465,
         "videoFrameCallback": true
       }
     },
@@ -177,9 +177,9 @@
       "evidence": {
         "seconds": 60,
         "samples": 24,
-        "heapFloorStartMb": 9.48,
-        "heapFloorEndMb": 10.18,
-        "growth": 1.074,
+        "heapFloorStartMb": 10.44,
+        "heapFloorEndMb": 11.82,
+        "growth": 1.132,
         "poolStable": true
       }
     },

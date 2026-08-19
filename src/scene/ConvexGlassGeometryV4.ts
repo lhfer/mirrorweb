@@ -49,6 +49,18 @@ function edgeDistance(x: number, y: number, config: V4GeometryConfig) {
 }
 
 function frontZ(distance: number, config: V4GeometryConfig) {
+  if (config.frontProfile === "monotonic-arc") {
+    // One arc from the clear centre to the silhouette. Its slope is zero where
+    // it leaves the centre face and rises without ever turning back, so the
+    // view-space normal — and every refraction term built on it — ramps across
+    // the whole band instead of bending, un-bending and then creasing.
+    // The arc reaches the silhouette at exactly centerFrontZ - edgeArcDropPx,
+    // which is where the two-piece profile ended too, so the card outline and
+    // the sidewall band are unchanged.
+    const u = clamp01(1 - distance / Math.max(EPSILON, config.edgeArcPx));
+    return config.centerFrontZ - config.edgeArcDropPx * (1 - Math.sqrt(1 - u * u));
+  }
+
   const half = config.baseThickness * 0.5;
   // How far the front surface sags between the clear centre and the crown at
   // the start of the rollover. This is the slope the view-space normal — and

@@ -190,9 +190,16 @@ export function createLiquidGlassMaterialV4(
     .normalize();
   const dispersionDirection = refractionOffset.length().greaterThan(1e-5)
     .select(refractionOffset.normalize(), fallbackDirection);
+  // Chroma follows how far the sample is actually displaced, not which zone the
+  // fragment belongs to. Gating it one-hot on the strong rim painted a
+  // saturated contour along the silhouette, which reads as an outline rather
+  // than as glass; grading it by displacement gives the same band a soft inner
+  // falloff instead of a hard edge.
+  const dispersionFalloff = clamp(refractionOffset.length().div(params.maxRefractionUv), 0, 1);
   const dispersionDelta = dispersionDirection
     .mul(params.dispersionUv)
     .mul(dispersionZone)
+    .mul(mix(0.15, 1, dispersionFalloff))
     .mul(params.sceneUvScale);
   const uvR = clamp(refractedUv.add(dispersionDelta), vec2(0.001), vec2(0.999));
   const uvB = clamp(refractedUv.sub(dispersionDelta), vec2(0.001), vec2(0.999));
