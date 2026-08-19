@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "round": 1,
+  "scope": "v4-grid-preview",
+  "generator": "round1-gate-v1",
+  "humanAnnotation": "SKIPPED_BY_PRODUCT_OWNER",
+  "formalPixelTruth": "BLOCKED",
+  "finalTargetMatch": "BLOCKED",
+  "productVisualAcceptance": "PENDING_HUMAN_PREVIEW",
+  "status": "PASS",
+  "failed": [],
+  "desktopMetrics": {
+    "backend": "webgpu",
+    "medianFrameMs": 16.699999999999818,
+    "p95FrameMs": 17.40000000000009,
+    "drawCalls": 933,
+    "triangles": 311845,
+    "quality": "high"
+  },
+  "sceneColor": {
+    "version": "v4",
+    "quality": "high",
+    "scale": 1,
+    "width": 1872,
+    "height": 1170,
+    "type": 1016,
+    "typeName": "HalfFloatType",
+    "colorSpace": "srgb-linear",
+    "generateMipmaps": true,
+    "depthBuffer": true,
+    "overscan": 1.3,
+    "sceneUvScale": 0.7692307692307692,
+    "clampHeadroom": 0.011538461538461664,
+    "cssWidth": 1440,
+    "cssHeight": 900,
+    "dpr": 1
+  },
+  "pool": {
+    "slots": 81,
+    "created": 81,
+    "destroyed": 0,
+    "remaps": 0,
+    "cols": 9,
+    "rows": 9,
+    "materials": 5,
+    "geometries": 2,
+    "textures": 3,
+    "videos": 3,
+    "glass": "v4-volume"
+  },
+  "checks": [
+    {
+      "id": "V3_PAGE_AVAILABLE",
+      "status": "PASSED",
+      "evidence": {
+        "glass": "volume",
+        "milestone": 3,
+        "backend": "webgpu",
+        "v4GlobalsPresent": false,
+        "consoleErrors": 0
+      }
+    },
+    {
+      "id": "V4_NORMAL_PATH_NO_DIRECT_MEDIA",
+      "status": "PASSED",
+      "evidence": {
+        "runtime": false,
+        "sceneColor": {
+          "version": "v4",
+          "quality": "high",
+          "scale": 1,
+          "width": 1872,
+          "height": 1170,
+          "type": 1016,
+          "typeName": "HalfFloatType",
+          "colorSpace": "srgb-linear",
+          "generateMipmaps": true,
+          "depthBuffer": true,
+          "overscan": 1.3,
+          "sceneUvScale": 0.7692307692307692,
+          "clampHeadroom": 0.011538461538461664,
+          "cssWidth": 1440,
+          "cssHeight": 900,
+          "dpr": 1
+        }
+      }
+    },
+    {
+      "id": "NO_FIXED_BLACK_BODY_RIM",
+      "status": "PASSED",
+      "evidence": {
+        "minRimToCenterLuma": 0.6429444551467896,
+        "maxRimToCenterLuma": 1.4119820594787598,
+        "spread": 0.7690376043319702,
+        "minRimLuma": 0.3261900544166565
+      }
+    },
+    {
+      "id": "POINTER_CHANGES_REFLECTION",
+      "status": "PASSED",
+      "evidence": {
+        "meanAbsDelta": 0.13946962356567383,
+        "rimMeanAbsDelta": 0.13784389197826385,
+        "rimChangedPixelRatio": 0.7613200877050601
+      }
+    },
+    {
+      "id": "NO_FULL_SCREEN_DISPERSION",
+      "status": "PASSED",
+      "evidence": {
+        "interiorMean": 0.026815835386514664,
+        "rimMean": 0.1893543154001236,
+        "interiorActiveRatio": 0.03940776616189729,
+        "rimActiveRatio": 0.43124746861077357,
+        "frameActiveRatio": 0.14089274691358025
+      }
+    },
+    {
+      "id": "NO_BORDER_PIXEL_STREAK",
+      "status": "PASSED",
+      "evidence": {
+        "overscan": 1.3,
+        "clampHeadroomWithOverscan": 0.01154,
+        "clampHeadroomWithoutOverscan": -0.135,
+        "contentRunRatioPartialViewport": 0.08888888888888889,
+        "contentRunRatioRest": 0.09555555555555556,
+        "note": "positive headroom means no screen-UV sample can leave the scene target"
+      }
+    },
+    {
+      "id": "RESOURCE_COUNT_STABLE",
+      "status": "PASSED",
+      "evidence": {
+        "before": {
+          "slots": 81,
+          "created": 81,
+          "destroyed": 0,
+          "remaps": 0,
+          "cols": 9,
+          "rows": 9,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "glass": "v4-volume"
+        },
+        "after": {
+          "slots": 81,
+          "created": 81,
+          "destroyed": 0,
+          "remaps": 2106,
+          "cols": 9,
+          "rows": 9,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "glass": "v4-volume"
+        }
+      }
+    },
+    {
+      "id": "VIDEO_UPLOAD_NOT_PER_RENDER_FRAME",
+      "status": "PASSED",
+      "evidence": {
+        "videoFramesTotal": 6171,
+        "clips": 3,
+        "perClipFrames": 2057,
+        "renderedFrames": 4422,
+        "ratio": 0.465,
+        "videoFrameCallback": true
+      }
+    },
+    {
+      "id": "NO_SUSTAINED_MEMORY_GROWTH",
+      "status": "PASSED",
+      "evidence": {
+        "seconds": 60,
+        "samples": 24,
+        "heapFloorStartMb": 11.21,
+        "heapFloorEndMb": 13.35,
+        "growth": 1.191,
+        "poolStable": true
+      }
+    },
+    {
+      "id": "CONSOLE_ERROR_FREE",
+      "status": "PASSED",
+      "evidence": []
+    },
+    {
+      "id": "GPU_VALIDATION_ERROR_FREE",
+      "status": "PASSED",
+      "evidence": []
+    },
+    {
+      "id": "DESKTOP_AND_MOBILE_RUN",
+      "status": "PASSED",
+      "evidence": {
+        "desktop": {
+          "backend": "webgpu",
+          "medianFrameMs": 16.699999999999818,
+          "quality": "high"
+        },
+        "mobile": {
+          "backend": "webgpu",
+          "medianFrameMs": 8.300000000000182,
+          "quality": "high",
+          "dpr": 1,
+          "consoleErrors": 0
+        }
+      }
+    },
+    {
+      "id": "V4_CAN_RETURN_TO_V3",
+      "status": "PASSED",
+      "evidence": {
+        "v4": "v4",
+        "v3": {
+          "glass": "volume",
+          "v4Globals": false
+        },
+        "consoleErrors": 0
+      }
+    }
+  ]
+}
