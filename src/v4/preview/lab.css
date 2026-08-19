@@ -1,0 +1,174 @@
+/* Review console for /grid-lab-v4. Overlay only: it never touches the scene. */
+
+.grid-hud {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 40;
+  width: 236px;
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(213, 228, 223, 0.16);
+  border-radius: 12px;
+  background: rgba(6, 9, 10, 0.82);
+  backdrop-filter: blur(14px);
+  color: #e8ece6;
+  font-family: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.grid-hud[data-collapsed="true"] > *:not(header) {
+  display: none;
+}
+
+.grid-hud header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.grid-hud__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #c9f35b;
+  box-shadow: 0 0 10px rgba(201, 243, 91, 0.8);
+}
+
+.grid-hud header strong {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.grid-hud header small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: #7f8c8a;
+}
+
+.grid-hud__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.grid-hud__links a {
+  padding: 4px 7px;
+  border: 1px solid rgba(213, 228, 223, 0.18);
+  border-radius: 6px;
+  color: #b7c2bf;
+  text-decoration: none;
+  font-size: 10px;
+}
+
+.grid-hud__links a:hover {
+  color: #c9f35b;
+  border-color: rgba(201, 243, 91, 0.5);
+}
+
+.grid-hud__field {
+  display: grid;
+  gap: 4px;
+}
+
+.grid-hud__field span {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: #7f8c8a;
+}
+
+.grid-hud select {
+  width: 100%;
+  padding: 5px 6px;
+  border: 1px solid rgba(213, 228, 223, 0.2);
+  border-radius: 6px;
+  background: #0b0f10;
+  color: inherit;
+  font: inherit;
+}
+
+.grid-hud__buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.grid-hud__buttons button {
+  flex: 1;
+  padding: 5px 4px;
+  border: 1px solid rgba(213, 228, 223, 0.2);
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.grid-hud__buttons button:hover {
+  border-color: rgba(201, 243, 91, 0.55);
+  color: #c9f35b;
+}
+
+.grid-hud__metrics {
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.grid-hud__metrics > div {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 6px;
+}
+
+.grid-hud__metrics dt {
+  color: #7f8c8a;
+  font-size: 10px;
+}
+
+.grid-hud__metrics dd {
+  margin: 0;
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.grid-blocked {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-content: center;
+  gap: 10px;
+  justify-items: center;
+  padding: 32px;
+  background: rgba(4, 6, 7, 0.94);
+  color: #e8ece6;
+  font-family: "Geist Mono Variable", ui-monospace, monospace;
+  text-align: center;
+}
+
+.grid-blocked strong {
+  font-size: 15px;
+  color: #ef684d;
+}
+
+.grid-blocked p {
+  margin: 0;
+  max-width: 560px;
+  font-size: 12px;
+  color: #97a3a1;
+}
+
+.grid-blocked a {
+  color: #c9f35b;
+}
+
+@media (max-width: 820px) {
+  .grid-hud {
+    width: 190px;
+    font-size: 10px;
+  }
+}

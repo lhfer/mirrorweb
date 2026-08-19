@@ -47,6 +47,11 @@ export function createLiquidGlassParamsV4() {
     roughnessRim: uniform(defaults.roughnessRim),
     fresnelPower: uniform(defaults.fresnelPower),
     adaptivityRadiusUv: uniform(defaults.adaptivityRadiusUv),
+    // Maps screen space into the scene-color target. 1 means the target covers
+    // exactly the visible frame; a smaller value means the target was rendered
+    // with overscan, which is what stops a partially off-screen card from
+    // clamping its refracted sample into a column of repeated border pixels.
+    sceneUvScale: uniform(1),
   };
 }
 
@@ -57,6 +62,7 @@ export type LiquidGlassMaterialV4Handle = {
   reflectionMaterial: MeshPhysicalNodeMaterial;
   params: LiquidGlassParamsV4;
   setSceneColorTexture: (texture: Texture) => void;
+  setSceneUvScale: (scale: number) => void;
   setDebugMode: (mode: V4DebugMode) => void;
   getDebugMode: () => V4DebugMode;
   setShellMode: (mode: V4ShellMode) => void;
@@ -167,7 +173,14 @@ export function createLiquidGlassMaterialV4(
     vec2(params.maxRefractionUv.negate()),
     vec2(params.maxRefractionUv),
   );
-  const refractedUv = clamp(screenUV.add(refractionOffset), vec2(0.001), vec2(0.999));
+  // Screen space -> scene-color target space. With sceneUvScale = 1 this is the
+  // identity and the optics bench is bit-for-bit unchanged.
+  const sceneSamplePoint = screenUV
+    .add(refractionOffset)
+    .sub(vec2(0.5))
+    .mul(params.sceneUvScale)
+    .add(vec2(0.5));
+  const refractedUv = clamp(sceneSamplePoint, vec2(0.001), vec2(0.999));
   const blurLod = params.blurLod
     .mul(pow(blurZone, 1.6))
     .mul(mix(0.4, 1, thicknessNorm));
@@ -179,7 +192,8 @@ export function createLiquidGlassMaterialV4(
     .select(refractionOffset.normalize(), fallbackDirection);
   const dispersionDelta = dispersionDirection
     .mul(params.dispersionUv)
-    .mul(dispersionZone);
+    .mul(dispersionZone)
+    .mul(params.sceneUvScale);
   const uvR = clamp(refractedUv.add(dispersionDelta), vec2(0.001), vec2(0.999));
   const uvB = clamp(refractedUv.sub(dispersionDelta), vec2(0.001), vec2(0.999));
 
@@ -188,7 +202,7 @@ export function createLiquidGlassMaterialV4(
   const sampleB = sceneColor.sample(uvB).level(blurLod);
   const refractedColor = vec3(sampleR.r, sampleG.g, sampleB.b);
 
-  const adaptRadius = params.adaptivityRadiusUv;
+  const adaptRadius = params.adaptivityRadiusUv.mul(params.sceneUvScale);
   const sampleLeft = sceneColor.sample(clamp(refractedUv.sub(vec2(adaptRadius, 0)), vec2(0.001), vec2(0.999))).level(float(0));
   const sampleRight = sceneColor.sample(clamp(refractedUv.add(vec2(adaptRadius, 0)), vec2(0.001), vec2(0.999))).level(float(0));
   const sampleTop = sceneColor.sample(clamp(refractedUv.sub(vec2(0, adaptRadius)), vec2(0.001), vec2(0.999))).level(float(0));
@@ -334,6 +348,9 @@ export function createLiquidGlassMaterialV4(
     params,
     setSceneColorTexture: (next: Texture) => {
       sceneColor.value = next;
+    },
+    setSceneUvScale: (scale: number) => {
+      params.sceneUvScale.value = Math.max(0.05, Math.min(1, scale));
     },
     setDebugMode: (mode: V4DebugMode) => {
       debugMode = mode;

@@ -15,7 +15,17 @@ This list separates evidence blockers from expected V3 implementation failures. 
 | V4-P1-002 | LAB RAF CAPTURED / FINAL BLOCKED | The V4 lab reports rAF P50/P95/P99, not WebGPU timestamp-query execution cost. | Treat the values as scheduling evidence only; controlled GPU performance remains unresolved. |
 | V4-P1-003 | PRIVATE REVIEW GENERATED / HUMAN REVIEW PENDING | The 14 requested Lab views, H.264 session video, contact sheet, and normalized Frozen/local edge overlays are retained under ignored `qa-v4/review/phase-1b/`. | Phase 2 remains forbidden until the user accepts this private bundle; a clean checkout needs the private capture directory to re-inspect pixels. |
 | V4-P1-004 | TARGET ZONES CONDITIONAL | The `4.6%–4.9%` Strong Rim range is a user-measured provisional prior. Frozen v1 Shoulder/Rim/Sidewall masks remain configured search windows, not measured target boundaries. | Report the Strong Rim relative error as CONDITIONAL and keep other target width errors BLOCKED until annotations are approved. |
+| V4-P1-006 | HUMAN ANNOTATION SKIPPED BY PRODUCT OWNER | Seven Frozen roles have no approved human Card Quad / Optical Zone annotation, and the product owner has decided not to produce one: some target cards are incomplete or clipped and a non-expert annotation risks a wrong Target Truth. | Formal Pixel Truth stays BLOCKED and no pixel-level replica claim may be made. Reviewer Mode and the Advanced Inspector are retained as an Optional Diagnostic Tool and no longer block visual preview development. Product Visual Acceptance now comes from the product owner reviewing real previews. |
+| V4-P1-007 | CAPTURED RUNTIME IDENTITY DRIFTED | `V4_CAPTURED_RUNTIME_IDENTITY` fails: `vite.config.ts` drifted when the Phase 1B review routing landed, and `src/materials/LiquidGlassMaterialV4.ts` drifted when the Round 1 preview added the additive `sceneUvScale` mapping (identity by default). | The frozen calibration capture predates both changes. Any future Phase 1B measurement must recapture the optics lab first; until then that result set is stale evidence, not current evidence. |
 | V4-P1-005 | SHELL A/B LOCAL ONLY | Additive, energy-controlled, and shell-off evidence isolates local composition behavior; it does not reproduce target lighting identity. | Use the local A/B to reject clipping/white-outline regressions, but do not treat the preferred variant as final target proof. |
+
+## Round 1 preview findings (product-owner review pending)
+
+| ID | Status | Observation | Evidence |
+| --- | --- | --- | --- |
+| V4-R1-001 | OPEN / AWAITING FEEDBACK | Against the Frozen target crops the current V4 card reads as a video tile with a narrow, highly saturated fringe, while the target reads as a thick lens with a wide compressed rim band and visible internal folding. | `qa-v4/review/round-1/contact-target-current.jpg` |
+| V4-R1-002 | OPEN / AWAITING FEEDBACK | V4 draws 2 glass materials for 81 slots but still issues ~2.1k draw calls per frame at 9×9; instancing and a ring buffer are Round 4 scope. | `qa-v4/results/round1-grid-preview-gate.json` |
+| V4-R1-003 | RESOLVED IN ROUND 1 | A partially off-screen card could clamp its refracted screen-UV sample and smear the frame border. The scene-color target is now rendered with 1.3x overscan, which makes clamping impossible by construction. | `clampHeadroom > 0` in the Round 1 gate |
 
 ## Implementation gaps and lab-only resolutions
 

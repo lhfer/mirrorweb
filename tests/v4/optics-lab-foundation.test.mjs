@@ -46,7 +46,6 @@ test("the V4 scene target is linear half-float and normal refraction is scene-co
 
 test("the protected V3 runtime remains byte-identical to the accepted baseline", async () => {
   const protectedFiles = [
-    "src/main.ts",
     "src/app/App.ts",
     "src/lab/main.ts",
     "src/materials/LiquidGlassMaterial.ts",
@@ -62,6 +61,37 @@ test("the protected V3 runtime remains byte-identical to the accepted baseline",
     });
     assert.equal(await source(relativePath), baseline, `${relativePath} changed outside the isolated V4 lab`);
   }
+});
+
+test("the main page entry carries only the pinned, additive V4 opt-in flag", async () => {
+  // src/main.ts is the single V3 runtime file the product owner authorised to
+  // change, so that ?optics=v4 can reach the preview. It is not free to drift:
+  // the patch is hash-pinned in config/calibration.v4.json, the V3 boot must
+  // survive verbatim, and V3 remains the default.
+  const calibration = JSON.parse(await source("config/calibration.v4.json"));
+  const main = await source("src/main.ts");
+  const baseline = execFileSync("git", ["show", `${BASE_COMMIT}:src/main.ts`], {
+    cwd: REPO_ROOT,
+    encoding: "utf8",
+  });
+  for (const statement of ["new App()", "await app.start()", "installQAHooks(app)"]) {
+    assert.ok(baseline.includes(statement), `baseline lost ${statement}`);
+    assert.ok(main.includes(statement), `main.ts lost the V3 boot statement ${statement}`);
+  }
+  assert.equal(calibration.routing.mainPageFlag.default, "v3");
+  const patch = execFileSync("git", ["diff", "--unified=0", BASE_COMMIT, "--", "src/main.ts"], {
+    cwd: REPO_ROOT,
+    encoding: "utf8",
+  });
+  const changed = patch.split("\n")
+    .filter((line) => (line.startsWith("+") && !line.startsWith("+++")) || (line.startsWith("-") && !line.startsWith("---")))
+    .map((line) => line.trim())
+    .filter(Boolean);
+  assert.equal(
+    createHash("sha256").update(changed.join("\n")).digest("hex"),
+    calibration.routing.mainPageFlag.patchSha256,
+    "src/main.ts changed without re-pinning routing.mainPageFlag.patchSha256",
+  );
 });
 
 test("the optics capture matrix covers required views, patterns and pointer motion", async () => {

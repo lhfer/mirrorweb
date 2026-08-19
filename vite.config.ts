@@ -26,6 +26,10 @@ function glassLabRoute() {
     if (req.url === "/glass-lab" || req.url.startsWith("/glass-lab?")) {
       req.url = req.url.replace("/glass-lab", "/glass-lab.html");
     }
+    if (req.url === "/grid-lab-v4" || req.url.startsWith("/grid-lab-v4?")) {
+      req.url = req.url.replace("/grid-lab-v4", "/grid-lab-v4.html");
+      return;
+    }
     if (req.url === "/glass-lab-v4" || req.url.startsWith("/glass-lab-v4?")) {
       req.url = req.url.replace("/glass-lab-v4", "/glass-lab-v4.html");
       return;
@@ -85,6 +89,7 @@ export default defineConfig({
         main: resolve(root, "index.html"),
         glassLab: resolve(root, "glass-lab.html"),
         glassLabV4: resolve(root, "glass-lab-v4.html"),
+        gridLabV4: resolve(root, "grid-lab-v4.html"),
         phase1bReview: resolve(root, "phase-1b-review.html"),
       },
     },

@@ -35,6 +35,9 @@
     "v4:review:candidates": "python3 scripts/v4/build-reviewer-candidates.py",
     "v4:review:serve": "node scripts/v4/serve-phase1b-review.mjs",
     "v4:review:screens": "node scripts/v4/capture-reviewer-screens.mjs",
+    "v4:round1:gate": "node scripts/v4/round1-gate.mjs",
+    "v4:round1:capture": "node scripts/v4/capture-round1-preview.mjs",
+    "v4:round1:sheets": "python3 scripts/v4/build-round1-contact-sheets.py",
     "qa:v4:baseline": "node scripts/v4/phase0-baseline.mjs"
   },
   "devDependencies": {

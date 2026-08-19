@@ -103,19 +103,40 @@
       "route": "/phase-1b-review",
       "privateApiOrigin": "http://127.0.0.1:5282",
       "ordinaryVitePrivateApi": "disabled",
-      "viteConfigAdditionsSha256": "012a6da4bcba64c167960bc7258ac8f5f9178951cf7cc58305e5eb8fcd3b3f0e",
+      "viteConfigAdditionsSha256": "3bc72417b54d7d7a7648e29a209291518c3beadc29a7520b352543e08c3c4338",
       "expectedTokens": [
         "__phase1b_review__",
         "Private review assets are available only through the local Phase 1B review server.",
         "if (req.url === \"/phase-1b-review\" || req.url.startsWith(\"/phase-1b-review?\")) {",
         "phase1bReview: resolve(root, \"phase-1b-review.html\"),",
         "**/qa-v4/review/**",
-        "**/.private/**"
+        "**/.private/**",
+        "if (req.url === \"/grid-lab-v4\" || req.url.startsWith(\"/grid-lab-v4?\")) {",
+        "gridLabV4: resolve(root, \"grid-lab-v4.html\"),"
       ]
     },
-    "implementationStatus": "lab-only",
+    "implementationStatus": "lab-and-flagged-preview",
     "queryScope": "/glass-lab-v4",
-    "mainPageRoutingStatus": "deferred-until-integration"
+    "mainPageRoutingStatus": "experiment-flag-v3-default",
+    "gridLabV4": {
+      "route": "/grid-lab-v4",
+      "purpose": "round-1-multi-card-v4-preview",
+      "default": "experiment-only",
+      "v3Route": "/?optics=v3",
+      "v4Route": "/?optics=v4"
+    },
+    "mainPageFlag": {
+      "queryKey": "optics",
+      "default": "v3",
+      "v4Value": "v4",
+      "loading": "dynamic-import-only-when-flagged",
+      "patchSha256": "4dcb0fc2e67f01fa76525e480ed2dd2de06dfd3cb30d52d759f8fb4e2ba15ba4",
+      "expectedTokens": [
+        "new URLSearchParams(location.search).get(\"optics\") === \"v4\"",
+        "await import(\"./v4/preview/entry\")",
+        "startGridPreviewV4()"
+      ]
+    }
   },
   "v4": {
     "optics": {
@@ -192,6 +213,21 @@
     },
     "gridRingBuffer": {
       "status": "not-implemented"
+    },
+    "humanAnnotation": {
+      "status": "SKIPPED_BY_PRODUCT_OWNER",
+      "decidedAt": "2026-08-19",
+      "reason": "incomplete or clipped target cards, non-expert annotator, risk of wrong target truth",
+      "reviewerModeStatus": "optional-diagnostic-tool",
+      "formalPixelTruth": "BLOCKED",
+      "blocksVisualPreviewDevelopment": false
+    },
+    "productVisualAcceptance": {
+      "method": "preview-first-iterative-visual-review",
+      "decidedBy": "product-owner",
+      "round": 1,
+      "status": "PENDING_HUMAN_PREVIEW",
+      "finalMerge": "requires-explicit-human-approval"
     }
   },
   "golden": {

@@ -124,8 +124,13 @@ export async function runSourceContract() {
   ];
   const allowedV4Runtime = [
     /^glass-lab-v4\.html$/,
+    /^grid-lab-v4\.html$/,
     /^phase-1b-review\.html$/,
     /^vite\.config\.ts$/,
+    // The main page boots V4 only behind ?optics=v4. The patch itself is
+    // pinned by MAIN_PAGE_V4_FLAG_ADDITIVE below, so this allowance cannot be
+    // used to change the V3 application.
+    /^src\/main\.ts$/,
     /^src\/lab-v4\//,
     /^src\/review-phase1b\//,
     /^src\/v4\//,
@@ -173,6 +178,36 @@ export async function runSourceContract() {
     removedViteLines.length === 0 && unexpectedViteLines.length === 0 && expectedV4ViteStructure,
     { removed: [], unexpectedAdded: [], v4Structure: true },
     { removed: removedViteLines, unexpectedAdded: unexpectedViteLines, v4Structure: expectedV4ViteStructure },
+  );
+
+  const mainPatch = execText("git", ["diff", "--unified=0", calibration.baseline.sourceCommit, "--", "src/main.ts"]);
+  const mainChangedLines = mainPatch.split("\n")
+    .filter((line) => (line.startsWith("+") && !line.startsWith("+++")) || (line.startsWith("-") && !line.startsWith("---")))
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const mainPatchSha256 = createHash("sha256").update(mainChangedLines.join("\n")).digest("hex");
+  const mainSource = await readFile(resolve(REPO_ROOT, "src/main.ts"), "utf8");
+  const mainFlag = calibration.routing.mainPageFlag;
+  const v3BootIntact = ["new App()", "await app.start()", "installQAHooks(app)"]
+    .every((token) => mainSource.includes(token));
+  const flagTokensPresent = (mainFlag?.expectedTokens ?? []).every((token) => mainSource.includes(token));
+  addCheck(
+    checks,
+    "MAIN_PAGE_V4_FLAG_ADDITIVE",
+    mainChangedLines.length === 0
+      || (v3BootIntact && flagTokensPresent && mainPatchSha256 === mainFlag?.patchSha256),
+    {
+      v3BootIntact: true,
+      expectedTokens: mainFlag?.expectedTokens ?? [],
+      patchSha256: mainFlag?.patchSha256 ?? null,
+      defaultOptics: mainFlag?.default ?? "v3",
+    },
+    {
+      v3BootIntact,
+      flagTokensPresent,
+      patchSha256: mainPatchSha256,
+      changedLineCount: mainChangedLines.length,
+    },
   );
 
   addCheck(
