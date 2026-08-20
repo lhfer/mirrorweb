@@ -409,6 +409,7 @@ export class GridAppV4 {
       verticalMode: this.verticalMode,
       portraitLaw: this.portraitLaw,
       effectiveCellH: effectiveCellH(this.grid.composition),
+      ...this.runtimeTruth(),
       restOffset: restOffset(window.innerWidth, window.innerHeight, this.composition, this.verticalMode),
       route: location.pathname,
       normalPathDirectMedia: false,
@@ -423,6 +424,53 @@ export class GridAppV4 {
       elapsedSeconds: this.startedAt ? (performance.now() - this.startedAt) / 1000 : 0,
       mobileViewport: isMobileViewport(),
       dpr: this.renderer.handle?.renderer.getPixelRatio() ?? 1,
+    };
+  }
+
+  /**
+   * What the RUNTIME is actually doing, as opposed to what config says it
+   * should. `scaleDerivedFromActualCameraProjection` is measured by projecting
+   * a known world segment through the live camera, so it cannot agree with the
+   * config function by construction -- which is exactly the failure it exists
+   * to catch.
+   */
+  private runtimeTruth(): Record<string, unknown> {
+    const handle = this.renderer.handle;
+    const requested = this.portraitLaw;
+    const rendererLaw = this.renderer.portraitLaw;
+    const gridLaw = this.grid.composition.portraitLaw ?? null;
+    let derived: number | null = null;
+    let fov: number | null = null;
+    let focalPx: number | null = null;
+    if (handle) {
+      const camera = handle.camera;
+      fov = camera.fov;
+      focalPx = (window.innerHeight / 2) / Math.tan((camera.fov * Math.PI) / 360);
+      const a = new Vector3(0, 0, 0).project(camera);
+      const b = new Vector3(100, 0, 0).project(camera);
+      derived = ((b.x - a.x) * 0.5 * window.innerWidth) / 100;
+    }
+    const reported = this.renderer.compositionScale;
+    const lawsAgree = requested === rendererLaw && requested === gridLaw;
+    // Tolerance, not slop. The config scale is focal / perspectivePx, which
+    // treats the camera as unpitched; the live projection measures along the
+    // real view axis, and CAMERA.y = 8 makes that axis 1000.032 long rather
+    // than 1000. That is a fixed 3.2e-5 relative difference by construction.
+    const scaleAgrees = derived !== null && Math.abs(derived - reported) <= 1e-4 * Math.max(1, reported);
+    return {
+      requestedPortraitLaw: requested,
+      rendererPortraitLaw: rendererLaw,
+      gridPortraitLaw: gridLaw,
+      effectivePerspectivePx: focalPx,
+      effectiveFov: fov,
+      reportedCompositionScale: reported,
+      scaleDerivedFromActualCameraProjection: derived,
+      runtimeTruthAssertions: {
+        portraitLawPropagated: lawsAgree,
+        reportedScaleMatchesCameraProjection: scaleAgrees,
+        scaleDeltaPx: derived === null ? null : derived - reported,
+        allPass: lawsAgree && scaleAgrees,
+      },
     };
   }
 

@@ -70,12 +70,17 @@ export class RendererController {
     this.handle.canvas.style.width = "100%";
     this.handle.canvas.style.height = "100%";
     this.compositionScale = compositionScale(width, height, this.composition, this.verticalMode, this.portraitLaw);
-    this.viewZoom = viewZoom(width, height, this.composition, this.verticalMode);
+    // portraitLaw MUST reach all three. It used to be passed only to
+    // compositionScale, so the reported scale followed the requested law while
+    // the camera silently used the default one -- p0 and p1 rendered byte
+    // identically and their gate comparison was meaningless.
+    this.viewZoom = viewZoom(width, height, this.composition, this.verticalMode, this.portraitLaw);
     this.handle.camera.aspect = width / height;
     // fov is always derived from the effective focal length, so one world unit
     // stays one CSS pixel at z = 0 divided by the composition scale, whichever
     // mechanism the responsive law uses.
-    const focal = effectivePerspectivePx(width, height, this.composition, this.verticalMode);
+    const focal = effectivePerspectivePx(width, height, this.composition, this.verticalMode,
+                                         this.portraitLaw);
     this.handle.camera.fov = (2 * Math.atan(height / 2 / focal) * 180) / Math.PI;
     this.handle.camera.position.z = CAMERA.z * this.viewZoom;
     this.handle.camera.updateProjectionMatrix();
