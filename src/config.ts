@@ -127,6 +127,24 @@ export const COMPOSITION_V2 = {
    * joint fit, which also has to satisfy gutters and band positions, lands far
    * looser. The seed was a seed, not ground truth.
    */
+  /**
+   * Portrait law candidates, all three runnable via `?portraitLaw=`.
+   *
+   * P0 is what F2.5 shipped. It misses the held-out 390x844 scale by +5.09%.
+   * P1 is the law cross-validation endorses, +0.47%, with vertical untouched so
+   * only the scale changes. P2 locks P1's scale and refits the vertical under
+   * it. Numbers are exactly those validated in qa-v5/f26/portrait-crossval.json.
+   */
+  portraitLaws: {
+    p0: { radiusY: -4707.6, cellH: 419.95, restY0: -200.99,
+          portraitGainBase: 1.9468, portraitGainAspectSlope: -0.31 },
+    p1: { radiusY: -4707.6, cellH: 419.95, restY0: -200.99,
+          portraitGainBase: 1.87715, portraitGainAspectSlope: 0.12204 },
+    p2: { radiusY: -5576.1, cellH: 422.56, restY0: -202.57,
+          portraitGainBase: 1.87715, portraitGainAspectSlope: 0.12204 },
+  },
+  /** Which of the three ships. */
+  portraitLaw: "p1" as "p0" | "p1" | "p2",
   depth: {
     radiusY: -6496.2,
     cellH: 423.69,
@@ -144,22 +162,46 @@ export const COMPOSITION_V2 = {
   /** Default when no `?verticalMode=` is given. */
   verticalMode: "tangent" as VerticalMode,
   /**
-   * Rest phase. PROVISIONAL, and known to be incomplete.
+   * Rest phase, by viewport SHAPE.
    *
-   * The Target's canonical horizontal phase is bimodal at 0 or half a cell. It
-   * does not separate on orientation -- the landscape 844x390 sits at half a
-   * cell and the portrait 700x900 at zero -- and this scale switch is the best
-   * single rule the sweep supports: it agrees with 3 of the 5 well-fitted
-   * landscape samples (800x425, 844x390, 1000x700) and disagrees with 760x470
-   * and 926x428. It is shipped because it is strictly better than the v1
-   * orientation split and it fixes the gated 844x390, NOT because it is
-   * established. See qa-v5/f25/landscape-parity-law.json.
+   * The F2.5 rule switched on composition scale. Re-measured against the
+   * RUNTIME law -- the shipped landscape scale is width/1440, not the offline
+   * fitter's -- that rule scores 23 of 39. A CSS-width interval cannot work
+   * either: the same width takes different phases at different heights
+   * (900x420 against 900x899, 1440x700 against 1440x900), so the widths
+   * interleave and no interval separates them.
+   *
+   * What does separate them is aspect. `height < 0.5525 * width` scores 35 of
+   * 39, on a plateau running from 0.545 to 0.56; 0.5525 is its midpoint.
+   *
+   * KNOWN FRAGILITY: 16:9 sits at 0.5625, barely above the threshold. The most
+   * common desktop aspect is roughly 0.01 away from flipping phase. Widening
+   * the sweep around 16:9 is the first thing to do if this rule misbehaves.
+   *
+   * Misses, recorded rather than tuned away: 667x375, 700x700, 780x470,
+   * 1440x1080. See qa-v5/f26/landscape-phase.json.
    */
-  restPhaseScaleSwitch: 0.674,
+  restPhaseAspectThreshold: 0.5525,
 } as const;
 
-export function compositionParams(mode: VerticalMode) {
-  return mode === "tangent" ? COMPOSITION_V2.tangent : COMPOSITION_V2.depth;
+export const PORTRAIT_LAWS = ["p0", "p1", "p2"] as const;
+export type PortraitLaw = (typeof PORTRAIT_LAWS)[number];
+
+export function portraitLaw(search: string = location.search): PortraitLaw {
+  const value = new URLSearchParams(search).get("portraitLaw");
+  return (PORTRAIT_LAWS as readonly string[]).includes(value ?? "")
+    ? (value as PortraitLaw)
+    : COMPOSITION_V2.portraitLaw;
+}
+
+/**
+ * Effective parameters. `tangent` -- the shipping vertical mode -- takes them
+ * from the selected portrait law, so scale and vertical stay the pair that was
+ * validated together. `depth` keeps its own joint-fit set, since it exists only
+ * as the comparison candidate.
+ */
+export function compositionParams(mode: VerticalMode, law: PortraitLaw = COMPOSITION_V2.portraitLaw) {
+  return mode === "tangent" ? COMPOSITION_V2.portraitLaws[law] : COMPOSITION_V2.depth;
 }
 
 export function compositionVersion(search: string = location.search): CompositionVersion {
@@ -201,10 +243,11 @@ export function compositionScale(
   height: number,
   version: CompositionVersion = "v1",
   mode: VerticalMode = COMPOSITION_V2.verticalMode,
+  law: PortraitLaw = COMPOSITION_V2.portraitLaw,
 ): number {
   const w = Math.max(1, width);
   if (version === "v2" && isPortrait(width, height)) {
-    const params = compositionParams(mode);
+    const params = compositionParams(mode, law);
     const aspect = w / Math.max(1, height);
     const gain = params.portraitGainBase + params.portraitGainAspectSlope * (aspect - 0.5);
     return (gain * w) / RESPONSIVE.referenceWidth;
@@ -220,8 +263,10 @@ export function restOffset(
   mode: VerticalMode = COMPOSITION_V2.verticalMode,
 ): { x: number; y: number } {
   if (version === "v2") {
-    // One regime switch on composition scale, not on orientation.
-    const half = compositionScale(width, height, "v2", mode) < COMPOSITION_V2.restPhaseScaleSwitch;
+    // Portrait, or a wide-and-short landscape window, takes the half-cell phase.
+    const half = isPortrait(width, height)
+      || height < COMPOSITION_V2.restPhaseAspectThreshold * width;
+    void mode;
     return { x: half ? GRID.cellW / 2 : 0, y: 0 };
   }
   return isPortrait(width, height) ? RESPONSIVE.restOffset.portrait : RESPONSIVE.restOffset.landscape;
@@ -233,15 +278,17 @@ export function restOffset(
  * camera does not move and the focal length carries the scale instead.
  */
 export function viewZoom(width: number, height: number, version: CompositionVersion = "v1",
-  mode: VerticalMode = COMPOSITION_V2.verticalMode) {
-  const scale = compositionScale(width, height, version, mode);
+  mode: VerticalMode = COMPOSITION_V2.verticalMode,
+  law: PortraitLaw = COMPOSITION_V2.portraitLaw) {
+  const scale = compositionScale(width, height, version, mode, law);
   return RESPONSIVE.mechanism === "camera" ? 1 / scale : 1;
 }
 
 /** Effective focal length in pixels, after the responsive law. */
 export function effectivePerspectivePx(width: number, height: number, version: CompositionVersion = "v1",
-  mode: VerticalMode = COMPOSITION_V2.verticalMode) {
-  const scale = compositionScale(width, height, version, mode);
+  mode: VerticalMode = COMPOSITION_V2.verticalMode,
+  law: PortraitLaw = COMPOSITION_V2.portraitLaw) {
+  const scale = compositionScale(width, height, version, mode, law);
   return RESPONSIVE.mechanism === "focal" ? CAMERA.perspectivePx * scale : CAMERA.perspectivePx;
 }
 

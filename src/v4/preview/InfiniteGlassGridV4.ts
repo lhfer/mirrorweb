@@ -18,7 +18,7 @@ import {
   type MediaFitMode,
   type MediaFitResult,
 } from "../../content/MediaFit";
-import { placeTile, V1_COMPOSITION, type Composition, type TilePose } from "../../scene/GridCurvature";
+import { effectiveCellH, placeTile, V1_COMPOSITION, type Composition, type TilePose } from "../../scene/GridCurvature";
 import { createConvexGlassGeometryV4 } from "../../scene/ConvexGlassGeometryV4";
 import {
   createLiquidGlassMaterialV4,
@@ -266,7 +266,7 @@ export class InfiniteGlassGridV4 {
 
   update(scrollX: number, scrollY: number): void {
     const originI = Math.round(scrollX / GRID.cellW);
-    const originJ = Math.round(scrollY / GRID.cellH);
+    const originJ = Math.round(scrollY / effectiveCellH(this.composition));
     const halfCols = Math.floor(GRID.cols / 2);
     const halfRows = Math.floor(GRID.rows / 2);
     let n = 0;

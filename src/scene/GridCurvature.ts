@@ -1,4 +1,4 @@
-import { compositionParams, GRID, type CompositionVersion, type VerticalMode } from "../config";
+import { compositionParams, GRID, type CompositionVersion, type PortraitLaw, type VerticalMode } from "../config";
 
 export type TilePose = {
   x: number;
@@ -12,9 +12,25 @@ export type TilePose = {
 export type Composition = {
   version: CompositionVersion;
   verticalMode: VerticalMode;
+  portraitLaw?: PortraitLaw;
 };
 
 export const V1_COMPOSITION: Composition = { version: "v1", verticalMode: "depth" };
+
+/**
+ * Effective vertical cell pitch for a composition.
+ *
+ * Recycling has to use the SAME pitch as placement. v2 places rows on
+ * `params.cellH` while the pool was still deriving its origin row from
+ * `GRID.cellH`; the two differ by a few units, so far from the origin the pool
+ * hands a slot the wrong row index, which shows up as a catalog jump and a
+ * parity break. Both sides now read this.
+ */
+export function effectiveCellH(composition: Composition = V1_COMPOSITION): number {
+  return composition.version === "v2"
+    ? compositionParams(composition.verticalMode, composition.portraitLaw).cellH
+    : GRID.cellH;
+}
 
 const _pose: TilePose = { x: 0, y: 0, z: 0, rotX: 0, rotY: 0 };
 
@@ -44,7 +60,7 @@ export function placeTile(
 ): TilePose {
   const u = brickColumn(i, j) * GRID.cellW - scrollX;
   const v2 = composition.version === "v2";
-  const params = compositionParams(composition.verticalMode);
+  const params = compositionParams(composition.verticalMode, composition.portraitLaw);
   const cellH = v2 ? params.cellH : GRID.cellH;
   const restY0 = v2 ? params.restY0 : GRID.restY0;
   const v = j * cellH + restY0 - scrollY;

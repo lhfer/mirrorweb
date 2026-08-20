@@ -5,7 +5,7 @@ import {
   Scene,
   WebGPURenderer,
 } from "three/webgpu";
-import { CAMERA, CLEAR_COLOR, compositionScale, effectivePerspectivePx, viewZoom, type CompositionVersion, type VerticalMode } from "../config";
+import { CAMERA, CLEAR_COLOR, compositionScale, effectivePerspectivePx, viewZoom, type CompositionVersion, type PortraitLaw, type VerticalMode } from "../config";
 import { detectBackend, resolveDpr, type Backend } from "../quality/DeviceProfile";
 
 export type RendererHandle = {
@@ -24,6 +24,7 @@ export class RendererController {
   /** Which composition the responsive law should use. */
   composition: CompositionVersion = "v1";
   verticalMode: VerticalMode = "tangent";
+  portraitLaw: PortraitLaw = "p1";
   private dprOverride?: number;
 
   async init(host: HTMLElement, forceWebGL = false): Promise<RendererHandle> {
@@ -68,7 +69,7 @@ export class RendererController {
     this.handle.renderer.setSize(width, height, false);
     this.handle.canvas.style.width = "100%";
     this.handle.canvas.style.height = "100%";
-    this.compositionScale = compositionScale(width, height, this.composition, this.verticalMode);
+    this.compositionScale = compositionScale(width, height, this.composition, this.verticalMode, this.portraitLaw);
     this.viewZoom = viewZoom(width, height, this.composition, this.verticalMode);
     this.handle.camera.aspect = width / height;
     // fov is always derived from the effective focal length, so one world unit

@@ -1,11 +1,12 @@
 import { AmbientLight, Vector3, type DirectionalLight } from "three/webgpu";
 import {
-  CAMERA, GRID, TILE, compositionScale, compositionVersion, restOffset, verticalMode,
-  type CompositionVersion, type QualityLevel, type VerticalMode,
+  CAMERA, GRID, TILE, compositionScale, compositionVersion, portraitLaw, restOffset,
+  verticalMode, type CompositionVersion, type PortraitLaw, type QualityLevel, type VerticalMode,
 } from "../../config";
 import { readDebugMode, type DebugMode } from "../../debug/DebugMode";
 import { isFoundationLayout, readFoundationMode, type FoundationMode } from "../../debug/FoundationMode";
 import { FoundationOverlay } from "../../debug/FoundationOverlay";
+import { effectiveCellH } from "../../scene/GridCurvature";
 import { InputController } from "../../interaction/InputController";
 import { MotionController } from "../../interaction/MotionController";
 import { AdaptiveQuality } from "../../quality/AdaptiveQuality";
@@ -42,6 +43,7 @@ export type GridAppV4Options = {
   /** `v1` is the F2 candidate, kept reachable; `v2` is the F2.5 candidate. */
   composition?: CompositionVersion;
   vertical?: VerticalMode;
+  portraitLaw?: PortraitLaw;
 };
 
 /**
@@ -77,6 +79,7 @@ export class GridAppV4 {
   readonly foundation: FoundationMode;
   readonly composition: CompositionVersion;
   readonly verticalMode: VerticalMode;
+  readonly portraitLaw: PortraitLaw;
   private foundationOverlay?: FoundationOverlay;
 
   constructor(private readonly options: GridAppV4Options = {}) {
@@ -85,7 +88,9 @@ export class GridAppV4 {
     this.foundation = options.foundation ?? readFoundationMode();
     this.composition = options.composition ?? compositionVersion();
     this.verticalMode = options.vertical ?? verticalMode();
-    this.grid.composition = { version: this.composition, verticalMode: this.verticalMode };
+    this.portraitLaw = options.portraitLaw ?? portraitLaw();
+    this.grid.composition = { version: this.composition, verticalMode: this.verticalMode,
+                              portraitLaw: this.portraitLaw };
   }
 
   private get layoutOnly(): boolean {
@@ -117,6 +122,7 @@ export class GridAppV4 {
 
     this.renderer.composition = this.composition;
     this.renderer.verticalMode = this.verticalMode;
+    this.renderer.portraitLaw = this.portraitLaw;
     const handle = await this.renderer.init(
       document.getElementById(this.options.viewportId ?? "viewport")!,
       false,
@@ -401,6 +407,8 @@ export class GridAppV4 {
       viewport: [window.innerWidth, window.innerHeight],
       composition: this.composition,
       verticalMode: this.verticalMode,
+      portraitLaw: this.portraitLaw,
+      effectiveCellH: effectiveCellH(this.grid.composition),
       restOffset: restOffset(window.innerWidth, window.innerHeight, this.composition, this.verticalMode),
       route: location.pathname,
       normalPathDirectMedia: false,

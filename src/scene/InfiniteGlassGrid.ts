@@ -6,7 +6,7 @@ import { applyMediaFit, computeMediaFit, readMediaFitMode } from "../content/Med
 import { isGlassDebug, isLayoutDebug, type DebugMode, type GlassDebugMode } from "../debug/DebugMode";
 import { createGlassMaterial, createGlassParams, type GlassMaterialHandle } from "../materials/LiquidGlassMaterial";
 import { createConvexGlassGeometry } from "./ConvexGlassGeometry";
-import { placeTile, V1_COMPOSITION, type Composition, type TilePose } from "./GridCurvature";
+import { effectiveCellH, placeTile, V1_COMPOSITION, type Composition, type TilePose } from "./GridCurvature";
 
 export type Slot = {
   group: Group;
@@ -147,7 +147,7 @@ export class InfiniteGlassGrid {
 
   update(scrollX: number, scrollY: number) {
     const originI = Math.round(scrollX / GRID.cellW);
-    const originJ = Math.round(scrollY / GRID.cellH);
+    const originJ = Math.round(scrollY / effectiveCellH(this.composition));
     const halfCols = Math.floor(GRID.cols / 2);
     const halfRows = Math.floor(GRID.rows / 2);
     let n = 0;
