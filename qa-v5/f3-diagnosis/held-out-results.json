@@ -1,0 +1,120 @@
+{
+  "M0": [
+    {
+      "viewport": "414x896",
+      "scrollY": -208.62,
+      "rmsPx": 11.701,
+      "maxPx": 23.265,
+      "observedRowHeights": [
+        198.0,
+        219.0,
+        219.0,
+        195.0
+      ],
+      "modelRowHeights": [
+        215.4,
+        216.8,
+        218.3,
+        219.8,
+        221.3,
+        222.8
+      ],
+      "observedRowCentres": [
+        115.5,
+        333.0,
+        562.0,
+        779.0
+      ],
+      "modelRowCentres": [
+        1017.3,
+        791.0,
+        563.2,
+        333.8,
+        102.9,
+        -129.5
+      ],
+      "observedBandCount": 4,
+      "modelRowCount": 6
+    }
+  ],
+  "M1": [
+    {
+      "viewport": "414x896",
+      "scrollY": -209.75,
+      "rmsPx": 4.968,
+      "maxPx": 9.566,
+      "observedRowHeights": [
+        198.0,
+        219.0,
+        219.0,
+        195.0
+      ],
+      "modelRowHeights": [
+        141.2,
+        170.3,
+        197.9,
+        216.0,
+        217.4,
+        201.6,
+        175.0,
+        145.7
+      ],
+      "observedRowCentres": [
+        115.5,
+        333.0,
+        562.0,
+        779.0
+      ],
+      "modelRowCentres": [
+        968.1,
+        895.9,
+        759.9,
+        561.3,
+        334.4,
+        132.6,
+        -7.8,
+        -83.2
+      ],
+      "observedBandCount": 4,
+      "modelRowCount": 8
+    }
+  ],
+  "M2": [
+    {
+      "viewport": "414x896",
+      "scrollY": -224.85,
+      "rmsPx": 11.388,
+      "maxPx": 25.078,
+      "observedRowHeights": [
+        198.0,
+        219.0,
+        219.0,
+        195.0
+      ],
+      "modelRowHeights": [
+        220.8,
+        220.1,
+        219.4,
+        218.7,
+        218.0,
+        217.4
+      ],
+      "observedRowCentres": [
+        115.5,
+        333.0,
+        562.0,
+        779.0
+      ],
+      "modelRowCentres": [
+        1004.6,
+        781.0,
+        558.0,
+        335.8,
+        114.2,
+        -106.7
+      ],
+      "observedBandCount": 4,
+      "modelRowCount": 6
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "stage": "f3-diagnosis",
+  "repository": "lhfer/mirrorweb",
+  "branch": "rebuild/liquid-glass-v5-foundation",
+  "head": "4ca597fd3fb276f835192ae0caa759042dc1cc5c",
+  "codeCommit": null,
+  "evidenceCommit": "this commit",
+  "route": "/?optics=v4 (beauty) and /?optics=v4&foundation=layout&annotate=0 (gate)",
+  "captureTimestampUtc": "2026-08-20T11:00:51Z",
+  "fixedCaptureConditions": {
+    "quality": "high (pinned; adaptive quality must not drift between captures)",
+    "mediaTimeSeconds": 2,
+    "mediaState": "frozen, frame-matched across runs",
+    "dpr": 1,
+    "pointer": [
+      0,
+      0
+    ],
+    "offset": "0,0 for gate captures; 260,180 additionally for session B",
+    "motion": "paused"
+  },
+  "gateVerdict": null,
+  "targetPixelPolicy": "This directory contains LOCAL pixels and Target-derived NUMBERS only. Target pixels and Target/local overlays live in qa-v5/private/, which is git-ignored.",
+  "files": [
+    {
+      "path": "qa-v5/f3-diagnosis/README.md",
+      "bytes": 1694,
+      "sha256": "61e125d952963c7a7a15608c8ef12f51dfac096a202d8eef80fda9cdc754ddf7"
+    },
+    {
+      "path": "qa-v5/f3-diagnosis/held-out-results.json",
+      "bytes": 1950,
+      "sha256": "37cf4e7e76af12d845452820a632da7661aca364303f3314dfff6fa6b7d79f03"
+    },
+    {
+      "path": "qa-v5/f3-diagnosis/local-diagnostic-sheet.png",
+      "bytes": 38812,
+      "sha256": "631230af06fc01e9bf616b39c6c69ce5b0dcfec0fa354872fa18474370fd0cf6"
+    },
+    {
+      "path": "qa-v5/f3-diagnosis/model-comparison.json",
+      "bytes": 23567,
+      "sha256": "c2a46f584f2fa33e044ed1922789e76bcda42f407510f72b6663948e15cd9eab"
+    },
+    {
+      "path": "qa-v5/f3-diagnosis/row-height-curves.json",
+      "bytes": 7011,
+      "sha256": "00727eb553587a1ba4715271500cc5d352ee79f225e07eea95a49f19ffd82fad"
+    }
+  ]
+}

@@ -1,0 +1,1099 @@
+{
+  "note": "Diagnosis only. No product code is changed and no radiusY is implemented.",
+  "models": {
+    "M0": "horizontal cylinder only (accepted V5 Foundation baseline)",
+    "M1": "M0 + vertical curvature radius (dual axis)",
+    "M2": "M0 + camera pitch (lookY) + vertical composition scale"
+  },
+  "viewports": [
+    "1440x900",
+    "1100x720",
+    "1920x1080",
+    "360x800",
+    "390x844",
+    "414x896",
+    "430x932"
+  ],
+  "heldOut": "414x896",
+  "sharedParameterPolicy": "one shared shape parameter set across all viewports; only each viewport's own vertical rest offset is free",
+  "results": {
+    "M0": {
+      "sharedParameters": {
+        "(none)": "M0 has no extra shape parameter"
+      },
+      "trainRmsPx": 10.763,
+      "trainMaxPx": 37.805,
+      "perViewport": [
+        {
+          "viewport": "1440x900",
+          "scrollY": -211.41,
+          "rmsPx": 3.544,
+          "maxPx": 6.184,
+          "observedRowHeights": [
+            400.0,
+            394.0
+          ],
+          "modelRowHeights": [
+            397.5,
+            400.2,
+            402.9,
+            405.6
+          ],
+          "observedRowCentres": [
+            240.5,
+            655.5
+          ],
+          "modelRowCentres": [
+            1075.9,
+            658.3,
+            237.9,
+            -185.3
+          ],
+          "observedBandCount": 2,
+          "modelRowCount": 4
+        },
+        {
+          "viewport": "1100x720",
+          "scrollY": -211.37,
+          "rmsPx": 2.821,
+          "maxPx": 4.696,
+          "observedRowHeights": [
+            305.0,
+            301.0
+          ],
+          "modelRowHeights": [
+            303.7,
+            305.7,
+            307.8,
+            309.8
+          ],
+          "observedRowCentres": [
+            200.0,
+            517.0
+          ],
+          "modelRowCentres": [
+            838.2,
+            519.2,
+            198.0,
+            -125.3
+          ],
+          "observedBandCount": 2,
+          "modelRowCount": 4
+        },
+        {
+          "viewport": "1920x1080",
+          "scrollY": -215.87,
+          "rmsPx": 9.629,
+          "maxPx": 13.617,
+          "observedRowHeights": [
+            520.0
+          ],
+          "modelRowHeights": [
+            533.6,
+            537.2
+          ],
+          "observedRowCentres": [
+            811.5
+          ],
+          "modelRowCentres": [
+            811.8,
+            251.3
+          ],
+          "observedBandCount": 1,
+          "modelRowCount": 2
+        },
+        {
+          "viewport": "360x800",
+          "scrollY": -202.51,
+          "rmsPx": 8.137,
+          "maxPx": 19.385,
+          "observedRowHeights": [
+            173.0,
+            191.0,
+            191.0
+          ],
+          "modelRowHeights": [
+            187.3,
+            188.5,
+            189.8,
+            191.1,
+            192.4,
+            193.7
+          ],
+          "observedRowCentres": [
+            110.0,
+            300.0,
+            499.0
+          ],
+          "modelRowCentres": [
+            897.9,
+            701.1,
+            503.0,
+            303.6,
+            102.9,
+            -99.2
+          ],
+          "observedBandCount": 3,
+          "modelRowCount": 6
+        },
+        {
+          "viewport": "390x844",
+          "scrollY": -208.95,
+          "rmsPx": 11.09,
+          "maxPx": 22.439,
+          "observedRowHeights": [
+            186.0,
+            207.0,
+            207.0,
+            184.0
+          ],
+          "modelRowHeights": [
+            202.9,
+            204.3,
+            205.6,
+            207.0,
+            208.4,
+            209.9
+          ],
+          "observedRowCentres": [
+            108.5,
+            314.0,
+            529.0,
+            733.5
+          ],
+          "modelRowCentres": [
+            958.1,
+            744.9,
+            530.3,
+            314.3,
+            96.8,
+            -122.2
+          ],
+          "observedBandCount": 4,
+          "modelRowCount": 6
+        },
+        {
+          "viewport": "414x896",
+          "scrollY": -208.62,
+          "rmsPx": 11.701,
+          "maxPx": 23.265,
+          "observedRowHeights": [
+            198.0,
+            219.0,
+            219.0,
+            195.0
+          ],
+          "modelRowHeights": [
+            215.4,
+            216.8,
+            218.3,
+            219.8,
+            221.3,
+            222.8
+          ],
+          "observedRowCentres": [
+            115.5,
+            333.0,
+            562.0,
+            779.0
+          ],
+          "modelRowCentres": [
+            1017.3,
+            791.0,
+            563.2,
+            333.8,
+            102.9,
+            -129.5
+          ],
+          "observedBandCount": 4,
+          "modelRowCount": 6
+        },
+        {
+          "viewport": "430x932",
+          "scrollY": -205.53,
+          "rmsPx": 16.04,
+          "maxPx": 37.805,
+          "observedRowHeights": [
+            192.0,
+            228.0,
+            227.0,
+            203.0
+          ],
+          "modelRowHeights": [
+            223.7,
+            225.2,
+            226.7,
+            228.3,
+            229.8,
+            231.4
+          ],
+          "observedRowCentres": [
+            127.5,
+            346.5,
+            584.0,
+            810.0
+          ],
+          "modelRowCentres": [
+            1059.0,
+            824.0,
+            587.4,
+            349.2,
+            109.4,
+            -132.1
+          ],
+          "observedBandCount": 4,
+          "modelRowCount": 6
+        }
+      ],
+      "heldOut": [
+        {
+          "viewport": "414x896",
+          "scrollY": -208.62,
+          "rmsPx": 11.701,
+          "maxPx": 23.265,
+          "observedRowHeights": [
+            198.0,
+            219.0,
+            219.0,
+            195.0
+          ],
+          "modelRowHeights": [
+            215.4,
+            216.8,
+            218.3,
+            219.8,
+            221.3,
+            222.8
+          ],
+          "observedRowCentres": [
+            115.5,
+            333.0,
+            562.0,
+            779.0
+          ],
+          "modelRowCentres": [
+            1017.3,
+            791.0,
+            563.2,
+            333.8,
+            102.9,
+            -129.5
+          ],
+          "observedBandCount": 4,
+          "modelRowCount": 6
+        }
+      ],
+      "desktopRegression": [
+        {
+          "viewport": "1440x900",
+          "scrollY": -211.41,
+          "rmsPx": 3.544,
+          "maxPx": 6.184,
+          "observedRowHeights": [
+            400.0,
+            394.0
+          ],
+          "modelRowHeights": [
+            397.5,
+            400.2,
+            402.9,
+            405.6
+          ],
+          "observedRowCentres": [
+            240.5,
+            655.5
+          ],
+          "modelRowCentres": [
+            1075.9,
+            658.3,
+            237.9,
+            -185.3
+          ],
+          "observedBandCount": 2,
+          "modelRowCount": 4
+        },
+        {
+          "viewport": "1100x720",
+          "scrollY": -211.37,
+          "rmsPx": 2.821,
+          "maxPx": 4.696,
+          "observedRowHeights": [
+            305.0,
+            301.0
+          ],
+          "modelRowHeights": [
+            303.7,
+            305.7,
+            307.8,
+            309.8
+          ],
+          "observedRowCentres": [
+            200.0,
+            517.0
+          ],
+          "modelRowCentres": [
+            838.2,
+            519.2,
+            198.0,
+            -125.3
+          ],
+          "observedBandCount": 2,
+          "modelRowCount": 4
+        },
+        {
+          "viewport": "1920x1080",
+          "scrollY": -215.87,
+          "rmsPx": 9.629,
+          "maxPx": 13.617,
+          "observedRowHeights": [
+            520.0
+          ],
+          "modelRowHeights": [
+            533.6,
+            537.2
+          ],
+          "observedRowCentres": [
+            811.5
+          ],
+          "modelRowCentres": [
+            811.8,
+            251.3
+          ],
+          "observedBandCount": 1,
+          "modelRowCount": 2
+        }
+      ]
+    },
+    "M1": {
+      "sharedParameters": {
+        "radiusY": 2053.4186
+      },
+      "trainRmsPx": 4.908,
+      "trainMaxPx": 17.355,
+      "perViewport": [
+        {
+          "viewport": "1440x900",
+          "scrollY": -211.21,
+          "rmsPx": 1.244,
+          "maxPx": 1.976,
+          "observedRowHeights": [
+            400.0,
+            394.0
+          ],
+          "modelRowHeights": [
+            362.8,
+            396.0,
+            398.5,
+            369.4
+          ],
+          "observedRowCentres": [
+            240.5,
+            655.5
+          ],
+          "modelRowCentres": [
+            1020.6,
+            656.3,
+            240.3,
+            -129.3
+          ],
+          "observedBandCount": 2,
+          "modelRowCount": 4
+        },
+        {
+          "viewport": "1100x720",
+          "scrollY": -211.23,
+          "rmsPx": 0.806,
+          "maxPx": 1.483,
+          "observedRowHeights": [
+            305.0,
+            301.0
+          ],
+          "modelRowHeights": [
+            277.2,
+            302.5,
+            304.4,
+            282.2
+          ],
+          "observedRowCentres": [
+            200.0,
+            517.0
+          ],
+          "modelRowCentres": [
+            795.9,
+            517.5,
+            199.8,
+            -82.5
+          ],
+          "observedBandCount": 2,
+          "modelRowCount": 4
+        },
+        {
+          "viewport": "1920x1080",
+          "scrollY": -212.75,
+          "rmsPx": 5.727,
+          "maxPx": 8.063,
+          "observedRowHeights": [
+            520.0
+          ],
+          "modelRowHeights": [
+            484.0,
+            528.1,
+            531.3,
+            492.3
+          ],
+          "observedRowCentres": [
+            811.5
+          ],
+          "modelRowCentres": [
+            1299.3,
+            813.0,
+            258.4,
+            -234.0
+          ],
+          "observedBandCount": 1,
+          "modelRowCount": 4
+        },
+        {
+          "viewport": "360x800",
+          "scrollY": -221.33,
+          "rmsPx": 3.219,
+          "maxPx": 5.778,
+          "observedRowHeights": [
+            173.0,
+            191.0,
+            191.0
+          ],
+          "modelRowHeights": [
+            123.5,
+            148.8,
+            172.6,
+            188.1,
+            188.9,
+            174.7,
+            151.4,
+            126.0
+          ],
+          "observedRowCentres": [
+            110.0,
+            300.0,
+            499.0
+          ],
+          "modelRowCentres": [
+            851.1,
+            787.0,
+            667.1,
+            493.2,
+            295.9,
+            121.6,
+            1.2,
+            -63.1
+          ],
+          "observedBandCount": 3,
+          "modelRowCount": 8
+        },
+        {
+          "viewport": "390x844",
+          "scrollY": -210.28,
+          "rmsPx": 4.79,
+          "maxPx": 8.957,
+          "observedRowHeights": [
+            186.0,
+            207.0,
+            207.0,
+            184.0
+          ],
+          "modelRowHeights": [
+            133.1,
+            160.5,
+            186.4,
+            203.5,
+            204.8,
+            189.9,
+            164.8,
+            137.2
+          ],
+          "observedRowCentres": [
+            108.5,
+            314.0,
+            529.0,
+            733.5
+          ],
+          "modelRowCentres": [
+            911.9,
+            843.8,
+            715.6,
+            528.5,
+            314.7,
+            124.6,
+            -7.5,
+            -78.5
+          ],
+          "observedBandCount": 4,
+          "modelRowCount": 8
+        },
+        {
+          "viewport": "414x896",
+          "scrollY": -209.75,
+          "rmsPx": 4.968,
+          "maxPx": 9.566,
+          "observedRowHeights": [
+            198.0,
+            219.0,
+            219.0,
+            195.0
+          ],
+          "modelRowHeights": [
+            141.2,
+            170.3,
+            197.9,
+            216.0,
+            217.4,
+            201.6,
+            175.0,
+            145.7
+          ],
+          "observedRowCentres": [
+            115.5,
+            333.0,
+            562.0,
+            779.0
+          ],
+          "modelRowCentres": [
+            968.1,
+            895.9,
+            759.9,
+            561.3,
+            334.4,
+            132.6,
+            -7.8,
+            -83.2
+          ],
+          "observedBandCount": 4,
+          "modelRowCount": 8
+        },
+        {
+          "viewport": "430x932",
+          "scrollY": -210.04,
+          "rmsPx": 7.506,
+          "maxPx": 17.355,
+          "observedRowHeights": [
+            192.0,
+            228.0,
+            227.0,
+            203.0
+          ],
+          "modelRowHeights": [
+            146.7,
+            176.9,
+            205.5,
+            224.3,
+            225.8,
+            209.4,
+            181.7,
+            151.3
+          ],
+          "observedRowCentres": [
+            127.5,
+            346.5,
+            584.0,
+            810.0
+          ],
+          "modelRowCentres": [
+            1006.1,
+            931.2,
+            789.8,
+            583.5,
+            347.8,
+            138.2,
+            -7.5,
+            -85.8
+          ],
+          "observedBandCount": 4,
+          "modelRowCount": 8
+        }
+      ],
+      "heldOut": [
+        {
+          "viewport": "414x896",
+          "scrollY": -209.75,
+          "rmsPx": 4.968,
+          "maxPx": 9.566,
+          "observedRowHeights": [
+            198.0,
+            219.0,
+            219.0,
+            195.0
+          ],
+          "modelRowHeights": [
+            141.2,
+            170.3,
+            197.9,
+            216.0,
+            217.4,
+            201.6,
+            175.0,
+            145.7
+          ],
+          "observedRowCentres": [
+            115.5,
+            333.0,
+            562.0,
+            779.0
+          ],
+          "modelRowCentres": [
+            968.1,
+            895.9,
+            759.9,
+            561.3,
+            334.4,
+            132.6,
+            -7.8,
+            -83.2
+          ],
+          "observedBandCount": 4,
+          "modelRowCount": 8
+        }
+      ],
+      "desktopRegression": [
+        {
+          "viewport": "1440x900",
+          "scrollY": -211.21,
+          "rmsPx": 1.244,
+          "maxPx": 1.976,
+          "observedRowHeights": [
+            400.0,
+            394.0
+          ],
+          "modelRowHeights": [
+            362.8,
+            396.0,
+            398.5,
+            369.4
+          ],
+          "observedRowCentres": [
+            240.5,
+            655.5
+          ],
+          "modelRowCentres": [
+            1020.6,
+            656.3,
+            240.3,
+            -129.3
+          ],
+          "observedBandCount": 2,
+          "modelRowCount": 4
+        },
+        {
+          "viewport": "1100x720",
+          "scrollY": -211.23,
+          "rmsPx": 0.806,
+          "maxPx": 1.483,
+          "observedRowHeights": [
+            305.0,
+            301.0
+          ],
+          "modelRowHeights": [
+            277.2,
+            302.5,
+            304.4,
+            282.2
+          ],
+          "observedRowCentres": [
+            200.0,
+            517.0
+          ],
+          "modelRowCentres": [
+            795.9,
+            517.5,
+            199.8,
+            -82.5
+          ],
+          "observedBandCount": 2,
+          "modelRowCount": 4
+        },
+        {
+          "viewport": "1920x1080",
+          "scrollY": -212.75,
+          "rmsPx": 5.727,
+          "maxPx": 8.063,
+          "observedRowHeights": [
+            520.0
+          ],
+          "modelRowHeights": [
+            484.0,
+            528.1,
+            531.3,
+            492.3
+          ],
+          "observedRowCentres": [
+            811.5
+          ],
+          "modelRowCentres": [
+            1299.3,
+            813.0,
+            258.4,
+            -234.0
+          ],
+          "observedBandCount": 1,
+          "modelRowCount": 4
+        }
+      ]
+    },
+    "M2": {
+      "sharedParameters": {
+        "lookY": 11.8272,
+        "vScale": 0.969
+      },
+      "trainRmsPx": 10.387,
+      "trainMaxPx": 34.46,
+      "perViewport": [
+        {
+          "viewport": "1440x900",
+          "scrollY": -224.86,
+          "rmsPx": 4.321,
+          "maxPx": 8.162,
+          "observedRowHeights": [
+            400.0,
+            394.0
+          ],
+          "modelRowHeights": [
+            403.4,
+            402.2,
+            400.9,
+            399.7
+          ],
+          "observedRowCentres": [
+            240.5,
+            655.5
+          ],
+          "modelRowCentres": [
+            1060.3,
+            651.6,
+            244.3,
+            -161.9
+          ],
+          "observedBandCount": 2,
+          "modelRowCount": 4
+        },
+        {
+          "viewport": "1100x720",
+          "scrollY": -224.83,
+          "rmsPx": 3.328,
+          "maxPx": 6.207,
+          "observedRowHeights": [
+            305.0,
+            301.0
+          ],
+          "modelRowHeights": [
+            308.2,
+            307.2,
+            306.3,
+            305.3
+          ],
+          "observedRowCentres": [
+            200.0,
+            517.0
+          ],
+          "modelRowCentres": [
+            826.2,
+            514.1,
+            202.9,
+            -107.4
+          ],
+          "observedBandCount": 2,
+          "modelRowCount": 4
+        },
+        {
+          "viewport": "1920x1080",
+          "scrollY": -222.97,
+          "rmsPx": 11.472,
+          "maxPx": 16.223,
+          "observedRowHeights": [
+            520.0
+          ],
+          "modelRowHeights": [
+            537.9,
+            536.2,
+            534.6,
+            532.9
+          ],
+          "observedRowCentres": [
+            811.5
+          ],
+          "modelRowCentres": [
+            1356.2,
+            811.3,
+            268.1,
+            -273.4
+          ],
+          "observedBandCount": 1,
+          "modelRowCount": 4
+        },
+        {
+          "viewport": "360x800",
+          "scrollY": -224.12,
+          "rmsPx": 6.833,
+          "maxPx": 16.591,
+          "observedRowHeights": [
+            173.0,
+            191.0,
+            191.0
+          ],
+          "modelRowHeights": [
+            192.0,
+            191.4,
+            190.8,
+            190.2,
+            189.6,
+            189.0
+          ],
+          "observedRowCentres": [
+            110.0,
+            300.0,
+            499.0
+          ],
+          "modelRowCentres": [
+            884.3,
+            689.9,
+            496.0,
+            302.7,
+            110.1,
+            -82.0
+          ],
+          "observedBandCount": 3,
+          "modelRowCount": 6
+        },
+        {
+          "viewport": "390x844",
+          "scrollY": -225.16,
+          "rmsPx": 10.76,
+          "maxPx": 23.319,
+          "observedRowHeights": [
+            186.0,
+            207.0,
+            207.0,
+            184.0
+          ],
+          "modelRowHeights": [
+            208.0,
+            207.3,
+            206.7,
+            206.0,
+            205.4,
+            204.8
+          ],
+          "observedRowCentres": [
+            108.5,
+            314.0,
+            529.0,
+            733.5
+          ],
+          "modelRowCentres": [
+            946.2,
+            735.5,
+            525.5,
+            316.1,
+            107.4,
+            -100.7
+          ],
+          "observedBandCount": 4,
+          "modelRowCount": 6
+        },
+        {
+          "viewport": "414x896",
+          "scrollY": -224.85,
+          "rmsPx": 11.388,
+          "maxPx": 25.078,
+          "observedRowHeights": [
+            198.0,
+            219.0,
+            219.0,
+            195.0
+          ],
+          "modelRowHeights": [
+            220.8,
+            220.1,
+            219.4,
+            218.7,
+            218.0,
+            217.4
+          ],
+          "observedRowCentres": [
+            115.5,
+            333.0,
+            562.0,
+            779.0
+          ],
+          "modelRowCentres": [
+            1004.6,
+            781.0,
+            558.0,
+            335.8,
+            114.2,
+            -106.7
+          ],
+          "observedBandCount": 4,
+          "modelRowCount": 6
+        },
+        {
+          "viewport": "430x932",
+          "scrollY": -221.93,
+          "rmsPx": 15.264,
+          "maxPx": 34.46,
+          "observedRowHeights": [
+            192.0,
+            228.0,
+            227.0,
+            203.0
+          ],
+          "modelRowHeights": [
+            229.3,
+            228.6,
+            227.9,
+            227.2,
+            226.5,
+            225.8
+          ],
+          "observedRowCentres": [
+            127.5,
+            346.5,
+            584.0,
+            810.0
+          ],
+          "modelRowCentres": [
+            1045.7,
+            813.4,
+            581.9,
+            351.0,
+            120.9,
+            -108.5
+          ],
+          "observedBandCount": 4,
+          "modelRowCount": 6
+        }
+      ],
+      "heldOut": [
+        {
+          "viewport": "414x896",
+          "scrollY": -224.85,
+          "rmsPx": 11.388,
+          "maxPx": 25.078,
+          "observedRowHeights": [
+            198.0,
+            219.0,
+            219.0,
+            195.0
+          ],
+          "modelRowHeights": [
+            220.8,
+            220.1,
+            219.4,
+            218.7,
+            218.0,
+            217.4
+          ],
+          "observedRowCentres": [
+            115.5,
+            333.0,
+            562.0,
+            779.0
+          ],
+          "modelRowCentres": [
+            1004.6,
+            781.0,
+            558.0,
+            335.8,
+            114.2,
+            -106.7
+          ],
+          "observedBandCount": 4,
+          "modelRowCount": 6
+        }
+      ],
+      "desktopRegression": [
+        {
+          "viewport": "1440x900",
+          "scrollY": -224.86,
+          "rmsPx": 4.321,
+          "maxPx": 8.162,
+          "observedRowHeights": [
+            400.0,
+            394.0
+          ],
+          "modelRowHeights": [
+            403.4,
+            402.2,
+            400.9,
+            399.7
+          ],
+          "observedRowCentres": [
+            240.5,
+            655.5
+          ],
+          "modelRowCentres": [
+            1060.3,
+            651.6,
+            244.3,
+            -161.9
+          ],
+          "observedBandCount": 2,
+          "modelRowCount": 4
+        },
+        {
+          "viewport": "1100x720",
+          "scrollY": -224.83,
+          "rmsPx": 3.328,
+          "maxPx": 6.207,
+          "observedRowHeights": [
+            305.0,
+            301.0
+          ],
+          "modelRowHeights": [
+            308.2,
+            307.2,
+            306.3,
+            305.3
+          ],
+          "observedRowCentres": [
+            200.0,
+            517.0
+          ],
+          "modelRowCentres": [
+            826.2,
+            514.1,
+            202.9,
+            -107.4
+          ],
+          "observedBandCount": 2,
+          "modelRowCount": 4
+        },
+        {
+          "viewport": "1920x1080",
+          "scrollY": -222.97,
+          "rmsPx": 11.472,
+          "maxPx": 16.223,
+          "observedRowHeights": [
+            520.0
+          ],
+          "modelRowHeights": [
+            537.9,
+            536.2,
+            534.6,
+            532.9
+          ],
+          "observedRowCentres": [
+            811.5
+          ],
+          "modelRowCentres": [
+            1356.2,
+            811.3,
+            268.1,
+            -273.4
+          ],
+          "observedBandCount": 1,
+          "modelRowCount": 4
+        }
+      ]
+    }
+  }
+}
