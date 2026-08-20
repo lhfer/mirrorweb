@@ -221,7 +221,11 @@ export class GridAppV4 {
         this.foundationOverlay.setSize(window.innerWidth, window.innerHeight);
       }
     } else {
-      this.labels.attach(this.gridAsV3(), this.debugMode);
+      // The type layer consumes the SAME layout frame the renderer, the grid
+      // and MediaFit consume. That is the whole plumbing fix: every card's
+      // label box is the card plane, so every container-query type size is
+      // measured against the card it is actually on.
+      this.labels.attach(this.gridAsV3(), this.debugMode, this.frame);
       this.labels.setSize(window.innerWidth, window.innerHeight);
     }
     this.grid.update(this.gridX(0), this.gridY(0));
@@ -411,6 +415,12 @@ export class GridAppV4 {
   setMediaFitMode(mode: MediaFitMode): void {
     if (!MEDIA_FIT_MODES.includes(mode)) throw new Error(`Unknown media fit mode: ${mode}`);
     this.grid.setMediaFitMode(mode);
+  }
+
+  /** QA only. Label boxes and projected rects, for container alignment. */
+  getLabelTruth(): Record<string, unknown> {
+    if (!this.labels || this.layoutOnly) return { sourceExact: false, slots: [] };
+    return this.labels.getLabelTruth();
   }
 
   /** QA only. Per-clip crop numbers behind the current fit. */
@@ -898,6 +908,9 @@ export class GridAppV4 {
       // Source-exact: the layout frame IS the resize. Slot count, card size and
       // media fit all follow from it, and nothing is created or destroyed.
       if (this.frame) this.grid.setFrame(this.frame);
+      // ... and so does the type layer. A resize changes the card plane, and
+      // every type size is a container query against it.
+      if (this.frame && !this.layoutOnly) this.labels.setFrame(this.frame);
       // The rest offset is regime-dependent, so a resize can flip the brick
       // parity; re-place the grid before anything reads its positions.
       this.grid.update(this.gridX(), this.gridY());

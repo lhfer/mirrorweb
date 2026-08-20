@@ -38,6 +38,8 @@ export type GridQaV4 = {
   getGlassMeshTruth: () => Record<string, unknown>;
   /** Which render layers are actually visible, read off the scene. */
   getRenderLayerState: () => Record<string, unknown>;
+  /** Label element boxes and projected rects, for container alignment. */
+  getLabelTruth: () => Record<string, unknown>;
   getMetrics: () => Record<string, unknown>;
   getAssetState: () => Record<string, unknown>;
   getPoolState: () => Record<string, unknown>;
@@ -96,6 +98,7 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
       getSourceExactSlots: () => app.getSourceExactSlots(),
       getGlassMeshTruth: () => app.getGlassMeshTruth(),
       getRenderLayerState: () => app.getRenderLayerState(),
+      getLabelTruth: () => app.getLabelTruth(),
       getMetrics: () => app.getMetrics(),
       getAssetState: () => app.getAssetState(),
       getPoolState: () => app.getPoolState(),

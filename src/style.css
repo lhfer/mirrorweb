@@ -168,7 +168,10 @@ body {
   font-style: italic;
   font-weight: 700;
   letter-spacing: 0.08em;
-  font-size: 22px;
+  /* The Target's wordmark is an image about 20px tall; ours is type, and it was
+     sitting a third taller than the band it shares with the label. The typeface
+     is our own mark, not a Target value, so only the size is aligned. */
+  font-size: 20px;
 }
 
 .loader-percent {
@@ -206,14 +209,29 @@ body {
   font-weight: 400;
 }
 
+/* Footer label, measured from the Target's own footer: Geist Mono, weight 500,
+   clamp(0.58rem, 0.8vw, 0.72rem), tracking 0.18em, uppercase, white at 70%.
+   Ours was 16px Geist at full opacity -- roughly 40% too large and the wrong
+   family, which is why the footer read as a page heading rather than a caption. */
+.experiment-link > span:first-child {
+  font-family: "Geist Mono Variable", "Geist Mono", ui-monospace, monospace;
+  font-size: clamp(0.58rem, 0.8vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .cta-link {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 8px 8px 8px 16px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(10, 12, 18, 0.42);
+  /* Target: border white/22 over bg white/8. */
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(28px) saturate(0.7);
   -webkit-backdrop-filter: blur(28px) saturate(0.7);
   font-family: "Geist Mono Variable", "Geist Mono", ui-monospace, monospace;
@@ -234,13 +252,14 @@ body {
 }
 
 .cta-arrow {
-  width: 28px;
-  height: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  /* Target: size clamp(1.45rem, 2.1vw, 1.85rem), border white/45, 0.85em. */
+  width: clamp(1.45rem, 2.1vw, 1.85rem);
+  height: clamp(1.45rem, 2.1vw, 1.85rem);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 13px;
+  font-size: 0.85em;
 }
 
 .tile-card-debug h2 {
@@ -307,6 +326,129 @@ body {
   outline-offset: -10px;
 }
 
+/* ---------------------------------------------------------------------------
+   Source-exact card typography.
+   Every value below is a MEASURED Target value, read from the Target's own
+   computed styles at 1440x900, 1920x1080, 390x844, 844x390, 700x700, 667x375
+   and 780x470. All seven agree to the digit: the Target has no responsive
+   branch here at all, only one container-query scale against the card plane.
+   Recorded in qa-v5/t1/target-typography-contract.json.
+
+   Scoped to .tile-card-se so compositions v1 and v2 keep the rules they were
+   accepted with, byte for byte.
+   --------------------------------------------------------------------------- */
+
+.tile-card-se {
+  /* The box is written by TileLabelLayer from the layout frame. */
+  position: relative;
+  box-sizing: border-box;
+  container-type: inline-size;
+  color: #fff;
+  text-align: left;
+  background: transparent;
+  pointer-events: none;
+  /* Both measured on the Target's card element. */
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* The Target's only clip: one absolute layer at the card box with overflow
+   hidden. Text cannot cross the gutter onto a neighbour because it cannot
+   leave this box. */
+.tile-card-se .se-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.tile-card-se .se-content {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  padding: 7cqw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tile-card-se .se-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Geist Mono Variable", "Geist Mono", ui-monospace, monospace;
+  font-size: 1.7cqw;
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.tile-card-se .se-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 2.8cqw;
+}
+
+.tile-card-se .se-meta-right {
+  display: flex;
+  align-items: center;
+  gap: 1.2cqw;
+  opacity: 0.65;
+}
+
+.tile-card-se .se-dim {
+  opacity: 0.75;
+}
+
+.tile-card-se .se-dot {
+  width: 0.4cqw;
+  height: 0.4cqw;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* The rule sits ABOVE the title. */
+.tile-card-se .se-rule {
+  height: 0.2cqw;
+  margin: 0 0 3.3cqw;
+  transform-origin: left;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.tile-card-se .se-title {
+  margin: 0;
+  max-width: 92%;
+  font-size: 12cqw;
+  line-height: 0.82;
+  font-weight: 600;
+  letter-spacing: -0.085em;
+  /* The Target computes `wrap`, not `balance`. */
+  text-wrap: wrap;
+}
+
+.tile-card-se .se-deck-row {
+  margin-top: 3.5cqw;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4cqw;
+}
+
+.tile-card-se .se-deck {
+  margin: 0;
+  max-width: 58cqw;
+  font-size: 2.5cqw;
+  line-height: 1.25;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.tile-card-se.is-type-debug {
+  outline: 2px solid #00e5ff;
+  outline-offset: -1px;
+}
+
 @media (max-width: 720px) {
   .page-footer {
     flex-direction: column;
@@ -319,6 +461,10 @@ body {
     align-items: flex-start;
     gap: 8px;
     font-size: 13px;
+  }
+
+  .experiment-link > span:first-child {
+    font-size: 0.58rem;
   }
 
   .cta-link {
