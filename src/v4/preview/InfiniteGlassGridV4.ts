@@ -18,7 +18,7 @@ import {
   type MediaFitMode,
   type MediaFitResult,
 } from "../../content/MediaFit";
-import { placeTile, type TilePose } from "../../scene/GridCurvature";
+import { placeTile, V1_COMPOSITION, type Composition, type TilePose } from "../../scene/GridCurvature";
 import { createConvexGlassGeometryV4 } from "../../scene/ConvexGlassGeometryV4";
 import {
   createLiquidGlassMaterialV4,
@@ -67,6 +67,7 @@ export class InfiniteGlassGridV4 {
   private slabGeometry?: PlaneGeometry;
   private slabMaterial?: MeshBasicMaterial;
   private mediaFitMode: MediaFitMode = "cover";
+  composition: Composition = V1_COMPOSITION;
   private mediaFits: MediaFitResult[] = [];
   private calibrationTextures: CanvasTexture[] = [];
 
@@ -281,7 +282,7 @@ export class InfiniteGlassGridV4 {
           this.remaps += 1;
           if (slot.media) slot.media.material = this.mediaFor(i, j);
         }
-        placeTile(i, j, scrollX, scrollY, pose);
+        placeTile(i, j, scrollX, scrollY, pose, this.composition);
         slot.group.position.set(pose.x, pose.y, pose.z);
         slot.group.rotation.set(pose.rotX, pose.rotY, 0);
       }

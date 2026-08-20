@@ -5,7 +5,7 @@ import {
   Scene,
   WebGPURenderer,
 } from "three/webgpu";
-import { CAMERA, CLEAR_COLOR, compositionScale, effectivePerspectivePx, viewZoom } from "../config";
+import { CAMERA, CLEAR_COLOR, compositionScale, effectivePerspectivePx, viewZoom, type CompositionVersion, type VerticalMode } from "../config";
 import { detectBackend, resolveDpr, type Backend } from "../quality/DeviceProfile";
 
 export type RendererHandle = {
@@ -19,8 +19,11 @@ export type RendererHandle = {
 export class RendererController {
   handle!: RendererHandle;
   viewZoom = 1;
-  /** Screen px per world unit on the z = 0 plane, after the F2 responsive law. */
+  /** Screen px per world unit on the z = 0 plane, after the responsive law. */
   compositionScale = 1;
+  /** Which composition the responsive law should use. */
+  composition: CompositionVersion = "v1";
+  verticalMode: VerticalMode = "tangent";
   private dprOverride?: number;
 
   async init(host: HTMLElement, forceWebGL = false): Promise<RendererHandle> {
@@ -65,13 +68,13 @@ export class RendererController {
     this.handle.renderer.setSize(width, height, false);
     this.handle.canvas.style.width = "100%";
     this.handle.canvas.style.height = "100%";
-    this.compositionScale = compositionScale(width, height);
-    this.viewZoom = viewZoom(width, height);
+    this.compositionScale = compositionScale(width, height, this.composition, this.verticalMode);
+    this.viewZoom = viewZoom(width, height, this.composition, this.verticalMode);
     this.handle.camera.aspect = width / height;
     // fov is always derived from the effective focal length, so one world unit
     // stays one CSS pixel at z = 0 divided by the composition scale, whichever
     // mechanism the responsive law uses.
-    const focal = effectivePerspectivePx(width, height);
+    const focal = effectivePerspectivePx(width, height, this.composition, this.verticalMode);
     this.handle.camera.fov = (2 * Math.atan(height / 2 / focal) * 180) / Math.PI;
     this.handle.camera.position.z = CAMERA.z * this.viewZoom;
     this.handle.camera.updateProjectionMatrix();

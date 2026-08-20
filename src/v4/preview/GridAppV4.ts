@@ -1,5 +1,8 @@
 import { AmbientLight, Vector3, type DirectionalLight } from "three/webgpu";
-import { CAMERA, GRID, TILE, restOffset, type QualityLevel } from "../../config";
+import {
+  CAMERA, GRID, TILE, compositionScale, compositionVersion, restOffset, verticalMode,
+  type CompositionVersion, type QualityLevel, type VerticalMode,
+} from "../../config";
 import { readDebugMode, type DebugMode } from "../../debug/DebugMode";
 import { isFoundationLayout, readFoundationMode, type FoundationMode } from "../../debug/FoundationMode";
 import { FoundationOverlay } from "../../debug/FoundationOverlay";
@@ -36,6 +39,9 @@ export type GridAppV4Options = {
   overscan?: number;
   /** Dev/QA only. `layout` strips everything that is not geometry. */
   foundation?: FoundationMode;
+  /** `v1` is the F2 candidate, kept reachable; `v2` is the F2.5 candidate. */
+  composition?: CompositionVersion;
+  vertical?: VerticalMode;
 };
 
 /**
@@ -69,12 +75,17 @@ export class GridAppV4 {
   private v4Shell: V4ShellMode;
   private startedAt = 0;
   readonly foundation: FoundationMode;
+  readonly composition: CompositionVersion;
+  readonly verticalMode: VerticalMode;
   private foundationOverlay?: FoundationOverlay;
 
   constructor(private readonly options: GridAppV4Options = {}) {
     this.v4Debug = options.debugMode ?? "beauty";
     this.v4Shell = options.shellMode ?? "energy-controlled";
     this.foundation = options.foundation ?? readFoundationMode();
+    this.composition = options.composition ?? compositionVersion();
+    this.verticalMode = options.vertical ?? verticalMode();
+    this.grid.composition = { version: this.composition, verticalMode: this.verticalMode };
   }
 
   private get layoutOnly(): boolean {
@@ -87,11 +98,11 @@ export class GridAppV4 {
    * QA landmarks all agree about where the grid actually is.
    */
   private gridX(scrollX = this.motion.scrollX): number {
-    return scrollX + restOffset(window.innerWidth, window.innerHeight).x;
+    return scrollX + restOffset(window.innerWidth, window.innerHeight, this.composition, this.verticalMode).x;
   }
 
   private gridY(scrollY = this.motion.scrollY): number {
-    return scrollY + restOffset(window.innerWidth, window.innerHeight).y;
+    return scrollY + restOffset(window.innerWidth, window.innerHeight, this.composition, this.verticalMode).y;
   }
 
   async start(): Promise<void> {
@@ -104,6 +115,8 @@ export class GridAppV4 {
     this.labels = new TileLabelLayer(document.getElementById(this.options.labelsId ?? "labels")!);
     this.loading.setPercent(8);
 
+    this.renderer.composition = this.composition;
+    this.renderer.verticalMode = this.verticalMode;
     const handle = await this.renderer.init(
       document.getElementById(this.options.viewportId ?? "viewport")!,
       false,
@@ -386,6 +399,9 @@ export class GridAppV4 {
       compositionScale: this.renderer.compositionScale,
       viewZoom: this.renderer.viewZoom,
       viewport: [window.innerWidth, window.innerHeight],
+      composition: this.composition,
+      verticalMode: this.verticalMode,
+      restOffset: restOffset(window.innerWidth, window.innerHeight, this.composition, this.verticalMode),
       route: location.pathname,
       normalPathDirectMedia: false,
       v3Preserved: true,

@@ -20,7 +20,7 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const opts = { origin: "http://127.0.0.1:5280", out: path.join(REPO, "qa-v5/f2/session"), fps: 18 };
+const opts = { origin: "http://127.0.0.1:5280", out: path.join(REPO, "qa-v5/f2/session"), fps: 18, query: "" };
 for (const a of process.argv.slice(2)) {
   if (a.startsWith("--origin=")) opts.origin = a.slice(9);
   else if (a.startsWith("--out=")) opts.out = path.resolve(REPO, a.slice(6));
@@ -70,7 +70,7 @@ async function runSession(browser, name, offset, framesDir) {
   page.on("pageerror", e => pageErrors.push(String(e.message)));
   page.on("request", r => { if (/\.mp4(\?|$)/.test(r.url())) requests.push(r.url()); });
 
-  await page.goto(`${opts.origin}/?optics=v4&qa=1`, { waitUntil: "load" });
+  await page.goto(`${opts.origin}/?optics=v4&qa=1${opts.query ? "&" + opts.query : ""}`, { waitUntil: "load" });
   await page.waitForFunction(() => window.__ILG_QA__?.getState?.()?.ready === true, undefined, { timeout: 120000 });
   await page.waitForTimeout(2500);
   await page.evaluate(() => window.__ILG_QA__.setQuality("high"));

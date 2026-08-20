@@ -6,7 +6,7 @@ import { applyMediaFit, computeMediaFit, readMediaFitMode } from "../content/Med
 import { isGlassDebug, isLayoutDebug, type DebugMode, type GlassDebugMode } from "../debug/DebugMode";
 import { createGlassMaterial, createGlassParams, type GlassMaterialHandle } from "../materials/LiquidGlassMaterial";
 import { createConvexGlassGeometry } from "./ConvexGlassGeometry";
-import { placeTile, type TilePose } from "./GridCurvature";
+import { placeTile, V1_COMPOSITION, type Composition, type TilePose } from "./GridCurvature";
 
 export type Slot = {
   group: Group;
@@ -48,6 +48,7 @@ export class InfiniteGlassGrid {
   private mediaMaterials: MeshBasicMaterial[] = [];
   private debugMode: DebugMode = "off";
   private params = createGlassParams();
+  composition: Composition = V1_COMPOSITION;
 
   async prepare(onProgress: (value: number) => void) {
     this.reel = await loadClipTextures(onProgress);
@@ -167,7 +168,7 @@ export class InfiniteGlassGrid {
             if (slot.media) slot.media.material = this.mediaFor(i, j);
           }
         }
-        placeTile(i, j, scrollX, scrollY, pose);
+        placeTile(i, j, scrollX, scrollY, pose, this.composition);
         slot.group.position.set(pose.x, pose.y, pose.z);
         slot.group.rotation.set(pose.rotX, pose.rotY, 0);
       }

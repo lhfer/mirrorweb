@@ -98,6 +98,84 @@ export function isPortrait(width: number, height: number): boolean {
   return width < height;
 }
 
+export const COMPOSITION_VERSIONS = ["v1", "v2"] as const;
+export type CompositionVersion = (typeof COMPOSITION_VERSIONS)[number];
+export const VERTICAL_MODES = ["depth", "tangent"] as const;
+export type VerticalMode = (typeof VERTICAL_MODES)[number];
+
+/**
+ * Stage F2.5 — joint responsive and vertical composition.
+ *
+ * v1 is the F2 candidate, kept reachable at `?composition=v1` so the change is
+ * reversible until product review says otherwise. v2 is this candidate.
+ *
+ * Three things move together and were solved together, because they are
+ * coupled: portrait scale, vertical grid depth, and the rest phase. Fitting
+ * the scale first and then attributing whatever is left to a vertical radius
+ * would have produced a confident wrong answer.
+ */
+export const COMPOSITION_V2 = {
+  /**
+   * Per-mode parameters. Both were solved by the SAME joint fit
+   * (scripts/v5/f25-joint-fit.py) against the same Target observations, so the
+   * two candidates are compared on equal terms rather than one being handed
+   * the other's parameters.
+   *
+   * `radiusY` is an exact cosine DEPTH law: a row recedes with its vertical
+   * distance from the axis and keeps its spacing. F3's diagnostic seed of
+   * -2053 came from a parabolic approximation fitted to row heights alone; the
+   * joint fit, which also has to satisfy gutters and band positions, lands far
+   * looser. The seed was a seed, not ground truth.
+   */
+  depth: {
+    radiusY: -6496.2,
+    cellH: 423.69,
+    restY0: -202.41,
+    portraitGainBase: 1.9026,
+    portraitGainAspectSlope: 0,
+  },
+  tangent: {
+    radiusY: -4707.6,
+    cellH: 419.95,
+    restY0: -200.99,
+    portraitGainBase: 1.9468,
+    portraitGainAspectSlope: -0.31,
+  },
+  /** Default when no `?verticalMode=` is given. */
+  verticalMode: "tangent" as VerticalMode,
+  /**
+   * Rest phase. PROVISIONAL, and known to be incomplete.
+   *
+   * The Target's canonical horizontal phase is bimodal at 0 or half a cell. It
+   * does not separate on orientation -- the landscape 844x390 sits at half a
+   * cell and the portrait 700x900 at zero -- and this scale switch is the best
+   * single rule the sweep supports: it agrees with 3 of the 5 well-fitted
+   * landscape samples (800x425, 844x390, 1000x700) and disagrees with 760x470
+   * and 926x428. It is shipped because it is strictly better than the v1
+   * orientation split and it fixes the gated 844x390, NOT because it is
+   * established. See qa-v5/f25/landscape-parity-law.json.
+   */
+  restPhaseScaleSwitch: 0.674,
+} as const;
+
+export function compositionParams(mode: VerticalMode) {
+  return mode === "tangent" ? COMPOSITION_V2.tangent : COMPOSITION_V2.depth;
+}
+
+export function compositionVersion(search: string = location.search): CompositionVersion {
+  const value = new URLSearchParams(search).get("composition");
+  return (COMPOSITION_VERSIONS as readonly string[]).includes(value ?? "")
+    ? (value as CompositionVersion)
+    : "v1";
+}
+
+export function verticalMode(search: string = location.search): VerticalMode {
+  const value = new URLSearchParams(search).get("verticalMode");
+  return (VERTICAL_MODES as readonly string[]).includes(value ?? "")
+    ? (value as VerticalMode)
+    : COMPOSITION_V2.verticalMode;
+}
+
 export const RESPONSIVE = {
   /** Viewport the Foundation geometry was fitted at; S is 1 here by definition. */
   referenceWidth: 1440,
@@ -106,34 +184,47 @@ export const RESPONSIVE = {
   /**
    * How a scale is realised. "camera" moves the camera along z and leaves the
    * focal length alone; "focal" scales the focal length and leaves the camera
-   * where it is. They agree to first order and differ in how fast an outer card
-   * shrinks, which is what the fit was asked to decide.
+   * where it is. The Target's own frames decided it: its gutter centres divided
+   * by S are identical to 0.1 px from 960 to 2560 wide, which only a uniform
+   * rescale produces.
    */
   mechanism: "focal" as "camera" | "focal",
-  /**
-   * Rest offset in world units, per regime.
-   *
-   * Landscape is zero: at 1440x900, 1366x768, 1920x1080 and 844x390 the local
-   * gutters land on the Target's to within 1 px with no offset at all.
-   *
-   * Portrait is half a cell across. The Target's portrait composition has the
-   * OPPOSITE brick parity to its landscape one -- a row that carries a centre
-   * gutter in landscape carries a centre card in portrait -- and half a cell is
-   * exactly what swaps it.
-   */
+  /** v1 rest offsets in world units, per orientation. Superseded in v2. */
   restOffset: {
     landscape: { x: 0, y: 0 },
     portrait: { x: 280.57, y: 0 },
   },
 } as const;
 
-export function restOffset(width: number, height: number): { x: number; y: number } {
-  return isPortrait(width, height) ? RESPONSIVE.restOffset.portrait : RESPONSIVE.restOffset.landscape;
+export function compositionScale(
+  width: number,
+  height: number,
+  version: CompositionVersion = "v1",
+  mode: VerticalMode = COMPOSITION_V2.verticalMode,
+): number {
+  const w = Math.max(1, width);
+  if (version === "v2" && isPortrait(width, height)) {
+    const params = compositionParams(mode);
+    const aspect = w / Math.max(1, height);
+    const gain = params.portraitGainBase + params.portraitGainAspectSlope * (aspect - 0.5);
+    return (gain * w) / RESPONSIVE.referenceWidth;
+  }
+  const gain = isPortrait(width, height) ? RESPONSIVE.portraitGain : RESPONSIVE.landscapeGain;
+  return (gain * w) / RESPONSIVE.referenceWidth;
 }
 
-export function compositionScale(width: number, height: number): number {
-  const gain = isPortrait(width, height) ? RESPONSIVE.portraitGain : RESPONSIVE.landscapeGain;
-  return (gain * Math.max(1, width)) / RESPONSIVE.referenceWidth;
+export function restOffset(
+  width: number,
+  height: number,
+  version: CompositionVersion = "v1",
+  mode: VerticalMode = COMPOSITION_V2.verticalMode,
+): { x: number; y: number } {
+  if (version === "v2") {
+    // One regime switch on composition scale, not on orientation.
+    const half = compositionScale(width, height, "v2", mode) < COMPOSITION_V2.restPhaseScaleSwitch;
+    return { x: half ? GRID.cellW / 2 : 0, y: 0 };
+  }
+  return isPortrait(width, height) ? RESPONSIVE.restOffset.portrait : RESPONSIVE.restOffset.landscape;
 }
 
 /**
@@ -141,14 +232,16 @@ export function compositionScale(width: number, height: number): number {
  * mechanism a scale of S means standing 1/S as far away; under "focal" the
  * camera does not move and the focal length carries the scale instead.
  */
-export function viewZoom(width: number, height: number) {
-  const scale = compositionScale(width, height);
+export function viewZoom(width: number, height: number, version: CompositionVersion = "v1",
+  mode: VerticalMode = COMPOSITION_V2.verticalMode) {
+  const scale = compositionScale(width, height, version, mode);
   return RESPONSIVE.mechanism === "camera" ? 1 / scale : 1;
 }
 
 /** Effective focal length in pixels, after the responsive law. */
-export function effectivePerspectivePx(width: number, height: number) {
-  const scale = compositionScale(width, height);
+export function effectivePerspectivePx(width: number, height: number, version: CompositionVersion = "v1",
+  mode: VerticalMode = COMPOSITION_V2.verticalMode) {
+  const scale = compositionScale(width, height, version, mode);
   return RESPONSIVE.mechanism === "focal" ? CAMERA.perspectivePx * scale : CAMERA.perspectivePx;
 }
 

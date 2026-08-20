@@ -11,7 +11,8 @@ import { installQAHooks } from "./debug/QAHooks";
 // because V4 is the build under review; the layout it shows is the shared
 // GRID/TILE/placeTile geometry, so it is equally valid for V3.
 const query = new URLSearchParams(location.search);
-if (query.get("optics") === "v4" || query.get("foundation") === "layout") {
+if (query.get("optics") === "v4" || query.get("foundation") === "layout"
+  || query.get("composition") === "v2") {
   const { startGridPreviewV4 } = await import("./v4/preview/entry");
   await startGridPreviewV4();
 } else {
