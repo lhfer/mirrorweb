@@ -1,0 +1,151 @@
+{
+  "problem": "F2.5 shipped one portrait law and quoted another law's hold-out number. Slopes even had opposite signs. These are the three runnable candidates.",
+  "heldOut": "390x844",
+  "trainedOn": [
+    "360x800",
+    "390x700",
+    "500x900"
+  ],
+  "candidates": {
+    "P0": {
+      "label": "law the code runs today",
+      "params": {
+        "radiusY": -4707.6,
+        "cellH": 419.95,
+        "restY0": -200.99,
+        "gainBase": 1.9468,
+        "gainSlope": -0.31
+      },
+      "scaleHoldOutErrorPct": 5.088,
+      "scalePredicted": 0.53044,
+      "trainStats": {
+        "medianPx": 1.875,
+        "p90Px": 6.872,
+        "maxPx": 223.864,
+        "n": 137
+      },
+      "holdOutStats": {
+        "medianPx": 3.034,
+        "p90Px": 5.941,
+        "maxPx": 11.372,
+        "n": 19
+      }
+    },
+    "P1": {
+      "label": "cross-validated scale law, vertical unchanged",
+      "params": {
+        "radiusY": -4707.6,
+        "cellH": 419.95,
+        "restY0": -200.99,
+        "gainBase": 1.87715,
+        "gainSlope": 0.12204
+      },
+      "scaleHoldOutErrorPct": 0.472,
+      "scalePredicted": 0.50714,
+      "trainStats": {
+        "medianPx": 1.722,
+        "p90Px": 9.322,
+        "maxPx": 223.864,
+        "n": 137
+      },
+      "holdOutStats": {
+        "medianPx": 2.703,
+        "p90Px": 8.798,
+        "maxPx": 13.263,
+        "n": 19
+      }
+    },
+    "P2": {
+      "label": "cross-validated scale law with vertical refitted under it",
+      "params": {
+        "gainBase": 1.87715,
+        "gainSlope": 0.12204,
+        "radiusY": -5576.0801,
+        "cellH": 422.56,
+        "restY0": -202.5736
+      },
+      "scaleHoldOutErrorPct": 0.472,
+      "scalePredicted": 0.50714,
+      "trainStats": {
+        "medianPx": 1.578,
+        "p90Px": 8.593,
+        "maxPx": 223.775,
+        "n": 137
+      },
+      "holdOutStats": {
+        "medianPx": 2.095,
+        "p90Px": 5.645,
+        "maxPx": 8.453,
+        "n": 19
+      }
+    }
+  },
+  "measuredScales": {
+    "1000x700": {
+      "scale": 0.69385,
+      "gain": 0.99914,
+      "rms": 1.253,
+      "orientation": "landscape"
+    },
+    "1366x768": {
+      "scale": 0.94867,
+      "gain": 1.00006,
+      "rms": 3.362,
+      "orientation": "landscape"
+    },
+    "1440x900": {
+      "scale": 0.99921,
+      "gain": 0.99921,
+      "rms": 4.354,
+      "orientation": "landscape"
+    },
+    "1536x864": {
+      "scale": 1.06723,
+      "gain": 1.00053,
+      "rms": 4.984,
+      "orientation": "landscape"
+    },
+    "1920x1080": {
+      "scale": 1.33685,
+      "gain": 1.00264,
+      "rms": 6.624,
+      "orientation": "landscape"
+    },
+    "2560x1440": {
+      "scale": 1.77736,
+      "gain": 0.99977,
+      "rms": 4.211,
+      "orientation": "landscape"
+    },
+    "360x800": {
+      "scale": 0.46778,
+      "gain": 1.87112,
+      "rms": 4.931,
+      "orientation": "portrait"
+    },
+    "390x700": {
+      "scale": 0.51051,
+      "gain": 1.88496,
+      "rms": 2.115,
+      "orientation": "portrait"
+    },
+    "390x844": {
+      "scale": 0.50476,
+      "gain": 1.86373,
+      "rms": 4.74,
+      "orientation": "portrait"
+    },
+    "500x900": {
+      "scale": 0.65406,
+      "gain": 1.88369,
+      "rms": 1.133,
+      "orientation": "portrait"
+    },
+    "844x390": {
+      "scale": 0.58752,
+      "gain": 1.0024,
+      "rms": 0.23,
+      "orientation": "landscape"
+    }
+  }
+}

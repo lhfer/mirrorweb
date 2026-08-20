@@ -1,0 +1,1198 @@
+{
+  "note": "Consensus keeps a pixel only if it reads as void in at least 80% of the frames, so a dark video patch cannot become a gutter.",
+  "viewports": [
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "frames": 5,
+      "consensusFraction": 0.8,
+      "pixelsRemovedFromSingleFrame": 4416,
+      "singleFrame": {
+        "rowBands": [
+          34.5,
+          449.5,
+          862.0
+        ],
+        "rows": [
+          {
+            "centre": 14.0,
+            "height": 29,
+            "clipped": true,
+            "gutterCentres": [
+              446.5,
+              992.5
+            ],
+            "gutterWidths": [
+              76,
+              76
+            ]
+          },
+          {
+            "centre": 240.5,
+            "height": 400,
+            "clipped": false,
+            "gutterCentres": [
+              175.5,
+              719.5,
+              1263.5
+            ],
+            "gutterWidths": [
+              14,
+              22,
+              14
+            ]
+          },
+          {
+            "centre": 655.5,
+            "height": 394,
+            "clipped": false,
+            "gutterCentres": [
+              439.0,
+              1000.0
+            ],
+            "gutterWidths": [
+              19,
+              19
+            ]
+          },
+          {
+            "centre": 885.5,
+            "height": 28,
+            "clipped": true,
+            "gutterCentres": [
+              189.0,
+              719.5,
+              1249.0
+            ],
+            "gutterWidths": [
+              47,
+              90,
+              45
+            ]
+          }
+        ]
+      },
+      "consensus": {
+        "rowBands": [
+          34.5,
+          449.5,
+          862.0
+        ],
+        "rows": [
+          {
+            "centre": 14.0,
+            "height": 29,
+            "clipped": true,
+            "gutterCentres": [
+              446.5,
+              992.5
+            ],
+            "gutterWidths": [
+              76,
+              76
+            ]
+          },
+          {
+            "centre": 240.5,
+            "height": 400,
+            "clipped": false,
+            "gutterCentres": [
+              175.5,
+              719.5,
+              1263.5
+            ],
+            "gutterWidths": [
+              14,
+              22,
+              14
+            ]
+          },
+          {
+            "centre": 655.5,
+            "height": 394,
+            "clipped": false,
+            "gutterCentres": [
+              439.0,
+              1000.0
+            ],
+            "gutterWidths": [
+              19,
+              19
+            ]
+          },
+          {
+            "centre": 885.5,
+            "height": 28,
+            "clipped": true,
+            "gutterCentres": [
+              189.0,
+              719.5,
+              1249.0
+            ],
+            "gutterWidths": [
+              47,
+              90,
+              45
+            ]
+          }
+        ]
+      },
+      "intersection": {
+        "rowBands": [
+          34.5,
+          449.5,
+          862.0
+        ],
+        "rows": [
+          {
+            "centre": 14.0,
+            "height": 29,
+            "clipped": true,
+            "gutterCentres": [
+              446.5,
+              992.5
+            ],
+            "gutterWidths": [
+              76,
+              76
+            ]
+          },
+          {
+            "centre": 240.5,
+            "height": 400,
+            "clipped": false,
+            "gutterCentres": [
+              175.5,
+              719.5,
+              1263.5
+            ],
+            "gutterWidths": [
+              14,
+              22,
+              14
+            ]
+          },
+          {
+            "centre": 655.5,
+            "height": 394,
+            "clipped": false,
+            "gutterCentres": [
+              439.0,
+              1000.0
+            ],
+            "gutterWidths": [
+              19,
+              19
+            ]
+          },
+          {
+            "centre": 885.5,
+            "height": 28,
+            "clipped": true,
+            "gutterCentres": [
+              189.0,
+              719.5,
+              1249.0
+            ],
+            "gutterWidths": [
+              47,
+              90,
+              45
+            ]
+          }
+        ]
+      },
+      "consensusEqualsIntersection": true,
+      "gutterCountDelta": false
+    },
+    {
+      "id": "1100x720",
+      "viewport": [
+        1100,
+        720
+      ],
+      "frames": 5,
+      "consensusFraction": 0.8,
+      "pixelsRemovedFromSingleFrame": 1300,
+      "singleFrame": {
+        "rowBands": [
+          42.5,
+          359.5,
+          675.5
+        ],
+        "rows": [
+          {
+            "centre": 18.5,
+            "height": 38,
+            "clipped": true,
+            "gutterCentres": [
+              340.5,
+              758.5
+            ],
+            "gutterWidths": [
+              36,
+              36
+            ]
+          },
+          {
+            "centre": 200.0,
+            "height": 305,
+            "clipped": false,
+            "gutterCentres": [
+              134.0,
+              549.5,
+              965.0
+            ],
+            "gutterWidths": [
+              11,
+              16,
+              11
+            ]
+          },
+          {
+            "centre": 517.0,
+            "height": 301,
+            "clipped": false,
+            "gutterCentres": [
+              335.0,
+              764.0
+            ],
+            "gutterWidths": [
+              15,
+              15
+            ]
+          },
+          {
+            "centre": 701.5,
+            "height": 36,
+            "clipped": true,
+            "gutterCentres": [
+              12.0,
+              37.0,
+              62.5,
+              142.0,
+              549.5,
+              627.0,
+              655.5,
+              670.0,
+              683.0,
+              699.0,
+              714.0,
+              722.0,
+              740.5,
+              767.0,
+              785.5,
+              811.5,
+              945.0
+            ],
+            "gutterWidths": [
+              25,
+              3,
+              4,
+              15,
+              42,
+              47,
+              8,
+              13,
+              5,
+              21,
+              7,
+              5,
+              30,
+              7,
+              4,
+              6,
+              5
+            ]
+          }
+        ]
+      },
+      "consensus": {
+        "rowBands": [
+          42.5,
+          359.5,
+          675.5
+        ],
+        "rows": [
+          {
+            "centre": 18.5,
+            "height": 38,
+            "clipped": true,
+            "gutterCentres": [
+              340.5,
+              758.5
+            ],
+            "gutterWidths": [
+              36,
+              36
+            ]
+          },
+          {
+            "centre": 200.0,
+            "height": 305,
+            "clipped": false,
+            "gutterCentres": [
+              134.0,
+              549.5,
+              965.0
+            ],
+            "gutterWidths": [
+              11,
+              16,
+              11
+            ]
+          },
+          {
+            "centre": 517.0,
+            "height": 301,
+            "clipped": false,
+            "gutterCentres": [
+              335.0,
+              764.0
+            ],
+            "gutterWidths": [
+              15,
+              15
+            ]
+          },
+          {
+            "centre": 701.5,
+            "height": 36,
+            "clipped": true,
+            "gutterCentres": [
+              12.0,
+              37.0,
+              61.5,
+              142.0,
+              549.5,
+              643.0,
+              719.5,
+              760.5,
+              766.5,
+              810.5,
+              945.0
+            ],
+            "gutterWidths": [
+              25,
+              3,
+              6,
+              15,
+              42,
+              79,
+              72,
+              4,
+              6,
+              4,
+              5
+            ]
+          }
+        ]
+      },
+      "intersection": {
+        "rowBands": [
+          42.5,
+          359.5,
+          675.0
+        ],
+        "rows": [
+          {
+            "centre": 18.5,
+            "height": 38,
+            "clipped": true,
+            "gutterCentres": [
+              340.5,
+              758.5
+            ],
+            "gutterWidths": [
+              36,
+              36
+            ]
+          },
+          {
+            "centre": 200.0,
+            "height": 305,
+            "clipped": false,
+            "gutterCentres": [
+              134.0,
+              549.5,
+              965.0
+            ],
+            "gutterWidths": [
+              11,
+              16,
+              11
+            ]
+          },
+          {
+            "centre": 517.0,
+            "height": 301,
+            "clipped": false,
+            "gutterCentres": [
+              335.0,
+              764.0
+            ],
+            "gutterWidths": [
+              15,
+              15
+            ]
+          },
+          {
+            "centre": 701.0,
+            "height": 37,
+            "clipped": true,
+            "gutterCentres": [
+              12.0,
+              37.0,
+              142.0,
+              549.5,
+              625.0,
+              631.0,
+              639.0,
+              649.0,
+              670.0,
+              674.0,
+              691.0,
+              706.0,
+              714.0,
+              727.5,
+              732.5,
+              748.0,
+              754.0,
+              765.0,
+              944.5
+            ],
+            "gutterWidths": [
+              25,
+              3,
+              15,
+              42,
+              7,
+              3,
+              5,
+              3,
+              3,
+              3,
+              5,
+              7,
+              7,
+              4,
+              4,
+              5,
+              3,
+              3,
+              4
+            ]
+          }
+        ]
+      },
+      "consensusEqualsIntersection": false,
+      "gutterCountDelta": true
+    },
+    {
+      "id": "390x844",
+      "viewport": [
+        390,
+        844
+      ],
+      "frames": 5,
+      "consensusFraction": 0.8,
+      "pixelsRemovedFromSingleFrame": -26,
+      "singleFrame": {
+        "rowBands": [
+          12.0,
+          206.0,
+          421.5,
+          637.0,
+          829.5
+        ],
+        "rows": [
+          {
+            "centre": 108.5,
+            "height": 186,
+            "clipped": false,
+            "gutterCentres": [
+              194.5
+            ],
+            "gutterWidths": [
+              8
+            ]
+          },
+          {
+            "centre": 314.0,
+            "height": 207,
+            "clipped": false,
+            "gutterCentres": [
+              49.5,
+              339.5,
+              362.5
+            ],
+            "gutterWidths": [
+              10,
+              10,
+              12
+            ]
+          },
+          {
+            "centre": 529.0,
+            "height": 207,
+            "clipped": false,
+            "gutterCentres": [
+              194.5
+            ],
+            "gutterWidths": [
+              12
+            ]
+          },
+          {
+            "centre": 733.5,
+            "height": 184,
+            "clipped": false,
+            "gutterCentres": [
+              1.5,
+              55.5,
+              333.5
+            ],
+            "gutterWidths": [
+              4,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "consensus": {
+        "rowBands": [
+          12.0,
+          206.0,
+          421.5,
+          637.0,
+          829.5
+        ],
+        "rows": [
+          {
+            "centre": 108.5,
+            "height": 186,
+            "clipped": false,
+            "gutterCentres": [
+              194.5
+            ],
+            "gutterWidths": [
+              8
+            ]
+          },
+          {
+            "centre": 314.0,
+            "height": 207,
+            "clipped": false,
+            "gutterCentres": [
+              49.5,
+              339.5,
+              362.5
+            ],
+            "gutterWidths": [
+              10,
+              10,
+              12
+            ]
+          },
+          {
+            "centre": 529.0,
+            "height": 207,
+            "clipped": false,
+            "gutterCentres": [
+              194.5
+            ],
+            "gutterWidths": [
+              12
+            ]
+          },
+          {
+            "centre": 733.5,
+            "height": 184,
+            "clipped": false,
+            "gutterCentres": [
+              9.5,
+              55.5,
+              333.5
+            ],
+            "gutterWidths": [
+              20,
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "intersection": {
+        "rowBands": [
+          12.0,
+          206.0,
+          421.5,
+          637.0,
+          829.5
+        ],
+        "rows": [
+          {
+            "centre": 108.5,
+            "height": 186,
+            "clipped": false,
+            "gutterCentres": [
+              194.5
+            ],
+            "gutterWidths": [
+              8
+            ]
+          },
+          {
+            "centre": 314.0,
+            "height": 207,
+            "clipped": false,
+            "gutterCentres": [
+              49.5,
+              339.5,
+              362.5
+            ],
+            "gutterWidths": [
+              10,
+              10,
+              10
+            ]
+          },
+          {
+            "centre": 529.0,
+            "height": 207,
+            "clipped": false,
+            "gutterCentres": [
+              194.5
+            ],
+            "gutterWidths": [
+              12
+            ]
+          },
+          {
+            "centre": 733.5,
+            "height": 184,
+            "clipped": false,
+            "gutterCentres": [
+              55.5,
+              333.5
+            ],
+            "gutterWidths": [
+              6,
+              6
+            ]
+          }
+        ]
+      },
+      "consensusEqualsIntersection": false,
+      "gutterCountDelta": false
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844,
+        390
+      ],
+      "frames": 5,
+      "consensusFraction": 0.8,
+      "pixelsRemovedFromSingleFrame": 728,
+      "singleFrame": {
+        "rowBands": [
+          194.5
+        ],
+        "rows": [
+          {
+            "centre": 94.5,
+            "height": 190,
+            "clipped": true,
+            "gutterCentres": [
+              157.5,
+              189.5,
+              211.0,
+              256.5,
+              586.5
+            ],
+            "gutterWidths": [
+              28,
+              34,
+              3,
+              12,
+              12
+            ]
+          },
+          {
+            "centre": 294.5,
+            "height": 190,
+            "clipped": true,
+            "gutterCentres": [
+              102.0,
+              421.5
+            ],
+            "gutterWidths": [
+              9,
+              14
+            ]
+          }
+        ]
+      },
+      "consensus": {
+        "rowBands": [
+          194.5
+        ],
+        "rows": [
+          {
+            "centre": 94.5,
+            "height": 190,
+            "clipped": true,
+            "gutterCentres": [
+              187.5,
+              256.5,
+              586.5
+            ],
+            "gutterWidths": [
+              88,
+              12,
+              12
+            ]
+          },
+          {
+            "centre": 294.5,
+            "height": 190,
+            "clipped": true,
+            "gutterCentres": [
+              102.0,
+              421.5
+            ],
+            "gutterWidths": [
+              9,
+              14
+            ]
+          }
+        ]
+      },
+      "intersection": {
+        "rowBands": [
+          194.5
+        ],
+        "rows": [
+          {
+            "centre": 94.5,
+            "height": 190,
+            "clipped": true,
+            "gutterCentres": [
+              148.0,
+              158.5,
+              189.0,
+              256.5,
+              586.5
+            ],
+            "gutterWidths": [
+              5,
+              8,
+              5,
+              12,
+              12
+            ]
+          },
+          {
+            "centre": 294.5,
+            "height": 190,
+            "clipped": true,
+            "gutterCentres": [
+              102.0,
+              421.5
+            ],
+            "gutterWidths": [
+              9,
+              14
+            ]
+          }
+        ]
+      },
+      "consensusEqualsIntersection": false,
+      "gutterCountDelta": true
+    },
+    {
+      "id": "760x470",
+      "viewport": [
+        760,
+        470
+      ],
+      "frames": 5,
+      "consensusFraction": 0.8,
+      "pixelsRemovedFromSingleFrame": 9636,
+      "singleFrame": {
+        "rowBands": [
+          15.5,
+          234.0,
+          453.5
+        ],
+        "rows": [
+          {
+            "centre": 124.0,
+            "height": 211,
+            "clipped": false,
+            "gutterCentres": [
+              92.5,
+              379.5,
+              667.0
+            ],
+            "gutterWidths": [
+              8,
+              12,
+              7
+            ]
+          },
+          {
+            "centre": 344.0,
+            "height": 211,
+            "clipped": false,
+            "gutterCentres": [
+              231.5,
+              527.5
+            ],
+            "gutterWidths": [
+              10,
+              10
+            ]
+          }
+        ]
+      },
+      "consensus": {
+        "rowBands": [
+          15.5,
+          234.0,
+          453.5
+        ],
+        "rows": [
+          {
+            "centre": 124.0,
+            "height": 211,
+            "clipped": false,
+            "gutterCentres": [
+              92.5,
+              379.5,
+              667.0
+            ],
+            "gutterWidths": [
+              8,
+              12,
+              7
+            ]
+          },
+          {
+            "centre": 344.0,
+            "height": 211,
+            "clipped": false,
+            "gutterCentres": [
+              231.5,
+              527.5
+            ],
+            "gutterWidths": [
+              10,
+              10
+            ]
+          }
+        ]
+      },
+      "intersection": {
+        "rowBands": [
+          15.5,
+          234.0,
+          453.5
+        ],
+        "rows": [
+          {
+            "centre": 124.0,
+            "height": 211,
+            "clipped": false,
+            "gutterCentres": [
+              92.5,
+              379.5,
+              667.0
+            ],
+            "gutterWidths": [
+              8,
+              12,
+              7
+            ]
+          },
+          {
+            "centre": 344.0,
+            "height": 211,
+            "clipped": false,
+            "gutterCentres": [
+              231.5,
+              527.5
+            ],
+            "gutterWidths": [
+              10,
+              10
+            ]
+          }
+        ]
+      },
+      "consensusEqualsIntersection": true,
+      "gutterCountDelta": false
+    },
+    {
+      "id": "926x428",
+      "viewport": [
+        926,
+        428
+      ],
+      "frames": 5,
+      "consensusFraction": 0.8,
+      "pixelsRemovedFromSingleFrame": 3542,
+      "singleFrame": {
+        "rowBands": [
+          213.5
+        ],
+        "rows": [
+          {
+            "centre": 103.5,
+            "height": 208,
+            "clipped": true,
+            "gutterCentres": [
+              282.0,
+              643.0
+            ],
+            "gutterWidths": [
+              13,
+              13
+            ]
+          },
+          {
+            "centre": 323.5,
+            "height": 208,
+            "clipped": true,
+            "gutterCentres": [
+              12.0,
+              58.5,
+              75.5,
+              87.5,
+              112.0,
+              462.5
+            ],
+            "gutterWidths": [
+              25,
+              10,
+              6,
+              4,
+              11,
+              14
+            ]
+          }
+        ]
+      },
+      "consensus": {
+        "rowBands": [
+          213.5
+        ],
+        "rows": [
+          {
+            "centre": 103.5,
+            "height": 208,
+            "clipped": true,
+            "gutterCentres": [
+              282.0,
+              643.0
+            ],
+            "gutterWidths": [
+              13,
+              13
+            ]
+          },
+          {
+            "centre": 323.5,
+            "height": 208,
+            "clipped": true,
+            "gutterCentres": [
+              12.0,
+              64.0,
+              79.0,
+              112.0,
+              462.5
+            ],
+            "gutterWidths": [
+              25,
+              3,
+              21,
+              11,
+              14
+            ]
+          }
+        ]
+      },
+      "intersection": {
+        "rowBands": [
+          213.5
+        ],
+        "rows": [
+          {
+            "centre": 103.5,
+            "height": 208,
+            "clipped": true,
+            "gutterCentres": [
+              282.0,
+              643.0
+            ],
+            "gutterWidths": [
+              13,
+              13
+            ]
+          },
+          {
+            "centre": 323.5,
+            "height": 208,
+            "clipped": true,
+            "gutterCentres": [
+              3.5,
+              11.0,
+              17.0,
+              112.0,
+              462.5
+            ],
+            "gutterWidths": [
+              4,
+              3,
+              7,
+              11,
+              14
+            ]
+          }
+        ]
+      },
+      "consensusEqualsIntersection": false,
+      "gutterCountDelta": true
+    },
+    {
+      "id": "960x500",
+      "viewport": [
+        960,
+        500
+      ],
+      "frames": 5,
+      "consensusFraction": 0.8,
+      "pixelsRemovedFromSingleFrame": 5586,
+      "singleFrame": {
+        "rowBands": [
+          249.5
+        ],
+        "rows": [
+          {
+            "centre": 121.5,
+            "height": 244,
+            "clipped": true,
+            "gutterCentres": [
+              292.0,
+              667.0
+            ],
+            "gutterWidths": [
+              13,
+              13
+            ]
+          },
+          {
+            "centre": 377.5,
+            "height": 244,
+            "clipped": true,
+            "gutterCentres": [
+              14.0,
+              49.0,
+              116.5,
+              479.5,
+              842.5
+            ],
+            "gutterWidths": [
+              19,
+              3,
+              10,
+              14,
+              10
+            ]
+          }
+        ]
+      },
+      "consensus": {
+        "rowBands": [
+          249.5
+        ],
+        "rows": [
+          {
+            "centre": 121.5,
+            "height": 244,
+            "clipped": true,
+            "gutterCentres": [
+              292.0,
+              667.0
+            ],
+            "gutterWidths": [
+              13,
+              13
+            ]
+          },
+          {
+            "centre": 377.5,
+            "height": 244,
+            "clipped": true,
+            "gutterCentres": [
+              11.0,
+              83.0,
+              116.5,
+              479.5,
+              842.5
+            ],
+            "gutterWidths": [
+              23,
+              19,
+              10,
+              14,
+              10
+            ]
+          }
+        ]
+      },
+      "intersection": {
+        "rowBands": [
+          249.5
+        ],
+        "rows": [
+          {
+            "centre": 121.5,
+            "height": 244,
+            "clipped": true,
+            "gutterCentres": [
+              292.0,
+              667.0
+            ],
+            "gutterWidths": [
+              13,
+              13
+            ]
+          },
+          {
+            "centre": 377.5,
+            "height": 244,
+            "clipped": true,
+            "gutterCentres": [
+              116.5,
+              479.5,
+              842.5
+            ],
+            "gutterWidths": [
+              10,
+              14,
+              10
+            ]
+          }
+        ]
+      },
+      "consensusEqualsIntersection": false,
+      "gutterCountDelta": false
+    }
+  ]
+}

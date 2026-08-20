@@ -78,6 +78,15 @@ const VIEWPORTS = [
   { w: 680, h: 565, mode: "sweep" }, { w: 617, h: 617, mode: "sweep" },
   { w: 565, h: 680, mode: "sweep" }, { w: 520, h: 720, mode: "sweep" },
   { w: 470, h: 760, mode: "sweep" }, { w: 425, h: 800, mode: "sweep" },
+  // F2.6 landscape phase sweep: dense enough to test a CSS-width interval law
+  // without any breakpoint being assumed before the data is in.
+  { w: 700, h: 400, mode: "phase" }, { w: 740, h: 430, mode: "phase" },
+  { w: 759, h: 470, mode: "phase" }, { w: 767, h: 470, mode: "phase" },
+  { w: 768, h: 470, mode: "phase" }, { w: 769, h: 470, mode: "phase" },
+  { w: 780, h: 470, mode: "phase" }, { w: 900, h: 420, mode: "phase" },
+  { w: 940, h: 440, mode: "phase" }, { w: 959, h: 500, mode: "phase" },
+  { w: 960, h: 500, mode: "phase" }, { w: 961, h: 500, mode: "phase" },
+  { w: 980, h: 600, mode: "phase" }, { w: 960, h: 720, mode: "phase" },
   // Controls.
   // 1. Same viewport, no mobile UA / touch: separates "the site branches on
   //    width" from "the site branches on user agent or touch". Only the first

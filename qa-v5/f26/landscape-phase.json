@@ -1,0 +1,656 @@
+{
+  "question": "Judged against the RUNTIME law, where does the Target take a half-cell rest phase?",
+  "runtimeLandscapeScale": "S = width / 1440",
+  "shippedRule": "restOffsetX = (portrait || height < 0.5525 * width) ? cellW/2 : 0",
+  "aspectThreshold": 0.5525,
+  "thresholdPlateau": [
+    0.545,
+    0.56
+  ],
+  "supersededRule": "scale switch at 0.674, which scored 23/39 against the runtime law",
+  "parityMethod": "direct row-structure classification; no scale fit involved",
+  "agreement": {
+    "agrees": 35,
+    "of": 39,
+    "disagreeing": [
+      "667x375",
+      "700x700",
+      "780x470",
+      "1440x1080"
+    ]
+  },
+  "cssWidthIntervalHypothesis": {
+    "separable": false,
+    "halfCellWidths": [
+      667,
+      700,
+      780,
+      800,
+      844,
+      900,
+      926,
+      940,
+      959,
+      960,
+      961,
+      1440,
+      1440
+    ],
+    "zeroWidths": [
+      617,
+      680,
+      700,
+      700,
+      720,
+      740,
+      759,
+      760,
+      767,
+      768,
+      769,
+      900,
+      900,
+      960,
+      980,
+      1000,
+      1024,
+      1100,
+      1152,
+      1280,
+      1366,
+      1440,
+      1536,
+      1680,
+      1920,
+      2560
+    ],
+    "note": "half-cell and zero widths interleave, so no single CSS-width interval separates them"
+  },
+  "viewports": [
+    {
+      "viewport": "617x617",
+      "viewportCss": [
+        617,
+        617
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 220.0,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.42847,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "667x375",
+      "viewportCss": [
+        667,
+        375
+      ],
+      "targetDirectParity": "centre-gutter",
+      "targetParityRowCentre": 280.0,
+      "targetRestPhase": "cellW/2",
+      "runtimeCompositionScale": 0.46319,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": false,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "680x565",
+      "viewportCss": [
+        680,
+        565
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 378.5,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.47222,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "700x400",
+      "viewportCss": [
+        700,
+        400
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 298.5,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.48611,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "700x699",
+      "viewportCss": [
+        700,
+        699
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 249.0,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.48611,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "700x700",
+      "viewportCss": [
+        700,
+        700
+      ],
+      "targetDirectParity": "centre-gutter",
+      "targetParityRowCentre": 446.5,
+      "targetRestPhase": "cellW/2",
+      "runtimeCompositionScale": 0.48611,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": false,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "720x520",
+      "viewportCss": [
+        720,
+        520
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 364.0,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.5,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "740x430",
+      "viewportCss": [
+        740,
+        430
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 319.0,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.51389,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "759x470",
+      "viewportCss": [
+        759,
+        470
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 344.0,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.52708,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "760x470",
+      "viewportCss": [
+        760,
+        470
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 344.0,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.52778,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "767x470",
+      "viewportCss": [
+        767,
+        470
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 344.0,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.53264,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "768x470",
+      "viewportCss": [
+        768,
+        470
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 344.5,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.53333,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "769x470",
+      "viewportCss": [
+        769,
+        470
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 344.5,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.53403,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "780x470",
+      "viewportCss": [
+        780,
+        470
+      ],
+      "targetDirectParity": "centre-gutter",
+      "targetParityRowCentre": 344.0,
+      "targetRestPhase": "cellW/2",
+      "runtimeCompositionScale": 0.54167,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": false,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "800x425",
+      "viewportCss": [
+        800,
+        425
+      ],
+      "targetDirectParity": "centre-gutter",
+      "targetParityRowCentre": 320.5,
+      "targetRestPhase": "cellW/2",
+      "runtimeCompositionScale": 0.55556,
+      "runtimeRestOffsetX": 280.57,
+      "runtimePredictedParity": "centre-gutter",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "844x390",
+      "viewportCss": [
+        844,
+        390
+      ],
+      "targetDirectParity": "centre-gutter",
+      "targetParityRowCentre": 294.5,
+      "targetRestPhase": "cellW/2",
+      "runtimeCompositionScale": 0.58611,
+      "runtimeRestOffsetX": 280.57,
+      "runtimePredictedParity": "centre-gutter",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "900x420",
+      "viewportCss": [
+        900,
+        420
+      ],
+      "targetDirectParity": "centre-gutter",
+      "targetParityRowCentre": 317.0,
+      "targetRestPhase": "cellW/2",
+      "runtimeCompositionScale": 0.625,
+      "runtimeRestOffsetX": 280.57,
+      "runtimePredictedParity": "centre-gutter",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "900x899",
+      "viewportCss": [
+        900,
+        899
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 320.5,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.625,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "900x900",
+      "viewportCss": [
+        900,
+        900
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 321.5,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.625,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "926x428",
+      "viewportCss": [
+        926,
+        428
+      ],
+      "targetDirectParity": "centre-gutter",
+      "targetParityRowCentre": 323.5,
+      "targetRestPhase": "cellW/2",
+      "runtimeCompositionScale": 0.64306,
+      "runtimeRestOffsetX": 280.57,
+      "runtimePredictedParity": "centre-gutter",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "940x440",
+      "viewportCss": [
+        940,
+        440
+      ],
+      "targetDirectParity": "centre-gutter",
+      "targetParityRowCentre": 332.5,
+      "targetRestPhase": "cellW/2",
+      "runtimeCompositionScale": 0.65278,
+      "runtimeRestOffsetX": 280.57,
+      "runtimePredictedParity": "centre-gutter",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "959x500",
+      "viewportCss": [
+        959,
+        500
+      ],
+      "targetDirectParity": "centre-gutter",
+      "targetParityRowCentre": 377.5,
+      "targetRestPhase": "cellW/2",
+      "runtimeCompositionScale": 0.66597,
+      "runtimeRestOffsetX": 280.57,
+      "runtimePredictedParity": "centre-gutter",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "960x500",
+      "viewportCss": [
+        960,
+        500
+      ],
+      "targetDirectParity": "centre-gutter",
+      "targetParityRowCentre": 377.5,
+      "targetRestPhase": "cellW/2",
+      "runtimeCompositionScale": 0.66667,
+      "runtimeRestOffsetX": 280.57,
+      "runtimePredictedParity": "centre-gutter",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "960x720",
+      "viewportCss": [
+        960,
+        720
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 496.0,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.66667,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "961x500",
+      "viewportCss": [
+        961,
+        500
+      ],
+      "targetDirectParity": "centre-gutter",
+      "targetParityRowCentre": 377.5,
+      "targetRestPhase": "cellW/2",
+      "runtimeCompositionScale": 0.66736,
+      "runtimeRestOffsetX": 280.57,
+      "runtimePredictedParity": "centre-gutter",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "980x600",
+      "viewportCss": [
+        980,
+        600
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 441.5,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.68056,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "1000x700",
+      "viewportCss": [
+        1000,
+        700
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 491.0,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.69444,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "1024x768",
+      "viewportCss": [
+        1024,
+        768
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 528.5,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.71111,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "1100x720",
+      "viewportCss": [
+        1100,
+        720
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 517.0,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.76389,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "1152x864",
+      "viewportCss": [
+        1152,
+        864
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 594.0,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.8,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "1280x800",
+      "viewportCss": [
+        1280,
+        800
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 585.5,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.88889,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "1366x768",
+      "viewportCss": [
+        1366,
+        768
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 577.0,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 0.94861,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "1440x1080",
+      "viewportCss": [
+        1440,
+        1080
+      ],
+      "targetDirectParity": "centre-gutter",
+      "targetParityRowCentre": 741.5,
+      "targetRestPhase": "cellW/2",
+      "runtimeCompositionScale": 1.0,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": false,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "1440x700",
+      "viewportCss": [
+        1440,
+        700
+      ],
+      "targetDirectParity": "centre-gutter",
+      "targetParityRowCentre": 529.0,
+      "targetRestPhase": "cellW/2",
+      "runtimeCompositionScale": 1.0,
+      "runtimeRestOffsetX": 280.57,
+      "runtimePredictedParity": "centre-gutter",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "1440x900",
+      "viewportCss": [
+        1440,
+        900
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 655.5,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 1.0,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "1536x864",
+      "viewportCss": [
+        1536,
+        864
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 649.0,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 1.06667,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "1680x1050",
+      "viewportCss": [
+        1680,
+        1050
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 764.5,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 1.16667,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "1920x1080",
+      "viewportCss": [
+        1920,
+        1080
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 811.5,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 1.33333,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    },
+    {
+      "viewport": "2560x1440",
+      "viewportCss": [
+        2560,
+        1440
+      ],
+      "targetDirectParity": "centre-card",
+      "targetParityRowCentre": 1082.0,
+      "targetRestPhase": "0",
+      "runtimeCompositionScale": 1.77778,
+      "runtimeRestOffsetX": 0.0,
+      "runtimePredictedParity": "centre-card",
+      "runtimeLawAgrees": true,
+      "fitRmsPx": null
+    }
+  ]
+}

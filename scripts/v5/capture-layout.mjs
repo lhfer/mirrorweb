@@ -106,6 +106,7 @@ for (const state of wanted) {
   await page.screenshot({ path: file });
   const data = await page.evaluate(() => ({
     state: window.__ILG_QA__.getState(),
+    v4state: window.__ILG_QA__.getV4State?.() ?? {},
     quads: window.__ILG_QA__.getCardQuads?.() ?? [],
     media: window.__ILG_QA__.getMediaState(),
   }));

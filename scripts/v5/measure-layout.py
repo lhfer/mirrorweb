@@ -129,17 +129,21 @@ def fit(xs, ys):
     }
 
 
-def measure(path: Path, void_max: int | None = None) -> dict:
+def measure(path: Path, void_max: int | None = None,
+            mask_override: "np.ndarray | None" = None) -> dict:
     rgb = np.asarray(Image.open(path).convert("RGB"))
     h, w = rgb.shape[:2]
     if void_max is not None:
         void = band_void = flat_void(void_max)
     else:
         void, band_void = pick_void(rgb)
-    raw = void_mask(rgb, void)
+    # A caller can supply a consensus mask built from several frames of the same
+    # viewport, which is how video content is kept out of the geometry.
+    raw = mask_override if mask_override is not None else void_mask(rgb, void)
+    band_raw = mask_override if mask_override is not None else void_mask(rgb, band_void)
     mv = despeckle(raw, axis=0)             # per-card edge tracing: strict
-    mg = despeckle(void_mask(rgb, band_void), axis=0)  # vertical gutters: relaxed
-    mh = despeckle(void_mask(rgb, band_void), axis=1)  # row bands: relaxed
+    mg = despeckle(band_raw, axis=0)        # vertical gutters: relaxed
+    mh = despeckle(band_raw, axis=1)        # row bands: relaxed
 
     # ---- horizontal gutter bands (row separators) -------------------------
     hcov = mh.mean(axis=1)
@@ -247,7 +251,7 @@ def measure(path: Path, void_max: int | None = None) -> dict:
     return {
         "file": str(path),
         "size": {"w": int(w), "h": int(h)},
-        "voidMask": void,
+        "voidMask": ({"mode": "consensus"} if mask_override is not None else void),
         "bandVoidMask": band_void,
         "horizontalGutterBands": [
             {"y0": int(a), "y1": int(b), "height": int(b - a + 1), "center": float((a + b) / 2)}

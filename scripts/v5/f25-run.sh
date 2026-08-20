@@ -2,9 +2,9 @@
 # F2.5: capture the six gated viewports for a composition variant and gate it.
 set -euo pipefail
 cd "$(dirname "$0")/../.."
-OUT=$1; COMP=$2; MODE=${3:-tangent}
+OUT=$1; COMP=$2; MODE=${3:-tangent}; LAW=${4:-p2}
 VIEWPORTS="1100x720 1366x768 1440x900 1920x1080 390x844 844x390"
-Q="composition=${COMP}&verticalMode=${MODE}"
+Q="composition=${COMP}&verticalMode=${MODE}&portraitLaw=${LAW}"
 for VP in $VIEWPORTS; do
   W=${VP%x*}; H=${VP#*x}
   ILG_CAPTURE_HEADLESS=1 node scripts/v5/capture-layout.mjs \

@@ -1,0 +1,16 @@
+{
+  "depth": {
+    "radiusY": -6496.2,
+    "cellH": 423.69,
+    "restY0": -202.41,
+    "gainBase": 1.9026,
+    "gainSlope": 0.0
+  },
+  "tangent": {
+    "radiusY": -4707.6,
+    "cellH": 419.95,
+    "restY0": -200.99,
+    "gainBase": 1.87715,
+    "gainSlope": 0.12204
+  }
+}

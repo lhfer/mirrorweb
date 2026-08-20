@@ -135,19 +135,39 @@ def row_geometry(vw, vh, p, mode):
             zc = max(zc, 1e-3)
             return (vw / 2 + f_px * x / zc, vh / 2 - f_px * (y - CAM_Y) / zc)
 
-        # the row's own central column, where the detector reads its height
-        i_centre = -0.5 if ((j % 2) + 2) % 2 == 1 else 0.0
-        u0 = i_centre * CELL_W - sx + (CELL_W / 2 if sx else 0.0) * 0
-        th0 = u0 / RADIUS_X
-        gx0 = RADIUS_X * math.sin(th0)
-        gz0 = RADIUS_X * (1 - math.cos(th0)) + gz_v
-        tops, bots = [], []
-        for ly in (TILE_H / 2, -TILE_H / 2):
-            y1, z1 = ly, 0.0
-            y2, z2 = y1 * cbx - z1 * sbx, y1 * sbx + z1 * cbx
-            sy = project((gx0, gy + y2, gz0 + z2))[1]
-            (tops if ly > 0 else bots).append(sy)
-        top, bot = tops[0], bots[0]
+        # The row's central card. It must be a REAL card at an integer i --
+        # an earlier revision sampled i = -0.5 on odd rows, which is not a card
+        # that exists, and under the half-cell rest phase that imaginary sample
+        # sat where the Target has a gutter. Pick the card whose projected
+        # centre is nearest the viewport centre, preferring one the frame does
+        # not clip.
+        def project(pt):
+            x, y, z = pt
+            zc = PERSPECTIVE_PX - z + (CAM_Y - y) * (CAM_Y / PERSPECTIVE_PX)
+            zc = max(zc, 1e-3)
+            return (vw / 2 + f_px * x / zc, vh / 2 - f_px * (y - CAM_Y) / zc)
+
+        best = None
+        for i in range(-4, 5):
+            u = brick(i, j) * CELL_W - sx
+            th = u / RADIUS_X
+            gxi = RADIUS_X * math.sin(th)
+            gzi = RADIUS_X * (1 - math.cos(th)) + gz_v
+            ca, sa = math.cos(-th), math.sin(-th)
+            corners = []
+            for lx, ly in ((-TILE_W / 2, TILE_H / 2), (TILE_W / 2, TILE_H / 2),
+                           (TILE_W / 2, -TILE_H / 2), (-TILE_W / 2, -TILE_H / 2)):
+                y1, z1 = ly, 0.0
+                y2, z2 = y1 * cbx - z1 * sbx, y1 * sbx + z1 * cbx
+                corners.append(project((gxi + lx * ca, gy + y2, gzi + z2 - lx * sa)))
+            xs = [c[0] for c in corners]
+            ys_ = [c[1] for c in corners]
+            cx = (min(xs) + max(xs)) / 2
+            clipped = min(xs) < 0 or max(xs) > vw
+            key = (clipped, abs(cx - vw / 2))
+            if best is None or key < best[0]:
+                best = (key, min(ys_), max(ys_))
+        top, bot = best[1], best[2]
 
         gutters = []
         for i in range(-4, 4):
