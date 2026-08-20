@@ -18,6 +18,7 @@ import { V4_DEBUG_MODES, V4_OPTICS_CONFIG, type V4DebugMode, type V4ShellMode } 
 import { createStripLightEnvironmentV4 } from "../StripLightEnvironmentV4";
 import { InfiniteGlassGridV4 } from "./InfiniteGlassGridV4";
 import { SceneColorPipelineV4 } from "./SceneColorPipelineV4";
+import { freezeMediaTime, readMediaState, type FreezeReport, type MediaSnapshot } from "../../debug/MediaFreeze";
 
 const _ndc = new Vector3();
 
@@ -138,6 +139,34 @@ export class GridAppV4 {
   setTime(seconds: number): void {
     this.elapsed = seconds;
     this.grid.reel?.seek(seconds);
+  }
+
+  /**
+   * QA only. Pins every clip to the same decoded frame and proves it stayed
+   * there. `setTime` cannot do this: the clips are autoplay+loop, so it only
+   * nudges a timeline that keeps running.
+   */
+  async setMediaTimeAndFreeze(seconds: number): Promise<FreezeReport> {
+    this.elapsed = seconds;
+    const videos = this.grid.reel?.videos ?? [];
+    return freezeMediaTime(videos, seconds);
+  }
+
+  /** QA only. Read-only proof that the freeze still holds at capture time. */
+  getMediaState(): MediaSnapshot[] {
+    return readMediaState(this.grid.reel?.videos ?? []);
+  }
+
+  /**
+   * QA only. Media-only capture: the media planes and the gutter, with the
+   * refraction body, the reflection shell and the CSS3D typography hidden.
+   * Two builds that render the same media at the same time on the same cell
+   * must produce identical pixels here, which is what makes a blind pair fair.
+   */
+  setRenderLayers(layers: { glass?: boolean; media?: boolean; labels?: boolean }): void {
+    if (layers.glass !== undefined) this.grid.setGlassVisible(layers.glass);
+    if (layers.media !== undefined) this.grid.setMediaVisible(layers.media);
+    if (layers.labels !== undefined) this.labels.setVisible(layers.labels);
   }
 
   setPointer(x: number, y: number): void {

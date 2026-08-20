@@ -40,9 +40,30 @@ This list separates evidence blockers from expected V3 implementation failures. 
 | V4-GAP-MOTION-02 | 3 | Wheel `deltaMode` is not normalized. | Compare pixel and line deltas under the same deterministic script. |
 | V4-GAP-GRID-01 | 4 | A wrap can remap the full 9×9 pool. | Recycle only the entering row or column with a 2D ring buffer. |
 | V4-GAP-DOM-01 | 4 | CSS3D content is rebound with `innerHTML`. | Pre-create nodes and update `textContent` only for recycled visible slots. |
-| V4-GAP-VIDEO-01 | 4 | Every RAF calls `VideoTexture.update()`. | Gate uploads with `requestVideoFrameCallback`. |
 | V4-GAP-QUALITY-01 | 4 | Hysteresis is 2.5 seconds and runtime adaptation changes geometry only. | Use at least 3 seconds and change RT scale, DPR, samples, geometry, dispersion, and DOM overscan. |
-| V4-GAP-ROUTING-01 | 1 | LAB RESOLVED / MAIN DEFERRED: `/glass-lab-v4?optics=v3|v4` and Split/Difference exist; the production root remains V3. | Add main-page routing only after the full Phase 1 visual gate permits integration. |
+
+## Stage D findings recorded during the Stage H / A2 loop
+
+Recorded only. Both are outside the Stage H and Stage A2 modification
+boundaries and must not be fixed opportunistically.
+
+| ID | Status | Finding | Verification |
+| --- | --- | --- | --- |
+| ILG-D-QUALITY-001 | OPEN / RECORD ONLY | Automatic quality changes can never fire. `AdaptiveQuality.sample()` assigns `this.level = next` at `src/quality/AdaptiveQuality.ts:28` and then returns `this.level` at line 32, so `GridAppV4.tick()`'s guard `if (level !== this.quality.level)` at `src/v4/preview/GridAppV4.ts:358-359` compares a value with itself and is always false. `setQuality()` is therefore only ever reached through the QA API. | Read at the two line ranges above. Side effect worth noting: this makes capture more deterministic, because quality cannot flip mid-run. Fixing it will make runtime quality genuinely variable and every capture harness assumption about a fixed `quality: "high"` will need rechecking. |
+| ILG-D-DRAWCALL-001 | OPEN / RECORD ONLY | The 81 slots are not instanced. `InfiniteGlassGridV4` constructs three separate meshes per slot - glass, shell and media - at `src/v4/preview/InfiniteGlassGridV4.ts:89`, `:92` and `:95`, with no `InstancedMesh` anywhere in the file. Materials (5) and geometries (2) are shared, which is why the pool counters look small, but the measured cost is not. | `qa-v4/results/round1-grid-preview-gate.json` reports `drawCalls: 1833` at 9x9 with `slots: 81`. This is the same underlying cause as `V4-R1-002`, now confirmed at source level rather than inferred from the counter. |
+
+## Resolved, kept for the record
+
+These entries were live in the implementation-gaps table above and are no
+longer true of the current source. They are retained here rather than deleted
+so the record of what was believed, and when, stays intact.
+
+| ID | Phase | Was | Resolution verified against current source |
+| --- | --- | --- | --- |
+| V4-GAP-VIDEO-01 | 4 | Every RAF calls `VideoTexture.update()`. | RESOLVED for V4. `src/v4/preview/ClipReelV4.ts` never calls `texture.update()`; it relies on three's own `requestVideoFrameCallback` registration and counts decoded frames at `ClipReelV4.ts:91-98` so the gate can prove uploads are video-driven. `VIDEO_UPLOAD_NOT_PER_RENDER_FRAME` passes with ratio 0.233. V3's `src/content/VideoClips.ts:116-118` still calls `texture.update()` per frame by design, as the control path. |
+| V4-GAP-ROUTING-01 | 1 | LAB RESOLVED / MAIN DEFERRED: the production root remains V3. | RESOLVED. Main-page routing exists: `src/main.ts:9` switches on `?optics=v4`, and `vite.config.ts:29-34` serves `/grid-lab-v4` and `/glass-lab-v4` in dev with matching Rollup inputs at `vite.config.ts:91-92`. V3 remains the default for any other value, so the fallback the gap asked for is intact. |
+
+Both were still being read as current fact by later rounds. They are not.
 
 ## Baseline verdict
 

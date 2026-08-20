@@ -12,6 +12,7 @@ import { InfiniteGlassGrid } from "../scene/InfiniteGlassGrid";
 import { LoadingOverlay } from "../ui/LoadingOverlay";
 import { PageOverlay } from "../ui/PageOverlay";
 import { TileLabelLayer } from "../ui/TileLabelLayer";
+import { freezeMediaTime, readMediaState } from "../debug/MediaFreeze";
 
 const _ndc = new Vector3();
 const frameTimes: number[] = [];
@@ -85,6 +86,17 @@ export class App {
   resume() {
     this.motion.paused = false;
     this.lastT = performance.now();
+  }
+
+  /** QA only. Same media freeze contract as V4, so both sides of a comparison pin identically. */
+  async setMediaTimeAndFreeze(seconds: number) {
+    this.setTime(seconds);
+    return freezeMediaTime(this.grid.reel?.videos ?? [], seconds);
+  }
+
+  /** QA only. */
+  getMediaState() {
+    return readMediaState(this.grid.reel?.videos ?? []);
   }
 
   setTime(seconds: number) {

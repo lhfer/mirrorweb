@@ -113,6 +113,14 @@ export class TileLabelLayer {
     this.boundKey.length = 0;
   }
 
+  /**
+   * QA only. Hides the whole CSS3D typography layer so a capture can show the
+   * media and the gutter alone. Never called by the running preview.
+   */
+  setVisible(visible: boolean): void {
+    this.renderer.domElement.style.display = visible ? "block" : "none";
+  }
+
   dispose() {
     this.clear();
     this.renderer.domElement.remove();

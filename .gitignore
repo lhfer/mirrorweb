@@ -6,7 +6,22 @@ playwright-report/
 dist/
 .DS_Store
 artifacts/
-qa/
+# Loop artifacts stay local, with one deliberate exception. The Stage H / A2
+# loop has to commit the things it pre-registers - the fixed state manifest and
+# the pre-registered experiment - or "written before the candidate" is not
+# auditable. Only those small JSON/MD records are tracked; every capture, blind
+# batch and screenshot under qa/ remains ignored.
+qa/*
+!qa/loop-a2/
+qa/loop-a2/*
+!qa/loop-a2/state.json
+!qa/loop-a2/issue-ledger.json
+!qa/loop-a2/fixed-state-manifest.json
+!qa/loop-a2/stage-a2-preregistered-experiment.json
+!qa/loop-a2/reports/
+qa/loop-a2/reports/*
+!qa/loop-a2/reports/*.json
+!qa/loop-a2/reports/*.md
 
 # V4 private Golden inputs/manifests and local-only QA output.
 .private/

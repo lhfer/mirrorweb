@@ -183,12 +183,23 @@ P3：
 
 ### 输出要求
 
-只返回一个 JSON 对象，不要返回冗长散文：
+只返回一个 JSON 对象，不要返回冗长散文。
 
+**Candidate 选择与 Stage 完成是两件事，必须分开表达。**
+旧 schema 用一个 `verdict` 同时承载两者，产生过 `verdict=FAIL` 配
+`recommendation=ACCEPT` 这种自相矛盾的读法。现在：
+
+- `candidateDecision` 回答：这个 Candidate 是否应该取代当前 Best。
+- `stageVerdict` 回答：这个 Stage 是否完成。
+- 一个 Candidate 可以明显优于 Best 并被接受，但只要还存在 P1，
+  `stageVerdict` 就必须是 FAIL。
+
+```
 {
-  "verdict": "PASS | FAIL | BLOCKED | PLATEAU | ROLLBACK",
+  "candidateDecision": "ACCEPT_AS_BEST | REJECT | ROLLBACK",
+  "stageVerdict": "PASS | FAIL | BLOCKED | PLATEAU",
+  "blindPreference": "A | B | TIE | BLOCKED",
   "candidate_commit": "...",
-  "blind_preference": "A | B | TIE | BLOCKED",
   "score": {
     "optics": 0,
     "geometry": 0,
@@ -214,9 +225,9 @@ P3：
       "recommended_experiment": "...",
       "acceptance_condition": "..."
     }
-  ],
-  "recommendation": "ACCEPT | REJECT | ARCHITECTURE_AB | STOP_AND_ASK_USER | ROLLBACK"
+  ]
 }
+```
 
 最多返回：
 
@@ -224,3 +235,7 @@ P3：
 - 3 个下一轮修复候选
 
 没有证据时必须 BLOCKED，不得猜测。
+
+**分数不得跨轮比较。** 每一轮由一个全新的 QA 实例评分，两轮之间的总分差
+不构成任何结论。Candidate 的取舍只依据：同一固定状态集上的 Blind A/B、
+同一版本的 Harness、固定的严重等级定义、关闭的 Issue、以及新增的回归。
