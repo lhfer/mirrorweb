@@ -79,6 +79,26 @@
       "maxCornerErrorPx": 0.0
     },
     {
+      "dir": "qa-v5/f0/wide-1920x1080",
+      "viewport": [
+        1920.0,
+        1080.0
+      ],
+      "states": [
+        {
+          "id": "01-rest",
+          "offset": [
+            0,
+            0
+          ],
+          "cards": 81,
+          "maxCornerErrorPx": 0.0,
+          "rmsCornerErrorPx": 0.0
+        }
+      ],
+      "maxCornerErrorPx": 0.0
+    },
+    {
       "dir": "qa-v5/f0/partial",
       "viewport": [
         1100.0,

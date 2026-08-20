@@ -6,7 +6,7 @@
     "width": 844,
     "height": 390,
     "dpr": 1,
-    "out": "/Users/xiaoli/Downloads/mirrorweb/qa-v5/f0/mobile-landscape",
+    "out": "qa-v5/f0/mobile-landscape",
     "headless": true,
     "mediaTime": 2
   },

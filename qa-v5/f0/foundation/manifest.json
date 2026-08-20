@@ -6,7 +6,7 @@
     "width": 1440,
     "height": 900,
     "dpr": 1,
-    "out": "/Users/xiaoli/Downloads/mirrorweb/qa-v5/f0/foundation",
+    "out": "qa-v5/f0/foundation",
     "headless": true,
     "mediaTime": 2
   },

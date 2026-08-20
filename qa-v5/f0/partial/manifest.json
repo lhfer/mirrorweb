@@ -6,7 +6,7 @@
     "width": 1100,
     "height": 720,
     "dpr": 1,
-    "out": "/Users/xiaoli/Downloads/mirrorweb/qa-v5/f0/partial",
+    "out": "qa-v5/f0/partial",
     "headless": true,
     "mediaTime": 2
   },

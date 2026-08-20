@@ -3,10 +3,10 @@
   "viewport": {
     "origin": "http://127.0.0.1:5280",
     "route": "/?optics=v4&foundation=layout&annotate=0",
-    "width": 390,
-    "height": 844,
+    "width": 1920,
+    "height": 1080,
     "dpr": 1,
-    "out": "qa-v5/f0/mobile-portrait",
+    "out": "qa-v5/f0/wide-1920x1080",
     "headless": true,
     "mediaTime": 2
   },
@@ -31,7 +31,7 @@
         0,
         0
       ],
-      "png": "qa-v5/f0/mobile-portrait/01-rest.png"
+      "png": "qa-v5/f0/wide-1920x1080/01-rest.png"
     }
   ],
   "errors": []

@@ -85,7 +85,15 @@ await page.evaluate(() => window.__ILG_QA__.pause());
 await page.waitForTimeout(400);
 
 await mkdir(options.out, { recursive: true });
-const manifest = { url, viewport: { ...options, states: undefined }, freeze, states: [], errors };
+// `out` is deliberately stored repo-relative: a manifest is committed evidence
+// and must not carry the capture machine's absolute paths.
+const manifest = {
+  url,
+  viewport: { ...options, out: path.relative(REPO_ROOT, options.out), states: undefined },
+  freeze,
+  states: [],
+  errors,
+};
 
 const wanted = options.states ? STATES.filter((s) => options.states.includes(s.id)) : STATES;
 for (const state of wanted) {
