@@ -9,6 +9,9 @@ Last updated: 2026-08-20 (F2-SX source-exact rebase)
 | Repository | `lhfer/mirrorweb` |
 | Branch | `rebuild/liquid-glass-v5-source-exact` (from `rebuild/liquid-glass-v5-foundation`) |
 | Source contract | [`config/target-layout-source-v2.json`](../../config/target-layout-source-v2.json), verified by `npm run v5:target-layout-source` |
+| F2-SX contract commit | `42ac438` `v5-fsx-source-contract` |
+| F2-SX code commit | `62bb251` `v5-fsx-source-exact-code` |
+| F2-SX evidence commit | `6d313bc` `v5-fsx-source-exact-evidence` |
 | Current HEAD | `e33149992e4e69cd483428c38decf4248d7875d5` (`v5-f26r-corrected-evidence`) at the time this row was written. Resolve the live value with `git rev-parse HEAD`. |
 | F2.6R code fix commit | `23de9c7` `v5-f26r-portrait-law-propagation` |
 | F2.6R evidence commit | `e331499` `v5-f26r-corrected-evidence` |
