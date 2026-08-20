@@ -35,9 +35,9 @@ LOOK_Y = 0.0
 # ---------------------------------------------------------------- projection
 
 
-def camera_basis():
-    """View matrix rows for a camera at (0, CAM_Y, CAM_Z) looking at (0, LOOK_Y, 0)."""
-    eye = np.array([0.0, CAM_Y, CAM_Z])
+def camera_basis(cam_z: float = 1000.0):
+    """View matrix rows for a camera at (0, CAM_Y, cam_z) looking at (0, LOOK_Y, 0)."""
+    eye = np.array([0.0, CAM_Y, cam_z])
     target = np.array([0.0, LOOK_Y, 0.0])
     fwd = target - eye
     fwd = fwd / np.linalg.norm(fwd)
@@ -52,7 +52,8 @@ EYE, RIGHT, UP, FWD = camera_basis()
 F_PX = (VIEW_H / 2.0) / math.tan(math.radians(FOV_DEG) / 2.0)
 
 
-def project(pts: np.ndarray, view_w: float = VIEW_W, view_h: float = VIEW_H) -> np.ndarray:
+def project(pts: np.ndarray, view_w: float = VIEW_W, view_h: float = VIEW_H,
+            cam_z: float = CAM_Z) -> np.ndarray:
     """
     World points (N,3) -> screen pixels (N,2), y down.
 
@@ -63,10 +64,14 @@ def project(pts: np.ndarray, view_w: float = VIEW_W, view_h: float = VIEW_H) -> 
     the model uses the focal length directly instead of a fixed fov.
     """
     f_px = PERSPECTIVE_PX
-    rel = pts - EYE
-    xc = rel @ RIGHT
-    yc = rel @ UP
-    zc = rel @ FWD  # positive in front
+    # The basis has to follow the camera: pulling it back for viewZoom also
+    # flattens the small downward pitch that CAMERA.y introduces, and holding a
+    # 1000-unit basis while moving the eye costs ~8 px on a mobile viewport.
+    eye, right, up, fwd = camera_basis(cam_z)
+    rel = pts - eye
+    xc = rel @ right
+    yc = rel @ up
+    zc = rel @ fwd  # positive in front
     zc = np.maximum(zc, 1e-3)
     return np.stack([view_w / 2 + f_px * xc / zc, view_h / 2 - f_px * yc / zc], axis=1)
 
@@ -84,6 +89,14 @@ def place(i: int, j: int, p: dict):
     return (r * math.sin(theta), v, r * (1 - math.cos(theta)), -theta)
 
 
+def view_zoom(p: dict, width: float, height: float) -> float:
+    """Mirror of config.ts viewZoom(): pulls the camera back on short or narrow
+    frames so the brick grid stays discrete. 1440x900 stays at 1."""
+    min_w = p["tileW"] + p["cellW"] * 0.85
+    min_h = p["tileH"] + p["cellH"] * 0.65
+    return max(1.0, min_w / max(1.0, width), min_h / max(1.0, height))
+
+
 def card_quad(i: int, j: int, p: dict, view_w: float = VIEW_W, view_h: float = VIEW_H) -> np.ndarray:
     """Four silhouette corners of card (i, j), projected to screen pixels."""
     gx, gy, gz, roty = place(i, j, p)
@@ -92,7 +105,8 @@ def card_quad(i: int, j: int, p: dict, view_w: float = VIEW_W, view_h: float = V
     pts = []
     for lx, ly in ((-hw, hh), (hw, hh), (hw, -hh), (-hw, -hh)):
         pts.append((gx + lx * ca, gy + ly, gz - lx * sa))
-    return project(np.asarray(pts, float), view_w, view_h)
+    return project(np.asarray(pts, float), view_w, view_h,
+                   CAM_Z * view_zoom(p, view_w, view_h))
 
 
 def edge_y_at(quad: np.ndarray, x: float, top: bool) -> float:

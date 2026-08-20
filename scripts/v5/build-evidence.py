@@ -105,4 +105,13 @@ if __name__ == "__main__":
         ("clips stretch, media only", load(root / "qa-v5/f1/clips-stretch.png")),
         ("clips cover, beauty", load(root / "qa-v5/f1/beauty-cover.png")),
     ], cols=3, scale=0.42).save(root / "qa-v5/f1/mediafit-sheet.png")
+
+    sheet([("crop " + n, load(root / f"qa-v5/f1/crop-{n}.png"))
+           for n in ("niulai-intro", "cursor-niulai", "pelican-ai")],
+          cols=3, scale=0.62).save(root / "qa-v5/f1/crop-preview-sheet.png")
+
+    sheet([
+        ("390x844 foundation", load(root / "qa-v5/f0/mobile-portrait/01-rest.png")),
+        ("390x844 beauty", load(root / "qa-v5/f0/mobile-beauty/01-rest.png")),
+    ], cols=2, scale=0.62).save(root / "qa-v5/f0/mobile-sheet.png")
     print("evidence written")

@@ -137,6 +137,66 @@
         }
       ],
       "maxCornerErrorPx": 0.0
+    },
+    {
+      "dir": "qa-v5/f0/mobile-portrait",
+      "viewport": [
+        390.0,
+        844.0
+      ],
+      "states": [
+        {
+          "id": "01-rest",
+          "offset": [
+            0,
+            0
+          ],
+          "cards": 81,
+          "maxCornerErrorPx": 0.0,
+          "rmsCornerErrorPx": 0.0
+        }
+      ],
+      "maxCornerErrorPx": 0.0
+    },
+    {
+      "dir": "qa-v5/f0/mobile-landscape",
+      "viewport": [
+        844.0,
+        390.0
+      ],
+      "states": [
+        {
+          "id": "01-rest",
+          "offset": [
+            0,
+            0
+          ],
+          "cards": 81,
+          "maxCornerErrorPx": 0.0,
+          "rmsCornerErrorPx": 0.0
+        }
+      ],
+      "maxCornerErrorPx": 0.0
+    },
+    {
+      "dir": "qa-v5/f0/mobile-beauty",
+      "viewport": [
+        390.0,
+        844.0
+      ],
+      "states": [
+        {
+          "id": "01-rest",
+          "offset": [
+            0,
+            0
+          ],
+          "cards": 81,
+          "maxCornerErrorPx": 0.0,
+          "rmsCornerErrorPx": 0.0
+        }
+      ],
+      "maxCornerErrorPx": 0.0
     }
   ],
   "maxCornerErrorPx": 0.0

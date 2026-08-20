@@ -126,11 +126,51 @@ session — recorded, not fixed.
    against a Target corner of roughly 0.114 × width ≈ 61.5.
 6. **Motion**: `dragGain 0.58` vs a Target follow ratio of 0.77–0.82;
    `damping 11` / `stopThreshold 70` stop well before the Target's 1.0–1.5 s.
-7. `setRenderLayers({glass:false})` used to be a no-op on the final frame,
+7. **`npm run v4:source` / `v4:check` fail on this branch, and three of those
+   failures are mine.** Baseline `b071915` already failed four checks
+   (`V4_BRANCH_MATCHES_CONFIG`, `V3_RUNTIME_PATHS_UNCHANGED`,
+   `V3_DOM_FINGERPRINT`, `V4_CAPTURED_RUNTIME_IDENTITY`). This branch adds
+   `MAIN_PAGE_V4_FLAG_ADDITIVE` (main.ts now also routes on
+   `foundation=layout`), `V3_GRID_FINGERPRINT` (`InfiniteGlassGrid.ts` gained
+   MediaFit on the media plane) and `V3_VIDEO_UPLOAD_FINGERPRINT` (`CLIPS`
+   gained focus fields). The V4 charter's premise is "V3 stays untouched"; the
+   V5 brief overrides it by requiring changes to the shared layout config and
+   to media fitting. The lock has deliberately **not** been re-baselined —
+   re-cutting a governance contract to make a candidate pass is the user's
+   decision, not the candidate's.
+8. `setRenderLayers({glass:false})` used to be a no-op on the final frame,
    because the two-pass pipeline re-asserts glass-on / media-off every frame.
    Fixed in `GridAppV4.drawFrame()` so media-only QA captures are real. Any
    earlier "media-only" evidence produced through `?optics=v4` was actually
    glass-over-media.
+
+## Smoke tests beyond the gate viewport
+
+Not fidelity claims — the Target has its own mobile treatment and its own gate.
+These only show that flipping the curvature sign on a shared config did not
+break anything outside 1440x900.
+
+| Surface | Result |
+| --- | --- |
+| `/` (V3 default route) | boots, `ready:true`, 3 videos, 81 slots, **zero console errors**; `qa-v5/f0/v3-default-route-smoke.png` |
+| 390x844 portrait | renders, no card pair overlaps (min quad separation 7.19 px) |
+| 844x390 landscape | renders, no overlaps (15.59 px) |
+| 1100x720 | renders, no overlaps (15.09 px) |
+| `npm run build` | passes |
+
+`viewZoom` is active on all three small viewports (2.61x at 390 wide), which is
+the pre-existing responsive path, not a new one.
+
+## Model vs engine
+
+`scripts/v5/model-vs-engine.py` compares the engine's own `getCardQuads()`
+against the analytic model, corner by corner, at every captured offset and
+viewport: **0.0 px** at 1440x900 (six offsets), 1100x720, 390x844 and 844x390.
+
+That is what makes a rest-frame fit generalise. The Target comparison is done at
+one pose; it transfers to every other pose because the engine is provably
+evaluating the same closed-form geometry the fitter scored, with no
+offset-dependent special case anywhere in the path.
 
 ## Reproducing
 
