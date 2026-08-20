@@ -90,8 +90,24 @@ matrix (`repeat`/`offset`), which the media plane's `MeshBasicMaterial` applies.
 `stretch` is the pre-V5 behaviour, kept so a capture can show what was fixed.
 
 All three sources are 16:9-ish (960×540, 960×556, 960×540) against a 1.351 card,
-so cover keeps full height and crops left/right to 76.0% / 78.2% / 76.0% of the
-source width. Per-clip `focusX` / `focusY` / `zoom` live on `CLIPS`.
+so cover keeps full height and crops left/right. Per-clip `focusX` / `focusY` /
+`zoom` live on `CLIPS`. Product review set them on 2026-08-20:
+
+| Clip | focusX | focusY | zoom | visible source | source px per card px |
+| --- | --- | --- | --- | --- | --- |
+| NL-01 牛来开场 | 0.50 | 0.50 | 1.00 | 76.0% × 100% | 1.351 |
+| NL-02 Cursor 牛来 | 0.50 | 0.50 | 1.00 | 78.2% × 100% | 1.391 |
+| NL-03 鹈鹕测 AI | 0.50 | 0.46 | 1.06 | 71.7% × 94.3% | 1.275 |
+
+NL-03's `zoom: 1.06` was checked for the blur the product brief warned about and
+**kept**. It cannot introduce magnification blur: the texture is still minified
+(1.275 source pixels per card pixel, down from 1.351 — both above 1.0), so the
+sampler never has to invent detail, and less aggressive minification through a
+`LinearFilter`, no-mipmap texture is if anything cleaner. Measured against an
+ideal LANCZOS resample of the exact decoded frame, on the same face-on card
+(cell −1,0 centred), high-frequency fidelity is 1.021 at zoom 1.00 and 0.959 at
+zoom 1.06 — a 6% relative difference, far below anything visible. Aspect stays
+exact at 4.2e-14%.
 
 `?mediacal=1` swaps the clips for a 960×540 calibration canvas (circles, squares,
 edge markers) so the same fit maths can be checked against a known shape.

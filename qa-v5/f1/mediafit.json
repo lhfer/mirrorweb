@@ -43,16 +43,16 @@
           "sourceHeight": 540,
           "sourceAspect": 1.7777777777777777,
           "cardAspect": 1.3508508508508508,
-          "repeatX": 0.7598536036036037,
-          "repeatY": 1,
-          "offsetX": 0.12007319819819817,
-          "offsetY": 0,
+          "repeatX": 0.7168430222675506,
+          "repeatY": 0.9433962264150942,
+          "offsetX": 0.1415784888662247,
+          "offsetY": 0.03056603773584911,
           "croppedAxis": "x",
-          "visibleX": 0.7598536036036037,
-          "visibleY": 1,
-          "scaleX": 0.7399999999999999,
-          "scaleY": 0.74,
-          "aspectErrorPct": 1.50030138462859e-14
+          "visibleX": 0.7168430222675506,
+          "visibleY": 0.9433962264150942,
+          "scaleX": 0.7843999999999999,
+          "scaleY": 0.7844000000000002,
+          "aspectErrorPct": 4.246135994231857e-14
         }
       ]
     },
@@ -210,16 +210,16 @@
       "sourceHeight": 540,
       "sourceAspect": 1.7777777777777777,
       "cardAspect": 1.3508508508508508,
-      "repeatX": 0.7598536036036037,
-      "repeatY": 1,
-      "offsetX": 0.12007319819819817,
-      "offsetY": 0,
+      "repeatX": 0.7168430222675506,
+      "repeatY": 0.9433962264150942,
+      "offsetX": 0.1415784888662247,
+      "offsetY": 0.03056603773584911,
       "croppedAxis": "x",
-      "visibleX": 0.7598536036036037,
-      "visibleY": 1,
-      "scaleX": 0.7399999999999999,
-      "scaleY": 0.74,
-      "aspectErrorPct": 1.50030138462859e-14
+      "visibleX": 0.7168430222675506,
+      "visibleY": 0.9433962264150942,
+      "scaleX": 0.7843999999999999,
+      "scaleY": 0.7844000000000002,
+      "aspectErrorPct": 4.246135994231857e-14
     }
   ],
   "errors": []

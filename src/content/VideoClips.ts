@@ -36,9 +36,12 @@ export const CLIPS = [
     title: "鹈鹕测 AI",
     deck: "无 BGM 版，从 15 秒起截取 5 秒。",
     accent: "#ff9ad5",
+    // Product review, 2026-08-20: nudge the crop up slightly and tighten it.
+    // zoom 1.06 still MINIFIES the source (1.275 source px per card px, down
+    // from 1.351), so it cannot introduce magnification blur.
     focusX: 0.5,
-    focusY: 0.5,
-    zoom: 1,
+    focusY: 0.46,
+    zoom: 1.06,
   },
 ] as const;
 
