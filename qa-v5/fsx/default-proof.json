@@ -1,0 +1,37 @@
+{
+  "why": "The source-exact path must not be the default before product acceptance, and the v1 and v2 paths must be untouched by it. Both are proven by rendering, not asserted: identical PNG bytes are the only evidence that cannot be argued with.",
+  "sourceExactIsNotDefault": {
+    "bareRoute": "/?optics=v4&foundation=layout&annotate=0",
+    "resolvesTo": "composition=v1",
+    "renderedSha256": "4140551b4d383e48909849a117a30510914030ae14c23e05d2369899952b57e9",
+    "matchesAcceptedF0Baseline": true
+  },
+  "v1Unchanged": {
+    "route": "/?optics=v4&composition=v1&foundation=layout&annotate=0",
+    "viewport": "1440x900",
+    "acceptedBaselineSha256": "4140551b4d383e48909849a117a30510914030ae14c23e05d2369899952b57e9",
+    "thisBranchSha256": "4140551b4d383e48909849a117a30510914030ae14c23e05d2369899952b57e9",
+    "identical": true
+  },
+  "v2Unchanged": [
+    {
+      "viewport": "1440x900",
+      "f27GatedSha256": "766a181d4b436ffaa00af849569b11c71fe29b012d83985d9dccf02b3b347945",
+      "thisBranchSha256": "766a181d4b436ffaa00af849569b11c71fe29b012d83985d9dccf02b3b347945",
+      "identical": true
+    },
+    {
+      "viewport": "390x844",
+      "f27GatedSha256": "34baa216d104b07f49b6231a4c732cc3723fc46d484fbfce2552e2dfa3620a61",
+      "thisBranchSha256": "34baa216d104b07f49b6231a4c732cc3723fc46d484fbfce2552e2dfa3620a61",
+      "identical": true
+    }
+  ],
+  "note": "The single-source refactor pointed RowPhase.ts and f27_target_model.py at config/target-layout-source-v2.json instead of their own hand-written copies. These hashes are what proves the values did not move in the process.",
+  "sourceExactRoutes": {
+    "current": "/?optics=v4&composition=v2",
+    "sourceExact": "/?optics=v4&composition=sourceExact",
+    "foundation": "/?optics=v4&composition=sourceExact&foundation=layout&annotate=0"
+  },
+  "allIdentical": true
+}

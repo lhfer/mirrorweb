@@ -1,0 +1,181 @@
+{
+  "checkedAt": "2026-08-20T17:45:58.137Z",
+  "contract": "config/target-layout-source-v2.json",
+  "layoutVersion": "target-layout-source-v2",
+  "checks": [
+    {
+      "check": "Target app bundle hash unchanged",
+      "pass": true,
+      "detail": {
+        "url": "https://infinite-liquid-glass.shader.se/_next/static/immutable/chunks/03lo820gl57km.js",
+        "recorded": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+        "live": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+        "onFailure": "The Target redeployed. Re-run source forensics and re-derive the contract before trusting any layout number. Do NOT edit the hash to match."
+      }
+    },
+    {
+      "check": "TypeScript matches Python at 1440x900",
+      "pass": true,
+      "detail": {
+        "cols": [
+          10,
+          10
+        ],
+        "rows": [
+          10,
+          10
+        ],
+        "worstFieldDelta": 0,
+        "fovDelta": 0
+      }
+    },
+    {
+      "check": "Contract hash reaches the running app at 1440x900",
+      "pass": true,
+      "detail": {
+        "bundleHash": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+        "layoutVersion": "target-layout-source-v2"
+      }
+    },
+    {
+      "check": "TypeScript matches Python at 1920x1080",
+      "pass": true,
+      "detail": {
+        "cols": [
+          10,
+          10
+        ],
+        "rows": [
+          10,
+          10
+        ],
+        "worstFieldDelta": 0,
+        "fovDelta": 0
+      }
+    },
+    {
+      "check": "Contract hash reaches the running app at 1920x1080",
+      "pass": true,
+      "detail": {
+        "bundleHash": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+        "layoutVersion": "target-layout-source-v2"
+      }
+    },
+    {
+      "check": "TypeScript matches Python at 390x844",
+      "pass": true,
+      "detail": {
+        "cols": [
+          8,
+          8
+        ],
+        "rows": [
+          12,
+          12
+        ],
+        "worstFieldDelta": 0,
+        "fovDelta": 0
+      }
+    },
+    {
+      "check": "Contract hash reaches the running app at 390x844",
+      "pass": true,
+      "detail": {
+        "bundleHash": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+        "layoutVersion": "target-layout-source-v2"
+      }
+    },
+    {
+      "check": "TypeScript matches Python at 667x375",
+      "pass": true,
+      "detail": {
+        "cols": [
+          10,
+          10
+        ],
+        "rows": [
+          10,
+          10
+        ],
+        "worstFieldDelta": 0,
+        "fovDelta": 7.105427357601002e-15
+      }
+    },
+    {
+      "check": "Contract hash reaches the running app at 667x375",
+      "pass": true,
+      "detail": {
+        "bundleHash": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+        "layoutVersion": "target-layout-source-v2"
+      }
+    },
+    {
+      "check": "TypeScript matches Python at 700x700",
+      "pass": true,
+      "detail": {
+        "cols": [
+          10,
+          10
+        ],
+        "rows": [
+          12,
+          12
+        ],
+        "worstFieldDelta": 0,
+        "fovDelta": 0
+      }
+    },
+    {
+      "check": "Contract hash reaches the running app at 700x700",
+      "pass": true,
+      "detail": {
+        "bundleHash": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+        "layoutVersion": "target-layout-source-v2"
+      }
+    },
+    {
+      "check": "TypeScript matches Python at 960x500",
+      "pass": true,
+      "detail": {
+        "cols": [
+          10,
+          10
+        ],
+        "rows": [
+          8,
+          8
+        ],
+        "worstFieldDelta": 0,
+        "fovDelta": 0
+      }
+    },
+    {
+      "check": "Contract hash reaches the running app at 960x500",
+      "pass": true,
+      "detail": {
+        "bundleHash": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+        "layoutVersion": "target-layout-source-v2"
+      }
+    },
+    {
+      "check": "Live Target DOM matches the model at 1440x900",
+      "pass": true,
+      "detail": {
+        "targetPerspective": 1000,
+        "modelPerspective": 1000,
+        "targetPlane": [
+          547.188,
+          410.391
+        ],
+        "modelPlane": [
+          547.2,
+          410.40000000000003
+        ]
+      }
+    }
+  ],
+  "passed": 14,
+  "total": 14,
+  "verdict": "PASS",
+  "liveBundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754"
+}

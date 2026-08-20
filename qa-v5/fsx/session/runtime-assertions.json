@@ -1,0 +1,5194 @@
+{
+  "startedAt": "2026-08-20T17:59:00.497Z",
+  "route": "composition=sourceExact (beauty)",
+  "baseline": {
+    "created": 256,
+    "destroyed": 0,
+    "materials": 5,
+    "geometries": 2,
+    "textures": 3,
+    "videos": 3,
+    "slots": 256
+  },
+  "poolCoverage": {
+    "reachableRows": [
+      8,
+      10,
+      12,
+      14,
+      16
+    ],
+    "reachableCols": [
+      8,
+      10
+    ],
+    "unreachable": "rows and cols of 4 and 6, and cols above 10, cannot occur: the layout adds 4 to the coverage count before rounding up to an even number, and cols is bounded because planeWidth is a fixed fraction of viewport width. Enumerated over 320..2600 x 320..2600."
+  },
+  "sessions": {
+    "A-rest": {
+      "offset": [
+        0,
+        0
+      ],
+      "trace": [
+        {
+          "label": "1440x900",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 10.98,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "1920x1080",
+          "viewport": [
+            1920,
+            1080
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1333.3333333333335,
+            "actualCameraZ": 1333.3333333333335,
+            "actualFovDeg": 44.09589492712077,
+            "expectedFovDeg": 44.09589492712077,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 0.9999999999999998
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -3.3306690738754696e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 729.6,
+          "planeHeight": 547.2,
+          "cardScale": 1.1111111111111112,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 14.65,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "1366x768",
+          "viewport": [
+            1366,
+            768
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 948.6111111111112,
+            "actualCameraZ": 948.6111111111112,
+            "actualFovDeg": 44.07643535669959,
+            "expectedFovDeg": 44.07643535669959,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 519.08,
+          "planeHeight": 389.31000000000006,
+          "cardScale": 0.7905092592592593,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 10.42,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "1100x720",
+          "viewport": [
+            1100,
+            720
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 763.8888888888889,
+            "actualCameraZ": 763.8888888888889,
+            "actualFovDeg": 50.46644648393986,
+            "expectedFovDeg": 50.46644648393986,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 4.440892098500626e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 418,
+          "planeHeight": 313.5,
+          "cardScale": 0.6365740740740741,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 8.39,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "960x720",
+          "viewport": [
+            960,
+            720
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 666.6666666666667,
+            "actualCameraZ": 666.6666666666667,
+            "actualFovDeg": 56.73809258655716,
+            "expectedFovDeg": 56.73809258655716,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 364.8,
+          "planeHeight": 273.6,
+          "cardScale": 0.5555555555555556,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 7.32,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "960x500",
+          "viewport": [
+            960,
+            500
+          ],
+          "cols": 10,
+          "rows": 8,
+          "activeSlotCount": 80,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 80,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 80,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 666.6666666666667,
+            "actualCameraZ": 666.6666666666667,
+            "actualFovDeg": 41.11209043916693,
+            "expectedFovDeg": 41.11209043916693,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 364.8,
+          "planeHeight": 273.6,
+          "cardScale": 0.5555555555555556,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 7.32,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "1440x700",
+          "viewport": [
+            1440,
+            700
+          ],
+          "cols": 10,
+          "rows": 8,
+          "activeSlotCount": 80,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 80,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 80,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 38.58009243837747,
+            "expectedFovDeg": 38.58009243837747,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 11.98,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "844x390",
+          "viewport": [
+            844,
+            390
+          ],
+          "cols": 10,
+          "rows": 8,
+          "activeSlotCount": 80,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 80,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 80,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 586.1111111111111,
+            "actualCameraZ": 586.1111111111111,
+            "actualFovDeg": 36.80471474102782,
+            "expectedFovDeg": 36.80471474102782,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 320.72,
+          "planeHeight": 240.54000000000002,
+          "cardScale": 0.488425925925926,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 5.95,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "780x470",
+          "viewport": [
+            780,
+            470
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 541.6666666666666,
+            "actualCameraZ": 541.6666666666666,
+            "actualFovDeg": 46.906851020196775,
+            "expectedFovDeg": 46.906851020196775,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 0.9999999999999998
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 296.4,
+          "planeHeight": 222.29999999999998,
+          "cardScale": 0.45138888888888884,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 5.5,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "700x700",
+          "viewport": [
+            700,
+            700
+          ],
+          "cols": 10,
+          "rows": 12,
+          "activeSlotCount": 120,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 120,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 120,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 486.11111111111114,
+            "actualCameraZ": 486.11111111111114,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 266,
+          "planeHeight": 199.5,
+          "cardScale": 0.4050925925925926,
+          "overlap": {
+            "cards": 27,
+            "minSeparationPx": 0.59,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "667x375",
+          "viewport": [
+            667,
+            375
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 463.1944444444444,
+            "actualCameraZ": 463.1944444444444,
+            "actualFovDeg": 44.075968527542486,
+            "expectedFovDeg": 44.075968527542486,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 0.9999999999999998
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 253.46,
+          "planeHeight": 190.09500000000003,
+          "cardScale": 0.3859953703703704,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 4.7,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "900x899",
+          "viewport": [
+            900,
+            899
+          ],
+          "cols": 10,
+          "rows": 12,
+          "activeSlotCount": 120,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 120,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 120,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 625,
+            "actualCameraZ": 625,
+            "actualFovDeg": 71.4473767033757,
+            "expectedFovDeg": 71.4473767033757,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 342,
+          "planeHeight": 256.5,
+          "cardScale": 0.5208333333333334,
+          "overlap": {
+            "cards": 24,
+            "minSeparationPx": 0.76,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "899x900",
+          "viewport": [
+            899,
+            900
+          ],
+          "cols": 8,
+          "rows": 10,
+          "activeSlotCount": 80,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 80,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 80,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 625,
+            "actualCameraZ": 625,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 647.28,
+          "planeHeight": 485.46,
+          "cardScale": 0.9857456140350876,
+          "overlap": {
+            "cards": 20,
+            "minSeparationPx": -149.86,
+            "overlaps": 21,
+            "occlusions": 18,
+            "collisions": 3,
+            "worstCollisionPx": -4.1
+          }
+        },
+        {
+          "label": "900x900",
+          "viewport": [
+            900,
+            900
+          ],
+          "cols": 10,
+          "rows": 12,
+          "activeSlotCount": 120,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 120,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 120,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 625,
+            "actualCameraZ": 625,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 342,
+          "planeHeight": 256.5,
+          "cardScale": 0.5208333333333334,
+          "overlap": {
+            "cards": 24,
+            "minSeparationPx": 0.76,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "617x617",
+          "viewport": [
+            617,
+            617
+          ],
+          "cols": 10,
+          "rows": 12,
+          "activeSlotCount": 120,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 120,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 120,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 428.47222222222223,
+            "actualCameraZ": 428.47222222222223,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 234.46,
+          "planeHeight": 175.84500000000003,
+          "cardScale": 0.35706018518518523,
+          "overlap": {
+            "cards": 27,
+            "minSeparationPx": 0.52,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "500x900",
+          "viewport": [
+            500,
+            900
+          ],
+          "cols": 8,
+          "rows": 12,
+          "activeSlotCount": 96,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 96,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 96,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 625,
+            "actualCameraZ": 625,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 360,
+          "planeHeight": 270,
+          "cardScale": 0.5482456140350878,
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 4.31,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "430x932",
+          "viewport": [
+            430,
+            932
+          ],
+          "cols": 8,
+          "rows": 12,
+          "activeSlotCount": 96,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 96,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 96,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 647.2222222222223,
+            "actualCameraZ": 647.2222222222223,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 309.59999999999997,
+          "planeHeight": 232.2,
+          "cardScale": 0.4714912280701754,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 3.9,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "390x844",
+          "viewport": [
+            390,
+            844
+          ],
+          "cols": 8,
+          "rows": 12,
+          "activeSlotCount": 96,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 96,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 96,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 586.1111111111111,
+            "actualCameraZ": 586.1111111111111,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 280.8,
+          "planeHeight": 210.60000000000002,
+          "cardScale": 0.4276315789473685,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 3.51,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "360x800",
+          "viewport": [
+            360,
+            800
+          ],
+          "cols": 8,
+          "rows": 12,
+          "activeSlotCount": 96,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 96,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 96,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 555.5555555555555,
+            "actualCameraZ": 555.5555555555555,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 259.2,
+          "planeHeight": 194.4,
+          "cardScale": 0.39473684210526316,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 3.62,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "320x900",
+          "viewport": [
+            320,
+            900
+          ],
+          "cols": 8,
+          "rows": 14,
+          "activeSlotCount": 112,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 112,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 112,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 625,
+            "actualCameraZ": 625,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 230.39999999999998,
+          "planeHeight": 172.79999999999998,
+          "cardScale": 0.3508771929824561,
+          "overlap": {
+            "cards": 19,
+            "minSeparationPx": 4.19,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "320x980",
+          "viewport": [
+            320,
+            980
+          ],
+          "cols": 8,
+          "rows": 16,
+          "activeSlotCount": 128,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 128,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 128,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 680.5555555555555,
+            "actualCameraZ": 680.5555555555555,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 230.39999999999998,
+          "planeHeight": 172.79999999999998,
+          "cardScale": 0.3508771929824561,
+          "overlap": {
+            "cards": 20,
+            "minSeparationPx": 3.27,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "1440x900",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 10.98,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        }
+      ]
+    },
+    "B-offset-260-180": {
+      "offset": [
+        260,
+        180
+      ],
+      "trace": [
+        {
+          "label": "1440x900",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 9.87,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "1920x1080",
+          "viewport": [
+            1920,
+            1080
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1333.3333333333335,
+            "actualCameraZ": 1333.3333333333335,
+            "actualFovDeg": 44.09589492712077,
+            "expectedFovDeg": 44.09589492712077,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 0.9999999999999998
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -3.3306690738754696e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 729.6,
+          "planeHeight": 547.2,
+          "cardScale": 1.1111111111111112,
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 18,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "1366x768",
+          "viewport": [
+            1366,
+            768
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 948.6111111111112,
+            "actualCameraZ": 948.6111111111112,
+            "actualFovDeg": 44.07643535669959,
+            "expectedFovDeg": 44.07643535669959,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 519.08,
+          "planeHeight": 389.31000000000006,
+          "cardScale": 0.7905092592592593,
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 14.09,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "1100x720",
+          "viewport": [
+            1100,
+            720
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 763.8888888888889,
+            "actualCameraZ": 763.8888888888889,
+            "actualFovDeg": 50.46644648393986,
+            "expectedFovDeg": 50.46644648393986,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 4.440892098500626e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 418,
+          "planeHeight": 313.5,
+          "cardScale": 0.6365740740740741,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 6.93,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "960x720",
+          "viewport": [
+            960,
+            720
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 666.6666666666667,
+            "actualCameraZ": 666.6666666666667,
+            "actualFovDeg": 56.73809258655716,
+            "expectedFovDeg": 56.73809258655716,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 364.8,
+          "planeHeight": 273.6,
+          "cardScale": 0.5555555555555556,
+          "overlap": {
+            "cards": 19,
+            "minSeparationPx": 4.58,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "960x500",
+          "viewport": [
+            960,
+            500
+          ],
+          "cols": 10,
+          "rows": 8,
+          "activeSlotCount": 80,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 80,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 80,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 666.6666666666667,
+            "actualCameraZ": 666.6666666666667,
+            "actualFovDeg": 41.11209043916693,
+            "expectedFovDeg": 41.11209043916693,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 364.8,
+          "planeHeight": 273.6,
+          "cardScale": 0.5555555555555556,
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 9.28,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "1440x700",
+          "viewport": [
+            1440,
+            700
+          ],
+          "cols": 10,
+          "rows": 8,
+          "activeSlotCount": 80,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 80,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 80,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 38.58009243837747,
+            "expectedFovDeg": 38.58009243837747,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 13.75,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "844x390",
+          "viewport": [
+            844,
+            390
+          ],
+          "cols": 10,
+          "rows": 8,
+          "activeSlotCount": 80,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 80,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 80,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 586.1111111111111,
+            "actualCameraZ": 586.1111111111111,
+            "actualFovDeg": 36.80471474102782,
+            "expectedFovDeg": 36.80471474102782,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 320.72,
+          "planeHeight": 240.54000000000002,
+          "cardScale": 0.488425925925926,
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 7.85,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "780x470",
+          "viewport": [
+            780,
+            470
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 541.6666666666666,
+            "actualCameraZ": 541.6666666666666,
+            "actualFovDeg": 46.906851020196775,
+            "expectedFovDeg": 46.906851020196775,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 0.9999999999999998
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 296.4,
+          "planeHeight": 222.29999999999998,
+          "cardScale": 0.45138888888888884,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 4.67,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "700x700",
+          "viewport": [
+            700,
+            700
+          ],
+          "cols": 10,
+          "rows": 12,
+          "activeSlotCount": 120,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 120,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 120,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 486.11111111111114,
+            "actualCameraZ": 486.11111111111114,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 266,
+          "planeHeight": 199.5,
+          "cardScale": 0.4050925925925926,
+          "overlap": {
+            "cards": 26,
+            "minSeparationPx": -0.3,
+            "overlaps": 1,
+            "occlusions": 1,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "667x375",
+          "viewport": [
+            667,
+            375
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 463.1944444444444,
+            "actualCameraZ": 463.1944444444444,
+            "actualFovDeg": 44.075968527542486,
+            "expectedFovDeg": 44.075968527542486,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 0.9999999999999998
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 253.46,
+          "planeHeight": 190.09500000000003,
+          "cardScale": 0.3859953703703704,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 4.27,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "900x899",
+          "viewport": [
+            900,
+            899
+          ],
+          "cols": 10,
+          "rows": 12,
+          "activeSlotCount": 120,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 120,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 120,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 625,
+            "actualCameraZ": 625,
+            "actualFovDeg": 71.4473767033757,
+            "expectedFovDeg": 71.4473767033757,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 342,
+          "planeHeight": 256.5,
+          "cardScale": 0.5208333333333334,
+          "overlap": {
+            "cards": 23,
+            "minSeparationPx": 2.38,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "899x900",
+          "viewport": [
+            899,
+            900
+          ],
+          "cols": 8,
+          "rows": 10,
+          "activeSlotCount": 80,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 80,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 80,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 625,
+            "actualCameraZ": 625,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 647.28,
+          "planeHeight": 485.46,
+          "cardScale": 0.9857456140350876,
+          "overlap": {
+            "cards": 17,
+            "minSeparationPx": -129.03,
+            "overlaps": 10,
+            "occlusions": 10,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "900x900",
+          "viewport": [
+            900,
+            900
+          ],
+          "cols": 10,
+          "rows": 12,
+          "activeSlotCount": 120,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 120,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 120,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 625,
+            "actualCameraZ": 625,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 342,
+          "planeHeight": 256.5,
+          "cardScale": 0.5208333333333334,
+          "overlap": {
+            "cards": 23,
+            "minSeparationPx": 2.38,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "617x617",
+          "viewport": [
+            617,
+            617
+          ],
+          "cols": 10,
+          "rows": 12,
+          "activeSlotCount": 120,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 120,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 120,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 428.47222222222223,
+            "actualCameraZ": 428.47222222222223,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 234.46,
+          "planeHeight": 175.84500000000003,
+          "cardScale": 0.35706018518518523,
+          "overlap": {
+            "cards": 29,
+            "minSeparationPx": -0.67,
+            "overlaps": 1,
+            "occlusions": 1,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "500x900",
+          "viewport": [
+            500,
+            900
+          ],
+          "cols": 8,
+          "rows": 12,
+          "activeSlotCount": 96,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 96,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 96,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 625,
+            "actualCameraZ": 625,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 360,
+          "planeHeight": 270,
+          "cardScale": 0.5482456140350878,
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 3.39,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "430x932",
+          "viewport": [
+            430,
+            932
+          ],
+          "cols": 8,
+          "rows": 12,
+          "activeSlotCount": 96,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 96,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 96,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 647.2222222222223,
+            "actualCameraZ": 647.2222222222223,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 309.59999999999997,
+          "planeHeight": 232.2,
+          "cardScale": 0.4714912280701754,
+          "overlap": {
+            "cards": 17,
+            "minSeparationPx": 2.06,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "390x844",
+          "viewport": [
+            390,
+            844
+          ],
+          "cols": 8,
+          "rows": 12,
+          "activeSlotCount": 96,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 96,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 96,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 586.1111111111111,
+            "actualCameraZ": 586.1111111111111,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 280.8,
+          "planeHeight": 210.60000000000002,
+          "cardScale": 0.4276315789473685,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 2.23,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "360x800",
+          "viewport": [
+            360,
+            800
+          ],
+          "cols": 8,
+          "rows": 12,
+          "activeSlotCount": 96,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 96,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 96,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 555.5555555555555,
+            "actualCameraZ": 555.5555555555555,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 259.2,
+          "planeHeight": 194.4,
+          "cardScale": 0.39473684210526316,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 2.75,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "320x900",
+          "viewport": [
+            320,
+            900
+          ],
+          "cols": 8,
+          "rows": 14,
+          "activeSlotCount": 112,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 112,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 112,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 625,
+            "actualCameraZ": 625,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 230.39999999999998,
+          "planeHeight": 172.79999999999998,
+          "cardScale": 0.3508771929824561,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 4.17,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "320x980",
+          "viewport": [
+            320,
+            980
+          ],
+          "cols": 8,
+          "rows": 16,
+          "activeSlotCount": 128,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 128,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 128,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 680.5555555555555,
+            "actualCameraZ": 680.5555555555555,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 230.39999999999998,
+          "planeHeight": 172.79999999999998,
+          "cardScale": 0.3508771929824561,
+          "overlap": {
+            "cards": 21,
+            "minSeparationPx": 3.15,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "1440x900",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            260,
+            180
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 9.87,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        }
+      ]
+    },
+    "C-pool-boundary": {
+      "offset": [
+        0,
+        0
+      ],
+      "trace": [
+        {
+          "label": "1440x700",
+          "viewport": [
+            1440,
+            700
+          ],
+          "cols": 10,
+          "rows": 8,
+          "activeSlotCount": 80,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 80,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 80,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 38.58009243837747,
+            "expectedFovDeg": 38.58009243837747,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 11.98,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "1440x900",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 10.98,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "700x700",
+          "viewport": [
+            700,
+            700
+          ],
+          "cols": 10,
+          "rows": 12,
+          "activeSlotCount": 120,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 120,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 120,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 486.11111111111114,
+            "actualCameraZ": 486.11111111111114,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 266,
+          "planeHeight": 199.5,
+          "cardScale": 0.4050925925925926,
+          "overlap": {
+            "cards": 27,
+            "minSeparationPx": 0.59,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "320x900",
+          "viewport": [
+            320,
+            900
+          ],
+          "cols": 8,
+          "rows": 14,
+          "activeSlotCount": 112,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 112,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 112,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 625,
+            "actualCameraZ": 625,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 230.39999999999998,
+          "planeHeight": 172.79999999999998,
+          "cardScale": 0.3508771929824561,
+          "overlap": {
+            "cards": 19,
+            "minSeparationPx": 4.19,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "320x980",
+          "viewport": [
+            320,
+            980
+          ],
+          "cols": 8,
+          "rows": 16,
+          "activeSlotCount": 128,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 128,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 128,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 680.5555555555555,
+            "actualCameraZ": 680.5555555555555,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 230.39999999999998,
+          "planeHeight": 172.79999999999998,
+          "cardScale": 0.3508771929824561,
+          "overlap": {
+            "cards": 20,
+            "minSeparationPx": 3.27,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "320x900",
+          "viewport": [
+            320,
+            900
+          ],
+          "cols": 8,
+          "rows": 14,
+          "activeSlotCount": 112,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 112,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 112,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 625,
+            "actualCameraZ": 625,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 230.39999999999998,
+          "planeHeight": 172.79999999999998,
+          "cardScale": 0.3508771929824561,
+          "overlap": {
+            "cards": 19,
+            "minSeparationPx": 4.19,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "700x700",
+          "viewport": [
+            700,
+            700
+          ],
+          "cols": 10,
+          "rows": 12,
+          "activeSlotCount": 120,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 120,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 120,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 486.11111111111114,
+            "actualCameraZ": 486.11111111111114,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 266,
+          "planeHeight": 199.5,
+          "cardScale": 0.4050925925925926,
+          "overlap": {
+            "cards": 27,
+            "minSeparationPx": 0.59,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "1440x900",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 10.98,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "1440x700",
+          "viewport": [
+            1440,
+            700
+          ],
+          "cols": 10,
+          "rows": 8,
+          "activeSlotCount": 80,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 80,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 80,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 38.58009243837747,
+            "expectedFovDeg": 38.58009243837747,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 11.98,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        }
+      ]
+    },
+    "dragResize": {
+      "trace": [
+        {
+          "label": "drag-1100x720",
+          "viewport": [
+            1100,
+            720
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 763.8888888888889,
+            "actualCameraZ": 763.8888888888889,
+            "actualFovDeg": 50.46644648393986,
+            "expectedFovDeg": 50.46644648393986,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 4.440892098500626e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            120,
+            90
+          ],
+          "planeWidth": 418,
+          "planeHeight": 313.5,
+          "cardScale": 0.6365740740740741,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 6.53,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "drag-700x700",
+          "viewport": [
+            700,
+            700
+          ],
+          "cols": 10,
+          "rows": 12,
+          "activeSlotCount": 120,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 120,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 120,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 486.11111111111114,
+            "actualCameraZ": 486.11111111111114,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            120,
+            90
+          ],
+          "planeWidth": 266,
+          "planeHeight": 199.5,
+          "cardScale": 0.4050925925925926,
+          "overlap": {
+            "cards": 25,
+            "minSeparationPx": 1.76,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "drag-390x844",
+          "viewport": [
+            390,
+            844
+          ],
+          "cols": 8,
+          "rows": 12,
+          "activeSlotCount": 96,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 96,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 96,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 586.1111111111111,
+            "actualCameraZ": 586.1111111111111,
+            "actualFovDeg": 71.5077745088735,
+            "expectedFovDeg": 71.5077745088735,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1.0000000000000002
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 2.220446049250313e-16,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": 0,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            120,
+            90
+          ],
+          "planeWidth": 280.8,
+          "planeHeight": 210.60000000000002,
+          "cardScale": 0.4276315789473685,
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 4.18,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "drag-1440x900",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            120,
+            90
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 8.91,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        }
+      ]
+    },
+    "longScroll": {
+      "cellW": 571.824,
+      "cellH": 428.868,
+      "trace": [
+        {
+          "label": "k=0",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            0,
+            0
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "cells": 0,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 10.98,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "k=0.49",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            280.19376,
+            210.14532
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "cells": 0.49,
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 15.06,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "k=-0.49",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            -280.19376,
+            -210.14532
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "cells": -0.49,
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 13.89,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "k=0.51",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            291.63023999999996,
+            218.72268
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "cells": 0.51,
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 15.06,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "k=-0.51",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            -291.63023999999996,
+            -218.72268
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "cells": -0.51,
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 13.89,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "k=10",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            5718.24,
+            4288.68
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "cells": 10,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 10.98,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "k=-10",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            -5718.24,
+            -4288.68
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "cells": -10,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 10.98,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "k=50",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            28591.199999999997,
+            21443.4
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "cells": 50,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 10.98,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "k=-50",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            -28591.199999999997,
+            -21443.4
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "cells": -50,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 10.98,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "k=100",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            57182.399999999994,
+            42886.8
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "cells": 100,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 10.98,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        },
+        {
+          "label": "k=-100",
+          "viewport": [
+            1440,
+            900
+          ],
+          "cols": 10,
+          "rows": 10,
+          "activeSlotCount": 100,
+          "poolCapacity": 256,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 260,
+          "slotIdentity": {
+            "activeSlotCount": 100,
+            "poolCapacity": 256,
+            "codesAreSlotIndexPlusOne": true,
+            "firstCodes": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "lastCode": 100,
+            "allActiveVisibleFlagSet": true,
+            "inactiveHidden": true
+          },
+          "camera": {
+            "expectedPerspective": 1000,
+            "actualCameraZ": 1000,
+            "actualFovDeg": 48.45549063590834,
+            "expectedFovDeg": 48.45549063590834,
+            "cameraOnAxis": true,
+            "near": 0.1,
+            "far": 10000,
+            "oneWorldUnitIsOneCssPixelAtZ0": 1
+          },
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": 0,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -2.220446049250313e-16,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scroll": [
+            -57182.399999999994,
+            -42886.8
+          ],
+          "planeWidth": 547.2,
+          "planeHeight": 410.40000000000003,
+          "cardScale": 0.8333333333333334,
+          "cells": -100,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 10.98,
+            "overlaps": 0,
+            "occlusions": 0,
+            "collisions": 0,
+            "worstCollisionPx": 0
+          }
+        }
+      ]
+    }
+  },
+  "assertions": [
+    {
+      "assertion": "A-rest: no mesh created after the initial build",
+      "pass": true,
+      "detail": [
+        256
+      ]
+    },
+    {
+      "assertion": "A-rest: no mesh destroyed",
+      "pass": true,
+      "detail": [
+        0
+      ]
+    },
+    {
+      "assertion": "A-rest: material count stable",
+      "pass": true,
+      "detail": [
+        5
+      ]
+    },
+    {
+      "assertion": "A-rest: geometry count stable",
+      "pass": true,
+      "detail": [
+        2
+      ]
+    },
+    {
+      "assertion": "A-rest: texture count stable",
+      "pass": true,
+      "detail": [
+        3
+      ]
+    },
+    {
+      "assertion": "A-rest: video count stable",
+      "pass": true,
+      "detail": [
+        3
+      ]
+    },
+    {
+      "assertion": "A-rest: video never reloads (frame counter never resets)",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "A-rest: pool capacity constant at 256",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "A-rest: active slot count equals cols x rows",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "A-rest: ILG code is slotIndex + 1 at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "A-rest: inactive slots hidden at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "A-rest: camera stays on axis at the focal distance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "A-rest: one world unit stays one CSS pixel at z = 0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "A-rest: runtime truth passes at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "A-rest: no card collision beyond what the Target has at that viewport",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "assertion": "A-rest: strict zero-overlap, reported for the record",
+      "pass": false,
+      "detail": {
+        "specification": "Written for a cylinder; on a sphere occlusion between rows at different depths is correct behaviour and the Target does the same.",
+        "byViewport": [
+          {
+            "vp": "899x900",
+            "overlaps": 21,
+            "occlusions": 18,
+            "collisions": 3,
+            "minSepPx": -149.86
+          }
+        ]
+      }
+    },
+    {
+      "assertion": "A-rest: never blank -- cards on screen at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "A-rest: scroll offset preserved across every resize",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: no mesh created after the initial build",
+      "pass": true,
+      "detail": [
+        256
+      ]
+    },
+    {
+      "assertion": "B-offset-260-180: no mesh destroyed",
+      "pass": true,
+      "detail": [
+        0
+      ]
+    },
+    {
+      "assertion": "B-offset-260-180: material count stable",
+      "pass": true,
+      "detail": [
+        5
+      ]
+    },
+    {
+      "assertion": "B-offset-260-180: geometry count stable",
+      "pass": true,
+      "detail": [
+        2
+      ]
+    },
+    {
+      "assertion": "B-offset-260-180: texture count stable",
+      "pass": true,
+      "detail": [
+        3
+      ]
+    },
+    {
+      "assertion": "B-offset-260-180: video count stable",
+      "pass": true,
+      "detail": [
+        3
+      ]
+    },
+    {
+      "assertion": "B-offset-260-180: video never reloads (frame counter never resets)",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: pool capacity constant at 256",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: active slot count equals cols x rows",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: ILG code is slotIndex + 1 at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: inactive slots hidden at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: camera stays on axis at the focal distance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: one world unit stays one CSS pixel at z = 0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: runtime truth passes at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: no card collision beyond what the Target has at that viewport",
+      "pass": true,
+      "detail": [
+        {
+          "vp": "899x900",
+          "engine": 0,
+          "target": 3
+        }
+      ]
+    },
+    {
+      "assertion": "B-offset-260-180: strict zero-overlap, reported for the record",
+      "pass": false,
+      "detail": {
+        "specification": "Written for a cylinder; on a sphere occlusion between rows at different depths is correct behaviour and the Target does the same.",
+        "byViewport": [
+          {
+            "vp": "700x700",
+            "overlaps": 1,
+            "occlusions": 1,
+            "collisions": 0,
+            "minSepPx": -0.3
+          },
+          {
+            "vp": "899x900",
+            "overlaps": 10,
+            "occlusions": 10,
+            "collisions": 0,
+            "minSepPx": -129.03
+          },
+          {
+            "vp": "617x617",
+            "overlaps": 1,
+            "occlusions": 1,
+            "collisions": 0,
+            "minSepPx": -0.67
+          }
+        ]
+      }
+    },
+    {
+      "assertion": "B-offset-260-180: never blank -- cards on screen at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: scroll offset preserved across every resize",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "C-pool-boundary: no mesh created after the initial build",
+      "pass": true,
+      "detail": [
+        256
+      ]
+    },
+    {
+      "assertion": "C-pool-boundary: no mesh destroyed",
+      "pass": true,
+      "detail": [
+        0
+      ]
+    },
+    {
+      "assertion": "C-pool-boundary: material count stable",
+      "pass": true,
+      "detail": [
+        5
+      ]
+    },
+    {
+      "assertion": "C-pool-boundary: geometry count stable",
+      "pass": true,
+      "detail": [
+        2
+      ]
+    },
+    {
+      "assertion": "C-pool-boundary: texture count stable",
+      "pass": true,
+      "detail": [
+        3
+      ]
+    },
+    {
+      "assertion": "C-pool-boundary: video count stable",
+      "pass": true,
+      "detail": [
+        3
+      ]
+    },
+    {
+      "assertion": "C-pool-boundary: video never reloads (frame counter never resets)",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "C-pool-boundary: pool capacity constant at 256",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "C-pool-boundary: active slot count equals cols x rows",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "C-pool-boundary: ILG code is slotIndex + 1 at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "C-pool-boundary: inactive slots hidden at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "C-pool-boundary: camera stays on axis at the focal distance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "C-pool-boundary: one world unit stays one CSS pixel at z = 0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "C-pool-boundary: runtime truth passes at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "C-pool-boundary: no card collision beyond what the Target has at that viewport",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "assertion": "C-pool-boundary: strict zero-overlap, reported for the record",
+      "pass": true,
+      "detail": {
+        "specification": "Written for a cylinder; on a sphere occlusion between rows at different depths is correct behaviour and the Target does the same.",
+        "byViewport": []
+      }
+    },
+    {
+      "assertion": "C-pool-boundary: never blank -- cards on screen at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "C-pool-boundary: scroll offset preserved across every resize",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "pool boundary: every reachable row count is exercised",
+      "pass": true,
+      "detail": {
+        "seenRows": [
+          8,
+          10,
+          12,
+          14,
+          16
+        ],
+        "seenCols": [
+          8,
+          10
+        ]
+      }
+    },
+    {
+      "assertion": "pool boundary: both reachable column counts are exercised",
+      "pass": true,
+      "detail": {
+        "seenCols": [
+          8,
+          10
+        ]
+      }
+    },
+    {
+      "assertion": "resize during drag: no mesh churn",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "resize during drag: no same-depth collision and never blank",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "resize during drag: slot identity intact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "long scroll +/-100 cells: no mesh churn",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "long scroll +/-100 cells: no same-depth collision",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "long scroll +/-100 cells: never blank",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "long scroll +/-100 cells: active slot count unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "long scroll +/-100 cells: slot identity unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "long scroll +/-100 cells: video never reloads",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "no console errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "assertion": "no page errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "passed": 64,
+  "total": 64,
+  "informational": [
+    {
+      "assertion": "A-rest: strict zero-overlap, reported for the record",
+      "pass": false,
+      "detail": {
+        "specification": "Written for a cylinder; on a sphere occlusion between rows at different depths is correct behaviour and the Target does the same.",
+        "byViewport": [
+          {
+            "vp": "899x900",
+            "overlaps": 21,
+            "occlusions": 18,
+            "collisions": 3,
+            "minSepPx": -149.86
+          }
+        ]
+      }
+    },
+    {
+      "assertion": "B-offset-260-180: strict zero-overlap, reported for the record",
+      "pass": false,
+      "detail": {
+        "specification": "Written for a cylinder; on a sphere occlusion between rows at different depths is correct behaviour and the Target does the same.",
+        "byViewport": [
+          {
+            "vp": "700x700",
+            "overlaps": 1,
+            "occlusions": 1,
+            "collisions": 0,
+            "minSepPx": -0.3
+          },
+          {
+            "vp": "899x900",
+            "overlaps": 10,
+            "occlusions": 10,
+            "collisions": 0,
+            "minSepPx": -129.03
+          },
+          {
+            "vp": "617x617",
+            "overlaps": 1,
+            "occlusions": 1,
+            "collisions": 0,
+            "minSepPx": -0.67
+          }
+        ]
+      }
+    },
+    {
+      "assertion": "C-pool-boundary: strict zero-overlap, reported for the record",
+      "pass": true,
+      "detail": {
+        "specification": "Written for a cylinder; on a sphere occlusion between rows at different depths is correct behaviour and the Target does the same.",
+        "byViewport": []
+      }
+    }
+  ],
+  "verdict": "PASS"
+}

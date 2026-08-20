@@ -2,21 +2,24 @@
 
 Single canonical entry point. Every delivery updates this file.
 
-Last updated: 2026-08-20 (F2.7 delivery)
+Last updated: 2026-08-20 (F2-SX source-exact rebase)
 
 | | |
 | --- | --- |
 | Repository | `lhfer/mirrorweb` |
-| Branch | `rebuild/liquid-glass-v5-foundation` |
+| Branch | `rebuild/liquid-glass-v5-source-exact` (from `rebuild/liquid-glass-v5-foundation`) |
+| Source contract | [`config/target-layout-source-v2.json`](../../config/target-layout-source-v2.json), verified by `npm run v5:target-layout-source` |
 | Current HEAD | `e33149992e4e69cd483428c38decf4248d7875d5` (`v5-f26r-corrected-evidence`) at the time this row was written. Resolve the live value with `git rev-parse HEAD`. |
 | F2.6R code fix commit | `23de9c7` `v5-f26r-portrait-law-propagation` |
 | F2.6R evidence commit | `e331499` `v5-f26r-corrected-evidence` |
 | F2.6R corrected candidate gate | **FAIL** — p0 5/6, p1 5/6, p2 4/6 |
 | F2.6 original candidate comparison | **INVALID** — `qa-v5/f26/portrait-candidate-gates.json` compared one candidate with itself |
 | Preview v1 | `http://127.0.0.1:5280/?optics=v4&composition=v1` |
-| Preview candidate | `http://127.0.0.1:5280/?optics=v4&composition=v2&verticalMode=tangent&portraitLaw=p1&phaseModel=rowOrigin&portraitVertical=v2` |
-| Evidence index | [`qa-v5/f27/README.md`](../../qa-v5/f27/README.md) |
-| Private review package | `qa-v5/private/f27-review.zip` (git-ignored) |
+| Preview current F2.7 | `http://127.0.0.1:5280/?optics=v4&composition=v2` |
+| Preview source-exact | `http://127.0.0.1:5280/?optics=v4&composition=sourceExact` |
+| Preview source-exact foundation | `http://127.0.0.1:5280/?optics=v4&composition=sourceExact&foundation=layout&annotate=0` |
+| Evidence index | [`qa-v5/fsx/README.md`](../../qa-v5/fsx/README.md) |
+| Private review package | `qa-v5/private/fsx-review.zip` (git-ignored) |
 
 ## Commit ledger
 
@@ -35,7 +38,29 @@ Last updated: 2026-08-20 (F2.7 delivery)
 - F2.5's rest-phase scale switch at 0.674 — **23/39 against the runtime law**. Replaced by the aspect rule.
 - **F2.6's `portrait-candidate-gates.json` — INVALID.** `portraitLaw` never reached the camera, so p0 and p1 rendered byte identically and that file compared one candidate with itself. Superseded by `qa-v5/f26r/portrait-candidate-gates.json`.
 
-## Verdicts (F2.7)
+## Verdicts (F2-SX source-exact)
+
+| | |
+| --- | --- |
+| Engineering result | **READY FOR PREVIEW-FIRST PRODUCT REVIEW** |
+| Source contract | **PASS 36/36** — slot world 0.0, orientation 1.21e-6 deg, projected corner 0.0 px, engine vs Target DOM 0.005366 world |
+| `npm run v5:target-layout-source` | **PASS 14/14**; failure branch exercised against a mutated contract and exits 1 |
+| Pixel gate | **8/14** viewports, **115/122** checks. F2.7 measured identically: 7/14, 112/123. |
+| Runtime | **PASS 64/64** |
+| F0 regression | **PASS 20/20**, baseline frame byte-identical |
+| v1 / v2 / bare route | byte-identical to before; `sourceExact` is NOT the default |
+| Build | PASS |
+| Target visual result | Not asserted |
+
+Every remaining pixel failure is **gutter centre** (3.5-6.5 px against 3 px).
+Card size, card centre, edge yaw, row parity, centre dark band, overlap and
+large void pass at every viewport. Two independent measurements show the
+residual is the detector meeting a video-filled glass card: reading the Target's
+own frame, the detector places card centres up to 2.67 px and widths up to
+71.89 px away from the Target's OWN DOM geometry, and our frame reads closer to
+that truth than the Target's own frame does at all nine viewports tested.
+
+### Old verdicts (F2.7, on the foundation branch)
 
 | | |
 | --- | --- |
@@ -151,7 +176,19 @@ V5. Not re-baselined; the product owner's call.
 
 ## Next stage
 
-F2.7 is delivered and no F2.8 follows it. The open product decisions are:
+F2-SX is delivered. `sourceExact` is a separate, non-default path; v1 and v2 are
+untouched and the old F0 layout baseline is a **Historical Accepted Baseline,
+superseded only for the source-exact path**. Not merged to main.
+
+The open product decision is whether to adopt `sourceExact` as the composition
+baseline. Adopting it retires the fitted portrait gain, the portrait vertical
+scale, `radiusY`, the aspect phase threshold, the fitted `restY0` and the fixed
+9x9 world grid, and makes `TILE`, `GRID.cellW` and `GRID.radius` irrelevant to
+layout: the source contract replaces all of them.
+
+Typography, Motion and Optics remain **NOT STARTED**.
+
+### Superseded F2.7 decisions
 
 1. Whether to accept the remaining 390x844 residual as an explicit exception. It
    is **structural**, not a rounding residual: our frozen curvature radius is

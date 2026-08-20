@@ -1,0 +1,78 @@
+{
+  "question": "Is an overlapping projected card pair a defect, or the sphere?",
+  "rule": {
+    "coplanarWorldUnits": 42.0,
+    "realPenetrationPx": 1.0,
+    "note": "Two cards whose depths differ by more than one card thickness are occluding, which is what a sphere does. Closer than that and they share a plane, which would be a fault."
+  },
+  "viewportsCompared": 3,
+  "engineMatchesTargetEverywhere": true,
+  "viewportsWithAnyOverlap": [
+    "899x900"
+  ],
+  "viewportsWithSameDepthCollision": [
+    "899x900"
+  ],
+  "viewports": [
+    {
+      "id": "617x617",
+      "target": {
+        "onScreen": 27,
+        "overlappingPairs": 0,
+        "occlusions": 0,
+        "sameDepthCollisions": 0,
+        "minSeparationPx": 0.52,
+        "worstCollisionPx": 0.0
+      },
+      "engine": {
+        "onScreen": 27,
+        "overlappingPairs": 0,
+        "occlusions": 0,
+        "sameDepthCollisions": 0,
+        "minSeparationPx": 0.52,
+        "worstCollisionPx": 0.0
+      },
+      "agrees": true
+    },
+    {
+      "id": "700x700",
+      "target": {
+        "onScreen": 27,
+        "overlappingPairs": 0,
+        "occlusions": 0,
+        "sameDepthCollisions": 0,
+        "minSeparationPx": 0.59,
+        "worstCollisionPx": 0.0
+      },
+      "engine": {
+        "onScreen": 27,
+        "overlappingPairs": 0,
+        "occlusions": 0,
+        "sameDepthCollisions": 0,
+        "minSeparationPx": 0.59,
+        "worstCollisionPx": 0.0
+      },
+      "agrees": true
+    },
+    {
+      "id": "899x900",
+      "target": {
+        "onScreen": 20,
+        "overlappingPairs": 21,
+        "occlusions": 18,
+        "sameDepthCollisions": 3,
+        "minSeparationPx": -149.86,
+        "worstCollisionPx": -4.08
+      },
+      "engine": {
+        "onScreen": 20,
+        "overlappingPairs": 21,
+        "occlusions": 18,
+        "sameDepthCollisions": 3,
+        "minSeparationPx": -149.86,
+        "worstCollisionPx": -4.1
+      },
+      "agrees": true
+    }
+  ]
+}
