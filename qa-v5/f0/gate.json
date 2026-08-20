@@ -1,0 +1,1240 @@
+{
+  "target": "artifacts/reference/A-1440x900-dpr1/06-rest-5s.png",
+  "local": "qa-v5/f0/foundation",
+  "gate": {
+    "landmarkPctOfViewport": 2.0,
+    "cardSizePct": 3.0,
+    "gutterPx": 3.0,
+    "edgeSlopeDeg": 0.75,
+    "symmetryPct": 1.0
+  },
+  "landmarks": [
+    {
+      "name": "mid.leftClip",
+      "source": "direct",
+      "targetCx": 84.0,
+      "localCx": 82.5,
+      "dxPx": -1.5,
+      "dxPctViewport": -0.104,
+      "targetCy": 249.11,
+      "localCy": 248.45,
+      "dyPx": -0.66,
+      "dyPctViewport": -0.073
+    },
+    {
+      "name": "mid.left",
+      "source": "direct",
+      "targetCx": 445.5,
+      "localCx": 446.0,
+      "dxPx": 0.5,
+      "dxPctViewport": 0.035,
+      "targetCy": 241.91,
+      "localCy": 240.39,
+      "dyPx": -1.52,
+      "dyPctViewport": -0.169
+    },
+    {
+      "name": "mid.right",
+      "source": "mirrored",
+      "targetCx": 993.5,
+      "localCx": 993.0,
+      "dxPx": -0.5,
+      "dxPctViewport": -0.035,
+      "targetCy": 241.91,
+      "localCy": 240.4,
+      "dyPx": -1.51,
+      "dyPctViewport": -0.168
+    },
+    {
+      "name": "mid.rightClip",
+      "source": "mirrored",
+      "targetCx": 1355.0,
+      "localCx": 1356.5,
+      "dxPx": 1.5,
+      "dxPctViewport": 0.104,
+      "targetCy": 249.11,
+      "localCy": 248.47,
+      "dyPx": -0.64,
+      "dyPctViewport": -0.071
+    },
+    {
+      "name": "bottom.left",
+      "source": "direct",
+      "targetCx": 214.5,
+      "localCx": 214.0,
+      "dxPx": -0.5,
+      "dxPctViewport": -0.035,
+      "targetCy": 652.27,
+      "localCy": 651.63,
+      "dyPx": -0.64,
+      "dyPctViewport": -0.071
+    },
+    {
+      "name": "bottom.center",
+      "source": "direct",
+      "targetCx": 719.5,
+      "localCx": 719.5,
+      "dxPx": 0.0,
+      "dxPctViewport": 0.0,
+      "targetCy": 659.05,
+      "localCy": 659.0,
+      "dyPx": -0.05,
+      "dyPctViewport": -0.006
+    },
+    {
+      "name": "bottom.right",
+      "source": "direct",
+      "targetCx": 1224.5,
+      "localCx": 1225.0,
+      "dxPx": 0.5,
+      "dxPctViewport": 0.035,
+      "targetCy": 652.67,
+      "localCy": 651.63,
+      "dyPx": -1.04,
+      "dyPctViewport": -0.116
+    },
+    {
+      "name": "top.rowBandCenter",
+      "source": "row-band",
+      "targetCy": 34.5,
+      "localCy": 33.0,
+      "dyPx": -1.5,
+      "dyPctViewport": -0.167
+    },
+    {
+      "name": "bottom.rowBandCenter",
+      "source": "row-band",
+      "targetCy": 862.0,
+      "localCy": 865.5,
+      "dyPx": 3.5,
+      "dyPctViewport": 0.389
+    }
+  ],
+  "cardSizes": [
+    {
+      "name": "mid full card",
+      "targetW": 526,
+      "localW": 525,
+      "dwPct": -0.19,
+      "targetH": 397.71,
+      "localH": 398.22,
+      "dhPct": 0.128,
+      "targetAspect": 1.3226,
+      "localAspect": 1.3184,
+      "daspectPct": -0.318
+    },
+    {
+      "name": "bottom centre card",
+      "targetW": 542,
+      "localW": 540,
+      "dwPct": -0.369,
+      "targetH": 401.09,
+      "localH": 399.0,
+      "dhPct": -0.521,
+      "targetAspect": 1.3513,
+      "localAspect": 1.3534,
+      "daspectPct": 0.153
+    },
+    {
+      "name": "bottom outer card",
+      "targetW": 430,
+      "localW": 429,
+      "dwPct": -0.233,
+      "targetH": 388.19,
+      "localH": 386.12,
+      "dhPct": -0.533,
+      "targetAspect": 1.1077,
+      "localAspect": 1.1111,
+      "daspectPct": 0.302
+    }
+  ],
+  "gutters": {
+    "horizontal": [
+      {
+        "targetCenter": 719.5,
+        "localCenter": 719.5,
+        "targetWidth": 22,
+        "localWidth": 22,
+        "dPx": 0
+      },
+      {
+        "targetCenter": 439.0,
+        "localCenter": 439.0,
+        "targetWidth": 19,
+        "localWidth": 21,
+        "dPx": 2
+      },
+      {
+        "targetCenter": 1000.0,
+        "localCenter": 1000.0,
+        "targetWidth": 19,
+        "localWidth": 21,
+        "dPx": 2
+      }
+    ],
+    "vertical": [
+      {
+        "targetY": [
+          441,
+          458
+        ],
+        "localY": [
+          440,
+          459
+        ],
+        "targetHeight": 18,
+        "localHeight": 20,
+        "dPx": 2
+      }
+    ]
+  },
+  "edgeSlopes": [
+    {
+      "name": "bottom left outer",
+      "targetDeg": 3.343,
+      "localDeg": 3.45,
+      "dDeg": 0.107
+    },
+    {
+      "name": "bottom centre",
+      "targetDeg": 0.049,
+      "localDeg": 0.0,
+      "dDeg": -0.049
+    },
+    {
+      "name": "bottom right outer",
+      "targetDeg": -2.994,
+      "localDeg": -3.451,
+      "dDeg": -0.457
+    }
+  ],
+  "symmetry": [
+    {
+      "name": "local mid clips",
+      "mirrorOffsetPx": 0.0,
+      "widthDeltaPct": 0.0
+    },
+    {
+      "name": "local bottom outers",
+      "mirrorOffsetPx": 0.0,
+      "widthDeltaPct": 0.0
+    }
+  ],
+  "rowParity": {
+    "targetMidHasCentreGutter": true,
+    "localMidHasCentreGutter": true,
+    "targetBottomHasCentreCard": true,
+    "localBottomHasCentreCard": true,
+    "match": true
+  },
+  "centreBand": {
+    "targetBandAtY450": true,
+    "localBandAtY450": true
+  },
+  "checks": [
+    {
+      "check": "landmark centres (worst of 9)",
+      "value": 0.389,
+      "limit": 2.0,
+      "unit": "% of viewport",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "mid full card width",
+      "value": -0.19,
+      "limit": 3.0,
+      "unit": "%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "mid full card height",
+      "value": 0.128,
+      "limit": 3.0,
+      "unit": "%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "bottom centre card width",
+      "value": -0.369,
+      "limit": 3.0,
+      "unit": "%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "bottom centre card height",
+      "value": -0.521,
+      "limit": 3.0,
+      "unit": "%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "bottom outer card width",
+      "value": -0.233,
+      "limit": 3.0,
+      "unit": "%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "bottom outer card height",
+      "value": -0.533,
+      "limit": 3.0,
+      "unit": "%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "h-gutter @x~719",
+      "value": 0,
+      "limit": 3.0,
+      "unit": "px",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "h-gutter @x~439",
+      "value": 2,
+      "limit": 3.0,
+      "unit": "px",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "h-gutter @x~1000",
+      "value": 2,
+      "limit": 3.0,
+      "unit": "px",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "v-gutter mid<->bottom",
+      "value": 2,
+      "limit": 3.0,
+      "unit": "px",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "edge slope bottom left outer",
+      "value": 0.107,
+      "limit": 0.75,
+      "unit": "deg",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "edge slope bottom centre",
+      "value": -0.049,
+      "limit": 0.75,
+      "unit": "deg",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "edge slope bottom right outer",
+      "value": -0.457,
+      "limit": 0.75,
+      "unit": "deg",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "symmetry local mid clips width",
+      "value": 0.0,
+      "limit": 1.0,
+      "unit": "%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "symmetry local mid clips mirror",
+      "value": 0.0,
+      "limit": 1.0,
+      "unit": "% of viewport",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "symmetry local bottom outers width",
+      "value": 0.0,
+      "limit": 1.0,
+      "unit": "%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "symmetry local bottom outers mirror",
+      "value": 0.0,
+      "limit": 1.0,
+      "unit": "% of viewport",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "row parity matches Target",
+      "value": true,
+      "limit": true,
+      "unit": "bool",
+      "pass": true,
+      "detail": "mid row straddles the midline, bottom row has a centre card"
+    },
+    {
+      "check": "viewport centre sits in a horizontal gutter",
+      "value": true,
+      "limit": true,
+      "unit": "bool",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "verdict": "PASS",
+  "targetMeasure": {
+    "file": "artifacts/reference/A-1440x900-dpr1/06-rest-5s.png",
+    "size": {
+      "w": 1440,
+      "h": 900
+    },
+    "voidMask": {
+      "mode": "navy",
+      "rMax": 3,
+      "gMax": 10,
+      "bMin": 13,
+      "bMax": 42,
+      "bOverG": 2.2
+    },
+    "bandVoidMask": {
+      "mode": "navy-bands",
+      "rMax": 3,
+      "gMax": 10,
+      "bMin": 4,
+      "bMax": 42,
+      "bOverG": 1.5
+    },
+    "horizontalGutterBands": [
+      {
+        "y0": 29,
+        "y1": 40,
+        "height": 12,
+        "center": 34.5
+      },
+      {
+        "y0": 441,
+        "y1": 458,
+        "height": 18,
+        "center": 449.5
+      },
+      {
+        "y0": 853,
+        "y1": 871,
+        "height": 19,
+        "center": 862.0
+      }
+    ],
+    "rows": [
+      {
+        "y0": 0,
+        "y1": 28,
+        "clippedTop": true,
+        "clippedBottom": false,
+        "verticalGutters": [
+          {
+            "x0": 409,
+            "x1": 484,
+            "width": 76,
+            "center": 446.5
+          }
+        ],
+        "cards": [
+          {
+            "x0": 0,
+            "x1": 408,
+            "w": 409,
+            "cx": 204.0,
+            "clipped": {
+              "left": true,
+              "right": false,
+              "top": true,
+              "bottom": false
+            },
+            "topEdge": null,
+            "bottomEdge": {
+              "slopeDeg": -3.969,
+              "yAtCx": 36.83,
+              "median": 36.0,
+              "samples": 247
+            }
+          },
+          {
+            "x0": 485,
+            "x1": 1439,
+            "w": 955,
+            "cx": 962.0,
+            "clipped": {
+              "left": false,
+              "right": true,
+              "top": true,
+              "bottom": false
+            },
+            "topEdge": null,
+            "bottomEdge": {
+              "slopeDeg": 3.414,
+              "yAtCx": 432.12,
+              "median": 440.0,
+              "samples": 488
+            }
+          }
+        ]
+      },
+      {
+        "y0": 41,
+        "y1": 440,
+        "clippedTop": false,
+        "clippedBottom": false,
+        "verticalGutters": [
+          {
+            "x0": 169,
+            "x1": 182,
+            "width": 14,
+            "center": 175.5
+          },
+          {
+            "x0": 709,
+            "x1": 730,
+            "width": 22,
+            "center": 719.5
+          }
+        ],
+        "cards": [
+          {
+            "x0": 0,
+            "x1": 168,
+            "w": 169,
+            "cx": 84.0,
+            "clipped": {
+              "left": true,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "topEdge": {
+              "slopeDeg": -2.778,
+              "yAtCx": 61.09,
+              "median": 61.0,
+              "samples": 87
+            },
+            "bottomEdge": {
+              "slopeDeg": -6.295,
+              "yAtCx": 437.13,
+              "median": 440.0,
+              "samples": 87
+            },
+            "h": 377.04,
+            "cy": 249.11,
+            "aspect": 0.4482
+          },
+          {
+            "x0": 183,
+            "x1": 708,
+            "w": 526,
+            "cx": 445.5,
+            "clipped": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "topEdge": {
+              "slopeDeg": -1.786,
+              "yAtCx": 43.56,
+              "median": 43.0,
+              "samples": 300
+            },
+            "bottomEdge": {
+              "slopeDeg": -0.215,
+              "yAtCx": 440.27,
+              "median": 440.0,
+              "samples": 316
+            },
+            "h": 397.71,
+            "cy": 241.91,
+            "aspect": 1.3226
+          },
+          {
+            "x0": 731,
+            "x1": 1439,
+            "w": 709,
+            "cx": 1085.0,
+            "clipped": {
+              "left": false,
+              "right": true,
+              "top": false,
+              "bottom": false
+            },
+            "topEdge": null,
+            "bottomEdge": {
+              "slopeDeg": 0.316,
+              "yAtCx": 440.67,
+              "median": 440.0,
+              "samples": 329
+            }
+          }
+        ]
+      },
+      {
+        "y0": 459,
+        "y1": 852,
+        "clippedTop": false,
+        "clippedBottom": false,
+        "verticalGutters": [
+          {
+            "x0": 430,
+            "x1": 448,
+            "width": 19,
+            "center": 439.0
+          },
+          {
+            "x0": 991,
+            "x1": 1009,
+            "width": 19,
+            "center": 1000.0
+          }
+        ],
+        "cards": [
+          {
+            "x0": 0,
+            "x1": 429,
+            "w": 430,
+            "cx": 214.5,
+            "clipped": {
+              "left": true,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "topEdge": {
+              "slopeDeg": 0.285,
+              "yAtCx": 458.68,
+              "median": 459.0,
+              "samples": 260
+            },
+            "bottomEdge": {
+              "slopeDeg": 3.343,
+              "yAtCx": 845.87,
+              "median": 846.0,
+              "samples": 260
+            },
+            "h": 388.19,
+            "cy": 652.27,
+            "aspect": 1.1077
+          },
+          {
+            "x0": 449,
+            "x1": 990,
+            "w": 542,
+            "cx": 719.5,
+            "clipped": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "topEdge": {
+              "slopeDeg": -0.0,
+              "yAtCx": 459.0,
+              "median": 459.0,
+              "samples": 326
+            },
+            "bottomEdge": {
+              "slopeDeg": 0.049,
+              "yAtCx": 859.09,
+              "median": 859.0,
+              "samples": 326
+            },
+            "h": 401.09,
+            "cy": 659.05,
+            "aspect": 1.3513
+          },
+          {
+            "x0": 1010,
+            "x1": 1439,
+            "w": 430,
+            "cx": 1224.5,
+            "clipped": {
+              "left": false,
+              "right": true,
+              "top": false,
+              "bottom": false
+            },
+            "topEdge": {
+              "slopeDeg": -0.0,
+              "yAtCx": 459.0,
+              "median": 459.0,
+              "samples": 163
+            },
+            "bottomEdge": {
+              "slopeDeg": -2.994,
+              "yAtCx": 846.34,
+              "median": 849.0,
+              "samples": 163
+            },
+            "h": 388.34,
+            "cy": 652.67,
+            "aspect": 1.1073
+          }
+        ]
+      },
+      {
+        "y0": 872,
+        "y1": 899,
+        "clippedTop": false,
+        "clippedBottom": true,
+        "verticalGutters": [
+          {
+            "x0": 166,
+            "x1": 212,
+            "width": 47,
+            "center": 189.0
+          },
+          {
+            "x0": 675,
+            "x1": 764,
+            "width": 90,
+            "center": 719.5
+          }
+        ],
+        "cards": [
+          {
+            "x0": 0,
+            "x1": 165,
+            "w": 166,
+            "cx": 82.5,
+            "clipped": {
+              "left": true,
+              "right": false,
+              "top": false,
+              "bottom": true
+            },
+            "topEdge": {
+              "slopeDeg": 5.876,
+              "yAtCx": 856.28,
+              "median": 856.0,
+              "samples": 95
+            },
+            "bottomEdge": null
+          },
+          {
+            "x0": 213,
+            "x1": 674,
+            "w": 462,
+            "cx": 443.5,
+            "clipped": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": true
+            },
+            "topEdge": {
+              "slopeDeg": 1.937,
+              "yAtCx": 872.7,
+              "median": 873.0,
+              "samples": 256
+            },
+            "bottomEdge": null
+          },
+          {
+            "x0": 765,
+            "x1": 1439,
+            "w": 675,
+            "cx": 1102.0,
+            "clipped": {
+              "left": false,
+              "right": true,
+              "top": false,
+              "bottom": true
+            },
+            "topEdge": {
+              "slopeDeg": -1.265,
+              "yAtCx": 870.16,
+              "median": 871.0,
+              "samples": 306
+            },
+            "bottomEdge": null
+          }
+        ]
+      }
+    ]
+  },
+  "localMeasure": {
+    "file": "qa-v5/f0/foundation/01-rest.png",
+    "size": {
+      "w": 1440,
+      "h": 900
+    },
+    "voidMask": {
+      "mode": "flat",
+      "rMax": 8,
+      "gMax": 8,
+      "bMin": -1,
+      "bMax": 8,
+      "bOverG": 0.0
+    },
+    "bandVoidMask": {
+      "mode": "flat",
+      "rMax": 8,
+      "gMax": 8,
+      "bMin": -1,
+      "bMax": 8,
+      "bOverG": 0.0
+    },
+    "horizontalGutterBands": [
+      {
+        "y0": 23,
+        "y1": 43,
+        "height": 21,
+        "center": 33.0
+      },
+      {
+        "y0": 440,
+        "y1": 459,
+        "height": 20,
+        "center": 449.5
+      },
+      {
+        "y0": 859,
+        "y1": 872,
+        "height": 14,
+        "center": 865.5
+      }
+    ],
+    "rows": [
+      {
+        "y0": 0,
+        "y1": 22,
+        "clippedTop": true,
+        "clippedBottom": false,
+        "verticalGutters": [
+          {
+            "x0": 428,
+            "x1": 448,
+            "width": 21,
+            "center": 438.0
+          },
+          {
+            "x0": 991,
+            "x1": 1011,
+            "width": 21,
+            "center": 1001.0
+          }
+        ],
+        "cards": [
+          {
+            "x0": 0,
+            "x1": 427,
+            "w": 428,
+            "cx": 213.5,
+            "clipped": {
+              "left": true,
+              "right": false,
+              "top": true,
+              "bottom": false
+            },
+            "topEdge": null,
+            "bottomEdge": {
+              "slopeDeg": -3.513,
+              "yAtCx": 30.6,
+              "median": 31.0,
+              "samples": 258
+            }
+          },
+          {
+            "x0": 449,
+            "x1": 990,
+            "w": 542,
+            "cx": 719.5,
+            "clipped": {
+              "left": false,
+              "right": false,
+              "top": true,
+              "bottom": false
+            },
+            "topEdge": null,
+            "bottomEdge": {
+              "slopeDeg": 0.0,
+              "yAtCx": 17.0,
+              "median": 17.0,
+              "samples": 326
+            }
+          },
+          {
+            "x0": 1012,
+            "x1": 1439,
+            "w": 428,
+            "cx": 1225.5,
+            "clipped": {
+              "left": false,
+              "right": true,
+              "top": true,
+              "bottom": false
+            },
+            "topEdge": null,
+            "bottomEdge": {
+              "slopeDeg": 3.513,
+              "yAtCx": 30.58,
+              "median": 31.0,
+              "samples": 258
+            }
+          }
+        ]
+      },
+      {
+        "y0": 44,
+        "y1": 439,
+        "clippedTop": false,
+        "clippedBottom": false,
+        "verticalGutters": [
+          {
+            "x0": 166,
+            "x1": 183,
+            "width": 18,
+            "center": 174.5
+          },
+          {
+            "x0": 709,
+            "x1": 730,
+            "width": 22,
+            "center": 719.5
+          },
+          {
+            "x0": 1256,
+            "x1": 1273,
+            "width": 18,
+            "center": 1264.5
+          }
+        ],
+        "cards": [
+          {
+            "x0": 0,
+            "x1": 165,
+            "w": 166,
+            "cx": 82.5,
+            "clipped": {
+              "left": true,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "topEdge": {
+              "slopeDeg": -5.305,
+              "yAtCx": 57.9,
+              "median": 58.0,
+              "samples": 100
+            },
+            "bottomEdge": {
+              "slopeDeg": -0.0,
+              "yAtCx": 439.0,
+              "median": 439.0,
+              "samples": 100
+            },
+            "h": 382.1,
+            "cy": 248.45,
+            "aspect": 0.4344
+          },
+          {
+            "x0": 184,
+            "x1": 708,
+            "w": 525,
+            "cx": 446.0,
+            "clipped": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "topEdge": {
+              "slopeDeg": -1.619,
+              "yAtCx": 41.78,
+              "median": 42.0,
+              "samples": 317
+            },
+            "bottomEdge": {
+              "slopeDeg": 0.0,
+              "yAtCx": 439.0,
+              "median": 439.0,
+              "samples": 317
+            },
+            "h": 398.22,
+            "cy": 240.39,
+            "aspect": 1.3184
+          },
+          {
+            "x0": 731,
+            "x1": 1255,
+            "w": 525,
+            "cx": 993.0,
+            "clipped": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "topEdge": {
+              "slopeDeg": 1.617,
+              "yAtCx": 41.79,
+              "median": 42.0,
+              "samples": 317
+            },
+            "bottomEdge": {
+              "slopeDeg": 0.0,
+              "yAtCx": 439.0,
+              "median": 439.0,
+              "samples": 317
+            },
+            "h": 398.21,
+            "cy": 240.4,
+            "aspect": 1.3184
+          },
+          {
+            "x0": 1274,
+            "x1": 1439,
+            "w": 166,
+            "cx": 1356.5,
+            "clipped": {
+              "left": false,
+              "right": true,
+              "top": false,
+              "bottom": false
+            },
+            "topEdge": {
+              "slopeDeg": 5.296,
+              "yAtCx": 57.93,
+              "median": 58.0,
+              "samples": 100
+            },
+            "bottomEdge": {
+              "slopeDeg": -0.0,
+              "yAtCx": 439.0,
+              "median": 439.0,
+              "samples": 100
+            },
+            "h": 382.07,
+            "cy": 248.47,
+            "aspect": 0.4345
+          }
+        ]
+      },
+      {
+        "y0": 460,
+        "y1": 858,
+        "clippedTop": false,
+        "clippedBottom": false,
+        "verticalGutters": [
+          {
+            "x0": 429,
+            "x1": 449,
+            "width": 21,
+            "center": 439.0
+          },
+          {
+            "x0": 990,
+            "x1": 1010,
+            "width": 21,
+            "center": 1000.0
+          }
+        ],
+        "cards": [
+          {
+            "x0": 0,
+            "x1": 428,
+            "w": 429,
+            "cx": 214.0,
+            "clipped": {
+              "left": true,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "topEdge": {
+              "slopeDeg": 0.081,
+              "yAtCx": 459.07,
+              "median": 459.0,
+              "samples": 259
+            },
+            "bottomEdge": {
+              "slopeDeg": 3.45,
+              "yAtCx": 844.19,
+              "median": 844.0,
+              "samples": 259
+            },
+            "h": 386.12,
+            "cy": 651.63,
+            "aspect": 1.1111
+          },
+          {
+            "x0": 450,
+            "x1": 989,
+            "w": 540,
+            "cx": 719.5,
+            "clipped": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "topEdge": {
+              "slopeDeg": 0.0,
+              "yAtCx": 460.0,
+              "median": 460.0,
+              "samples": 326
+            },
+            "bottomEdge": {
+              "slopeDeg": 0.0,
+              "yAtCx": 858.0,
+              "median": 858.0,
+              "samples": 326
+            },
+            "h": 399.0,
+            "cy": 659.0,
+            "aspect": 1.3534
+          },
+          {
+            "x0": 1011,
+            "x1": 1439,
+            "w": 429,
+            "cx": 1225.0,
+            "clipped": {
+              "left": false,
+              "right": true,
+              "top": false,
+              "bottom": false
+            },
+            "topEdge": {
+              "slopeDeg": -0.077,
+              "yAtCx": 459.06,
+              "median": 459.0,
+              "samples": 259
+            },
+            "bottomEdge": {
+              "slopeDeg": -3.451,
+              "yAtCx": 844.2,
+              "median": 844.0,
+              "samples": 259
+            },
+            "h": 386.14,
+            "cy": 651.63,
+            "aspect": 1.111
+          }
+        ]
+      },
+      {
+        "y0": 873,
+        "y1": 899,
+        "clippedTop": false,
+        "clippedBottom": true,
+        "verticalGutters": [
+          {
+            "x0": 168,
+            "x1": 186,
+            "width": 19,
+            "center": 177.0
+          },
+          {
+            "x0": 709,
+            "x1": 730,
+            "width": 22,
+            "center": 719.5
+          },
+          {
+            "x0": 1253,
+            "x1": 1271,
+            "width": 19,
+            "center": 1262.0
+          }
+        ],
+        "cards": [
+          {
+            "x0": 0,
+            "x1": 167,
+            "w": 168,
+            "cx": 83.5,
+            "clipped": {
+              "left": true,
+              "right": false,
+              "top": false,
+              "bottom": true
+            },
+            "topEdge": {
+              "slopeDeg": 5.801,
+              "yAtCx": 857.03,
+              "median": 857.0,
+              "samples": 102
+            },
+            "bottomEdge": null
+          },
+          {
+            "x0": 187,
+            "x1": 708,
+            "w": 522,
+            "cx": 447.5,
+            "clipped": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": true
+            },
+            "topEdge": {
+              "slopeDeg": 1.747,
+              "yAtCx": 874.67,
+              "median": 875.0,
+              "samples": 314
+            },
+            "bottomEdge": null
+          },
+          {
+            "x0": 731,
+            "x1": 1252,
+            "w": 522,
+            "cx": 991.5,
+            "clipped": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": true
+            },
+            "topEdge": {
+              "slopeDeg": -1.745,
+              "yAtCx": 874.67,
+              "median": 875.0,
+              "samples": 314
+            },
+            "bottomEdge": null
+          },
+          {
+            "x0": 1272,
+            "x1": 1439,
+            "w": 168,
+            "cx": 1355.5,
+            "clipped": {
+              "left": false,
+              "right": true,
+              "top": false,
+              "bottom": true
+            },
+            "topEdge": {
+              "slopeDeg": -5.735,
+              "yAtCx": 857.0,
+              "median": 857.0,
+              "samples": 102
+            },
+            "bottomEdge": null
+          }
+        ]
+      }
+    ]
+  }
+}
