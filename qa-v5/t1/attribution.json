@@ -1,0 +1,278 @@
+{
+  "scope": "Typography only. Motion, optics, media focus and the layout contract are frozen this round; everything below that is not typography is named, measured where it can be, and left alone.",
+  "typography": {
+    "status": "candidate, awaiting product review",
+    "contract": "29/29 measured Target properties match at all seven viewports",
+    "labelContainerCornerErrorPx": {
+      "1440x900": 0.0103,
+      "1920x1080": 0.0113,
+      "390x844": 0.0048,
+      "844x390": 0.0057,
+      "700x700": 0.0036,
+      "667x375": 0.0041,
+      "780x470": 0.0064
+    },
+    "titleBaselinePctFromCardBottom": {
+      "1440x900": {
+        "target": 18.127,
+        "ours": 18.127
+      },
+      "1920x1080": {
+        "target": 18.127,
+        "ours": 18.127
+      },
+      "390x844": {
+        "target": 17.851,
+        "ours": 17.851
+      },
+      "844x390": {
+        "target": 18.098,
+        "ours": 18.098
+      },
+      "700x700": {
+        "target": 18.296,
+        "ours": 18.296
+      },
+      "667x375": {
+        "target": 17.935,
+        "ours": 17.935
+      },
+      "780x470": {
+        "target": 18.128,
+        "ours": 18.128
+      }
+    },
+    "labelInkOutsideCardSilhouette": {
+      "1440x900": 0,
+      "1920x1080": 0,
+      "390x844": 0,
+      "844x390": 0,
+      "700x700": 0,
+      "667x375": 0,
+      "780x470": 0
+    },
+    "residual": "none measured on any gated property"
+  },
+  "optics": {
+    "owner": "OPTICS -- frozen this round, not modified",
+    "observation": "by eye, our card edges carry more visible red/green fringing than the Target's, and media inside the glass reads more saturated",
+    "method": "mean magnitude of the (R - B) gradient at luminance edges, and mean HSV saturation, on the full-beauty frame beside the Target's",
+    "whatTheNumbersSupport": "saturation is higher on ours at five of seven viewports, by 0.0006 to 0.056 -- small and one-directional but not decisive. The fringe statistic changes SIGN across viewports (-6.08 to +8.37) and therefore supports nothing.",
+    "confound": "our clip reel is not the Target's. Edge gradient and saturation both depend on what is inside the card, so this statistic cannot separate the glass from the footage. Isolating it needs the same source frame through both stacks, which is an optics-stage instrument, not a typography one.",
+    "carriedForward": "recorded as an item for the optics stage with the observation and the confound, not as a measured magnitude",
+    "perViewport": [
+      {
+        "viewport": "1440x900",
+        "target": {
+          "meanSaturation": 0.4502,
+          "meanLuminance": 80.9,
+          "meanEdgeRedBlueGradient": 18.158,
+          "p99EdgeRedBlueGradient": 85.829,
+          "edgePixelFraction": 0.156
+        },
+        "ours": {
+          "meanSaturation": 0.495,
+          "meanLuminance": 130.45,
+          "meanEdgeRedBlueGradient": 18.969,
+          "p99EdgeRedBlueGradient": 95.718,
+          "edgePixelFraction": 0.2342
+        },
+        "saturationDelta": 0.0448,
+        "edgeFringeDelta": 0.811
+      },
+      {
+        "viewport": "1920x1080",
+        "target": {
+          "meanSaturation": 0.4312,
+          "meanLuminance": 97.26,
+          "meanEdgeRedBlueGradient": 22.59,
+          "p99EdgeRedBlueGradient": 98.455,
+          "edgePixelFraction": 0.1161
+        },
+        "ours": {
+          "meanSaturation": 0.4873,
+          "meanLuminance": 133.58,
+          "meanEdgeRedBlueGradient": 16.514,
+          "p99EdgeRedBlueGradient": 93.964,
+          "edgePixelFraction": 0.2069
+        },
+        "saturationDelta": 0.0561,
+        "edgeFringeDelta": -6.076
+      },
+      {
+        "viewport": "390x844",
+        "target": {
+          "meanSaturation": 0.4578,
+          "meanLuminance": 81.26,
+          "meanEdgeRedBlueGradient": 23.451,
+          "p99EdgeRedBlueGradient": 105.796,
+          "edgePixelFraction": 0.2886
+        },
+        "ours": {
+          "meanSaturation": 0.4843,
+          "meanLuminance": 134.64,
+          "meanEdgeRedBlueGradient": 22.465,
+          "p99EdgeRedBlueGradient": 101.475,
+          "edgePixelFraction": 0.3108
+        },
+        "saturationDelta": 0.0265,
+        "edgeFringeDelta": -0.986
+      },
+      {
+        "viewport": "844x390",
+        "target": {
+          "meanSaturation": 0.4799,
+          "meanLuminance": 63.97,
+          "meanEdgeRedBlueGradient": 11.92,
+          "p99EdgeRedBlueGradient": 65.797,
+          "edgePixelFraction": 0.1935
+        },
+        "ours": {
+          "meanSaturation": 0.4713,
+          "meanLuminance": 140.29,
+          "meanEdgeRedBlueGradient": 20.288,
+          "p99EdgeRedBlueGradient": 91.451,
+          "edgePixelFraction": 0.2936
+        },
+        "saturationDelta": -0.0086,
+        "edgeFringeDelta": 8.368
+      },
+      {
+        "viewport": "700x700",
+        "target": {
+          "meanSaturation": 0.4196,
+          "meanLuminance": 95.09,
+          "meanEdgeRedBlueGradient": 26.518,
+          "p99EdgeRedBlueGradient": 110.572,
+          "edgePixelFraction": 0.3399
+        },
+        "ours": {
+          "meanSaturation": 0.4675,
+          "meanLuminance": 138.4,
+          "meanEdgeRedBlueGradient": 23.394,
+          "p99EdgeRedBlueGradient": 102.832,
+          "edgePixelFraction": 0.3489
+        },
+        "saturationDelta": 0.0479,
+        "edgeFringeDelta": -3.124
+      },
+      {
+        "viewport": "667x375",
+        "target": {
+          "meanSaturation": 0.4745,
+          "meanLuminance": 81.11,
+          "meanEdgeRedBlueGradient": 18.614,
+          "p99EdgeRedBlueGradient": 88.434,
+          "edgePixelFraction": 0.2754
+        },
+        "ours": {
+          "meanSaturation": 0.4688,
+          "meanLuminance": 136.08,
+          "meanEdgeRedBlueGradient": 22.963,
+          "p99EdgeRedBlueGradient": 98.027,
+          "edgePixelFraction": 0.3545
+        },
+        "saturationDelta": -0.0057,
+        "edgeFringeDelta": 4.349
+      },
+      {
+        "viewport": "780x470",
+        "target": {
+          "meanSaturation": 0.4822,
+          "meanLuminance": 76.46,
+          "meanEdgeRedBlueGradient": 19.272,
+          "p99EdgeRedBlueGradient": 100.055,
+          "edgePixelFraction": 0.2519
+        },
+        "ours": {
+          "meanSaturation": 0.4828,
+          "meanLuminance": 132.72,
+          "meanEdgeRedBlueGradient": 22.302,
+          "p99EdgeRedBlueGradient": 96.578,
+          "edgePixelFraction": 0.3171
+        },
+        "saturationDelta": 0.0006,
+        "edgeFringeDelta": 3.03
+      }
+    ]
+  },
+  "motion": {
+    "owner": "MOTION -- frozen this round, not modified",
+    "finding": "not observable in these captures: every gate frame is taken at rest with motion paused. The recordings step the offset from the harness, which exercises placement but not drag feel, inertia or settle.",
+    "recordings": "qa-v5/t1/local/recording, full sequences under artifacts/"
+  },
+  "performance": {
+    "owner": "PERFORMANCE -- observation only",
+    "note": "headless developer machine, not a device-class claim",
+    "perViewport": [
+      {
+        "viewport": "1440x900",
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.6,
+        "drawCalls": 1944,
+        "triangles": 401001
+      },
+      {
+        "viewport": "1920x1080",
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.4,
+        "drawCalls": 1977,
+        "triangles": 400991
+      },
+      {
+        "viewport": "390x844",
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.6,
+        "drawCalls": 1938,
+        "triangles": 334167
+      },
+      {
+        "viewport": "844x390",
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10.1,
+        "drawCalls": 1914,
+        "triangles": 400969
+      },
+      {
+        "viewport": "700x700",
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.9,
+        "drawCalls": 1956,
+        "triangles": 601541
+      },
+      {
+        "viewport": "667x375",
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10.2,
+        "drawCalls": 1938,
+        "triangles": 400991
+      },
+      {
+        "viewport": "780x470",
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10,
+        "drawCalls": 1917,
+        "triangles": 401001
+      }
+    ]
+  },
+  "footer": {
+    "owner": "TYPOGRAPHY for the caption, out of scope for the rest",
+    "fixed": "caption now Geist Mono 500, clamp(0.58rem, 0.8vw, 0.72rem), 0.18em, uppercase, white 70% -- it was 16px Geist at full opacity",
+    "notFixed": [
+      "the Target has an h-36 black-to-transparent scrim behind the footer; that is a background treatment rather than typography and was left alone",
+      "our wordmark is our own mark set in type, the Target's is an image; only its size was brought into the caption's band"
+    ]
+  },
+  "media": {
+    "owner": "CONTENT -- not a defect",
+    "note": "our clip reel is not the Target's, so any per-card image difference in the comparison sheets is content, not rendering"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "capturedAt": "2026-08-20T21:15:55.843Z",
+  "oneLiveSession": true,
+  "steps": [
+    {
+      "step": 0,
+      "viewport": "1440x900",
+      "png": "artifacts/t1/session/0-1440x900.png",
+      "labelBox": [
+        547.2,
+        410.40000000000003
+      ],
+      "framePlane": [
+        547.2,
+        410.40000000000003
+      ],
+      "typeZ": 0,
+      "activeSlots": 100,
+      "identity": true,
+      "cols": 10,
+      "rows": 10,
+      "labelBoxTracksFrame": true
+    },
+    {
+      "step": 1,
+      "viewport": "390x844",
+      "png": "artifacts/t1/session/1-390x844.png",
+      "labelBox": [
+        280.8,
+        210.60000000000002
+      ],
+      "framePlane": [
+        280.8,
+        210.60000000000002
+      ],
+      "typeZ": 0,
+      "activeSlots": 96,
+      "identity": true,
+      "cols": 8,
+      "rows": 12,
+      "labelBoxTracksFrame": true
+    },
+    {
+      "step": 2,
+      "viewport": "700x700",
+      "png": "artifacts/t1/session/2-700x700.png",
+      "labelBox": [
+        266,
+        199.5
+      ],
+      "framePlane": [
+        266,
+        199.5
+      ],
+      "typeZ": 0,
+      "activeSlots": 120,
+      "identity": true,
+      "cols": 10,
+      "rows": 12,
+      "labelBoxTracksFrame": true
+    },
+    {
+      "step": 3,
+      "viewport": "844x390",
+      "png": "artifacts/t1/session/3-844x390.png",
+      "labelBox": [
+        320.72,
+        240.54000000000002
+      ],
+      "framePlane": [
+        320.72,
+        240.54000000000002
+      ],
+      "typeZ": 0,
+      "activeSlots": 80,
+      "identity": true,
+      "cols": 10,
+      "rows": 8,
+      "labelBoxTracksFrame": true
+    },
+    {
+      "step": 4,
+      "viewport": "1440x900",
+      "png": "artifacts/t1/session/4-1440x900.png",
+      "labelBox": [
+        547.2,
+        410.40000000000003
+      ],
+      "framePlane": [
+        547.2,
+        410.40000000000003
+      ],
+      "typeZ": 0,
+      "activeSlots": 100,
+      "identity": true,
+      "cols": 10,
+      "rows": 10,
+      "labelBoxTracksFrame": true
+    }
+  ],
+  "errors": [],
+  "allStepsTrack": true,
+  "identityHeld": true
+}

@@ -1,0 +1,104 @@
+{
+  "method": "labels-only capture; ink = any pixel above the background floor; card silhouette = the projected card mid-plane quads",
+  "inkThreshold": 24,
+  "viewports": [
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "inkPixels": 68163,
+      "inkOutsideCardSilhouettes": 0,
+      "fractionOutside": 0.0,
+      "cardsRasterised": 81,
+      "labelsOnlyPng": "artifacts/t1/depth-clipping/1440x900-labels-only.png"
+    },
+    {
+      "id": "1920x1080",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "inkPixels": 107695,
+      "inkOutsideCardSilhouettes": 0,
+      "fractionOutside": 0.0,
+      "cardsRasterised": 81,
+      "labelsOnlyPng": "artifacts/t1/depth-clipping/1920x1080-labels-only.png"
+    },
+    {
+      "id": "390x844",
+      "viewport": [
+        390,
+        844
+      ],
+      "inkPixels": 22290,
+      "inkOutsideCardSilhouettes": 0,
+      "fractionOutside": 0.0,
+      "cardsRasterised": 93,
+      "labelsOnlyPng": "artifacts/t1/depth-clipping/390x844-labels-only.png"
+    },
+    {
+      "id": "667x375",
+      "viewport": [
+        667,
+        375
+      ],
+      "inkPixels": 18900,
+      "inkOutsideCardSilhouettes": 0,
+      "fractionOutside": 0.0,
+      "cardsRasterised": 81,
+      "labelsOnlyPng": "artifacts/t1/depth-clipping/667x375-labels-only.png"
+    },
+    {
+      "id": "700x700",
+      "viewport": [
+        700,
+        700
+      ],
+      "inkPixels": 36799,
+      "inkOutsideCardSilhouettes": 0,
+      "fractionOutside": 0.0,
+      "cardsRasterised": 90,
+      "labelsOnlyPng": "artifacts/t1/depth-clipping/700x700-labels-only.png"
+    },
+    {
+      "id": "780x470",
+      "viewport": [
+        780,
+        470
+      ],
+      "inkPixels": 24243,
+      "inkOutsideCardSilhouettes": 0,
+      "fractionOutside": 0.0,
+      "cardsRasterised": 81,
+      "labelsOnlyPng": "artifacts/t1/depth-clipping/780x470-labels-only.png"
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844,
+        390
+      ],
+      "inkPixels": 23240,
+      "inkOutsideCardSilhouettes": 0,
+      "fractionOutside": 0.0,
+      "cardsRasterised": 68,
+      "labelsOnlyPng": "artifacts/t1/depth-clipping/844x390-labels-only.png"
+    }
+  ],
+  "assertions": [
+    {
+      "assertion": "no label ink outside the card silhouettes",
+      "pass": true,
+      "detail": {
+        "worstFractionOutside": 0.0,
+        "limit": 0.001,
+        "note": "the limit is a rasteriser edge allowance, not a text allowance"
+      }
+    }
+  ],
+  "passed": 1,
+  "total": 1,
+  "verdict": "PASS"
+}

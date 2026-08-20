@@ -2,7 +2,7 @@
 
 Single canonical entry point. Every delivery updates this file.
 
-Last updated: 2026-08-20 (FSX acceptance and integration hardening)
+Last updated: 2026-08-20 (T0 render-loop repair, T1 source-exact typography)
 
 | | |
 | --- | --- |
@@ -22,10 +22,14 @@ stated here and no further hygiene commit is created to chase it.
 | `codeCommit` | `62bb251` `v5-fsx-source-exact-code` |
 | `evidenceCommit` | `6d313bc` `v5-fsx-source-exact-evidence` |
 | `metadataCommit` | `4c48aba` `v5-fsx-manifest-hygiene` |
-| `acceptanceCommit` | `v5-fsx-composition-accept` |
-| `hardeningCommit` | `v5-fsx-integration-hardening` |
-| `beautyEvidenceCommit` | `v5-fsx-beauty-baseline-evidence` |
-| `reviewHeadAtDelivery` | the branch tip after the three commits above; resolve with `git rev-parse HEAD` |
+| `acceptanceCommit` | `750d476` `v5-fsx-composition-accept` |
+| `hardeningCommit` | `5c24a60` `v5-fsx-integration-hardening` |
+| `beautyEvidenceCommit` | `6d1d5bb` `v5-fsx-beauty-baseline-evidence` |
+| `evidenceReproducibilityCommit` | `4c3f7ed` `v5-fsx-evidence-reproducibility` |
+| `t0FixCommit` | `52afb05` `v5-t0-render-loop-evidence-fix` |
+| `typographyCodeCommit` | `847347d` `v5-t1-source-exact-typography-code` |
+| `typographyEvidenceCommit` | `v5-t1-source-exact-typography-evidence` — this delivery's last commit |
+| `reviewHeadAtDelivery` | the branch tip after the commits above; resolve with `git rev-parse HEAD`. A file cannot contain its own hash and no hygiene commit is created to chase one. |
 
 ### Status
 
@@ -34,7 +38,8 @@ stated here and no further hygiene commit is created to chase it.
 | SourceExact Composition Baseline | **ACCEPTED** |
 | Engineering PASS | **YES** |
 | Target Visual PASS | **NOT ASSERTED** |
-| Typography / Motion / Optics | **NOT STARTED** (Typography authorised next) |
+| Typography | **CANDIDATE — READY FOR TYPOGRAPHY PRODUCT REVIEW**, not accepted |
+| Motion / Optics | **NOT STARTED**, unmodified |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
 
@@ -46,8 +51,49 @@ stated here and no further hygiene commit is created to chase it.
 | Current F2.7 | `http://127.0.0.1:5280/?composition=v2` |
 | Source-exact | `http://127.0.0.1:5280/?composition=sourceExact` |
 | Source-exact foundation | `http://127.0.0.1:5280/?composition=sourceExact&foundation=layout&annotate=0` |
-| Evidence index | [`qa-v5/fsx-a/README.md`](../../qa-v5/fsx-a/README.md) |
-| Private review package | `qa-v5/private/fsx-a-review.zip` (git-ignored) |
+| Typography before | `http://127.0.0.1:5280/?composition=sourceExact` at `847347d^` |
+| Typography candidate | `http://127.0.0.1:5280/?composition=sourceExact` at the branch tip |
+| Evidence index | [`qa-v5/t1/README.md`](../../qa-v5/t1/README.md) |
+| Private review package | `qa-v5/private/t1-review.zip` (git-ignored) |
+| Superseded package | `qa-v5/private/fsx-a-review.zip` — captured against a frozen canvas, do not use |
+
+## T0 — render loop repair
+
+The FSX-A round's `tick` contained `if (!this.adaptiveQuality) return;` above
+`motion.step`, `grid.update`, `applyPose`, `labels.sync` and `drawFrame`. Every
+FSX-A capture ran with the sampler off, so every one was taken against a frozen
+canvas. That is why media-only and glass+media came out byte identical and the
+24-frame recordings were 24 copies of one image.
+
+| | |
+| --- | --- |
+| Render loop proof | **PASS 22/22** — 165 frames in 1200 ms with the sampler off; it was 0 |
+| Hook redraw | every named hook advances a render stamp synchronously; a paused page does not repaint on its own |
+| Media-only vs glass+media | 70–84% of pixels differ, mean delta 11.6–18.1; was byte identical |
+| Recordings | 24/24 unique frames desktop and mobile; offsets read back from the engine |
+| Quality invariance | **PASS 57/57**, off the real mesh: bbox 656.64 x 492.48 (exactly 4:3), 5570/3242/1850 vertices, a new geometry per level, a redrawn silhouette each |
+
+`qa-v5/fsx-a` is superseded for the media/glass comparison, the recordings and
+the quality sweep. Its route proof and source contract stand.
+
+## T1 — source-exact typography
+
+| | |
+| --- | --- |
+| Typography contract | **PASS 29/29** measured Target properties, at all seven viewports |
+| Container alignment | **PASS 47/47** — worst label corner error 0.011 px against the card mid-plane |
+| Clipping / depth | **PASS 30/30** — Target's clip structure reproduced; 1199 sampled pixels, 0 wrong depth |
+| Label ink outside card silhouettes | **0** at every viewport |
+| Viewport gate | **PASS 7/7 viewports, 13/13 engineering** |
+| Title baseline | matches the Target to three decimals at all seven viewports |
+| Build | PASS |
+
+The defect: `TileLabelLayer` sized every label to the fixed `TILE` box while the
+card is `frame.planeWidth` x `frame.planeHeight`, and every type size is a
+container query against that box — so type was scaled against a card that did
+not exist, by +113% at 667x375 down to −26% at 1920x1080. It was −1.4% at
+1440x900, the viewport the layer was tuned at, which is why it went unseen.
+See [`SOURCE_EXACT_TYPOGRAPHY.md`](SOURCE_EXACT_TYPOGRAPHY.md).
 
 ## FSX-A integration hardening
 

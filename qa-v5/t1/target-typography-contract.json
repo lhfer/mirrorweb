@@ -1,0 +1,1121 @@
+{
+  "instrument": "scripts/v5/t1-target-typography.mjs, one reader for both sides",
+  "target": {
+    "url": "https://infinite-liquid-glass.shader.se/?v=2",
+    "capturedAtUtc": "2026-08-20T21:16:34.736Z"
+  },
+  "local": {
+    "url": "http://127.0.0.1:5280/?qa=1&composition=sourceExact",
+    "capturedAtUtc": "2026-08-20T21:18:06.423Z"
+  },
+  "viewports": [
+    "1440x900",
+    "1920x1080",
+    "390x844",
+    "844x390",
+    "700x700",
+    "667x375",
+    "780x470"
+  ],
+  "container": {
+    "law": "label element width = layout frame planeWidth, height = planeHeight, CSS3D object scale = 1",
+    "evidence": "at all seven viewports the Target's label element computed width equals the card plane width and its matrix3d basis columns are unit length, so its object scale is 1. Scheme A, not scheme B.",
+    "targetBoxes": {
+      "1440x900": [
+        547.188,
+        410.391
+      ],
+      "1920x1080": [
+        729.594,
+        547.188
+      ],
+      "390x844": [
+        280.797,
+        210.594
+      ],
+      "844x390": [
+        320.719,
+        240.531
+      ],
+      "700x700": [
+        266,
+        199.5
+      ],
+      "667x375": [
+        253.453,
+        190.094
+      ],
+      "780x470": [
+        296.391,
+        222.297
+      ]
+    },
+    "ourBoxes": {
+      "1440x900": [
+        547.188,
+        410.391
+      ],
+      "1920x1080": [
+        729.594,
+        547.188
+      ],
+      "390x844": [
+        280.797,
+        210.594
+      ],
+      "844x390": [
+        320.719,
+        240.531
+      ],
+      "700x700": [
+        266,
+        199.5
+      ],
+      "667x375": [
+        253.453,
+        190.094
+      ],
+      "780x470": [
+        296.391,
+        222.297
+      ]
+    },
+    "boxesAgree": true,
+    "targetObjectScale": {
+      "1440x900": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "1920x1080": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "390x844": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "844x390": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "700x700": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "667x375": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "780x470": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "ourObjectScale": {
+      "1440x900": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "1920x1080": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "390x844": [
+        1.000001,
+        1.0,
+        1.0
+      ],
+      "844x390": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "700x700": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "667x375": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "780x470": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "containerType": {
+      "target": "inline-size",
+      "ours": "inline-size"
+    },
+    "backfaceVisibility": {
+      "target": "hidden",
+      "ours": "hidden"
+    },
+    "transformStyle": {
+      "target": "preserve-3d",
+      "ours": "preserve-3d"
+    }
+  },
+  "domOrder": {
+    "target": [
+      "div:flex items-center gap-[2.8",
+      "div:flex items-center gap-[1.2",
+      "div:mb-[3.3cqw] h-[0.2cqw] ori",
+      "h2:max-w-[92%] text-[12cqw] l",
+      "div:mt-[3.5cqw] flex items-end"
+    ],
+    "ours": [
+      "div:se-meta-left",
+      "div:se-meta-right",
+      "div:se-rule",
+      "h2:se-title",
+      "div:se-deck-row"
+    ],
+    "note": "the Target's rule precedes the title; our previous markup had title, rule, deck"
+  },
+  "footer": {
+    "note": "the 'AN EXPERIMENT BY' caption is the one footer element whose type is comparable; the wordmark is an image on the Target and type on ours.",
+    "targetCaption": {
+      "fontFamily": "\"Geist Mono\", \"Geist Mono Fallback\"",
+      "fontSizePx": 11.52,
+      "fontWeight": "500",
+      "letterSpacingPx": 2.0736,
+      "lineHeightPx": 17.28,
+      "textTransform": "uppercase",
+      "color": "oklab(0.999994 0.0000455677 0.0000200868 / 0.7)",
+      "opacity": "1"
+    },
+    "ourCaption": {
+      "fontFamily": "\"Geist Mono Variable\", \"Geist Mono\", ui-monospace, monospace",
+      "fontSizePx": 11.52,
+      "fontWeight": "500",
+      "letterSpacingPx": 2.0736,
+      "lineHeightPx": 17.28,
+      "textTransform": "uppercase",
+      "color": "rgba(255, 255, 255, 0.7)",
+      "opacity": "1"
+    },
+    "targetTree": [
+      {
+        "cls": "absolute inset-x-0 bottom-0 h-36 bg-linear-to-t from-black/60 to-transparent",
+        "text": "",
+        "size": 16,
+        "weight": "400",
+        "ls": "normal",
+        "mono": false
+      },
+      {
+        "cls": "relative flex items-center lg:items-end justify-between",
+        "text": "AN EXPERIMENT BY BOOK A CALL \u2197",
+        "size": 16,
+        "weight": "400",
+        "ls": "normal",
+        "mono": false
+      },
+      {
+        "cls": "pointer-events-auto flex flex-col lg:items-center gap-3 lg:flex-row",
+        "text": "AN EXPERIMENT BY",
+        "size": 16,
+        "weight": "400",
+        "ls": "normal",
+        "mono": false
+      },
+      {
+        "cls": "font-mono text-[clamp(0.58rem,0.8vw,0.72rem)] font-medium tracking-[0.18em] text-white/70 uppercase",
+        "text": "AN EXPERIMENT BY",
+        "size": 11.52,
+        "weight": "500",
+        "ls": 2.0736,
+        "mono": true
+      },
+      {
+        "cls": "h-auto w-[min(26vw,148px)] drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] select-none",
+        "text": "",
+        "size": 16,
+        "weight": "400",
+        "ls": "normal",
+        "mono": false
+      },
+      {
+        "cls": "pointer-events-auto group relative flex items-center gap-2.5 overflow-hidden rounded-full border border-white/22 bg-white/8 py-2 pr-2 pl-4 font-mono text-[clamp(0.58rem,0.8vw,0.72rem)] tracking-[0.16em] text-white uppercase backdrop-blur-2xl transition-[border-color,background-color,transform] duration-300 hover:border-white/38 hover:bg-white/12 active:scale-[0.98]",
+        "text": "BOOK A CALL \u2197",
+        "size": 11.52,
+        "weight": "400",
+        "ls": 1.8432,
+        "mono": true
+      },
+      {
+        "cls": "pointer-events-none absolute inset-x-0 top-0 h-1/2 opacity-70",
+        "text": "",
+        "size": 11.52,
+        "weight": "400",
+        "ls": 1.8432,
+        "mono": true
+      },
+      {
+        "cls": "relative",
+        "text": "BOOK A CALL",
+        "size": 11.52,
+        "weight": "400",
+        "ls": 1.8432,
+        "mono": true
+      },
+      {
+        "cls": "relative grid size-[clamp(1.45rem,2.1vw,1.85rem)] place-items-center rounded-full border border-white/45 text-[0.85em] transition-colors duration-300 group-hover:border-white/70",
+        "text": "\u2197",
+        "size": 9.792,
+        "weight": "400",
+        "ls": 1.8432,
+        "mono": true
+      }
+    ],
+    "ourTree": [
+      {
+        "cls": "experiment-link",
+        "text": "AN EXPERIMENT BY ATELIER",
+        "size": 16,
+        "weight": "400",
+        "ls": "normal",
+        "mono": false
+      },
+      {
+        "cls": null,
+        "text": "AN EXPERIMENT BY",
+        "size": 11.52,
+        "weight": "500",
+        "ls": 2.0736,
+        "mono": true
+      },
+      {
+        "cls": "loader-brand",
+        "text": "ATELIER",
+        "size": 16,
+        "weight": "400",
+        "ls": "normal",
+        "mono": false
+      },
+      {
+        "cls": "brand-mark",
+        "text": "",
+        "size": 16,
+        "weight": "400",
+        "ls": "normal",
+        "mono": false
+      },
+      {
+        "cls": "brand-word",
+        "text": "ATELIER",
+        "size": 20,
+        "weight": "700",
+        "ls": 1.6,
+        "mono": false
+      },
+      {
+        "cls": "cta-link",
+        "text": "BOOK A CALL \u2197",
+        "size": 11.52,
+        "weight": "400",
+        "ls": 1.8432,
+        "mono": true
+      },
+      {
+        "cls": "cta-arrow",
+        "text": "\u2197",
+        "size": 9.792,
+        "weight": "400",
+        "ls": 1.8432,
+        "mono": true
+      }
+    ]
+  },
+  "reported": {
+    "note": "text-dependent; reported for the visual gate, not asserted",
+    "titleBaselineFromCardBottomPct": {
+      "1440x900": {
+        "target": 18.127,
+        "ours": 18.127
+      },
+      "1920x1080": {
+        "target": 18.127,
+        "ours": 18.127
+      },
+      "390x844": {
+        "target": 17.851,
+        "ours": 17.851
+      },
+      "844x390": {
+        "target": 18.098,
+        "ours": 18.098
+      },
+      "700x700": {
+        "target": 18.296,
+        "ours": 18.296
+      },
+      "667x375": {
+        "target": 17.935,
+        "ours": 17.935
+      },
+      "780x470": {
+        "target": 18.128,
+        "ours": 18.128
+      }
+    },
+    "titleLineCount": {
+      "1440x900": {
+        "target": 1,
+        "ours": 1
+      },
+      "1920x1080": {
+        "target": 1,
+        "ours": 1
+      },
+      "390x844": {
+        "target": 1,
+        "ours": 1
+      },
+      "844x390": {
+        "target": 1,
+        "ours": 1
+      },
+      "700x700": {
+        "target": 1,
+        "ours": 1
+      },
+      "667x375": {
+        "target": 1,
+        "ours": 1
+      },
+      "780x470": {
+        "target": 1,
+        "ours": 1
+      }
+    },
+    "titleLocalBox": {
+      "1440x900": {
+        "target": [
+          38,
+          282,
+          433,
+          54
+        ],
+        "ours": [
+          38,
+          282,
+          433,
+          54
+        ]
+      },
+      "1920x1080": {
+        "target": [
+          51,
+          376,
+          577,
+          72
+        ],
+        "ours": [
+          51,
+          376,
+          577,
+          72
+        ]
+      },
+      "390x844": {
+        "target": [
+          20,
+          145,
+          222,
+          28
+        ],
+        "ours": [
+          20,
+          145,
+          222,
+          28
+        ]
+      },
+      "844x390": {
+        "target": [
+          22,
+          165,
+          254,
+          32
+        ],
+        "ours": [
+          22,
+          165,
+          254,
+          32
+        ]
+      },
+      "700x700": {
+        "target": [
+          19,
+          137,
+          210,
+          26
+        ],
+        "ours": [
+          19,
+          137,
+          210,
+          26
+        ]
+      },
+      "667x375": {
+        "target": [
+          18,
+          131,
+          201,
+          25
+        ],
+        "ours": [
+          18,
+          131,
+          201,
+          25
+        ]
+      },
+      "780x470": {
+        "target": [
+          21,
+          153,
+          235,
+          29
+        ],
+        "ours": [
+          21,
+          153,
+          235,
+          29
+        ]
+      }
+    }
+  },
+  "properties": [
+    {
+      "property": "cardPaddingCqw",
+      "element": "content",
+      "unit": "cqw",
+      "targetValue": 7.0,
+      "targetPerViewport": {
+        "1440x900": 6.99999,
+        "1920x1080": 7.0,
+        "390x844": 7.0,
+        "844x390": 6.99999,
+        "700x700": 7.0,
+        "667x375": 7.0,
+        "780x470": 6.99998
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 7.0,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.02,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "cardTransformStyle",
+      "element": "self",
+      "unit": "",
+      "targetValue": "preserve-3d",
+      "targetPerViewport": {
+        "1440x900": "preserve-3d",
+        "1920x1080": "preserve-3d",
+        "390x844": "preserve-3d",
+        "844x390": "preserve-3d",
+        "700x700": "preserve-3d",
+        "667x375": "preserve-3d",
+        "780x470": "preserve-3d"
+      },
+      "constantAcrossViewports": true,
+      "ourValue": "preserve-3d",
+      "worstAbsDelta": null,
+      "tolerance": null,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "cardBackfaceVisibility",
+      "element": "self",
+      "unit": "",
+      "targetValue": "hidden",
+      "targetPerViewport": {
+        "1440x900": "hidden",
+        "1920x1080": "hidden",
+        "390x844": "hidden",
+        "844x390": "hidden",
+        "700x700": "hidden",
+        "667x375": "hidden",
+        "780x470": "hidden"
+      },
+      "constantAcrossViewports": true,
+      "ourValue": "hidden",
+      "worstAbsDelta": null,
+      "tolerance": null,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "clipOverflow",
+      "element": "clip",
+      "unit": "",
+      "targetValue": "hidden",
+      "targetPerViewport": {
+        "1440x900": "hidden",
+        "1920x1080": "hidden",
+        "390x844": "hidden",
+        "844x390": "hidden",
+        "700x700": "hidden",
+        "667x375": "hidden",
+        "780x470": "hidden"
+      },
+      "constantAcrossViewports": true,
+      "ourValue": "hidden",
+      "worstAbsDelta": null,
+      "tolerance": null,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "metaFontSizeCqw",
+      "element": "meta",
+      "unit": "cqw",
+      "targetValue": 1.7,
+      "targetPerViewport": {
+        "1440x900": 1.7,
+        "1920x1080": 1.7,
+        "390x844": 1.7,
+        "844x390": 1.7,
+        "700x700": 1.7,
+        "667x375": 1.7,
+        "780x470": 1.7
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 1.7,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.005,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "metaLineHeight",
+      "element": "meta",
+      "unit": "x",
+      "targetValue": 1.5,
+      "targetPerViewport": {
+        "1440x900": 1.5,
+        "1920x1080": 1.5,
+        "390x844": 1.5,
+        "844x390": 1.5,
+        "700x700": 1.5,
+        "667x375": 1.5,
+        "780x470": 1.5
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 1.5,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.005,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "metaLetterSpacingEm",
+      "element": "meta",
+      "unit": "em",
+      "targetValue": 0.18,
+      "targetPerViewport": {
+        "1440x900": 0.18,
+        "1920x1080": 0.18,
+        "390x844": 0.18,
+        "844x390": 0.18,
+        "700x700": 0.18,
+        "667x375": 0.18,
+        "780x470": 0.18
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 0.18,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.002,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "metaFontWeight",
+      "element": "meta",
+      "unit": "",
+      "targetValue": 500.0,
+      "targetPerViewport": {
+        "1440x900": 500,
+        "1920x1080": 500,
+        "390x844": 500,
+        "844x390": 500,
+        "700x700": 500,
+        "667x375": 500,
+        "780x470": 500
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 500.0,
+      "worstAbsDelta": 0,
+      "tolerance": 0,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "metaTextTransform",
+      "element": "meta",
+      "unit": "",
+      "targetValue": "uppercase",
+      "targetPerViewport": {
+        "1440x900": "uppercase",
+        "1920x1080": "uppercase",
+        "390x844": "uppercase",
+        "844x390": "uppercase",
+        "700x700": "uppercase",
+        "667x375": "uppercase",
+        "780x470": "uppercase"
+      },
+      "constantAcrossViewports": true,
+      "ourValue": "uppercase",
+      "worstAbsDelta": null,
+      "tolerance": null,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "metaFontIsMono",
+      "element": "meta",
+      "unit": "",
+      "targetValue": true,
+      "targetPerViewport": {
+        "1440x900": true,
+        "1920x1080": true,
+        "390x844": true,
+        "844x390": true,
+        "700x700": true,
+        "667x375": true,
+        "780x470": true
+      },
+      "constantAcrossViewports": true,
+      "ourValue": true,
+      "worstAbsDelta": null,
+      "tolerance": null,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "metaLeftGapCqw",
+      "element": "metaLeft",
+      "unit": "cqw",
+      "targetValue": 2.8,
+      "targetPerViewport": {
+        "1440x900": 2.79999,
+        "1920x1080": 2.8,
+        "390x844": 2.8,
+        "844x390": 2.8,
+        "700x700": 2.8,
+        "667x375": 2.8,
+        "780x470": 2.8
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 2.8,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.02,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "metaRightGapCqw",
+      "element": "metaRight",
+      "unit": "cqw",
+      "targetValue": 1.2,
+      "targetPerViewport": {
+        "1440x900": 1.2,
+        "1920x1080": 1.2,
+        "390x844": 1.2,
+        "844x390": 1.2,
+        "700x700": 1.2,
+        "667x375": 1.2,
+        "780x470": 1.2
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 1.2,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.02,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "metaRightOpacity",
+      "element": "metaRight",
+      "unit": "",
+      "targetValue": 0.65,
+      "targetPerViewport": {
+        "1440x900": 0.65,
+        "1920x1080": 0.65,
+        "390x844": 0.65,
+        "844x390": 0.65,
+        "700x700": 0.65,
+        "667x375": 0.65,
+        "780x470": 0.65
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 0.65,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.005,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "categoryOpacity",
+      "element": "dim",
+      "unit": "",
+      "targetValue": 0.75,
+      "targetPerViewport": {
+        "1440x900": 0.75,
+        "1920x1080": 0.75,
+        "390x844": 0.75,
+        "844x390": 0.75,
+        "700x700": 0.75,
+        "667x375": 0.75,
+        "780x470": 0.75
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 0.75,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.005,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "dotSizeCqw",
+      "element": "dot",
+      "unit": "cqw",
+      "targetValue": 0.3974,
+      "targetPerViewport": {
+        "1440x900": 0.39977,
+        "1920x1080": 0.39834,
+        "390x844": 0.39508,
+        "844x390": 0.39949,
+        "700x700": 0.39944,
+        "667x375": 0.39455,
+        "780x470": 0.39538
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 0.3974,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.03,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "ruleHeightCqw",
+      "element": "rule",
+      "unit": "cqw",
+      "targetValue": 0.1979,
+      "targetPerViewport": {
+        "1440x900": 0.19989,
+        "1920x1080": 0.19917,
+        "390x844": 0.19476,
+        "844x390": 0.19975,
+        "700x700": 0.19972,
+        "667x375": 0.19728,
+        "780x470": 0.19505
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 0.1979,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.03,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "ruleMarginBottomCqw",
+      "element": "rule",
+      "unit": "cqw",
+      "targetValue": 3.3,
+      "targetPerViewport": {
+        "1440x900": 3.3,
+        "1920x1080": 3.3,
+        "390x844": 3.3,
+        "844x390": 3.29999,
+        "700x700": 3.3,
+        "667x375": 3.3,
+        "780x470": 3.3
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 3.3,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.02,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "titleFontSizeCqw",
+      "element": "title",
+      "unit": "cqw",
+      "targetValue": 12.0,
+      "targetPerViewport": {
+        "1440x900": 11.99999,
+        "1920x1080": 11.99999,
+        "390x844": 11.99999,
+        "844x390": 12.00001,
+        "700x700": 12.0,
+        "667x375": 12.00002,
+        "780x470": 11.99999
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 12.0,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.005,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "titleLineHeight",
+      "element": "title",
+      "unit": "x",
+      "targetValue": 0.82,
+      "targetPerViewport": {
+        "1440x900": 0.82,
+        "1920x1080": 0.82,
+        "390x844": 0.82,
+        "844x390": 0.82,
+        "700x700": 0.82,
+        "667x375": 0.82,
+        "780x470": 0.82
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 0.82,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.005,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "titleLetterSpacingEm",
+      "element": "title",
+      "unit": "em",
+      "targetValue": -0.085,
+      "targetPerViewport": {
+        "1440x900": -0.085,
+        "1920x1080": -0.085,
+        "390x844": -0.085,
+        "844x390": -0.085,
+        "700x700": -0.085,
+        "667x375": -0.085,
+        "780x470": -0.085
+      },
+      "constantAcrossViewports": true,
+      "ourValue": -0.085,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.002,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "titleFontWeight",
+      "element": "title",
+      "unit": "",
+      "targetValue": 600.0,
+      "targetPerViewport": {
+        "1440x900": 600,
+        "1920x1080": 600,
+        "390x844": 600,
+        "844x390": 600,
+        "700x700": 600,
+        "667x375": 600,
+        "780x470": 600
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 600.0,
+      "worstAbsDelta": 0,
+      "tolerance": 0,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "titleMaxWidthPct",
+      "element": "title",
+      "unit": "",
+      "targetValue": "92%",
+      "targetPerViewport": {
+        "1440x900": "92%",
+        "1920x1080": "92%",
+        "390x844": "92%",
+        "844x390": "92%",
+        "700x700": "92%",
+        "667x375": "92%",
+        "780x470": "92%"
+      },
+      "constantAcrossViewports": true,
+      "ourValue": "92%",
+      "worstAbsDelta": null,
+      "tolerance": null,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "titleTextWrap",
+      "element": "title",
+      "unit": "",
+      "targetValue": "wrap",
+      "targetPerViewport": {
+        "1440x900": "wrap",
+        "1920x1080": "wrap",
+        "390x844": "wrap",
+        "844x390": "wrap",
+        "700x700": "wrap",
+        "667x375": "wrap",
+        "780x470": "wrap"
+      },
+      "constantAcrossViewports": true,
+      "ourValue": "wrap",
+      "worstAbsDelta": null,
+      "tolerance": null,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "deckRowMarginTopCqw",
+      "element": "deckRow",
+      "unit": "cqw",
+      "targetValue": 3.5,
+      "targetPerViewport": {
+        "1440x900": 3.5,
+        "1920x1080": 3.5,
+        "390x844": 3.5,
+        "844x390": 3.50001,
+        "700x700": 3.5,
+        "667x375": 3.5,
+        "780x470": 3.50001
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 3.5,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.02,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "deckFontSizeCqw",
+      "element": "deck",
+      "unit": "cqw",
+      "targetValue": 2.5,
+      "targetPerViewport": {
+        "1440x900": 2.5,
+        "1920x1080": 2.49999,
+        "390x844": 2.5,
+        "844x390": 2.5,
+        "700x700": 2.5,
+        "667x375": 2.5,
+        "780x470": 2.5
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 2.5,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.005,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "deckLineHeight",
+      "element": "deck",
+      "unit": "x",
+      "targetValue": 1.25,
+      "targetPerViewport": {
+        "1440x900": 1.25,
+        "1920x1080": 1.25,
+        "390x844": 1.25,
+        "844x390": 1.25,
+        "700x700": 1.25,
+        "667x375": 1.25,
+        "780x470": 1.25
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 1.25,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.005,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "deckLetterSpacingEm",
+      "element": "deck",
+      "unit": "em",
+      "targetValue": -0.01,
+      "targetPerViewport": {
+        "1440x900": -0.01,
+        "1920x1080": -0.01,
+        "390x844": -0.01,
+        "844x390": -0.01,
+        "700x700": -0.01,
+        "667x375": -0.01,
+        "780x470": -0.01
+      },
+      "constantAcrossViewports": true,
+      "ourValue": -0.01,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.002,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "deckFontWeight",
+      "element": "deck",
+      "unit": "",
+      "targetValue": 500.0,
+      "targetPerViewport": {
+        "1440x900": 500,
+        "1920x1080": 500,
+        "390x844": 500,
+        "844x390": 500,
+        "700x700": 500,
+        "667x375": 500,
+        "780x470": 500
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 500.0,
+      "worstAbsDelta": 0,
+      "tolerance": 0,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    },
+    {
+      "property": "deckMaxWidthCqw",
+      "element": "deck",
+      "unit": "cqw",
+      "targetValue": 58.0,
+      "targetPerViewport": {
+        "1440x900": 57.99999,
+        "1920x1080": 57.99993,
+        "390x844": 57.99991,
+        "844x390": 57.99999,
+        "700x700": 58.0,
+        "667x375": 58.0001,
+        "780x470": 58.00007
+      },
+      "constantAcrossViewports": true,
+      "ourValue": 58.0,
+      "worstAbsDelta": 0.0,
+      "tolerance": 0.03,
+      "matchesAtEveryViewport": true,
+      "status": "MATCH"
+    }
+  ],
+  "notFound": [],
+  "matched": 29,
+  "total": 29,
+  "verdict": "PASS"
+}

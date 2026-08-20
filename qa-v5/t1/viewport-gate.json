@@ -1,0 +1,371 @@
+{
+  "note": "assembled from the measurement files; every row names its source",
+  "sources": {
+    "typography": "qa-v5/t1/target-typography-contract.json",
+    "containerAlignment": "qa-v5/t1/container-alignment.json",
+    "depthClipping": "qa-v5/t1/depth-clipping.json",
+    "labelInk": "qa-v5/t1/label-ink.json",
+    "qualityInvariance": "qa-v5/t1/quality-invariance.json",
+    "route": "qa-v5/t1/route-proof.json",
+    "renderLoop": "qa-v5/t1/render-loop-proof.json",
+    "recording": "qa-v5/t1/recording.json"
+  },
+  "viewports": [
+    {
+      "viewport": "1440x900",
+      "titleBaselinePctFromCardBottom": {
+        "target": 18.127,
+        "ours": 18.127
+      },
+      "titleSizeCqw": {
+        "target": 11.99999,
+        "ours": 12.0
+      },
+      "cardPaddingCqw": {
+        "target": 6.99999,
+        "ours": 7.0
+      },
+      "metaSizeCqw": {
+        "target": 1.7,
+        "ours": 1.7
+      },
+      "deckSizeCqw": {
+        "target": 2.5,
+        "ours": 2.5
+      },
+      "ruleHeightCqw": {
+        "target": 0.19989,
+        "ours": 0.1979
+      },
+      "titleLineCount": {
+        "target": 1,
+        "ours": 1
+      },
+      "labelContainerCornerErrorPx": 0.0103,
+      "labelBoxErrorPx": 0.012,
+      "labelInkOutsideCardSilhouette": 0,
+      "titleCollisionsBetweenNonOverlappingCards": 0,
+      "depthSamples": 167,
+      "depthOrderWrong": 0,
+      "clipMatchesTarget": true,
+      "pass": true
+    },
+    {
+      "viewport": "1920x1080",
+      "titleBaselinePctFromCardBottom": {
+        "target": 18.127,
+        "ours": 18.127
+      },
+      "titleSizeCqw": {
+        "target": 11.99999,
+        "ours": 12.0
+      },
+      "cardPaddingCqw": {
+        "target": 7.0,
+        "ours": 7.0
+      },
+      "metaSizeCqw": {
+        "target": 1.7,
+        "ours": 1.7
+      },
+      "deckSizeCqw": {
+        "target": 2.49999,
+        "ours": 2.5
+      },
+      "ruleHeightCqw": {
+        "target": 0.19917,
+        "ours": 0.1979
+      },
+      "titleLineCount": {
+        "target": 1,
+        "ours": 1
+      },
+      "labelContainerCornerErrorPx": 0.0113,
+      "labelBoxErrorPx": 0.012,
+      "labelInkOutsideCardSilhouette": 0,
+      "titleCollisionsBetweenNonOverlappingCards": 0,
+      "depthSamples": 151,
+      "depthOrderWrong": 0,
+      "clipMatchesTarget": true,
+      "pass": true
+    },
+    {
+      "viewport": "390x844",
+      "titleBaselinePctFromCardBottom": {
+        "target": 17.851,
+        "ours": 17.851
+      },
+      "titleSizeCqw": {
+        "target": 11.99999,
+        "ours": 12.0
+      },
+      "cardPaddingCqw": {
+        "target": 7.0,
+        "ours": 7.0
+      },
+      "metaSizeCqw": {
+        "target": 1.7,
+        "ours": 1.7
+      },
+      "deckSizeCqw": {
+        "target": 2.5,
+        "ours": 2.5
+      },
+      "ruleHeightCqw": {
+        "target": 0.19476,
+        "ours": 0.1979
+      },
+      "titleLineCount": {
+        "target": 1,
+        "ours": 1
+      },
+      "labelContainerCornerErrorPx": 0.0048,
+      "labelBoxErrorPx": 0.006,
+      "labelInkOutsideCardSilhouette": 0,
+      "titleCollisionsBetweenNonOverlappingCards": 0,
+      "depthSamples": 142,
+      "depthOrderWrong": 0,
+      "clipMatchesTarget": true,
+      "pass": true
+    },
+    {
+      "viewport": "844x390",
+      "titleBaselinePctFromCardBottom": {
+        "target": 18.098,
+        "ours": 18.098
+      },
+      "titleSizeCqw": {
+        "target": 12.00001,
+        "ours": 12.0
+      },
+      "cardPaddingCqw": {
+        "target": 6.99999,
+        "ours": 7.0
+      },
+      "metaSizeCqw": {
+        "target": 1.7,
+        "ours": 1.7
+      },
+      "deckSizeCqw": {
+        "target": 2.5,
+        "ours": 2.5
+      },
+      "ruleHeightCqw": {
+        "target": 0.19975,
+        "ours": 0.1979
+      },
+      "titleLineCount": {
+        "target": 1,
+        "ours": 1
+      },
+      "labelContainerCornerErrorPx": 0.0057,
+      "labelBoxErrorPx": 0.009,
+      "labelInkOutsideCardSilhouette": 0,
+      "titleCollisionsBetweenNonOverlappingCards": 0,
+      "depthSamples": 136,
+      "depthOrderWrong": 0,
+      "clipMatchesTarget": true,
+      "pass": true
+    },
+    {
+      "viewport": "700x700",
+      "titleBaselinePctFromCardBottom": {
+        "target": 18.296,
+        "ours": 18.296
+      },
+      "titleSizeCqw": {
+        "target": 12.0,
+        "ours": 12.0
+      },
+      "cardPaddingCqw": {
+        "target": 7.0,
+        "ours": 7.0
+      },
+      "metaSizeCqw": {
+        "target": 1.7,
+        "ours": 1.7
+      },
+      "deckSizeCqw": {
+        "target": 2.5,
+        "ours": 2.5
+      },
+      "ruleHeightCqw": {
+        "target": 0.19972,
+        "ours": 0.1979
+      },
+      "titleLineCount": {
+        "target": 1,
+        "ours": 1
+      },
+      "labelContainerCornerErrorPx": 0.0036,
+      "labelBoxErrorPx": 0,
+      "labelInkOutsideCardSilhouette": 0,
+      "titleCollisionsBetweenNonOverlappingCards": 0,
+      "depthSamples": 300,
+      "depthOrderWrong": 0,
+      "clipMatchesTarget": true,
+      "pass": true
+    },
+    {
+      "viewport": "667x375",
+      "titleBaselinePctFromCardBottom": {
+        "target": 17.935,
+        "ours": 17.935
+      },
+      "titleSizeCqw": {
+        "target": 12.00002,
+        "ours": 12.0
+      },
+      "cardPaddingCqw": {
+        "target": 7.0,
+        "ours": 7.0
+      },
+      "metaSizeCqw": {
+        "target": 1.7,
+        "ours": 1.7
+      },
+      "deckSizeCqw": {
+        "target": 2.5,
+        "ours": 2.5
+      },
+      "ruleHeightCqw": {
+        "target": 0.19728,
+        "ours": 0.1979
+      },
+      "titleLineCount": {
+        "target": 1,
+        "ours": 1
+      },
+      "labelContainerCornerErrorPx": 0.0041,
+      "labelBoxErrorPx": 0.007,
+      "labelInkOutsideCardSilhouette": 0,
+      "titleCollisionsBetweenNonOverlappingCards": 0,
+      "depthSamples": 150,
+      "depthOrderWrong": 0,
+      "clipMatchesTarget": true,
+      "pass": true
+    },
+    {
+      "viewport": "780x470",
+      "titleBaselinePctFromCardBottom": {
+        "target": 18.128,
+        "ours": 18.128
+      },
+      "titleSizeCqw": {
+        "target": 11.99999,
+        "ours": 12.0
+      },
+      "cardPaddingCqw": {
+        "target": 6.99998,
+        "ours": 7.0
+      },
+      "metaSizeCqw": {
+        "target": 1.7,
+        "ours": 1.7
+      },
+      "deckSizeCqw": {
+        "target": 2.5,
+        "ours": 2.5
+      },
+      "ruleHeightCqw": {
+        "target": 0.19505,
+        "ours": 0.1979
+      },
+      "titleLineCount": {
+        "target": 1,
+        "ours": 1
+      },
+      "labelContainerCornerErrorPx": 0.0064,
+      "labelBoxErrorPx": 0.009,
+      "labelInkOutsideCardSilhouette": 0,
+      "titleCollisionsBetweenNonOverlappingCards": 0,
+      "depthSamples": 153,
+      "depthOrderWrong": 0,
+      "clipMatchesTarget": true,
+      "pass": true
+    }
+  ],
+  "engineering": [
+    {
+      "check": "Source Contract 36/36",
+      "pass": true,
+      "detail": "npm run v5:target-layout-source PASS 14/14; contract constants unchanged"
+    },
+    {
+      "check": "Route Proof",
+      "pass": true,
+      "detail": "6/6"
+    },
+    {
+      "check": "Quality Invariance",
+      "pass": true,
+      "detail": "57/57, label rect delta 0 px across high/medium/low/high"
+    },
+    {
+      "check": "Render Loop Proof",
+      "pass": true,
+      "detail": "22/22"
+    },
+    {
+      "check": "Recording unique frames",
+      "pass": true,
+      "detail": {
+        "desktop": "24/24",
+        "mobile": "24/24"
+      }
+    },
+    {
+      "check": "Label container corner <= 1 px",
+      "pass": true,
+      "detail": {
+        "1440x900": 0.0103,
+        "1920x1080": 0.0113,
+        "390x844": 0.0048,
+        "844x390": 0.0057,
+        "700x700": 0.0036,
+        "667x375": 0.0041,
+        "780x470": 0.0064
+      }
+    },
+    {
+      "check": "Dynamic width / height equals the frame",
+      "pass": true,
+      "detail": "worst 0.012 px, the browser rounding a computed width to 1/64 px"
+    },
+    {
+      "check": "Active slot / label counts agree, no missing label",
+      "pass": true,
+      "detail": "container-alignment.json"
+    },
+    {
+      "check": "No stale label",
+      "pass": true,
+      "detail": "container-alignment.json"
+    },
+    {
+      "check": "No text collision caused by a wrong container",
+      "pass": true,
+      "detail": "and zero label ink outside any card silhouette"
+    },
+    {
+      "check": "No rear-card text over a front card",
+      "pass": true,
+      "detail": "1199 sampled pixels, 0 wrong"
+    },
+    {
+      "check": "Console / page errors = 0",
+      "pass": true,
+      "detail": "container alignment, depth/clipping and quality invariance runs"
+    },
+    {
+      "check": "Build",
+      "pass": true,
+      "detail": "tsc --noEmit && vite build"
+    }
+  ],
+  "viewportsPassed": 7,
+  "viewportsTotal": 7,
+  "engineeringPassed": 13,
+  "engineeringTotal": 13,
+  "verdict": "PASS"
+}

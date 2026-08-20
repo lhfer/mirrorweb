@@ -1,0 +1,1300 @@
+{
+  "tag": "typography-candidate",
+  "capturedAt": "2026-08-20T21:11:54.648Z",
+  "supersedes": "qa-v5/fsx-a/beauty (captured against a frozen canvas)",
+  "fixedConditions": {
+    "quality": "high, adaptive sampler OFF",
+    "mediaTimeSeconds": 2,
+    "motion": "paused",
+    "pointer": [
+      0,
+      0
+    ],
+    "dpr": 1,
+    "composition": "sourceExact (defaults)",
+    "redraw": "explicit renderOnce() after every state change"
+  },
+  "states": [
+    "1-foundation",
+    "2-media-only",
+    "3-glass-media",
+    "4-full-beauty"
+  ],
+  "viewports": [
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "shots": [
+        {
+          "state": "1-foundation",
+          "png": "artifacts/t1/beauty/1440x900/1-foundation.png",
+          "sha256": "8bc6cf0155cbdfb8d834eb1aa77fcb801e71cd83d8ec51076f359daa6d5147c3",
+          "requestedLayers": "foundation route",
+          "renderLayerState": null,
+          "renderStamp": null,
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.1,
+            "drawCalls": 1134,
+            "triangles": 41,
+            "backend": "webgpu",
+            "renderedFrames": 561,
+            "renderStamp": 5,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "2-media-only",
+          "png": "artifacts/t1/beauty/1440x900/2-media-only.png",
+          "sha256": "344b365d375bf2d4b8aa2aceccd4075544c0ac817fcdbe72c78af6f640a07e08",
+          "requestedLayers": {
+            "glass": false,
+            "media": true,
+            "labels": false
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": false,
+              "media": true,
+              "labels": false
+            },
+            "actual": {
+              "activeSlots": 100,
+              "glassMeshesVisible": 0,
+              "reflectionShellsVisible": 0,
+              "mediaMeshesVisible": 100,
+              "labelLayerDisplay": "none",
+              "labelElementsShown": 81
+            },
+            "drawPath": "direct scene render: the two-pass pipeline re-asserts glass-on every frame, so a glass-free frame cannot come out of it",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.9,
+            "drawCalls": 1878,
+            "triangles": 45,
+            "backend": "webgpu",
+            "renderedFrames": 635,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "3-glass-media",
+          "png": "artifacts/t1/beauty/1440x900/3-glass-media.png",
+          "sha256": "1bca35185bf151ff63debffc092521f753638fc9e14033413003e5bff763e452",
+          "requestedLayers": {
+            "glass": true,
+            "media": true,
+            "labels": false
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": true,
+              "media": true,
+              "labels": false
+            },
+            "actual": {
+              "activeSlots": 100,
+              "glassMeshesVisible": 100,
+              "reflectionShellsVisible": 100,
+              "mediaMeshesVisible": 0,
+              "labelLayerDisplay": "none",
+              "labelElementsShown": 81
+            },
+            "drawPath": "two-pass scene-colour pipeline (glass samples the scene colour target)",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10,
+            "drawCalls": 1956,
+            "triangles": 401001,
+            "backend": "webgpu",
+            "renderedFrames": 637,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "4-full-beauty",
+          "png": "artifacts/t1/beauty/1440x900/4-full-beauty.png",
+          "sha256": "8a6abde014645d74b8fa5f694860d260d5a496f70c9690b038b23e1e2cd0ca7b",
+          "requestedLayers": {
+            "glass": true,
+            "media": true,
+            "labels": true
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": true,
+              "media": true,
+              "labels": true
+            },
+            "actual": {
+              "activeSlots": 100,
+              "glassMeshesVisible": 100,
+              "reflectionShellsVisible": 100,
+              "mediaMeshesVisible": 0,
+              "labelLayerDisplay": "block",
+              "labelElementsShown": 81
+            },
+            "drawPath": "two-pass scene-colour pipeline (glass samples the scene colour target)",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.6,
+            "drawCalls": 1944,
+            "triangles": 401001,
+            "backend": "webgpu",
+            "renderedFrames": 633,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        }
+      ],
+      "mediaVsGlassDiff": {
+        "identicalBytes": false,
+        "changedPixels": 937796,
+        "changedPixelFraction": 0.723608,
+        "pixelsOver8of255": 411952,
+        "meanAbsDelta": 14.7592,
+        "maxAbsDelta": 255,
+        "p99AbsDelta": 232,
+        "glassMeshesVisibleMediaOnly": 0,
+        "glassMeshesVisibleGlassMedia": 100,
+        "drawPathMediaOnly": "direct scene render: the two-pass pipeline re-asserts glass-on every frame, so a glass-free frame cannot come out of it",
+        "drawPathGlassMedia": "two-pass scene-colour pipeline (glass samples the scene colour target)"
+      }
+    },
+    {
+      "id": "1920x1080",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "shots": [
+        {
+          "state": "1-foundation",
+          "png": "artifacts/t1/beauty/1920x1080/1-foundation.png",
+          "sha256": "c9281e60077357021743df5227a1da83f876f035674f9d06acfb9b6cb379ad56",
+          "requestedLayers": "foundation route",
+          "renderLayerState": null,
+          "renderStamp": null,
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10,
+            "drawCalls": 1136,
+            "triangles": 41,
+            "backend": "webgpu",
+            "renderedFrames": 562,
+            "renderStamp": 5,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "2-media-only",
+          "png": "artifacts/t1/beauty/1920x1080/2-media-only.png",
+          "sha256": "e0a0e2ef171c4ae044af67f87f83a8dbf385a0e86a37a04e74224941ab4909c9",
+          "requestedLayers": {
+            "glass": false,
+            "media": true,
+            "labels": false
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": false,
+              "media": true,
+              "labels": false
+            },
+            "actual": {
+              "activeSlots": 100,
+              "glassMeshesVisible": 0,
+              "reflectionShellsVisible": 0,
+              "mediaMeshesVisible": 100,
+              "labelLayerDisplay": "none",
+              "labelElementsShown": 81
+            },
+            "drawPath": "direct scene render: the two-pass pipeline re-asserts glass-on every frame, so a glass-free frame cannot come out of it",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.8,
+            "drawCalls": 1892,
+            "triangles": 45,
+            "backend": "webgpu",
+            "renderedFrames": 642,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "3-glass-media",
+          "png": "artifacts/t1/beauty/1920x1080/3-glass-media.png",
+          "sha256": "0b42d02775723ab252ffb9b0987ee894375e61c1cf272b8a28a42a88bdd00d65",
+          "requestedLayers": {
+            "glass": true,
+            "media": true,
+            "labels": false
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": true,
+              "media": true,
+              "labels": false
+            },
+            "actual": {
+              "activeSlots": 100,
+              "glassMeshesVisible": 100,
+              "reflectionShellsVisible": 100,
+              "mediaMeshesVisible": 0,
+              "labelLayerDisplay": "none",
+              "labelElementsShown": 81
+            },
+            "drawPath": "two-pass scene-colour pipeline (glass samples the scene colour target)",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.2,
+            "drawCalls": 1995,
+            "triangles": 400991,
+            "backend": "webgpu",
+            "renderedFrames": 650,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "4-full-beauty",
+          "png": "artifacts/t1/beauty/1920x1080/4-full-beauty.png",
+          "sha256": "e83f636e31c07553064ac2fdb1530e96033fdda1536746130d50ba11d4ca9b97",
+          "requestedLayers": {
+            "glass": true,
+            "media": true,
+            "labels": true
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": true,
+              "media": true,
+              "labels": true
+            },
+            "actual": {
+              "activeSlots": 100,
+              "glassMeshesVisible": 100,
+              "reflectionShellsVisible": 100,
+              "mediaMeshesVisible": 0,
+              "labelLayerDisplay": "block",
+              "labelElementsShown": 81
+            },
+            "drawPath": "two-pass scene-colour pipeline (glass samples the scene colour target)",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.4,
+            "drawCalls": 1977,
+            "triangles": 400991,
+            "backend": "webgpu",
+            "renderedFrames": 644,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        }
+      ],
+      "mediaVsGlassDiff": {
+        "identicalBytes": false,
+        "changedPixels": 1453714,
+        "changedPixelFraction": 0.701058,
+        "pixelsOver8of255": 546291,
+        "meanAbsDelta": 11.6561,
+        "maxAbsDelta": 255,
+        "p99AbsDelta": 232,
+        "glassMeshesVisibleMediaOnly": 0,
+        "glassMeshesVisibleGlassMedia": 100,
+        "drawPathMediaOnly": "direct scene render: the two-pass pipeline re-asserts glass-on every frame, so a glass-free frame cannot come out of it",
+        "drawPathGlassMedia": "two-pass scene-colour pipeline (glass samples the scene colour target)"
+      }
+    },
+    {
+      "id": "390x844",
+      "viewport": [
+        390,
+        844
+      ],
+      "shots": [
+        {
+          "state": "1-foundation",
+          "png": "artifacts/t1/beauty/390x844/1-foundation.png",
+          "sha256": "fc96f52a942baa9b480b8fd95d1402d419764252e5293c2f29e1ed7654edd29f",
+          "requestedLayers": "foundation route",
+          "renderLayerState": null,
+          "renderStamp": null,
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.1,
+            "drawCalls": 1134,
+            "triangles": 43,
+            "backend": "webgpu",
+            "renderedFrames": 561,
+            "renderStamp": 5,
+            "appliedQuality": "high",
+            "activeSlotCount": 96,
+            "cols": 8,
+            "rows": 12
+          }
+        },
+        {
+          "state": "2-media-only",
+          "png": "artifacts/t1/beauty/390x844/2-media-only.png",
+          "sha256": "94b98f2f5ba2c6b36e94a4c15c0e8fdff0846c2a9f15ae1431bbb6ec00f16765",
+          "requestedLayers": {
+            "glass": false,
+            "media": true,
+            "labels": false
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": false,
+              "media": true,
+              "labels": false
+            },
+            "actual": {
+              "activeSlots": 96,
+              "glassMeshesVisible": 0,
+              "reflectionShellsVisible": 0,
+              "mediaMeshesVisible": 96,
+              "labelLayerDisplay": "none",
+              "labelElementsShown": 93
+            },
+            "drawPath": "direct scene render: the two-pass pipeline re-asserts glass-on every frame, so a glass-free frame cannot come out of it",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.9,
+            "drawCalls": 1854,
+            "triangles": 49,
+            "backend": "webgpu",
+            "renderedFrames": 623,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 96,
+            "cols": 8,
+            "rows": 12
+          }
+        },
+        {
+          "state": "3-glass-media",
+          "png": "artifacts/t1/beauty/390x844/3-glass-media.png",
+          "sha256": "4c42577d98b6fcf14a118eb28c23f388a94cb843ee4f21218b00faf8a1d15079",
+          "requestedLayers": {
+            "glass": true,
+            "media": true,
+            "labels": false
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": true,
+              "media": true,
+              "labels": false
+            },
+            "actual": {
+              "activeSlots": 96,
+              "glassMeshesVisible": 96,
+              "reflectionShellsVisible": 96,
+              "mediaMeshesVisible": 0,
+              "labelLayerDisplay": "none",
+              "labelElementsShown": 93
+            },
+            "drawPath": "two-pass scene-colour pipeline (glass samples the scene colour target)",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.5,
+            "drawCalls": 1920,
+            "triangles": 334167,
+            "backend": "webgpu",
+            "renderedFrames": 625,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 96,
+            "cols": 8,
+            "rows": 12
+          }
+        },
+        {
+          "state": "4-full-beauty",
+          "png": "artifacts/t1/beauty/390x844/4-full-beauty.png",
+          "sha256": "0485edc279d435ff12c4df51b6959aac9682fcdd3c5ea672a12520194509b3de",
+          "requestedLayers": {
+            "glass": true,
+            "media": true,
+            "labels": true
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": true,
+              "media": true,
+              "labels": true
+            },
+            "actual": {
+              "activeSlots": 96,
+              "glassMeshesVisible": 96,
+              "reflectionShellsVisible": 96,
+              "mediaMeshesVisible": 0,
+              "labelLayerDisplay": "block",
+              "labelElementsShown": 93
+            },
+            "drawPath": "two-pass scene-colour pipeline (glass samples the scene colour target)",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.6,
+            "drawCalls": 1938,
+            "triangles": 334167,
+            "backend": "webgpu",
+            "renderedFrames": 631,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 96,
+            "cols": 8,
+            "rows": 12
+          }
+        }
+      ],
+      "mediaVsGlassDiff": {
+        "identicalBytes": false,
+        "changedPixels": 277814,
+        "changedPixelFraction": 0.844009,
+        "pixelsOver8of255": 145844,
+        "meanAbsDelta": 18.2661,
+        "maxAbsDelta": 246,
+        "p99AbsDelta": 232,
+        "glassMeshesVisibleMediaOnly": 0,
+        "glassMeshesVisibleGlassMedia": 96,
+        "drawPathMediaOnly": "direct scene render: the two-pass pipeline re-asserts glass-on every frame, so a glass-free frame cannot come out of it",
+        "drawPathGlassMedia": "two-pass scene-colour pipeline (glass samples the scene colour target)"
+      }
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844,
+        390
+      ],
+      "shots": [
+        {
+          "state": "1-foundation",
+          "png": "artifacts/t1/beauty/844x390/1-foundation.png",
+          "sha256": "83535f895566217a0dc32cb8d24dc3b1e57e5e44ef7386015120d6ff53a278e3",
+          "requestedLayers": "foundation route",
+          "renderLayerState": null,
+          "renderStamp": null,
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10,
+            "drawCalls": 1132,
+            "triangles": 41,
+            "backend": "webgpu",
+            "renderedFrames": 560,
+            "renderStamp": 5,
+            "appliedQuality": "high",
+            "activeSlotCount": 80,
+            "cols": 10,
+            "rows": 8
+          }
+        },
+        {
+          "state": "2-media-only",
+          "png": "artifacts/t1/beauty/844x390/2-media-only.png",
+          "sha256": "647193722ba6775baa97a1fe4558cba32b85d09863d60fe8cc42e2e8672d4a47",
+          "requestedLayers": {
+            "glass": false,
+            "media": true,
+            "labels": false
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": false,
+              "media": true,
+              "labels": false
+            },
+            "actual": {
+              "activeSlots": 80,
+              "glassMeshesVisible": 0,
+              "reflectionShellsVisible": 0,
+              "mediaMeshesVisible": 80,
+              "labelLayerDisplay": "none",
+              "labelElementsShown": 68
+            },
+            "drawPath": "direct scene render: the two-pass pipeline re-asserts glass-on every frame, so a glass-free frame cannot come out of it",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10,
+            "drawCalls": 1854,
+            "triangles": 45,
+            "backend": "webgpu",
+            "renderedFrames": 622,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 80,
+            "cols": 10,
+            "rows": 8
+          }
+        },
+        {
+          "state": "3-glass-media",
+          "png": "artifacts/t1/beauty/844x390/3-glass-media.png",
+          "sha256": "0466e1c3a5fba93273c17aa83d1df905dd477feeba0f11d420b8b9c1a9bfc3db",
+          "requestedLayers": {
+            "glass": true,
+            "media": true,
+            "labels": false
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": true,
+              "media": true,
+              "labels": false
+            },
+            "actual": {
+              "activeSlots": 80,
+              "glassMeshesVisible": 80,
+              "reflectionShellsVisible": 80,
+              "mediaMeshesVisible": 0,
+              "labelLayerDisplay": "none",
+              "labelElementsShown": 68
+            },
+            "drawPath": "two-pass scene-colour pipeline (glass samples the scene colour target)",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.3,
+            "drawCalls": 1911,
+            "triangles": 400969,
+            "backend": "webgpu",
+            "renderedFrames": 622,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 80,
+            "cols": 10,
+            "rows": 8
+          }
+        },
+        {
+          "state": "4-full-beauty",
+          "png": "artifacts/t1/beauty/844x390/4-full-beauty.png",
+          "sha256": "cfc5ec92d4f0569299c3e19e485aadb6b3519e18f1728ff0c0cea15686d7827c",
+          "requestedLayers": {
+            "glass": true,
+            "media": true,
+            "labels": true
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": true,
+              "media": true,
+              "labels": true
+            },
+            "actual": {
+              "activeSlots": 80,
+              "glassMeshesVisible": 80,
+              "reflectionShellsVisible": 80,
+              "mediaMeshesVisible": 0,
+              "labelLayerDisplay": "block",
+              "labelElementsShown": 68
+            },
+            "drawPath": "two-pass scene-colour pipeline (glass samples the scene colour target)",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.1,
+            "drawCalls": 1914,
+            "triangles": 400969,
+            "backend": "webgpu",
+            "renderedFrames": 623,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 80,
+            "cols": 10,
+            "rows": 8
+          }
+        }
+      ],
+      "mediaVsGlassDiff": {
+        "identicalBytes": false,
+        "changedPixels": 271295,
+        "changedPixelFraction": 0.824204,
+        "pixelsOver8of255": 129233,
+        "meanAbsDelta": 14.4098,
+        "maxAbsDelta": 237,
+        "p99AbsDelta": 222,
+        "glassMeshesVisibleMediaOnly": 0,
+        "glassMeshesVisibleGlassMedia": 80,
+        "drawPathMediaOnly": "direct scene render: the two-pass pipeline re-asserts glass-on every frame, so a glass-free frame cannot come out of it",
+        "drawPathGlassMedia": "two-pass scene-colour pipeline (glass samples the scene colour target)"
+      }
+    },
+    {
+      "id": "700x700",
+      "viewport": [
+        700,
+        700
+      ],
+      "shots": [
+        {
+          "state": "1-foundation",
+          "png": "artifacts/t1/beauty/700x700/1-foundation.png",
+          "sha256": "e0d5b06cd1481932afe31c5b03298717927cc51355059fba4d9cbb9664eafcf0",
+          "requestedLayers": "foundation route",
+          "renderLayerState": null,
+          "renderStamp": null,
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.1,
+            "drawCalls": 1132,
+            "triangles": 77,
+            "backend": "webgpu",
+            "renderedFrames": 560,
+            "renderStamp": 5,
+            "appliedQuality": "high",
+            "activeSlotCount": 120,
+            "cols": 10,
+            "rows": 12
+          }
+        },
+        {
+          "state": "2-media-only",
+          "png": "artifacts/t1/beauty/700x700/2-media-only.png",
+          "sha256": "926f000fe7bc62c510a08d91a6250f2c9366c0128ce2ef7d1413bacea9a97d83",
+          "requestedLayers": {
+            "glass": false,
+            "media": true,
+            "labels": false
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": false,
+              "media": true,
+              "labels": false
+            },
+            "actual": {
+              "activeSlots": 120,
+              "glassMeshesVisible": 0,
+              "reflectionShellsVisible": 0,
+              "mediaMeshesVisible": 120,
+              "labelLayerDisplay": "none",
+              "labelElementsShown": 90
+            },
+            "drawPath": "direct scene render: the two-pass pipeline re-asserts glass-on every frame, so a glass-free frame cannot come out of it",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.2,
+            "drawCalls": 1862,
+            "triangles": 85,
+            "backend": "webgpu",
+            "renderedFrames": 627,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 120,
+            "cols": 10,
+            "rows": 12
+          }
+        },
+        {
+          "state": "3-glass-media",
+          "png": "artifacts/t1/beauty/700x700/3-glass-media.png",
+          "sha256": "8154a85add6ea8bc57324fe9c5dd11f34a7f6b8ce4b61e9b7ee8386d5a52ecad",
+          "requestedLayers": {
+            "glass": true,
+            "media": true,
+            "labels": false
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": true,
+              "media": true,
+              "labels": false
+            },
+            "actual": {
+              "activeSlots": 120,
+              "glassMeshesVisible": 120,
+              "reflectionShellsVisible": 120,
+              "mediaMeshesVisible": 0,
+              "labelLayerDisplay": "none",
+              "labelElementsShown": 90
+            },
+            "drawPath": "two-pass scene-colour pipeline (glass samples the scene colour target)",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.7,
+            "drawCalls": 1926,
+            "triangles": 601541,
+            "backend": "webgpu",
+            "renderedFrames": 627,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 120,
+            "cols": 10,
+            "rows": 12
+          }
+        },
+        {
+          "state": "4-full-beauty",
+          "png": "artifacts/t1/beauty/700x700/4-full-beauty.png",
+          "sha256": "4d7819c85bf2063db5610c0eea91a3fa1a486a1ab07704bc17b459c833a7a75a",
+          "requestedLayers": {
+            "glass": true,
+            "media": true,
+            "labels": true
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": true,
+              "media": true,
+              "labels": true
+            },
+            "actual": {
+              "activeSlots": 120,
+              "glassMeshesVisible": 120,
+              "reflectionShellsVisible": 120,
+              "mediaMeshesVisible": 0,
+              "labelLayerDisplay": "block",
+              "labelElementsShown": 90
+            },
+            "drawPath": "two-pass scene-colour pipeline (glass samples the scene colour target)",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.9,
+            "drawCalls": 1956,
+            "triangles": 601541,
+            "backend": "webgpu",
+            "renderedFrames": 637,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 120,
+            "cols": 10,
+            "rows": 12
+          }
+        }
+      ],
+      "mediaVsGlassDiff": {
+        "identicalBytes": false,
+        "changedPixels": 352317,
+        "changedPixelFraction": 0.719014,
+        "pixelsOver8of255": 137133,
+        "meanAbsDelta": 12.6949,
+        "maxAbsDelta": 247,
+        "p99AbsDelta": 231,
+        "glassMeshesVisibleMediaOnly": 0,
+        "glassMeshesVisibleGlassMedia": 120,
+        "drawPathMediaOnly": "direct scene render: the two-pass pipeline re-asserts glass-on every frame, so a glass-free frame cannot come out of it",
+        "drawPathGlassMedia": "two-pass scene-colour pipeline (glass samples the scene colour target)"
+      }
+    },
+    {
+      "id": "667x375",
+      "viewport": [
+        667,
+        375
+      ],
+      "shots": [
+        {
+          "state": "1-foundation",
+          "png": "artifacts/t1/beauty/667x375/1-foundation.png",
+          "sha256": "11c894755b3dfd60499b5d5bdea2741d723c3b6d9d02e3552f10fddc75dfa57e",
+          "requestedLayers": "foundation route",
+          "renderLayerState": null,
+          "renderStamp": null,
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10,
+            "drawCalls": 1132,
+            "triangles": 41,
+            "backend": "webgpu",
+            "renderedFrames": 560,
+            "renderStamp": 5,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "2-media-only",
+          "png": "artifacts/t1/beauty/667x375/2-media-only.png",
+          "sha256": "ca0b75270d57a001acf3ae0f3a622352bbfe3079c3d5f56465790ad15239686b",
+          "requestedLayers": {
+            "glass": false,
+            "media": true,
+            "labels": false
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": false,
+              "media": true,
+              "labels": false
+            },
+            "actual": {
+              "activeSlots": 100,
+              "glassMeshesVisible": 0,
+              "reflectionShellsVisible": 0,
+              "mediaMeshesVisible": 100,
+              "labelLayerDisplay": "none",
+              "labelElementsShown": 81
+            },
+            "drawPath": "direct scene render: the two-pass pipeline re-asserts glass-on every frame, so a glass-free frame cannot come out of it",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10,
+            "drawCalls": 1847,
+            "triangles": 45,
+            "backend": "webgpu",
+            "renderedFrames": 620,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "3-glass-media",
+          "png": "artifacts/t1/beauty/667x375/3-glass-media.png",
+          "sha256": "4b84bdae80f4da34afc5bef2f79e00454d0ae8d11b4a60269ae83634c40e21f6",
+          "requestedLayers": {
+            "glass": true,
+            "media": true,
+            "labels": false
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": true,
+              "media": true,
+              "labels": false
+            },
+            "actual": {
+              "activeSlots": 100,
+              "glassMeshesVisible": 100,
+              "reflectionShellsVisible": 100,
+              "mediaMeshesVisible": 0,
+              "labelLayerDisplay": "none",
+              "labelElementsShown": 81
+            },
+            "drawPath": "two-pass scene-colour pipeline (glass samples the scene colour target)",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.9,
+            "drawCalls": 1914,
+            "triangles": 400991,
+            "backend": "webgpu",
+            "renderedFrames": 623,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "4-full-beauty",
+          "png": "artifacts/t1/beauty/667x375/4-full-beauty.png",
+          "sha256": "b95cdef23cf25be8cce21fc54ffde3eecf9ea9ea62c1371184cffb4ce904f218",
+          "requestedLayers": {
+            "glass": true,
+            "media": true,
+            "labels": true
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": true,
+              "media": true,
+              "labels": true
+            },
+            "actual": {
+              "activeSlots": 100,
+              "glassMeshesVisible": 100,
+              "reflectionShellsVisible": 100,
+              "mediaMeshesVisible": 0,
+              "labelLayerDisplay": "block",
+              "labelElementsShown": 81
+            },
+            "drawPath": "two-pass scene-colour pipeline (glass samples the scene colour target)",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.2,
+            "drawCalls": 1938,
+            "triangles": 400991,
+            "backend": "webgpu",
+            "renderedFrames": 631,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        }
+      ],
+      "mediaVsGlassDiff": {
+        "identicalBytes": false,
+        "changedPixels": 196298,
+        "changedPixelFraction": 0.7848,
+        "pixelsOver8of255": 81080,
+        "meanAbsDelta": 13.114,
+        "maxAbsDelta": 244,
+        "p99AbsDelta": 224,
+        "glassMeshesVisibleMediaOnly": 0,
+        "glassMeshesVisibleGlassMedia": 100,
+        "drawPathMediaOnly": "direct scene render: the two-pass pipeline re-asserts glass-on every frame, so a glass-free frame cannot come out of it",
+        "drawPathGlassMedia": "two-pass scene-colour pipeline (glass samples the scene colour target)"
+      }
+    },
+    {
+      "id": "780x470",
+      "viewport": [
+        780,
+        470
+      ],
+      "shots": [
+        {
+          "state": "1-foundation",
+          "png": "artifacts/t1/beauty/780x470/1-foundation.png",
+          "sha256": "f5f612c4b008c2a028806ca9249a2d35127aa408f29e14dc002147f071ebfc9a",
+          "requestedLayers": "foundation route",
+          "renderLayerState": null,
+          "renderStamp": null,
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.2,
+            "drawCalls": 1136,
+            "triangles": 41,
+            "backend": "webgpu",
+            "renderedFrames": 562,
+            "renderStamp": 5,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "2-media-only",
+          "png": "artifacts/t1/beauty/780x470/2-media-only.png",
+          "sha256": "135898b245c4f0dfad2c00d52211830196d1905c0e2b4b609486673b3c2c1125",
+          "requestedLayers": {
+            "glass": false,
+            "media": true,
+            "labels": false
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": false,
+              "media": true,
+              "labels": false
+            },
+            "actual": {
+              "activeSlots": 100,
+              "glassMeshesVisible": 0,
+              "reflectionShellsVisible": 0,
+              "mediaMeshesVisible": 100,
+              "labelLayerDisplay": "none",
+              "labelElementsShown": 81
+            },
+            "drawPath": "direct scene render: the two-pass pipeline re-asserts glass-on every frame, so a glass-free frame cannot come out of it",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.9,
+            "drawCalls": 1859,
+            "triangles": 45,
+            "backend": "webgpu",
+            "renderedFrames": 625,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "3-glass-media",
+          "png": "artifacts/t1/beauty/780x470/3-glass-media.png",
+          "sha256": "a530b34b3c6e606298294fbc1fa755b00c85a75bfdf6c27b1381b153aa48fccf",
+          "requestedLayers": {
+            "glass": true,
+            "media": true,
+            "labels": false
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": true,
+              "media": true,
+              "labels": false
+            },
+            "actual": {
+              "activeSlots": 100,
+              "glassMeshesVisible": 100,
+              "reflectionShellsVisible": 100,
+              "mediaMeshesVisible": 0,
+              "labelLayerDisplay": "none",
+              "labelElementsShown": 81
+            },
+            "drawPath": "two-pass scene-colour pipeline (glass samples the scene colour target)",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.7,
+            "drawCalls": 1935,
+            "triangles": 401001,
+            "backend": "webgpu",
+            "renderedFrames": 630,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "4-full-beauty",
+          "png": "artifacts/t1/beauty/780x470/4-full-beauty.png",
+          "sha256": "22a08847914a8d669735ea73ba5edbd4a96758ff42e3e7128718822e90360e77",
+          "requestedLayers": {
+            "glass": true,
+            "media": true,
+            "labels": true
+          },
+          "renderLayerState": {
+            "requested": {
+              "glass": true,
+              "media": true,
+              "labels": true
+            },
+            "actual": {
+              "activeSlots": 100,
+              "glassMeshesVisible": 100,
+              "reflectionShellsVisible": 100,
+              "mediaMeshesVisible": 0,
+              "labelLayerDisplay": "block",
+              "labelElementsShown": 81
+            },
+            "drawPath": "two-pass scene-colour pipeline (glass samples the scene colour target)",
+            "quality": "high",
+            "renderStamp": 7
+          },
+          "renderStamp": {
+            "before": 5,
+            "after": 7
+          },
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10,
+            "drawCalls": 1917,
+            "triangles": 401001,
+            "backend": "webgpu",
+            "renderedFrames": 624,
+            "renderStamp": 7,
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        }
+      ],
+      "mediaVsGlassDiff": {
+        "identicalBytes": false,
+        "changedPixels": 303572,
+        "changedPixelFraction": 0.828074,
+        "pixelsOver8of255": 151638,
+        "meanAbsDelta": 17.5006,
+        "maxAbsDelta": 255,
+        "p99AbsDelta": 232,
+        "glassMeshesVisibleMediaOnly": 0,
+        "glassMeshesVisibleGlassMedia": 100,
+        "drawPathMediaOnly": "direct scene render: the two-pass pipeline re-asserts glass-on every frame, so a glass-free frame cannot come out of it",
+        "drawPathGlassMedia": "two-pass scene-colour pipeline (glass samples the scene colour target)"
+      }
+    }
+  ],
+  "errors": []
+}

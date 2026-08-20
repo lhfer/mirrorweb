@@ -112,6 +112,13 @@ def measure(doc, side):
                 row[prop] = fn(e, w) if e else None
             except Exception:
                 row[prop] = None
+        title = els.get("title")
+        H = card["container"]["heightPx"]
+        if title and title.get("localBox"):
+            b = title["localBox"]
+            row["titleLocalBox"] = b
+            row["titleBaselineFromBottomPct"] = round((H - (b[1] + b[3])) / H * 100, 3)
+            row["titleLineCount"] = title.get("lineCount")
         out[vp["id"]] = row
     return out
 
@@ -124,6 +131,27 @@ def agree(a, b, tol):
     if tol is None:
         return a == b
     return abs(a - b) <= tol
+
+
+def reported_block(T, L):
+    """Measured on both sides, reported rather than gated.
+
+    These depend on the card's TEXT -- our catalogue is not the Target's -- so
+    an equality check here would be comparing two sets of words, not two type
+    systems. The layout law that produces them is gated above.
+    """
+    return {
+        "note": "text-dependent; reported for the visual gate, not asserted",
+        "titleBaselineFromCardBottomPct": {
+            v: {"target": T[v].get("titleBaselineFromBottomPct"),
+                "ours": L[v].get("titleBaselineFromBottomPct")} for v in VPS if v in T and v in L},
+        "titleLineCount": {
+            v: {"target": T[v].get("titleLineCount"), "ours": L[v].get("titleLineCount")}
+            for v in VPS if v in T and v in L},
+        "titleLocalBox": {
+            v: {"target": T[v].get("titleLocalBox"), "ours": L[v].get("titleLocalBox")}
+            for v in VPS if v in T and v in L},
+    }
 
 
 FOOTER_PROPS = ["fontFamily", "fontSizePx", "fontWeight", "letterSpacingPx", "lineHeightPx",
@@ -226,6 +254,7 @@ if __name__ == "__main__":
                      "note": "the Target's rule precedes the title; our previous markup had "
                              "title, rule, deck"},
         "footer": footer_block(tdoc, ldoc),
+        "reported": reported_block(T, L),
         "properties": props,
         "notFound": [p["property"] for p in props if p["status"] == "NOT FOUND IN TARGET"],
         "matched": sum(1 for p in props if p["status"] == "MATCH"),

@@ -40,7 +40,13 @@ const MOBILE = new Set(["667x375", "844x390", "390x844", "360x800", "414x896", "
 
 function readTypography() {
   const px = (v) => (v && v.endsWith("px") ? Number(v.slice(0, -2)) : v);
-  const styleOf = (el) => {
+  /** Layout box relative to the card element, so both sides are comparable. */
+  const localBox = (el, root) => {
+    let x = 0, y = 0, n = el;
+    while (n && n !== root) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; }
+    return [x, y, el.offsetWidth, el.offsetHeight];
+  };
+  const styleOf = (el, root) => {
     const cs = getComputedStyle(el);
     const r = el.getBoundingClientRect();
     return {
@@ -66,6 +72,14 @@ function readTypography() {
       rect: [r.x, r.y, r.width, r.height],
       // Line boxes, so "how many lines does the title take" is measured.
       lineBoxes: Array.from(el.getClientRects()).map((q) => [q.x, q.y, q.width, q.height]),
+      localBox: root ? localBox(el, root) : null,
+      // Line count from the inline boxes of the element's own text.
+      lineCount: (() => {
+        if (!el.firstChild || el.firstChild.nodeType !== 3) return null;
+        const r = document.createRange();
+        r.selectNodeContents(el);
+        return r.getClientRects().length;
+      })(),
     };
   };
 
@@ -105,7 +119,7 @@ function readTypography() {
     const walk = (el, depth) => {
       for (let i = 0; i < el.children.length; i += 1) {
         const kid = el.children[i];
-        children.push({ depth, domIndex: i, ...styleOf(kid) });
+        children.push({ depth, domIndex: i, ...styleOf(kid, d) });
         if (depth < 5) walk(kid, depth + 1);
       }
     };

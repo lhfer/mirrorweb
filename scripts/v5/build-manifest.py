@@ -48,9 +48,14 @@ if __name__ == "__main__":
         "head": flags.get("head", git("rev-parse", "HEAD")),
         "codeCommit": flags.get("code", args[1] if len(args) > 1 else None),
         "evidenceCommit": flags.get("evidence", "this commit"),
-        "route": "/?optics=v4 (beauty) and /?optics=v4&foundation=layout&annotate=0 (gate)",
+        "headSemantics": "`head` is the commit the evidence was CAPTURED at. The evidence "
+                         "commit that carries these files is necessarily later, and a file "
+                         "cannot contain its own hash; no hygiene commit is created to chase "
+                         "one.",
+        "route": flags.get("route",
+                            "/?optics=v4 (beauty) and /?optics=v4&foundation=layout&annotate=0 (gate)"),
         "captureTimestampUtc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "fixedCaptureConditions": FIXED,
+        "fixedCaptureConditions": json.loads(flags["fixed"]) if "fixed" in flags else FIXED,
         "gateVerdict": verdict,
         "privateReviewPackage": flags.get("private"),
         "supersedes": flags.get("supersedes"),
