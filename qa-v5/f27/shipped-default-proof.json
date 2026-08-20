@@ -1,0 +1,29 @@
+{
+  "why": "A default that renders a configuration the evidence never gated is the F2.6 defect class. PORTRAIT_VERTICAL.model shipped as v1 while every gate capture, the runtime session and the status doc described v2. Flipped, and proven by rendering 390x844 with NO query overrides at all and comparing the PNG with the frame the gate actually judged.",
+  "routeWithNoOverrides": "/?optics=v4&composition=v2&foundation=layout&annotate=0",
+  "resolvedDefaults": {
+    "composition": "v2",
+    "verticalMode": "tangent",
+    "portraitLaw": "p1",
+    "phaseModel": "rowOrigin",
+    "portraitVertical": "v2",
+    "landscapeRowOrigin": "f25"
+  },
+  "restOffset": {
+    "x": 280.57,
+    "y": 0
+  },
+  "reportedVerticalScaleY": 1.03883,
+  "runtimeTruthAssertions": {
+    "portraitLawPropagated": true,
+    "reportedScaleMatchesCameraProjection": true,
+    "scaleDeltaPx": -1.622775279386257e-05,
+    "verticalScaleMatchesCameraProjection": true,
+    "verticalDeltaPx": -3.371517973282945e-05,
+    "landscapeVerticalScaleIsExactlyOne": true,
+    "allPass": true
+  },
+  "defaultRenderSha256": "34baa216d104b07f49b6231a4c732cc3723fc46d484fbfce2552e2dfa3620a61",
+  "gatedFrameSha256": "34baa216d104b07f49b6231a4c732cc3723fc46d484fbfce2552e2dfa3620a61",
+  "identical": true
+}

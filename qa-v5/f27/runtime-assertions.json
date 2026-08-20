@@ -1,0 +1,3677 @@
+{
+  "query": "composition=v2&verticalMode=tangent&portraitLaw=p1&portraitVertical=v2&phaseModel=rowOrigin",
+  "startedAt": "2026-08-20T16:16:20.588Z",
+  "sessions": {
+    "A-rest": {
+      "offset": [
+        0,
+        0
+      ],
+      "steps": 31,
+      "trace": [
+        {
+          "label": "1920x1200",
+          "viewport": [
+            1920,
+            1200
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.3333333333333333,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00004266461877566741,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.0000853277870322966,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 18.6,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1860x1163",
+          "viewport": [
+            1860,
+            1163
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.2916666666666667,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.0000413313494391776,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00008266129368772468,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 18.02,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1800x1125",
+          "viewport": [
+            1800,
+            1125
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.25,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000039998080102243705,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00007999480034293072,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 17.43,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1740x1088",
+          "viewport": [
+            1740,
+            1088
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.2083333333333333,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.0000386648107657539,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00007732830699813675,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 16.85,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1680x1050",
+          "viewport": [
+            1680,
+            1050
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.1666666666666667,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003733154142859796,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.0000746618136528987,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 16.27,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1620x1013",
+          "viewport": [
+            1620,
+            1013
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.125,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003599827209210815,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00007199532030877087,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 15.69,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1560x975",
+          "viewport": [
+            1560,
+            975
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.0833333333333333,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003466500275517426,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006932882696375486,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 15.11,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1500x938",
+          "viewport": [
+            1500,
+            938
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.0416666666666667,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003333173341824036,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.0000666623336189609,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 14.53,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1440x900",
+          "viewport": [
+            1440,
+            900
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003199846408186158,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006399584027427796,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 13.95,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1380x863",
+          "viewport": [
+            1380,
+            863
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.9583333333333334,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003066519474481666,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006132934692937297,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 13.37,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1320x825",
+          "viewport": [
+            1320,
+            825
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.9166666666666666,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000029331925408326853,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000058662853584801056,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 12.79,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1260x788",
+          "viewport": [
+            1260,
+            788
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.875,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000027998656071281935,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00005599636023978505,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 12.2,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1200x750",
+          "viewport": [
+            1200,
+            750
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.8333333333333334,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000026665386734570085,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000053329866894991085,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 11.62,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1140x713",
+          "viewport": [
+            1140,
+            713
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.7916666666666666,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.0000253321173981913,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00005066337355053019,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 11.04,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1080x675",
+          "viewport": [
+            1080,
+            675
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.75,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000023998848061368427,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000047996880205736225,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 10.46,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1020x638",
+          "viewport": [
+            1020,
+            638
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.7083333333333334,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.0000226655787247676,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00004533038686116431,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 8.5,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "960x720",
+          "viewport": [
+            960,
+            720
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.6666666666666666,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000021332309387833703,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00004266389351625932,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 8,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "960x500",
+          "viewport": [
+            960,
+            500
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 8,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.6666666666666666,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00002133230938772268,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.0000426638935161483,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 7.97,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "900x899",
+          "viewport": [
+            900,
+            899
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.625,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00001999904005101083,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00003999740017146536,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 26,
+            "minSeparationPx": 2.35,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "844x390",
+          "viewport": [
+            844,
+            390
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 8,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.5861111111111111,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000018754655336739035,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000037508673049635455,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 7,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "800x425",
+          "viewport": [
+            800,
+            425
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 8,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.5555555555555556,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000017776924489898427,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00003555324459680875,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 6.64,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "780x470",
+          "viewport": [
+            780,
+            470
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.5416666666666666,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00001733250137769815,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000034664413481988454,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 6.5,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "760x470",
+          "viewport": [
+            760,
+            470
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.5277777777777778,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000016888078265386852,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00003377558236705713,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 6.34,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "700x700",
+          "viewport": [
+            700,
+            700
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.4861111111111111,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00001555480892856398,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000031109089022096637,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 26,
+            "minSeparationPx": 1.83,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "700x400",
+          "viewport": [
+            700,
+            400
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.4861111111111111,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000015554808928730512,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00003110908902231868,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 5.84,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "667x375",
+          "viewport": [
+            667,
+            375
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.46319444444444446,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000014821510793405768,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000029642517682615388,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 5.56,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "617x617",
+          "viewport": [
+            617,
+            617
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.4284722222222222,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000013710453012738544,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000027420439895176063,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 27,
+            "minSeparationPx": 1.61,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "500x900",
+          "viewport": [
+            500,
+            900
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 8,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.6541423611111111,
+          "verticalScaleY": 1.03883,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000020931550846370328,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00004348790666430791,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 10,
+            "minSeparationPx": 10.69,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "430x932",
+          "viewport": [
+            430,
+            932
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 8,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.55913019700763,
+          "verticalScaleY": 1.03883,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000017891307526274325,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000037171422103687846,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 5.71,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "390x844",
+          "viewport": [
+            390,
+            844
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 8,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.5071416163112165,
+          "verticalScaleY": 1.03883,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00001622775279386257,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00003371517973282945,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 5.18,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "360x800",
+          "viewport": [
+            360,
+            800
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 8,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.46776199999999996,
+          "verticalScaleY": 1.03883,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00001496766555586504,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.0000310971913860536,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 203,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 4.77,
+            "overlaps": 0
+          }
+        }
+      ]
+    },
+    "B-offset-260-180": {
+      "offset": [
+        260,
+        180
+      ],
+      "steps": 31,
+      "trace": [
+        {
+          "label": "1920x1200",
+          "viewport": [
+            1920,
+            1200
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.3333333333333333,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00004266461877566741,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.0000853277870322966,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 20.7,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1860x1163",
+          "viewport": [
+            1860,
+            1163
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.2916666666666667,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.0000413313494391776,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00008266129368772468,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 20.05,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1800x1125",
+          "viewport": [
+            1800,
+            1125
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.25,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000039998080102243705,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00007999480034293072,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 19.41,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1740x1088",
+          "viewport": [
+            1740,
+            1088
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.2083333333333333,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.0000386648107657539,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00007732830699813675,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 18.76,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1680x1050",
+          "viewport": [
+            1680,
+            1050
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.1666666666666667,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003733154142859796,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.0000746618136528987,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 18.11,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1620x1013",
+          "viewport": [
+            1620,
+            1013
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.125,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003599827209210815,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00007199532030877087,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 17.47,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1560x975",
+          "viewport": [
+            1560,
+            975
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.0833333333333333,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003466500275517426,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006932882696375486,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 16.82,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1500x938",
+          "viewport": [
+            1500,
+            938
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.0416666666666667,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003333173341824036,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.0000666623336189609,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 16.17,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1440x900",
+          "viewport": [
+            1440,
+            900
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003199846408186158,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006399584027427796,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 15.53,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1380x863",
+          "viewport": [
+            1380,
+            863
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.9583333333333334,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003066519474481666,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006132934692937297,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 14.88,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1320x825",
+          "viewport": [
+            1320,
+            825
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.9166666666666666,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000029331925408326853,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000058662853584801056,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 14.23,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1260x788",
+          "viewport": [
+            1260,
+            788
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.875,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000027998656071281935,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00005599636023978505,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 13.59,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1200x750",
+          "viewport": [
+            1200,
+            750
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.8333333333333334,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000026665386734570085,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000053329866894991085,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 12.94,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1140x713",
+          "viewport": [
+            1140,
+            713
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.7916666666666666,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.0000253321173981913,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00005066337355053019,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 12.29,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1080x675",
+          "viewport": [
+            1080,
+            675
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.75,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000023998848061368427,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000047996880205736225,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 11.64,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "1020x638",
+          "viewport": [
+            1020,
+            638
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.7083333333333334,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.0000226655787247676,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00004533038686116431,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 11,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "960x720",
+          "viewport": [
+            960,
+            720
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.6666666666666666,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000021332309387833703,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00004266389351625932,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 19,
+            "minSeparationPx": 7.02,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "960x500",
+          "viewport": [
+            960,
+            500
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 8,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.6666666666666666,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00002133230938772268,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.0000426638935161483,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 10.44,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "900x899",
+          "viewport": [
+            900,
+            899
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.625,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00001999904005101083,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00003999740017146536,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 24,
+            "minSeparationPx": 4.23,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "844x390",
+          "viewport": [
+            844,
+            390
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 8,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.5861111111111111,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000018754655336739035,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000037508673049635455,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 9.18,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "800x425",
+          "viewport": [
+            800,
+            425
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 8,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.5555555555555556,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000017776924489898427,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00003555324459680875,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 8.7,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "780x470",
+          "viewport": [
+            780,
+            470
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.5416666666666666,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00001733250137769815,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000034664413481988454,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 8.41,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "760x470",
+          "viewport": [
+            760,
+            470
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.5277777777777778,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000016888078265386852,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00003377558236705713,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 8.19,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "700x700",
+          "viewport": [
+            700,
+            700
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.4861111111111111,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00001555480892856398,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000031109089022096637,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 24,
+            "minSeparationPx": 3.29,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "700x400",
+          "viewport": [
+            700,
+            400
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.4861111111111111,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000015554808928730512,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00003110908902231868,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 7.55,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "667x375",
+          "viewport": [
+            667,
+            375
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.46319444444444446,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000014821510793405768,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000029642517682615388,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 7.19,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "617x617",
+          "viewport": [
+            617,
+            617
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.4284722222222222,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000013710453012738544,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000027420439895176063,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 25,
+            "minSeparationPx": 2.9,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "500x900",
+          "viewport": [
+            500,
+            900
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 8,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.6541423611111111,
+          "verticalScaleY": 1.03883,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000020931550846370328,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00004348790666430791,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 8.35,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "430x932",
+          "viewport": [
+            430,
+            932
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 8,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.55913019700763,
+          "verticalScaleY": 1.03883,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000017891307526274325,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000037171422103687846,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 7.14,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "390x844",
+          "viewport": [
+            390,
+            844
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 8,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.5071416163112165,
+          "verticalScaleY": 1.03883,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00001622775279386257,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00003371517973282945,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 6.47,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "360x800",
+          "viewport": [
+            360,
+            800
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 8,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 180,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.46776199999999996,
+          "verticalScaleY": 1.03883,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00001496766555586504,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.0000310971913860536,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 260,
+          "scrollY": 180,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 193,
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 5.97,
+            "overlaps": 0
+          }
+        }
+      ]
+    },
+    "longScroll": {
+      "cellH": 419.95,
+      "steps": 11,
+      "trace": [
+        {
+          "label": "k=0",
+          "viewport": [
+            1440,
+            900
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003199846408186158,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006399584027427796,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 195,
+          "cells": 0,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 13.95,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "k=0.49",
+          "viewport": [
+            1440,
+            900
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 205.7755,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003199846408186158,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006399584027427796,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 274.9586,
+          "scrollY": 205.7755,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 195,
+          "cells": 0.49,
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 15.57,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "k=-0.49",
+          "viewport": [
+            1440,
+            900
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": -205.7755,
+          "catalogRow": 0,
+          "catalogCodes": [
+            "ILG—28",
+            "ILG—11",
+            "ILG—18"
+          ],
+          "compositionScale": 1,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003199846408186158,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006399584027427796,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": -274.9586,
+          "scrollY": -205.7755,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 195,
+          "cells": -0.49,
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 15.81,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "k=0.51",
+          "viewport": [
+            1440,
+            900
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 1,
+          "residualPhaseY": -205.7755,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003199846408186158,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006399584027427796,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 286.1814,
+          "scrollY": 214.1745,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 195,
+          "cells": 0.51,
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 15.56,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "k=-0.51",
+          "viewport": [
+            1440,
+            900
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": -1,
+          "residualPhaseY": 205.7755,
+          "catalogRow": 0,
+          "catalogCodes": [
+            "ILG—28",
+            "ILG—11",
+            "ILG—18"
+          ],
+          "compositionScale": 1,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003199846408186158,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006399584027427796,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": -286.1814,
+          "scrollY": -214.1745,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 195,
+          "cells": -0.51,
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 15.81,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "k=10",
+          "viewport": [
+            1440,
+            900
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 10,
+          "residualPhaseY": 0,
+          "catalogRow": 11,
+          "catalogCodes": [
+            "ILG—27",
+            "ILG—34",
+            "ILG—17"
+          ],
+          "compositionScale": 1,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003199846408186158,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006399584027427796,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 5611.4,
+          "scrollY": 4199.5,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 195,
+          "cells": 10,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 13.95,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "k=-10",
+          "viewport": [
+            1440,
+            900
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": -10,
+          "residualPhaseY": 0,
+          "catalogRow": -9,
+          "catalogCodes": [
+            "ILG—31",
+            "ILG—14",
+            "ILG—21"
+          ],
+          "compositionScale": 1,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003199846408186158,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006399584027427796,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": -5611.4,
+          "scrollY": -4199.5,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 195,
+          "cells": -10,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 13.95,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "k=50",
+          "viewport": [
+            1440,
+            900
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 50,
+          "residualPhaseY": 0,
+          "catalogRow": 51,
+          "catalogCodes": [
+            "ILG—19",
+            "ILG—26",
+            "ILG—33"
+          ],
+          "compositionScale": 1,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003199846408186158,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006399584027427796,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 28057,
+          "scrollY": 20997.5,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 195,
+          "cells": 50,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 13.95,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "k=-50",
+          "viewport": [
+            1440,
+            900
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": -50,
+          "residualPhaseY": 0,
+          "catalogRow": -49,
+          "catalogCodes": [
+            "ILG—15",
+            "ILG—22",
+            "ILG—29"
+          ],
+          "compositionScale": 1,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003199846408186158,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006399584027427796,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": -28057,
+          "scrollY": -20997.5,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 195,
+          "cells": -50,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 13.95,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "k=100",
+          "viewport": [
+            1440,
+            900
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 100,
+          "residualPhaseY": 0,
+          "catalogRow": 101,
+          "catalogCodes": [
+            "ILG—21",
+            "ILG—28",
+            "ILG—11"
+          ],
+          "compositionScale": 1,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003199846408186158,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006399584027427796,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 56114,
+          "scrollY": 41995,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 195,
+          "cells": 100,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 13.95,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "k=-100",
+          "viewport": [
+            1440,
+            900
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": -100,
+          "residualPhaseY": 0,
+          "catalogRow": -99,
+          "catalogCodes": [
+            "ILG—13",
+            "ILG—20",
+            "ILG—27"
+          ],
+          "compositionScale": 1,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003199846408186158,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00006399584027427796,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": -56114,
+          "scrollY": -41995,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 195,
+          "cells": -100,
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 13.95,
+            "overlaps": 0
+          }
+        }
+      ]
+    },
+    "orientationAndRegime": {
+      "steps": 9,
+      "trace": [
+        {
+          "label": "844x390",
+          "viewport": [
+            844,
+            390
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 8,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.5861111111111111,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000018754655336739035,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000037508673049635455,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 194,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 7,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "390x844",
+          "viewport": [
+            390,
+            844
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 8,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.5071416163112165,
+          "verticalScaleY": 1.03883,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00001622775279386257,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00003371517973282945,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 194,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 5.18,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "844x390",
+          "viewport": [
+            844,
+            390
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 8,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.5861111111111111,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000018754655336739035,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000037508673049635455,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 194,
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 7,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "960x720",
+          "viewport": [
+            960,
+            720
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.6666666666666666,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000021332309387833703,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00004266389351625932,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 194,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 8,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "960x500",
+          "viewport": [
+            960,
+            500
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 8,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.6666666666666666,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00002133230938772268,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.0000426638935161483,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 194,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 7.97,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "960x720",
+          "viewport": [
+            960,
+            720
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.6666666666666666,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.000021332309387833703,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00004266389351625932,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 194,
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 8,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "900x899",
+          "viewport": [
+            900,
+            899
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.625,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00001999904005101083,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00003999740017146536,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 194,
+          "overlap": {
+            "cards": 26,
+            "minSeparationPx": 2.35,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "899x900",
+          "viewport": [
+            899,
+            900
+          ],
+          "restOffsetX": 0,
+          "halfCellPhase": false,
+          "targetRows": 10,
+          "targetCols": 8,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 1.2099256427777778,
+          "verticalScaleY": 1.03883,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00003871576222191919,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.00008043682316283274,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 194,
+          "overlap": {
+            "cards": 5,
+            "minSeparationPx": 24.26,
+            "overlaps": 0
+          }
+        },
+        {
+          "label": "900x900",
+          "viewport": [
+            900,
+            900
+          ],
+          "restOffsetX": 280.57,
+          "halfCellPhase": true,
+          "targetRows": 12,
+          "targetCols": 10,
+          "recyclingOriginJ": 0,
+          "residualPhaseY": 0,
+          "catalogRow": 1,
+          "catalogCodes": [
+            "ILG—17",
+            "ILG—24",
+            "ILG—31"
+          ],
+          "compositionScale": 0.625,
+          "verticalScaleY": 1,
+          "assertions": {
+            "portraitLawPropagated": true,
+            "reportedScaleMatchesCameraProjection": true,
+            "scaleDeltaPx": -0.00001999904005101083,
+            "verticalScaleMatchesCameraProjection": true,
+            "verticalDeltaPx": -0.000039997400171243314,
+            "landscapeVerticalScaleIsExactlyOne": true,
+            "allPass": true
+          },
+          "scrollX": 0,
+          "scrollY": 0,
+          "poolSize": 81,
+          "videos": 3,
+          "textures": 3,
+          "videoFrames": 194,
+          "overlap": {
+            "cards": 26,
+            "minSeparationPx": 2.35,
+            "overlaps": 0
+          }
+        }
+      ]
+    }
+  },
+  "assertions": [
+    {
+      "assertion": "A-rest: every rest-phase flip coincides with a step in the Target row count",
+      "pass": true,
+      "detail": [
+        {
+          "from": "960x720",
+          "to": "960x500",
+          "rowsFrom": 10,
+          "rowsTo": 8,
+          "justifiedByRowCountStep": true
+        },
+        {
+          "from": "800x425",
+          "to": "780x470",
+          "rowsFrom": 8,
+          "rowsTo": 10,
+          "justifiedByRowCountStep": true
+        },
+        {
+          "from": "760x470",
+          "to": "700x700",
+          "rowsFrom": 10,
+          "rowsTo": 12,
+          "justifiedByRowCountStep": true
+        },
+        {
+          "from": "700x700",
+          "to": "700x400",
+          "rowsFrom": 12,
+          "rowsTo": 10,
+          "justifiedByRowCountStep": true
+        },
+        {
+          "from": "667x375",
+          "to": "617x617",
+          "rowsFrom": 10,
+          "rowsTo": 12,
+          "justifiedByRowCountStep": true
+        }
+      ]
+    },
+    {
+      "assertion": "A-rest: rest offset always agrees with the row-origin phase",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "A-rest: scroll offset preserved across every resize",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "A-rest: runtime truth passes at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "A-rest: no card overlap at any step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "A-rest: cards on screen at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "A-rest: pool size constant",
+      "pass": true,
+      "detail": [
+        81
+      ]
+    },
+    {
+      "assertion": "A-rest: video count constant",
+      "pass": true,
+      "detail": [
+        3
+      ]
+    },
+    {
+      "assertion": "A-rest: recycling origin J stays 0 while only the viewport changes",
+      "pass": true,
+      "detail": [
+        0
+      ]
+    },
+    {
+      "assertion": "A-rest: landscape vertical scale is exactly 1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: every rest-phase flip coincides with a step in the Target row count",
+      "pass": true,
+      "detail": [
+        {
+          "from": "960x720",
+          "to": "960x500",
+          "rowsFrom": 10,
+          "rowsTo": 8,
+          "justifiedByRowCountStep": true
+        },
+        {
+          "from": "800x425",
+          "to": "780x470",
+          "rowsFrom": 8,
+          "rowsTo": 10,
+          "justifiedByRowCountStep": true
+        },
+        {
+          "from": "760x470",
+          "to": "700x700",
+          "rowsFrom": 10,
+          "rowsTo": 12,
+          "justifiedByRowCountStep": true
+        },
+        {
+          "from": "700x700",
+          "to": "700x400",
+          "rowsFrom": 12,
+          "rowsTo": 10,
+          "justifiedByRowCountStep": true
+        },
+        {
+          "from": "667x375",
+          "to": "617x617",
+          "rowsFrom": 10,
+          "rowsTo": 12,
+          "justifiedByRowCountStep": true
+        }
+      ]
+    },
+    {
+      "assertion": "B-offset-260-180: rest offset always agrees with the row-origin phase",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: scroll offset preserved across every resize",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: runtime truth passes at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: no card overlap at any step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: cards on screen at every step",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "B-offset-260-180: pool size constant",
+      "pass": true,
+      "detail": [
+        81
+      ]
+    },
+    {
+      "assertion": "B-offset-260-180: video count constant",
+      "pass": true,
+      "detail": [
+        3
+      ]
+    },
+    {
+      "assertion": "B-offset-260-180: recycling origin J stays 0 while only the viewport changes",
+      "pass": true,
+      "detail": [
+        0
+      ]
+    },
+    {
+      "assertion": "B-offset-260-180: landscape vertical scale is exactly 1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "longScroll: rest phase never flips while only the offset moves",
+      "pass": true,
+      "detail": [
+        0
+      ]
+    },
+    {
+      "assertion": "longScroll: recycling origin J tracks the scroll exactly",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "longScroll: catalog row tracks the scroll with no jump",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "longScroll: no card overlap",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "longScroll: cards on screen at every offset",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "longScroll: pool size constant",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "regime cross: 960x720 and 960x500 take different phases, as the row count demands",
+      "pass": true,
+      "detail": [
+        {
+          "vp": "960x720",
+          "rows": 10,
+          "restOffsetX": 0
+        },
+        {
+          "vp": "960x500",
+          "rows": 8,
+          "restOffsetX": 280.57
+        },
+        {
+          "vp": "960x720",
+          "rows": 10,
+          "restOffsetX": 0
+        }
+      ]
+    },
+    {
+      "assertion": "orientation flip: portrait applies the vertical scale, landscape does not",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "orientation flip: runtime truth passes on both sides",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "orientation flip: no card overlap",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "no console errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "assertion": "no page errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "passed": 32,
+  "total": 32,
+  "verdict": "PASS"
+}

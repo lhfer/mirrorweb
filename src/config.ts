@@ -247,7 +247,13 @@ export const PORTRAIT_VERTICAL = {
     v2: { scaleY: 1.03883, radiusY: -4707.6 as number | null, cellH: 419.95 as number | null,
           restY0: -209.975 as number | null },
   },
-  model: "v1" as PortraitVerticalModel,
+  /**
+   * Which model ships. V2 is what the F2.7 gate, the cross-validation and the
+   * runtime sessions all measured, so it is what the default has to be: a
+   * default that renders a configuration the evidence never gated is the exact
+   * defect F2.6 shipped.
+   */
+  model: "v2" as PortraitVerticalModel,
 } as const;
 
 /**

@@ -2,11 +2,11 @@
   "stage": "f27",
   "repository": "lhfer/mirrorweb",
   "branch": "rebuild/liquid-glass-v5-foundation",
-  "head": "2bfe3a8224117e53bc52cbc645fc5abe4012374e",
+  "head": "058346cc20df1b3491e5a335ba7a42a1b0bf7bf0",
   "codeCommit": "2bfe3a8",
-  "evidenceCommit": "this commit",
+  "evidenceCommit": "058346c",
   "route": "/?optics=v4 (beauty) and /?optics=v4&foundation=layout&annotate=0 (gate)",
-  "captureTimestampUtc": "2026-08-20T16:24:29Z",
+  "captureTimestampUtc": "2026-08-20T16:28:58Z",
   "fixedCaptureConditions": {
     "quality": "high (pinned; adaptive quality must not drift between captures)",
     "mediaTimeSeconds": 2,
@@ -270,9 +270,19 @@
       "sha256": "c75e90a446d4df669bc582955e06f91cfa487669aea1a863dcd28ed139c562df"
     },
     {
+      "path": "qa-v5/f27/runtime-assertions.json",
+      "bytes": 104850,
+      "sha256": "0e4b44280572377c748caf79112005f9980283186f803614904edf4eea7f7746"
+    },
+    {
       "path": "qa-v5/f27/session/runtime-assertions.json",
       "bytes": 104850,
       "sha256": "0e4b44280572377c748caf79112005f9980283186f803614904edf4eea7f7746"
+    },
+    {
+      "path": "qa-v5/f27/shipped-default-proof.json",
+      "bytes": 1265,
+      "sha256": "ef21b7d13d1f672985627081add4d179268d00a252935094fd2a96fca2adfa5d"
     },
     {
       "path": "qa-v5/f27/target-phase-determinism.json",
