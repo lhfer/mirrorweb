@@ -67,7 +67,10 @@ def pct(a: float, b: float) -> float:
 
 def build(target_png: Path, local_dir: Path, out_dir: Path) -> dict:
     target = ML.measure(target_png)
-    local_rest = ML.measure(local_dir / "01-rest.png", void_max=8)
+    # No void override any more. Since F2 calibrated CLEAR_COLOR the local void
+    # is the same navy the Target clears to, so the detector auto-selects its
+    # NAVY preset on both sides: one instrument, one calibration, both frames.
+    local_rest = ML.measure(local_dir / "01-rest.png")
 
     # Both frames resolve four row bands: clipped top, mid, bottom, clipped
     # bottom. Index 1 is the mid row, index 2 the bottom row.

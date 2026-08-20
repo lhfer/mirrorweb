@@ -1,5 +1,5 @@
 import { AmbientLight, Vector3, type DirectionalLight } from "three/webgpu";
-import { CAMERA, GRID, TILE, type QualityLevel } from "../../config";
+import { CAMERA, GRID, TILE, restOffset, type QualityLevel } from "../../config";
 import { readDebugMode, type DebugMode } from "../../debug/DebugMode";
 import { isFoundationLayout, readFoundationMode, type FoundationMode } from "../../debug/FoundationMode";
 import { FoundationOverlay } from "../../debug/FoundationOverlay";
@@ -81,6 +81,19 @@ export class GridAppV4 {
     return isFoundationLayout(this.foundation);
   }
 
+  /**
+   * World offset the grid is placed at: the user's scroll plus the regime's
+   * rest offset. Keeping it in one place means recycling, projected quads and
+   * QA landmarks all agree about where the grid actually is.
+   */
+  private gridX(scrollX = this.motion.scrollX): number {
+    return scrollX + restOffset(window.innerWidth, window.innerHeight).x;
+  }
+
+  private gridY(scrollY = this.motion.scrollY): number {
+    return scrollY + restOffset(window.innerWidth, window.innerHeight).y;
+  }
+
   async start(): Promise<void> {
     const loadingHost = document.getElementById(this.options.loadingId ?? "loading-overlay");
     const overlayHost = document.getElementById(this.options.pageOverlayId ?? "page-overlay");
@@ -135,7 +148,7 @@ export class GridAppV4 {
       this.labels.attach(this.gridAsV3(), this.debugMode);
       this.labels.setSize(window.innerWidth, window.innerHeight);
     }
-    this.grid.update(0, 0);
+    this.grid.update(this.gridX(0), this.gridY(0));
     this.applyPose();
     if (!this.layoutOnly) this.labels.sync(this.gridAsV3(), handle.camera);
 
@@ -218,7 +231,7 @@ export class GridAppV4 {
   setOffset(x: number, y: number): void {
     this.motion.scrollX = x;
     this.motion.scrollY = y;
-    this.grid.update(x, y);
+    this.grid.update(this.gridX(x), this.gridY(y));
     this.applyPose();
   }
 
@@ -269,7 +282,7 @@ export class GridAppV4 {
   reset(): void {
     this.motion.reset();
     this.elapsed = 0;
-    this.grid.update(0, 0);
+    this.grid.update(this.gridX(0), this.gridY(0));
     this.applyPose();
   }
 
@@ -320,6 +333,7 @@ export class GridAppV4 {
       lightY: this.motion.lightY,
       tile: TILE,
       grid: GRID,
+      compositionScale: this.renderer.compositionScale,
       landmarks,
     };
   }
@@ -369,6 +383,9 @@ export class GridAppV4 {
       optics: "v4",
       version: V4_OPTICS_CONFIG.version,
       foundation: this.foundation,
+      compositionScale: this.renderer.compositionScale,
+      viewZoom: this.renderer.viewZoom,
+      viewport: [window.innerWidth, window.innerHeight],
       route: location.pathname,
       normalPathDirectMedia: false,
       v3Preserved: true,
@@ -446,6 +463,9 @@ export class GridAppV4 {
   private bindWindow(): void {
     const apply = () => {
       this.renderer.resize();
+      // The rest offset is regime-dependent, so a resize can flip the brick
+      // parity; re-place the grid before anything reads its positions.
+      this.grid.update(this.gridX(), this.gridY());
       this.applyPipelineSize();
       this.labels.setSize(window.innerWidth, window.innerHeight);
       this.foundationOverlay?.setSize(window.innerWidth, window.innerHeight);
@@ -474,7 +494,7 @@ export class GridAppV4 {
     const level = this.quality.sample(dt * 1000, now);
     if (level !== this.quality.level) this.setQuality(level);
     this.motion.step(dt);
-    this.grid.update(this.motion.scrollX, this.motion.scrollY);
+    this.grid.update(this.gridX(), this.gridY());
     this.applyPose();
     const handle = this.renderer.handle;
     if (!this.layoutOnly) this.labels.sync(this.gridAsV3(), handle.camera);

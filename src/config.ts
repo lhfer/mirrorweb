@@ -71,13 +71,96 @@ export const MOTION = {
   lightTravel: 120,
 };
 
-/** Pull the camera back on short or narrow frames so the brick grid stays discrete. A 1440×900 stays at 1. */
-export function viewZoom(width: number, height: number) {
-  const minW = TILE.width + GRID.cellW * 0.85;
-  const minH = TILE.height + GRID.cellH * 0.65;
-  return Math.max(1, minW / Math.max(1, width), minH / Math.max(1, height));
+/**
+ * Responsive composition scaling (Stage F2).
+ *
+ * `compositionScale` is S: screen pixels per world unit on the z = 0 plane. The
+ * V5 Foundation geometry is fitted at 1440x900 where S = 1, and every other
+ * viewport is that same world grid viewed at a different scale. Nothing about
+ * the cards changes; only S does.
+ *
+ * The law is measured, not assumed. scripts/v5/fit-scale.py recovers S from the
+ * live Target at a sweep of viewports, holding the world geometry fixed, and
+ * two regimes come out:
+ *
+ *   landscape (width >= height)  S = width / 1440
+ *   portrait  (width <  height)  S = PORTRAIT_GAIN * width / 1440
+ *
+ * The split is ORIENTATION, not a width breakpoint: a 700x900 portrait window
+ * uses the portrait law while a 667x375 landscape window uses the landscape
+ * one, even though the portrait window is the wider of the two. A width
+ * breakpoint cannot produce that.
+ *
+ * It is a width law, not a height or area law: at a fixed 1440 width the Target
+ * returns the same S at 700 and at 1080 tall.
+ */
+export function isPortrait(width: number, height: number): boolean {
+  return width < height;
 }
 
-export const CLEAR_COLOR = 0x000208;
+export const RESPONSIVE = {
+  /** Viewport the Foundation geometry was fitted at; S is 1 here by definition. */
+  referenceWidth: 1440,
+  landscapeGain: 1,
+  portraitGain: 1.8975,
+  /**
+   * How a scale is realised. "camera" moves the camera along z and leaves the
+   * focal length alone; "focal" scales the focal length and leaves the camera
+   * where it is. They agree to first order and differ in how fast an outer card
+   * shrinks, which is what the fit was asked to decide.
+   */
+  mechanism: "focal" as "camera" | "focal",
+  /**
+   * Rest offset in world units, per regime.
+   *
+   * Landscape is zero: at 1440x900, 1366x768, 1920x1080 and 844x390 the local
+   * gutters land on the Target's to within 1 px with no offset at all.
+   *
+   * Portrait is half a cell across. The Target's portrait composition has the
+   * OPPOSITE brick parity to its landscape one -- a row that carries a centre
+   * gutter in landscape carries a centre card in portrait -- and half a cell is
+   * exactly what swaps it.
+   */
+  restOffset: {
+    landscape: { x: 0, y: 0 },
+    portrait: { x: 280.57, y: 0 },
+  },
+} as const;
+
+export function restOffset(width: number, height: number): { x: number; y: number } {
+  return isPortrait(width, height) ? RESPONSIVE.restOffset.portrait : RESPONSIVE.restOffset.landscape;
+}
+
+export function compositionScale(width: number, height: number): number {
+  const gain = isPortrait(width, height) ? RESPONSIVE.portraitGain : RESPONSIVE.landscapeGain;
+  return (gain * Math.max(1, width)) / RESPONSIVE.referenceWidth;
+}
+
+/**
+ * Camera distance multiplier the render path applies. Under the "camera"
+ * mechanism a scale of S means standing 1/S as far away; under "focal" the
+ * camera does not move and the focal length carries the scale instead.
+ */
+export function viewZoom(width: number, height: number) {
+  const scale = compositionScale(width, height);
+  return RESPONSIVE.mechanism === "camera" ? 1 / scale : 1;
+}
+
+/** Effective focal length in pixels, after the responsive law. */
+export function effectivePerspectivePx(width: number, height: number) {
+  const scale = compositionScale(width, height);
+  return RESPONSIVE.mechanism === "focal" ? CAMERA.perspectivePx * scale : CAMERA.perspectivePx;
+}
+
+/**
+ * Void colour, calibrated by round trip rather than copied.
+ *
+ * The Target's gutter is a navy whose median over 161k void pixels is
+ * (0, 3, 18). Setting that value literally renders as pure black: the clear
+ * colour goes through the tone-mapped, sRGB-encoded output path, which crushes
+ * anything that dark. 0x001025 is the input that comes out the other side as
+ * exactly (0, 3, 18). See docs/v5/RESPONSIVE_SCALING.md.
+ */
+export const CLEAR_COLOR = 0x001025;
 
 export type QualityLevel = "high" | "medium" | "low";
