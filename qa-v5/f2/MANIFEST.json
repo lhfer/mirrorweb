@@ -1,0 +1,276 @@
+{
+  "stage": "f2",
+  "repository": "lhfer/mirrorweb",
+  "branch": "rebuild/liquid-glass-v5-foundation",
+  "head": "4ca597fd3fb276f835192ae0caa759042dc1cc5c",
+  "codeCommit": "dd6d7bf",
+  "evidenceCommit": "this commit",
+  "route": "/?optics=v4 (beauty) and /?optics=v4&foundation=layout&annotate=0 (gate)",
+  "captureTimestampUtc": "2026-08-20T11:00:51Z",
+  "fixedCaptureConditions": {
+    "quality": "high (pinned; adaptive quality must not drift between captures)",
+    "mediaTimeSeconds": 2,
+    "mediaState": "frozen, frame-matched across runs",
+    "dpr": 1,
+    "pointer": [
+      0,
+      0
+    ],
+    "offset": "0,0 for gate captures; 260,180 additionally for session B",
+    "motion": "paused"
+  },
+  "gateVerdict": "FAIL",
+  "targetPixelPolicy": "This directory contains LOCAL pixels and Target-derived NUMBERS only. Target pixels and Target/local overlays live in qa-v5/private/, which is git-ignored.",
+  "files": [
+    {
+      "path": "qa-v5/f2/README.md",
+      "bytes": 2794,
+      "sha256": "d24a71d914ce0c5b67b4e5a873af7d7642b7f4bb34405cc41667ad05bcfdf0bb"
+    },
+    {
+      "path": "qa-v5/f2/beauty/1100x720/01-rest.json",
+      "bytes": 48367,
+      "sha256": "9499a09946fce6fbc01d11b167bf32ecce7ac5a7609fc393453cdf05a5515a79"
+    },
+    {
+      "path": "qa-v5/f2/beauty/1100x720/01-rest.png",
+      "bytes": 1045545,
+      "sha256": "2d4156e28ad3fd143171af65c9809b22df0405db56de95d55526e6fb6ade84a8"
+    },
+    {
+      "path": "qa-v5/f2/beauty/1100x720/manifest.json",
+      "bytes": 2008,
+      "sha256": "29db883d79f0d90a1be9ef76d420942d9466c609aa76b2f096ed3b7be43fc424"
+    },
+    {
+      "path": "qa-v5/f2/beauty/1366x768/01-rest.json",
+      "bytes": 48367,
+      "sha256": "a692f5227b7e4592dd76f9114269c7f2e117ff59630caf41328883ead7fe84f1"
+    },
+    {
+      "path": "qa-v5/f2/beauty/1366x768/01-rest.png",
+      "bytes": 1322179,
+      "sha256": "981da852528624ed1ee9a913903e300e611acd9369b2af6ba206172bd053e94e"
+    },
+    {
+      "path": "qa-v5/f2/beauty/1366x768/manifest.json",
+      "bytes": 2008,
+      "sha256": "50622d3d7da95b7b0e25d24e2cf4af412d7885969be78022ac56b03b92b68891"
+    },
+    {
+      "path": "qa-v5/f2/beauty/1440x900/01-rest.json",
+      "bytes": 48315,
+      "sha256": "fefda52830938bd9ccca0ddeebd5b12d9203519f0d4a8e17174176b7dd42d08d"
+    },
+    {
+      "path": "qa-v5/f2/beauty/1440x900/01-rest.png",
+      "bytes": 1569939,
+      "sha256": "6560a30cdd56bb55ce84ff2fffe01d368bcd9e6db0a8e8effa3644cbc7956cb4"
+    },
+    {
+      "path": "qa-v5/f2/beauty/1440x900/manifest.json",
+      "bytes": 2008,
+      "sha256": "25709ece93c0bb48066cf8737b428acc20f844760323c69f14deaa3a00223eae"
+    },
+    {
+      "path": "qa-v5/f2/beauty/1920x1080/01-rest.json",
+      "bytes": 48341,
+      "sha256": "92f0991ad387286a3386e320cfd85381bc4650f04a154515a85bdff39a1a96e8"
+    },
+    {
+      "path": "qa-v5/f2/beauty/1920x1080/01-rest.png",
+      "bytes": 2363624,
+      "sha256": "3847a978068335fbcebe479b6b7ccad74e8a5dec8bcf0048f57d500b9667b59b"
+    },
+    {
+      "path": "qa-v5/f2/beauty/1920x1080/manifest.json",
+      "bytes": 2011,
+      "sha256": "8f3e5b4cbdc2e275bc6d6e995585768d90224e3b052ce202152943ba9fb36be0"
+    },
+    {
+      "path": "qa-v5/f2/beauty/390x844/01-rest.json",
+      "bytes": 48194,
+      "sha256": "02c169034e35eac749b25dce3f21095c137317f3302a44905ece041a98e7f93e"
+    },
+    {
+      "path": "qa-v5/f2/beauty/390x844/01-rest.png",
+      "bytes": 446553,
+      "sha256": "de8f149525af4ec955e0b4874640817e07f7170089016bf3ecc3ceb54d570b3b"
+    },
+    {
+      "path": "qa-v5/f2/beauty/390x844/manifest.json",
+      "bytes": 2005,
+      "sha256": "eabf9cf489bdb41d2aac039b106084abd004a368b7abb4d081b75a7979be5f54"
+    },
+    {
+      "path": "qa-v5/f2/beauty/844x390/01-rest.json",
+      "bytes": 48360,
+      "sha256": "e1ed0a46592aded55bdf7e3ae3528223efd5663c28ac08fab32bbffd5a806d38"
+    },
+    {
+      "path": "qa-v5/f2/beauty/844x390/01-rest.png",
+      "bytes": 470307,
+      "sha256": "dea9d20f685e8cf53587c949fb7941ef2c5d0153d3a02dfe70f8bbcac43f8880"
+    },
+    {
+      "path": "qa-v5/f2/beauty/844x390/manifest.json",
+      "bytes": 2005,
+      "sha256": "6b05aa524f707084e0fe1b85e1ebeff2648c7a52b15ffb22ca49fced7e5a943b"
+    },
+    {
+      "path": "qa-v5/f2/beauty-six-viewports.png",
+      "bytes": 3784889,
+      "sha256": "3ca42971d7450852a067d81b667e74740421cdc54a1a874853e376f0dddc2c13"
+    },
+    {
+      "path": "qa-v5/f2/cross-validation-v2.json",
+      "bytes": 5214,
+      "sha256": "5d89614d3d01ce9fcb0efe3df4c8e9461867fd063f69e50a0b15029855e65086"
+    },
+    {
+      "path": "qa-v5/f2/cross-validation.json",
+      "bytes": 3517,
+      "sha256": "2e796224fe397a965c1a270d293abb3ac3da0a23f05de8d66d05bb782ec10741"
+    },
+    {
+      "path": "qa-v5/f2/gate.json",
+      "bytes": 31348,
+      "sha256": "f29ec0d346178186e6a7018e774c6aea9564e76a3829df23182d47e9bff3a0c1"
+    },
+    {
+      "path": "qa-v5/f2/local/1100x720/01-rest.json",
+      "bytes": 47898,
+      "sha256": "9e99c3948337d33cf9dc3e875c8a1dda1e3599ccf8a6f190d4f704642da04520"
+    },
+    {
+      "path": "qa-v5/f2/local/1100x720/01-rest.png",
+      "bytes": 5582,
+      "sha256": "319e6d33930b46c2587b60cd2a588e04cb88a66eaa20703bfc094c4944bbf654"
+    },
+    {
+      "path": "qa-v5/f2/local/1100x720/manifest.json",
+      "bytes": 803,
+      "sha256": "a295081f446e2238d3100ada539f529bbf6a9a98cbe58ff7e643f962750f3a18"
+    },
+    {
+      "path": "qa-v5/f2/local/1366x768/01-rest.json",
+      "bytes": 47899,
+      "sha256": "e00df86d4eb22fa8ccf6af5eefe335f97d96859e22d72624c93c9ab546d29044"
+    },
+    {
+      "path": "qa-v5/f2/local/1366x768/01-rest.png",
+      "bytes": 5966,
+      "sha256": "dcca76338c2482ed76e4419efa05519d8f7744ab6b07b97ebf75260886934709"
+    },
+    {
+      "path": "qa-v5/f2/local/1366x768/manifest.json",
+      "bytes": 803,
+      "sha256": "3207b8329983bc16f6e5382b8d6d891b565580a6a5da2a7f572b12fd3e36709d"
+    },
+    {
+      "path": "qa-v5/f2/local/1440x900/01-rest.json",
+      "bytes": 47847,
+      "sha256": "9a418cf1064f396cc51e9aba31ecd03fc28fc4069fd6c386ff6d0f69795b559a"
+    },
+    {
+      "path": "qa-v5/f2/local/1440x900/01-rest.png",
+      "bytes": 7914,
+      "sha256": "4140551b4d383e48909849a117a30510914030ae14c23e05d2369899952b57e9"
+    },
+    {
+      "path": "qa-v5/f2/local/1440x900/manifest.json",
+      "bytes": 803,
+      "sha256": "c538fcc029e2ff80a13c87d735def4df10071eef253809ffc2bb4843fb975790"
+    },
+    {
+      "path": "qa-v5/f2/local/1920x1080/01-rest.json",
+      "bytes": 47872,
+      "sha256": "3d9cd8a4733121464941e00d717f331f1448cf1b3d9a848eff0bad4ff842a752"
+    },
+    {
+      "path": "qa-v5/f2/local/1920x1080/01-rest.png",
+      "bytes": 9997,
+      "sha256": "2af49aece2b3dda5866114e18d5306afb09bbe406ec36b8e719349335f52064f"
+    },
+    {
+      "path": "qa-v5/f2/local/1920x1080/manifest.json",
+      "bytes": 806,
+      "sha256": "d1fd599c3aa60ecb4507b23971f9507ce828737fe62ffb51d6b33fbea994ca15"
+    },
+    {
+      "path": "qa-v5/f2/local/390x844/01-rest.json",
+      "bytes": 47737,
+      "sha256": "81d74bcae9a31269fccfecbf19b0f405e67102bafb5c93c940b8261905631a62"
+    },
+    {
+      "path": "qa-v5/f2/local/390x844/01-rest.png",
+      "bytes": 3610,
+      "sha256": "1c52a527970d06c44447ba22b0347a5c58dfdbad89e07d5084c4e927b96233cc"
+    },
+    {
+      "path": "qa-v5/f2/local/390x844/manifest.json",
+      "bytes": 800,
+      "sha256": "d8ba6d029873ebd3c6c7075e4a2572f4e426a566c7d0ea205b1b984b45c536b4"
+    },
+    {
+      "path": "qa-v5/f2/local/844x390/01-rest.json",
+      "bytes": 47891,
+      "sha256": "b1a864df57062d66ded173c0c1b3284206546766874a24b2b8298411627cb2d4"
+    },
+    {
+      "path": "qa-v5/f2/local/844x390/01-rest.png",
+      "bytes": 2194,
+      "sha256": "6f035e3484583de2bcdf5480914ddc8739d4daaee6f25e8a38785cad47481698"
+    },
+    {
+      "path": "qa-v5/f2/local/844x390/manifest.json",
+      "bytes": 800,
+      "sha256": "9c071e1c07cb71deb389c936e80339055461d98f7fce962e97967d6440e51261"
+    },
+    {
+      "path": "qa-v5/f2/model-fit-summary.json",
+      "bytes": 2472,
+      "sha256": "309167526bc6cc92e642f1988772303a28a14b2b1c73bdf553d0880a644aa90a"
+    },
+    {
+      "path": "qa-v5/f2/orientation-boundary-local.mp4",
+      "bytes": 2898515,
+      "sha256": "722cd8a481ce76b56eb42179d9c7174a33ba0783989a65e4351044accc5caf72"
+    },
+    {
+      "path": "qa-v5/f2/orientation-boundary-target-metrics.json",
+      "bytes": 8160,
+      "sha256": "e8f68161e1cf5b195066797159f0f1a6886ae0397ef727c8a71c08c96e8faef9"
+    },
+    {
+      "path": "qa-v5/f2/orientation-boundary.json",
+      "bytes": 6020,
+      "sha256": "3833148b1701ec1ee3ec996032ba712e2a6aeff64e83e03b4359405583752683"
+    },
+    {
+      "path": "qa-v5/f2/pairs.json",
+      "bytes": 1091,
+      "sha256": "6cbd3d6ad1796f75eca7f33e0215ae126c4683b4f82d1d2a839ae108da68ba65"
+    },
+    {
+      "path": "qa-v5/f2/session/nonzero-offset/resize-session-nonzero-offset.mp4",
+      "bytes": 2953892,
+      "sha256": "a6a36d87838ab123b3b7bb8cbee3ccccb2b34bb02bbf1199df0f4e7658889ef0"
+    },
+    {
+      "path": "qa-v5/f2/session/rest/resize-session-rest.mp4",
+      "bytes": 2898515,
+      "sha256": "722cd8a481ce76b56eb42179d9c7174a33ba0783989a65e4351044accc5caf72"
+    },
+    {
+      "path": "qa-v5/f2/session/runtime-assertions.json",
+      "bytes": 182976,
+      "sha256": "58da5055117e1027bf55a1edfc9eb20bbb326174ed75cd211fa35e8b56a86f93"
+    },
+    {
+      "path": "qa-v5/f2/target-measurements.json",
+      "bytes": 68037,
+      "sha256": "30af080d16bd39c09de7286c82df98c39bfafdbf14b33ef34613366fbd9bdffc"
+    }
+  ]
+}

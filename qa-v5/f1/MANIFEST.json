@@ -1,0 +1,101 @@
+{
+  "stage": "f1",
+  "repository": "lhfer/mirrorweb",
+  "branch": "rebuild/liquid-glass-v5-foundation",
+  "head": "4ca597fd3fb276f835192ae0caa759042dc1cc5c",
+  "codeCommit": "7f18314",
+  "evidenceCommit": "this commit",
+  "route": "/?optics=v4 (beauty) and /?optics=v4&foundation=layout&annotate=0 (gate)",
+  "captureTimestampUtc": "2026-08-20T10:57:27Z",
+  "fixedCaptureConditions": {
+    "quality": "high (pinned; adaptive quality must not drift between captures)",
+    "mediaTimeSeconds": 2,
+    "mediaState": "frozen, frame-matched across runs",
+    "dpr": 1,
+    "pointer": [
+      0,
+      0
+    ],
+    "offset": "0,0 for gate captures; 260,180 additionally for session B",
+    "motion": "paused"
+  },
+  "gateVerdict": null,
+  "targetPixelPolicy": "This directory contains LOCAL pixels and Target-derived NUMBERS only. Target pixels and Target/local overlays live in qa-v5/private/, which is git-ignored.",
+  "files": [
+    {
+      "path": "qa-v5/f1/beauty-cover.png",
+      "bytes": 1569812,
+      "sha256": "2eff36db95b052562e734fbe206d959c0bf17d54e57b06726709ebba034cdc29"
+    },
+    {
+      "path": "qa-v5/f1/calibration-contain-dpr2.png",
+      "bytes": 236003,
+      "sha256": "ed581a34a9c7b1bc2e76e894197090416edbda08f446eea3d0a6db6cb72d12e6"
+    },
+    {
+      "path": "qa-v5/f1/calibration-contain.png",
+      "bytes": 88275,
+      "sha256": "7c853a408d60bad2bca127de4bf6075cc71faf4caa9227f963ff37647d8a789a"
+    },
+    {
+      "path": "qa-v5/f1/calibration-cover-dpr2.png",
+      "bytes": 276174,
+      "sha256": "2f29fba88a454e49abd5acb61c7c5b6c748d1975f9aeebd21e75e4860aa64ef9"
+    },
+    {
+      "path": "qa-v5/f1/calibration-cover.png",
+      "bytes": 104162,
+      "sha256": "ae6d757487b17055ffc10cc257d4111825b3342177f6d188d257e8938d31d1f9"
+    },
+    {
+      "path": "qa-v5/f1/calibration-stretch-dpr2.png",
+      "bytes": 281443,
+      "sha256": "b8c3ae9c14d4b5808d67f999642ebe80a7be556811a2edff17dcd32d788b208e"
+    },
+    {
+      "path": "qa-v5/f1/calibration-stretch.png",
+      "bytes": 103995,
+      "sha256": "6791727eb799303117098c566f8aec3ce81bafb1bdca11feaad56c95d48740b2"
+    },
+    {
+      "path": "qa-v5/f1/clips-cover.png",
+      "bytes": 1594804,
+      "sha256": "d423f480fd6cc44f48231d145421946c15cf5e9af149cf0c4a26e3cf8bbd334e"
+    },
+    {
+      "path": "qa-v5/f1/clips-stretch.png",
+      "bytes": 1630862,
+      "sha256": "a02c305697d5b9a845fd2e514ef4dfcbf1bda01032bcea6b9a9a37344c0c678d"
+    },
+    {
+      "path": "qa-v5/f1/crop-cursor-niulai.png",
+      "bytes": 465709,
+      "sha256": "c5a7a620cadf1554c7922f8d4815b4763834557705c88e98c8a6405459937665"
+    },
+    {
+      "path": "qa-v5/f1/crop-niulai-intro.png",
+      "bytes": 721809,
+      "sha256": "6de32f21250d0454a5d2da9289f7b7362c305a2b44cc1b1ba54a45e6ddb6a477"
+    },
+    {
+      "path": "qa-v5/f1/crop-pelican-ai.png",
+      "bytes": 337603,
+      "sha256": "41baaa870f53351af804f441e89537fb4100de80025c00822702653803f79e54"
+    },
+    {
+      "path": "qa-v5/f1/crop-preview-sheet.png",
+      "bytes": 768979,
+      "sha256": "67765097958f5815123b59b8dc8c2c382242d15aed9f1e959b98f2999d131e6d"
+    },
+    {
+      "path": "qa-v5/f1/mediafit-sheet.png",
+      "bytes": 1214875,
+      "sha256": "d9df0c5493a026290f0f8686b8d721ace4fb3bfd75e308e8c0244235c563d3ed"
+    },
+    {
+      "path": "qa-v5/f1/mediafit.json",
+      "bytes": 6553,
+      "sha256": "4adff7c3471db67c8c2655a4b1e214ab153b0f507cb31d04e705fd4a3eadff03"
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "question": "Is the orientation switch real, where is it, and which side does a square take?",
+  "answer": {
+    "hardSwitchAtWidthEqualsHeight": true,
+    "evidence": "Two corners, 1 px either side. At 900: gain 1.807 portrait vs 0.983 landscape. At 700: 1.806 vs 0.982. A gradual aspect law cannot produce a step across a single pixel.",
+    "squareTakesLandscapeSide": true,
+    "shippedRuleMatches": "isPortrait = width < height, so a square takes landscape. Correct.",
+    "otherBreakpointsFound": "none between aspect 0.53 and 1.88",
+    "isItOnlyRestOffsetOrParity": "No. The step is in SCALE: the portrait side is ~1.84x the landscape side across the same 1 px boundary.",
+    "aspectDependenceInPortrait": "Real. Implied gain drifts 1.880 at aspect 0.53 to 1.806 near square -- the shipped constant gain is an approximation, quantified here for the first time."
+  },
+  "corners": {
+    "900x900 corner": {
+      "portraitSide": {
+        "899x900": 1.8069
+      },
+      "square": {
+        "900x900": 0.9838
+      },
+      "landscapeSide": {
+        "900x899": 0.9828
+      },
+      "jumpRatio": 1.8385,
+      "squareTakes": "landscape"
+    },
+    "700x700 corner": {
+      "portraitSide": {
+        "699x700": 1.8063
+      },
+      "square": {
+        "700x700": 0.9602
+      },
+      "landscapeSide": {
+        "700x699": 0.9823
+      },
+      "jumpRatio": 1.8388,
+      "squareTakes": "landscape"
+    }
+  },
+  "targetVsLocal": [
+    {
+      "id": "425x800",
+      "aspect": 0.53125,
+      "orientation": "portrait",
+      "targetScale": 0.55479,
+      "targetImpliedGain": 1.8798,
+      "localScale": 0.56003,
+      "localImpliedGain": 1.8975,
+      "targetRowBands": [
+        166.0,
+        399.5,
+        632.5
+      ]
+    },
+    {
+      "id": "470x760",
+      "aspect": 0.61842,
+      "orientation": "portrait",
+      "targetScale": 0.60712,
+      "targetImpliedGain": 1.8601,
+      "localScale": 0.61932,
+      "localImpliedGain": 1.8975,
+      "targetRowBands": [
+        124.0,
+        379.5,
+        634.5
+      ]
+    },
+    {
+      "id": "520x720",
+      "aspect": 0.72222,
+      "orientation": "portrait",
+      "targetScale": 0.66242,
+      "targetImpliedGain": 1.8344,
+      "localScale": 0.68521,
+      "localImpliedGain": 1.8975,
+      "targetRowBands": [
+        80.5,
+        359.5,
+        637.5
+      ]
+    },
+    {
+      "id": "565x680",
+      "aspect": 0.83088,
+      "orientation": "portrait",
+      "targetScale": 0.7088,
+      "targetImpliedGain": 1.8065,
+      "localScale": 0.74451,
+      "localImpliedGain": 1.8975,
+      "targetRowBands": [
+        41.0,
+        339.0,
+        637.0
+      ]
+    },
+    {
+      "id": "699x700",
+      "aspect": 0.99857,
+      "orientation": "portrait",
+      "targetScale": 0.87679,
+      "targetImpliedGain": 1.8063,
+      "localScale": null,
+      "localImpliedGain": null,
+      "targetRowBands": [
+        349.5
+      ]
+    },
+    {
+      "id": "899x900",
+      "aspect": 0.99889,
+      "orientation": "portrait",
+      "targetScale": 1.12806,
+      "targetImpliedGain": 1.8069,
+      "localScale": null,
+      "localImpliedGain": null,
+      "targetRowBands": [
+        449.0
+      ]
+    },
+    {
+      "id": "617x617",
+      "aspect": 1.0,
+      "orientation": "square",
+      "targetScale": 0.42159,
+      "targetImpliedGain": 0.9839,
+      "localScale": 0.42847,
+      "localImpliedGain": 1.0,
+      "targetRowBands": [
+        131.0,
+        308.0,
+        485.5
+      ]
+    },
+    {
+      "id": "700x700",
+      "aspect": 1.0,
+      "orientation": "square",
+      "targetScale": 0.46678,
+      "targetImpliedGain": 0.9602,
+      "localScale": null,
+      "localImpliedGain": null,
+      "targetRowBands": [
+        149.0,
+        349.5,
+        541.5,
+        550.5
+      ]
+    },
+    {
+      "id": "900x900",
+      "aspect": 1.0,
+      "orientation": "square",
+      "targetScale": 0.61485,
+      "targetImpliedGain": 0.9838,
+      "localScale": null,
+      "localImpliedGain": null,
+      "targetRowBands": [
+        192.0,
+        449.5,
+        709.0
+      ]
+    },
+    {
+      "id": "900x899",
+      "aspect": 1.00111,
+      "orientation": "landscape",
+      "targetScale": 0.61425,
+      "targetImpliedGain": 0.9828,
+      "localScale": null,
+      "localImpliedGain": null,
+      "targetRowBands": [
+        191.0,
+        449.0,
+        707.5
+      ]
+    },
+    {
+      "id": "700x699",
+      "aspect": 1.00143,
+      "orientation": "landscape",
+      "targetScale": 0.47749,
+      "targetImpliedGain": 0.9823,
+      "localScale": null,
+      "localImpliedGain": null,
+      "targetRowBands": [
+        148.5,
+        349.0,
+        550.0
+      ]
+    },
+    {
+      "id": "680x565",
+      "aspect": 1.20354,
+      "orientation": "landscape",
+      "targetScale": 0.46322,
+      "targetImpliedGain": 0.9809,
+      "localScale": 0.47222,
+      "localImpliedGain": 1.0,
+      "targetRowBands": [
+        86.5,
+        282.0,
+        476.0
+      ]
+    },
+    {
+      "id": "720x520",
+      "aspect": 1.38462,
+      "orientation": "landscape",
+      "targetScale": 0.49414,
+      "targetImpliedGain": 0.9883,
+      "localScale": 0.5,
+      "localImpliedGain": 1.0,
+      "targetRowBands": [
+        52.0,
+        259.5,
+        467.5
+      ]
+    },
+    {
+      "id": "760x470",
+      "aspect": 1.61702,
+      "orientation": "landscape",
+      "targetScale": 0.5209,
+      "targetImpliedGain": 0.987,
+      "localScale": 0.52778,
+      "localImpliedGain": 1.0,
+      "targetRowBands": [
+        15.5,
+        234.0,
+        453.5
+      ]
+    },
+    {
+      "id": "800x425",
+      "aspect": 1.88235,
+      "orientation": "landscape",
+      "targetScale": 0.55601,
+      "targetImpliedGain": 1.0008,
+      "localScale": 0.55556,
+      "localImpliedGain": 1.0,
+      "targetRowBands": [
+        212.0
+      ]
+    }
+  ],
+  "note": "Target scales come from the row-band pitch, a full-width statistic; they carry a known ~2-3% low bias versus the least-squares fit, which cancels in the portrait/landscape ratio the question turns on."
+}

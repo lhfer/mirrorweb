@@ -65,6 +65,19 @@ const VIEWPORTS = [
   { w: 500, h: 900, mode: "portrait", mobile: true },
   { w: 320, h: 900, mode: "portrait", mobile: true },
   { w: 700, h: 900, mode: "portrait", mobile: false },
+  // Orientation boundary. The shipped law switches regime at width == height,
+  // which would be a ~1.9x instantaneous scale jump. These sit either side of
+  // the switch, and on it, so the Target can say whether it really steps there.
+  { w: 900, h: 899, mode: "boundary" }, { w: 900, h: 900, mode: "boundary" },
+  { w: 899, h: 900, mode: "boundary", mobile: false },
+  { w: 700, h: 699, mode: "boundary" }, { w: 700, h: 700, mode: "boundary" },
+  { w: 699, h: 700, mode: "boundary", mobile: false },
+  // Continuous landscape -> square -> portrait sweep through the same corner.
+  { w: 844, h: 390, mode: "sweep" }, { w: 800, h: 425, mode: "sweep" },
+  { w: 760, h: 470, mode: "sweep" }, { w: 720, h: 520, mode: "sweep" },
+  { w: 680, h: 565, mode: "sweep" }, { w: 617, h: 617, mode: "sweep" },
+  { w: 565, h: 680, mode: "sweep" }, { w: 520, h: 720, mode: "sweep" },
+  { w: 470, h: 760, mode: "sweep" }, { w: 425, h: 800, mode: "sweep" },
   // Controls.
   // 1. Same viewport, no mobile UA / touch: separates "the site branches on
   //    width" from "the site branches on user agent or touch". Only the first

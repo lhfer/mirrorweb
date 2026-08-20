@@ -1,0 +1,202 @@
+{
+  "hypothesis": "focal",
+  "source": "qa-v5/f2/target-measurements.json",
+  "note": "Scales are measured per viewport by scripts/v5/fit-scale.py. No value in this file is produced by evaluating the shipped responsive law.",
+  "landscape": {
+    "model": "S = gain * width / 1440",
+    "fittedGainAllViewports": 1.00288,
+    "viewports": [
+      "1100x720",
+      "1366x768",
+      "1440x900",
+      "1920x1080",
+      "844x390"
+    ],
+    "leaveOneOut": [
+      {
+        "viewport": "1100x720",
+        "orientation": "landscape",
+        "aspect": 1.52778,
+        "measuredScale": 0.76321,
+        "predictedScale": 0.76629,
+        "errorPct": 0.404,
+        "fitRmsPx": 0.931,
+        "fitMaxPx": 1.9,
+        "measuredScrollX": 0.652,
+        "measuredScrollY": 208.883,
+        "gainFromOthers": 1.00315,
+        "trainedOn": [
+          "1366x768",
+          "1440x900",
+          "1920x1080",
+          "844x390"
+        ]
+      },
+      {
+        "viewport": "1366x768",
+        "orientation": "landscape",
+        "aspect": 1.77865,
+        "measuredScale": 0.94867,
+        "predictedScale": 0.95135,
+        "errorPct": 0.283,
+        "fitRmsPx": 3.362,
+        "fitMaxPx": 9.5,
+        "measuredScrollX": 0.526,
+        "measuredScrollY": 198.992,
+        "gainFromOthers": 1.00289,
+        "trainedOn": [
+          "1100x720",
+          "1440x900",
+          "1920x1080",
+          "844x390"
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "orientation": "landscape",
+        "aspect": 1.6,
+        "measuredScale": 0.99941,
+        "predictedScale": 1.00297,
+        "errorPct": 0.356,
+        "fitRmsPx": 1.502,
+        "fitMaxPx": 3.262,
+        "measuredScrollX": 0.595,
+        "measuredScrollY": 208.473,
+        "gainFromOthers": 1.00297,
+        "trainedOn": [
+          "1100x720",
+          "1366x768",
+          "1920x1080",
+          "844x390"
+        ]
+      },
+      {
+        "viewport": "1920x1080",
+        "orientation": "landscape",
+        "aspect": 1.77778,
+        "measuredScale": 1.33685,
+        "predictedScale": 1.33717,
+        "errorPct": 0.024,
+        "fitRmsPx": 6.624,
+        "fitMaxPx": 15.793,
+        "measuredScrollX": 0.038,
+        "measuredScrollY": 201.486,
+        "gainFromOthers": 1.00288,
+        "trainedOn": [
+          "1100x720",
+          "1366x768",
+          "1440x900",
+          "844x390"
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "orientation": "landscape",
+        "aspect": 2.1641,
+        "measuredScale": 0.58803,
+        "predictedScale": 0.58569,
+        "errorPct": -0.398,
+        "fitRmsPx": 0.253,
+        "fitMaxPx": 0.5,
+        "measuredScrollX": 0.647,
+        "measuredScrollY": -209.283,
+        "gainFromOthers": 0.99928,
+        "trainedOn": [
+          "1100x720",
+          "1366x768",
+          "1440x900",
+          "1920x1080"
+        ]
+      }
+    ],
+    "worstErrorPct": 0.404
+  },
+  "portrait": {
+    "model": "S = gain * width / 1440",
+    "trainedOn": [
+      "360x800",
+      "414x896",
+      "430x932"
+    ],
+    "trainingMissing": [],
+    "fittedGain": 1.86361,
+    "shippedGain": 1.8975,
+    "primaryHoldOut": [
+      {
+        "viewport": "390x844",
+        "orientation": "portrait",
+        "aspect": 0.46209,
+        "measuredScale": 0.5025,
+        "predictedScale": 0.50473,
+        "errorPct": 0.444,
+        "fitRmsPx": 4.98,
+        "fitMaxPx": 11.0,
+        "measuredScrollX": 282.125,
+        "measuredScrollY": 208.063
+      }
+    ],
+    "furtherValidation": [
+      {
+        "viewport": "390x700",
+        "orientation": "portrait",
+        "aspect": 0.55714,
+        "measuredScale": 0.50932,
+        "predictedScale": 0.50473,
+        "errorPct": -0.901,
+        "fitRmsPx": 2.675,
+        "fitMaxPx": 6.444,
+        "measuredScrollX": 280.534,
+        "measuredScrollY": 210.215
+      },
+      {
+        "viewport": "390x1000",
+        "orientation": "portrait",
+        "aspect": 0.39,
+        "measuredScale": 0.50661,
+        "predictedScale": 0.50473,
+        "errorPct": -0.371,
+        "fitRmsPx": 22.974,
+        "fitMaxPx": 60.0,
+        "measuredScrollX": 280.57,
+        "measuredScrollY": -210.215
+      },
+      {
+        "viewport": "500x900",
+        "orientation": "portrait",
+        "aspect": 0.55556,
+        "measuredScale": 0.65211,
+        "predictedScale": 0.64709,
+        "errorPct": -0.77,
+        "fitRmsPx": 0.956,
+        "fitMaxPx": 2.14,
+        "measuredScrollX": 281.331,
+        "measuredScrollY": 210.133
+      },
+      {
+        "viewport": "320x900",
+        "orientation": "portrait",
+        "aspect": 0.35556,
+        "measuredScale": 0.2962,
+        "predictedScale": 0.41414,
+        "errorPct": 39.817,
+        "fitRmsPx": 43.251,
+        "fitMaxPx": 102.226,
+        "measuredScrollX": 5.179,
+        "measuredScrollY": 579.669
+      },
+      {
+        "viewport": "700x900",
+        "orientation": "portrait",
+        "aspect": 0.77778,
+        "measuredScale": 0.90451,
+        "predictedScale": 0.90592,
+        "errorPct": 0.156,
+        "fitRmsPx": 10.82,
+        "fitMaxPx": 18.0,
+        "measuredScrollX": 281.784,
+        "measuredScrollY": -221.05
+      }
+    ],
+    "worstErrorPct": 39.817
+  }
+}

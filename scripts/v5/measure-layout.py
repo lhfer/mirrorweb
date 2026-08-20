@@ -65,7 +65,14 @@ def void_mask(rgb: np.ndarray, void: dict) -> np.ndarray:
 
 
 def pick_void(rgb: np.ndarray) -> tuple[dict, dict]:
-    """(edge preset, row-band preset) for this frame."""
+    """(edge preset, band/gutter preset) for this frame.
+
+    The relaxed preset is used for BOTH full-width statistics: horizontal row
+    bands and vertical gutters. Both require a feature to hold across most of a
+    row or column, which a patch of dark video cannot do, so the extra leakage
+    is harmless there. Per-card edge tracing walks single columns and is not
+    robust to leakage, so it keeps the strict preset.
+    """
     navy = void_mask(rgb, NAVY_VOID)
     if navy.sum() >= 20000:
         return NAVY_VOID, NAVY_VOID_BANDS
@@ -130,8 +137,9 @@ def measure(path: Path, void_max: int | None = None) -> dict:
     else:
         void, band_void = pick_void(rgb)
     raw = void_mask(rgb, void)
-    mv = despeckle(raw, axis=0)   # clean for vertical (column) tracing
-    mh = despeckle(void_mask(rgb, band_void), axis=1)  # row splitting only
+    mv = despeckle(raw, axis=0)             # per-card edge tracing: strict
+    mg = despeckle(void_mask(rgb, band_void), axis=0)  # vertical gutters: relaxed
+    mh = despeckle(void_mask(rgb, band_void), axis=1)  # row bands: relaxed
 
     # ---- horizontal gutter bands (row separators) -------------------------
     hcov = mh.mean(axis=1)
@@ -156,7 +164,7 @@ def measure(path: Path, void_max: int | None = None) -> dict:
         # rounded corners cannot open a false gutter.
         q0 = ry0 + int((ry1 - ry0) * 0.20)
         q1 = ry1 - int((ry1 - ry0) * 0.20)
-        vcov = mv[q0 : q1 + 1, :].mean(axis=0)
+        vcov = mg[q0 : q1 + 1, :].mean(axis=0)
         vg = [(a, b) for a, b in runs(vcov >= 0.85) if b - a + 1 >= 3]
 
         card_spans = []

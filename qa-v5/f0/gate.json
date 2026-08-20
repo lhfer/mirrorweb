@@ -35,27 +35,19 @@
     },
     {
       "name": "mid.right",
-      "source": "mirrored",
+      "source": "direct",
       "targetCx": 993.5,
       "localCx": 993.0,
       "dxPx": -0.5,
-      "dxPctViewport": -0.035,
-      "targetCy": 241.91,
-      "localCy": 240.4,
-      "dyPx": -1.51,
-      "dyPctViewport": -0.168
+      "dxPctViewport": -0.035
     },
     {
       "name": "mid.rightClip",
-      "source": "mirrored",
+      "source": "direct",
       "targetCx": 1355.0,
       "localCx": 1356.5,
       "dxPx": 1.5,
-      "dxPctViewport": 0.104,
-      "targetCy": 249.11,
-      "localCy": 248.47,
-      "dyPx": -0.64,
-      "dyPctViewport": -0.071
+      "dxPctViewport": 0.104
     },
     {
       "name": "bottom.left",
@@ -448,6 +440,12 @@
             "x1": 484,
             "width": 76,
             "center": 446.5
+          },
+          {
+            "x0": 955,
+            "x1": 1030,
+            "width": 76,
+            "center": 992.5
           }
         ],
         "cards": [
@@ -472,9 +470,28 @@
           },
           {
             "x0": 485,
+            "x1": 954,
+            "w": 470,
+            "cx": 719.5,
+            "clipped": {
+              "left": false,
+              "right": false,
+              "top": true,
+              "bottom": false
+            },
+            "topEdge": null,
+            "bottomEdge": {
+              "slopeDeg": 1.347,
+              "yAtCx": 425.81,
+              "median": 433.0,
+              "samples": 241
+            }
+          },
+          {
+            "x0": 1031,
             "x1": 1439,
-            "w": 955,
-            "cx": 962.0,
+            "w": 409,
+            "cx": 1235.0,
             "clipped": {
               "left": false,
               "right": true,
@@ -483,10 +500,10 @@
             },
             "topEdge": null,
             "bottomEdge": {
-              "slopeDeg": 3.414,
-              "yAtCx": 432.12,
-              "median": 440.0,
-              "samples": 488
+              "slopeDeg": 1.152,
+              "yAtCx": 442.17,
+              "median": 441.0,
+              "samples": 125
             }
           }
         ]
@@ -508,6 +525,12 @@
             "x1": 730,
             "width": 22,
             "center": 719.5
+          },
+          {
+            "x0": 1257,
+            "x1": 1270,
+            "width": 14,
+            "center": 1263.5
           }
         ],
         "cards": [
@@ -567,9 +590,28 @@
           },
           {
             "x0": 731,
+            "x1": 1256,
+            "w": 526,
+            "cx": 993.5,
+            "clipped": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": false
+            },
+            "topEdge": null,
+            "bottomEdge": {
+              "slopeDeg": 0.176,
+              "yAtCx": 440.2,
+              "median": 440.0,
+              "samples": 316
+            }
+          },
+          {
+            "x0": 1271,
             "x1": 1439,
-            "w": 709,
-            "cx": 1085.0,
+            "w": 169,
+            "cx": 1355.0,
             "clipped": {
               "left": false,
               "right": true,
@@ -577,12 +619,7 @@
               "bottom": false
             },
             "topEdge": null,
-            "bottomEdge": {
-              "slopeDeg": 0.316,
-              "yAtCx": 440.67,
-              "median": 440.0,
-              "samples": 329
-            }
+            "bottomEdge": null
           }
         ]
       },
@@ -706,6 +743,12 @@
             "x1": 764,
             "width": 90,
             "center": 719.5
+          },
+          {
+            "x0": 1227,
+            "x1": 1271,
+            "width": 45,
+            "center": 1249.0
           }
         ],
         "cards": [
@@ -749,21 +792,35 @@
           },
           {
             "x0": 765,
+            "x1": 1226,
+            "w": 462,
+            "cx": 995.5,
+            "clipped": {
+              "left": false,
+              "right": false,
+              "top": false,
+              "bottom": true
+            },
+            "topEdge": {
+              "slopeDeg": -1.996,
+              "yAtCx": 872.47,
+              "median": 873.0,
+              "samples": 278
+            },
+            "bottomEdge": null
+          },
+          {
+            "x0": 1272,
             "x1": 1439,
-            "w": 675,
-            "cx": 1102.0,
+            "w": 168,
+            "cx": 1355.5,
             "clipped": {
               "left": false,
               "right": true,
               "top": false,
               "bottom": true
             },
-            "topEdge": {
-              "slopeDeg": -1.265,
-              "yAtCx": 870.16,
-              "median": 871.0,
-              "samples": 306
-            },
+            "topEdge": null,
             "bottomEdge": null
           }
         ]

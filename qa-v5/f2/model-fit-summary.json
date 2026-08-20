@@ -1,0 +1,121 @@
+{
+  "hypothesisCompared": {
+    "camera": {
+      "viewports": 15,
+      "meanRmsPx": 9.589,
+      "maxRmsPx": 40.222
+    },
+    "focal": {
+      "viewports": 15,
+      "meanRmsPx": 9.028,
+      "maxRmsPx": 43.251
+    }
+  },
+  "measuredScales": {
+    "1100x720": {
+      "scale": 0.76321,
+      "gain": 0.99911,
+      "rms": 0.931,
+      "orientation": "landscape",
+      "aspect": 1.52778
+    },
+    "1170x2532": {
+      "scale": 1.50285,
+      "gain": 1.84966,
+      "rms": 14.878,
+      "orientation": "portrait",
+      "aspect": 0.46209
+    },
+    "1366x768": {
+      "scale": 0.94867,
+      "gain": 1.00006,
+      "rms": 3.362,
+      "orientation": "landscape",
+      "aspect": 1.77865
+    },
+    "1440x900": {
+      "scale": 0.99941,
+      "gain": 0.99941,
+      "rms": 1.502,
+      "orientation": "landscape",
+      "aspect": 1.6
+    },
+    "1920x1080": {
+      "scale": 1.33685,
+      "gain": 1.00264,
+      "rms": 6.624,
+      "orientation": "landscape",
+      "aspect": 1.77778
+    },
+    "320x900": {
+      "scale": 0.2962,
+      "gain": 1.3329,
+      "rms": 43.251,
+      "orientation": "portrait",
+      "aspect": 0.35556
+    },
+    "360x800": {
+      "scale": 0.46778,
+      "gain": 1.87112,
+      "rms": 5.774,
+      "orientation": "portrait",
+      "aspect": 0.45
+    },
+    "390x1000": {
+      "scale": 0.50661,
+      "gain": 1.87056,
+      "rms": 22.974,
+      "orientation": "portrait",
+      "aspect": 0.39
+    },
+    "390x700": {
+      "scale": 0.50932,
+      "gain": 1.88057,
+      "rms": 2.675,
+      "orientation": "portrait",
+      "aspect": 0.55714
+    },
+    "390x844": {
+      "scale": 0.5025,
+      "gain": 1.85538,
+      "rms": 4.98,
+      "orientation": "portrait",
+      "aspect": 0.46209
+    },
+    "414x896": {
+      "scale": 0.53418,
+      "gain": 1.85802,
+      "rms": 5.41,
+      "orientation": "portrait",
+      "aspect": 0.46205
+    },
+    "430x932": {
+      "scale": 0.55526,
+      "gain": 1.85948,
+      "rms": 11.032,
+      "orientation": "portrait",
+      "aspect": 0.46137
+    },
+    "500x900": {
+      "scale": 0.65211,
+      "gain": 1.87808,
+      "rms": 0.956,
+      "orientation": "portrait",
+      "aspect": 0.55556
+    },
+    "700x900": {
+      "scale": 0.90451,
+      "gain": 1.86071,
+      "rms": 10.82,
+      "orientation": "portrait",
+      "aspect": 0.77778
+    },
+    "844x390": {
+      "scale": 0.58803,
+      "gain": 1.00327,
+      "rms": 0.253,
+      "orientation": "landscape",
+      "aspect": 2.1641
+    }
+  }
+}

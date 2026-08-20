@@ -1,0 +1,231 @@
+{
+  "stage": "f0",
+  "repository": "lhfer/mirrorweb",
+  "branch": "rebuild/liquid-glass-v5-foundation",
+  "head": "4ca597fd3fb276f835192ae0caa759042dc1cc5c",
+  "codeCommit": "7f18314",
+  "evidenceCommit": "this commit",
+  "route": "/?optics=v4 (beauty) and /?optics=v4&foundation=layout&annotate=0 (gate)",
+  "captureTimestampUtc": "2026-08-20T10:57:27Z",
+  "fixedCaptureConditions": {
+    "quality": "high (pinned; adaptive quality must not drift between captures)",
+    "mediaTimeSeconds": 2,
+    "mediaState": "frozen, frame-matched across runs",
+    "dpr": 1,
+    "pointer": [
+      0,
+      0
+    ],
+    "offset": "0,0 for gate captures; 260,180 additionally for session B",
+    "motion": "paused"
+  },
+  "gateVerdict": "PASS",
+  "targetPixelPolicy": "This directory contains LOCAL pixels and Target-derived NUMBERS only. Target pixels and Target/local overlays live in qa-v5/private/, which is git-ignored.",
+  "files": [
+    {
+      "path": "qa-v5/f0/beauty/01-rest.json",
+      "bytes": 48318,
+      "sha256": "464f6e2ccaff00b962fcafd4d83e7b98e535f6f2552a7e022d83d203dfe23d2f"
+    },
+    {
+      "path": "qa-v5/f0/beauty/01-rest.png",
+      "bytes": 1569939,
+      "sha256": "6560a30cdd56bb55ce84ff2fffe01d368bcd9e6db0a8e8effa3644cbc7956cb4"
+    },
+    {
+      "path": "qa-v5/f0/beauty/03-drag-x-220.json",
+      "bytes": 48455,
+      "sha256": "aec6adfb5af0ef9053a97b080a343ac5cffaae6c917be75bb28f832ec040cb3f"
+    },
+    {
+      "path": "qa-v5/f0/beauty/03-drag-x-220.png",
+      "bytes": 1555203,
+      "sha256": "05bbdfa7fc1543ee7d40e698625eb51709327a6fd45ca23caa62172d9420df07"
+    },
+    {
+      "path": "qa-v5/f0/beauty/06-drag-xy-260-180.json",
+      "bytes": 48424,
+      "sha256": "10112c0f43216ed53fa7bb000da227970c7b30e4f41e95f2baa914a25f68e9d0"
+    },
+    {
+      "path": "qa-v5/f0/beauty/06-drag-xy-260-180.png",
+      "bytes": 1643614,
+      "sha256": "fd6d25f5cbc6b093ebf83e65720866eed1341706e8d5b4ffbe1016f9ca61800e"
+    },
+    {
+      "path": "qa-v5/f0/beauty/manifest.json",
+      "bytes": 2284,
+      "sha256": "b3449fba5a7c1a15f16c24adad19318834ac27d54c90701ce97999de35e097a5"
+    },
+    {
+      "path": "qa-v5/f0/curves.json",
+      "bytes": 47048,
+      "sha256": "df8d0b36d3a4cc602d934d8007a10f3d2639a1cb6d133cf6828465ee35a2c995"
+    },
+    {
+      "path": "qa-v5/f0/foundation/01-rest.json",
+      "bytes": 47847,
+      "sha256": "9a418cf1064f396cc51e9aba31ecd03fc28fc4069fd6c386ff6d0f69795b559a"
+    },
+    {
+      "path": "qa-v5/f0/foundation/01-rest.png",
+      "bytes": 7914,
+      "sha256": "4140551b4d383e48909849a117a30510914030ae14c23e05d2369899952b57e9"
+    },
+    {
+      "path": "qa-v5/f0/foundation/02-drag-x-110.json",
+      "bytes": 47981,
+      "sha256": "eb90bbb97da8313b9ede905478e779f8b1c748a75bd7780937a8368fb1d645b2"
+    },
+    {
+      "path": "qa-v5/f0/foundation/02-drag-x-110.png",
+      "bytes": 8273,
+      "sha256": "6965ee4f8cd1a005234b43bd4a647b8c84aaef65cffffde21e6ada478eb14591"
+    },
+    {
+      "path": "qa-v5/f0/foundation/03-drag-x-220.json",
+      "bytes": 47986,
+      "sha256": "6c023af98d50e2c531a484ce5261ac87e2496f79ee95c9e8e62aea566dfde262"
+    },
+    {
+      "path": "qa-v5/f0/foundation/03-drag-x-220.png",
+      "bytes": 8058,
+      "sha256": "e4853e088d2dbc01424b8066d768f4ab082eab9b9c858948984ab81fb19b9947"
+    },
+    {
+      "path": "qa-v5/f0/foundation/04-drag-x-330.json",
+      "bytes": 47895,
+      "sha256": "d83756bf1e2fee7a6c2d5ef66ea34028e1f2c1896f237fe2985176890eec2ed0"
+    },
+    {
+      "path": "qa-v5/f0/foundation/04-drag-x-330.png",
+      "bytes": 8008,
+      "sha256": "7fa836fddb4d44bab94956097faae4f5adb7ac8c3908e77627e4d54514e571e9"
+    },
+    {
+      "path": "qa-v5/f0/foundation/05-drag-x-440.json",
+      "bytes": 47916,
+      "sha256": "e7c8a219f194156315c951966b11eaeb2a25d7a87c0d7bcb13a4ade990343ab0"
+    },
+    {
+      "path": "qa-v5/f0/foundation/05-drag-x-440.png",
+      "bytes": 8326,
+      "sha256": "e32b3a669bc839d101eb090d789360fb7896ddba636250f2e9a2ed431835b31f"
+    },
+    {
+      "path": "qa-v5/f0/foundation/06-drag-xy-260-180.json",
+      "bytes": 47955,
+      "sha256": "0f7a7b2b3f5e1cbb14383fcd5f86d089ac963fb34b968d0013d68812a8b66161"
+    },
+    {
+      "path": "qa-v5/f0/foundation/06-drag-xy-260-180.png",
+      "bytes": 7437,
+      "sha256": "0d2f45832b911dfc4615c70030b8e393655d092b24bc43ddaa750ecb67288992"
+    },
+    {
+      "path": "qa-v5/f0/foundation/manifest.json",
+      "bytes": 1532,
+      "sha256": "045faaafc8ac5e0188c74d1a5a95b0a444a8bb4ceac07b4a24e74defe9e3a58c"
+    },
+    {
+      "path": "qa-v5/f0/gate.json",
+      "bytes": 28929,
+      "sha256": "58a40cc4ee36fc860b0927070f12435db0b93a40c813ec4e2571aa31c4893200"
+    },
+    {
+      "path": "qa-v5/f0/mobile-beauty/01-rest.json",
+      "bytes": 48257,
+      "sha256": "90d0d1d6a9169fdb98b39b35fb823cc6556fd11686d0995b2df3b8626fa62779"
+    },
+    {
+      "path": "qa-v5/f0/mobile-beauty/01-rest.png",
+      "bytes": 482751,
+      "sha256": "49bbcd6a48f73617c311b703ec51393439426f11f7778d5f53b343e135d1125c"
+    },
+    {
+      "path": "qa-v5/f0/mobile-beauty/manifest.json",
+      "bytes": 2003,
+      "sha256": "864abd422c4125347cdc06605c9c4ffd51dac2a933a818ffb92d96f5f4559cff"
+    },
+    {
+      "path": "qa-v5/f0/mobile-landscape/01-rest.json",
+      "bytes": 47783,
+      "sha256": "8991c01fc01e44dd555790657b15c0d5c5aca7bc57ad2df675a105503369aaf6"
+    },
+    {
+      "path": "qa-v5/f0/mobile-landscape/01-rest.png",
+      "bytes": 2114,
+      "sha256": "afd522d64ee7af7afd2e91e16524481b4338f84947797afc47e1a3a7466b470f"
+    },
+    {
+      "path": "qa-v5/f0/mobile-landscape/manifest.json",
+      "bytes": 806,
+      "sha256": "3c3e4863cba45b9d65e37b3ae183bd483f146c8da08aa85e7bf951a17b4d6bd7"
+    },
+    {
+      "path": "qa-v5/f0/mobile-portrait/01-rest.json",
+      "bytes": 47788,
+      "sha256": "21087e92655051d3b252230a4fd622ebae4bf8dcf541d5e25e6e25475fb3ece5"
+    },
+    {
+      "path": "qa-v5/f0/mobile-portrait/01-rest.png",
+      "bytes": 3678,
+      "sha256": "640c19897b12b9f3686a5e6e3675d834202057c742419309ce5293a27b74ae5b"
+    },
+    {
+      "path": "qa-v5/f0/mobile-portrait/manifest.json",
+      "bytes": 804,
+      "sha256": "92e6f01e365dd3678cd5af9a1209fbbb856bd2156b01bb587f9fab396e3adaf6"
+    },
+    {
+      "path": "qa-v5/f0/mobile-sheet.png",
+      "bytes": 227523,
+      "sha256": "52ee9cb48e8f7fcca54c42de7007417701e98e0e68710095667b38d8094ac89e"
+    },
+    {
+      "path": "qa-v5/f0/model-vs-engine.json",
+      "bytes": 4279,
+      "sha256": "1d6093fb2a59163e032410368bce3cc5794b7f5704b5cc46f92c22ac3e1b6a79"
+    },
+    {
+      "path": "qa-v5/f0/offset-sweep-sheet.png",
+      "bytes": 63713,
+      "sha256": "66d55a9f2b7acb3f40aacbb9ab88822ca040867230bda77f45ea424a5ae8a12e"
+    },
+    {
+      "path": "qa-v5/f0/partial/01-rest.json",
+      "bytes": 47898,
+      "sha256": "9e99c3948337d33cf9dc3e875c8a1dda1e3599ccf8a6f190d4f704642da04520"
+    },
+    {
+      "path": "qa-v5/f0/partial/01-rest.png",
+      "bytes": 5582,
+      "sha256": "319e6d33930b46c2587b60cd2a588e04cb88a66eaa20703bfc094c4944bbf654"
+    },
+    {
+      "path": "qa-v5/f0/partial/manifest.json",
+      "bytes": 789,
+      "sha256": "2d6eb5e847bc1ae087d1e5d807ae1f04685d310e0f988d4905c6f6b840c223a0"
+    },
+    {
+      "path": "qa-v5/f0/v3-default-route-smoke.png",
+      "bytes": 1649615,
+      "sha256": "d1822c0a4da741277613385a8d7648f36dd70f6c807ba4ac0f3e5d116512c205"
+    },
+    {
+      "path": "qa-v5/f0/wide-1920x1080/01-rest.json",
+      "bytes": 47896,
+      "sha256": "9b8a9f8ad1f094f2d35276c6730eafba72fdcdf3cf4ab0b72b0c48a831bc82b7"
+    },
+    {
+      "path": "qa-v5/f0/wide-1920x1080/01-rest.png",
+      "bytes": 12105,
+      "sha256": "fe06fb025695a698cc42182a4921937ffa1d3d4e9d7ecfe4da306a810aade67e"
+    },
+    {
+      "path": "qa-v5/f0/wide-1920x1080/manifest.json",
+      "bytes": 804,
+      "sha256": "79ae5287f1d6e770d4baaad524aca4ca17d25da7c82515163f304c60075422f7"
+    }
+  ]
+}

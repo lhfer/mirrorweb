@@ -1,0 +1,347 @@
+{
+  "question": "Does the Target switch composition scale at width == height?",
+  "shippedLaw": "landscape S = w/1440 ; portrait S = 1.8975 * w/1440",
+  "method": "scale from row-band pitch (full-width statistic), gutter pitch as a second independent estimate",
+  "samples": [
+    {
+      "viewport": [
+        425,
+        800
+      ],
+      "id": "425x800",
+      "orientation": "portrait",
+      "aspect": 0.53125,
+      "rowBandPitchPx": 233.25,
+      "scaleFromRowPitch": 0.55479,
+      "gutterPitchPx": 313.0,
+      "scaleFromGutterPitch": 0.55779,
+      "rowBands": [
+        166.0,
+        399.5,
+        632.5
+      ],
+      "parityOfLowestRow": "centre-card",
+      "shippedLawScale": 0.56003,
+      "measuredScale": 0.55479,
+      "measuredOverPredicted": 0.9907,
+      "impliedGain": 1.8798
+    },
+    {
+      "viewport": [
+        470,
+        760
+      ],
+      "id": "470x760",
+      "orientation": "portrait",
+      "aspect": 0.61842,
+      "rowBandPitchPx": 255.25,
+      "scaleFromRowPitch": 0.60712,
+      "gutterPitchPx": 344.0,
+      "scaleFromGutterPitch": 0.61304,
+      "rowBands": [
+        124.0,
+        379.5,
+        634.5
+      ],
+      "parityOfLowestRow": "centre-card",
+      "shippedLawScale": 0.61932,
+      "measuredScale": 0.60712,
+      "measuredOverPredicted": 0.9803,
+      "impliedGain": 1.8601
+    },
+    {
+      "viewport": [
+        520,
+        720
+      ],
+      "id": "520x720",
+      "orientation": "portrait",
+      "aspect": 0.72222,
+      "rowBandPitchPx": 278.5,
+      "scaleFromRowPitch": 0.66242,
+      "gutterPitchPx": 378.0,
+      "scaleFromGutterPitch": 0.67363,
+      "rowBands": [
+        80.5,
+        359.5,
+        637.5
+      ],
+      "parityOfLowestRow": "centre-gutter",
+      "shippedLawScale": 0.68521,
+      "measuredScale": 0.66242,
+      "measuredOverPredicted": 0.9667,
+      "impliedGain": 1.8344
+    },
+    {
+      "viewport": [
+        565,
+        680
+      ],
+      "id": "565x680",
+      "orientation": "portrait",
+      "aspect": 0.83088,
+      "rowBandPitchPx": 298.0,
+      "scaleFromRowPitch": 0.7088,
+      "gutterPitchPx": 406.0,
+      "scaleFromGutterPitch": 0.72353,
+      "rowBands": [
+        41.0,
+        339.0,
+        637.0
+      ],
+      "parityOfLowestRow": "centre-gutter",
+      "shippedLawScale": 0.74451,
+      "measuredScale": 0.7088,
+      "measuredOverPredicted": 0.952,
+      "impliedGain": 1.8065
+    },
+    {
+      "viewport": [
+        699,
+        700
+      ],
+      "id": "699x700",
+      "orientation": "portrait",
+      "aspect": 0.99857,
+      "rowBandPitchPx": null,
+      "scaleFromRowPitch": null,
+      "gutterPitchPx": 492.0,
+      "scaleFromGutterPitch": 0.87679,
+      "rowBands": [
+        349.5
+      ],
+      "parityOfLowestRow": "centre-card",
+      "shippedLawScale": 0.92108,
+      "measuredScale": 0.87679,
+      "measuredOverPredicted": 0.9519,
+      "impliedGain": 1.8063
+    },
+    {
+      "viewport": [
+        899,
+        900
+      ],
+      "id": "899x900",
+      "orientation": "portrait",
+      "aspect": 0.99889,
+      "rowBandPitchPx": null,
+      "scaleFromRowPitch": null,
+      "gutterPitchPx": 633.0,
+      "scaleFromGutterPitch": 1.12806,
+      "rowBands": [
+        449.0
+      ],
+      "parityOfLowestRow": "centre-card",
+      "shippedLawScale": 1.18462,
+      "measuredScale": 1.12806,
+      "measuredOverPredicted": 0.9523,
+      "impliedGain": 1.8069
+    },
+    {
+      "viewport": [
+        617,
+        617
+      ],
+      "id": "617x617",
+      "orientation": "square",
+      "aspect": 1.0,
+      "rowBandPitchPx": 177.25,
+      "scaleFromRowPitch": 0.42159,
+      "gutterPitchPx": 241.0,
+      "scaleFromGutterPitch": 0.42948,
+      "rowBands": [
+        131.0,
+        308.0,
+        485.5
+      ],
+      "parityOfLowestRow": "centre-card",
+      "shippedLawScale": 0.42847,
+      "measuredScale": 0.42159,
+      "measuredOverPredicted": 0.9839,
+      "impliedGain": 0.9839
+    },
+    {
+      "viewport": [
+        700,
+        700
+      ],
+      "id": "700x700",
+      "orientation": "square",
+      "aspect": 1.0,
+      "rowBandPitchPx": 196.25,
+      "scaleFromRowPitch": 0.46678,
+      "gutterPitchPx": 273.0,
+      "scaleFromGutterPitch": 0.48651,
+      "rowBands": [
+        149.0,
+        349.5,
+        541.5,
+        550.5
+      ],
+      "parityOfLowestRow": "centre-card",
+      "shippedLawScale": 0.48611,
+      "measuredScale": 0.46678,
+      "measuredOverPredicted": 0.9602,
+      "impliedGain": 0.9602
+    },
+    {
+      "viewport": [
+        900,
+        900
+      ],
+      "id": "900x900",
+      "orientation": "square",
+      "aspect": 1.0,
+      "rowBandPitchPx": 258.5,
+      "scaleFromRowPitch": 0.61485,
+      "gutterPitchPx": 350.0,
+      "scaleFromGutterPitch": 0.62373,
+      "rowBands": [
+        192.0,
+        449.5,
+        709.0
+      ],
+      "parityOfLowestRow": "centre-card",
+      "shippedLawScale": 0.625,
+      "measuredScale": 0.61485,
+      "measuredOverPredicted": 0.9838,
+      "impliedGain": 0.9838
+    },
+    {
+      "viewport": [
+        900,
+        899
+      ],
+      "id": "900x899",
+      "orientation": "landscape",
+      "aspect": 1.00111,
+      "rowBandPitchPx": 258.25,
+      "scaleFromRowPitch": 0.61425,
+      "gutterPitchPx": 148.0,
+      "scaleFromGutterPitch": 0.26375,
+      "rowBands": [
+        191.0,
+        449.0,
+        707.5
+      ],
+      "parityOfLowestRow": "centre-card",
+      "shippedLawScale": 0.625,
+      "measuredScale": 0.61425,
+      "measuredOverPredicted": 0.9828,
+      "impliedGain": 0.9828
+    },
+    {
+      "viewport": [
+        700,
+        699
+      ],
+      "id": "700x699",
+      "orientation": "landscape",
+      "aspect": 1.00143,
+      "rowBandPitchPx": 200.75,
+      "scaleFromRowPitch": 0.47749,
+      "gutterPitchPx": 273.0,
+      "scaleFromGutterPitch": 0.48651,
+      "rowBands": [
+        148.5,
+        349.0,
+        550.0
+      ],
+      "parityOfLowestRow": "centre-card",
+      "shippedLawScale": 0.48611,
+      "measuredScale": 0.47749,
+      "measuredOverPredicted": 0.9823,
+      "impliedGain": 0.9823
+    },
+    {
+      "viewport": [
+        680,
+        565
+      ],
+      "id": "680x565",
+      "orientation": "landscape",
+      "aspect": 1.20354,
+      "rowBandPitchPx": 194.75,
+      "scaleFromRowPitch": 0.46322,
+      "gutterPitchPx": 255.0,
+      "scaleFromGutterPitch": 0.45443,
+      "rowBands": [
+        86.5,
+        282.0,
+        476.0
+      ],
+      "parityOfLowestRow": "centre-gutter",
+      "shippedLawScale": 0.47222,
+      "measuredScale": 0.46322,
+      "measuredOverPredicted": 0.9809,
+      "impliedGain": 0.9809
+    },
+    {
+      "viewport": [
+        720,
+        520
+      ],
+      "id": "720x520",
+      "orientation": "landscape",
+      "aspect": 1.38462,
+      "rowBandPitchPx": 207.75,
+      "scaleFromRowPitch": 0.49414,
+      "gutterPitchPx": 271.0,
+      "scaleFromGutterPitch": 0.48295,
+      "rowBands": [
+        52.0,
+        259.5,
+        467.5
+      ],
+      "parityOfLowestRow": "centre-gutter",
+      "shippedLawScale": 0.5,
+      "measuredScale": 0.49414,
+      "measuredOverPredicted": 0.9883,
+      "impliedGain": 0.9883
+    },
+    {
+      "viewport": [
+        760,
+        470
+      ],
+      "id": "760x470",
+      "orientation": "landscape",
+      "aspect": 1.61702,
+      "rowBandPitchPx": 219.0,
+      "scaleFromRowPitch": 0.5209,
+      "gutterPitchPx": 287.25,
+      "scaleFromGutterPitch": 0.5119,
+      "rowBands": [
+        15.5,
+        234.0,
+        453.5
+      ],
+      "parityOfLowestRow": "centre-card",
+      "shippedLawScale": 0.52778,
+      "measuredScale": 0.5209,
+      "measuredOverPredicted": 0.987,
+      "impliedGain": 0.987
+    },
+    {
+      "viewport": [
+        800,
+        425
+      ],
+      "id": "800x425",
+      "orientation": "landscape",
+      "aspect": 1.88235,
+      "rowBandPitchPx": null,
+      "scaleFromRowPitch": null,
+      "gutterPitchPx": 312.0,
+      "scaleFromGutterPitch": 0.55601,
+      "rowBands": [
+        212.0
+      ],
+      "parityOfLowestRow": "centre-gutter",
+      "shippedLawScale": 0.55556,
+      "measuredScale": 0.55601,
+      "measuredOverPredicted": 1.0008,
+      "impliedGain": 1.0008
+    }
+  ]
+}

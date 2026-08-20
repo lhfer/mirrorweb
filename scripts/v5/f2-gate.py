@@ -1,27 +1,25 @@
 #!/usr/bin/env python3
 """
-Stage F2 absolute gate: local composition vs the Target, at every viewport.
+Stage F2 absolute gate -- the approved contract, restored in full.
 
-Unlike the F0 gate this cannot probe fixed 1440-space x positions -- that would
-silently gate only the anchor viewport. Every feature is derived from each
-frame's own measured structure, so the same code judges a 390-wide portrait
-frame and a 1920-wide desktop one.
+An earlier revision of this file replaced the contract's absolute 3 px gutter
+threshold with a percentage of viewport width, and scored a check the contract
+does not contain. Both are corrected here: the thresholds below are the approved
+ones, gutters are judged in absolute pixels at every viewport, and every
+contract item reports PASS / FAIL / NOT_MEASURED rather than being skipped when
+it is hard to measure.
 
-Compared, per viewport:
-  * how many row bands are visible, and where their centres sit
-  * where the vertical gutters sit inside each row
-  * the size of every card the frame does not clip
+Findings that are real but outside the contract are reported under
+`auxiliaryFindings`. They never change the verdict, and they are never used to
+excuse a contract failure either.
 
-Thresholds scale with the viewport, because 3 px means something different at
-390 wide than at 1920 wide.
-
-Usage: f2-gate.py --pairs=<json> --out=<dir>
-  pairs json: [{"id","targetPng","localPng","dpr"}, ...]
+Usage: f2-gate.py --pairs=<json> --out=<dir> [--f0=<f0 gate.json>]
 """
 from __future__ import annotations
 
 import importlib.util
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -37,71 +35,155 @@ def _load(name: str, filename: str):
 
 ML = _load("measure_layout", "measure-layout.py")
 
-GATE = {
-    "rowBandPctOfHeight": 2.0,
-    "gutterCentrePctOfWidth": 2.0,
+# Approved contract. Do not relax to make a candidate green.
+CONTRACT = {
+    "cardCentrePctOfViewport": 2.0,
     "cardSizePct": 3.0,
-    "gutterWidthPctOfWidth": 0.6,
-    "rowCountMustMatch": True,
+    "gutterPx": 3.0,          # ABSOLUTE pixels, at every viewport
+    "edgeYawDeg": 0.75,
+    "rowParityMustMatch": True,
+    "centreDarkBandMustMatch": True,
+    "noCardOverlap": True,
+    "largeVoidExcessPctOfFrame": 2.0,
+    "f0RegressionMustPass": True,
 }
+
+ITEMS = ["cardCentre", "cardSize", "gutterPx", "edgeYaw", "rowParity",
+         "centreDarkBand", "overlap", "largeVoid", "f0Regression"]
+
+
+def _card(c: dict, row: dict, dpr: float) -> dict:
+    """
+    One card, with a validity flag on its traced edges.
+
+    The detector finds a card's top and bottom edge by walking columns until it
+    hits void. On a Target frame the cards contain video, and a dark enough
+    frame stops that walk early -- which silently shortens the card and tilts
+    its "edge". The local foundation frame has flat opaque slabs and can never
+    do this, so an untested comparison is asymmetric in the Target's disfavour.
+    The test: a traced edge is only trusted when it actually reached the row
+    boundary. Rejections are counted and reported, never silently dropped.
+    """
+    tol = max(4.0, (row["y1"] - row["y0"]) * 0.03)
+    top = c.get("topEdge") or {}
+    bot = c.get("bottomEdge") or {}
+    top_ok = bool(top) and abs(top.get("yAtCx", -1e9) - row["y0"]) <= tol and not row["clippedTop"]
+    bot_ok = bool(bot) and abs(bot.get("yAtCx", -1e9) - row["y1"]) <= tol and not row["clippedBottom"]
+    return {
+        "x0": c["x0"] / dpr, "x1": c["x1"] / dpr, "w": c["w"] / dpr,
+        "h": (c["h"] / dpr) if (c.get("h") and top_ok and bot_ok) else None,
+        "cx": c["cx"] / dpr,
+        "cy": (c["cy"] / dpr) if (c.get("cy") and top_ok and bot_ok) else None,
+        "botSlope": bot.get("slopeDeg") if bot_ok else None,
+        "edgeTraceValid": {"top": top_ok, "bottom": bot_ok},
+        "unclipped": not (c["clipped"]["left"] or c["clipped"]["right"]),
+    }
 
 
 def normalise(measure: dict, dpr: float) -> dict:
-    """Everything in CSS pixels, so a DPR3 Target frame compares with a DPR1
-    local one."""
-    w = measure["size"]["w"] / dpr
-    h = measure["size"]["h"] / dpr
+    h_px = measure["size"]["h"]
     rows = []
     for r in measure["rows"]:
         rows.append({
-            "y0": r["y0"] / dpr,
-            "y1": r["y1"] / dpr,
+            "y0": r["y0"] / dpr, "y1": r["y1"] / dpr,
             "cy": (r["y0"] + r["y1"]) / 2 / dpr,
             "clipped": bool(r["clippedTop"] or r["clippedBottom"]),
-            "gutters": [{"c": g["center"] / dpr, "w": g["width"] / dpr} for g in r["verticalGutters"]],
-            "cards": [
-                {
-                    "x0": c["x0"] / dpr, "x1": c["x1"] / dpr, "w": c["w"] / dpr,
-                    "h": (c["h"] / dpr) if c.get("h") else None,
-                    "unclipped": not (c["clipped"]["left"] or c["clipped"]["right"]),
-                }
-                for c in r["cards"]
-            ],
+            "gutters": [{"c": g["center"] / dpr, "w": g["width"] / dpr}
+                        for g in r["verticalGutters"]],
+            "cards": [_card(c, r, dpr) for c in r["cards"]],
         })
-    # A band that touches the frame edge is a truncated observation, not a row
-    # separator: at 1366x768 the Target's last five scanlines read as a "band"
-    # simply because the bottom row has not started yet. Dropping them on both
-    # sides is what makes the band count comparable.
-    bands = [
-        b["center"] / dpr
-        for b in measure["horizontalGutterBands"]
-        if b["y0"] > 0 and b["y1"] < measure["size"]["h"] - 1 and b["height"] >= 5
-    ]
-    return {"viewW": w, "viewH": h, "bands": bands, "rows": rows}
+    bands = [{"c": b["center"] / dpr, "y0": b["y0"] / dpr, "y1": b["y1"] / dpr,
+              "edge": bool(b["y0"] <= 0 or b["y1"] >= h_px - 1)}
+             for b in measure["horizontalGutterBands"]]
+    return {"viewW": measure["size"]["w"] / dpr, "viewH": measure["size"]["h"] / dpr,
+            "rows": rows, "bands": bands}
 
 
-def pair_up(a: list[float], b: list[float], max_distance: float | None = None):
-    """
-    Greedy nearest-neighbour pairing of two sorted feature lists.
-
-    `max_distance` refuses absurd pairings. Without it a feature the local frame
-    simply does not have gets matched to whatever is nearest, turning a missing
-    feature into a huge position error and hiding the real cause.
-    """
-    out = []
-    used = set()
+def nearest_pairs(a: list, b: list, key, tol: float):
+    out, taken = [], set()
     for x in a:
         best, bi = None, None
         for i, y in enumerate(b):
-            if i in used:
+            if i in taken:
                 continue
-            d = abs(x - y)
+            d = abs(key(x) - key(y))
             if best is None or d < best:
                 best, bi = d, i
-        if bi is not None and (max_distance is None or best <= max_distance):
-            used.add(bi)
+        if bi is not None and best <= tol:
+            taken.add(bi)
             out.append((x, b[bi]))
     return out
+
+
+def void_stats(png: Path) -> dict:
+    """Void coverage and the largest contiguous void blob, as frame fractions."""
+    import numpy as np
+    from PIL import Image
+    rgb = np.asarray(Image.open(png).convert("RGB"))
+    void = ML.void_mask(rgb, ML.pick_void(rgb)[0])
+    step = 4  # coarse grid: enough to spot a hole the size of a card
+    g = void[::step, ::step]
+    seen = np.zeros_like(g)
+    best = 0
+    h, w = g.shape
+    for sy in range(h):
+        for sx in range(w):
+            if not g[sy, sx] or seen[sy, sx]:
+                continue
+            stack = [(sy, sx)]
+            seen[sy, sx] = True
+            size = 0
+            while stack:
+                y, x = stack.pop()
+                size += 1
+                for ny, nx in ((y - 1, x), (y + 1, x), (y, x - 1), (y, x + 1)):
+                    if 0 <= ny < h and 0 <= nx < w and g[ny, nx] and not seen[ny, nx]:
+                        seen[ny, nx] = True
+                        stack.append((ny, nx))
+            best = max(best, size)
+    return {"voidFraction": float(g.mean()), "largestBlobFraction": best / g.size}
+
+
+def quad_separation(a, b) -> float:
+    best = -math.inf
+    for poly in (a, b):
+        for k in range(len(poly)):
+            x0, y0 = poly[k]
+            x1, y1 = poly[(k + 1) % len(poly)]
+            nx, ny = -(y1 - y0), (x1 - x0)
+            L = math.hypot(nx, ny)
+            if L < 1e-9:
+                continue
+            nx, ny = nx / L, ny / L
+            pa = [p[0] * nx + p[1] * ny for p in a]
+            pb = [p[0] * nx + p[1] * ny for p in b]
+            best = max(best, max(min(pb) - max(pa), min(pa) - max(pb)))
+    return best
+
+
+def overlap_check(local_json: Path, vw: float, vh: float) -> dict:
+    if not local_json.exists():
+        return {"status": "NOT_MEASURED", "reason": "no local quad json"}
+    quads = json.loads(local_json.read_text()).get("quads", [])
+    on = []
+    for q in quads:
+        pts = [(p[0] * vw, p[1] * vh) for p in q["quad"]]
+        xs = [p[0] for p in pts]
+        ys = [p[1] for p in pts]
+        if max(xs) < -40 or min(xs) > vw + 40 or max(ys) < -40 or min(ys) > vh + 40:
+            continue
+        on.append({"i": q["i"], "j": q["j"], "poly": pts})
+    worst = math.inf
+    pairs = []
+    for i in range(len(on)):
+        for j in range(i + 1, len(on)):
+            sep = quad_separation(on[i]["poly"], on[j]["poly"])
+            worst = min(worst, sep)
+            if sep <= 0:
+                pairs.append({"a": [on[i]["i"], on[i]["j"]], "b": [on[j]["i"], on[j]["j"]],
+                              "penetrationPx": round(-sep, 2)})
+    return {"status": "PASS" if not pairs else "FAIL", "cards": len(on),
+            "minSeparationPx": round(worst, 2) if on else None, "overlaps": pairs}
 
 
 def compare(entry: dict) -> dict:
@@ -109,106 +191,224 @@ def compare(entry: dict) -> dict:
     l = normalise(ML.measure(Path(entry["localPng"])), entry.get("localDpr", 1))
     vw, vh = t["viewW"], t["viewH"]
     checks = []
+    item_state = {k: "NOT_MEASURED" for k in ITEMS}
 
-    def check(name, value, limit, unit, detail=""):
-        checks.append({"check": name, "value": round(float(value), 3), "limit": limit,
-                       "unit": unit, "pass": bool(abs(value) <= limit), "detail": detail})
+    def check(item, name, value, limit, unit, detail=""):
+        ok = bool(abs(value) <= limit) if isinstance(value, (int, float)) and not isinstance(value, bool) \
+            else bool(value == limit)
+        checks.append({"item": item, "check": name,
+                       "value": round(value, 3) if isinstance(value, float) else value,
+                       "limit": limit, "unit": unit, "pass": ok, "detail": detail})
+        item_state[item] = "FAIL" if (item_state[item] == "FAIL" or not ok) else "PASS"
 
-    # ---- row structure ----------------------------------------------------
-    # Split, because the two directions mean different things. A LOCAL band the
-    # Target does not have is structure this build invented -- always a defect.
-    # A TARGET band the local frame does not have is structure this build is
-    # missing, which at tall portrait viewports is the missing vertical grid
-    # curvature (see docs/v5/RESPONSIVE_SCALING.md) rather than a scaling error.
-    band_pairs = pair_up(t["bands"], l["bands"], max_distance=vh * 0.08)
-    matched_local = {b for _, b in band_pairs}
-    check(f"{entry['id']} invented bands", len([b for b in l["bands"] if b not in matched_local]),
-          0, "bands", f"local bands with no Target counterpart")
-    check(f"{entry['id']} missing bands", len(t["bands"]) - len(band_pairs), 0, "bands",
-          f"target {len(t['bands'])}, local {len(l['bands'])}, matched {len(band_pairs)}")
-    worst_band = max((abs(a - b) for a, b in band_pairs), default=0.0)
-    check(f"{entry['id']} row band centres", worst_band / vh * 100,
-          GATE["rowBandPctOfHeight"], "% of height",
-          f"worst {worst_band:.1f} px over {len(band_pairs)} bands")
-
-    # ---- gutters, row by row ---------------------------------------------
-    worst_gc, worst_gw = 0.0, 0.0
-    gutters = []
-    # Rows are paired by where they sit vertically, not by index. Index pairing
-    # silently shifts the whole comparison by one row whenever one side clips a
-    # row the other does not, which turns a real parity difference into a set of
-    # small, meaningless errors.
+    # Row usability, in two tiers.
     #
-    # Pairing uses every row, including clipped ones, so a row that one side
-    # clips by a pixel still finds its partner; the per-row comparisons below
-    # then only run where both rows are unclipped.
-    row_pairs = []
-    taken = set()
-    for rt in t["rows"]:
-        best, bi = None, None
-        for i, rl in enumerate(l["rows"]):
-            if i in taken:
+    # What contaminates a row's x-geometry is being a SLIVER -- a row reduced to
+    # a thin cap by the frame edge, whose rounded corners open false, over-wide
+    # gutters (the Target's top row at 1440x900 reads a 76 px "gutter" where the
+    # real one is 21 px). Being clipped by a few pixels does not do that, and
+    # excluding merely-clipped rows costs whole viewports: at 1366x768 the local
+    # bottom row ends 5 px later than the Target's, which would otherwise leave
+    # nothing measurable at all.
+    #
+    # So: horizontal geometry uses every paired non-sliver row; vertical
+    # geometry still requires a row both sides render whole.
+    def median_height(rows):
+        hs = sorted(r["y1"] - r["y0"] for r in rows)
+        return hs[len(hs) // 2] if hs else 0.0
+
+    med = max(median_height(t["rows"]), median_height(l["rows"]))
+
+    def sliver(r):
+        return (r["y1"] - r["y0"]) < 0.6 * med
+
+    # Merged regions. When the detector cannot resolve a gutter -- which happens
+    # on Target frames because the cards contain video that can read as void,
+    # and never on the local foundation frame whose slabs are opaque -- two
+    # cards come back as one wide region. Comparing that region to a real card
+    # is meaningless. A region wider than 1.3x the row's median unclipped card
+    # is marked merged; it and the gutters either side of it are excluded, and
+    # the exclusions are counted.
+    merged_excluded = 0
+
+    def mark_merged(row):
+        widths = [c["w"] for c in row["cards"] if c["unclipped"]]
+        if not widths:
+            widths = [c["w"] for c in row["cards"]]
+        if not widths:
+            return
+        med = sorted(widths)[len(widths) // 2]
+        for c in row["cards"]:
+            c["merged"] = bool(c["w"] > 1.30 * med)
+
+    for r in t["rows"] + l["rows"]:
+        mark_merged(r)
+
+    # Mirror-symmetry resolvability test. Both compositions are symmetric about
+    # the viewport centre -- independently verified, and true of the local
+    # frames by construction. So a row whose DETECTED card boundaries are not
+    # mirror-symmetric is a row the detector failed to resolve, not a row that
+    # is genuinely lopsided. At 1920x1080 the Target's top row comes back as
+    # 225/701/752/163 against a local 221/700/700/221: the detector missed one
+    # gutter and invented another. Such a row is excluded from card and gutter
+    # comparison on both sides, and the exclusions are counted.
+    def symmetric(row, tol=6.0):
+        edges = sorted([c["x0"] for c in row["cards"]] + [c["x1"] for c in row["cards"]])
+        mirrored = sorted(vw - 1 - e for e in edges)
+        if len(edges) != len(mirrored):
+            return False
+        return all(abs(a - b) <= tol for a, b in zip(edges, mirrored))
+
+    asymmetric_excluded = 0
+    all_pairs = nearest_pairs(t["rows"], l["rows"], lambda r: r["cy"], vh * 0.12)
+    usable = []
+    for a, b in all_pairs:
+        if sliver(a) or sliver(b):
+            continue
+        if not symmetric(a) or not symmetric(b):
+            asymmetric_excluded += 1
+            continue
+        usable.append((a, b))
+    vertical_ok = [(a, b) for a, b in usable if not a["clipped"] and not b["clipped"]]
+    slivers_excluded = len(all_pairs) - len(usable)
+    rejected_edges = 0
+
+    worst_c = worst_w = worst_h = worst_yaw = 0.0
+    n_c = n_s = n_y = 0
+    detail_cards = []
+    for rt, rl in usable:
+        cards_t = [c for c in rt["cards"] if not c.get("merged")]
+        cards_l = [c for c in rl["cards"] if not c.get("merged")]
+        merged_excluded += (len(rt["cards"]) - len(cards_t)) + (len(rl["cards"]) - len(cards_l))
+        for ct, cl in nearest_pairs(cards_t, cards_l, lambda c: c["cx"], vw * 0.12):
+            # Vertical component of the centre comes from the ROW band, which is
+            # a full-width statistic and immune to the video-truncation problem.
+            d = math.hypot(cl["cx"] - ct["cx"], rl["cy"] - rt["cy"])
+            worst_c = max(worst_c, d / max(vw, vh) * 100)
+            n_c += 1
+            detail_cards.append({"row": round(rt["cy"], 1), "targetCx": round(ct["cx"], 1),
+                                 "localCx": round(cl["cx"], 1), "centreErrPx": round(d, 2),
+                                 "unclipped": bool(ct["unclipped"] and cl["unclipped"])})
+            if ct["unclipped"] and cl["unclipped"]:
+                worst_w = max(worst_w, abs(cl["w"] - ct["w"]) / ct["w"] * 100)
+                n_s += 1
+                if ct["h"] and cl["h"] and (rt, rl) in vertical_ok:
+                    worst_h = max(worst_h, abs(cl["h"] - ct["h"]) / ct["h"] * 100)
+            # Yaw conditioning. A card's bottom edge near the projection centre
+            # has almost no lever arm: at 1440x900 the mid row's bottom edge
+            # sits 10 px from the vanishing line, where a single pixel of trace
+            # error is 5.7 degrees. Only edges with a real lever arm carry a
+            # measurable yaw signal, on either side.
+            lever_ok = rt["y1"] is not None and abs(rt["y1"] - vh / 2) >= vh * 0.15
+            if ct["botSlope"] is not None and cl["botSlope"] is not None and lever_ok:
+                worst_yaw = max(worst_yaw, abs(cl["botSlope"] - ct["botSlope"]))
+                n_y += 1
+            elif ct["unclipped"] and cl["unclipped"]:
+                rejected_edges += 1
+    if n_c:
+        check("cardCentre", "card centres", worst_c, CONTRACT["cardCentrePctOfViewport"],
+              "% of viewport", f"{n_c} paired cards")
+    if n_s:
+        check("cardSize", "unclipped card width", worst_w, CONTRACT["cardSizePct"], "%",
+              f"{n_s} unclipped cards")
+        if worst_h:
+            check("cardSize", "unclipped card height", worst_h, CONTRACT["cardSizePct"], "%")
+    if n_y:
+        check("edgeYaw", "bottom edge slope", worst_yaw, CONTRACT["edgeYawDeg"], "deg",
+              f"{n_y} edges with a valid trace and a usable lever arm on both "
+              f"sides, {rejected_edges} rejected (truncated trace or too close "
+              f"to the vanishing line)")
+
+    worst_gc = worst_gw = 0.0
+    n_g = 0
+    gutters = []
+    def clean_gutters(row):
+        """Gutters not adjacent to a merged region."""
+        bad = [c for c in row["cards"] if c.get("merged")]
+        out = []
+        for g in row["gutters"]:
+            if any(abs(g["c"] - c["x0"]) < 4 or abs(g["c"] - c["x1"]) < 4 for c in bad):
                 continue
-            d = abs(rt["cy"] - rl["cy"])
-            if best is None or d < best:
-                best, bi = d, i
-        if bi is not None and best <= vh * 0.12:
-            taken.add(bi)
-            row_pairs.append((rt, l["rows"][bi]))
-    row_pairs = [(a, b) for a, b in row_pairs if not a["clipped"] and not b["clipped"]]
+            out.append(g)
+        return out
 
-    # Gutter matching tolerance is a quarter of a cell: wide enough to absorb
-    # position error, far too narrow to accept a half-cell parity swap.
-    quarter_cell = vw * 0.5 * 0.25 if vw else 0
-    tol = max(20.0, quarter_cell)
-    missing = 0
-    for rt, rl in row_pairs:
-        tg = [g["c"] for g in rt["gutters"]]
-        lg = [g["c"] for g in rl["gutters"]]
-        pairs_g = pair_up(tg, lg, max_distance=tol)
-        missing += len(tg) - len(pairs_g)
-        for gt, gl in pairs_g:
-            worst_gc = max(worst_gc, abs(gt - gl))
-            gutters.append({"row": round(rt["cy"], 1), "targetCentre": round(gt, 1),
-                            "localCentre": round(gl, 1), "dPx": round(gl - gt, 2)})
-        for gt, gl in pair_up([g["w"] for g in rt["gutters"]], [g["w"] for g in rl["gutters"]]):
-            worst_gw = max(worst_gw, abs(gt - gl))
-    # One unmatched gutter is detector sensitivity -- the strict void preset
-    # resolves a gutter on one side and not the other. More than one, or a whole
-    # row's worth, is a parity or offset difference.
-    check(f"{entry['id']} unmatched gutters", missing, 1, "gutters",
-          f"{missing} Target gutters with no local counterpart within {tol:.0f} px")
-    check(f"{entry['id']} gutter centres", worst_gc / vw * 100,
-          GATE["gutterCentrePctOfWidth"], "% of width", f"worst {worst_gc:.1f} px")
-    check(f"{entry['id']} gutter widths", worst_gw / vw * 100,
-          GATE["gutterWidthPctOfWidth"], "% of width", f"worst {worst_gw:.1f} px")
+    for rt, rl in usable:
+        for gt, gl in nearest_pairs(clean_gutters(rt), clean_gutters(rl),
+                                    lambda g: g["c"], vw * 0.12):
+            worst_gc = max(worst_gc, abs(gl["c"] - gt["c"]))
+            worst_gw = max(worst_gw, abs(gl["w"] - gt["w"]))
+            n_g += 1
+            gutters.append({"row": round(rt["cy"], 1), "targetCentre": round(gt["c"], 1),
+                            "localCentre": round(gl["c"], 1),
+                            "dCentrePx": round(gl["c"] - gt["c"], 2),
+                            "targetWidth": round(gt["w"], 1), "localWidth": round(gl["w"], 1),
+                            "dWidthPx": round(gl["w"] - gt["w"], 2)})
+    if n_g:
+        check("gutterPx", "gutter centre", worst_gc, CONTRACT["gutterPx"], "px", f"{n_g} gutters")
+        check("gutterPx", "gutter width", worst_gw, CONTRACT["gutterPx"], "px")
 
-    # ---- card sizes -------------------------------------------------------
-    cards = []
-    worst_w, worst_h = 0.0, 0.0
-    for rt, rl in row_pairs:
-        ct = [c for c in rt["cards"] if c["unclipped"]]
-        cl = [c for c in rl["cards"] if c["unclipped"]]
-        for a, b in pair_up([c["w"] for c in ct], [c["w"] for c in cl]):
-            worst_w = max(worst_w, abs(b - a) / a * 100)
-            cards.append({"row": round(rt["cy"], 1), "targetW": round(a, 1),
-                          "localW": round(b, 1), "dPct": round((b - a) / a * 100, 3)})
-        hts_t = [c["h"] for c in ct if c["h"]]
-        hts_l = [c["h"] for c in cl if c["h"]]
-        for a, b in pair_up(hts_t, hts_l):
-            worst_h = max(worst_h, abs(b - a) / a * 100)
-    if cards:
-        check(f"{entry['id']} unclipped card width", worst_w, GATE["cardSizePct"], "%")
-    if worst_h:
-        check(f"{entry['id']} unclipped card height", worst_h, GATE["cardSizePct"], "%")
+    def parity(row, w):
+        return "centre-gutter" if any(abs(g["c"] - w / 2) < w * 0.06 for g in row["gutters"]) \
+            else "centre-card"
+    # A row with no resolved gutter carries no parity information; classifying
+    # it as "centre-card" by default would invent a mismatch.
+    parity_rows = [{"row": round(rt["cy"], 1), "target": parity(rt, vw), "local": parity(rl, vw)}
+                   for rt, rl in usable if rt["gutters"] and rl["gutters"]]
+    parity_unclassifiable = len(usable) - len(parity_rows)
+    if parity_rows:
+        mismatch = sum(1 for p in parity_rows if p["target"] != p["local"])
+        check("rowParity", "row parity", mismatch, 0, "rows",
+              f"{len(parity_rows)} classifiable rows, {parity_unclassifiable} without a "
+              "resolved gutter: "
+              + " ".join(f"{p['row']}:{p['target']}/{p['local']}" for p in parity_rows))
 
-    return {
-        "id": entry["id"], "viewport": [vw, vh],
-        "targetBands": [round(x, 1) for x in t["bands"]],
-        "localBands": [round(x, 1) for x in l["bands"]],
-        "gutters": gutters, "cards": cards, "checks": checks,
-        "verdict": "PASS" if all(c["pass"] for c in checks) else "FAIL",
+    t_band = any(b["y0"] <= vh / 2 <= b["y1"] for b in t["bands"])
+    l_band = any(b["y0"] <= vh / 2 <= b["y1"] for b in l["bands"])
+    check("centreDarkBand", "viewport centre in a horizontal gutter", l_band, t_band, "bool",
+          f"target {t_band}, local {l_band}")
+
+    ov = overlap_check(Path(entry["localPng"]).with_suffix(".json"), vw, vh)
+    if ov["status"] == "NOT_MEASURED":
+        item_state["overlap"] = "NOT_MEASURED"
+    else:
+        check("overlap", "no card overlap", len(ov["overlaps"]), 0, "pairs",
+              f"{ov['cards']} on-screen cards, min separation {ov['minSeparationPx']} px")
+
+    tv = void_stats(Path(entry["targetPng"]))
+    lv = void_stats(Path(entry["localPng"]))
+    excess = (lv["largestBlobFraction"] - tv["largestBlobFraction"]) * 100
+    check("largeVoid", "largest void blob excess", max(0.0, excess),
+          CONTRACT["largeVoidExcessPctOfFrame"], "% of frame",
+          f"target {tv['largestBlobFraction']*100:.2f}%, local {lv['largestBlobFraction']*100:.2f}%")
+
+    t_bands = [b["c"] for b in t["bands"] if not b["edge"]]
+    l_bands = [b["c"] for b in l["bands"] if not b["edge"]]
+    matched = nearest_pairs([{"c": c} for c in t_bands], [{"c": c} for c in l_bands],
+                            lambda x: x["c"], vh * 0.08)
+    aux = {
+        "targetRowBands": [round(x, 1) for x in t_bands],
+        "localRowBands": [round(x, 1) for x in l_bands],
+        "missingRowBands": len(t_bands) - len(matched),
+        "inventedRowBands": len(l_bands) - len(matched),
+        "worstRowBandCentrePx": round(max((abs(a["c"] - b["c"]) for a, b in matched), default=0.0), 2),
+        "targetRowHeights": [round(r["y1"] - r["y0"] + 1, 1) for r in t["rows"] if not r["clipped"]],
+        "localRowHeights": [round(r["y1"] - r["y0"] + 1, 1) for r in l["rows"] if not r["clipped"]],
+        "voidFraction": {"target": round(tv["voidFraction"], 4), "local": round(lv["voidFraction"], 4)},
+        "edgeTracesRejected": rejected_edges,
+        "rowsUsableForVerticalGeometry": len(vertical_ok),
+        "rowsPaired": len(usable),
+        "sliverRowsExcluded": slivers_excluded,
+        "mergedRegionsExcluded": merged_excluded,
+        "asymmetricRowsExcluded": asymmetric_excluded,
+        "parityRowsUnclassifiable": parity_unclassifiable,
+        "note": "Auxiliary. Never changes the verdict and never excuses a contract failure.",
     }
+
+    verdict = "PASS" if all(c["pass"] for c in checks) else "FAIL"
+    return {"id": entry["id"], "viewport": [vw, vh], "verdict": verdict,
+            "contractCoverage": item_state, "checks": checks,
+            "gutters": gutters, "cards": detail_cards, "rowParity": parity_rows,
+            "overlap": ov, "auxiliaryFindings": aux}
 
 
 if __name__ == "__main__":
@@ -217,14 +417,37 @@ if __name__ == "__main__":
     out = Path(args.get("--out", "qa-v5/f2"))
     out.mkdir(parents=True, exist_ok=True)
     results = [compare(p) for p in pairs]
-    overall = "PASS" if all(r["verdict"] == "PASS" for r in results) else "FAIL"
-    payload = {"gate": GATE, "verdict": overall, "viewports": results}
+
+    f0_path = Path(args.get("--f0", "qa-v5/f0/gate.json"))
+    if f0_path.exists():
+        f0 = json.loads(f0_path.read_text())
+        f0_state = "PASS" if f0.get("verdict") == "PASS" else "FAIL"
+        f0_detail = {"verdict": f0.get("verdict"), "checks": len(f0.get("checks", [])),
+                     "passed": sum(1 for c in f0.get("checks", []) if c["pass"]),
+                     "source": str(f0_path)}
+    else:
+        f0_state, f0_detail = "NOT_MEASURED", {"reason": f"{f0_path} missing"}
+    for r in results:
+        r["contractCoverage"]["f0Regression"] = f0_state
+
+    coverage = {}
+    for k in ITEMS:
+        states = [r["contractCoverage"][k] for r in results]
+        coverage[k] = "FAIL" if "FAIL" in states else ("NOT_MEASURED" if "NOT_MEASURED" in states else "PASS")
+    overall = "PASS" if all(v == "PASS" for v in coverage.values()) else "FAIL"
+
+    payload = {"contract": CONTRACT, "verdict": overall, "contractCoverage": coverage,
+               "f0Regression": f0_detail, "viewports": results}
     (out / "gate.json").write_text(json.dumps(payload, indent=2))
     print(f"F2 GATE: {overall}")
+    print("  contractCoverage: " + json.dumps(coverage))
     for r in results:
-        print(f"  {r['id']:<14} {int(r['viewport'][0])}x{int(r['viewport'][1])}  {r['verdict']}")
+        print(f"  {r['id']:<12} {int(r['viewport'][0])}x{int(r['viewport'][1])}  {r['verdict']}")
         for c in r["checks"]:
-            mark = "PASS" if c["pass"] else "FAIL"
-            print(f"      [{mark}] {c['check'].split(' ', 1)[1]:<26} {c['value']:>8} {c['unit']:<12} "
-                  f"(limit {c['limit']})  {c['detail']}")
+            print(f"      [{'PASS' if c['pass'] else 'FAIL'}] {c['check']:<38} "
+                  f"{c['value']!s:>8} {c['unit']:<14} (limit {c['limit']})  {c['detail']}")
+        a = r["auxiliaryFindings"]
+        print(f"      (aux) rowBands t={len(a['targetRowBands'])} l={len(a['localRowBands'])} "
+              f"missing={a['missingRowBands']} invented={a['inventedRowBands']} "
+              f"tRowH={a['targetRowHeights']} lRowH={a['localRowHeights']}")
     sys.exit(0 if overall == "PASS" else 1)
