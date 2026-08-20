@@ -2,11 +2,11 @@
   "stage": "f26r",
   "repository": "lhfer/mirrorweb",
   "branch": "rebuild/liquid-glass-v5-foundation",
-  "head": "28324b97c258ad10ebea5d51fac996779c5e4552",
-  "codeCommit": null,
-  "evidenceCommit": "this commit",
+  "head": "e33149992e4e69cd483428c38decf4248d7875d5",
+  "codeCommit": "23de9c7",
+  "evidenceCommit": "e331499",
   "route": "/?optics=v4 (beauty) and /?optics=v4&foundation=layout&annotate=0 (gate)",
-  "captureTimestampUtc": "2026-08-20T14:46:33Z",
+  "captureTimestampUtc": "2026-08-20T15:20:04Z",
   "fixedCaptureConditions": {
     "quality": "high (pinned; adaptive quality must not drift between captures)",
     "mediaTimeSeconds": 2,
@@ -19,7 +19,9 @@
     "offset": "0,0 for gate captures; 260,180 additionally for session B",
     "motion": "paused"
   },
-  "gateVerdict": null,
+  "gateVerdict": "FAIL \u2014 corrected three-way comparison: p0 5/6, p1 5/6, p2 4/6",
+  "privateReviewPackage": "qa-v5/private/f26r-review.zip",
+  "supersedes": "qa-v5/f26/portrait-candidate-gates.json is INVALID (portraitLaw never reached the camera; p0 and p1 rendered byte identically)",
   "targetPixelPolicy": "This directory contains LOCAL pixels and Target-derived NUMBERS only. Target pixels and Target/local overlays live in qa-v5/private/, which is git-ignored.",
   "files": [
     {

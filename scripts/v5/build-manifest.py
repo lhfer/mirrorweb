@@ -25,11 +25,18 @@ def sha(p: Path) -> str:
 
 
 if __name__ == "__main__":
-    stage = sys.argv[1]
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    flags = {a.split("=", 1)[0][2:]: a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--") and "=" in a}
+    stage = args[0]
     root = Path("qa-v5") / stage
     git = lambda *a: subprocess.run(["git", *a], capture_output=True, text=True).stdout.strip()
     gate = root / "gate.json"
     verdict = json.loads(gate.read_text()).get("verdict") if gate.exists() else None
+    # Explicit overrides. A manifest written by the commit it describes cannot
+    # know its own hash, so a later hygiene pass has to be able to state the
+    # real HEAD, the real code commit and the real verdict rather than leaving
+    # nulls and a stale hash behind.
+    verdict = flags.get("verdict", verdict)
     files = []
     for p in sorted(root.rglob("*")):
         if p.is_file() and p.name != "MANIFEST.json":
@@ -38,13 +45,15 @@ if __name__ == "__main__":
         "stage": stage,
         "repository": "lhfer/mirrorweb",
         "branch": git("rev-parse", "--abbrev-ref", "HEAD"),
-        "head": git("rev-parse", "HEAD"),
-        "codeCommit": sys.argv[2] if len(sys.argv) > 2 else None,
-        "evidenceCommit": "this commit",
+        "head": flags.get("head", git("rev-parse", "HEAD")),
+        "codeCommit": flags.get("code", args[1] if len(args) > 1 else None),
+        "evidenceCommit": flags.get("evidence", "this commit"),
         "route": "/?optics=v4 (beauty) and /?optics=v4&foundation=layout&annotate=0 (gate)",
         "captureTimestampUtc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "fixedCaptureConditions": FIXED,
         "gateVerdict": verdict,
+        "privateReviewPackage": flags.get("private"),
+        "supersedes": flags.get("supersedes"),
         "targetPixelPolicy": "This directory contains LOCAL pixels and Target-derived NUMBERS "
                              "only. Target pixels and Target/local overlays live in "
                              "qa-v5/private/, which is git-ignored.",

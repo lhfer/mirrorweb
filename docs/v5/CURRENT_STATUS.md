@@ -2,13 +2,17 @@
 
 Single canonical entry point. Every delivery updates this file.
 
-Last updated: 2026-08-20T12:37:02Z
+Last updated: 2026-08-20T12:37:02Z (metadata hygiene pass `v5-f26r-metadata-hygiene`)
 
 | | |
 | --- | --- |
 | Repository | `lhfer/mirrorweb` |
 | Branch | `rebuild/liquid-glass-v5-foundation` |
-| Current HEAD | the commit that ships this file, `v5-f26-composition-evidence`. Resolve with `git rev-parse HEAD`. |
+| Current HEAD | `e33149992e4e69cd483428c38decf4248d7875d5` (`v5-f26r-corrected-evidence`) at the time this row was written. Resolve the live value with `git rev-parse HEAD`. |
+| F2.6R code fix commit | `23de9c7` `v5-f26r-portrait-law-propagation` |
+| F2.6R evidence commit | `e331499` `v5-f26r-corrected-evidence` |
+| F2.6R corrected candidate gate | **FAIL** — p0 5/6, p1 5/6, p2 4/6 |
+| F2.6 original candidate comparison | **INVALID** — `qa-v5/f26/portrait-candidate-gates.json` compared one candidate with itself |
 | Preview v1 | `http://127.0.0.1:5280/?optics=v4&composition=v1` |
 | Preview candidate | `http://127.0.0.1:5280/?optics=v4&composition=v2&verticalMode=tangent&portraitLaw=p1` |
 | Evidence index | [`qa-v5/f26r/README.md`](../../qa-v5/f26r/README.md) (supersedes f26 for the candidate comparison) |
@@ -114,9 +118,11 @@ V5. Not re-baselined; the product owner's call.
 
 ## Next stage
 
-Composition engineering is closed per the F2.6 brief. The open decision is
-whether to grant 390x844 an explicit exception or reopen composition. Typography,
-Motion and Optics remain **NOT STARTED** and are not authorised.
+Product decision on F2.6R: harness and evidence integrity **accepted**; P1 kept
+as the working candidate; **no 390x844 exception granted**; the aspect phase
+rule **not accepted** as the final responsive law. One narrow **F2.7** is
+authorised — initial row phase and portrait vertical axis only — and no F2.8
+follows it. Typography, Motion and Optics remain **NOT STARTED**.
 
 ## Frozen systems
 
