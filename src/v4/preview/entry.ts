@@ -1,4 +1,5 @@
 import type { QualityLevel } from "../../config";
+import type { MediaFitMode } from "../../content/MediaFit";
 import { V4_DEBUG_MODES, V4_SHELL_MODES, type V4DebugMode, type V4ShellMode } from "../OpticsConfigV4";
 import { GridAppV4, type GridAppV4Options } from "./GridAppV4";
 
@@ -16,6 +17,8 @@ export type GridQaV4 = {
   setPointer: (x: number, y: number) => void;
   setDebugMode: (mode: V4DebugMode) => void;
   setShellMode: (mode: V4ShellMode) => void;
+  setMediaFitMode: (mode: MediaFitMode) => void;
+  getMediaFits: () => unknown;
   getState: () => Record<string, unknown>;
   getV4State: () => Record<string, unknown>;
   getCardQuads: () => Array<{ i: number; j: number; slotIndex: number; quad: number[][] }>;
@@ -65,6 +68,8 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
       setPointer: (x, y) => app.setPointer(x, y),
       setDebugMode: (mode) => app.setDebugMode(mode),
       setShellMode: (mode) => app.setShellMode(mode),
+      setMediaFitMode: (mode) => app.setMediaFitMode(mode),
+      getMediaFits: () => app.getMediaFits(),
       getState: () => app.getState(),
       getV4State: () => app.getV4State(),
       getCardQuads: () => app.getCardQuads(),

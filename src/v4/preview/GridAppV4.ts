@@ -1,6 +1,8 @@
 import { AmbientLight, Vector3, type DirectionalLight } from "three/webgpu";
 import { CAMERA, GRID, TILE, type QualityLevel } from "../../config";
 import { readDebugMode, type DebugMode } from "../../debug/DebugMode";
+import { isFoundationLayout, readFoundationMode, type FoundationMode } from "../../debug/FoundationMode";
+import { FoundationOverlay } from "../../debug/FoundationOverlay";
 import { InputController } from "../../interaction/InputController";
 import { MotionController } from "../../interaction/MotionController";
 import { AdaptiveQuality } from "../../quality/AdaptiveQuality";
@@ -19,6 +21,7 @@ import { createStripLightEnvironmentV4 } from "../StripLightEnvironmentV4";
 import { InfiniteGlassGridV4 } from "./InfiniteGlassGridV4";
 import { SceneColorPipelineV4 } from "./SceneColorPipelineV4";
 import { freezeMediaTime, readMediaState, type FreezeReport, type MediaSnapshot } from "../../debug/MediaFreeze";
+import { MEDIA_FIT_MODES, type MediaFitMode } from "../../content/MediaFit";
 
 const _ndc = new Vector3();
 
@@ -31,6 +34,8 @@ export type GridAppV4Options = {
   debugMode?: V4DebugMode;
   shellMode?: V4ShellMode;
   overscan?: number;
+  /** Dev/QA only. `layout` strips everything that is not geometry. */
+  foundation?: FoundationMode;
 };
 
 /**
@@ -63,17 +68,26 @@ export class GridAppV4 {
   private v4Debug: V4DebugMode;
   private v4Shell: V4ShellMode;
   private startedAt = 0;
+  readonly foundation: FoundationMode;
+  private foundationOverlay?: FoundationOverlay;
 
   constructor(private readonly options: GridAppV4Options = {}) {
     this.v4Debug = options.debugMode ?? "beauty";
     this.v4Shell = options.shellMode ?? "energy-controlled";
+    this.foundation = options.foundation ?? readFoundationMode();
+  }
+
+  private get layoutOnly(): boolean {
+    return isFoundationLayout(this.foundation);
   }
 
   async start(): Promise<void> {
     const loadingHost = document.getElementById(this.options.loadingId ?? "loading-overlay");
     const overlayHost = document.getElementById(this.options.pageOverlayId ?? "page-overlay");
     this.loading = new LoadingOverlay(loadingHost!);
-    if (overlayHost) new PageOverlay(overlayHost);
+    // Foundation mode drops the footer overlay and the CSS3D type layer: both
+    // sit on top of the cards and would contaminate a layout measurement.
+    if (overlayHost && !this.layoutOnly) new PageOverlay(overlayHost);
     this.labels = new TileLabelLayer(document.getElementById(this.options.labelsId ?? "labels")!);
     this.loading.setPercent(8);
 
@@ -90,25 +104,44 @@ export class GridAppV4 {
     this.pointerLight = createPointerKeyLightV4();
     handle.scene.add(ambient, this.pointerLight, this.pointerLight.target);
 
-    await this.grid.prepare((value) => this.loading.setPercent(value));
-    this.grid.reel?.unlock();
+    if (!this.layoutOnly) {
+      await this.grid.prepare((value) => this.loading.setPercent(value));
+      this.grid.reel?.unlock();
+    }
 
     this.pipeline = new SceneColorPipelineV4(this.quality.level, this.options.overscan);
     this.applyPipelineSize();
-    this.grid.build(this.quality.level, this.pipeline.sceneColor.texture, this.v4Debug, this.v4Shell);
+    this.grid.build(
+      this.quality.level,
+      this.pipeline.sceneColor.texture,
+      this.v4Debug,
+      this.v4Shell,
+      this.layoutOnly,
+    );
     this.grid.setSceneUvScale(this.pipeline.sceneUvScale);
     handle.scene.add(this.grid.root);
 
-    this.labels.attach(this.gridAsV3(), this.debugMode);
-    this.labels.setSize(window.innerWidth, window.innerHeight);
+    if (this.layoutOnly) {
+      this.motion.paused = true;
+      // `&annotate=0` renders the bare slabs, so a pixel detector reads card
+      // edges and gutters without the annotation strokes on top of them.
+      if (new URLSearchParams(location.search).get("annotate") !== "0") {
+        this.foundationOverlay = new FoundationOverlay(
+          document.getElementById(this.options.labelsId ?? "labels")!,
+        );
+        this.foundationOverlay.setSize(window.innerWidth, window.innerHeight);
+      }
+    } else {
+      this.labels.attach(this.gridAsV3(), this.debugMode);
+      this.labels.setSize(window.innerWidth, window.innerHeight);
+    }
     this.grid.update(0, 0);
     this.applyPose();
-    this.labels.sync(this.gridAsV3(), handle.camera);
+    if (!this.layoutOnly) this.labels.sync(this.gridAsV3(), handle.camera);
 
     this.input = new InputController(handle.canvas, this.motion, () => this.grid.reel?.unlock());
     this.bindWindow();
-    this.pipeline.draw(handle.renderer, handle.scene, handle.camera, this.grid);
-    this.labels.render(handle.camera);
+    this.drawFrame();
     this.loading.setPercent(100);
     if (this.grid.getAssetState().ready) this.loading.hide();
     this.startedAt = performance.now();
@@ -164,10 +197,19 @@ export class GridAppV4 {
    * must produce identical pixels here, which is what makes a blind pair fair.
    */
   setRenderLayers(layers: { glass?: boolean; media?: boolean; labels?: boolean }): void {
-    if (layers.glass !== undefined) this.grid.setGlassVisible(layers.glass);
-    if (layers.media !== undefined) this.grid.setMediaVisible(layers.media);
+    if (layers.glass !== undefined) {
+      this.glassLayer = layers.glass;
+      this.grid.setGlassVisible(layers.glass);
+    }
+    if (layers.media !== undefined) {
+      this.mediaLayer = layers.media;
+      this.grid.setMediaVisible(layers.media);
+    }
     if (layers.labels !== undefined) this.labels.setVisible(layers.labels);
   }
+
+  private glassLayer = true;
+  private mediaLayer = true;
 
   setPointer(x: number, y: number): void {
     this.motion.setPointer(x, y);
@@ -211,6 +253,17 @@ export class GridAppV4 {
   setShellMode(mode: V4ShellMode): void {
     this.v4Shell = mode;
     this.grid.setShellMode(mode);
+  }
+
+  /** QA only. `stretch` reproduces the pre-V5 squeeze for a before/after pair. */
+  setMediaFitMode(mode: MediaFitMode): void {
+    if (!MEDIA_FIT_MODES.includes(mode)) throw new Error(`Unknown media fit mode: ${mode}`);
+    this.grid.setMediaFitMode(mode);
+  }
+
+  /** QA only. Per-clip crop numbers behind the current fit. */
+  getMediaFits() {
+    return this.grid.getMediaFits();
   }
 
   reset(): void {
@@ -285,6 +338,11 @@ export class GridAppV4 {
     this.grid.root.updateWorldMatrix(true, true);
     const halfWidth = TILE.width * 0.5;
     const halfHeight = TILE.height * 0.5;
+    // Corners are taken on the card MID-PLANE (local z = 0), not the front
+    // face. That is the plane whose outline a pixel detector actually reads off
+    // a rendered card, and the plane the V5 layout fitter models, so quads,
+    // detector and fitter all speak about the same rectangle. Projecting the
+    // front face instead inflated every quad by thickness/2 -> ~2.1%.
     const corners: Array<[number, number]> = [
       [-halfWidth, halfHeight],
       [halfWidth, halfHeight],
@@ -296,7 +354,7 @@ export class GridAppV4 {
       j: slot.j,
       slotIndex: slot.slotIndex,
       quad: corners.map(([x, y]) => {
-        _ndc.set(x, y, TILE.thickness * 0.5);
+        _ndc.set(x, y, 0);
         slot.group.localToWorld(_ndc);
         _ndc.project(handle.camera);
         return [(_ndc.x + 1) * 0.5, (1 - _ndc.y) * 0.5];
@@ -310,6 +368,7 @@ export class GridAppV4 {
     return {
       optics: "v4",
       version: V4_OPTICS_CONFIG.version,
+      foundation: this.foundation,
       route: location.pathname,
       normalPathDirectMedia: false,
       v3Preserved: true,
@@ -352,6 +411,33 @@ export class GridAppV4 {
     return this.grid.getAssetState();
   }
 
+  /**
+   * One frame. Foundation mode renders the grey slabs straight to the screen:
+   * the two-pass scene-colour path exists only to feed the glass, and there is
+   * no glass here.
+   */
+  private drawFrame(): void {
+    const handle = this.renderer.handle;
+    if (!handle) return;
+    if (this.layoutOnly) {
+      handle.renderer.render(handle.scene, handle.camera);
+      this.foundationOverlay?.draw(this.getCardQuads());
+      return;
+    }
+    if (!this.glassLayer) {
+      // Media-only. The two-pass pipeline exists to feed the glass and it
+      // re-asserts glass-on / media-off every frame, so asking it to draw a
+      // glass-free frame is a contradiction: render the scene straight instead.
+      this.grid.setGlassVisible(false);
+      this.grid.setMediaVisible(this.mediaLayer);
+      handle.renderer.render(handle.scene, handle.camera);
+      this.labels.render(handle.camera);
+      return;
+    }
+    this.pipeline.draw(handle.renderer, handle.scene, handle.camera, this.grid);
+    this.labels.render(handle.camera);
+  }
+
   private applyPipelineSize(): void {
     const dpr = this.renderer.handle?.renderer.getPixelRatio() ?? 1;
     this.pipeline.resize(window.innerWidth, window.innerHeight, dpr);
@@ -362,6 +448,7 @@ export class GridAppV4 {
       this.renderer.resize();
       this.applyPipelineSize();
       this.labels.setSize(window.innerWidth, window.innerHeight);
+      this.foundationOverlay?.setSize(window.innerWidth, window.innerHeight);
       this.input.setViewSize(window.innerWidth, window.innerHeight);
     };
     window.addEventListener("resize", () => {
@@ -390,10 +477,9 @@ export class GridAppV4 {
     this.grid.update(this.motion.scrollX, this.motion.scrollY);
     this.applyPose();
     const handle = this.renderer.handle;
-    this.labels.sync(this.gridAsV3(), handle.camera);
+    if (!this.layoutOnly) this.labels.sync(this.gridAsV3(), handle.camera);
     handle.renderer.info.reset?.();
-    this.pipeline.draw(handle.renderer, handle.scene, handle.camera, this.grid);
-    this.labels.render(handle.camera);
+    this.drawFrame();
     this.renderedFrames += 1;
   };
 
@@ -417,6 +503,7 @@ export class GridAppV4 {
     cancelAnimationFrame(this.raf);
     this.input?.dispose();
     this.labels?.dispose();
+    this.foundationOverlay?.dispose();
     this.grid.dispose();
     this.pipeline?.dispose();
     this.environment?.dispose();

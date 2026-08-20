@@ -1,5 +1,11 @@
 import { LinearFilter, SRGBColorSpace, VideoTexture } from "three/webgpu";
 
+/**
+ * `focusX` / `focusY` / `zoom` drive MediaFit's cover crop. All three sources
+ * are 16:9-ish and the card is ~1.35:1, so cover crops left and right; the
+ * focus point decides which part of the frame survives. 0.5/0.5/1 is a centred,
+ * tightest-possible crop.
+ */
 export const CLIPS = [
   {
     src: "/clips/niulai-intro.mp4",
@@ -8,6 +14,9 @@ export const CLIPS = [
     title: "牛来开场",
     deck: "开场封面动画，截取约 5 秒。",
     accent: "#ffcc66",
+    focusX: 0.5,
+    focusY: 0.5,
+    zoom: 1,
   },
   {
     src: "/clips/cursor-niulai.mp4",
@@ -16,6 +25,9 @@ export const CLIPS = [
     title: "Cursor 牛来",
     deck: "Cursor 里的牛来片段，截取约 5 秒。",
     accent: "#8ff7ff",
+    focusX: 0.5,
+    focusY: 0.5,
+    zoom: 1,
   },
   {
     src: "/clips/pelican-ai.mp4",
@@ -24,8 +36,16 @@ export const CLIPS = [
     title: "鹈鹕测 AI",
     deck: "无 BGM 版，从 15 秒起截取 5 秒。",
     accent: "#ff9ad5",
+    focusX: 0.5,
+    focusY: 0.5,
+    zoom: 1,
   },
 ] as const;
+
+export function clipFocus(index: number) {
+  const clip = CLIPS[index % CLIPS.length];
+  return { focusX: clip.focusX, focusY: clip.focusY, zoom: clip.zoom };
+}
 
 function attachHiddenVideo(src: string): HTMLVideoElement {
   const video = document.createElement("video");

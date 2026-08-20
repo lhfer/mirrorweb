@@ -4,9 +4,15 @@ export const REFERENCE_URL = "https://infinite-liquid-glass.shader.se/?v=2";
 /** Locked from A 1440×900 overlay remasurement. */
 export const REF_VIEW = { width: 1440, height: 900 };
 
+/**
+ * Card slab, in world units (1 world unit = 1 CSS px on the z=0 plane at
+ * 1440x900). Width/height come from the V5 F0 joint fit against the Target
+ * frame, minus the rim inflation a pixel detector adds to a rendered card
+ * (~1 px across, ~2 px down). See docs/v5/FOUNDATION_FIT.md.
+ */
 export const TILE = {
-  width: 518,
-  height: 438,
+  width: 539.8,
+  height: 399.6,
   thickness: 42,
   radius: 58,
   superellipseN: 5,
@@ -30,10 +36,15 @@ export const GLASS = {
 
 /** 9×9 keeps ≥2 rows and ≥2 cols of overscan around the A rest window. */
 export const GRID = {
-  cellW: 557.72,
-  cellH: 428,
-  restY0: -211.05,
-  radius: 7200,
+  cellW: 561.14,
+  cellH: 420.43,
+  restY0: -209.97,
+  // NEGATIVE on purpose. The Target grid is CONVEX toward the camera: the
+  // centre column is nearest and outer columns recede, so an outer card is
+  // smaller than a centre card in the same row (Target bottom row: 388.3 px
+  // tall at |u|=cellW vs 401.1 px at u=0). The old +7200 was concave, which
+  // makes outer cards larger and fails every same-row size check.
+  radius: -4058.94,
   cols: 9,
   rows: 9,
 };

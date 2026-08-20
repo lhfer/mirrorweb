@@ -1,7 +1,8 @@
 import { Color, Group, Mesh, MeshBasicMaterial, PlaneGeometry, type Material, type Texture } from "three/webgpu";
 import { TILE, GRID, type QualityLevel } from "../config";
 import { catalogAt } from "../content/catalog";
-import { loadClipTextures, type ClipReel } from "../content/VideoClips";
+import { clipFocus, loadClipTextures, type ClipReel } from "../content/VideoClips";
+import { applyMediaFit, computeMediaFit, readMediaFitMode } from "../content/MediaFit";
 import { isGlassDebug, isLayoutDebug, type DebugMode, type GlassDebugMode } from "../debug/DebugMode";
 import { createGlassMaterial, createGlassParams, type GlassMaterialHandle } from "../materials/LiquidGlassMaterial";
 import { createConvexGlassGeometry } from "./ConvexGlassGeometry";
@@ -67,9 +68,25 @@ export class InfiniteGlassGrid {
         createGlassMaterial(sceneMap, this.params, glassDebug, map),
       );
       this.glassHandle = this.glassHandles[0];
-      this.mediaMaterials = this.reel.textures.map(
-        (map) => new MeshBasicMaterial({ map, toneMapped: true }),
-      );
+      // Aspect-correct crop for the media planes. V3's glass body samples the
+      // clip texture directly through a TSL texture node, which does not read
+      // the texture matrix, so the media INSIDE V3 glass stays uncropped. V3 is
+      // not the page under review and its optics are out of scope this session;
+      // recorded in docs/v5/FOUNDATION_FIT.md as a known gap.
+      const mode = readMediaFitMode();
+      this.mediaMaterials = this.reel.textures.map((map, index) => {
+        const video = this.reel!.videos[index];
+        const fit = computeMediaFit(
+          video?.videoWidth ?? 0,
+          video?.videoHeight ?? 0,
+          TILE.width,
+          TILE.height,
+          mode,
+          clipFocus(index),
+        );
+        if (video?.videoWidth) applyMediaFit(map, fit);
+        return new MeshBasicMaterial({ map, toneMapped: true });
+      });
     } else if (!layout && sceneMap) {
       this.glassHandle = createGlassMaterial(sceneMap, this.params, glassDebug);
     }

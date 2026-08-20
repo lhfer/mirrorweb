@@ -6,8 +6,18 @@ import {
   type BufferGeometry,
   type Texture,
 } from "three/webgpu";
+import { CanvasTexture, SRGBColorSpace, LinearFilter } from "three/webgpu";
 import { GRID, TILE, type QualityLevel } from "../../config";
 import { catalogAt } from "../../content/catalog";
+import { clipFocus } from "../../content/VideoClips";
+import { createTestPattern } from "../../content/TestPatterns";
+import {
+  applyMediaFit,
+  computeMediaFit,
+  readMediaFitMode,
+  type MediaFitMode,
+  type MediaFitResult,
+} from "../../content/MediaFit";
 import { placeTile, type TilePose } from "../../scene/GridCurvature";
 import { createConvexGlassGeometryV4 } from "../../scene/ConvexGlassGeometryV4";
 import {
@@ -16,13 +26,15 @@ import {
   type LiquidGlassMaterialV4Handle,
 } from "../../materials/LiquidGlassMaterialV4";
 import type { V4DebugMode, V4ShellMode } from "../OpticsConfigV4";
+import { FOUNDATION_SLAB_COLOR } from "../../debug/FoundationMode";
 import { ClipReelV4 } from "./ClipReelV4";
 
 export type SlotV4 = {
   group: Group;
+  /** In foundation-layout mode this is the flat grey slab, not glass. */
   glass: Mesh;
-  shell: Mesh;
-  media: Mesh;
+  shell?: Mesh;
+  media?: Mesh;
   i: number;
   j: number;
   slotIndex: number;
@@ -51,6 +63,12 @@ export class InfiniteGlassGridV4 {
   private handle?: LiquidGlassMaterialV4Handle;
   private mediaMaterials: MeshBasicMaterial[] = [];
   private quality: QualityLevel = "high";
+  private foundation = false;
+  private slabGeometry?: PlaneGeometry;
+  private slabMaterial?: MeshBasicMaterial;
+  private mediaFitMode: MediaFitMode = "cover";
+  private mediaFits: MediaFitResult[] = [];
+  private calibrationTextures: CanvasTexture[] = [];
 
   constructor(private readonly params = createLiquidGlassParamsV4()) {
     this.root.name = "MirrorWeb.V4.GridRoot";
@@ -66,19 +84,27 @@ export class InfiniteGlassGridV4 {
     sceneColor: Texture,
     debugMode: V4DebugMode = "beauty",
     shellMode: V4ShellMode = "energy-controlled",
+    foundation = false,
   ): void {
     this.disposePool();
     this.quality = quality;
+    this.foundation = foundation;
+    if (foundation) {
+      this.buildFoundationPool();
+      return;
+    }
     this.glassGeometry.dispose();
     this.glassGeometry = createConvexGlassGeometryV4(quality);
     this.handle = createLiquidGlassMaterialV4(sceneColor, this.params, debugMode, shellMode);
-    this.mediaMaterials = (this.reel?.textures ?? []).map(
-      (map, index) => {
-        const material = new MeshBasicMaterial({ map, toneMapped: true });
-        material.name = `MirrorWeb.V4.Media.${index}`;
-        return material;
-      },
-    );
+    this.mediaFitMode = readMediaFitMode();
+    const calibration = new URLSearchParams(location.search).get("mediacal") === "1";
+    const maps = calibration ? this.buildCalibrationTextures() : (this.reel?.textures ?? []);
+    this.mediaMaterials = maps.map((map, index) => {
+      const material = new MeshBasicMaterial({ map, toneMapped: true });
+      material.name = `MirrorWeb.V4.Media.${index}`;
+      return material;
+    });
+    this.applyMediaFits();
 
     const halfCols = Math.floor(GRID.cols / 2);
     const halfRows = Math.floor(GRID.rows / 2);
@@ -105,6 +131,91 @@ export class InfiniteGlassGridV4 {
     }
   }
 
+  /**
+   * Layout-only pool: one flat grey slab per cell whose silhouette is exactly
+   * TILE.width x TILE.height. No glass, no shell, no media, no per-card colour.
+   */
+  private buildFoundationPool(): void {
+    this.slabGeometry = new PlaneGeometry(TILE.width, TILE.height);
+    this.slabMaterial = new MeshBasicMaterial({ color: FOUNDATION_SLAB_COLOR, toneMapped: false });
+    this.slabMaterial.name = "MirrorWeb.V5.FoundationSlab";
+    const halfCols = Math.floor(GRID.cols / 2);
+    const halfRows = Math.floor(GRID.rows / 2);
+    let slotIndex = 0;
+    for (let dj = -halfRows; dj <= halfRows; dj += 1) {
+      for (let di = -halfCols; di <= halfCols; di += 1) {
+        const group = new Group();
+        const slab = new Mesh(this.slabGeometry, this.slabMaterial);
+        slab.name = "MirrorWeb.V5.FoundationSlab";
+        group.add(slab);
+        this.root.add(group);
+        this.slots.push({ group, glass: slab, i: di, j: dj, slotIndex });
+        this.created += 1;
+        slotIndex += 1;
+      }
+    }
+  }
+
+  get isFoundation(): boolean {
+    return this.foundation;
+  }
+
+  /**
+   * Calibration stand-ins for the three clips, at the clips' own 960x540 pixel
+   * size, so `?mediacal=1` exercises exactly the same fit maths the videos do.
+   */
+  private buildCalibrationTextures(): CanvasTexture[] {
+    this.calibrationTextures = [0, 1, 2].map(() => {
+      const texture = createTestPattern("calibration", 960, 540);
+      texture.colorSpace = SRGBColorSpace;
+      texture.minFilter = LinearFilter;
+      texture.magFilter = LinearFilter;
+      texture.generateMipmaps = false;
+      return texture;
+    });
+    return this.calibrationTextures;
+  }
+
+  /**
+   * Fit every clip onto the card. Card aspect is the same for every cell, and
+   * each clip owns its own texture, so one texture matrix per clip is enough.
+   * Source size comes from the decoded video (or the calibration canvas), never
+   * from a hard-coded assumption.
+   */
+  private applyMediaFits(): void {
+    this.mediaFits = [];
+    const videos = this.reel?.videos ?? [];
+    for (let index = 0; index < this.mediaMaterials.length; index += 1) {
+      const map = this.mediaMaterials[index].map;
+      if (!map) continue;
+      const video = videos[index];
+      const image = map.image as { width?: number; height?: number } | undefined;
+      const sourceWidth = video?.videoWidth || image?.width || 0;
+      const sourceHeight = video?.videoHeight || image?.height || 0;
+      if (!sourceWidth || !sourceHeight) continue;
+      const fit = computeMediaFit(
+        sourceWidth,
+        sourceHeight,
+        TILE.width,
+        TILE.height,
+        this.mediaFitMode,
+        clipFocus(index),
+      );
+      applyMediaFit(map, fit);
+      this.mediaFits.push(fit);
+    }
+  }
+
+  /** Debug only. `stretch` is the pre-V5 behaviour and must never ship. */
+  setMediaFitMode(mode: MediaFitMode): void {
+    this.mediaFitMode = mode;
+    this.applyMediaFits();
+  }
+
+  getMediaFits(): MediaFitResult[] {
+    return this.mediaFits;
+  }
+
   get materialHandle(): LiquidGlassMaterialV4Handle | undefined {
     return this.handle;
   }
@@ -118,28 +229,38 @@ export class InfiniteGlassGridV4 {
   }
 
   setDebugMode(mode: V4DebugMode): void {
+    if (this.foundation) return;
     this.handle?.setDebugMode(mode);
     const beauty = mode === "beauty" || mode === "reflection";
-    for (const slot of this.slots) slot.shell.visible = beauty && this.shellEnabled;
+    for (const slot of this.slots) {
+      if (slot.shell) slot.shell.visible = beauty && this.shellEnabled;
+    }
   }
 
   setShellMode(mode: V4ShellMode): void {
+    if (this.foundation) return;
     this.handle?.setShellMode(mode);
     this.shellEnabled = mode !== "off";
-    for (const slot of this.slots) slot.shell.visible = this.shellEnabled;
+    for (const slot of this.slots) {
+      if (slot.shell) slot.shell.visible = this.shellEnabled;
+    }
   }
 
   private shellEnabled = true;
 
   setGlassVisible(visible: boolean): void {
+    if (this.foundation) return;
     for (const slot of this.slots) {
       slot.glass.visible = visible;
-      slot.shell.visible = visible && this.shellEnabled;
+      if (slot.shell) slot.shell.visible = visible && this.shellEnabled;
     }
   }
 
   setMediaVisible(visible: boolean): void {
-    for (const slot of this.slots) slot.media.visible = visible;
+    if (this.foundation) return;
+    for (const slot of this.slots) {
+      if (slot.media) slot.media.visible = visible;
+    }
   }
 
   update(scrollX: number, scrollY: number): void {
@@ -158,7 +279,7 @@ export class InfiniteGlassGridV4 {
           slot.i = i;
           slot.j = j;
           this.remaps += 1;
-          slot.media.material = this.mediaFor(i, j);
+          if (slot.media) slot.media.material = this.mediaFor(i, j);
         }
         placeTile(i, j, scrollX, scrollY, pose);
         slot.group.position.set(pose.x, pose.y, pose.z);
@@ -168,17 +289,32 @@ export class InfiniteGlassGridV4 {
   }
 
   setQuality(quality: QualityLevel): void {
-    if (quality === this.quality) return;
+    if (this.foundation || quality === this.quality) return;
     this.quality = quality;
     this.glassGeometry.dispose();
     this.glassGeometry = createConvexGlassGeometryV4(quality);
     for (const slot of this.slots) {
       slot.glass.geometry = this.glassGeometry;
-      slot.shell.geometry = this.glassGeometry;
+      if (slot.shell) slot.shell.geometry = this.glassGeometry;
     }
   }
 
   getPoolState() {
+    if (this.foundation) {
+      return {
+        slots: this.slots.length,
+        created: this.created,
+        destroyed: this.destroyed,
+        remaps: this.remaps,
+        cols: GRID.cols,
+        rows: GRID.rows,
+        materials: 1,
+        geometries: 1,
+        textures: 0,
+        videos: 0,
+        glass: "foundation-slab",
+      };
+    }
     return {
       slots: this.slots.length,
       created: this.created,
@@ -196,6 +332,19 @@ export class InfiniteGlassGridV4 {
   }
 
   getAssetState() {
+    if (this.foundation) {
+      return {
+        videos: 0,
+        textures: 0,
+        ready: true,
+        media: "foundation-slab",
+        glass: "foundation-slab",
+        videoFrames: 0,
+        videoFrameCallback: false,
+        placeholderTileCount: 0,
+        unreadyVisibleTileCount: 0,
+      };
+    }
     const ready = Boolean(this.reel?.ready);
     return {
       videos: this.reel?.videos.length ?? 0,
@@ -222,6 +371,13 @@ export class InfiniteGlassGridV4 {
     this.handle = undefined;
     for (const material of this.mediaMaterials) material.dispose();
     this.mediaMaterials.length = 0;
+    for (const texture of this.calibrationTextures) texture.dispose();
+    this.calibrationTextures.length = 0;
+    this.mediaFits = [];
+    this.slabGeometry?.dispose();
+    this.slabGeometry = undefined;
+    this.slabMaterial?.dispose();
+    this.slabMaterial = undefined;
   }
 
   dispose(): void {

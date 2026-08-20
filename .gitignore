@@ -32,3 +32,7 @@ qa-v4/review/
 .env
 .env.local
 .env.*.local
+
+# V5 foundation evidence. Local pixels and metrics are tracked; anything that
+# embeds Target pixels (overlays, contact sheets) stays local.
+qa-v5/private/
