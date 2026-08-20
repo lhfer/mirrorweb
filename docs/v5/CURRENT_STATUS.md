@@ -2,7 +2,7 @@
 
 Single canonical entry point. Every delivery updates this file.
 
-Last updated: 2026-08-20T12:37:02Z (metadata hygiene pass `v5-f26r-metadata-hygiene`)
+Last updated: 2026-08-20 (F2.7 delivery)
 
 | | |
 | --- | --- |
@@ -14,9 +14,9 @@ Last updated: 2026-08-20T12:37:02Z (metadata hygiene pass `v5-f26r-metadata-hygi
 | F2.6R corrected candidate gate | **FAIL** — p0 5/6, p1 5/6, p2 4/6 |
 | F2.6 original candidate comparison | **INVALID** — `qa-v5/f26/portrait-candidate-gates.json` compared one candidate with itself |
 | Preview v1 | `http://127.0.0.1:5280/?optics=v4&composition=v1` |
-| Preview candidate | `http://127.0.0.1:5280/?optics=v4&composition=v2&verticalMode=tangent&portraitLaw=p1` |
-| Evidence index | [`qa-v5/f26r/README.md`](../../qa-v5/f26r/README.md) (supersedes f26 for the candidate comparison) |
-| Private review package | `qa-v5/private/f26r-review.zip` (git-ignored) |
+| Preview candidate | `http://127.0.0.1:5280/?optics=v4&composition=v2&verticalMode=tangent&portraitLaw=p1&phaseModel=rowOrigin&portraitVertical=v2` |
+| Evidence index | [`qa-v5/f27/README.md`](../../qa-v5/f27/README.md) |
+| Private review package | `qa-v5/private/f27-review.zip` (git-ignored) |
 
 ## Commit ledger
 
@@ -35,17 +35,17 @@ Last updated: 2026-08-20T12:37:02Z (metadata hygiene pass `v5-f26r-metadata-hygi
 - F2.5's rest-phase scale switch at 0.674 — **23/39 against the runtime law**. Replaced by the aspect rule.
 - **F2.6's `portrait-candidate-gates.json` — INVALID.** `portraitLaw` never reached the camera, so p0 and p1 rendered byte identically and that file compared one candidate with itself. Superseded by `qa-v5/f26r/portrait-candidate-gates.json`.
 
-## Verdicts
+## Verdicts (F2.7)
 
 | | |
 | --- | --- |
-| Engineering result | **READY FOR PRODUCT REVIEW AFTER EVIDENCE CORRECTION** |
-| Absolute Target Gate | **FAIL** — 5/6. Passing: 1100x720, 1366x768, 1440x900, 1920x1080, 844x390. Failing: 390x844. |
-| Landscape phase sweep | 35/39 against the runtime law |
-| Long scroll runtime | **PASS** 12/12 |
-| Resize runtime | **PASS** 15/15 in both sessions |
-| Model vs engine | **0.0 px** worst corner, both phases and modes |
-| F0 regression | **PASS** 20/20 |
+| Engineering result | **READY FOR EXPLICIT PRODUCT EXCEPTION REVIEW** — see the caveat in `qa-v5/f27/README.md` |
+| Absolute Target Gate | **FAIL** — 7/14 viewports, 107/118 checks. Same measurement scores the F2.6R config 7/14 and 96/113. |
+| Target phase determinism | **STABLE** — 12 viewports x 5 cold loads, no variation |
+| Row-origin phase law | **36/36** viewports against live Target DOM state, no fitted constant |
+| Portrait vertical hold-out | 390x844 card height **4.79% → 1.03%** (V1), 1.57% (V2 with the centre seam fixed) |
+| Runtime | **PASS** 32/32 |
+| F0 regression | **PASS** 20/20, baseline frame byte-identical |
 | Build | PASS |
 | Target visual result | Not asserted |
 
@@ -53,17 +53,45 @@ Contract coverage:
 
 ```json
 {
-  "cardCentre": "PASS",
-  "cardSize": "FAIL",
-  "gutterPx": "PASS",
+  "cardCentre": "NOT_MEASURED",
+  "cardSize": "NOT_MEASURED",
+  "gutterPx": "FAIL",
   "edgeYaw": "FAIL",
-  "rowParity": "PASS",
+  "rowParity": "NOT_MEASURED",
   "centreDarkBand": "FAIL",
   "overlap": "PASS",
   "largeVoid": "FAIL",
   "f0Regression": "PASS"
 }
 ```
+
+NOT_MEASURED comes from 1920x1080 and 667x375, where no row pair survives the
+gate's conditioning. Stated, not hidden: 1920x1080's PASS means "nothing
+measurable failed".
+
+## F2.7 — the Target's layout is no longer inferred
+
+The authorised read-only source forensics pass recovered the Target's entire
+layout initialisation. See
+[`TARGET_RESPONSIVE_SOURCE_FORENSICS.md`](TARGET_RESPONSIVE_SOURCE_FORENSICS.md).
+
+- Initial scroll is **(0, 0) at every viewport**; there is no row branch to unwrap.
+- The rest phase is the **parity of the Target's pool row count**, not aspect
+  ratio. `restOffsetX = (rows/2) % 2 === 0 ? cellW/2 : 0`, 36/36, no free parameter.
+- The responsive law is **`max(width, height)`** and is continuous at
+  `width == height`. The 1.84x orientation step F2 recorded does not exist.
+- The grid is a **sphere**, one radius for both axes, not a cylinder plus a
+  separate `radiusY`.
+- Three of the four phase mismatches the F2.7 brief named — 667x375, 780x470,
+  1440x1080 — **were not mismatches**; F2.6's pixel classifier was wrong there.
+- Video assignment is shuffled with `Math.random()` per load. Geometry is not.
+
+### Frozen parameters the source disagrees with
+
+`TILE.width` −1.35%, `TILE.height` −2.63%, `GRID.cellW` −1.87%, `GRID.radius`
+−2.59% at 1440x900 and **−18.6% at 390x844**, `restY0` +6.3%, `CAMERA.y` 8 against
+0. All frozen by the F2.7 brief and therefore unchanged. The 390x844 edge-yaw
+failure is a direct consequence of the radius entry.
 
 ## F2.6R correction
 
@@ -81,16 +109,21 @@ parameter changed in this round.
 ## Shipping parameters
 
 ```
-composition   v2      verticalMode tangent      portraitLaw p1
-radiusY -4707.6   cellH 419.95   restY0 -200.99
-portraitGain  1.87715 + 0.12204 * (aspect - 0.5)
-landscapeScale S = width / 1440
-restOffsetX   (portrait || height < 0.5525 * width) ? cellW/2 : 0
-tangentStrength 1.0
+composition   v2   verticalMode tangent   portraitLaw p1
+phaseModel    rowOrigin        portraitVertical v2
+radiusY -4707.6   cellH 419.95
+restY0  landscape -200.99      portrait -209.975  ( = -cellH/2 )
+portraitGain      1.87715 + 0.12204 * (aspect - 0.5)     [frozen]
+landscapeScale    S = width / 1440                        [frozen]
+portrait scaleY   1.03883, applied in the projection, landscape untouched
+restOffsetX       (targetRows(viewport) / 2) % 2 === 0 ? cellW/2 : 0
+tangentStrength   1.0
 ```
 
-Every number above appears verbatim in `qa-v5/f26/portrait-crossval.json` or
-`qa-v5/f26/landscape-phase.json`.
+`scaleY` appears in `qa-v5/f27/portrait-vertical-models.json`; the phase law has
+no constant to verify. Not shipped, default off: `?landscapeRowOrigin=centred`,
+the landscape half of the `restY0` correction — 9/11 against 7/11 with no
+regression, in `qa-v5/f27/gate-diagnostic-landscape-row-origin.json`.
 
 ## P0 / P1 / P2
 
@@ -118,11 +151,19 @@ V5. Not re-baselined; the product owner's call.
 
 ## Next stage
 
-Product decision on F2.6R: harness and evidence integrity **accepted**; P1 kept
-as the working candidate; **no 390x844 exception granted**; the aspect phase
-rule **not accepted** as the final responsive law. One narrow **F2.7** is
-authorised — initial row phase and portrait vertical axis only — and no F2.8
-follows it. Typography, Motion and Optics remain **NOT STARTED**.
+F2.7 is delivered and no F2.8 follows it. The open product decisions are:
+
+1. Whether to accept the remaining 390x844 residual as an explicit exception. It
+   is **structural**, not a rounding residual: our frozen curvature radius is
+   18.6% too small there because the Target's radius follows `max(w, h)` while
+   our world is fixed and scaled by width.
+2. Whether to ship the landscape half of the `restY0` correction, which is
+   measured, runnable and regression-free but outside F2.7's portrait-only scope.
+3. Whether to unfreeze `TILE`, `GRID.cellW`, `GRID.radius` and the scale laws so
+   the composition can be rebuilt on the Target's own numbers rather than fitted
+   to them. Forensics makes that a transcription job rather than a fit.
+
+Typography, Motion and Optics remain **NOT STARTED**.
 
 ## Frozen systems
 

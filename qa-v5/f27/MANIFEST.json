@@ -1,0 +1,283 @@
+{
+  "stage": "f27",
+  "repository": "lhfer/mirrorweb",
+  "branch": "rebuild/liquid-glass-v5-foundation",
+  "head": "2bfe3a8224117e53bc52cbc645fc5abe4012374e",
+  "codeCommit": "2bfe3a8",
+  "evidenceCommit": "this commit",
+  "route": "/?optics=v4 (beauty) and /?optics=v4&foundation=layout&annotate=0 (gate)",
+  "captureTimestampUtc": "2026-08-20T16:24:29Z",
+  "fixedCaptureConditions": {
+    "quality": "high (pinned; adaptive quality must not drift between captures)",
+    "mediaTimeSeconds": 2,
+    "mediaState": "frozen, frame-matched across runs",
+    "dpr": 1,
+    "pointer": [
+      0,
+      0
+    ],
+    "offset": "0,0 for gate captures; 260,180 additionally for session B",
+    "motion": "paused"
+  },
+  "gateVerdict": "FAIL - 7/14 mandatory viewports, 107/118 contract checks. The F2.6R configuration measured identically scores 7/14 and 96/113.",
+  "privateReviewPackage": "qa-v5/private/f27-review.zip",
+  "supersedes": "Replaces the F2.6 aspect rest-phase rule (35/39, fragile at 16:9) with the row-origin parity law (36/36, no fitted constant). F2.6's classification of 667x375, 780x470 and 1440x1080 as phase mismatches is withdrawn: they were a pixel-classifier error.",
+  "targetPixelPolicy": "This directory contains LOCAL pixels and Target-derived NUMBERS only. Target pixels and Target/local overlays live in qa-v5/private/, which is git-ignored.",
+  "files": [
+    {
+      "path": "qa-v5/f27/README.md",
+      "bytes": 4487,
+      "sha256": "c460e8166ffad585c1339e29c62d11d4182ce34b2ab4c7b4265313aca024d545"
+    },
+    {
+      "path": "qa-v5/f27/f0-regression.json",
+      "bytes": 28945,
+      "sha256": "dba5890a58b25da294718fec571262792d7478953e963322101144a0fe93d0ec"
+    },
+    {
+      "path": "qa-v5/f27/gate-control-f26r.json",
+      "bytes": 72737,
+      "sha256": "54d8d21c6043a45feaf832497c4ef7a445ca23dde196bc061a4af46e382cfaed"
+    },
+    {
+      "path": "qa-v5/f27/gate-diagnostic-landscape-row-origin.json",
+      "bytes": 56742,
+      "sha256": "bd7f0ed38b7a8ba0d8a764f5ed6403936a097186dba6fb871218c1e5ee47a2c0"
+    },
+    {
+      "path": "qa-v5/f27/gate.json",
+      "bytes": 76128,
+      "sha256": "3e397c9401787b1a83106953d80751ba911e99ece11975b6fd097061c1601fb1"
+    },
+    {
+      "path": "qa-v5/f27/local/1100x720/01-rest.json",
+      "bytes": 50835,
+      "sha256": "be8392c3f60c60cd10ae9c214122d897a2958b0870d163f3fb55eee405f9b577"
+    },
+    {
+      "path": "qa-v5/f27/local/1100x720/01-rest.png",
+      "bytes": 6888,
+      "sha256": "e3a54957aa6af578ac2788e13526a7071a97a7dcaa267b41a75fe819ed17fdf0"
+    },
+    {
+      "path": "qa-v5/f27/local/1100x720/manifest.json",
+      "bytes": 1005,
+      "sha256": "cba8f7418c86b9b4e1b16d4bc16b13760d61a0c9611269093a5f26fb852f68df"
+    },
+    {
+      "path": "qa-v5/f27/local/1366x768/01-rest.json",
+      "bytes": 50835,
+      "sha256": "edf28162aa971a80437ef942ab8365d5c4eceb28bd95b319c24067c8e2e654a2"
+    },
+    {
+      "path": "qa-v5/f27/local/1366x768/01-rest.png",
+      "bytes": 7127,
+      "sha256": "9b8900cb02efd2c78cfd8b6ef543006b6ae070d833944c515e183fb261dac48a"
+    },
+    {
+      "path": "qa-v5/f27/local/1366x768/manifest.json",
+      "bytes": 1005,
+      "sha256": "ef51da59c291671c773c371e578a3d91530d10bfa35f77f2e5a5a22eeae537e7"
+    },
+    {
+      "path": "qa-v5/f27/local/1440x1080/01-rest.json",
+      "bytes": 50809,
+      "sha256": "5aabcc27f576ac6114eaf2f8831e50710332c05b77119e31a76c804fa8a36b58"
+    },
+    {
+      "path": "qa-v5/f27/local/1440x1080/01-rest.png",
+      "bytes": 11249,
+      "sha256": "5da393dc69494bb2144c34aac2ed8bd184579857ee9fe4f3cd03522ef9accab5"
+    },
+    {
+      "path": "qa-v5/f27/local/1440x1080/manifest.json",
+      "bytes": 1008,
+      "sha256": "6a5aec0ca3f18616081c31f3a6522ff420549979c3489dbc6943c5bfbeb56c31"
+    },
+    {
+      "path": "qa-v5/f27/local/1440x900/01-rest.json",
+      "bytes": 50781,
+      "sha256": "6498ebf7753597c45b9995020a39a23ea35705052710c316e45cca8efaf88fa9"
+    },
+    {
+      "path": "qa-v5/f27/local/1440x900/01-rest.png",
+      "bytes": 9324,
+      "sha256": "766a181d4b436ffaa00af849569b11c71fe29b012d83985d9dccf02b3b347945"
+    },
+    {
+      "path": "qa-v5/f27/local/1440x900/manifest.json",
+      "bytes": 1005,
+      "sha256": "77fefe6c0d05b8babbec427648b08c36a4b58723b0e563459f9ecbabb5e89286"
+    },
+    {
+      "path": "qa-v5/f27/local/1920x1080/01-rest.json",
+      "bytes": 50892,
+      "sha256": "7e2c23188162d52a233b636c80d912af1327f5d67045e678f9642c52f9a54627"
+    },
+    {
+      "path": "qa-v5/f27/local/1920x1080/01-rest.png",
+      "bytes": 11597,
+      "sha256": "dd2e0e576238a54dba87e612fea38603e13218843fe96c73de0819e83047a350"
+    },
+    {
+      "path": "qa-v5/f27/local/1920x1080/manifest.json",
+      "bytes": 1008,
+      "sha256": "e25c69c761495fd9a30bd5b890f6ab18493759cfe922204e443f37df0a127fe5"
+    },
+    {
+      "path": "qa-v5/f27/local/360x800/01-rest.json",
+      "bytes": 50735,
+      "sha256": "6fba2e59fb5c01ca0c9646b3dab84ba9e6e6e5d2ea3495afe8f682f4e98c7b9a"
+    },
+    {
+      "path": "qa-v5/f27/local/360x800/01-rest.png",
+      "bytes": 4475,
+      "sha256": "5556712d6823263a0250cacbfd5ef6b747d7e7bd3f22048ec8cde027f3cc9628"
+    },
+    {
+      "path": "qa-v5/f27/local/360x800/manifest.json",
+      "bytes": 1002,
+      "sha256": "5f061a1fb513b3ab7984c605bead73c4b5e772125b1e406af48cd53a16b1e8c2"
+    },
+    {
+      "path": "qa-v5/f27/local/390x844/01-rest.json",
+      "bytes": 50763,
+      "sha256": "2fabb78b97ebeaf94f0d6c6a1cabd668e0fb525aa6e4561e170b0e6a0db0eede"
+    },
+    {
+      "path": "qa-v5/f27/local/390x844/01-rest.png",
+      "bytes": 4727,
+      "sha256": "34baa216d104b07f49b6231a4c732cc3723fc46d484fbfce2552e2dfa3620a61"
+    },
+    {
+      "path": "qa-v5/f27/local/390x844/manifest.json",
+      "bytes": 1002,
+      "sha256": "81d6e639711fad4adca8cbc3eb6f9cd1903f144fdf3f149b9b2e0e8dc6790f87"
+    },
+    {
+      "path": "qa-v5/f27/local/500x900/01-rest.json",
+      "bytes": 50770,
+      "sha256": "3a5b7d975b29ddfe081e18c807330d9ad8e3dc9771c72d11d0dc66246135fb86"
+    },
+    {
+      "path": "qa-v5/f27/local/500x900/01-rest.png",
+      "bytes": 4725,
+      "sha256": "0d16f472d3ebaf6a1f50383e60c3462e39766eddb295d18ab014d2308e7e2f6d"
+    },
+    {
+      "path": "qa-v5/f27/local/500x900/manifest.json",
+      "bytes": 1002,
+      "sha256": "082d7140d38c58a20c3f6bceca7bb41d771cfd91366326e54c701d8f14b8752f"
+    },
+    {
+      "path": "qa-v5/f27/local/667x375/01-rest.json",
+      "bytes": 50825,
+      "sha256": "f033e8eaa8ff3a9374b4008ccc797dc6cd0df494a2075127eb2f81dc388b5252"
+    },
+    {
+      "path": "qa-v5/f27/local/667x375/01-rest.png",
+      "bytes": 2950,
+      "sha256": "76dcaf961a602cf19b71f5e93577d5448d476b86a1762d9526b8e1831efa34d7"
+    },
+    {
+      "path": "qa-v5/f27/local/667x375/manifest.json",
+      "bytes": 1002,
+      "sha256": "03cc0a8efdd6d78bade4798d8bb65976cb7d804baf5d4faf96ddb8945f5a3b92"
+    },
+    {
+      "path": "qa-v5/f27/local/700x700/01-rest.json",
+      "bytes": 50819,
+      "sha256": "245070787e7b8bb96864437695e0c11c6110a5df42b1e1f513fcb31667207c78"
+    },
+    {
+      "path": "qa-v5/f27/local/700x700/01-rest.png",
+      "bytes": 6073,
+      "sha256": "d42fb0462cca235bed323b13a66b5536cafbe8a731cb69959977a9f116738f4f"
+    },
+    {
+      "path": "qa-v5/f27/local/700x700/manifest.json",
+      "bytes": 1002,
+      "sha256": "69287393962eb76154ab31f2b1b7a554d60d03721e0f38524c495c691a65fa62"
+    },
+    {
+      "path": "qa-v5/f27/local/780x470/01-rest.json",
+      "bytes": 50847,
+      "sha256": "4e5b765ca8eca15c381b153e615909b140e11c2b62bc5f84e913696f265a686a"
+    },
+    {
+      "path": "qa-v5/f27/local/780x470/01-rest.png",
+      "bytes": 4056,
+      "sha256": "63e35584b0e08f201adc82d8897b8d4a3e062fdcec88fab6546fef09f8c19c84"
+    },
+    {
+      "path": "qa-v5/f27/local/780x470/manifest.json",
+      "bytes": 1002,
+      "sha256": "3e60d5d5785a4b5fb19350023b32ee5474df0617761c563c4e9f1da8ab609272"
+    },
+    {
+      "path": "qa-v5/f27/local/844x390/01-rest.json",
+      "bytes": 50787,
+      "sha256": "caba3c5646b631e66fd9155361e0619d05f635638fbe2a95f01cce63da5e78a1"
+    },
+    {
+      "path": "qa-v5/f27/local/844x390/01-rest.png",
+      "bytes": 2779,
+      "sha256": "891c8eb83d9cb12d90cd2e9e748799b3b7681cf64e3dcbe92851292b825b085d"
+    },
+    {
+      "path": "qa-v5/f27/local/844x390/manifest.json",
+      "bytes": 1002,
+      "sha256": "9c325a82b24380edef70c12c6466455461411a81b1f90a2153581c908d9ee5ce"
+    },
+    {
+      "path": "qa-v5/f27/local/960x500/01-rest.json",
+      "bytes": 50786,
+      "sha256": "aa6a62addd3991635daf8cc4a6590d797d9fe859461f3cf133241af6d7f7517e"
+    },
+    {
+      "path": "qa-v5/f27/local/960x500/01-rest.png",
+      "bytes": 3736,
+      "sha256": "b6f9b680d758bf54243263de774cdb87f07d3116d050b12e4c5814c158122963"
+    },
+    {
+      "path": "qa-v5/f27/local/960x500/manifest.json",
+      "bytes": 1002,
+      "sha256": "5077a32832cd2ea2d4a7adb2021dd514ca7d07e59df641bb1c964cdd93e8f0e2"
+    },
+    {
+      "path": "qa-v5/f27/local/960x720/01-rest.json",
+      "bytes": 50874,
+      "sha256": "0bf8d04062e16e4804f075ce23866f4d778dd696ec03e99edcae59f6042cf840"
+    },
+    {
+      "path": "qa-v5/f27/local/960x720/01-rest.png",
+      "bytes": 6528,
+      "sha256": "a312f8b23e9bbf3c845dc3719711adf9ef3182a1d2a0c46f08f66b2dfb7ec65d"
+    },
+    {
+      "path": "qa-v5/f27/local/960x720/manifest.json",
+      "bytes": 1002,
+      "sha256": "ee38e0c1d2ff362f4777efe79a303df446c7ccb4769b3102abf113c9411a9625"
+    },
+    {
+      "path": "qa-v5/f27/portrait-vertical-models.json",
+      "bytes": 48940,
+      "sha256": "b4a640aa37fb93d48e3bb6862641878e17041bcc33cc0de2f20d4f6a1fa3e09b"
+    },
+    {
+      "path": "qa-v5/f27/row-origin-model.json",
+      "bytes": 40716,
+      "sha256": "c75e90a446d4df669bc582955e06f91cfa487669aea1a863dcd28ed139c562df"
+    },
+    {
+      "path": "qa-v5/f27/session/runtime-assertions.json",
+      "bytes": 104850,
+      "sha256": "0e4b44280572377c748caf79112005f9980283186f803614904edf4eea7f7746"
+    },
+    {
+      "path": "qa-v5/f27/target-phase-determinism.json",
+      "bytes": 78470,
+      "sha256": "f85e32717c0936042c3a261719f1abb19aca431ceda64d28ab57829f4ccb8242"
+    }
+  ]
+}

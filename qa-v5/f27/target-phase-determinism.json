@@ -1,0 +1,4263 @@
+{
+  "instrument": "scripts/v5/f27-dom-verify.py against scripts/v5/f27_target_model.py",
+  "source": "https://infinite-liquid-glass.shader.se/?v=2",
+  "method": "Target CSS3D world transforms, inverted to sphere arc coordinates. No pixel detection and no regression is involved.",
+  "coldLoadsPerViewport": 5,
+  "determinism": {
+    "phaseStable": "12/12",
+    "unstableViewports": [],
+    "visibleCodesStable": "12/12",
+    "initialScroll": "0,0 at every viewport and every cold load (the Target's scroll springs are constructed at 0)"
+  },
+  "modelAgreement": "12/12",
+  "disagreeing": [],
+  "worstLatticeResidualWorldUnits": 0.004921,
+  "worstPerspectiveDeltaPx": 0.0004,
+  "viewports": [
+    {
+      "id": "1440x1080",
+      "viewport": [
+        1440,
+        1080
+      ],
+      "coldLoads": 5,
+      "mobileEmulation": false,
+      "phaseStableAcrossColdLoads": true,
+      "observedPhases": [
+        "True"
+      ],
+      "visibleCodesStable": true,
+      "rowLatticeStable": true,
+      "perspectiveStable": true,
+      "initialScrollStable": true,
+      "atRestDeltaWorldMax": 0,
+      "latticeResidualMaxWorld": 0.0041,
+      "predictedLowerRowCardCentred": true,
+      "observedLowerRowCardCentred": true,
+      "modelAgrees": true,
+      "cols": 10,
+      "rows": 10
+    },
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "coldLoads": 5,
+      "mobileEmulation": false,
+      "phaseStableAcrossColdLoads": true,
+      "observedPhases": [
+        "True"
+      ],
+      "visibleCodesStable": true,
+      "rowLatticeStable": true,
+      "perspectiveStable": true,
+      "initialScrollStable": true,
+      "atRestDeltaWorldMax": 0,
+      "latticeResidualMaxWorld": 0.0041,
+      "predictedLowerRowCardCentred": true,
+      "observedLowerRowCardCentred": true,
+      "modelAgrees": true,
+      "cols": 10,
+      "rows": 10
+    },
+    {
+      "id": "667x375",
+      "viewport": [
+        667,
+        375
+      ],
+      "coldLoads": 5,
+      "mobileEmulation": true,
+      "phaseStableAcrossColdLoads": true,
+      "observedPhases": [
+        "True"
+      ],
+      "visibleCodesStable": true,
+      "rowLatticeStable": true,
+      "perspectiveStable": true,
+      "initialScrollStable": true,
+      "atRestDeltaWorldMax": 0,
+      "latticeResidualMaxWorld": 0.000526,
+      "predictedLowerRowCardCentred": true,
+      "observedLowerRowCardCentred": true,
+      "modelAgrees": true,
+      "cols": 10,
+      "rows": 10
+    },
+    {
+      "id": "700x400",
+      "viewport": [
+        700,
+        400
+      ],
+      "coldLoads": 5,
+      "mobileEmulation": false,
+      "phaseStableAcrossColdLoads": true,
+      "observedPhases": [
+        "True"
+      ],
+      "visibleCodesStable": true,
+      "rowLatticeStable": true,
+      "perspectiveStable": true,
+      "initialScrollStable": true,
+      "atRestDeltaWorldMax": 0,
+      "latticeResidualMaxWorld": 0.000393,
+      "predictedLowerRowCardCentred": true,
+      "observedLowerRowCardCentred": true,
+      "modelAgrees": true,
+      "cols": 10,
+      "rows": 10
+    },
+    {
+      "id": "700x700",
+      "viewport": [
+        700,
+        700
+      ],
+      "coldLoads": 5,
+      "mobileEmulation": false,
+      "phaseStableAcrossColdLoads": true,
+      "observedPhases": [
+        "False"
+      ],
+      "visibleCodesStable": true,
+      "rowLatticeStable": true,
+      "perspectiveStable": true,
+      "initialScrollStable": true,
+      "atRestDeltaWorldMax": 0,
+      "latticeResidualMaxWorld": 0.004921,
+      "predictedLowerRowCardCentred": false,
+      "observedLowerRowCardCentred": false,
+      "modelAgrees": true,
+      "cols": 10,
+      "rows": 12
+    },
+    {
+      "id": "760x470",
+      "viewport": [
+        760,
+        470
+      ],
+      "coldLoads": 5,
+      "mobileEmulation": false,
+      "phaseStableAcrossColdLoads": true,
+      "observedPhases": [
+        "True"
+      ],
+      "visibleCodesStable": true,
+      "rowLatticeStable": true,
+      "perspectiveStable": true,
+      "initialScrollStable": true,
+      "atRestDeltaWorldMax": 0,
+      "latticeResidualMaxWorld": 0.00055,
+      "predictedLowerRowCardCentred": true,
+      "observedLowerRowCardCentred": true,
+      "modelAgrees": true,
+      "cols": 10,
+      "rows": 10
+    },
+    {
+      "id": "780x470",
+      "viewport": [
+        780,
+        470
+      ],
+      "coldLoads": 5,
+      "mobileEmulation": false,
+      "phaseStableAcrossColdLoads": true,
+      "observedPhases": [
+        "True"
+      ],
+      "visibleCodesStable": true,
+      "rowLatticeStable": true,
+      "perspectiveStable": true,
+      "initialScrollStable": true,
+      "atRestDeltaWorldMax": 0,
+      "latticeResidualMaxWorld": 0.00066,
+      "predictedLowerRowCardCentred": true,
+      "observedLowerRowCardCentred": true,
+      "modelAgrees": true,
+      "cols": 10,
+      "rows": 10
+    },
+    {
+      "id": "800x425",
+      "viewport": [
+        800,
+        425
+      ],
+      "coldLoads": 5,
+      "mobileEmulation": false,
+      "phaseStableAcrossColdLoads": true,
+      "observedPhases": [
+        "False"
+      ],
+      "visibleCodesStable": true,
+      "rowLatticeStable": true,
+      "perspectiveStable": true,
+      "initialScrollStable": true,
+      "atRestDeltaWorldMax": 0,
+      "latticeResidualMaxWorld": 0.000484,
+      "predictedLowerRowCardCentred": false,
+      "observedLowerRowCardCentred": false,
+      "modelAgrees": true,
+      "cols": 10,
+      "rows": 8
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844,
+        390
+      ],
+      "coldLoads": 5,
+      "mobileEmulation": true,
+      "phaseStableAcrossColdLoads": true,
+      "observedPhases": [
+        "False"
+      ],
+      "visibleCodesStable": true,
+      "rowLatticeStable": true,
+      "perspectiveStable": true,
+      "initialScrollStable": true,
+      "atRestDeltaWorldMax": 0,
+      "latticeResidualMaxWorld": 0.000529,
+      "predictedLowerRowCardCentred": false,
+      "observedLowerRowCardCentred": false,
+      "modelAgrees": true,
+      "cols": 10,
+      "rows": 8
+    },
+    {
+      "id": "900x899",
+      "viewport": [
+        900,
+        899
+      ],
+      "coldLoads": 5,
+      "mobileEmulation": false,
+      "phaseStableAcrossColdLoads": true,
+      "observedPhases": [
+        "False"
+      ],
+      "visibleCodesStable": true,
+      "rowLatticeStable": true,
+      "perspectiveStable": true,
+      "initialScrollStable": true,
+      "atRestDeltaWorldMax": 0,
+      "latticeResidualMaxWorld": 0.00478,
+      "predictedLowerRowCardCentred": false,
+      "observedLowerRowCardCentred": false,
+      "modelAgrees": true,
+      "cols": 10,
+      "rows": 12
+    },
+    {
+      "id": "960x500",
+      "viewport": [
+        960,
+        500
+      ],
+      "coldLoads": 5,
+      "mobileEmulation": false,
+      "phaseStableAcrossColdLoads": true,
+      "observedPhases": [
+        "False"
+      ],
+      "visibleCodesStable": true,
+      "rowLatticeStable": true,
+      "perspectiveStable": true,
+      "initialScrollStable": true,
+      "atRestDeltaWorldMax": 0,
+      "latticeResidualMaxWorld": 0.000533,
+      "predictedLowerRowCardCentred": false,
+      "observedLowerRowCardCentred": false,
+      "modelAgrees": true,
+      "cols": 10,
+      "rows": 8
+    },
+    {
+      "id": "960x720",
+      "viewport": [
+        960,
+        720
+      ],
+      "coldLoads": 5,
+      "mobileEmulation": false,
+      "phaseStableAcrossColdLoads": true,
+      "observedPhases": [
+        "True"
+      ],
+      "visibleCodesStable": true,
+      "rowLatticeStable": true,
+      "perspectiveStable": true,
+      "initialScrollStable": true,
+      "atRestDeltaWorldMax": 0,
+      "latticeResidualMaxWorld": 0.003943,
+      "predictedLowerRowCardCentred": true,
+      "observedLowerRowCardCentred": true,
+      "modelAgrees": true,
+      "cols": 10,
+      "rows": 10
+    }
+  ],
+  "loads": [
+    {
+      "id": "667x375",
+      "viewport": [
+        667,
+        375
+      ],
+      "load": 0,
+      "mobile": true,
+      "capturedAtUtc": "2026-08-20T15:25:37.535Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 1,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 463.194,
+        "model": 463.1944,
+        "deltaPx": -0.0004
+      },
+      "planeSize": {
+        "dom": [
+          253.453,
+          190.094
+        ],
+        "model": [
+          253.46,
+          190.095
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.000526,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "667x375",
+      "viewport": [
+        667,
+        375
+      ],
+      "load": 1,
+      "mobile": true,
+      "capturedAtUtc": "2026-08-20T15:25:51.370Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 1,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 463.194,
+        "model": 463.1944,
+        "deltaPx": -0.0004
+      },
+      "planeSize": {
+        "dom": [
+          253.453,
+          190.094
+        ],
+        "model": [
+          253.46,
+          190.095
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.000526,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "667x375",
+      "viewport": [
+        667,
+        375
+      ],
+      "load": 2,
+      "mobile": true,
+      "capturedAtUtc": "2026-08-20T15:26:05.475Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 1,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 463.194,
+        "model": 463.1944,
+        "deltaPx": -0.0004
+      },
+      "planeSize": {
+        "dom": [
+          253.453,
+          190.094
+        ],
+        "model": [
+          253.46,
+          190.095
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.000526,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "667x375",
+      "viewport": [
+        667,
+        375
+      ],
+      "load": 3,
+      "mobile": true,
+      "capturedAtUtc": "2026-08-20T15:26:18.894Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 1,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 463.194,
+        "model": 463.1944,
+        "deltaPx": -0.0004
+      },
+      "planeSize": {
+        "dom": [
+          253.453,
+          190.094
+        ],
+        "model": [
+          253.46,
+          190.095
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.000526,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "667x375",
+      "viewport": [
+        667,
+        375
+      ],
+      "load": 4,
+      "mobile": true,
+      "capturedAtUtc": "2026-08-20T15:26:33.100Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 1,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 463.194,
+        "model": 463.1944,
+        "deltaPx": -0.0004
+      },
+      "planeSize": {
+        "dom": [
+          253.453,
+          190.094
+        ],
+        "model": [
+          253.46,
+          190.095
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.000526,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "700x700",
+      "viewport": [
+        700,
+        700
+      ],
+      "load": 0,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:26:48.618Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 486.111,
+        "model": 486.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          266,
+          199.5
+        ],
+        "model": [
+          266.0,
+          199.5
+        ]
+      },
+      "cols": 10,
+      "rows": 12,
+      "latticeResidualMaxWorld": 0.004921,
+      "rowsSeen": [
+        -3.5,
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5,
+        3.5,
+        5.5
+      ],
+      "codesVisible": [
+        23,
+        28,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67,
+        73,
+        74,
+        75,
+        76,
+        77,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        92,
+        98,
+        120
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "700x700",
+      "viewport": [
+        700,
+        700
+      ],
+      "load": 1,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:27:04.037Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 486.111,
+        "model": 486.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          266,
+          199.5
+        ],
+        "model": [
+          266.0,
+          199.5
+        ]
+      },
+      "cols": 10,
+      "rows": 12,
+      "latticeResidualMaxWorld": 0.004921,
+      "rowsSeen": [
+        -3.5,
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5,
+        3.5,
+        5.5
+      ],
+      "codesVisible": [
+        23,
+        28,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67,
+        73,
+        74,
+        75,
+        76,
+        77,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        92,
+        98,
+        120
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "700x700",
+      "viewport": [
+        700,
+        700
+      ],
+      "load": 2,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:27:19.091Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 486.111,
+        "model": 486.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          266,
+          199.5
+        ],
+        "model": [
+          266.0,
+          199.5
+        ]
+      },
+      "cols": 10,
+      "rows": 12,
+      "latticeResidualMaxWorld": 0.004921,
+      "rowsSeen": [
+        -3.5,
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5,
+        3.5,
+        5.5
+      ],
+      "codesVisible": [
+        23,
+        28,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67,
+        73,
+        74,
+        75,
+        76,
+        77,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        92,
+        98,
+        120
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "700x700",
+      "viewport": [
+        700,
+        700
+      ],
+      "load": 3,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:27:33.955Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 486.111,
+        "model": 486.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          266,
+          199.5
+        ],
+        "model": [
+          266.0,
+          199.5
+        ]
+      },
+      "cols": 10,
+      "rows": 12,
+      "latticeResidualMaxWorld": 0.004921,
+      "rowsSeen": [
+        -3.5,
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5,
+        3.5,
+        5.5
+      ],
+      "codesVisible": [
+        23,
+        28,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67,
+        73,
+        74,
+        75,
+        76,
+        77,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        92,
+        98,
+        120
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "700x700",
+      "viewport": [
+        700,
+        700
+      ],
+      "load": 4,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:27:49.093Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 486.111,
+        "model": 486.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          266,
+          199.5
+        ],
+        "model": [
+          266.0,
+          199.5
+        ]
+      },
+      "cols": 10,
+      "rows": 12,
+      "latticeResidualMaxWorld": 0.004921,
+      "rowsSeen": [
+        -3.5,
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5,
+        3.5,
+        5.5
+      ],
+      "codesVisible": [
+        23,
+        28,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67,
+        73,
+        74,
+        75,
+        76,
+        77,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        92,
+        98,
+        120
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "780x470",
+      "viewport": [
+        780,
+        470
+      ],
+      "load": 0,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:28:05.361Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 541.667,
+        "model": 541.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          296.391,
+          222.297
+        ],
+        "model": [
+          296.4,
+          222.3
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.00066,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "780x470",
+      "viewport": [
+        780,
+        470
+      ],
+      "load": 1,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:28:20.590Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 541.667,
+        "model": 541.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          296.391,
+          222.297
+        ],
+        "model": [
+          296.4,
+          222.3
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.00066,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "780x470",
+      "viewport": [
+        780,
+        470
+      ],
+      "load": 2,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:28:35.560Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 541.667,
+        "model": 541.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          296.391,
+          222.297
+        ],
+        "model": [
+          296.4,
+          222.3
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.00066,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "780x470",
+      "viewport": [
+        780,
+        470
+      ],
+      "load": 3,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:28:50.364Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 541.667,
+        "model": 541.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          296.391,
+          222.297
+        ],
+        "model": [
+          296.4,
+          222.3
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.00066,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "780x470",
+      "viewport": [
+        780,
+        470
+      ],
+      "load": 4,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:29:05.651Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 541.667,
+        "model": 541.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          296.391,
+          222.297
+        ],
+        "model": [
+          296.4,
+          222.3
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.00066,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "1440x1080",
+      "viewport": [
+        1440,
+        1080
+      ],
+      "load": 0,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:29:21.562Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 1000,
+        "model": 1000.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          547.188,
+          410.391
+        ],
+        "model": [
+          547.2,
+          410.4
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.0041,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        54,
+        55,
+        56,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "1440x1080",
+      "viewport": [
+        1440,
+        1080
+      ],
+      "load": 1,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:29:44.711Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 1000,
+        "model": 1000.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          547.188,
+          410.391
+        ],
+        "model": [
+          547.2,
+          410.4
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.0041,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        54,
+        55,
+        56,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "1440x1080",
+      "viewport": [
+        1440,
+        1080
+      ],
+      "load": 2,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:30:02.712Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 1000,
+        "model": 1000.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          547.188,
+          410.391
+        ],
+        "model": [
+          547.2,
+          410.4
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.0041,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        54,
+        55,
+        56,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "1440x1080",
+      "viewport": [
+        1440,
+        1080
+      ],
+      "load": 3,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:30:19.129Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 1000,
+        "model": 1000.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          547.188,
+          410.391
+        ],
+        "model": [
+          547.2,
+          410.4
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.0041,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        54,
+        55,
+        56,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "1440x1080",
+      "viewport": [
+        1440,
+        1080
+      ],
+      "load": 4,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:30:45.700Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 1000,
+        "model": 1000.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          547.188,
+          410.391
+        ],
+        "model": [
+          547.2,
+          410.4
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.0041,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        54,
+        55,
+        56,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "700x400",
+      "viewport": [
+        700,
+        400
+      ],
+      "load": 0,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:31:05.666Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 486.111,
+        "model": 486.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          266,
+          199.5
+        ],
+        "model": [
+          266.0,
+          199.5
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.000393,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "700x400",
+      "viewport": [
+        700,
+        400
+      ],
+      "load": 1,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:31:25.917Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 486.111,
+        "model": 486.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          266,
+          199.5
+        ],
+        "model": [
+          266.0,
+          199.5
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.000393,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "700x400",
+      "viewport": [
+        700,
+        400
+      ],
+      "load": 2,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:31:43.513Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 486.111,
+        "model": 486.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          266,
+          199.5
+        ],
+        "model": [
+          266.0,
+          199.5
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.000393,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "700x400",
+      "viewport": [
+        700,
+        400
+      ],
+      "load": 3,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:31:59.417Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 486.111,
+        "model": 486.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          266,
+          199.5
+        ],
+        "model": [
+          266.0,
+          199.5
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.000393,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "700x400",
+      "viewport": [
+        700,
+        400
+      ],
+      "load": 4,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:32:15.294Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 486.111,
+        "model": 486.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          266,
+          199.5
+        ],
+        "model": [
+          266.0,
+          199.5
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.000393,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "760x470",
+      "viewport": [
+        760,
+        470
+      ],
+      "load": 0,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:32:31.461Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 527.778,
+        "model": 527.7778,
+        "deltaPx": 0.0002
+      },
+      "planeSize": {
+        "dom": [
+          288.797,
+          216.594
+        ],
+        "model": [
+          288.8,
+          216.6
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.00055,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "760x470",
+      "viewport": [
+        760,
+        470
+      ],
+      "load": 1,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:32:47.373Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 527.778,
+        "model": 527.7778,
+        "deltaPx": 0.0002
+      },
+      "planeSize": {
+        "dom": [
+          288.797,
+          216.594
+        ],
+        "model": [
+          288.8,
+          216.6
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.00055,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "760x470",
+      "viewport": [
+        760,
+        470
+      ],
+      "load": 2,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:33:04.684Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 527.778,
+        "model": 527.7778,
+        "deltaPx": 0.0002
+      },
+      "planeSize": {
+        "dom": [
+          288.797,
+          216.594
+        ],
+        "model": [
+          288.8,
+          216.6
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.00055,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "760x470",
+      "viewport": [
+        760,
+        470
+      ],
+      "load": 3,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:33:20.296Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 527.778,
+        "model": 527.7778,
+        "deltaPx": 0.0002
+      },
+      "planeSize": {
+        "dom": [
+          288.797,
+          216.594
+        ],
+        "model": [
+          288.8,
+          216.6
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.00055,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "760x470",
+      "viewport": [
+        760,
+        470
+      ],
+      "load": 4,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:33:36.167Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 527.778,
+        "model": 527.7778,
+        "deltaPx": 0.0002
+      },
+      "planeSize": {
+        "dom": [
+          288.797,
+          216.594
+        ],
+        "model": [
+          288.8,
+          216.6
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.00055,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "800x425",
+      "viewport": [
+        800,
+        425
+      ],
+      "load": 0,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:33:52.178Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 555.556,
+        "model": 555.5556,
+        "deltaPx": 0.0004
+      },
+      "planeSize": {
+        "dom": [
+          304,
+          228
+        ],
+        "model": [
+          304.0,
+          228.0
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000484,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "800x425",
+      "viewport": [
+        800,
+        425
+      ],
+      "load": 1,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:34:07.828Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 555.556,
+        "model": 555.5556,
+        "deltaPx": 0.0004
+      },
+      "planeSize": {
+        "dom": [
+          304,
+          228
+        ],
+        "model": [
+          304.0,
+          228.0
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000484,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "800x425",
+      "viewport": [
+        800,
+        425
+      ],
+      "load": 2,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:34:24.064Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 555.556,
+        "model": 555.5556,
+        "deltaPx": 0.0004
+      },
+      "planeSize": {
+        "dom": [
+          304,
+          228
+        ],
+        "model": [
+          304.0,
+          228.0
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000484,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "800x425",
+      "viewport": [
+        800,
+        425
+      ],
+      "load": 3,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:34:40.471Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 555.556,
+        "model": 555.5556,
+        "deltaPx": 0.0004
+      },
+      "planeSize": {
+        "dom": [
+          304,
+          228
+        ],
+        "model": [
+          304.0,
+          228.0
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000484,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "800x425",
+      "viewport": [
+        800,
+        425
+      ],
+      "load": 4,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:34:56.920Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 555.556,
+        "model": 555.5556,
+        "deltaPx": 0.0004
+      },
+      "planeSize": {
+        "dom": [
+          304,
+          228
+        ],
+        "model": [
+          304.0,
+          228.0
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000484,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844,
+        390
+      ],
+      "load": 0,
+      "mobile": true,
+      "capturedAtUtc": "2026-08-20T15:35:12.329Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 1,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 586.111,
+        "model": 586.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          320.719,
+          240.531
+        ],
+        "model": [
+          320.72,
+          240.54
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000529,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844,
+        390
+      ],
+      "load": 1,
+      "mobile": true,
+      "capturedAtUtc": "2026-08-20T15:35:27.048Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 1,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 586.111,
+        "model": 586.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          320.719,
+          240.531
+        ],
+        "model": [
+          320.72,
+          240.54
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000529,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844,
+        390
+      ],
+      "load": 2,
+      "mobile": true,
+      "capturedAtUtc": "2026-08-20T15:35:41.959Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 1,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 586.111,
+        "model": 586.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          320.719,
+          240.531
+        ],
+        "model": [
+          320.72,
+          240.54
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000529,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844,
+        390
+      ],
+      "load": 3,
+      "mobile": true,
+      "capturedAtUtc": "2026-08-20T15:35:56.506Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 1,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 586.111,
+        "model": 586.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          320.719,
+          240.531
+        ],
+        "model": [
+          320.72,
+          240.54
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000529,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844,
+        390
+      ],
+      "load": 4,
+      "mobile": true,
+      "capturedAtUtc": "2026-08-20T15:36:12.439Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 1,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 586.111,
+        "model": 586.1111,
+        "deltaPx": -0.0001
+      },
+      "planeSize": {
+        "dom": [
+          320.719,
+          240.531
+        ],
+        "model": [
+          320.72,
+          240.54
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000529,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "900x899",
+      "viewport": [
+        900,
+        899
+      ],
+      "load": 0,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:36:40.122Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 625,
+        "model": 625.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          342,
+          256.5
+        ],
+        "model": [
+          342.0,
+          256.5
+        ]
+      },
+      "cols": 10,
+      "rows": 12,
+      "latticeResidualMaxWorld": 0.00478,
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5,
+        5.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67,
+        73,
+        74,
+        75,
+        76,
+        77,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        120
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "900x899",
+      "viewport": [
+        900,
+        899
+      ],
+      "load": 1,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:37:03.507Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 625,
+        "model": 625.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          342,
+          256.5
+        ],
+        "model": [
+          342.0,
+          256.5
+        ]
+      },
+      "cols": 10,
+      "rows": 12,
+      "latticeResidualMaxWorld": 0.00478,
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5,
+        5.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67,
+        73,
+        74,
+        75,
+        76,
+        77,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        120
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "900x899",
+      "viewport": [
+        900,
+        899
+      ],
+      "load": 2,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:37:21.429Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 625,
+        "model": 625.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          342,
+          256.5
+        ],
+        "model": [
+          342.0,
+          256.5
+        ]
+      },
+      "cols": 10,
+      "rows": 12,
+      "latticeResidualMaxWorld": 0.00478,
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5,
+        5.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67,
+        73,
+        74,
+        75,
+        76,
+        77,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        120
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "900x899",
+      "viewport": [
+        900,
+        899
+      ],
+      "load": 3,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:37:40.805Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 625,
+        "model": 625.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          342,
+          256.5
+        ],
+        "model": [
+          342.0,
+          256.5
+        ]
+      },
+      "cols": 10,
+      "rows": 12,
+      "latticeResidualMaxWorld": 0.00478,
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5,
+        5.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67,
+        73,
+        74,
+        75,
+        76,
+        77,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        120
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "900x899",
+      "viewport": [
+        900,
+        899
+      ],
+      "load": 4,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:37:58.283Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 625,
+        "model": 625.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          342,
+          256.5
+        ],
+        "model": [
+          342.0,
+          256.5
+        ]
+      },
+      "cols": 10,
+      "rows": 12,
+      "latticeResidualMaxWorld": 0.00478,
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5,
+        5.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67,
+        73,
+        74,
+        75,
+        76,
+        77,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        120
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "960x500",
+      "viewport": [
+        960,
+        500
+      ],
+      "load": 0,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:38:15.600Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 666.667,
+        "model": 666.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          364.797,
+          273.594
+        ],
+        "model": [
+          364.8,
+          273.6
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000533,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "960x500",
+      "viewport": [
+        960,
+        500
+      ],
+      "load": 1,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:38:33.307Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 666.667,
+        "model": 666.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          364.797,
+          273.594
+        ],
+        "model": [
+          364.8,
+          273.6
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000533,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "960x500",
+      "viewport": [
+        960,
+        500
+      ],
+      "load": 2,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:38:50.324Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 666.667,
+        "model": 666.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          364.797,
+          273.594
+        ],
+        "model": [
+          364.8,
+          273.6
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000533,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "960x500",
+      "viewport": [
+        960,
+        500
+      ],
+      "load": 3,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:39:09.426Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 666.667,
+        "model": 666.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          364.797,
+          273.594
+        ],
+        "model": [
+          364.8,
+          273.6
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000533,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "960x500",
+      "viewport": [
+        960,
+        500
+      ],
+      "load": 4,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:39:26.140Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 666.667,
+        "model": 666.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          364.797,
+          273.594
+        ],
+        "model": [
+          364.8,
+          273.6
+        ]
+      },
+      "cols": 10,
+      "rows": 8,
+      "latticeResidualMaxWorld": 0.000533,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        24,
+        25,
+        26,
+        27,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": false,
+      "predictedLowerRowCardCentred": false,
+      "phaseAgrees": true
+    },
+    {
+      "id": "960x720",
+      "viewport": [
+        960,
+        720
+      ],
+      "load": 0,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:39:42.608Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 666.667,
+        "model": 666.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          364.797,
+          273.594
+        ],
+        "model": [
+          364.8,
+          273.6
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.003943,
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        23,
+        28,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "960x720",
+      "viewport": [
+        960,
+        720
+      ],
+      "load": 1,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:39:59.406Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 666.667,
+        "model": 666.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          364.797,
+          273.594
+        ],
+        "model": [
+          364.8,
+          273.6
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.003943,
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        23,
+        28,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "960x720",
+      "viewport": [
+        960,
+        720
+      ],
+      "load": 2,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:40:17.505Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 666.667,
+        "model": 666.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          364.797,
+          273.594
+        ],
+        "model": [
+          364.8,
+          273.6
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.003943,
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        23,
+        28,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "960x720",
+      "viewport": [
+        960,
+        720
+      ],
+      "load": 3,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:40:35.028Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 666.667,
+        "model": 666.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          364.797,
+          273.594
+        ],
+        "model": [
+          364.8,
+          273.6
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.003943,
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        23,
+        28,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "960x720",
+      "viewport": [
+        960,
+        720
+      ],
+      "load": 4,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:40:54.273Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 666.667,
+        "model": 666.6667,
+        "deltaPx": 0.0003
+      },
+      "planeSize": {
+        "dom": [
+          364.797,
+          273.594
+        ],
+        "model": [
+          364.8,
+          273.6
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.003943,
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        23,
+        28,
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        53,
+        54,
+        55,
+        56,
+        57,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "load": 0,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:41:15.352Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 1000,
+        "model": 1000.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          547.188,
+          410.391
+        ],
+        "model": [
+          547.2,
+          410.4
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.0041,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        54,
+        55,
+        56,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "load": 1,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:41:33.427Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 1000,
+        "model": 1000.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          547.188,
+          410.391
+        ],
+        "model": [
+          547.2,
+          410.4
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.0041,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        54,
+        55,
+        56,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "load": 2,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:41:50.347Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 1000,
+        "model": 1000.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          547.188,
+          410.391
+        ],
+        "model": [
+          547.2,
+          410.4
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.0041,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        54,
+        55,
+        56,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "load": 3,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:42:10.642Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 1000,
+        "model": 1000.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          547.188,
+          410.391
+        ],
+        "model": [
+          547.2,
+          410.4
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.0041,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        54,
+        55,
+        56,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    },
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "load": 4,
+      "mobile": false,
+      "capturedAtUtc": "2026-08-20T15:42:28.578Z",
+      "devicePixelRatio": 1,
+      "maxTouchPoints": 0,
+      "userAgentMobile": false,
+      "atRestDeltaWorld": 0,
+      "perspective": {
+        "dom": 1000,
+        "model": 1000.0,
+        "deltaPx": 0.0
+      },
+      "planeSize": {
+        "dom": [
+          547.188,
+          410.391
+        ],
+        "model": [
+          547.2,
+          410.4
+        ]
+      },
+      "cols": 10,
+      "rows": 10,
+      "latticeResidualMaxWorld": 0.0041,
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ],
+      "codesVisible": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        44,
+        45,
+        46,
+        47,
+        54,
+        55,
+        56,
+        64,
+        65,
+        66,
+        67
+      ],
+      "initialScrollX": 0.0,
+      "initialScrollY": 0.0,
+      "observedLowerRowCardCentred": true,
+      "predictedLowerRowCardCentred": true,
+      "phaseAgrees": true
+    }
+  ]
+}

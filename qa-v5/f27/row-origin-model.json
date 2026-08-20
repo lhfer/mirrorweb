@@ -1,0 +1,1860 @@
+{
+  "instrument": "scripts/v5/f27-row-origin.py, on Target CSS3D world transforms",
+  "finding": "The integer row branch is degenerate because there is no initial vertical offset to unwrap. Residual phase is zero at every viewport measured, so originJ = 0 and the k = 0 branch is the continuous one. The visible brick phase is not carried by a scroll offset at all: it is the parity of the Target's pool row count.",
+  "sweepOrder": [
+    "667x375",
+    "700x400",
+    "740x430",
+    "760x470",
+    "780x470",
+    "800x425",
+    "844x390",
+    "900x420",
+    "926x428",
+    "960x500",
+    "980x600",
+    "1000x700",
+    "1100x720",
+    "1280x800",
+    "1366x768",
+    "1440x900",
+    "1440x1080",
+    "1920x1080"
+  ],
+  "sweepMissing": [],
+  "viewportsMeasured": 36,
+  "brickPhaseAgreement": "36/36",
+  "brickPhaseDisagreeing": [],
+  "worstResidualPhaseYWorld": 0.000685,
+  "originJAllZero": true,
+  "unwrapDiscontinuities": [],
+  "rowOriginVsAspectRule": {
+    "disagreeingViewports": [
+      "700x700",
+      "900x899",
+      "700x900",
+      "320x900"
+    ],
+    "note": "Where the two rules disagree the row-origin rule is the one that matches the Target. Three of the four viewports the F2.7 brief listed as phase mismatches -- 667x375, 780x470, 1440x1080 -- are NOT mismatches: both rules give the same answer there and the Target agrees with both. Those three were a pixel-classifier error in F2.6, not a phase disagreement."
+  },
+  "rowIndexKinds": {
+    "geometryRowIndex": "j in v = j*cellH + restY0 - scrollY; j = 0 is the row just below the viewport centre",
+    "catalogRowIndex": "Target binds ILG-NN to the POOL SLOT, so its catalog is not a function of world row; ours binds to the world cell via catalogAt(i, j). Recorded, not changed: typography is frozen.",
+    "recyclingOriginJ": "round(scrollY / effectiveCellH), the pool's own origin row"
+  },
+  "viewports": [
+    {
+      "id": "667x375",
+      "viewport": [
+        667,
+        375
+      ],
+      "aspect": 1.77867,
+      "orientation": "landscape",
+      "targetCellH": 198.6493,
+      "targetCellW": 264.8657,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -397.2983,
+        -198.6491,
+        0.0002,
+        198.6495,
+        397.2988
+      ],
+      "selectedUnwrappedScrollY": 0.0002,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -0.000223,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "700x700",
+      "viewport": [
+        700,
+        700
+      ],
+      "aspect": 1.0,
+      "orientation": "square",
+      "targetCellH": 208.4775,
+      "targetCellW": 277.97,
+      "targetCols": 10,
+      "targetRows": 12,
+      "rawFittedScrollYCandidates": [
+        -416.9552,
+        -208.4777,
+        -0.0002,
+        208.4773,
+        416.9548
+      ],
+      "selectedUnwrappedScrollY": -0.0002,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": 0.000163,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 6,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": true,
+      "catalogRowIdsBelowCentre": [
+        64,
+        65,
+        66,
+        67
+      ],
+      "catalogRowIdsAboveCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "rowsSeen": [
+        -3.5,
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5,
+        3.5,
+        5.5
+      ]
+    },
+    {
+      "id": "780x470",
+      "viewport": [
+        780,
+        470
+      ],
+      "aspect": 1.65957,
+      "orientation": "landscape",
+      "targetCellH": 232.3035,
+      "targetCellW": 309.738,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -464.607,
+        -232.3035,
+        0.0,
+        232.3035,
+        464.607
+      ],
+      "selectedUnwrappedScrollY": 0.0,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -8e-06,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "1440x1080",
+      "viewport": [
+        1440,
+        1080
+      ],
+      "aspect": 1.33333,
+      "orientation": "landscape",
+      "targetCellH": 428.868,
+      "targetCellW": 571.824,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -857.736,
+        -428.868,
+        0.0,
+        428.868,
+        857.736
+      ],
+      "selectedUnwrappedScrollY": 0.0,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -3.1e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        54,
+        55,
+        56
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "700x400",
+      "viewport": [
+        700,
+        400
+      ],
+      "aspect": 1.75,
+      "orientation": "landscape",
+      "targetCellH": 208.4775,
+      "targetCellW": 277.97,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -416.9551,
+        -208.4776,
+        -0.0001,
+        208.4774,
+        416.9549
+      ],
+      "selectedUnwrappedScrollY": -0.0001,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": 9.2e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "760x470",
+      "viewport": [
+        760,
+        470
+      ],
+      "aspect": 1.61702,
+      "orientation": "landscape",
+      "targetCellH": 226.347,
+      "targetCellW": 301.796,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -452.6938,
+        -226.3468,
+        0.0002,
+        226.3472,
+        452.6942
+      ],
+      "selectedUnwrappedScrollY": 0.0002,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -0.000166,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "800x425",
+      "viewport": [
+        800,
+        425
+      ],
+      "aspect": 1.88235,
+      "orientation": "landscape",
+      "targetCellH": 238.26,
+      "targetCellW": 317.68,
+      "targetCols": 10,
+      "targetRows": 8,
+      "rawFittedScrollYCandidates": [
+        -476.5199,
+        -238.2599,
+        0.0001,
+        238.2601,
+        476.5201
+      ],
+      "selectedUnwrappedScrollY": 0.0001,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -8.4e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 4,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "catalogRowIdsAboveCentre": [
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844,
+        390
+      ],
+      "aspect": 2.1641,
+      "orientation": "landscape",
+      "targetCellH": 251.3643,
+      "targetCellW": 335.1524,
+      "targetCols": 10,
+      "targetRows": 8,
+      "rawFittedScrollYCandidates": [
+        -502.7286,
+        -251.3643,
+        -0.0,
+        251.3643,
+        502.7286
+      ],
+      "selectedUnwrappedScrollY": -0.0,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": 8e-06,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 4,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "catalogRowIdsAboveCentre": [
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "900x899",
+      "viewport": [
+        900,
+        899
+      ],
+      "aspect": 1.00111,
+      "orientation": "landscape",
+      "targetCellH": 268.0425,
+      "targetCellW": 357.39,
+      "targetCols": 10,
+      "targetRows": 12,
+      "rawFittedScrollYCandidates": [
+        -536.0849,
+        -268.0424,
+        0.0001,
+        268.0426,
+        536.0851
+      ],
+      "selectedUnwrappedScrollY": 0.0001,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -0.000139,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 6,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": true,
+      "catalogRowIdsBelowCentre": [
+        64,
+        65,
+        66,
+        67
+      ],
+      "catalogRowIdsAboveCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5,
+        5.5
+      ]
+    },
+    {
+      "id": "960x500",
+      "viewport": [
+        960,
+        500
+      ],
+      "aspect": 1.92,
+      "orientation": "landscape",
+      "targetCellH": 285.912,
+      "targetCellW": 381.216,
+      "targetCols": 10,
+      "targetRows": 8,
+      "rawFittedScrollYCandidates": [
+        -571.824,
+        -285.912,
+        0.0,
+        285.912,
+        571.824
+      ],
+      "selectedUnwrappedScrollY": 0.0,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -2.5e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 4,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "catalogRowIdsAboveCentre": [
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "960x720",
+      "viewport": [
+        960,
+        720
+      ],
+      "aspect": 1.33333,
+      "orientation": "landscape",
+      "targetCellH": 285.912,
+      "targetCellW": 381.216,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -571.824,
+        -285.912,
+        -0.0,
+        285.912,
+        571.824
+      ],
+      "selectedUnwrappedScrollY": -0.0,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": 9e-06,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "aspect": 1.6,
+      "orientation": "landscape",
+      "targetCellH": 428.868,
+      "targetCellW": 571.824,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -857.736,
+        -428.868,
+        0.0,
+        428.868,
+        857.736
+      ],
+      "selectedUnwrappedScrollY": 0.0,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -3.1e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        54,
+        55,
+        56
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "740x430",
+      "viewport": [
+        740,
+        430
+      ],
+      "aspect": 1.72093,
+      "orientation": "landscape",
+      "targetCellH": 220.3905,
+      "targetCellW": 293.854,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -440.7807,
+        -220.3902,
+        0.0003,
+        220.3908,
+        440.7813
+      ],
+      "selectedUnwrappedScrollY": 0.0003,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -0.000329,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "900x420",
+      "viewport": [
+        900,
+        420
+      ],
+      "aspect": 2.14286,
+      "orientation": "landscape",
+      "targetCellH": 268.0425,
+      "targetCellW": 357.39,
+      "targetCols": 10,
+      "targetRows": 8,
+      "rawFittedScrollYCandidates": [
+        -536.085,
+        -268.0425,
+        0.0,
+        268.0425,
+        536.085
+      ],
+      "selectedUnwrappedScrollY": 0.0,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -4e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 4,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "catalogRowIdsAboveCentre": [
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "926x428",
+      "viewport": [
+        926,
+        428
+      ],
+      "aspect": 2.16355,
+      "orientation": "landscape",
+      "targetCellH": 275.786,
+      "targetCellW": 367.7146,
+      "targetCols": 10,
+      "targetRows": 8,
+      "rawFittedScrollYCandidates": [
+        -551.5722,
+        -275.7862,
+        -0.0003,
+        275.7857,
+        551.5716
+      ],
+      "selectedUnwrappedScrollY": -0.0003,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": 0.000268,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 4,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "catalogRowIdsAboveCentre": [
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "980x600",
+      "viewport": [
+        980,
+        600
+      ],
+      "aspect": 1.63333,
+      "orientation": "landscape",
+      "targetCellH": 291.8685,
+      "targetCellW": 389.158,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -583.7369,
+        -291.8684,
+        0.0001,
+        291.8686,
+        583.7371
+      ],
+      "selectedUnwrappedScrollY": 0.0001,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -0.000108,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "1000x700",
+      "viewport": [
+        1000,
+        700
+      ],
+      "aspect": 1.42857,
+      "orientation": "landscape",
+      "targetCellH": 297.825,
+      "targetCellW": 397.1,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -595.6501,
+        -297.8251,
+        -0.0001,
+        297.8249,
+        595.6499
+      ],
+      "selectedUnwrappedScrollY": -0.0001,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": 5.2e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "1100x720",
+      "viewport": [
+        1100,
+        720
+      ],
+      "aspect": 1.52778,
+      "orientation": "landscape",
+      "targetCellH": 327.6075,
+      "targetCellW": 436.81,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -655.2149,
+        -327.6074,
+        0.0001,
+        327.6076,
+        655.2151
+      ],
+      "selectedUnwrappedScrollY": 0.0001,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -0.00011,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "1280x800",
+      "viewport": [
+        1280,
+        800
+      ],
+      "aspect": 1.6,
+      "orientation": "landscape",
+      "targetCellH": 381.216,
+      "targetCellW": 508.288,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -762.4316,
+        -381.2156,
+        0.0004,
+        381.2164,
+        762.4324
+      ],
+      "selectedUnwrappedScrollY": 0.0004,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -0.000373,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "1366x768",
+      "viewport": [
+        1366,
+        768
+      ],
+      "aspect": 1.77865,
+      "orientation": "landscape",
+      "targetCellH": 406.829,
+      "targetCellW": 542.4386,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -813.6579,
+        -406.8289,
+        0.0,
+        406.829,
+        813.6579
+      ],
+      "selectedUnwrappedScrollY": 0.0,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -4.5e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "1920x1080",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "aspect": 1.77778,
+      "orientation": "landscape",
+      "targetCellH": 571.824,
+      "targetCellW": 762.432,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -1143.6487,
+        -571.8247,
+        -0.0007,
+        571.8233,
+        1143.6473
+      ],
+      "selectedUnwrappedScrollY": -0.0007,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": 0.000685,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        54,
+        55,
+        56
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "390x844",
+      "viewport": [
+        390,
+        844
+      ],
+      "aspect": 0.46209,
+      "orientation": "portrait",
+      "targetCellH": 220.077,
+      "targetCellW": 293.436,
+      "targetCols": 8,
+      "targetRows": 12,
+      "rawFittedScrollYCandidates": [
+        -440.1539,
+        -220.0769,
+        0.0001,
+        220.0771,
+        440.1541
+      ],
+      "selectedUnwrappedScrollY": 0.0001,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -5.7e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 6,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        52,
+        53
+      ],
+      "catalogRowIdsAboveCentre": [
+        43,
+        44,
+        45
+      ],
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5
+      ]
+    },
+    {
+      "id": "360x800",
+      "viewport": [
+        360,
+        800
+      ],
+      "aspect": 0.45,
+      "orientation": "portrait",
+      "targetCellH": 203.148,
+      "targetCellW": 270.864,
+      "targetCols": 8,
+      "targetRows": 12,
+      "rawFittedScrollYCandidates": [
+        -406.296,
+        -203.148,
+        0.0,
+        203.148,
+        406.296
+      ],
+      "selectedUnwrappedScrollY": 0.0,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -1.9e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 6,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        52,
+        53
+      ],
+      "catalogRowIdsAboveCentre": [
+        43,
+        44,
+        45
+      ],
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5
+      ]
+    },
+    {
+      "id": "500x900",
+      "viewport": [
+        500,
+        900
+      ],
+      "aspect": 0.55556,
+      "orientation": "portrait",
+      "targetCellH": 282.15,
+      "targetCellW": 376.2,
+      "targetCols": 8,
+      "targetRows": 12,
+      "rawFittedScrollYCandidates": [
+        -564.2999,
+        -282.1499,
+        0.0001,
+        282.1501,
+        564.3001
+      ],
+      "selectedUnwrappedScrollY": 0.0001,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -7.1e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 6,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        52,
+        53
+      ],
+      "catalogRowIdsAboveCentre": [
+        43,
+        44,
+        45
+      ],
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5
+      ]
+    },
+    {
+      "id": "390x700",
+      "viewport": [
+        390,
+        700
+      ],
+      "aspect": 0.55714,
+      "orientation": "portrait",
+      "targetCellH": 220.077,
+      "targetCellW": 293.436,
+      "targetCols": 8,
+      "targetRows": 12,
+      "rawFittedScrollYCandidates": [
+        -440.1539,
+        -220.0769,
+        0.0001,
+        220.0771,
+        440.1541
+      ],
+      "selectedUnwrappedScrollY": 0.0001,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -7.7e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 6,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        52,
+        53
+      ],
+      "catalogRowIdsAboveCentre": [
+        43,
+        44,
+        45
+      ],
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5
+      ]
+    },
+    {
+      "id": "414x896",
+      "viewport": [
+        414,
+        896
+      ],
+      "aspect": 0.46205,
+      "orientation": "portrait",
+      "targetCellH": 233.6202,
+      "targetCellW": 311.4936,
+      "targetCols": 8,
+      "targetRows": 12,
+      "rawFittedScrollYCandidates": [
+        -467.2402,
+        -233.62,
+        0.0002,
+        233.6204,
+        467.2406
+      ],
+      "selectedUnwrappedScrollY": 0.0002,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -0.000215,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 6,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        52,
+        53
+      ],
+      "catalogRowIdsAboveCentre": [
+        43,
+        44,
+        45
+      ],
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5
+      ]
+    },
+    {
+      "id": "430x932",
+      "viewport": [
+        430,
+        932
+      ],
+      "aspect": 0.46137,
+      "orientation": "portrait",
+      "targetCellH": 242.649,
+      "targetCellW": 323.532,
+      "targetCols": 8,
+      "targetRows": 12,
+      "rawFittedScrollYCandidates": [
+        -485.2975,
+        -242.6485,
+        0.0005,
+        242.6495,
+        485.2985
+      ],
+      "selectedUnwrappedScrollY": 0.0005,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -0.000474,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 6,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        52,
+        53
+      ],
+      "catalogRowIdsAboveCentre": [
+        43,
+        44,
+        45
+      ],
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5
+      ]
+    },
+    {
+      "id": "375x812",
+      "viewport": [
+        375,
+        812
+      ],
+      "aspect": 0.46182,
+      "orientation": "portrait",
+      "targetCellH": 211.6125,
+      "targetCellW": 282.15,
+      "targetCols": 8,
+      "targetRows": 12,
+      "rawFittedScrollYCandidates": [
+        -423.2249,
+        -211.6124,
+        0.0001,
+        211.6126,
+        423.2251
+      ],
+      "selectedUnwrappedScrollY": 0.0001,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -8.3e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 6,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        52,
+        53
+      ],
+      "catalogRowIdsAboveCentre": [
+        43,
+        44,
+        45
+      ],
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5
+      ]
+    },
+    {
+      "id": "393x852",
+      "viewport": [
+        393,
+        852
+      ],
+      "aspect": 0.46127,
+      "orientation": "portrait",
+      "targetCellH": 221.7699,
+      "targetCellW": 295.6932,
+      "targetCols": 8,
+      "targetRows": 12,
+      "rawFittedScrollYCandidates": [
+        -443.5396,
+        -221.7697,
+        0.0002,
+        221.7701,
+        443.54
+      ],
+      "selectedUnwrappedScrollY": 0.0002,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -0.00023,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 6,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        52,
+        53
+      ],
+      "catalogRowIdsAboveCentre": [
+        43,
+        44,
+        45
+      ],
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5
+      ]
+    },
+    {
+      "id": "428x926",
+      "viewport": [
+        428,
+        926
+      ],
+      "aspect": 0.4622,
+      "orientation": "portrait",
+      "targetCellH": 241.5204,
+      "targetCellW": 322.0272,
+      "targetCols": 8,
+      "targetRows": 12,
+      "rawFittedScrollYCandidates": [
+        -483.0408,
+        -241.5204,
+        -0.0,
+        241.5204,
+        483.0408
+      ],
+      "selectedUnwrappedScrollY": -0.0,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": 3.6e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 6,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        52,
+        53
+      ],
+      "catalogRowIdsAboveCentre": [
+        43,
+        44,
+        45
+      ],
+      "rowsSeen": [
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5
+      ]
+    },
+    {
+      "id": "700x900",
+      "viewport": [
+        700,
+        900
+      ],
+      "aspect": 0.77778,
+      "orientation": "portrait",
+      "targetCellH": 395.01,
+      "targetCellW": 526.68,
+      "targetCols": 8,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -790.0201,
+        -395.0101,
+        -0.0001,
+        395.0099,
+        790.0199
+      ],
+      "selectedUnwrappedScrollY": -0.0001,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": 7.2e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": true,
+      "catalogRowIdsBelowCentre": [
+        43,
+        44,
+        45
+      ],
+      "catalogRowIdsAboveCentre": [
+        36,
+        37
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "320x900",
+      "viewport": [
+        320,
+        900
+      ],
+      "aspect": 0.35556,
+      "orientation": "portrait",
+      "targetCellH": 180.576,
+      "targetCellW": 240.768,
+      "targetCols": 8,
+      "targetRows": 14,
+      "rawFittedScrollYCandidates": [
+        -361.1519,
+        -180.5759,
+        0.0001,
+        180.5761,
+        361.1521
+      ],
+      "selectedUnwrappedScrollY": 0.0001,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -6.6e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 7,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": true,
+      "catalogRowIdsBelowCentre": [
+        59,
+        60,
+        61
+      ],
+      "catalogRowIdsAboveCentre": [
+        52,
+        53
+      ],
+      "rowsSeen": [
+        -3.5,
+        -2.5,
+        -1.5,
+        -0.5,
+        0.5,
+        1.5,
+        2.5,
+        3.5
+      ]
+    },
+    {
+      "id": "1440x700",
+      "viewport": [
+        1440,
+        700
+      ],
+      "aspect": 2.05714,
+      "orientation": "landscape",
+      "targetCellH": 428.868,
+      "targetCellW": 571.824,
+      "targetCols": 10,
+      "targetRows": 8,
+      "rawFittedScrollYCandidates": [
+        -857.736,
+        -428.868,
+        -0.0,
+        428.868,
+        857.736
+      ],
+      "selectedUnwrappedScrollY": -0.0,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": 3.2e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 4,
+      "predictedBrickPhase": "gutter-centred",
+      "targetBrickPhase": "gutter-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": true,
+      "aspectRuleHalfCellShift": true,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "catalogRowIdsAboveCentre": [
+        34,
+        35,
+        36
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "1024x768",
+      "viewport": [
+        1024,
+        768
+      ],
+      "aspect": 1.33333,
+      "orientation": "landscape",
+      "targetCellH": 304.9728,
+      "targetCellW": 406.6304,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -609.9456,
+        -304.9728,
+        0.0,
+        304.9728,
+        609.9456
+      ],
+      "selectedUnwrappedScrollY": 0.0,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": -1.5e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "1152x864",
+      "viewport": [
+        1152,
+        864
+      ],
+      "aspect": 1.33333,
+      "orientation": "landscape",
+      "targetCellH": 343.0944,
+      "targetCellW": 457.4592,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -686.1893,
+        -343.0949,
+        -0.0005,
+        343.0939,
+        686.1883
+      ],
+      "selectedUnwrappedScrollY": -0.0005,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": 0.00045,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "1536x864",
+      "viewport": [
+        1536,
+        864
+      ],
+      "aspect": 1.77778,
+      "orientation": "landscape",
+      "targetCellH": 457.4592,
+      "targetCellW": 609.9456,
+      "targetCols": 10,
+      "targetRows": 10,
+      "rawFittedScrollYCandidates": [
+        -914.9185,
+        -457.4593,
+        -0.0001,
+        457.4591,
+        914.9183
+      ],
+      "selectedUnwrappedScrollY": -0.0001,
+      "originJ": 0,
+      "originJParity": "even",
+      "residualPhaseY": 6.1e-05,
+      "initialScrollY": 0.0,
+      "poolRowBelowCentre": 5,
+      "predictedBrickPhase": "card-centred",
+      "targetBrickPhase": "card-centred",
+      "brickPhaseAgrees": true,
+      "ourHalfCellShiftRequired": false,
+      "aspectRuleHalfCellShift": false,
+      "rulesDisagree": false,
+      "catalogRowIdsBelowCentre": [
+        54,
+        55,
+        56
+      ],
+      "catalogRowIdsAboveCentre": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "rowsSeen": [
+        -1.5,
+        -0.5,
+        0.5,
+        1.5
+      ]
+    }
+  ]
+}

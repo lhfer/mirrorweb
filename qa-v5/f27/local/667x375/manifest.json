@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:5280/?optics=v4&composition=v2&verticalMode=tangent&portraitLaw=p1&portraitVertical=v2&phaseModel=rowOrigin&foundation=layout&annotate=0&qa=1",
+  "viewport": {
+    "origin": "http://127.0.0.1:5280",
+    "route": "/?optics=v4&composition=v2&verticalMode=tangent&portraitLaw=p1&portraitVertical=v2&phaseModel=rowOrigin&foundation=layout&annotate=0",
+    "width": 667,
+    "height": 375,
+    "dpr": 1,
+    "out": "artifacts/f27/models/v2/667x375",
+    "headless": true,
+    "mediaTime": 2
+  },
+  "freeze": {
+    "requestedTime": 2,
+    "videos": [],
+    "maxSeekError": 0,
+    "maxDrift": 0,
+    "driftWindowMs": 500,
+    "allPaused": true,
+    "allFramesMatched": true,
+    "frozen": true,
+    "thresholds": {
+      "seekError": 0.016666666666666666,
+      "drift": 0.008333333333333333
+    }
+  },
+  "states": [
+    {
+      "id": "01-rest",
+      "offset": [
+        0,
+        0
+      ],
+      "png": "artifacts/f27/models/v2/667x375/01-rest.png"
+    }
+  ],
+  "errors": []
+}

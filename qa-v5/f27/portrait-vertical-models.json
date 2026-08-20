@@ -1,0 +1,2205 @@
+{
+  "instrument": "scripts/v5/f27-portrait-vertical.py; gate detector, gate row pairing, gate edge-trace validity, 5-frame Target consensus",
+  "fitPolicy": "Card WIDTH is never used to fit. A card off the centre line is yawed, and yaw foreshortens width but not height, so width would put a phase effect into a vertical parameter. Height and row-band pitch are used.",
+  "trainViewports": [
+    "360x800",
+    "390x700",
+    "414x896",
+    "430x932",
+    "500x900"
+  ],
+  "holdoutViewport": "390x844",
+  "validationViewports": [
+    "375x812",
+    "393x852",
+    "428x926",
+    "700x900"
+  ],
+  "fitted": {
+    "scaleYFromCardHeight": 1.03883,
+    "scaleYFromRowBandPitch": 1.02841,
+    "perTrainViewport": {
+      "360x800": 1.03719,
+      "414x896": 1.04149,
+      "430x932": 1.04046,
+      "500x900": 1.01687
+    },
+    "spreadPct": 2.37
+  },
+  "models": {
+    "v0": {
+      "360x800": {
+        "rowsPaired": 2,
+        "rowsUsableForHeight": 2,
+        "cardHeightPairs": 1,
+        "cardWidthPairs": 1,
+        "targetCardHeights": [
+          191.88
+        ],
+        "localCardHeights": [
+          185.0
+        ],
+        "targetCardWidths": [
+          258.0
+        ],
+        "localCardWidths": [
+          254.0
+        ],
+        "worstCardHeightPct": 3.586,
+        "worstCardWidthPct": 1.55,
+        "requiredScaleYFromCardHeight": 1.03719,
+        "targetRowBands": [
+          20.5,
+          200.5,
+          399.5,
+          411.0,
+          598.5
+        ],
+        "localRowBands": [
+          27.0,
+          201.0,
+          395.0,
+          588.5,
+          760.5
+        ],
+        "worstRowBandCentrePx": 10.0,
+        "targetRowHeights": [
+          173.0,
+          191.0,
+          180.0
+        ],
+        "localRowHeights": [
+          164.0,
+          185.0,
+          184.0,
+          163.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 199.0,
+        "localRowPitchPx": 193.5,
+        "requiredScaleYFromRowPitch": 1.02842,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": true,
+          "local": false
+        },
+        "viewport": [
+          360,
+          800
+        ],
+        "aspect": 0.45,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          259.2,
+          194.4
+        ],
+        "role": "train"
+      },
+      "390x700": {
+        "rowsPaired": 0,
+        "rowsUsableForHeight": 0,
+        "cardHeightPairs": 0,
+        "cardWidthPairs": 0,
+        "targetCardHeights": [],
+        "localCardHeights": [],
+        "targetCardWidths": [],
+        "localCardWidths": [],
+        "worstCardHeightPct": 0.0,
+        "worstCardWidthPct": 0.0,
+        "requiredScaleYFromCardHeight": null,
+        "targetRowBands": [],
+        "localRowBands": [
+          133.0,
+          344.5,
+          555.5
+        ],
+        "worstRowBandCentrePx": 0.0,
+        "targetRowHeights": [],
+        "localRowHeights": [
+          202.0,
+          201.0
+        ],
+        "rowPitchResolvable": false,
+        "targetRowPitchPx": null,
+        "localRowPitchPx": null,
+        "requiredScaleYFromRowPitch": null,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": false,
+          "local": false
+        },
+        "viewport": [
+          390,
+          700
+        ],
+        "aspect": 0.55714,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          280.8,
+          210.6
+        ],
+        "role": "train"
+      },
+      "414x896": {
+        "rowsPaired": 3,
+        "rowsUsableForHeight": 3,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          219.89,
+          197.52
+        ],
+        "localCardHeights": [
+          213.0,
+          188.0
+        ],
+        "targetCardWidths": [
+          296.0,
+          289.0
+        ],
+        "localCardWidths": [
+          292.0,
+          282.0
+        ],
+        "worstCardHeightPct": 4.82,
+        "worstCardWidthPct": 2.422,
+        "requiredScaleYFromCardHeight": 1.04149,
+        "targetRowBands": [
+          13.0,
+          219.0,
+          447.5,
+          462.0,
+          676.0,
+          881.0
+        ],
+        "localRowBands": [
+          18.5,
+          219.0,
+          443.0,
+          665.0,
+          863.0
+        ],
+        "worstRowBandCentrePx": 18.0,
+        "targetRowHeights": [
+          198.0,
+          219.0,
+          203.0,
+          195.0
+        ],
+        "localRowHeights": [
+          189.0,
+          213.0,
+          211.0,
+          188.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 217.25,
+        "localRowPitchPx": 211.25,
+        "requiredScaleYFromRowPitch": 1.0284,
+        "worstEdgeYawDeg": 0.105,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          414,
+          896
+        ],
+        "aspect": 0.46205,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          298.08,
+          223.56
+        ],
+        "role": "train"
+      },
+      "430x932": {
+        "rowsPaired": 4,
+        "rowsUsableForHeight": 4,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          228.57,
+          205.01
+        ],
+        "localCardHeights": [
+          222.0,
+          195.0
+        ],
+        "targetCardWidths": [
+          308.0,
+          300.0
+        ],
+        "localCardWidths": [
+          302.0,
+          292.0
+        ],
+        "worstCardHeightPct": 4.883,
+        "worstCardWidthPct": 2.667,
+        "requiredScaleYFromCardHeight": 1.04046,
+        "targetRowBands": [
+          14.5,
+          228.0,
+          465.5,
+          703.0,
+          916.0
+        ],
+        "localRowBands": [
+          20.0,
+          228.0,
+          461.0,
+          691.5,
+          897.0
+        ],
+        "worstRowBandCentrePx": 19.0,
+        "targetRowHeights": [
+          205.0,
+          228.0,
+          227.0,
+          203.0
+        ],
+        "localRowHeights": [
+          196.0,
+          222.0,
+          219.0,
+          195.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 225.5,
+        "localRowPitchPx": 219.25,
+        "requiredScaleYFromRowPitch": 1.02851,
+        "worstEdgeYawDeg": 0.015,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          430,
+          932
+        ],
+        "aspect": 0.46137,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          309.6,
+          232.2
+        ],
+        "role": "train"
+      },
+      "500x900": {
+        "rowsPaired": 3,
+        "rowsUsableForHeight": 2,
+        "cardHeightPairs": 1,
+        "cardWidthPairs": 1,
+        "targetCardHeights": [
+          263.37
+        ],
+        "localCardHeights": [
+          259.0
+        ],
+        "targetCardWidths": [
+          356.0
+        ],
+        "localCardWidths": [
+          354.0
+        ],
+        "worstCardHeightPct": 1.659,
+        "worstCardWidthPct": 0.562,
+        "requiredScaleYFromCardHeight": 1.01687,
+        "targetRowBands": [
+          175.5,
+          449.5,
+          723.0
+        ],
+        "localRowBands": [
+          172.0,
+          444.0,
+          713.5
+        ],
+        "worstRowBandCentrePx": 9.5,
+        "targetRowHeights": [
+          263.0,
+          261.0
+        ],
+        "localRowHeights": [
+          259.0,
+          256.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 273.75,
+        "localRowPitchPx": 270.75,
+        "requiredScaleYFromRowPitch": 1.01108,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          500,
+          900
+        ],
+        "aspect": 0.55556,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          360.0,
+          270.0
+        ],
+        "role": "train"
+      },
+      "390x844": {
+        "rowsPaired": 4,
+        "rowsUsableForHeight": 4,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          207.82,
+          185.91
+        ],
+        "localCardHeights": [
+          201.0,
+          177.0
+        ],
+        "targetCardWidths": [
+          280.0,
+          272.0
+        ],
+        "localCardWidths": [
+          274.0,
+          266.0
+        ],
+        "worstCardHeightPct": 4.793,
+        "worstCardWidthPct": 2.206,
+        "requiredScaleYFromCardHeight": 1.04213,
+        "targetRowBands": [
+          12.0,
+          206.0,
+          421.5,
+          637.0,
+          829.5
+        ],
+        "localRowBands": [
+          17.5,
+          206.5,
+          417.0,
+          626.0,
+          813.0
+        ],
+        "worstRowBandCentrePx": 16.5,
+        "targetRowHeights": [
+          186.0,
+          207.0,
+          207.0,
+          184.0
+        ],
+        "localRowHeights": [
+          178.0,
+          201.0,
+          199.0,
+          177.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 204.75,
+        "localRowPitchPx": 199.0,
+        "requiredScaleYFromRowPitch": 1.02889,
+        "worstEdgeYawDeg": 0.011,
+        "centreDarkBand": {
+          "target": true,
+          "local": false
+        },
+        "viewport": [
+          390,
+          844
+        ],
+        "aspect": 0.46209,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          280.8,
+          210.6
+        ],
+        "role": "holdout"
+      },
+      "375x812": {
+        "rowsPaired": 4,
+        "rowsUsableForHeight": 4,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          199.82,
+          179.07
+        ],
+        "localCardHeights": [
+          193.0,
+          170.0
+        ],
+        "targetCardWidths": [
+          269.0,
+          261.0
+        ],
+        "localCardWidths": [
+          263.0,
+          255.0
+        ],
+        "worstCardHeightPct": 5.065,
+        "worstCardWidthPct": 2.299,
+        "requiredScaleYFromCardHeight": 1.04434,
+        "targetRowBands": [
+          12.0,
+          198.5,
+          405.5,
+          613.0,
+          798.5
+        ],
+        "localRowBands": [
+          17.0,
+          198.5,
+          401.0,
+          602.5,
+          781.5
+        ],
+        "worstRowBandCentrePx": 17.0,
+        "targetRowHeights": [
+          179.0,
+          199.0,
+          199.0,
+          177.0
+        ],
+        "localRowHeights": [
+          171.0,
+          193.0,
+          192.0,
+          170.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 196.75,
+        "localRowPitchPx": 191.5,
+        "requiredScaleYFromRowPitch": 1.02742,
+        "worstEdgeYawDeg": 0.0,
+        "centreDarkBand": {
+          "target": true,
+          "local": false
+        },
+        "viewport": [
+          375,
+          812
+        ],
+        "aspect": 0.46182,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          270.0,
+          202.5
+        ],
+        "role": "validate"
+      },
+      "393x852": {
+        "rowsPaired": 4,
+        "rowsUsableForHeight": 4,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          209.54,
+          187.55
+        ],
+        "localCardHeights": [
+          202.0,
+          178.0
+        ],
+        "targetCardWidths": [
+          281.0,
+          275.0
+        ],
+        "localCardWidths": [
+          277.0,
+          267.0
+        ],
+        "worstCardHeightPct": 5.092,
+        "worstCardWidthPct": 2.909,
+        "requiredScaleYFromCardHeight": 1.04549,
+        "targetRowBands": [
+          13.0,
+          208.5,
+          425.5,
+          642.5,
+          836.5
+        ],
+        "localRowBands": [
+          18.5,
+          208.5,
+          420.5,
+          632.0,
+          820.0
+        ],
+        "worstRowBandCentrePx": 16.5,
+        "targetRowHeights": [
+          188.0,
+          209.0,
+          208.0,
+          185.0
+        ],
+        "localRowHeights": [
+          179.0,
+          202.0,
+          201.0,
+          178.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 206.25,
+        "localRowPitchPx": 200.75,
+        "requiredScaleYFromRowPitch": 1.0274,
+        "worstEdgeYawDeg": 0.022,
+        "centreDarkBand": {
+          "target": true,
+          "local": false
+        },
+        "viewport": [
+          393,
+          852
+        ],
+        "aspect": 0.46127,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          282.96,
+          212.22
+        ],
+        "role": "validate"
+      },
+      "428x926": {
+        "rowsPaired": 2,
+        "rowsUsableForHeight": 2,
+        "cardHeightPairs": 1,
+        "cardWidthPairs": 1,
+        "targetCardHeights": [
+          227.37
+        ],
+        "localCardHeights": [
+          221.0
+        ],
+        "targetCardWidths": [
+          306.0
+        ],
+        "localCardWidths": [
+          302.0
+        ],
+        "worstCardHeightPct": 2.802,
+        "worstCardWidthPct": 1.307,
+        "requiredScaleYFromCardHeight": 1.02882,
+        "targetRowBands": [
+          13.5,
+          226.0,
+          462.5,
+          699.0,
+          717.5,
+          754.0,
+          910.0
+        ],
+        "localRowBands": [
+          19.0,
+          226.5,
+          458.0,
+          687.5,
+          892.0
+        ],
+        "worstRowBandCentrePx": 18.0,
+        "targetRowHeights": [
+          204.0,
+          227.0,
+          226.0,
+          129.0
+        ],
+        "localRowHeights": [
+          196.0,
+          221.0,
+          218.0,
+          194.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 224.5,
+        "localRowPitchPx": 218.5,
+        "requiredScaleYFromRowPitch": 1.02746,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          428,
+          926
+        ],
+        "aspect": 0.4622,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          308.16,
+          231.12
+        ],
+        "role": "validate"
+      },
+      "700x900": {
+        "rowsPaired": 1,
+        "rowsUsableForHeight": 1,
+        "cardHeightPairs": 0,
+        "cardWidthPairs": 0,
+        "targetCardHeights": [],
+        "localCardHeights": [],
+        "targetCardWidths": [],
+        "localCardWidths": [],
+        "worstCardHeightPct": 0.0,
+        "worstCardWidthPct": 0.0,
+        "requiredScaleYFromCardHeight": null,
+        "targetRowBands": [
+          77.0,
+          449.5,
+          480.0,
+          562.5,
+          636.0,
+          815.0
+        ],
+        "localRowBands": [
+          55.5,
+          441.0,
+          825.5
+        ],
+        "worstRowBandCentrePx": 21.5,
+        "targetRowHeights": [
+          357.0,
+          158.0
+        ],
+        "localRowHeights": [
+          366.0,
+          366.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 369.0,
+        "localRowPitchPx": 385.0,
+        "requiredScaleYFromRowPitch": 0.95844,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          700,
+          900
+        ],
+        "aspect": 0.77778,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          504.0,
+          378.0
+        ],
+        "role": "validate"
+      },
+      "1440x900": {
+        "rowsPaired": 2,
+        "rowsUsableForHeight": 2,
+        "cardHeightPairs": 3,
+        "cardWidthPairs": 3,
+        "targetCardHeights": [
+          397.64,
+          397.8,
+          401.19
+        ],
+        "localCardHeights": [
+          391.7,
+          391.69,
+          394.0
+        ],
+        "targetCardWidths": [
+          526.0,
+          526.0,
+          542.0
+        ],
+        "localCardWidths": [
+          524.0,
+          524.0,
+          540.0
+        ],
+        "worstCardHeightPct": 1.792,
+        "worstCardWidthPct": 0.38,
+        "requiredScaleYFromCardHeight": 1.0156,
+        "targetRowBands": [
+          34.5,
+          449.5,
+          862.0
+        ],
+        "localRowBands": [
+          28.0,
+          440.5,
+          850.0
+        ],
+        "worstRowBandCentrePx": 12.0,
+        "targetRowHeights": [
+          400.0,
+          394.0
+        ],
+        "localRowHeights": [
+          391.0,
+          392.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 413.75,
+        "localRowPitchPx": 411.0,
+        "requiredScaleYFromRowPitch": 1.00669,
+        "worstEdgeYawDeg": 0.012,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          1440,
+          900
+        ],
+        "aspect": 1.6,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          547.2,
+          410.4
+        ],
+        "role": "reference"
+      }
+    },
+    "v1": {
+      "360x800": {
+        "rowsPaired": 1,
+        "rowsUsableForHeight": 1,
+        "cardHeightPairs": 1,
+        "cardWidthPairs": 1,
+        "targetCardHeights": [
+          191.88
+        ],
+        "localCardHeights": [
+          193.0
+        ],
+        "targetCardWidths": [
+          258.0
+        ],
+        "localCardWidths": [
+          254.0
+        ],
+        "worstCardHeightPct": 0.584,
+        "worstCardWidthPct": 1.55,
+        "requiredScaleYFromCardHeight": 0.9942,
+        "targetRowBands": [
+          20.5,
+          200.5,
+          399.5,
+          411.0,
+          598.5
+        ],
+        "localRowBands": [
+          12.5,
+          193.0,
+          395.0,
+          595.5,
+          774.5
+        ],
+        "worstRowBandCentrePx": 8.0,
+        "targetRowHeights": [
+          173.0,
+          191.0,
+          180.0
+        ],
+        "localRowHeights": [
+          170.0,
+          193.0,
+          191.0,
+          170.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 199.0,
+        "localRowPitchPx": 200.5,
+        "requiredScaleYFromRowPitch": 0.99252,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": true,
+          "local": false
+        },
+        "viewport": [
+          360,
+          800
+        ],
+        "aspect": 0.45,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          259.2,
+          194.4
+        ],
+        "role": "train"
+      },
+      "390x700": {
+        "rowsPaired": 0,
+        "rowsUsableForHeight": 0,
+        "cardHeightPairs": 0,
+        "cardWidthPairs": 0,
+        "targetCardHeights": [],
+        "localCardHeights": [],
+        "targetCardWidths": [],
+        "localCardWidths": [],
+        "worstCardHeightPct": 0.0,
+        "worstCardWidthPct": 0.0,
+        "requiredScaleYFromCardHeight": null,
+        "targetRowBands": [],
+        "localRowBands": [
+          124.5,
+          344.5,
+          563.5
+        ],
+        "worstRowBandCentrePx": 0.0,
+        "targetRowHeights": [],
+        "localRowHeights": [
+          210.0,
+          208.0
+        ],
+        "rowPitchResolvable": false,
+        "targetRowPitchPx": null,
+        "localRowPitchPx": null,
+        "requiredScaleYFromRowPitch": null,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": false,
+          "local": false
+        },
+        "viewport": [
+          390,
+          700
+        ],
+        "aspect": 0.55714,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          280.8,
+          210.6
+        ],
+        "role": "train"
+      },
+      "414x896": {
+        "rowsPaired": 3,
+        "rowsUsableForHeight": 3,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          219.89,
+          197.52
+        ],
+        "localCardHeights": [
+          222.0,
+          195.0
+        ],
+        "targetCardWidths": [
+          296.0,
+          289.0
+        ],
+        "localCardWidths": [
+          292.0,
+          282.0
+        ],
+        "worstCardHeightPct": 1.276,
+        "worstCardWidthPct": 2.422,
+        "requiredScaleYFromCardHeight": 1.00171,
+        "targetRowBands": [
+          13.0,
+          219.0,
+          447.5,
+          462.0,
+          676.0,
+          881.0
+        ],
+        "localRowBands": [
+          210.0,
+          443.0,
+          673.5,
+          879.0
+        ],
+        "worstRowBandCentrePx": 9.0,
+        "targetRowHeights": [
+          198.0,
+          219.0,
+          203.0,
+          195.0
+        ],
+        "localRowHeights": [
+          196.0,
+          222.0,
+          219.0,
+          195.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 228.5,
+        "localRowPitchPx": 230.5,
+        "requiredScaleYFromRowPitch": 0.99132,
+        "worstEdgeYawDeg": 0.105,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          414,
+          896
+        ],
+        "aspect": 0.46205,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          298.08,
+          223.56
+        ],
+        "role": "train"
+      },
+      "430x932": {
+        "rowsPaired": 4,
+        "rowsUsableForHeight": 4,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          228.57,
+          205.01
+        ],
+        "localCardHeights": [
+          230.0,
+          202.0
+        ],
+        "targetCardWidths": [
+          308.0,
+          300.0
+        ],
+        "localCardWidths": [
+          302.0,
+          292.0
+        ],
+        "worstCardHeightPct": 1.468,
+        "worstCardWidthPct": 2.667,
+        "requiredScaleYFromCardHeight": 1.00434,
+        "targetRowBands": [
+          14.5,
+          228.0,
+          465.5,
+          703.0,
+          916.0
+        ],
+        "localRowBands": [
+          219.0,
+          460.5,
+          700.0,
+          913.5
+        ],
+        "worstRowBandCentrePx": 9.0,
+        "targetRowHeights": [
+          205.0,
+          228.0,
+          227.0,
+          203.0
+        ],
+        "localRowHeights": [
+          204.0,
+          230.0,
+          227.0,
+          202.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 237.5,
+        "localRowPitchPx": 239.5,
+        "requiredScaleYFromRowPitch": 0.99165,
+        "worstEdgeYawDeg": 0.015,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          430,
+          932
+        ],
+        "aspect": 0.46137,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          309.6,
+          232.2
+        ],
+        "role": "train"
+      },
+      "500x900": {
+        "rowsPaired": 2,
+        "rowsUsableForHeight": 2,
+        "cardHeightPairs": 1,
+        "cardWidthPairs": 1,
+        "targetCardHeights": [
+          263.37
+        ],
+        "localCardHeights": [
+          269.0
+        ],
+        "targetCardWidths": [
+          356.0
+        ],
+        "localCardWidths": [
+          354.0
+        ],
+        "worstCardHeightPct": 2.138,
+        "worstCardWidthPct": 0.562,
+        "requiredScaleYFromCardHeight": 0.97907,
+        "targetRowBands": [
+          175.5,
+          449.5,
+          723.0
+        ],
+        "localRowBands": [
+          161.0,
+          443.5,
+          724.0
+        ],
+        "worstRowBandCentrePx": 14.5,
+        "targetRowHeights": [
+          263.0,
+          261.0
+        ],
+        "localRowHeights": [
+          269.0,
+          266.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 273.75,
+        "localRowPitchPx": 281.5,
+        "requiredScaleYFromRowPitch": 0.97247,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          500,
+          900
+        ],
+        "aspect": 0.55556,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          360.0,
+          270.0
+        ],
+        "role": "train"
+      },
+      "390x844": {
+        "rowsPaired": 4,
+        "rowsUsableForHeight": 4,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          207.82,
+          185.91
+        ],
+        "localCardHeights": [
+          209.0,
+          184.0
+        ],
+        "targetCardWidths": [
+          280.0,
+          272.0
+        ],
+        "localCardWidths": [
+          274.0,
+          266.0
+        ],
+        "worstCardHeightPct": 1.027,
+        "worstCardWidthPct": 2.206,
+        "requiredScaleYFromCardHeight": 1.00237,
+        "targetRowBands": [
+          12.0,
+          206.0,
+          421.5,
+          637.0,
+          829.5
+        ],
+        "localRowBands": [
+          197.5,
+          416.5,
+          634.0,
+          828.0
+        ],
+        "worstRowBandCentrePx": 8.5,
+        "targetRowHeights": [
+          186.0,
+          207.0,
+          207.0,
+          184.0
+        ],
+        "localRowHeights": [
+          185.0,
+          209.0,
+          207.0,
+          184.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 215.5,
+        "localRowPitchPx": 217.5,
+        "requiredScaleYFromRowPitch": 0.9908,
+        "worstEdgeYawDeg": 0.011,
+        "centreDarkBand": {
+          "target": true,
+          "local": false
+        },
+        "viewport": [
+          390,
+          844
+        ],
+        "aspect": 0.46209,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          280.8,
+          210.6
+        ],
+        "role": "holdout"
+      },
+      "375x812": {
+        "rowsPaired": 4,
+        "rowsUsableForHeight": 4,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          199.82,
+          179.07
+        ],
+        "localCardHeights": [
+          201.0,
+          177.0
+        ],
+        "targetCardWidths": [
+          269.0,
+          261.0
+        ],
+        "localCardWidths": [
+          263.0,
+          255.0
+        ],
+        "worstCardHeightPct": 1.156,
+        "worstCardWidthPct": 2.299,
+        "requiredScaleYFromCardHeight": 1.00291,
+        "targetRowBands": [
+          12.0,
+          198.5,
+          405.5,
+          613.0,
+          798.5
+        ],
+        "localRowBands": [
+          190.5,
+          401.0,
+          610.0,
+          796.5
+        ],
+        "worstRowBandCentrePx": 8.0,
+        "targetRowHeights": [
+          179.0,
+          199.0,
+          199.0,
+          177.0
+        ],
+        "localRowHeights": [
+          178.0,
+          201.0,
+          199.0,
+          177.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 207.0,
+        "localRowPitchPx": 209.0,
+        "requiredScaleYFromRowPitch": 0.99043,
+        "worstEdgeYawDeg": 0.0,
+        "centreDarkBand": {
+          "target": true,
+          "local": false
+        },
+        "viewport": [
+          375,
+          812
+        ],
+        "aspect": 0.46182,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          270.0,
+          202.5
+        ],
+        "role": "validate"
+      },
+      "393x852": {
+        "rowsPaired": 4,
+        "rowsUsableForHeight": 4,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          209.54,
+          187.55
+        ],
+        "localCardHeights": [
+          210.0,
+          185.0
+        ],
+        "targetCardWidths": [
+          281.0,
+          275.0
+        ],
+        "localCardWidths": [
+          277.0,
+          267.0
+        ],
+        "worstCardHeightPct": 1.36,
+        "worstCardWidthPct": 2.909,
+        "requiredScaleYFromCardHeight": 1.0058,
+        "targetRowBands": [
+          13.0,
+          208.5,
+          425.5,
+          642.5,
+          836.5
+        ],
+        "localRowBands": [
+          200.5,
+          420.5,
+          640.0,
+          835.0
+        ],
+        "worstRowBandCentrePx": 8.0,
+        "targetRowHeights": [
+          188.0,
+          209.0,
+          208.0,
+          185.0
+        ],
+        "localRowHeights": [
+          187.0,
+          210.0,
+          209.0,
+          185.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 217.0,
+        "localRowPitchPx": 219.5,
+        "requiredScaleYFromRowPitch": 0.98861,
+        "worstEdgeYawDeg": 0.022,
+        "centreDarkBand": {
+          "target": true,
+          "local": false
+        },
+        "viewport": [
+          393,
+          852
+        ],
+        "aspect": 0.46127,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          282.96,
+          212.22
+        ],
+        "role": "validate"
+      },
+      "428x926": {
+        "rowsPaired": 2,
+        "rowsUsableForHeight": 2,
+        "cardHeightPairs": 1,
+        "cardWidthPairs": 1,
+        "targetCardHeights": [
+          227.37
+        ],
+        "localCardHeights": [
+          229.0
+        ],
+        "targetCardWidths": [
+          306.0
+        ],
+        "localCardWidths": [
+          302.0
+        ],
+        "worstCardHeightPct": 0.717,
+        "worstCardWidthPct": 1.307,
+        "requiredScaleYFromCardHeight": 0.99288,
+        "targetRowBands": [
+          13.5,
+          226.0,
+          462.5,
+          699.0,
+          717.5,
+          754.0,
+          910.0
+        ],
+        "localRowBands": [
+          217.0,
+          457.5,
+          696.0,
+          908.5
+        ],
+        "worstRowBandCentrePx": 9.0,
+        "targetRowHeights": [
+          204.0,
+          227.0,
+          226.0,
+          129.0
+        ],
+        "localRowHeights": [
+          203.0,
+          229.0,
+          226.0,
+          201.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 236.5,
+        "localRowPitchPx": 238.5,
+        "requiredScaleYFromRowPitch": 0.99161,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          428,
+          926
+        ],
+        "aspect": 0.4622,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          308.16,
+          231.12
+        ],
+        "role": "validate"
+      },
+      "700x900": {
+        "rowsPaired": 1,
+        "rowsUsableForHeight": 1,
+        "cardHeightPairs": 0,
+        "cardWidthPairs": 0,
+        "targetCardHeights": [],
+        "localCardHeights": [],
+        "targetCardWidths": [],
+        "localCardWidths": [],
+        "worstCardHeightPct": 0.0,
+        "worstCardWidthPct": 0.0,
+        "requiredScaleYFromCardHeight": null,
+        "targetRowBands": [
+          77.0,
+          449.5,
+          480.0,
+          562.5,
+          636.0,
+          815.0
+        ],
+        "localRowBands": [
+          40.0,
+          440.5,
+          840.0
+        ],
+        "worstRowBandCentrePx": 37.0,
+        "targetRowHeights": [
+          357.0,
+          158.0
+        ],
+        "localRowHeights": [
+          380.0,
+          380.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 369.0,
+        "localRowPitchPx": 400.0,
+        "requiredScaleYFromRowPitch": 0.9225,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          700,
+          900
+        ],
+        "aspect": 0.77778,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          504.0,
+          378.0
+        ],
+        "role": "validate"
+      },
+      "1440x900": {
+        "rowsPaired": 2,
+        "rowsUsableForHeight": 2,
+        "cardHeightPairs": 3,
+        "cardWidthPairs": 3,
+        "targetCardHeights": [
+          397.64,
+          397.8,
+          401.19
+        ],
+        "localCardHeights": [
+          391.7,
+          391.69,
+          394.0
+        ],
+        "targetCardWidths": [
+          526.0,
+          526.0,
+          542.0
+        ],
+        "localCardWidths": [
+          524.0,
+          524.0,
+          540.0
+        ],
+        "worstCardHeightPct": 1.792,
+        "worstCardWidthPct": 0.38,
+        "requiredScaleYFromCardHeight": 1.0156,
+        "targetRowBands": [
+          34.5,
+          449.5,
+          862.0
+        ],
+        "localRowBands": [
+          28.0,
+          440.5,
+          850.0
+        ],
+        "worstRowBandCentrePx": 12.0,
+        "targetRowHeights": [
+          400.0,
+          394.0
+        ],
+        "localRowHeights": [
+          391.0,
+          392.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 413.75,
+        "localRowPitchPx": 411.0,
+        "requiredScaleYFromRowPitch": 1.00669,
+        "worstEdgeYawDeg": 0.012,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          1440,
+          900
+        ],
+        "aspect": 1.6,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          547.2,
+          410.4
+        ],
+        "role": "reference"
+      }
+    },
+    "v2": {
+      "360x800": {
+        "rowsPaired": 2,
+        "rowsUsableForHeight": 2,
+        "cardHeightPairs": 1,
+        "cardWidthPairs": 1,
+        "targetCardHeights": [
+          191.88
+        ],
+        "localCardHeights": [
+          192.0
+        ],
+        "targetCardWidths": [
+          258.0
+        ],
+        "localCardWidths": [
+          254.0
+        ],
+        "worstCardHeightPct": 0.063,
+        "worstCardWidthPct": 1.55,
+        "requiredScaleYFromCardHeight": 0.99938,
+        "targetRowBands": [
+          20.5,
+          200.5,
+          399.5,
+          411.0,
+          598.5
+        ],
+        "localRowBands": [
+          16.0,
+          197.5,
+          399.5,
+          599.5,
+          778.0
+        ],
+        "worstRowBandCentrePx": 4.5,
+        "targetRowHeights": [
+          173.0,
+          191.0,
+          180.0
+        ],
+        "localRowHeights": [
+          171.0,
+          192.0,
+          190.0,
+          169.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 199.0,
+        "localRowPitchPx": 200.0,
+        "requiredScaleYFromRowPitch": 0.995,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          360,
+          800
+        ],
+        "aspect": 0.45,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          259.2,
+          194.4
+        ],
+        "role": "train"
+      },
+      "390x700": {
+        "rowsPaired": 0,
+        "rowsUsableForHeight": 0,
+        "cardHeightPairs": 0,
+        "cardWidthPairs": 0,
+        "targetCardHeights": [],
+        "localCardHeights": [],
+        "targetCardWidths": [],
+        "localCardWidths": [],
+        "worstCardHeightPct": 0.0,
+        "worstCardWidthPct": 0.0,
+        "requiredScaleYFromCardHeight": null,
+        "targetRowBands": [],
+        "localRowBands": [
+          129.5,
+          349.5,
+          568.0
+        ],
+        "worstRowBandCentrePx": 0.0,
+        "targetRowHeights": [],
+        "localRowHeights": [
+          210.0,
+          208.0
+        ],
+        "rowPitchResolvable": false,
+        "targetRowPitchPx": null,
+        "localRowPitchPx": null,
+        "requiredScaleYFromRowPitch": null,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": false,
+          "local": true
+        },
+        "viewport": [
+          390,
+          700
+        ],
+        "aspect": 0.55714,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          280.8,
+          210.6
+        ],
+        "role": "train"
+      },
+      "414x896": {
+        "rowsPaired": 3,
+        "rowsUsableForHeight": 3,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          219.89,
+          197.52
+        ],
+        "localCardHeights": [
+          222.0,
+          194.0
+        ],
+        "targetCardWidths": [
+          296.0,
+          289.0
+        ],
+        "localCardWidths": [
+          292.0,
+          282.0
+        ],
+        "worstCardHeightPct": 1.782,
+        "worstCardWidthPct": 2.422,
+        "requiredScaleYFromCardHeight": 1.00432,
+        "targetRowBands": [
+          13.0,
+          219.0,
+          447.5,
+          462.0,
+          676.0,
+          881.0
+        ],
+        "localRowBands": [
+          215.0,
+          448.0,
+          678.5,
+          883.0
+        ],
+        "worstRowBandCentrePx": 4.0,
+        "targetRowHeights": [
+          198.0,
+          219.0,
+          203.0,
+          195.0
+        ],
+        "localRowHeights": [
+          197.0,
+          222.0,
+          219.0,
+          194.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 228.5,
+        "localRowPitchPx": 230.5,
+        "requiredScaleYFromRowPitch": 0.99132,
+        "worstEdgeYawDeg": 0.105,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          414,
+          896
+        ],
+        "aspect": 0.46205,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          298.08,
+          223.56
+        ],
+        "role": "train"
+      },
+      "430x932": {
+        "rowsPaired": 4,
+        "rowsUsableForHeight": 4,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          228.57,
+          205.01
+        ],
+        "localCardHeights": [
+          230.0,
+          201.0
+        ],
+        "targetCardWidths": [
+          308.0,
+          300.0
+        ],
+        "localCardWidths": [
+          302.0,
+          292.0
+        ],
+        "worstCardHeightPct": 1.956,
+        "worstCardWidthPct": 2.667,
+        "requiredScaleYFromCardHeight": 1.00687,
+        "targetRowBands": [
+          14.5,
+          228.0,
+          465.5,
+          703.0,
+          916.0
+        ],
+        "localRowBands": [
+          7.0,
+          224.0,
+          465.5,
+          705.0,
+          917.5
+        ],
+        "worstRowBandCentrePx": 7.5,
+        "targetRowHeights": [
+          205.0,
+          228.0,
+          227.0,
+          203.0
+        ],
+        "localRowHeights": [
+          205.0,
+          230.0,
+          227.0,
+          201.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 225.5,
+        "localRowPitchPx": 228.25,
+        "requiredScaleYFromRowPitch": 0.98795,
+        "worstEdgeYawDeg": 0.015,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          430,
+          932
+        ],
+        "aspect": 0.46137,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          309.6,
+          232.2
+        ],
+        "role": "train"
+      },
+      "500x900": {
+        "rowsPaired": 3,
+        "rowsUsableForHeight": 2,
+        "cardHeightPairs": 1,
+        "cardWidthPairs": 1,
+        "targetCardHeights": [
+          263.37
+        ],
+        "localCardHeights": [
+          269.0
+        ],
+        "targetCardWidths": [
+          356.0
+        ],
+        "localCardWidths": [
+          354.0
+        ],
+        "worstCardHeightPct": 2.138,
+        "worstCardWidthPct": 0.562,
+        "requiredScaleYFromCardHeight": 0.97907,
+        "targetRowBands": [
+          175.5,
+          449.5,
+          723.0
+        ],
+        "localRowBands": [
+          167.0,
+          449.5,
+          729.5
+        ],
+        "worstRowBandCentrePx": 8.5,
+        "targetRowHeights": [
+          263.0,
+          261.0
+        ],
+        "localRowHeights": [
+          269.0,
+          266.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 273.75,
+        "localRowPitchPx": 281.25,
+        "requiredScaleYFromRowPitch": 0.97333,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          500,
+          900
+        ],
+        "aspect": 0.55556,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          360.0,
+          270.0
+        ],
+        "role": "train"
+      },
+      "390x844": {
+        "rowsPaired": 4,
+        "rowsUsableForHeight": 4,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          207.82,
+          185.91
+        ],
+        "localCardHeights": [
+          209.0,
+          183.0
+        ],
+        "targetCardWidths": [
+          280.0,
+          272.0
+        ],
+        "localCardWidths": [
+          274.0,
+          266.0
+        ],
+        "worstCardHeightPct": 1.565,
+        "worstCardWidthPct": 2.206,
+        "requiredScaleYFromCardHeight": 1.00513,
+        "targetRowBands": [
+          12.0,
+          206.0,
+          421.5,
+          637.0,
+          829.5
+        ],
+        "localRowBands": [
+          202.5,
+          421.5,
+          639.0,
+          832.0
+        ],
+        "worstRowBandCentrePx": 3.5,
+        "targetRowHeights": [
+          186.0,
+          207.0,
+          207.0,
+          184.0
+        ],
+        "localRowHeights": [
+          186.0,
+          209.0,
+          207.0,
+          183.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 215.5,
+        "localRowPitchPx": 217.5,
+        "requiredScaleYFromRowPitch": 0.9908,
+        "worstEdgeYawDeg": 0.011,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          390,
+          844
+        ],
+        "aspect": 0.46209,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          280.8,
+          210.6
+        ],
+        "role": "holdout"
+      },
+      "375x812": {
+        "rowsPaired": 4,
+        "rowsUsableForHeight": 4,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          199.82,
+          179.07
+        ],
+        "localCardHeights": [
+          201.0,
+          176.0
+        ],
+        "targetCardWidths": [
+          269.0,
+          261.0
+        ],
+        "localCardWidths": [
+          263.0,
+          255.0
+        ],
+        "worstCardHeightPct": 1.714,
+        "worstCardWidthPct": 2.299,
+        "requiredScaleYFromCardHeight": 1.00579,
+        "targetRowBands": [
+          12.0,
+          198.5,
+          405.5,
+          613.0,
+          798.5
+        ],
+        "localRowBands": [
+          195.0,
+          405.5,
+          614.5,
+          800.0
+        ],
+        "worstRowBandCentrePx": 3.5,
+        "targetRowHeights": [
+          179.0,
+          199.0,
+          199.0,
+          177.0
+        ],
+        "localRowHeights": [
+          179.0,
+          201.0,
+          199.0,
+          176.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 207.0,
+        "localRowPitchPx": 209.0,
+        "requiredScaleYFromRowPitch": 0.99043,
+        "worstEdgeYawDeg": 0.0,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          375,
+          812
+        ],
+        "aspect": 0.46182,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          270.0,
+          202.5
+        ],
+        "role": "validate"
+      },
+      "393x852": {
+        "rowsPaired": 4,
+        "rowsUsableForHeight": 4,
+        "cardHeightPairs": 2,
+        "cardWidthPairs": 2,
+        "targetCardHeights": [
+          209.54,
+          187.55
+        ],
+        "localCardHeights": [
+          211.0,
+          184.0
+        ],
+        "targetCardWidths": [
+          281.0,
+          275.0
+        ],
+        "localCardWidths": [
+          277.0,
+          267.0
+        ],
+        "worstCardHeightPct": 1.893,
+        "worstCardWidthPct": 2.909,
+        "requiredScaleYFromCardHeight": 1.00619,
+        "targetRowBands": [
+          13.0,
+          208.5,
+          425.5,
+          642.5,
+          836.5
+        ],
+        "localRowBands": [
+          6.5,
+          204.5,
+          425.5,
+          644.5,
+          839.0
+        ],
+        "worstRowBandCentrePx": 6.5,
+        "targetRowHeights": [
+          188.0,
+          209.0,
+          208.0,
+          185.0
+        ],
+        "localRowHeights": [
+          187.0,
+          211.0,
+          208.0,
+          184.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 206.25,
+        "localRowPitchPx": 208.5,
+        "requiredScaleYFromRowPitch": 0.98921,
+        "worstEdgeYawDeg": 0.022,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          393,
+          852
+        ],
+        "aspect": 0.46127,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          282.96,
+          212.22
+        ],
+        "role": "validate"
+      },
+      "428x926": {
+        "rowsPaired": 2,
+        "rowsUsableForHeight": 2,
+        "cardHeightPairs": 1,
+        "cardWidthPairs": 1,
+        "targetCardHeights": [
+          227.37
+        ],
+        "localCardHeights": [
+          229.0
+        ],
+        "targetCardWidths": [
+          306.0
+        ],
+        "localCardWidths": [
+          302.0
+        ],
+        "worstCardHeightPct": 0.717,
+        "worstCardWidthPct": 1.307,
+        "requiredScaleYFromCardHeight": 0.99288,
+        "targetRowBands": [
+          13.5,
+          226.0,
+          462.5,
+          699.0,
+          717.5,
+          754.0,
+          910.0
+        ],
+        "localRowBands": [
+          222.0,
+          462.5,
+          701.0,
+          912.5
+        ],
+        "worstRowBandCentrePx": 4.0,
+        "targetRowHeights": [
+          204.0,
+          227.0,
+          226.0,
+          129.0
+        ],
+        "localRowHeights": [
+          204.0,
+          229.0,
+          226.0,
+          200.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 236.5,
+        "localRowPitchPx": 238.5,
+        "requiredScaleYFromRowPitch": 0.99161,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          428,
+          926
+        ],
+        "aspect": 0.4622,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          308.16,
+          231.12
+        ],
+        "role": "validate"
+      },
+      "700x900": {
+        "rowsPaired": 1,
+        "rowsUsableForHeight": 1,
+        "cardHeightPairs": 0,
+        "cardWidthPairs": 0,
+        "targetCardHeights": [],
+        "localCardHeights": [],
+        "targetCardWidths": [],
+        "localCardWidths": [],
+        "worstCardHeightPct": 0.0,
+        "worstCardWidthPct": 0.0,
+        "requiredScaleYFromCardHeight": null,
+        "targetRowBands": [
+          77.0,
+          449.5,
+          480.0,
+          562.5,
+          636.0,
+          815.0
+        ],
+        "localRowBands": [
+          49.0,
+          449.5,
+          848.0
+        ],
+        "worstRowBandCentrePx": 33.0,
+        "targetRowHeights": [
+          357.0,
+          158.0
+        ],
+        "localRowHeights": [
+          380.0,
+          379.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 369.0,
+        "localRowPitchPx": 399.5,
+        "requiredScaleYFromRowPitch": 0.92365,
+        "worstEdgeYawDeg": null,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          700,
+          900
+        ],
+        "aspect": 0.77778,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          504.0,
+          378.0
+        ],
+        "role": "validate"
+      },
+      "1440x900": {
+        "rowsPaired": 2,
+        "rowsUsableForHeight": 2,
+        "cardHeightPairs": 3,
+        "cardWidthPairs": 3,
+        "targetCardHeights": [
+          397.64,
+          397.8,
+          401.19
+        ],
+        "localCardHeights": [
+          391.7,
+          391.69,
+          394.0
+        ],
+        "targetCardWidths": [
+          526.0,
+          526.0,
+          542.0
+        ],
+        "localCardWidths": [
+          524.0,
+          524.0,
+          540.0
+        ],
+        "worstCardHeightPct": 1.792,
+        "worstCardWidthPct": 0.38,
+        "requiredScaleYFromCardHeight": 1.0156,
+        "targetRowBands": [
+          34.5,
+          449.5,
+          862.0
+        ],
+        "localRowBands": [
+          28.0,
+          440.5,
+          850.0
+        ],
+        "worstRowBandCentrePx": 12.0,
+        "targetRowHeights": [
+          400.0,
+          394.0
+        ],
+        "localRowHeights": [
+          391.0,
+          392.0
+        ],
+        "rowPitchResolvable": true,
+        "targetRowPitchPx": 413.75,
+        "localRowPitchPx": 411.0,
+        "requiredScaleYFromRowPitch": 1.00669,
+        "worstEdgeYawDeg": 0.012,
+        "centreDarkBand": {
+          "target": true,
+          "local": true
+        },
+        "viewport": [
+          1440,
+          900
+        ],
+        "aspect": 1.6,
+        "targetFrames": 5,
+        "sourceExactPlaneSize": [
+          547.2,
+          410.4
+        ],
+        "role": "reference"
+      }
+    }
+  }
+}
