@@ -21,7 +21,6 @@ import {
   positionViewDirection,
   pow,
   screenUV,
-  sqrt,
   texture,
   uniform,
   vec2,
@@ -40,7 +39,6 @@ export function createLiquidGlassParamsV4() {
   return {
     ior: uniform(defaults.ior),
     refractionDistance: uniform(defaults.refractionDistance),
-    refractionGainUv: uniform(defaults.refractionGainUv),
     maxRefractionUv: uniform(defaults.maxRefractionUv),
     blurLod: uniform(defaults.blurLod),
     dispersionUv: uniform(defaults.dispersionUv),
@@ -177,57 +175,8 @@ export function createLiquidGlassMaterialV4(
     .mul(refractionZone)
     .mul(0.02)
     .mul(mix(0.65, 1, thicknessNorm));
-  // ---------------------------------------------------------------- snell-screen
-  // Why the projected-exit law above cannot be tuned into a lens: it is the
-  // screen-space difference between the projected surface point and the
-  // projected exit point, and pushing the exit point further along the
-  // refracted ray converges on that ray's vanishing point instead of
-  // diverging. The displacement asymptotes, which is why refractionDistance is
-  // near-inert (ILG-A-009).
-  //
-  // Measuring the alternative before writing it also ruled out simply keying a
-  // Snell law on the tessellated normal. Reconstructing the profile
-  // analytically shows the surface slope peaks at 32 degrees around 50px from
-  // the silhouette, exactly where the zone weight has already decayed to 0.27,
-  // and the two-piece front profile puts a dead flat ring at 16px where the
-  // slope is 0.5 degrees. Slope rising while the weight collapses, with a hole
-  // in the middle, is why three rounds of tuning produced a bump rather than a
-  // ramp.
-  //
-  // So incidence is taken from the band coordinate rather than from the
-  // tessellated normal: a lens edge's incidence grows monotonically toward the
-  // silhouette, and the band coordinate expresses that without inheriting the
-  // tessellation's ledge or the zone weight's collapse. Direction comes from
-  // the card-local radial, which is well conditioned everywhere, unlike n.xy
-  // which vanishes on the flat ring. Sampling outward is what pulls the gutter
-  // and the neighbouring card into the rim.
-  // Box distance to the card edge, from the card-local uv. This is the same
-  // approximation the QA gate uses for its band masks, and it avoids depending
-  // on a vertex attribute for a quantity the uv already carries.
-  const geometryConfig = V4_OPTICS_CONFIG.geometry;
-  const edgeDistancePx = min(
-    min(surfaceUv.x, float(1).sub(surfaceUv.x)).mul(geometryConfig.width),
-    min(surfaceUv.y, float(1).sub(surfaceUv.y)).mul(geometryConfig.height),
-  );
-  const bandT = clamp(
-    float(1).sub(edgeDistancePx.div(float(V4_OPTICS_CONFIG.material.edgeBandPx))),
-    0,
-    1,
-  );
-  const sinTransmitted = bandT.div(params.ior);
-  const tanTransmitted = sinTransmitted
-    .div(sqrt(max(float(1).sub(sinTransmitted.mul(sinTransmitted)), 1e-4)));
-  const snellOffset = radialScreenDirection
-    .mul(tanTransmitted)
-    .mul(params.refractionGainUv)
-    .mul(mix(0.45, 1, thicknessNorm));
-
-  const legacyOffset = rawOffset.mul(2).add(projectedNormalOffset).add(radialLensOffset);
-  const modelOffset = V4_OPTICS_CONFIG.material.refractionModel === "projected-exit"
-    ? legacyOffset
-    : snellOffset;
   const refractionOffset = clamp(
-    modelOffset,
+    rawOffset.mul(2).add(projectedNormalOffset).add(radialLensOffset),
     vec2(params.maxRefractionUv.negate()),
     vec2(params.maxRefractionUv),
   );
@@ -246,13 +195,8 @@ export function createLiquidGlassMaterialV4(
   const fallbackDirection = vec2(normalView.x, normalView.y.negate())
     .add(vec2(1e-5, 0))
     .normalize();
-  // normalize() of an exactly-zero vector is NaN, and the snell-screen law is
-  // exactly zero everywhere outside the refracting band, unlike the legacy law
-  // which was never quite zero. Divide by a floored length instead of relying
-  // on the unselected branch of a select being harmless.
-  const refractionOffsetLength = refractionOffset.length();
-  const dispersionDirection = refractionOffsetLength.greaterThan(1e-5)
-    .select(refractionOffset.div(max(refractionOffsetLength, float(1e-5))), fallbackDirection);
+  const dispersionDirection = refractionOffset.length().greaterThan(1e-5)
+    .select(refractionOffset.normalize(), fallbackDirection);
   const dispersionDelta = dispersionDirection
     .mul(params.dispersionUv)
     .mul(dispersionZone)
@@ -260,31 +204,9 @@ export function createLiquidGlassMaterialV4(
   const uvR = clamp(refractedUv.add(dispersionDelta), vec2(0.001), vec2(0.999));
   const uvB = clamp(refractedUv.sub(dispersionDelta), vec2(0.001), vec2(0.999));
 
-  // A single tap can only translate the sampled content. The multitap model
-  // integrates a short segment of the refracted path instead, so a fragment
-  // gathers the content the ray crosses on its way out rather than the one
-  // point it lands on. Taps are unrolled at a fixed count because the material
-  // is built once and quality changes at runtime without rebuilding it.
-  const multitap = V4_OPTICS_CONFIG.material.refractionModel === "snell-screen-multitap";
-  const tapCount = V4_OPTICS_CONFIG.material.refractionTaps;
-  const gather = (target: any, base: any) => {
-    if (!multitap) return sceneColor.sample(target).level(blurLod);
-    let accumulated: any = sceneColor.sample(target).level(blurLod);
-    for (let step = 1; step < tapCount; step += 1) {
-      const t = step / tapCount;
-      const point = clamp(base.add(target.sub(base).mul(t)), vec2(0.001), vec2(0.999));
-      accumulated = accumulated.add(sceneColor.sample(point).level(blurLod));
-    }
-    return accumulated.div(float(tapCount));
-  };
-  const straightUv = clamp(
-    screenUV.sub(vec2(0.5)).mul(params.sceneUvScale).add(vec2(0.5)),
-    vec2(0.001),
-    vec2(0.999),
-  );
-  const sampleR = gather(uvR, straightUv);
-  const sampleG = gather(refractedUv, straightUv);
-  const sampleB = gather(uvB, straightUv);
+  const sampleR = sceneColor.sample(uvR).level(blurLod);
+  const sampleG = sceneColor.sample(refractedUv).level(blurLod);
+  const sampleB = sceneColor.sample(uvB).level(blurLod);
   const refractedColor = vec3(sampleR.r, sampleG.g, sampleB.b);
 
   const adaptRadius = params.adaptivityRadiusUv.mul(params.sceneUvScale);
