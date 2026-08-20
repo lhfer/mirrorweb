@@ -1,0 +1,851 @@
+{
+  "stage": "f26",
+  "repository": "lhfer/mirrorweb",
+  "branch": "rebuild/liquid-glass-v5-foundation",
+  "head": "64c9781e53f3e55d0a0d0451e763e24298244511",
+  "codeCommit": "64c9781",
+  "evidenceCommit": "this commit",
+  "route": "/?optics=v4 (beauty) and /?optics=v4&foundation=layout&annotate=0 (gate)",
+  "captureTimestampUtc": "2026-08-20T12:39:12Z",
+  "fixedCaptureConditions": {
+    "quality": "high (pinned; adaptive quality must not drift between captures)",
+    "mediaTimeSeconds": 2,
+    "mediaState": "frozen, frame-matched across runs",
+    "dpr": 1,
+    "pointer": [
+      0,
+      0
+    ],
+    "offset": "0,0 for gate captures; 260,180 additionally for session B",
+    "motion": "paused"
+  },
+  "gateVerdict": "FAIL",
+  "targetPixelPolicy": "This directory contains LOCAL pixels and Target-derived NUMBERS only. Target pixels and Target/local overlays live in qa-v5/private/, which is git-ignored.",
+  "files": [
+    {
+      "path": "qa-v5/f26/README.md",
+      "bytes": 2041,
+      "sha256": "a85c8e8987d4501a10da4b643312fc952883da6d60897d79058853bcf8c95f08"
+    },
+    {
+      "path": "qa-v5/f26/beauty/1100x720/01-rest.json",
+      "bytes": 49920,
+      "sha256": "69446d1f511ba614a6f6f669144ae34c70ca1a7735023a5f57de3a1e4c1d60dd"
+    },
+    {
+      "path": "qa-v5/f26/beauty/1100x720/01-rest.png",
+      "bytes": 1057597,
+      "sha256": "5ee279077ea91d0a0cd351e9c9f922a31fbfdf3a0fb64c11060c3018ccbb1445"
+    },
+    {
+      "path": "qa-v5/f26/beauty/1100x720/manifest.json",
+      "bytes": 2112,
+      "sha256": "a517e63349d5b5a0586646d75f2a9416d18d57b767da9aca0000f22f6679f5d5"
+    },
+    {
+      "path": "qa-v5/f26/beauty/1366x768/01-rest.json",
+      "bytes": 49930,
+      "sha256": "52af2745a475c82b7dc219de8b5c8f3544718777d404fc6d368fcd0065987de3"
+    },
+    {
+      "path": "qa-v5/f26/beauty/1366x768/01-rest.png",
+      "bytes": 1319280,
+      "sha256": "0ceed3ec498760081db299e53e0ef1effa59b5a23a15124706e91b3832fb1108"
+    },
+    {
+      "path": "qa-v5/f26/beauty/1366x768/manifest.json",
+      "bytes": 2112,
+      "sha256": "2ef317b7af68b48c17777f2591d40f5f164599e626d824da2237a636dc91b583"
+    },
+    {
+      "path": "qa-v5/f26/beauty/1440x900/01-rest.json",
+      "bytes": 49913,
+      "sha256": "f240b43811463a56e13cc4702ac52757c4070e9c67c438ea3701e317dc5fe8a4"
+    },
+    {
+      "path": "qa-v5/f26/beauty/1440x900/01-rest.png",
+      "bytes": 1579848,
+      "sha256": "c0a37b8955f5da3d37212c43f9cd450257149c92921aff24ed79df1ed6f1bb39"
+    },
+    {
+      "path": "qa-v5/f26/beauty/1440x900/manifest.json",
+      "bytes": 2112,
+      "sha256": "455f69265028c1bb1cec1895d5e688a741e5441e1c87776ef220f5851cac0a9a"
+    },
+    {
+      "path": "qa-v5/f26/beauty/1920x1080/01-rest.json",
+      "bytes": 49987,
+      "sha256": "ab9df901190413a7c0e00bf9e775218060e4deb46964fb4ffafece6636544fdf"
+    },
+    {
+      "path": "qa-v5/f26/beauty/1920x1080/01-rest.png",
+      "bytes": 2361648,
+      "sha256": "05e5ba8bea75ba3c436face517e4eda2d0170019d43867d075d4812d208b8f31"
+    },
+    {
+      "path": "qa-v5/f26/beauty/1920x1080/manifest.json",
+      "bytes": 2115,
+      "sha256": "1b53defd675ba1ad6501e85b1b3ba656feca58b1ebb7e38b1b03ee7617fcdaf5"
+    },
+    {
+      "path": "qa-v5/f26/beauty/390x844/01-rest.json",
+      "bytes": 49822,
+      "sha256": "4b81af1ae350436c6afa226a24392a6f3ced743fa9717d2ca114ee693a3c82dc"
+    },
+    {
+      "path": "qa-v5/f26/beauty/390x844/01-rest.png",
+      "bytes": 457495,
+      "sha256": "36175f8507e24b294110c5e882d92d1d9d3ab435348808f0a2cb8538b3362c44"
+    },
+    {
+      "path": "qa-v5/f26/beauty/390x844/manifest.json",
+      "bytes": 2109,
+      "sha256": "592b2279d28c709ab81d6973b532a8299a910156b053acd523ba62cb1f6060cb"
+    },
+    {
+      "path": "qa-v5/f26/beauty/844x390/01-rest.json",
+      "bytes": 49882,
+      "sha256": "1855d435a48bb645f7029761dde26626437027d8ac4ece147a3c6f36c31acebe"
+    },
+    {
+      "path": "qa-v5/f26/beauty/844x390/01-rest.png",
+      "bytes": 476068,
+      "sha256": "4feb0825ef311893d29b5579113f1d0b814979c95131a91a446cfaa51381f8e3"
+    },
+    {
+      "path": "qa-v5/f26/beauty/844x390/manifest.json",
+      "bytes": 2109,
+      "sha256": "983f3e4b500bfa8b86a4abc4dd1abf40b07af033e3dc3e6c14765963d74a268c"
+    },
+    {
+      "path": "qa-v5/f26/gate.json",
+      "bytes": 33379,
+      "sha256": "3b4ac7e8efd03205345dd0340e9383b1f214984f00600df17e33293957712716"
+    },
+    {
+      "path": "qa-v5/f26/landscape-phase-sweep.png",
+      "bytes": 149070,
+      "sha256": "0d3bf8bfec28e57f984cb6dfa22549c37a536f5cf5c175a207abdc31349ddcbb"
+    },
+    {
+      "path": "qa-v5/f26/landscape-phase.json",
+      "bytes": 16568,
+      "sha256": "bc17a520d96bad0c3e42d1fd46818d2c94e1af6b1f76044d84b0ffdb67e55790"
+    },
+    {
+      "path": "qa-v5/f26/local/1100x720/01-rest.json",
+      "bytes": 49486,
+      "sha256": "d8ecec9039f0cce29fb91fb42a4b1318c78ba02f33e220bc0e0df640af45bc8d"
+    },
+    {
+      "path": "qa-v5/f26/local/1100x720/01-rest.png",
+      "bytes": 6888,
+      "sha256": "e3a54957aa6af578ac2788e13526a7071a97a7dcaa267b41a75fe819ed17fdf0"
+    },
+    {
+      "path": "qa-v5/f26/local/1100x720/manifest.json",
+      "bytes": 907,
+      "sha256": "685ba9124b39151cce86e130c12b3d23e4cb4e13487e256b583d2661bd06f5bf"
+    },
+    {
+      "path": "qa-v5/f26/local/1366x768/01-rest.json",
+      "bytes": 49484,
+      "sha256": "be7ab5af847578243c5787c9af05e72111ca5d2dc5580999b1aea9d2fe0a5f27"
+    },
+    {
+      "path": "qa-v5/f26/local/1366x768/01-rest.png",
+      "bytes": 7127,
+      "sha256": "9b8900cb02efd2c78cfd8b6ef543006b6ae070d833944c515e183fb261dac48a"
+    },
+    {
+      "path": "qa-v5/f26/local/1366x768/manifest.json",
+      "bytes": 907,
+      "sha256": "242a4dffddc51ab17a0ec4977b0b10517a82049d2992e68c0eb2152480d9ccb5"
+    },
+    {
+      "path": "qa-v5/f26/local/1440x900/01-rest.json",
+      "bytes": 49479,
+      "sha256": "223113cbb2eef03a650b87864b00ddfa88db254397d129b8fb83433e72be14d3"
+    },
+    {
+      "path": "qa-v5/f26/local/1440x900/01-rest.png",
+      "bytes": 9324,
+      "sha256": "766a181d4b436ffaa00af849569b11c71fe29b012d83985d9dccf02b3b347945"
+    },
+    {
+      "path": "qa-v5/f26/local/1440x900/manifest.json",
+      "bytes": 907,
+      "sha256": "57317f66f70714b7e4c06de7f6efe0af5fb8bef2132e3d8a00809f7b9f246d05"
+    },
+    {
+      "path": "qa-v5/f26/local/1920x1080/01-rest.json",
+      "bytes": 49541,
+      "sha256": "8535718f1facaeef8e740d122944c1e0afa8bb9a4b9eadf4c7b3965020c19f6a"
+    },
+    {
+      "path": "qa-v5/f26/local/1920x1080/01-rest.png",
+      "bytes": 11597,
+      "sha256": "dd2e0e576238a54dba87e612fea38603e13218843fe96c73de0819e83047a350"
+    },
+    {
+      "path": "qa-v5/f26/local/1920x1080/manifest.json",
+      "bytes": 910,
+      "sha256": "6b8bb55dc1319cdb9434ce99c37a7203c699a91b230a906f4716a56f1d2c46b6"
+    },
+    {
+      "path": "qa-v5/f26/local/390x844/01-rest.json",
+      "bytes": 49375,
+      "sha256": "5dc3f8a65b6ece8bb85c0f98d2b850fdcd497d361cf8d59d89e7adb846b35dfd"
+    },
+    {
+      "path": "qa-v5/f26/local/390x844/01-rest.png",
+      "bytes": 4902,
+      "sha256": "8a0c03285d23a7d8f74ae0d0da6c0da6d690fd60ae8138d7cb035bbac7d800e0"
+    },
+    {
+      "path": "qa-v5/f26/local/390x844/manifest.json",
+      "bytes": 904,
+      "sha256": "f6702efb39d481efee15527517ecb6f0ac995837e850aab06dd5b9c6c999c42b"
+    },
+    {
+      "path": "qa-v5/f26/local/844x390/01-rest.json",
+      "bytes": 49437,
+      "sha256": "bc312973584ee17d9eceeca12fc71e7dfa20dbc467627219441844bd8d73db81"
+    },
+    {
+      "path": "qa-v5/f26/local/844x390/01-rest.png",
+      "bytes": 2779,
+      "sha256": "891c8eb83d9cb12d90cd2e9e748799b3b7681cf64e3dcbe92851292b825b085d"
+    },
+    {
+      "path": "qa-v5/f26/local/844x390/manifest.json",
+      "bytes": 904,
+      "sha256": "3c8a5d89875a7c520525e28cae4001d9c4b1ecf281666b440e6b9aee526e6ce2"
+    },
+    {
+      "path": "qa-v5/f26/long-scroll-runtime.json",
+      "bytes": 14093,
+      "sha256": "ac827f7f41f5851448be6a39b8ec5f1dffe1f99acc4ecda271609f0aa6b1a4be"
+    },
+    {
+      "path": "qa-v5/f26/model-vs-engine.json",
+      "bytes": 5101,
+      "sha256": "594370fa42ad4285bcb68da110ca3488f8a6bbb74ccbd17f856b1d32db913152"
+    },
+    {
+      "path": "qa-v5/f26/pairs.json",
+      "bytes": 1097,
+      "sha256": "d7ca744b707281bbdaf204e28efab01df94caf7938ddd200e00929917a3d3617"
+    },
+    {
+      "path": "qa-v5/f26/params.json",
+      "bytes": 271,
+      "sha256": "83334ac1bbd1c26ee7cba91357f005aa8ba74e2b996e5fd3e988221aa64afcaa"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidate-gates.json",
+      "bytes": 4062,
+      "sha256": "a34b6c2d049feeadc9b0a7a736f3b872db8d80227fb607c06c52f47937335e7a"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/1100x720/01-rest.json",
+      "bytes": 49931,
+      "sha256": "c7d5b27bb2d2d7301f42fbbb321bd8e54e49c9778e0f0fb846b7d3a7fbadec9a"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/1100x720/01-rest.png",
+      "bytes": 1057597,
+      "sha256": "5ee279077ea91d0a0cd351e9c9f922a31fbfdf3a0fb64c11060c3018ccbb1445"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/1100x720/manifest.json",
+      "bytes": 2158,
+      "sha256": "cab4ff6ca2f741f0f9b87d0263b3f2d6a430a7a3320e6d624a8d6c596e774ea3"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/1366x768/01-rest.json",
+      "bytes": 49929,
+      "sha256": "8c3bad9a2701f12920a1207bbb44b8e994a65ce8189f4daed463f82dac99c5c1"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/1366x768/01-rest.png",
+      "bytes": 1319280,
+      "sha256": "0ceed3ec498760081db299e53e0ef1effa59b5a23a15124706e91b3832fb1108"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/1366x768/manifest.json",
+      "bytes": 2167,
+      "sha256": "a709b6551dbbc8e524a16e7343ce11d7779c842c3f1ba38b564e61632003dd06"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/1440x900/01-rest.json",
+      "bytes": 49926,
+      "sha256": "cd90321e83ec559b995a4421804440739b24a0dc6935b45f3128393deb92482f"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/1440x900/01-rest.png",
+      "bytes": 1579848,
+      "sha256": "c0a37b8955f5da3d37212c43f9cd450257149c92921aff24ed79df1ed6f1bb39"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/1440x900/manifest.json",
+      "bytes": 2158,
+      "sha256": "8c8b0b863d7a6c88975d31b630e1bf18f0a24f53a1a6df4f1d9534e0d33a682a"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/1920x1080/01-rest.json",
+      "bytes": 49976,
+      "sha256": "709fe021dd701a2807b37c7d3d5ffafcd5a7a76c4d83d76ca184be44acb1955f"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/1920x1080/01-rest.png",
+      "bytes": 2361648,
+      "sha256": "05e5ba8bea75ba3c436face517e4eda2d0170019d43867d075d4812d208b8f31"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/1920x1080/manifest.json",
+      "bytes": 2161,
+      "sha256": "920b903a4f5d96918cb87d8efc4002273cad4d0fd9561640f79b3986f7da9c19"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/390x844/01-rest.json",
+      "bytes": 49835,
+      "sha256": "bc89ba8ec3bfab98c66e390acc38f74699a7d14f81838ecbc1c3884cdca65fa3"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/390x844/01-rest.png",
+      "bytes": 457495,
+      "sha256": "36175f8507e24b294110c5e882d92d1d9d3ab435348808f0a2cb8538b3362c44"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/390x844/manifest.json",
+      "bytes": 2155,
+      "sha256": "4fcc1b5c5ebf54fb04463a68d13c82dfa049c4f37415f1bc6ff24e4673301dfb"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/844x390/01-rest.json",
+      "bytes": 49872,
+      "sha256": "9498af37444aa01ce0452e1551a4d18aad917219da03efd6c78c252efc56ba67"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/844x390/01-rest.png",
+      "bytes": 476068,
+      "sha256": "4feb0825ef311893d29b5579113f1d0b814979c95131a91a446cfaa51381f8e3"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/beauty/844x390/manifest.json",
+      "bytes": 2164,
+      "sha256": "2de3953fae90d6d70abd70adc794d1c1cbf9efc902322ab93adf0db567c0f93c"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/gate.json",
+      "bytes": 33379,
+      "sha256": "3b4ac7e8efd03205345dd0340e9383b1f214984f00600df17e33293957712716"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/1100x720/01-rest.json",
+      "bytes": 49474,
+      "sha256": "6834e5ebea826dee470a25f539a4fa6ff09b508433174eb75e553f137f1c6166"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/1100x720/01-rest.png",
+      "bytes": 6888,
+      "sha256": "e3a54957aa6af578ac2788e13526a7071a97a7dcaa267b41a75fe819ed17fdf0"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/1100x720/manifest.json",
+      "bytes": 953,
+      "sha256": "1e638a43a8ebdf6475458a334b2c85084f25721d00f2e842a3d525bf9dc5fad7"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/1366x768/01-rest.json",
+      "bytes": 49484,
+      "sha256": "303466de6ec35a86632356bf24d7779cb4a8cd2ec27d2718608ef8502d95d3f2"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/1366x768/01-rest.png",
+      "bytes": 7127,
+      "sha256": "9b8900cb02efd2c78cfd8b6ef543006b6ae070d833944c515e183fb261dac48a"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/1366x768/manifest.json",
+      "bytes": 953,
+      "sha256": "59b0ce1783449cf611f461ee7bd40c365ff63816f746e184cb760b6b9100bd6c"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/1440x900/01-rest.json",
+      "bytes": 49479,
+      "sha256": "1ce0817857c168f43efd30d3f88442030b96b3fb8f38c996fb94dcbe07aa0a7e"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/1440x900/01-rest.png",
+      "bytes": 9324,
+      "sha256": "766a181d4b436ffaa00af849569b11c71fe29b012d83985d9dccf02b3b347945"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/1440x900/manifest.json",
+      "bytes": 953,
+      "sha256": "47fe2e9c4a0943882e026926f470d4c3c497160bca8ef15d79749859ba7dbddc"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/1920x1080/01-rest.json",
+      "bytes": 49530,
+      "sha256": "2088a22501a902b03a41b44ee729f6ecf93eeb2e35c9b60f69b91831f33fde40"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/1920x1080/01-rest.png",
+      "bytes": 11597,
+      "sha256": "dd2e0e576238a54dba87e612fea38603e13218843fe96c73de0819e83047a350"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/1920x1080/manifest.json",
+      "bytes": 956,
+      "sha256": "73b69f589bf7827d442062f6c3a08f3212ac80b0644da6bb0dd2cff3c4156979"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/390x844/01-rest.json",
+      "bytes": 49388,
+      "sha256": "fdf3e17b4d08c99cf0dfc78ad9cf13d9c9680bd2efc380b9fbffb82351e3bfe2"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/390x844/01-rest.png",
+      "bytes": 4902,
+      "sha256": "8a0c03285d23a7d8f74ae0d0da6c0da6d690fd60ae8138d7cb035bbac7d800e0"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/390x844/manifest.json",
+      "bytes": 950,
+      "sha256": "b8111930dadd2e4abc7f1078d08a934d45ef21bc35752517aafa99ef24907257"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/844x390/01-rest.json",
+      "bytes": 49437,
+      "sha256": "62ac7cdad047b0f28cf2cd9265d72316a1ac9570ce39222d3ae8fd1a9b9a16f8"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/844x390/01-rest.png",
+      "bytes": 2779,
+      "sha256": "891c8eb83d9cb12d90cd2e9e748799b3b7681cf64e3dcbe92851292b825b085d"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/local/844x390/manifest.json",
+      "bytes": 950,
+      "sha256": "1badff91bf56ba219695ee4a42f49185627e614affb63d7f81dacd8e86be923e"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p0/pairs.json",
+      "bytes": 1235,
+      "sha256": "98dfbceaf776d708ea36231e0ef377d41d68eeccecd34ae5a49a7633d935366e"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/1100x720/01-rest.json",
+      "bytes": 49920,
+      "sha256": "69446d1f511ba614a6f6f669144ae34c70ca1a7735023a5f57de3a1e4c1d60dd"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/1100x720/01-rest.png",
+      "bytes": 1057597,
+      "sha256": "5ee279077ea91d0a0cd351e9c9f922a31fbfdf3a0fb64c11060c3018ccbb1445"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/1100x720/manifest.json",
+      "bytes": 2158,
+      "sha256": "7013e62373aafd5d515ed5139ca812fc22a8e2c5a6b5b6e00a7bacc86916f472"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/1366x768/01-rest.json",
+      "bytes": 49930,
+      "sha256": "52af2745a475c82b7dc219de8b5c8f3544718777d404fc6d368fcd0065987de3"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/1366x768/01-rest.png",
+      "bytes": 1319280,
+      "sha256": "0ceed3ec498760081db299e53e0ef1effa59b5a23a15124706e91b3832fb1108"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/1366x768/manifest.json",
+      "bytes": 2158,
+      "sha256": "7617f76465b0f93cbd2e82cd2f0f0b91ef1f0d53684cb53858a836ecba314926"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/1440x900/01-rest.json",
+      "bytes": 49913,
+      "sha256": "f240b43811463a56e13cc4702ac52757c4070e9c67c438ea3701e317dc5fe8a4"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/1440x900/01-rest.png",
+      "bytes": 1579848,
+      "sha256": "c0a37b8955f5da3d37212c43f9cd450257149c92921aff24ed79df1ed6f1bb39"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/1440x900/manifest.json",
+      "bytes": 2158,
+      "sha256": "b622d3c6af21b00d84364d770a61a1f66cb7b3f404d79090a0a424db1550b124"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/1920x1080/01-rest.json",
+      "bytes": 49987,
+      "sha256": "ab9df901190413a7c0e00bf9e775218060e4deb46964fb4ffafece6636544fdf"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/1920x1080/01-rest.png",
+      "bytes": 2361648,
+      "sha256": "05e5ba8bea75ba3c436face517e4eda2d0170019d43867d075d4812d208b8f31"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/1920x1080/manifest.json",
+      "bytes": 2161,
+      "sha256": "94376f9e159063098452942a20b029534a1a7621bbc372d4a445953014dfe28b"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/390x844/01-rest.json",
+      "bytes": 49822,
+      "sha256": "4b81af1ae350436c6afa226a24392a6f3ced743fa9717d2ca114ee693a3c82dc"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/390x844/01-rest.png",
+      "bytes": 457495,
+      "sha256": "36175f8507e24b294110c5e882d92d1d9d3ab435348808f0a2cb8538b3362c44"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/390x844/manifest.json",
+      "bytes": 2155,
+      "sha256": "e1844b12cbd699027f7e6ba544abb19e9cd040e354b9a2ce1d9ca472a40895f2"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/844x390/01-rest.json",
+      "bytes": 49882,
+      "sha256": "1855d435a48bb645f7029761dde26626437027d8ac4ece147a3c6f36c31acebe"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/844x390/01-rest.png",
+      "bytes": 476068,
+      "sha256": "4feb0825ef311893d29b5579113f1d0b814979c95131a91a446cfaa51381f8e3"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/beauty/844x390/manifest.json",
+      "bytes": 2155,
+      "sha256": "b1a620b7df7a01e6597cc87a670fd5cf696e42d4fe98b95dd4e30efbdd6fe869"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/gate.json",
+      "bytes": 33379,
+      "sha256": "3b4ac7e8efd03205345dd0340e9383b1f214984f00600df17e33293957712716"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/1100x720/01-rest.json",
+      "bytes": 49486,
+      "sha256": "d8ecec9039f0cce29fb91fb42a4b1318c78ba02f33e220bc0e0df640af45bc8d"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/1100x720/01-rest.png",
+      "bytes": 6888,
+      "sha256": "e3a54957aa6af578ac2788e13526a7071a97a7dcaa267b41a75fe819ed17fdf0"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/1100x720/manifest.json",
+      "bytes": 953,
+      "sha256": "de0b1e3ae90525a4f58d235102a74dca41e40045bb4afbb93b5f60dd59d79673"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/1366x768/01-rest.json",
+      "bytes": 49484,
+      "sha256": "be7ab5af847578243c5787c9af05e72111ca5d2dc5580999b1aea9d2fe0a5f27"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/1366x768/01-rest.png",
+      "bytes": 7127,
+      "sha256": "9b8900cb02efd2c78cfd8b6ef543006b6ae070d833944c515e183fb261dac48a"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/1366x768/manifest.json",
+      "bytes": 953,
+      "sha256": "85f3f5a897dffea425528fa6184b56f34375c9eb1d72d15a1e70398e474bea23"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/1440x900/01-rest.json",
+      "bytes": 49479,
+      "sha256": "223113cbb2eef03a650b87864b00ddfa88db254397d129b8fb83433e72be14d3"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/1440x900/01-rest.png",
+      "bytes": 9324,
+      "sha256": "766a181d4b436ffaa00af849569b11c71fe29b012d83985d9dccf02b3b347945"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/1440x900/manifest.json",
+      "bytes": 953,
+      "sha256": "bde8c3f42d7fd828623e46fc3db32f4fb8f449278543c711db10ae427ff0d20f"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/1920x1080/01-rest.json",
+      "bytes": 49541,
+      "sha256": "8535718f1facaeef8e740d122944c1e0afa8bb9a4b9eadf4c7b3965020c19f6a"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/1920x1080/01-rest.png",
+      "bytes": 11597,
+      "sha256": "dd2e0e576238a54dba87e612fea38603e13218843fe96c73de0819e83047a350"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/1920x1080/manifest.json",
+      "bytes": 956,
+      "sha256": "a77251dac50f4bda9448907f34798943c8ef47b0a6a4a0b9ef153496532bdebb"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/390x844/01-rest.json",
+      "bytes": 49375,
+      "sha256": "5dc3f8a65b6ece8bb85c0f98d2b850fdcd497d361cf8d59d89e7adb846b35dfd"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/390x844/01-rest.png",
+      "bytes": 4902,
+      "sha256": "8a0c03285d23a7d8f74ae0d0da6c0da6d690fd60ae8138d7cb035bbac7d800e0"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/390x844/manifest.json",
+      "bytes": 950,
+      "sha256": "1ce77c3bcf46d92e22ed78675ffe0cf41ae28a8d5100fc39d0d414365f10a1c5"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/844x390/01-rest.json",
+      "bytes": 49437,
+      "sha256": "bc312973584ee17d9eceeca12fc71e7dfa20dbc467627219441844bd8d73db81"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/844x390/01-rest.png",
+      "bytes": 2779,
+      "sha256": "891c8eb83d9cb12d90cd2e9e748799b3b7681cf64e3dcbe92851292b825b085d"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/local/844x390/manifest.json",
+      "bytes": 950,
+      "sha256": "4ab58e93a3a120f91c15bf425fe2feaf4e982c0444c3570fa8271adc8224d949"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p1/pairs.json",
+      "bytes": 1235,
+      "sha256": "1ae8b87a4a68689307ab77ca50e38f048d55e908b67ea62ef400685539c5b75d"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/1100x720/01-rest.json",
+      "bytes": 49952,
+      "sha256": "f179696aec23d08e772c6ee771330de7df9825635bbb3924838221f0a62103ed"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/1100x720/01-rest.png",
+      "bytes": 1046348,
+      "sha256": "cff8d3e9d5f456a34c0bd9e3aa1f9616aecb0a2dad1a3bab780252bd1397f4e8"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/1100x720/manifest.json",
+      "bytes": 2158,
+      "sha256": "3320e63c6380fba4a1faf67095dd740fa04b5c16d25858a9a0fed72e91faf28a"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/1366x768/01-rest.json",
+      "bytes": 49968,
+      "sha256": "5cf68a29cf086e118349d08ba8a923c14ca1ae86ae4e31b81f54eb689937f7d6"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/1366x768/01-rest.png",
+      "bytes": 1314864,
+      "sha256": "8ad010689978697df5314115268c9ce71a2727b171ecc4f52f393ccdb7279b20"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/1366x768/manifest.json",
+      "bytes": 2158,
+      "sha256": "d203172fcd3fca643085349b919b40b9865f759c9bdcd2d6c4f759d0b41b8e1d"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/1440x900/01-rest.json",
+      "bytes": 49912,
+      "sha256": "ce93f97cd0622ba7288b40ccce3e44ec5f473d5f474e18ac4f3152e6bb110c1e"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/1440x900/01-rest.png",
+      "bytes": 1566334,
+      "sha256": "98b48854a1a418b8f5957c262f0718b52f5d2e81a70774cbbcfe7d3378c1e364"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/1440x900/manifest.json",
+      "bytes": 2158,
+      "sha256": "f93925f6c2e0e741e2098b6e307bbeed87ed7a071e2b1f2dabbb7b8a8804a980"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/1920x1080/01-rest.json",
+      "bytes": 49958,
+      "sha256": "61a151d19990bf240e2be120b8ccbe931fc93f211b921981d8fdf927783395ff"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/1920x1080/01-rest.png",
+      "bytes": 2352221,
+      "sha256": "ea55ad803ce2f72d085e8b7b1e9a09acdfadb127dc63dd6e72924aa68474215f"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/1920x1080/manifest.json",
+      "bytes": 2161,
+      "sha256": "28e8aef9177ffc0ad25d50f627640ada2638ee9084060b8a48b4cda625b7350f"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/390x844/01-rest.json",
+      "bytes": 49844,
+      "sha256": "20d94ac9bfc8dc44cc1fd57d6f3d481b9c00d72159bd79dab4ae8a6527a5d0cc"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/390x844/01-rest.png",
+      "bytes": 452151,
+      "sha256": "255d215cb5a5365efb8e1041830ac7cf9e4175c4f11d6b4b81aa65d0494a6d6c"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/390x844/manifest.json",
+      "bytes": 2155,
+      "sha256": "6d26b9790cd36fbd17611d6937ad3e019005ca409bb4895df3e5dddb11aa9d37"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/844x390/01-rest.json",
+      "bytes": 49872,
+      "sha256": "0e93c22f5f30b113c5dd6d2d442d9a9285adb2814923e49d293f35be3a66fe65"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/844x390/01-rest.png",
+      "bytes": 474432,
+      "sha256": "03fad25b462452513546c12be26d1c5eabe5875758fcd8cc30fc8273df6d0d19"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/beauty/844x390/manifest.json",
+      "bytes": 2155,
+      "sha256": "42b4e7c19b7f8353c69318a420ca29be299dd8f24f50c516ba22d0bad207879d"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/gate.json",
+      "bytes": 33373,
+      "sha256": "e7a8332601ddc4c5a7f9f2fe24e06c9061011247b72bca76b798e5de0a0febb8"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/1100x720/01-rest.json",
+      "bytes": 49506,
+      "sha256": "5fa2859ecc239c28b6d71a1e8a1cb7383c7d97977db36f5e0b00eb7f04613988"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/1100x720/01-rest.png",
+      "bytes": 6621,
+      "sha256": "c6b7e74bca0e7c3a1e1996696638d671ab42fdddd5bafeaba3a14ae73d7914b7"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/1100x720/manifest.json",
+      "bytes": 953,
+      "sha256": "0d06704bcaea90992ad3554d0efd7bca6b61d57450dba627c84262e90bb5afbb"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/1366x768/01-rest.json",
+      "bytes": 49522,
+      "sha256": "a6ab1dbeaf03de56445a5c17fef3a241e55075502db1ddc5e6823b14b5766335"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/1366x768/01-rest.png",
+      "bytes": 6790,
+      "sha256": "0788a89926c49600b54039a3ceef728a50634472e4eb23476a82fd7abd890519"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/1366x768/manifest.json",
+      "bytes": 953,
+      "sha256": "4dec0215f43e58f680d9a983b8b1504cd5f5bc4b1d8f2bec014cb57f675abcf4"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/1440x900/01-rest.json",
+      "bytes": 49477,
+      "sha256": "ffbe18bee4366b9b65999b3fbec8e2b9f444e3a3953e1b0323453691ea9eb797"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/1440x900/01-rest.png",
+      "bytes": 9120,
+      "sha256": "a315684ec337b981da5258547b5f4a7c67f8c55a1c05fbb03acd2e4a377d07bd"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/1440x900/manifest.json",
+      "bytes": 953,
+      "sha256": "a013f83b0faaa137f876bdc60e6c6b9994276e5d98dd65890a071ab852bd86eb"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/1920x1080/01-rest.json",
+      "bytes": 49524,
+      "sha256": "ecd8f78ff422d160b61a8e2018db049945b14abd6f1d4693349feb59b1a26634"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/1920x1080/01-rest.png",
+      "bytes": 11181,
+      "sha256": "9dafa7d36c276ab7407abd287225cd5781cab990f1b6f93ec633a19890a60e53"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/1920x1080/manifest.json",
+      "bytes": 956,
+      "sha256": "dca13c707047d2a53702414b788cba5173af68ae2e45dd2f5179aed7a2396f9f"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/390x844/01-rest.json",
+      "bytes": 49396,
+      "sha256": "8810c5b85dd7ed90d3d9b619a08add498abb745e273ca08709250315058b2c24"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/390x844/01-rest.png",
+      "bytes": 4775,
+      "sha256": "0c1a2f4a87fe8f175362c4bfafd4ace6ffff8bc8df94e7cc81c0e872b331a691"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/390x844/manifest.json",
+      "bytes": 950,
+      "sha256": "947e9b906c84a70c1b6bb108b8974301b8151fd0ca11e1c1edebee43fee98809"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/844x390/01-rest.json",
+      "bytes": 49425,
+      "sha256": "f67837461e091a65f49fdd5a62872e9738813869796157911559a67a63ce9efe"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/844x390/01-rest.png",
+      "bytes": 2692,
+      "sha256": "77b949d7d7d9536f932ffed1cb75e54e913885de54ea16a510140007d52b4215"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/local/844x390/manifest.json",
+      "bytes": 950,
+      "sha256": "bd1deaba4bc7b39619328f8d2e1e63a7d5eb7ad0a18c33277f82f93cae23860e"
+    },
+    {
+      "path": "qa-v5/f26/portrait-candidates/p2/pairs.json",
+      "bytes": 1235,
+      "sha256": "8987c957a3520f354dcec5cdae3b87bed36e3442062fb8c7f977dc3fb4d8d26a"
+    },
+    {
+      "path": "qa-v5/f26/portrait-crossval.json",
+      "bytes": 3358,
+      "sha256": "253ca395aca3db07424fc1d6136815e7224d37a08186faa41c20abcd3ff1f015"
+    },
+    {
+      "path": "qa-v5/f26/runtime-assertions.json",
+      "bytes": 182976,
+      "sha256": "87e14f6d4b4c1acde5648053c5c914e002e305bcd106c1de5117c1dc15fa4798"
+    },
+    {
+      "path": "qa-v5/f26/session/nonzero-offset/resize-session-nonzero-offset.mp4",
+      "bytes": 2953067,
+      "sha256": "93f5cdb383e26020d511bd7fd210949f08eced4d807f2d9e9b035909dcc5c880"
+    },
+    {
+      "path": "qa-v5/f26/session/rest/resize-session-rest.mp4",
+      "bytes": 2898515,
+      "sha256": "722cd8a481ce76b56eb42179d9c7174a33ba0783989a65e4351044accc5caf72"
+    },
+    {
+      "path": "qa-v5/f26/session/runtime-assertions.json",
+      "bytes": 182976,
+      "sha256": "87e14f6d4b4c1acde5648053c5c914e002e305bcd106c1de5117c1dc15fa4798"
+    },
+    {
+      "path": "qa-v5/f26/target-consensus-measurements.json",
+      "bytes": 24189,
+      "sha256": "c19d3219201ea73398e19f289d2cb07e718938e31f01cdf653ff2a8b97589257"
+    }
+  ]
+}

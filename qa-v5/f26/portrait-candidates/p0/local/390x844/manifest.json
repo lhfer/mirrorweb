@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:5280/?optics=v4&composition=v2&verticalMode=tangent&portraitLaw=p0&foundation=layout&annotate=0&qa=1",
+  "viewport": {
+    "origin": "http://127.0.0.1:5280",
+    "route": "/?optics=v4&composition=v2&verticalMode=tangent&portraitLaw=p0&foundation=layout&annotate=0",
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "out": "qa-v5/f26/portrait-candidates/p0/local/390x844",
+    "headless": true,
+    "mediaTime": 2
+  },
+  "freeze": {
+    "requestedTime": 2,
+    "videos": [],
+    "maxSeekError": 0,
+    "maxDrift": 0,
+    "driftWindowMs": 500,
+    "allPaused": true,
+    "allFramesMatched": true,
+    "frozen": true,
+    "thresholds": {
+      "seekError": 0.016666666666666666,
+      "drift": 0.008333333333333333
+    }
+  },
+  "states": [
+    {
+      "id": "01-rest",
+      "offset": [
+        0,
+        0
+      ],
+      "png": "qa-v5/f26/portrait-candidates/p0/local/390x844/01-rest.png"
+    }
+  ],
+  "errors": []
+}

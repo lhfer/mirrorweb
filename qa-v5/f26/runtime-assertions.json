@@ -1,0 +1,7116 @@
+{
+  "note": "Offset is preserved across every resize step; it is never reset between steps.",
+  "sessions": [
+    {
+      "name": "rest",
+      "offset": [
+        0,
+        0
+      ],
+      "steps": 45,
+      "assertions": [
+        {
+          "assertion": "noNewMeshesAfterFirstBuild",
+          "pass": true,
+          "detail": "created 81 -> 81"
+        },
+        {
+          "assertion": "noMeshesDestroyed",
+          "pass": true,
+          "detail": "destroyed 0 -> 0"
+        },
+        {
+          "assertion": "poolSlotsStable",
+          "pass": true,
+          "detail": "slots 81"
+        },
+        {
+          "assertion": "videoCountStable",
+          "pass": true,
+          "detail": "videos 3"
+        },
+        {
+          "assertion": "textureCountStable",
+          "pass": true,
+          "detail": "textures 3"
+        },
+        {
+          "assertion": "materialsStable",
+          "pass": true,
+          "detail": "materials 5"
+        },
+        {
+          "assertion": "geometriesStable",
+          "pass": true,
+          "detail": "geometries 2"
+        },
+        {
+          "assertion": "noVideoReload",
+          "pass": true,
+          "detail": "7 at start, 7 total"
+        },
+        {
+          "assertion": "assetsStayReady",
+          "pass": true,
+          "detail": "asset.ready true at every step"
+        },
+        {
+          "assertion": "qualityPinnedHigh",
+          "pass": true,
+          "detail": "adaptive quality must not drift"
+        },
+        {
+          "assertion": "offsetPreserved",
+          "pass": true,
+          "detail": "offset held at 0,0 across every resize step"
+        },
+        {
+          "assertion": "mediaStaysFrozen",
+          "pass": true,
+          "detail": "every clip paused at the frozen frame"
+        },
+        {
+          "assertion": "noCardOverlap",
+          "pass": true,
+          "detail": "min separation 4.02 px"
+        },
+        {
+          "assertion": "noConsoleErrors",
+          "pass": true,
+          "detail": "none"
+        },
+        {
+          "assertion": "noPageErrors",
+          "pass": true,
+          "detail": "none"
+        }
+      ],
+      "verdict": "PASS",
+      "consoleErrors": [],
+      "pageErrors": [],
+      "trace": [
+        {
+          "index": 0,
+          "viewport": [
+            1920,
+            1200
+          ],
+          "hold": false,
+          "file": "rest-000.png",
+          "compositionScale": 1.3333333333333333,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 20.12,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 1,
+          "viewport": [
+            1880,
+            1175
+          ],
+          "hold": false,
+          "file": "rest-001.png",
+          "compositionScale": 1.3055555555555556,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 19.7,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 2,
+          "viewport": [
+            1840,
+            1150
+          ],
+          "hold": false,
+          "file": "rest-002.png",
+          "compositionScale": 1.2777777777777777,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 19.28,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 3,
+          "viewport": [
+            1800,
+            1125
+          ],
+          "hold": false,
+          "file": "rest-003.png",
+          "compositionScale": 1.25,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 18.86,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 4,
+          "viewport": [
+            1760,
+            1100
+          ],
+          "hold": false,
+          "file": "rest-004.png",
+          "compositionScale": 1.2222222222222223,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 18.44,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 5,
+          "viewport": [
+            1720,
+            1075
+          ],
+          "hold": false,
+          "file": "rest-005.png",
+          "compositionScale": 1.1944444444444444,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 18.02,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 6,
+          "viewport": [
+            1680,
+            1050
+          ],
+          "hold": false,
+          "file": "rest-006.png",
+          "compositionScale": 1.1666666666666667,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 17.6,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 7,
+          "viewport": [
+            1640,
+            1025
+          ],
+          "hold": false,
+          "file": "rest-007.png",
+          "compositionScale": 1.1388888888888888,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 17.18,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 8,
+          "viewport": [
+            1600,
+            1000
+          ],
+          "hold": false,
+          "file": "rest-008.png",
+          "compositionScale": 1.1111111111111112,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 16.76,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 9,
+          "viewport": [
+            1560,
+            975
+          ],
+          "hold": false,
+          "file": "rest-009.png",
+          "compositionScale": 1.0833333333333333,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 16.34,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 10,
+          "viewport": [
+            1520,
+            950
+          ],
+          "hold": false,
+          "file": "rest-010.png",
+          "compositionScale": 1.0555555555555556,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 15.93,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 11,
+          "viewport": [
+            1480,
+            925
+          ],
+          "hold": false,
+          "file": "rest-011.png",
+          "compositionScale": 1.0277777777777777,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 15.51,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 12,
+          "viewport": [
+            1440,
+            900
+          ],
+          "hold": true,
+          "file": "rest-012.png",
+          "compositionScale": 1,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 15.09,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 13,
+          "viewport": [
+            1400,
+            875
+          ],
+          "hold": false,
+          "file": "rest-013.png",
+          "compositionScale": 0.9722222222222222,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 14.67,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 14,
+          "viewport": [
+            1360,
+            850
+          ],
+          "hold": false,
+          "file": "rest-014.png",
+          "compositionScale": 0.9444444444444444,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 14.25,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 15,
+          "viewport": [
+            1320,
+            825
+          ],
+          "hold": false,
+          "file": "rest-015.png",
+          "compositionScale": 0.9166666666666666,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 13.83,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 16,
+          "viewport": [
+            1280,
+            800
+          ],
+          "hold": false,
+          "file": "rest-016.png",
+          "compositionScale": 0.8888888888888888,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 13.41,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 17,
+          "viewport": [
+            1240,
+            775
+          ],
+          "hold": false,
+          "file": "rest-017.png",
+          "compositionScale": 0.8611111111111112,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 12.99,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 18,
+          "viewport": [
+            1200,
+            750
+          ],
+          "hold": false,
+          "file": "rest-018.png",
+          "compositionScale": 0.8333333333333334,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 12.57,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 19,
+          "viewport": [
+            1160,
+            725
+          ],
+          "hold": false,
+          "file": "rest-019.png",
+          "compositionScale": 0.8055555555555556,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 12.15,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 20,
+          "viewport": [
+            1120,
+            700
+          ],
+          "hold": false,
+          "file": "rest-020.png",
+          "compositionScale": 0.7777777777777778,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 11.73,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 21,
+          "viewport": [
+            1080,
+            675
+          ],
+          "hold": false,
+          "file": "rest-021.png",
+          "compositionScale": 0.75,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 11.32,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 22,
+          "viewport": [
+            1040,
+            650
+          ],
+          "hold": false,
+          "file": "rest-022.png",
+          "compositionScale": 0.7222222222222222,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 10.9,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 23,
+          "viewport": [
+            1024,
+            563
+          ],
+          "hold": false,
+          "file": "rest-023.png",
+          "compositionScale": 0.7111111111111111,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 10.73,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 24,
+          "viewport": [
+            994,
+            547
+          ],
+          "hold": false,
+          "file": "rest-024.png",
+          "compositionScale": 0.6902777777777778,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 10.41,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 25,
+          "viewport": [
+            964,
+            530
+          ],
+          "hold": false,
+          "file": "rest-025.png",
+          "compositionScale": 0.6694444444444444,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 10.1,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 26,
+          "viewport": [
+            934,
+            514
+          ],
+          "hold": false,
+          "file": "rest-026.png",
+          "compositionScale": 0.6486111111111111,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 9.79,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 27,
+          "viewport": [
+            904,
+            497
+          ],
+          "hold": false,
+          "file": "rest-027.png",
+          "compositionScale": 0.6277777777777778,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 9.43,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 28,
+          "viewport": [
+            874,
+            481
+          ],
+          "hold": false,
+          "file": "rest-028.png",
+          "compositionScale": 0.6069444444444444,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 16,
+            "minSeparationPx": 9.12,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 29,
+          "viewport": [
+            844,
+            464
+          ],
+          "hold": false,
+          "file": "rest-029.png",
+          "compositionScale": 0.5861111111111111,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 8.25,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 30,
+          "viewport": [
+            844,
+            390
+          ],
+          "hold": true,
+          "file": "rest-030.png",
+          "compositionScale": 0.5861111111111111,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 8.25,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 31,
+          "viewport": [
+            800,
+            425
+          ],
+          "hold": false,
+          "file": "rest-031.png",
+          "compositionScale": 0.5555555555555556,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 7.82,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 32,
+          "viewport": [
+            760,
+            470
+          ],
+          "hold": false,
+          "file": "rest-032.png",
+          "compositionScale": 0.5277777777777778,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 7.43,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 33,
+          "viewport": [
+            720,
+            520
+          ],
+          "hold": false,
+          "file": "rest-033.png",
+          "compositionScale": 0.5,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 7.04,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 34,
+          "viewport": [
+            680,
+            565
+          ],
+          "hold": false,
+          "file": "rest-034.png",
+          "compositionScale": 0.4722222222222222,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 6.65,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 35,
+          "viewport": [
+            640,
+            600
+          ],
+          "hold": false,
+          "file": "rest-035.png",
+          "compositionScale": 0.4444444444444444,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 22,
+            "minSeparationPx": 4.17,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 36,
+          "viewport": [
+            618,
+            617
+          ],
+          "hold": false,
+          "file": "rest-036.png",
+          "compositionScale": 0.42916666666666664,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 24,
+            "minSeparationPx": 4.03,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 37,
+          "viewport": [
+            617,
+            617
+          ],
+          "hold": false,
+          "file": "rest-037.png",
+          "compositionScale": 0.4284722222222222,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,0",
+            "-1,1",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 24,
+            "minSeparationPx": 4.02,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 38,
+          "viewport": [
+            617,
+            618
+          ],
+          "hold": false,
+          "file": "rest-038.png",
+          "compositionScale": 0.8130260416666666,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "0,0",
+            "1,0"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 81,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 10,
+            "minSeparationPx": 13.09,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 39,
+          "viewport": [
+            600,
+            640
+          ],
+          "hold": false,
+          "file": "rest-039.png",
+          "compositionScale": 0.790625,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "1,0",
+            "0,0"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 81,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 10,
+            "minSeparationPx": 12.73,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 40,
+          "viewport": [
+            565,
+            680
+          ],
+          "hold": false,
+          "file": "rest-040.png",
+          "compositionScale": 0.7445052083333334,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "0,0",
+            "1,0"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 81,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 10,
+            "minSeparationPx": 11.99,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 41,
+          "viewport": [
+            520,
+            720
+          ],
+          "hold": false,
+          "file": "rest-041.png",
+          "compositionScale": 0.6852083333333333,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "0,0",
+            "1,0"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 81,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 10,
+            "minSeparationPx": 11.03,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 42,
+          "viewport": [
+            470,
+            760
+          ],
+          "hold": false,
+          "file": "rest-042.png",
+          "compositionScale": 0.6193229166666666,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "0,0",
+            "1,0"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 81,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 10,
+            "minSeparationPx": 9.97,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 43,
+          "viewport": [
+            425,
+            800
+          ],
+          "hold": false,
+          "file": "rest-043.png",
+          "compositionScale": 0.5600260416666667,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "0,0",
+            "1,0"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 81,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 10,
+            "minSeparationPx": 9.02,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 44,
+          "viewport": [
+            390,
+            844
+          ],
+          "hold": true,
+          "file": "rest-044.png",
+          "compositionScale": 0.51390625,
+          "viewZoom": 1,
+          "scrollX": 0,
+          "scrollY": 0,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "0,-1",
+            "0,0"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 81,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 15,
+            "minSeparationPx": 6.49,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        }
+      ]
+    },
+    {
+      "name": "nonzero-offset",
+      "offset": [
+        260,
+        180
+      ],
+      "steps": 45,
+      "assertions": [
+        {
+          "assertion": "noNewMeshesAfterFirstBuild",
+          "pass": true,
+          "detail": "created 81 -> 81"
+        },
+        {
+          "assertion": "noMeshesDestroyed",
+          "pass": true,
+          "detail": "destroyed 0 -> 0"
+        },
+        {
+          "assertion": "poolSlotsStable",
+          "pass": true,
+          "detail": "slots 81"
+        },
+        {
+          "assertion": "videoCountStable",
+          "pass": true,
+          "detail": "videos 3"
+        },
+        {
+          "assertion": "textureCountStable",
+          "pass": true,
+          "detail": "textures 3"
+        },
+        {
+          "assertion": "materialsStable",
+          "pass": true,
+          "detail": "materials 5"
+        },
+        {
+          "assertion": "geometriesStable",
+          "pass": true,
+          "detail": "geometries 2"
+        },
+        {
+          "assertion": "noVideoReload",
+          "pass": true,
+          "detail": "7 at start, 7 total"
+        },
+        {
+          "assertion": "assetsStayReady",
+          "pass": true,
+          "detail": "asset.ready true at every step"
+        },
+        {
+          "assertion": "qualityPinnedHigh",
+          "pass": true,
+          "detail": "adaptive quality must not drift"
+        },
+        {
+          "assertion": "offsetPreserved",
+          "pass": true,
+          "detail": "offset held at 260,180 across every resize step"
+        },
+        {
+          "assertion": "mediaStaysFrozen",
+          "pass": true,
+          "detail": "every clip paused at the frozen frame"
+        },
+        {
+          "assertion": "noCardOverlap",
+          "pass": true,
+          "detail": "min separation 4.93 px"
+        },
+        {
+          "assertion": "noConsoleErrors",
+          "pass": true,
+          "detail": "none"
+        },
+        {
+          "assertion": "noPageErrors",
+          "pass": true,
+          "detail": "none"
+        }
+      ],
+      "verdict": "PASS",
+      "consoleErrors": [],
+      "pageErrors": [],
+      "trace": [
+        {
+          "index": 0,
+          "viewport": [
+            1920,
+            1200
+          ],
+          "hold": false,
+          "file": "nonzero-offset-000.png",
+          "compositionScale": 1.3333333333333333,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 22.73,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 1,
+          "viewport": [
+            1880,
+            1175
+          ],
+          "hold": false,
+          "file": "nonzero-offset-001.png",
+          "compositionScale": 1.3055555555555556,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 22.26,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 2,
+          "viewport": [
+            1840,
+            1150
+          ],
+          "hold": false,
+          "file": "nonzero-offset-002.png",
+          "compositionScale": 1.2777777777777777,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 21.78,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 3,
+          "viewport": [
+            1800,
+            1125
+          ],
+          "hold": false,
+          "file": "nonzero-offset-003.png",
+          "compositionScale": 1.25,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 21.31,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 4,
+          "viewport": [
+            1760,
+            1100
+          ],
+          "hold": false,
+          "file": "nonzero-offset-004.png",
+          "compositionScale": 1.2222222222222223,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 20.84,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 5,
+          "viewport": [
+            1720,
+            1075
+          ],
+          "hold": false,
+          "file": "nonzero-offset-005.png",
+          "compositionScale": 1.1944444444444444,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 20.36,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 6,
+          "viewport": [
+            1680,
+            1050
+          ],
+          "hold": false,
+          "file": "nonzero-offset-006.png",
+          "compositionScale": 1.1666666666666667,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 19.89,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 7,
+          "viewport": [
+            1640,
+            1025
+          ],
+          "hold": false,
+          "file": "nonzero-offset-007.png",
+          "compositionScale": 1.1388888888888888,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 19.42,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 8,
+          "viewport": [
+            1600,
+            1000
+          ],
+          "hold": false,
+          "file": "nonzero-offset-008.png",
+          "compositionScale": 1.1111111111111112,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 18.94,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 9,
+          "viewport": [
+            1560,
+            975
+          ],
+          "hold": false,
+          "file": "nonzero-offset-009.png",
+          "compositionScale": 1.0833333333333333,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 18.47,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 10,
+          "viewport": [
+            1520,
+            950
+          ],
+          "hold": false,
+          "file": "nonzero-offset-010.png",
+          "compositionScale": 1.0555555555555556,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 18,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 11,
+          "viewport": [
+            1480,
+            925
+          ],
+          "hold": false,
+          "file": "nonzero-offset-011.png",
+          "compositionScale": 1.0277777777777777,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 17.52,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 12,
+          "viewport": [
+            1440,
+            900
+          ],
+          "hold": true,
+          "file": "nonzero-offset-012.png",
+          "compositionScale": 1,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 17.05,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 13,
+          "viewport": [
+            1400,
+            875
+          ],
+          "hold": false,
+          "file": "nonzero-offset-013.png",
+          "compositionScale": 0.9722222222222222,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 16.58,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 14,
+          "viewport": [
+            1360,
+            850
+          ],
+          "hold": false,
+          "file": "nonzero-offset-014.png",
+          "compositionScale": 0.9444444444444444,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 16.1,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 15,
+          "viewport": [
+            1320,
+            825
+          ],
+          "hold": false,
+          "file": "nonzero-offset-015.png",
+          "compositionScale": 0.9166666666666666,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 15.63,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 16,
+          "viewport": [
+            1280,
+            800
+          ],
+          "hold": false,
+          "file": "nonzero-offset-016.png",
+          "compositionScale": 0.8888888888888888,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 15.15,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 17,
+          "viewport": [
+            1240,
+            775
+          ],
+          "hold": false,
+          "file": "nonzero-offset-017.png",
+          "compositionScale": 0.8611111111111112,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 11,
+            "minSeparationPx": 14.68,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 18,
+          "viewport": [
+            1200,
+            750
+          ],
+          "hold": false,
+          "file": "nonzero-offset-018.png",
+          "compositionScale": 0.8333333333333334,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 9.98,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 19,
+          "viewport": [
+            1160,
+            725
+          ],
+          "hold": false,
+          "file": "nonzero-offset-019.png",
+          "compositionScale": 0.8055555555555556,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 9.65,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 20,
+          "viewport": [
+            1120,
+            700
+          ],
+          "hold": false,
+          "file": "nonzero-offset-020.png",
+          "compositionScale": 0.7777777777777778,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 9.32,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 21,
+          "viewport": [
+            1080,
+            675
+          ],
+          "hold": false,
+          "file": "nonzero-offset-021.png",
+          "compositionScale": 0.75,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 8.98,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 22,
+          "viewport": [
+            1040,
+            650
+          ],
+          "hold": false,
+          "file": "nonzero-offset-022.png",
+          "compositionScale": 0.7222222222222222,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 13,
+            "minSeparationPx": 8.65,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 23,
+          "viewport": [
+            1024,
+            563
+          ],
+          "hold": false,
+          "file": "nonzero-offset-023.png",
+          "compositionScale": 0.7111111111111111,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 12.12,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 24,
+          "viewport": [
+            994,
+            547
+          ],
+          "hold": false,
+          "file": "nonzero-offset-024.png",
+          "compositionScale": 0.6902777777777778,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 11.77,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 25,
+          "viewport": [
+            964,
+            530
+          ],
+          "hold": false,
+          "file": "nonzero-offset-025.png",
+          "compositionScale": 0.6694444444444444,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 11.41,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 26,
+          "viewport": [
+            934,
+            514
+          ],
+          "hold": false,
+          "file": "nonzero-offset-026.png",
+          "compositionScale": 0.6486111111111111,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 11.06,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 27,
+          "viewport": [
+            904,
+            497
+          ],
+          "hold": false,
+          "file": "nonzero-offset-027.png",
+          "compositionScale": 0.6277777777777778,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 10.7,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 28,
+          "viewport": [
+            874,
+            481
+          ],
+          "hold": false,
+          "file": "nonzero-offset-028.png",
+          "compositionScale": 0.6069444444444444,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 10.35,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 29,
+          "viewport": [
+            844,
+            464
+          ],
+          "hold": false,
+          "file": "nonzero-offset-029.png",
+          "compositionScale": 0.5861111111111111,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 9.99,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 30,
+          "viewport": [
+            844,
+            390
+          ],
+          "hold": true,
+          "file": "nonzero-offset-030.png",
+          "compositionScale": 0.5861111111111111,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 9.99,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 31,
+          "viewport": [
+            800,
+            425
+          ],
+          "hold": false,
+          "file": "nonzero-offset-031.png",
+          "compositionScale": 0.5555555555555556,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 9.47,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 32,
+          "viewport": [
+            760,
+            470
+          ],
+          "hold": false,
+          "file": "nonzero-offset-032.png",
+          "compositionScale": 0.5277777777777778,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 14,
+            "minSeparationPx": 6.19,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 33,
+          "viewport": [
+            720,
+            520
+          ],
+          "hold": false,
+          "file": "nonzero-offset-033.png",
+          "compositionScale": 0.5,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 18,
+            "minSeparationPx": 5.87,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 34,
+          "viewport": [
+            680,
+            565
+          ],
+          "hold": false,
+          "file": "nonzero-offset-034.png",
+          "compositionScale": 0.4722222222222222,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "-1,1",
+            "0,0"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 23,
+            "minSeparationPx": 5.43,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 35,
+          "viewport": [
+            640,
+            600
+          ],
+          "hold": false,
+          "file": "nonzero-offset-035.png",
+          "compositionScale": 0.4444444444444444,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "0,0",
+            "1,0"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 23,
+            "minSeparationPx": 5.11,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 36,
+          "viewport": [
+            618,
+            617
+          ],
+          "hold": false,
+          "file": "nonzero-offset-036.png",
+          "compositionScale": 0.42916666666666664,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "0,0",
+            "1,0"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 23,
+            "minSeparationPx": 4.94,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 37,
+          "viewport": [
+            617,
+            617
+          ],
+          "hold": false,
+          "file": "nonzero-offset-037.png",
+          "compositionScale": 0.4284722222222222,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "0,0",
+            "1,0"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 0,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 23,
+            "minSeparationPx": 4.93,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 38,
+          "viewport": [
+            617,
+            618
+          ],
+          "hold": false,
+          "file": "nonzero-offset-038.png",
+          "compositionScale": 0.8130260416666666,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "1,1",
+            "1,0"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 81,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 8,
+            "minSeparationPx": 14.66,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 39,
+          "viewport": [
+            600,
+            640
+          ],
+          "hold": false,
+          "file": "nonzero-offset-039.png",
+          "compositionScale": 0.790625,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "1,1",
+            "1,0"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 81,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 8,
+            "minSeparationPx": 14.26,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 40,
+          "viewport": [
+            565,
+            680
+          ],
+          "hold": false,
+          "file": "nonzero-offset-040.png",
+          "compositionScale": 0.7445052083333334,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "1,1",
+            "1,0"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 81,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 8,
+            "minSeparationPx": 13.42,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 41,
+          "viewport": [
+            520,
+            720
+          ],
+          "hold": false,
+          "file": "nonzero-offset-041.png",
+          "compositionScale": 0.6852083333333333,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "0,1",
+            "1,0",
+            "1,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 81,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 8,
+            "minSeparationPx": 12.36,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 42,
+          "viewport": [
+            470,
+            760
+          ],
+          "hold": false,
+          "file": "nonzero-offset-042.png",
+          "compositionScale": 0.6193229166666666,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "1,0",
+            "0,1",
+            "1,2"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 81,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 9.23,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 43,
+          "viewport": [
+            425,
+            800
+          ],
+          "hold": false,
+          "file": "nonzero-offset-043.png",
+          "compositionScale": 0.5600260416666667,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "1,0",
+            "1,2",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 81,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 8.35,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        },
+        {
+          "index": 44,
+          "viewport": [
+            390,
+            844
+          ],
+          "hold": true,
+          "file": "nonzero-offset-044.png",
+          "compositionScale": 0.51390625,
+          "viewZoom": 1,
+          "scrollX": 260,
+          "scrollY": 180,
+          "quality": "high",
+          "centreCells": [
+            "1,0",
+            "1,2",
+            "0,1"
+          ],
+          "pool": {
+            "slots": 81,
+            "created": 81,
+            "destroyed": 0,
+            "remaps": 81,
+            "cols": 9,
+            "rows": 9,
+            "materials": 5,
+            "geometries": 2,
+            "textures": 3,
+            "videos": 3,
+            "glass": "v4-volume"
+          },
+          "asset": {
+            "videos": 3,
+            "textures": 3,
+            "ready": true,
+            "media": "video",
+            "glass": "v4-volume",
+            "videoFrames": 219,
+            "videoFrameCallback": true,
+            "placeholderTileCount": 0,
+            "unreadyVisibleTileCount": 0
+          },
+          "media": [
+            {
+              "index": 0,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            },
+            {
+              "index": 1,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 556
+            },
+            {
+              "index": 2,
+              "currentTime": 2,
+              "readyState": 4,
+              "paused": true,
+              "videoWidth": 960,
+              "videoHeight": 540
+            }
+          ],
+          "overlap": {
+            "cards": 12,
+            "minSeparationPx": 7.66,
+            "overlaps": 0
+          },
+          "consoleErrorsSoFar": 0,
+          "pageErrorsSoFar": 0,
+          "videoRequestsSoFar": 7
+        }
+      ]
+    }
+  ],
+  "verdict": "PASS"
+}

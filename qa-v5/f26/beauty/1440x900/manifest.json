@@ -1,0 +1,90 @@
+{
+  "url": "http://127.0.0.1:5280/?optics=v4&composition=v2&verticalMode=tangent&portraitLaw=p1&qa=1",
+  "viewport": {
+    "origin": "http://127.0.0.1:5280",
+    "route": "/?optics=v4&composition=v2&verticalMode=tangent&portraitLaw=p1",
+    "width": 1440,
+    "height": 900,
+    "dpr": 1,
+    "out": "qa-v5/f26/beauty/1440x900",
+    "headless": true,
+    "mediaTime": 2
+  },
+  "freeze": {
+    "requestedTime": 2,
+    "videos": [
+      {
+        "index": 0,
+        "requestedTime": 2,
+        "currentTime": 2,
+        "mediaTime": 2,
+        "presentedFrames": 54,
+        "readyState": 4,
+        "paused": true,
+        "videoWidth": 960,
+        "videoHeight": 540,
+        "frameWait": "presented",
+        "seekError": 0,
+        "wantedFrame": 60,
+        "landedFrame": 60,
+        "frameAttempts": 1,
+        "frameMatched": true
+      },
+      {
+        "index": 1,
+        "requestedTime": 2,
+        "currentTime": 2,
+        "mediaTime": 2,
+        "presentedFrames": 66,
+        "readyState": 4,
+        "paused": true,
+        "videoWidth": 960,
+        "videoHeight": 556,
+        "frameWait": "presented",
+        "seekError": 0,
+        "wantedFrame": 60,
+        "landedFrame": 60,
+        "frameAttempts": 1,
+        "frameMatched": true
+      },
+      {
+        "index": 2,
+        "requestedTime": 2,
+        "currentTime": 2,
+        "mediaTime": 2,
+        "presentedFrames": 65,
+        "readyState": 4,
+        "paused": true,
+        "videoWidth": 960,
+        "videoHeight": 540,
+        "frameWait": "presented",
+        "seekError": 0,
+        "wantedFrame": 60,
+        "landedFrame": 60,
+        "frameAttempts": 1,
+        "frameMatched": true
+      }
+    ],
+    "maxSeekError": 0,
+    "maxDrift": 0,
+    "driftWindowMs": 500,
+    "allPaused": true,
+    "allFramesMatched": true,
+    "frozen": true,
+    "thresholds": {
+      "seekError": 0.016666666666666666,
+      "drift": 0.008333333333333333
+    }
+  },
+  "states": [
+    {
+      "id": "01-rest",
+      "offset": [
+        0,
+        0
+      ],
+      "png": "qa-v5/f26/beauty/1440x900/01-rest.png"
+    }
+  ],
+  "errors": []
+}

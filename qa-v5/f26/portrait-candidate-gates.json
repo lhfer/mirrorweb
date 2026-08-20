@@ -1,0 +1,168 @@
+{
+  "note": "All three portrait laws built as runnable candidates and gated, not compared analytically.",
+  "shipped": "p1",
+  "candidates": {
+    "p0": {
+      "verdict": "FAIL",
+      "contractCoverage": {
+        "cardCentre": "PASS",
+        "cardSize": "FAIL",
+        "gutterPx": "PASS",
+        "edgeYaw": "FAIL",
+        "rowParity": "PASS",
+        "centreDarkBand": "FAIL",
+        "overlap": "PASS",
+        "largeVoid": "FAIL",
+        "f0Regression": "PASS"
+      },
+      "perViewport": {
+        "1100x720": "PASS",
+        "1366x768": "PASS",
+        "1440x900": "PASS",
+        "1920x1080": "PASS",
+        "390x844": "FAIL",
+        "844x390": "PASS"
+      },
+      "failing390x844": [
+        {
+          "check": "unclipped card height",
+          "value": 4.905,
+          "unit": "%",
+          "limit": 3.0
+        },
+        {
+          "check": "bottom edge slope",
+          "value": 1.231,
+          "unit": "deg",
+          "limit": 0.75
+        },
+        {
+          "check": "viewport centre in a horizontal gutter",
+          "value": false,
+          "unit": "bool",
+          "limit": true
+        },
+        {
+          "check": "largest void blob excess",
+          "value": 2.423,
+          "unit": "% of frame",
+          "limit": 2.0
+        }
+      ],
+      "params": {
+        "radiusY": -4707.6,
+        "cellH": 419.95,
+        "restY0": -200.99,
+        "gainBase": 1.9468,
+        "gainSlope": -0.31
+      },
+      "scaleHoldOutErrorPct": 5.088
+    },
+    "p1": {
+      "verdict": "FAIL",
+      "contractCoverage": {
+        "cardCentre": "PASS",
+        "cardSize": "FAIL",
+        "gutterPx": "PASS",
+        "edgeYaw": "FAIL",
+        "rowParity": "PASS",
+        "centreDarkBand": "FAIL",
+        "overlap": "PASS",
+        "largeVoid": "FAIL",
+        "f0Regression": "PASS"
+      },
+      "perViewport": {
+        "1100x720": "PASS",
+        "1366x768": "PASS",
+        "1440x900": "PASS",
+        "1920x1080": "PASS",
+        "390x844": "FAIL",
+        "844x390": "PASS"
+      },
+      "failing390x844": [
+        {
+          "check": "unclipped card height",
+          "value": 4.905,
+          "unit": "%",
+          "limit": 3.0
+        },
+        {
+          "check": "bottom edge slope",
+          "value": 1.231,
+          "unit": "deg",
+          "limit": 0.75
+        },
+        {
+          "check": "viewport centre in a horizontal gutter",
+          "value": false,
+          "unit": "bool",
+          "limit": true
+        },
+        {
+          "check": "largest void blob excess",
+          "value": 2.423,
+          "unit": "% of frame",
+          "limit": 2.0
+        }
+      ],
+      "params": {
+        "radiusY": -4707.6,
+        "cellH": 419.95,
+        "restY0": -200.99,
+        "gainBase": 1.87715,
+        "gainSlope": 0.12204
+      },
+      "scaleHoldOutErrorPct": 0.472
+    },
+    "p2": {
+      "verdict": "FAIL",
+      "contractCoverage": {
+        "cardCentre": "PASS",
+        "cardSize": "FAIL",
+        "gutterPx": "PASS",
+        "edgeYaw": "FAIL",
+        "rowParity": "PASS",
+        "centreDarkBand": "PASS",
+        "overlap": "PASS",
+        "largeVoid": "FAIL",
+        "f0Regression": "PASS"
+      },
+      "perViewport": {
+        "1100x720": "PASS",
+        "1366x768": "PASS",
+        "1440x900": "FAIL",
+        "1920x1080": "PASS",
+        "390x844": "FAIL",
+        "844x390": "PASS"
+      },
+      "failing390x844": [
+        {
+          "check": "unclipped card height",
+          "value": 3.365,
+          "unit": "%",
+          "limit": 3.0
+        },
+        {
+          "check": "bottom edge slope",
+          "value": 1.183,
+          "unit": "deg",
+          "limit": 0.75
+        },
+        {
+          "check": "largest void blob excess",
+          "value": 3.293,
+          "unit": "% of frame",
+          "limit": 2.0
+        }
+      ],
+      "params": {
+        "gainBase": 1.87715,
+        "gainSlope": 0.12204,
+        "radiusY": -5576.0801,
+        "cellH": 422.56,
+        "restY0": -202.5736
+      },
+      "scaleHoldOutErrorPct": 0.472
+    }
+  }
+}

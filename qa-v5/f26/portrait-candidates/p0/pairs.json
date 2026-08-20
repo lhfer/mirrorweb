@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1100x720",
+    "targetPng": "artifacts/v5-target/1100x720-dpr1.png",
+    "localPng": "qa-v5/f26/portrait-candidates/p0/local/1100x720/01-rest.png",
+    "targetDpr": 1,
+    "localDpr": 1
+  },
+  {
+    "id": "1366x768",
+    "targetPng": "artifacts/v5-target/1366x768-dpr1.png",
+    "localPng": "qa-v5/f26/portrait-candidates/p0/local/1366x768/01-rest.png",
+    "targetDpr": 1,
+    "localDpr": 1
+  },
+  {
+    "id": "1440x900",
+    "targetPng": "artifacts/v5-target/1440x900-dpr1.png",
+    "localPng": "qa-v5/f26/portrait-candidates/p0/local/1440x900/01-rest.png",
+    "targetDpr": 1,
+    "localDpr": 1
+  },
+  {
+    "id": "1920x1080",
+    "targetPng": "artifacts/v5-target/1920x1080-dpr1.png",
+    "localPng": "qa-v5/f26/portrait-candidates/p0/local/1920x1080/01-rest.png",
+    "targetDpr": 1,
+    "localDpr": 1
+  },
+  {
+    "id": "390x844",
+    "targetPng": "artifacts/v5-target/390x844-dpr1.png",
+    "localPng": "qa-v5/f26/portrait-candidates/p0/local/390x844/01-rest.png",
+    "targetDpr": 1,
+    "localDpr": 1
+  },
+  {
+    "id": "844x390",
+    "targetPng": "artifacts/v5-target/844x390-dpr1.png",
+    "localPng": "qa-v5/f26/portrait-candidates/p0/local/844x390/01-rest.png",
+    "targetDpr": 1,
+    "localDpr": 1
+  }
+]
