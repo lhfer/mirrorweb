@@ -11,25 +11,27 @@
       ],
       "eventCounts": {
         "pointerdown": 1,
-        "pointermove": 1,
-        "pointerup": 0,
+        "pointermove": 16,
+        "pointerup": 1,
+        "pointercancel": 0,
+        "lostpointercapture": 1,
         "touchstart": 1,
         "touchmove": 16,
         "touchend": 1
       },
-      "moveSpanMs": 0,
+      "moveSpanMs": 758,
       "browserDpr": 3,
       "rendererDpr": 1.5,
       "canvasPixels": [
         585,
         1266
       ],
-      "gridOffsetTotalPx": 42.92,
-      "gridOffsetDuringDragPx": 13.15,
-      "releaseSpeed": 416.12,
-      "coastDistancePx": 18.67,
+      "gridOffsetTotalPx": 226.93,
+      "gridOffsetDuringDragPx": 210.39,
+      "releaseSpeed": 263.52,
+      "coastDistancePx": 11.89,
       "settledSpeed": 0,
-      "draggingSamples": 4,
+      "draggingSamples": 100,
       "traceSamples": 391,
       "pageScroll": {
         "x": 0,
@@ -46,25 +48,27 @@
       ],
       "eventCounts": {
         "pointerdown": 1,
-        "pointermove": 1,
-        "pointerup": 0,
+        "pointermove": 16,
+        "pointerup": 1,
+        "pointercancel": 0,
+        "lostpointercapture": 1,
         "touchstart": 1,
         "touchmove": 16,
         "touchend": 1
       },
-      "moveSpanMs": 0,
+      "moveSpanMs": 634,
       "browserDpr": 3,
       "rendererDpr": 1.5,
       "canvasPixels": [
         1266,
         585
       ],
-      "gridOffsetTotalPx": 54.04,
-      "gridOffsetDuringDragPx": 13.15,
-      "releaseSpeed": 543.37,
-      "coastDistancePx": 24.5,
+      "gridOffsetTotalPx": 231.45,
+      "gridOffsetDuringDragPx": 210.39,
+      "releaseSpeed": 315.34,
+      "coastDistancePx": 14.24,
       "settledSpeed": 0,
-      "draggingSamples": 3,
+      "draggingSamples": 83,
       "traceSamples": 373,
       "pageScroll": {
         "x": 0,
@@ -74,7 +78,10 @@
   },
   "checks": {
     "POINTER_TYPE_IS_TOUCH": true,
-    "TOUCH_DRAG_MOVES_GRID": false,
+    "POINTER_STREAM_SURVIVES": true,
+    "POINTER_UP_DELIVERED": true,
+    "NO_POINTER_CANCEL": true,
+    "TOUCH_DRAG_MOVES_GRID": true,
     "RELEASE_PRODUCES_INERTIA": true,
     "INERTIA_SETTLES": true,
     "NO_PAGE_SCROLL": true,
@@ -83,8 +90,6 @@
     "MOBILE_DPR_CLAMPED_TO_1_5": true,
     "CANVAS_SIZED_FOR_VIEWPORT": true
   },
-  "status": "FAIL",
-  "failed": [
-    "TOUCH_DRAG_MOVES_GRID"
-  ]
+  "status": "PASS",
+  "failed": []
 }

@@ -22,6 +22,16 @@ body,
   background: #000;
   user-select: none;
   -webkit-user-select: none;
+  overscroll-behavior: none;
+  /*
+   * touch-action is resolved over the hit-test chain, not just the element the
+   * listener is on. A touch lands on #labels, the CSS3D typography layer, which
+   * is pointer-events:none and therefore passes the event through to the app -
+   * but it still contributes its own touch-action. Declaring `none` on the
+   * ancestors makes the effective value `none` for every overlay in the chain,
+   * which is what stops the browser claiming the drag as a pan.
+   */
+  touch-action: none;
 }
 
 body {
@@ -39,6 +49,21 @@ body {
 
 #viewport {
   z-index: 1;
+}
+
+/*
+ * The grid is dragged with pointer events. Without this the browser treats a
+ * touch drag as a candidate pan, delivers a single pointermove, then fires
+ * pointercancel and stops the pointer stream: a 16-step touch drag moved the
+ * grid 44px instead of ~230px, and pointerup never arrived, so the release and
+ * inertia path never ran.
+ */
+#viewport,
+#viewport canvas,
+#labels,
+#page-overlay {
+  touch-action: none;
+  overscroll-behavior: none;
 }
 
 #viewport canvas {

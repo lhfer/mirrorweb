@@ -17,12 +17,14 @@ export class InputController {
     this.onPointerDown = this.onPointerDown.bind(this);
     this.onPointerMove = this.onPointerMove.bind(this);
     this.onPointerUp = this.onPointerUp.bind(this);
+    this.onLostPointerCapture = this.onLostPointerCapture.bind(this);
     this.onWheel = this.onWheel.bind(this);
     this.setViewSize(window.innerWidth, window.innerHeight);
     window.addEventListener("pointerdown", this.onPointerDown, { capture: true });
     window.addEventListener("pointermove", this.onPointerMove, { capture: true });
     window.addEventListener("pointerup", this.onPointerUp, { capture: true });
     window.addEventListener("pointercancel", this.onPointerUp, { capture: true });
+    this.canvas.addEventListener("lostpointercapture", this.onLostPointerCapture);
     window.addEventListener("wheel", this.onWheel, { passive: false, capture: true });
   }
 
@@ -36,6 +38,7 @@ export class InputController {
     window.removeEventListener("pointermove", this.onPointerMove, true);
     window.removeEventListener("pointerup", this.onPointerUp, true);
     window.removeEventListener("pointercancel", this.onPointerUp, true);
+    this.canvas.removeEventListener("lostpointercapture", this.onLostPointerCapture);
     window.removeEventListener("wheel", this.onWheel, true);
   }
 
@@ -73,6 +76,21 @@ export class InputController {
     this.motion.setPointer(this.ndcX(event.clientX), this.ndcY(event.clientY));
     if (!this.motion.dragging) return;
     if (this.pointerId !== null && event.pointerId !== this.pointerId) return;
+    this.motion.endDrag();
+    this.pointerId = null;
+  }
+
+  /**
+   * Capture can be taken away without a pointerup ever arriving. Without this
+   * the controller would stay in `dragging` forever and the release velocity
+   * would never be handed to the motion model.
+   */
+  private onLostPointerCapture(event: PointerEvent) {
+    if (this.pointerId === null || event.pointerId !== this.pointerId) return;
+    if (!this.motion.dragging) {
+      this.pointerId = null;
+      return;
+    }
     this.motion.endDrag();
     this.pointerId = null;
   }

@@ -59,9 +59,9 @@ try {
     // Record the pointerType the app actually receives, harness-side only.
     await page.evaluate(() => {
       window.__STAGE_H_POINTERS__ = [];
-      window.__STAGE_H_EVENTS__ = { pointerdown: 0, pointermove: 0, pointerup: 0, touchstart: 0, touchmove: 0, touchend: 0 };
+      window.__STAGE_H_EVENTS__ = { pointerdown: 0, pointermove: 0, pointerup: 0, pointercancel: 0, lostpointercapture: 0, touchstart: 0, touchmove: 0, touchend: 0 };
       window.__STAGE_H_MOVE_TS__ = [];
-      for (const type of ["pointerdown", "pointermove", "pointerup"]) {
+      for (const type of ["pointerdown", "pointermove", "pointerup", "pointercancel", "lostpointercapture"]) {
         window.addEventListener(type, (e) => {
           window.__STAGE_H_EVENTS__[type] += 1;
           window.__STAGE_H_POINTERS__.push(e.pointerType);
@@ -149,7 +149,12 @@ try {
   const both = ["portrait", "landscape"];
   report.checks = {
     POINTER_TYPE_IS_TOUCH: both.every((k) => o[k].pointerTypes.length > 0 && o[k].pointerTypes.every((t) => t === "touch")),
-    TOUCH_DRAG_MOVES_GRID: both.every((k) => o[k].gridOffsetTotalPx > 80),
+    // The pointer stream must survive the whole gesture. Before the fix a
+    // 16-step drag produced pointermove 1, pointerup 0, pointercancel 1.
+    POINTER_STREAM_SURVIVES: both.every((k) => o[k].eventCounts.pointermove > 10),
+    POINTER_UP_DELIVERED: both.every((k) => o[k].eventCounts.pointerup === 1),
+    NO_POINTER_CANCEL: both.every((k) => o[k].eventCounts.pointercancel === 0),
+    TOUCH_DRAG_MOVES_GRID: both.every((k) => o[k].gridOffsetTotalPx > 150),
     RELEASE_PRODUCES_INERTIA: both.every((k) => o[k].coastDistancePx > 1 && o[k].releaseSpeed > 0),
     INERTIA_SETTLES: both.every((k) => o[k].settledSpeed < o[k].releaseSpeed),
     NO_PAGE_SCROLL: both.every((k) => o[k].pageScroll.x === 0 && o[k].pageScroll.y === 0),
