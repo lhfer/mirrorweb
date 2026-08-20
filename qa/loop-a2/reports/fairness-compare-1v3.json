@@ -1,0 +1,147 @@
+{
+  "generator": "stage-h-fairness-compare",
+  "runs": [
+    "h-run1",
+    "h-run3"
+  ],
+  "stateManifestHash": "e44fa4bad13d96a32b945a137cf84dc8da03514a498b1922614e56eec2387c32",
+  "manifestHashEqualAcrossRuns": true,
+  "standards": {
+    "mediaOnly": "byte equality, no tolerance",
+    "beauty": "max per-pixel delta <= 8 levels and <= 0.100% of pixels moving more than 2 levels",
+    "why": "media-only carries no GPU-dependent shading, so byte equality is the right question there; beauty is a WebGPU render and byte equality across processes is not."
+  },
+  "totalStates": 13,
+  "mediaOnlyByteIdentical": 13,
+  "beautyWithinTolerance": 13,
+  "validStateCount": 13,
+  "blockedStates": [],
+  "keyStates": [
+    "high-texture",
+    "left-tilt",
+    "right-tilt",
+    "partial-viewport"
+  ],
+  "keyStatesLost": [],
+  "keyStatesAllPresent": true,
+  "meetsBlindMinimum": true,
+  "states": [
+    {
+      "stateId": "rest",
+      "mediaOnlyByteIdentical": true,
+      "beautyMaxDelta": 0,
+      "beautyChangedFraction": 0.0,
+      "beautyWithinTolerance": true,
+      "valid": true,
+      "isKeyState": false
+    },
+    {
+      "stateId": "pointer-left",
+      "mediaOnlyByteIdentical": true,
+      "beautyMaxDelta": 0,
+      "beautyChangedFraction": 0.0,
+      "beautyWithinTolerance": true,
+      "valid": true,
+      "isKeyState": false
+    },
+    {
+      "stateId": "pointer-center",
+      "mediaOnlyByteIdentical": true,
+      "beautyMaxDelta": 0,
+      "beautyChangedFraction": 0.0,
+      "beautyWithinTolerance": true,
+      "valid": true,
+      "isKeyState": false
+    },
+    {
+      "stateId": "pointer-right",
+      "mediaOnlyByteIdentical": true,
+      "beautyMaxDelta": 0,
+      "beautyChangedFraction": 0.0,
+      "beautyWithinTolerance": true,
+      "valid": true,
+      "isKeyState": false
+    },
+    {
+      "stateId": "bright",
+      "mediaOnlyByteIdentical": true,
+      "beautyMaxDelta": 0,
+      "beautyChangedFraction": 0.0,
+      "beautyWithinTolerance": true,
+      "valid": true,
+      "isKeyState": false
+    },
+    {
+      "stateId": "dark",
+      "mediaOnlyByteIdentical": true,
+      "beautyMaxDelta": 0,
+      "beautyChangedFraction": 0.0,
+      "beautyWithinTolerance": true,
+      "valid": true,
+      "isKeyState": false
+    },
+    {
+      "stateId": "high-texture",
+      "mediaOnlyByteIdentical": true,
+      "beautyMaxDelta": 0,
+      "beautyChangedFraction": 0.0,
+      "beautyWithinTolerance": true,
+      "valid": true,
+      "isKeyState": true
+    },
+    {
+      "stateId": "low-texture",
+      "mediaOnlyByteIdentical": true,
+      "beautyMaxDelta": 0,
+      "beautyChangedFraction": 0.0,
+      "beautyWithinTolerance": true,
+      "valid": true,
+      "isKeyState": false
+    },
+    {
+      "stateId": "left-tilt",
+      "mediaOnlyByteIdentical": true,
+      "beautyMaxDelta": 0,
+      "beautyChangedFraction": 0.0,
+      "beautyWithinTolerance": true,
+      "valid": true,
+      "isKeyState": true
+    },
+    {
+      "stateId": "right-tilt",
+      "mediaOnlyByteIdentical": true,
+      "beautyMaxDelta": 0,
+      "beautyChangedFraction": 0.0,
+      "beautyWithinTolerance": true,
+      "valid": true,
+      "isKeyState": true
+    },
+    {
+      "stateId": "partial-viewport",
+      "mediaOnlyByteIdentical": true,
+      "beautyMaxDelta": 0,
+      "beautyChangedFraction": 0.0,
+      "beautyWithinTolerance": true,
+      "valid": true,
+      "isKeyState": true
+    },
+    {
+      "stateId": "mobile-portrait",
+      "mediaOnlyByteIdentical": true,
+      "beautyMaxDelta": 0,
+      "beautyChangedFraction": 0.0,
+      "beautyWithinTolerance": true,
+      "valid": true,
+      "isKeyState": false
+    },
+    {
+      "stateId": "mobile-landscape",
+      "mediaOnlyByteIdentical": true,
+      "beautyMaxDelta": 0,
+      "beautyChangedFraction": 0.0,
+      "beautyWithinTolerance": true,
+      "valid": true,
+      "isKeyState": false
+    }
+  ]
+}

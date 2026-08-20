@@ -87,16 +87,28 @@ try {
     // A fixed settle delay is not enough: pointer and rotation ease toward
     // their targets, and pausing mid-ease leaves a slightly different frame in
     // each process. Poll the motion state until it stops changing instead.
+    // "Stopped changing" is the wrong test for an exponential ease: the
+    // per-sample delta shrinks forever, so a tolerance-based comparison of two
+    // consecutive samples fires while the pointer is still far from its target,
+    // at a different point in each process. Since states now share one page, a
+    // leftover pointer from the previous state makes that worse - which is
+    // exactly how pointer-right ended up 88% different between two runs with
+    // identical media times. Wait for convergence TO THE TARGET instead.
     let settled = false;
     let previous = null;
-    for (let attempt = 0; attempt < 40; attempt += 1) {
+    for (let attempt = 0; attempt < 60; attempt += 1) {
       await sleep(100);
       const now = await page.evaluate(() => {
         const s = window.__ILG_QA__.getState();
-        return [s.scrollX, s.scrollY, s.pointerX, s.pointerY, s.rotX, s.rotY, s.camX, s.camY, s.velocityX, s.velocityY];
+        return {
+          pose: [s.scrollX, s.scrollY, s.pointerX, s.pointerY, s.rotX, s.rotY, s.camX, s.camY, s.velocityX, s.velocityY],
+          pointerGap: Math.max(Math.abs(s.pointerX - s.pointerTargetX), Math.abs(s.pointerY - s.pointerTargetY)),
+          speed: Math.hypot(s.velocityX, s.velocityY),
+        };
       });
-      if (previous && now.every((v, k) => Math.abs(v - previous[k]) < 1e-6)) { settled = true; break; }
-      previous = now;
+      const stable = previous && now.pose.every((v, k) => Math.abs(v - previous[k]) < 1e-9);
+      if (stable && now.pointerGap < 1e-4 && now.speed < 1e-4) { settled = true; break; }
+      previous = now.pose;
     }
     // Freezing the media is not enough on its own: with the clips paused, the
     // media-only render still drifted over ~1s within a single run, so a beauty
@@ -106,6 +118,10 @@ try {
     await page.evaluate(() => window.__ILG_QA__.pause());
     await sleep(250);
 
+    // The full slot arrangement, so a layout difference can be told apart from
+    // a media difference when two runs disagree.
+    const landmarks = await page.evaluate(() => window.__ILG_QA__.getState().landmarks
+      .map((l) => `${l.i},${l.j},${l.slotIndex},${l.nx.toFixed(6)},${l.ny.toFixed(6)}`).join("|"));
     const beauty = await page.screenshot();
     await page.evaluate(() => window.__ILG_QA__.setRenderLayers({ glass: false, media: true, labels: false }));
     await sleep(250);
@@ -127,6 +143,7 @@ try {
       frameWait: freeze.videos.map((v) => v.frameWait),
       mediaTimes: freeze.videos.map((v) => v.mediaTime),
       motionSettled: settled,
+      landmarksDigest: sha(Buffer.from(landmarks)),
       beautyHash: sha(beauty), mediaOnlyHash: sha(mediaOnly),
       mediaOnlySelfStable: sha(mediaOnly) === sha(mediaOnlyRepeat),
       errors,

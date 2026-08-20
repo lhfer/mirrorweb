@@ -14,7 +14,7 @@
     "rest": "5ec300bf43e520b55d50667d6d3a1961d417e8c82f735e4eddd2c48bb2df6922",
     "pointer-left": "f21086a359077df4fbb7f8bbf4cc7facee92745ab6686cc208348f17f9dc6fab",
     "pointer-center": "5ec300bf43e520b55d50667d6d3a1961d417e8c82f735e4eddd2c48bb2df6922",
-    "pointer-right": "38d38fb1906582648dd3c139530cbc7bb73c66ac050c36916cb0a111f051c413",
+    "pointer-right": "074480f660393bdfbcd9ec746230001e8f84cb81242ef005b2d8a0722ea4253d",
     "bright": "a57f07ca454a1e7cf319d37860c6e9762937be704c9878334bdbe863707b7e39",
     "dark": "d1017fce02fc43b719c195a7e8018e31e7b08b15d95dee722696708ef2a26774",
     "high-texture": "c66a9cded516c1d5f49ccca2302b3141f1ae4d8a4f74fa3bd7133ea0f2320d9b",
@@ -29,7 +29,7 @@
     "rest": "25a183140c7dd77e6b5474d366cf893a45a624fb1097902c43cc8883c7b4d1a0",
     "pointer-left": "1f10a159e48cc55d2051491c16282faf85d7bc5fd4c225a552e86eea1bdac2ac",
     "pointer-center": "25a183140c7dd77e6b5474d366cf893a45a624fb1097902c43cc8883c7b4d1a0",
-    "pointer-right": "74a301e2ae6a3c54742fdbad80541675eabfb82730ff3f07ad2eade781f62496",
+    "pointer-right": "5fd3822b6193cf04583846b55e72a050d2e872c83bccba84f474ce07462b2be1",
     "bright": "b04931ad526dd9b50714d012af559970b62f2e8970505fc499e44b15f99a667a",
     "dark": "8098812d63a480c07366b4e5b4a5f469d5efbcdb086c50bca4ba3eaae9598f54",
     "high-texture": "a7f33215dace7bcec60f273842f96154695add277ba78de2ee1e8398034ccb7e",
@@ -69,6 +69,7 @@
         2
       ],
       "motionSettled": true,
+      "landmarksDigest": "b6c603c98ca40aa31177e2c597334eda69a9ef7594caf424e29bc7704182eeff",
       "beautyHash": "25a183140c7dd77e6b5474d366cf893a45a624fb1097902c43cc8883c7b4d1a0",
       "mediaOnlyHash": "5ec300bf43e520b55d50667d6d3a1961d417e8c82f735e4eddd2c48bb2df6922",
       "mediaOnlySelfStable": true,
@@ -102,6 +103,7 @@
         2
       ],
       "motionSettled": true,
+      "landmarksDigest": "337f8a83b16ffe1fd6781db6b6bd74967be3ecd510ec86e2b9a6e9a6998f4a6f",
       "beautyHash": "1f10a159e48cc55d2051491c16282faf85d7bc5fd4c225a552e86eea1bdac2ac",
       "mediaOnlyHash": "f21086a359077df4fbb7f8bbf4cc7facee92745ab6686cc208348f17f9dc6fab",
       "mediaOnlySelfStable": true,
@@ -135,6 +137,7 @@
         2
       ],
       "motionSettled": true,
+      "landmarksDigest": "b6c603c98ca40aa31177e2c597334eda69a9ef7594caf424e29bc7704182eeff",
       "beautyHash": "25a183140c7dd77e6b5474d366cf893a45a624fb1097902c43cc8883c7b4d1a0",
       "mediaOnlyHash": "5ec300bf43e520b55d50667d6d3a1961d417e8c82f735e4eddd2c48bb2df6922",
       "mediaOnlySelfStable": true,
@@ -168,8 +171,9 @@
         2
       ],
       "motionSettled": true,
-      "beautyHash": "74a301e2ae6a3c54742fdbad80541675eabfb82730ff3f07ad2eade781f62496",
-      "mediaOnlyHash": "38d38fb1906582648dd3c139530cbc7bb73c66ac050c36916cb0a111f051c413",
+      "landmarksDigest": "badfe2f36b1f06b66219b5fc9ea00a77004b0309a8d6ed1beea3772edddccaa8",
+      "beautyHash": "5fd3822b6193cf04583846b55e72a050d2e872c83bccba84f474ce07462b2be1",
+      "mediaOnlyHash": "074480f660393bdfbcd9ec746230001e8f84cb81242ef005b2d8a0722ea4253d",
       "mediaOnlySelfStable": true,
       "errors": []
     },
@@ -201,6 +205,7 @@
         2
       ],
       "motionSettled": true,
+      "landmarksDigest": "03e1cb0c5e7d18fc9433756567a425a4cfe2fc07290e7d05aa56a7ae64fbc00c",
       "beautyHash": "b04931ad526dd9b50714d012af559970b62f2e8970505fc499e44b15f99a667a",
       "mediaOnlyHash": "a57f07ca454a1e7cf319d37860c6e9762937be704c9878334bdbe863707b7e39",
       "mediaOnlySelfStable": true,
@@ -234,6 +239,7 @@
         2
       ],
       "motionSettled": true,
+      "landmarksDigest": "e2113d7b88543bb8f3b75d40163952c34635d773a5316846523f254200aa23b2",
       "beautyHash": "8098812d63a480c07366b4e5b4a5f469d5efbcdb086c50bca4ba3eaae9598f54",
       "mediaOnlyHash": "d1017fce02fc43b719c195a7e8018e31e7b08b15d95dee722696708ef2a26774",
       "mediaOnlySelfStable": true,
@@ -267,6 +273,7 @@
         2
       ],
       "motionSettled": true,
+      "landmarksDigest": "5141f1aaaf46ec87a3b2f49904d7733c10b2d5cdfc2b42e1b01b98a2eed21431",
       "beautyHash": "a7f33215dace7bcec60f273842f96154695add277ba78de2ee1e8398034ccb7e",
       "mediaOnlyHash": "c66a9cded516c1d5f49ccca2302b3141f1ae4d8a4f74fa3bd7133ea0f2320d9b",
       "mediaOnlySelfStable": true,
@@ -300,6 +307,7 @@
         2
       ],
       "motionSettled": true,
+      "landmarksDigest": "26d432ae833a46e425c9e1084232b85777e7f5d60b11d73d247910db14074017",
       "beautyHash": "5e64ef1e0d972adf1860fa5924063fa983f55772fc68ac0e8dab96e71a8b9e32",
       "mediaOnlyHash": "4df7453fff479aa015b87bb8bdc0adcbaf2f2407997b26aee862ba2601994961",
       "mediaOnlySelfStable": true,
@@ -333,6 +341,7 @@
         2
       ],
       "motionSettled": true,
+      "landmarksDigest": "a9cd2f7d092633fe03fba829b6f532d1b829c1f60977cc9f160ca6e3a4b1a701",
       "beautyHash": "06ec88b7f3d1c8f3c0895caa103ebe1fd082746e37ac4c536d365ee541fa0460",
       "mediaOnlyHash": "7057b62b53239479f86a153e462382777f5afa79c3e1db589fe6c79c61652c0d",
       "mediaOnlySelfStable": true,
@@ -366,6 +375,7 @@
         2
       ],
       "motionSettled": true,
+      "landmarksDigest": "07c510dc0e33dad5cb760fb12a07bba776ee4f061678e255eaff4224a9c84c23",
       "beautyHash": "63b5ed77730d0150724d9be976d2b3034056812f055c74e8659f55cb167a46b9",
       "mediaOnlyHash": "6449160cb81e8dffe5871e9bb08d06c687ab909263bb979cc69145e8409520a8",
       "mediaOnlySelfStable": true,
@@ -399,6 +409,7 @@
         2
       ],
       "motionSettled": true,
+      "landmarksDigest": "7c0fdee2ac6b4e07c8687da8857f4cd7975f55f6ec3322bd668ad6040dce8e0e",
       "beautyHash": "e130d5e8c117c0dfd833fb0f2c90e255cc7ffb00d232b0c7f471b68566b0fe5d",
       "mediaOnlyHash": "e203f9e5ffeec3900f191600ec6d601c19ab2df78a89afd2c43db1eeb35b22cf",
       "mediaOnlySelfStable": true,
@@ -432,6 +443,7 @@
         2
       ],
       "motionSettled": true,
+      "landmarksDigest": "718241d3404285bdabc5b2a94d3aa6a383d3aed85266a48382f54a9dfd6e6a23",
       "beautyHash": "04d19b07b8d65b69497f8b98997f7fb435411926f93c806ad094410d650d0019",
       "mediaOnlyHash": "599c307874e6533459ac9d253915eb865a541f0bbf1cfecb86330599dddb5d1f",
       "mediaOnlySelfStable": true,
@@ -465,6 +477,7 @@
         2
       ],
       "motionSettled": true,
+      "landmarksDigest": "2744bb70edde46230469ee30e3addf5afd373501b7db8b5a83328db1faeae4b7",
       "beautyHash": "bc03790aa7fdc33b00e3ba96c1ec7862ce4dfcb26898f67a8966b26c3e11fcc7",
       "mediaOnlyHash": "3ed88c92d294d8bf7e4278416df3da84f1e69e18b9bb75f1722c7d31039003e5",
       "mediaOnlySelfStable": true,

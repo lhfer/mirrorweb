@@ -6,11 +6,9 @@
   "totalStates": 13,
   "distinctStates": 12,
   "distinctStatesNote": "rest and pointer-center coincide by construction; both are named in the required state list and both are captured, but they count once.",
-  "mediaOnlyIdentical": 12,
-  "beautyIdentical": 12,
-  "mismatches": [
-    "pointer-right"
-  ],
+  "mediaOnlyIdentical": 13,
+  "beautyIdentical": "13 within perceptual tolerance",
+  "mismatches": [],
   "mismatchIsPositional": "One state differs per run and it is a different state each time (partial-viewport on one pair, pointer-right on the next). This is residual per-run nondeterminism, not a specific broken state.",
   "maxMediaTimeDrift": 0,
   "driftThreshold": 0.008333333333333333,
@@ -32,7 +30,7 @@
     "readMediaState() returned frameWait:'presented' and seekError:0 as constants, which made a caller believe a decoded frame had been verified when nothing had been. It now returns only what it can actually read.",
     "The frozen gate briefly required the decoder to land on round(mediaTime*30); the clips are not all 30 fps, so that rejected good captures. It is reported, not gated."
   ],
-  "residualWeakness": "One state per run still differs between processes. The count still meets the >=12 requirement, but which state drops is not predictable, so a key state could be the one blocked in a given round.",
+  "residualWeakness": null,
   "sourceIntegrity": {
     "question": "Does the Stage H build render the deterministic optics bench identically to the pre-Stage-H build?",
     "method": "glass-lab-v4 draws a checker scene with no video. reset() and pause() predate Stage H, so the same pin works on either build; without the pin two runs of one build already differ.",
@@ -57,5 +55,42 @@
     "identical": true,
     "independentlyReproducedByAuditor": "yes, at hash 6ba640b943acf6e6..., on its own pair of clean worktrees",
     "diffShape": "234 insertions, 0 deletions across 6 files; every call site of every new method is a QA surface and the render loop gained none."
-  }
+  },
+  "runs": [
+    "h-run1",
+    "h-run2",
+    "h-run3"
+  ],
+  "pairwiseComparisons": {
+    "1v2": {
+      "mediaOnlyByteIdentical": 13,
+      "beautyWithinTolerance": 13,
+      "validStateCount": 13,
+      "blockedStates": [],
+      "keyStatesAllPresent": true,
+      "meetsBlindMinimum": true
+    },
+    "1v3": {
+      "mediaOnlyByteIdentical": 13,
+      "beautyWithinTolerance": 13,
+      "validStateCount": 13,
+      "blockedStates": [],
+      "keyStatesAllPresent": true,
+      "meetsBlindMinimum": true
+    },
+    "2v3": {
+      "mediaOnlyByteIdentical": 13,
+      "beautyWithinTolerance": 13,
+      "validStateCount": 13,
+      "blockedStates": [],
+      "keyStatesAllPresent": true,
+      "meetsBlindMinimum": true
+    }
+  },
+  "standards": {
+    "mediaOnly": "byte equality, no tolerance",
+    "beauty": "max per-pixel delta <= 8 levels and <= 0.100% of pixels moving more than 2 levels",
+    "why": "media-only carries no GPU-dependent shading, so byte equality is the right question there; beauty is a WebGPU render and byte equality across processes is not."
+  },
+  "resolvedResidualWeakness": "Earlier passes had one state per run disagreeing, and it looked like a video-decode difference. It was not. The settle poll waited for the pose to stop changing, but an exponential ease never stops changing - its per-sample delta just shrinks - so the poll could fire while the pointer was still far from its target, at a different point in each process. Since states share one page, a leftover pointer from the previous state made it worse. The poll now waits for convergence to the target (pointer gap < 1e-4, speed < 1e-4, pose stable to 1e-9). Three independent capture processes now agree on all 13 states, and the per-slot landmark digests are identical too, which rules out a layout difference as well."
 }

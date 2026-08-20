@@ -21,16 +21,16 @@
     {
       "id": "A2",
       "name": "One-shot Optical Recovery",
-      "status": "NOT_STARTED_GATE_NOT_MET",
+      "status": "NOT_STARTED_BY_DIRECTION",
       "candidateLimit": 1,
       "onFailure": "Keep ffcd8d9 as Best, set STOPPED_AFTER_A2, do not create a second candidate, do not enter Stage B."
     }
   ],
   "stageHGates": {
-    "harnessAuditor": "BLOCKED - every evaluable item PASS; blind-packet hygiene cannot be evaluated because no A2 blind packet exists yet",
+    "harnessAuditor": "BLOCKED - every evaluable item PASS; blind-packet hygiene cannot be evaluated until an A2 blind packet exists",
     "sourceIntegrity": "PASS",
-    "fixedStateFairness": "CONDITIONAL - 12 of 13 states byte-identical across two independent processes, one different state failing each run",
-    "trueMobileTouch": "FAIL - product defect, not a harness defect"
+    "fixedStateFairness": "PASS - 13/13 media-only byte-identical and 13/13 beauty within perceptual tolerance across three independent capture processes, all three pairwise comparisons, zero blocked states, all four key states intact",
+    "trueMobileTouch": "PASS - 12/12 checks after stage-h-touch-action-product-fix; pointermove 16, pointerup 1, pointercancel 0, grid moved 226.9/231.5 px"
   },
   "qaResultSchema": {
     "note": "verdict no longer carries two meanings. Candidate selection and stage completion are separate fields.",
@@ -65,8 +65,8 @@
     "Issues closed",
     "New regressions"
   ],
-  "status": "STOPPED_BEFORE_A2",
-  "stopReason": "Section 8 requires all four Stage H gates to PASS before Stage A2 may begin. True mobile touch fails on the product: the page declares no touch-action, so the browser claims the gesture and cancels the pointer stream after one move. Fixing it is a product interaction change, which both Stage H and Stage A2 forbid, so it needs an explicit decision.",
+  "status": "STOPPED_AFTER_STAGE_H",
+  "stopReason": "Stage H is complete and its gates pass. The product owner directed the loop to stop after the touch fix and the fairness work are committed and pushed, and to leave Stage A2 for a fresh session on a new branch.",
   "fixedStateManifestSha256": "e44fa4bad13d96a32b945a137cf84dc8da03514a498b1922614e56eec2387c32",
   "productBestUnchanged": true
 }
