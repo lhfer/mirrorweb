@@ -1,0 +1,2182 @@
+{
+  "correction": "Supersedes qa-v5/fsx/detector-residual.json AS QUOTED. That file's own top-level fields were 35.02 px and 118.75 px; the F2-SX delivery reply quoted 2.67 px and 71.89 px, which were the maxima of an earlier six-viewport run. Both the all-pair and the high-confidence figures are reported here so the distinction cannot be lost again.",
+  "scope": "Bounds the PIXEL INSTRUMENT only. Both sides of the comparison come from the Target: its own DOM geometry against a detector reading its own frame. It cannot substitute for the source contract and it asserts nothing about beauty.",
+  "exclusionRules": {
+    "mutualNearest": "the detected region's nearest truth card must also have that region as ITS nearest detection",
+    "runnerUpMargin": 0.5,
+    "runnerUpMarginMeaning": "the nearest truth card must be at least twice as close as the next one, so an ambiguous match is never counted as a clean one",
+    "widthRatioBand": [
+      0.75,
+      1.25
+    ],
+    "widthRatioMeaning": "a detection whose width is more than 25% from the truth width has merged two cards or lost most of one; it is not a measurement of that card's position",
+    "unclippedBothSides": "clipped cards have no true centre to compare",
+    "gutterMatchTolerancePx": 30.0,
+    "gutterMatchMeaning": "a detected gutter with no true gutter within 30 px is a phantom -- void found where a card was clipped or a video frame went dark"
+  },
+  "allPairs": {
+    "worstCentreErrorPx": 132.49,
+    "worstWidthErrorPx": 280.5
+  },
+  "highConfidenceOnly": {
+    "worstCentreErrorPx": 14.17,
+    "worstWidthErrorPx": 67.51
+  },
+  "pairingConfidenceOverall": 0.357,
+  "totalDetections": 84,
+  "totalHighConfidence": 30,
+  "totalExcluded": 54,
+  "phantomGutters": {
+    "targetFrames": 18,
+    "sourceExactFrames": 16
+  },
+  "ourGutterReadingNeverWorseThanTargetsOwn": true,
+  "viewports": [
+    {
+      "id": "1440x900",
+      "status": "MEASURED",
+      "truthCardsOnScreen": 14,
+      "detections": 14,
+      "highConfidencePairs": 6,
+      "excludedPairs": 8,
+      "pairingConfidence": 0.429,
+      "allPairs": {
+        "worstCentreErrorPx": 132.49,
+        "worstWidthErrorPx": 280.5
+      },
+      "highConfidenceOnly": {
+        "worstCentreErrorPx": 14.17,
+        "worstWidthErrorPx": 67.51,
+        "meanWidthErrorPx": -35.89
+      },
+      "excluded": [
+        {
+          "code": 34,
+          "dCxPx": -5.84,
+          "dWPx": -87.97,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 36,
+          "dCxPx": 4.84,
+          "dWPx": -87.97,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 44,
+          "dCxPx": 131.5,
+          "dWPx": -259.19,
+          "because": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 47,
+          "dCxPx": -132.49,
+          "dWPx": -259.19,
+          "because": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 54,
+          "dCxPx": 30.91,
+          "dWPx": -62.62,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 56,
+          "dCxPx": -31.91,
+          "dWPx": -62.62,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 64,
+          "dCxPx": 93.89,
+          "dWPx": -280.5,
+          "because": [
+            "runner-up margin 0.62 > 0.5",
+            "width ratio 0.37 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 67,
+          "dCxPx": -95.89,
+          "dWPx": -278.49,
+          "because": [
+            "runner-up margin 0.63 > 0.5",
+            "width ratio 0.38 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        }
+      ],
+      "gutterCentres": {
+        "truthCount": 6,
+        "targetFrameMatched": 10,
+        "targetFramePhantoms": 0,
+        "targetFrameWorstDeltaPx": 21.38,
+        "sourceExactFrameMatched": 10,
+        "sourceExactFramePhantoms": 0,
+        "sourceExactFrameWorstDeltaPx": 11.88,
+        "ourReadingIsAtLeastAsCloseToTruth": true
+      },
+      "pairs": [
+        {
+          "code": 34,
+          "truthCx": 209.84,
+          "detectedCx": 204.0,
+          "dCxPx": -5.84,
+          "truthW": 496.97,
+          "detectedW": 409.0,
+          "dWPx": -87.97,
+          "widthRatio": 0.823,
+          "runnerUpMargin": 0.451,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 35,
+          "truthCx": 720.0,
+          "detectedCx": 719.5,
+          "dCxPx": -0.5,
+          "truthW": 537.51,
+          "detectedW": 470.0,
+          "dWPx": -67.51,
+          "widthRatio": 0.874,
+          "runnerUpMargin": 0.474,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 36,
+          "truthCx": 1230.16,
+          "detectedCx": 1235.0,
+          "dCxPx": 4.84,
+          "truthW": 496.97,
+          "detectedW": 409.0,
+          "dWPx": -87.97,
+          "widthRatio": 0.823,
+          "runnerUpMargin": 0.451,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 44,
+          "truthCx": -47.5,
+          "detectedCx": 84.0,
+          "dCxPx": 131.5,
+          "truthW": 428.19,
+          "detectedW": 169.0,
+          "dWPx": -259.19,
+          "widthRatio": 0.395,
+          "runnerUpMargin": 0.368,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 45,
+          "truthCx": 443.83,
+          "detectedCx": 445.5,
+          "dCxPx": 1.67,
+          "truthW": 533.89,
+          "detectedW": 526.0,
+          "dWPx": -7.89,
+          "widthRatio": 0.985,
+          "runnerUpMargin": 0.004,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 46,
+          "truthCx": 996.17,
+          "detectedCx": 993.5,
+          "dCxPx": -2.67,
+          "truthW": 533.89,
+          "detectedW": 526.0,
+          "dWPx": -7.89,
+          "widthRatio": 0.985,
+          "runnerUpMargin": 0.006,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 47,
+          "truthCx": 1487.49,
+          "detectedCx": 1355.0,
+          "dCxPx": -132.49,
+          "truthW": 428.19,
+          "detectedW": 169.0,
+          "dWPx": -259.19,
+          "widthRatio": 0.395,
+          "runnerUpMargin": 0.372,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 54,
+          "truthCx": 183.59,
+          "detectedCx": 214.5,
+          "dCxPx": 30.91,
+          "truthW": 492.62,
+          "detectedW": 430.0,
+          "dWPx": -62.62,
+          "widthRatio": 0.873,
+          "runnerUpMargin": 0.074,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 55,
+          "truthCx": 720.0,
+          "detectedCx": 719.5,
+          "dCxPx": -0.5,
+          "truthW": 549.96,
+          "detectedW": 542.0,
+          "dWPx": -7.96,
+          "widthRatio": 0.986,
+          "runnerUpMargin": 0.012,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 56,
+          "truthCx": 1256.41,
+          "detectedCx": 1224.5,
+          "dCxPx": -31.91,
+          "truthW": 492.62,
+          "detectedW": 430.0,
+          "dWPx": -62.62,
+          "widthRatio": 0.873,
+          "runnerUpMargin": 0.076,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 64,
+          "truthCx": -11.39,
+          "detectedCx": 82.5,
+          "dCxPx": 93.89,
+          "truthW": 446.5,
+          "detectedW": 166.0,
+          "dWPx": -280.5,
+          "widthRatio": 0.372,
+          "runnerUpMargin": 0.619,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "runner-up margin 0.62 > 0.5",
+            "width ratio 0.37 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 65,
+          "truthCx": 457.67,
+          "detectedCx": 443.5,
+          "dCxPx": -14.17,
+          "truthW": 524.05,
+          "detectedW": 462.0,
+          "dWPx": -62.05,
+          "widthRatio": 0.882,
+          "runnerUpMargin": 0.474,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 66,
+          "truthCx": 982.33,
+          "detectedCx": 995.5,
+          "dCxPx": 13.17,
+          "truthW": 524.05,
+          "detectedW": 462.0,
+          "dWPx": -62.05,
+          "widthRatio": 0.882,
+          "runnerUpMargin": 0.473,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 67,
+          "truthCx": 1451.39,
+          "detectedCx": 1355.5,
+          "dCxPx": -95.89,
+          "truthW": 446.49,
+          "detectedW": 168.0,
+          "dWPx": -278.49,
+          "widthRatio": 0.376,
+          "runnerUpMargin": 0.625,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "runner-up margin 0.63 > 0.5",
+            "width ratio 0.38 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "960x720",
+      "status": "MEASURED",
+      "truthCardsOnScreen": 14,
+      "detections": 12,
+      "highConfidencePairs": 3,
+      "excludedPairs": 9,
+      "pairingConfidence": 0.25,
+      "allPairs": {
+        "worstCentreErrorPx": 88.66,
+        "worstWidthErrorPx": 268.64
+      },
+      "highConfidenceOnly": {
+        "worstCentreErrorPx": 2.12,
+        "worstWidthErrorPx": 8.34,
+        "meanWidthErrorPx": -6.07
+      },
+      "excluded": [
+        {
+          "code": 34,
+          "dCxPx": 6.61,
+          "dWPx": -37.32,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 36,
+          "dCxPx": -7.61,
+          "dWPx": -37.32,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 44,
+          "dCxPx": 87.66,
+          "dWPx": -172.46,
+          "because": [
+            "width ratio 0.40 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 47,
+          "dCxPx": -88.66,
+          "dWPx": -172.46,
+          "because": [
+            "width ratio 0.40 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 54,
+          "dCxPx": 20.61,
+          "dWPx": -41.41,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 55,
+          "dCxPx": -60.5,
+          "dWPx": -268.64,
+          "because": [
+            "width ratio 0.27 outside [0.75, 1.25]"
+          ]
+        },
+        {
+          "code": 56,
+          "dCxPx": -21.11,
+          "dWPx": -42.41,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 65,
+          "dCxPx": -68.62,
+          "dWPx": 124.63,
+          "because": [
+            "width ratio 1.36 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 66,
+          "dCxPx": 67.62,
+          "dWPx": 124.63,
+          "because": [
+            "width ratio 1.36 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        }
+      ],
+      "gutterCentres": {
+        "truthCount": 4,
+        "targetFrameMatched": 9,
+        "targetFramePhantoms": 6,
+        "targetFrameWorstDeltaPx": 29.0,
+        "sourceExactFrameMatched": 6,
+        "sourceExactFramePhantoms": 4,
+        "sourceExactFrameWorstDeltaPx": 5.6,
+        "ourReadingIsAtLeastAsCloseToTruth": true
+      },
+      "pairs": [
+        {
+          "code": 34,
+          "truthCx": 139.89,
+          "detectedCx": 146.5,
+          "dCxPx": 6.61,
+          "truthW": 331.32,
+          "detectedW": 294.0,
+          "dWPx": -37.32,
+          "widthRatio": 0.887,
+          "runnerUpMargin": 0.294,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 35,
+          "truthCx": 480.0,
+          "detectedCx": 479.5,
+          "dCxPx": -0.5,
+          "truthW": 358.34,
+          "detectedW": 350.0,
+          "dWPx": -8.34,
+          "widthRatio": 0.977,
+          "runnerUpMargin": 0.319,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 36,
+          "truthCx": 820.11,
+          "detectedCx": 812.5,
+          "dCxPx": -7.61,
+          "truthW": 331.32,
+          "detectedW": 294.0,
+          "dWPx": -37.32,
+          "widthRatio": 0.887,
+          "runnerUpMargin": 0.295,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 44,
+          "truthCx": -31.66,
+          "detectedCx": 56.0,
+          "dCxPx": 87.66,
+          "truthW": 285.46,
+          "detectedW": 113.0,
+          "dWPx": -172.46,
+          "widthRatio": 0.396,
+          "runnerUpMargin": 0.368,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.40 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 45,
+          "truthCx": 295.88,
+          "detectedCx": 297.0,
+          "dCxPx": 1.12,
+          "truthW": 355.93,
+          "detectedW": 351.0,
+          "dWPx": -4.93,
+          "widthRatio": 0.986,
+          "runnerUpMargin": 0.004,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 46,
+          "truthCx": 664.12,
+          "detectedCx": 662.0,
+          "dCxPx": -2.12,
+          "truthW": 355.93,
+          "detectedW": 351.0,
+          "dWPx": -4.93,
+          "widthRatio": 0.986,
+          "runnerUpMargin": 0.007,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 47,
+          "truthCx": 991.66,
+          "detectedCx": 903.0,
+          "dCxPx": -88.66,
+          "truthW": 285.46,
+          "detectedW": 113.0,
+          "dWPx": -172.46,
+          "widthRatio": 0.396,
+          "runnerUpMargin": 0.373,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.40 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 54,
+          "truthCx": 122.39,
+          "detectedCx": 143.0,
+          "dCxPx": 20.61,
+          "truthW": 328.41,
+          "detectedW": 287.0,
+          "dWPx": -41.41,
+          "widthRatio": 0.874,
+          "runnerUpMargin": 0.073,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 55,
+          "truthCx": 480.0,
+          "detectedCx": 419.5,
+          "dCxPx": -60.5,
+          "truthW": 366.64,
+          "detectedW": 98.0,
+          "dWPx": -268.64,
+          "widthRatio": 0.267,
+          "runnerUpMargin": 0.21,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.27 outside [0.75, 1.25]"
+          ]
+        },
+        {
+          "code": 56,
+          "truthCx": 837.61,
+          "detectedCx": 816.5,
+          "dCxPx": -21.11,
+          "truthW": 328.41,
+          "detectedW": 286.0,
+          "dWPx": -42.41,
+          "widthRatio": 0.871,
+          "runnerUpMargin": 0.075,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 65,
+          "truthCx": 305.12,
+          "detectedCx": 236.5,
+          "dCxPx": -68.62,
+          "truthW": 349.37,
+          "detectedW": 474.0,
+          "dWPx": 124.63,
+          "widthRatio": 1.357,
+          "runnerUpMargin": 0.483,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 1.36 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 66,
+          "truthCx": 654.88,
+          "detectedCx": 722.5,
+          "dCxPx": 67.62,
+          "truthW": 349.37,
+          "detectedW": 474.0,
+          "dWPx": 124.63,
+          "widthRatio": 1.357,
+          "runnerUpMargin": 0.479,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 1.36 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1366x768",
+      "status": "MEASURED",
+      "truthCardsOnScreen": 11,
+      "detections": 6,
+      "highConfidencePairs": 2,
+      "excludedPairs": 4,
+      "pairingConfidence": 0.333,
+      "allPairs": {
+        "worstCentreErrorPx": 124.55,
+        "worstWidthErrorPx": 246.19
+      },
+      "highConfidenceOnly": {
+        "worstCentreErrorPx": 1.48,
+        "worstWidthErrorPx": 8.46,
+        "meanWidthErrorPx": -8.09
+      },
+      "excluded": [
+        {
+          "code": 44,
+          "dCxPx": 124.55,
+          "dWPx": -246.19,
+          "because": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 46,
+          "dCxPx": 84.52,
+          "dWPx": 165.53,
+          "because": [
+            "width ratio 1.33 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 54,
+          "dCxPx": 29.35,
+          "dWPx": -59.31,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 56,
+          "dCxPx": -30.35,
+          "dWPx": -59.31,
+          "because": [
+            "clipped detection"
+          ]
+        }
+      ],
+      "gutterCentres": {
+        "truthCount": 5,
+        "targetFrameMatched": 4,
+        "targetFramePhantoms": 0,
+        "targetFrameWorstDeltaPx": 5.6,
+        "sourceExactFrameMatched": 5,
+        "sourceExactFramePhantoms": 0,
+        "sourceExactFrameWorstDeltaPx": 0.93,
+        "ourReadingIsAtLeastAsCloseToTruth": true
+      },
+      "pairs": [
+        {
+          "code": 44,
+          "truthCx": -45.05,
+          "detectedCx": 79.5,
+          "dCxPx": 124.55,
+          "truthW": 406.19,
+          "detectedW": 160.0,
+          "dWPx": -246.19,
+          "widthRatio": 0.394,
+          "runnerUpMargin": 0.366,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 45,
+          "truthCx": 421.02,
+          "detectedCx": 422.5,
+          "dCxPx": 1.48,
+          "truthW": 506.46,
+          "detectedW": 498.0,
+          "dWPx": -8.46,
+          "widthRatio": 0.983,
+          "runnerUpMargin": 0.006,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 46,
+          "truthCx": 944.98,
+          "detectedCx": 1029.5,
+          "dCxPx": 84.52,
+          "truthW": 506.47,
+          "detectedW": 672.0,
+          "dWPx": 165.53,
+          "widthRatio": 1.327,
+          "runnerUpMargin": 0.221,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 1.33 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 54,
+          "truthCx": 174.15,
+          "detectedCx": 203.5,
+          "dCxPx": 29.35,
+          "truthW": 467.31,
+          "detectedW": 408.0,
+          "dWPx": -59.31,
+          "widthRatio": 0.873,
+          "runnerUpMargin": 0.073,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 55,
+          "truthCx": 683.0,
+          "detectedCx": 682.5,
+          "dCxPx": -0.5,
+          "truthW": 521.71,
+          "detectedW": 514.0,
+          "dWPx": -7.71,
+          "widthRatio": 0.985,
+          "runnerUpMargin": 0.015,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 56,
+          "truthCx": 1191.85,
+          "detectedCx": 1161.5,
+          "dCxPx": -30.35,
+          "truthW": 467.31,
+          "detectedW": 408.0,
+          "dWPx": -59.31,
+          "widthRatio": 0.873,
+          "runnerUpMargin": 0.076,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1440x1080",
+      "status": "MEASURED",
+      "truthCardsOnScreen": 14,
+      "detections": 13,
+      "highConfidencePairs": 5,
+      "excludedPairs": 8,
+      "pairingConfidence": 0.385,
+      "allPairs": {
+        "worstCentreErrorPx": 132.49,
+        "worstWidthErrorPx": 259.19
+      },
+      "highConfidenceOnly": {
+        "worstCentreErrorPx": 2.67,
+        "worstWidthErrorPx": 14.05,
+        "meanWidthErrorPx": -9.86
+      },
+      "excluded": [
+        {
+          "code": 34,
+          "dCxPx": 10.16,
+          "dWPx": -55.97,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 36,
+          "dCxPx": -11.16,
+          "dWPx": -55.97,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 44,
+          "dCxPx": 131.5,
+          "dWPx": -259.19,
+          "because": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 47,
+          "dCxPx": -132.49,
+          "dWPx": -259.19,
+          "because": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 54,
+          "dCxPx": 30.91,
+          "dWPx": -62.62,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 56,
+          "dCxPx": -31.91,
+          "dWPx": -62.62,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 65,
+          "dCxPx": -102.67,
+          "dWPx": 186.95,
+          "because": [
+            "width ratio 1.36 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 67,
+          "dCxPx": -105.89,
+          "dWPx": -258.49,
+          "because": [
+            "width ratio 0.42 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        }
+      ],
+      "gutterCentres": {
+        "truthCount": 4,
+        "targetFrameMatched": 6,
+        "targetFramePhantoms": 3,
+        "targetFrameWorstDeltaPx": 13.15,
+        "sourceExactFrameMatched": 6,
+        "sourceExactFramePhantoms": 4,
+        "sourceExactFrameWorstDeltaPx": 8.15,
+        "ourReadingIsAtLeastAsCloseToTruth": true
+      },
+      "pairs": [
+        {
+          "code": 34,
+          "truthCx": 209.84,
+          "detectedCx": 220.0,
+          "dCxPx": 10.16,
+          "truthW": 496.97,
+          "detectedW": 441.0,
+          "dWPx": -55.97,
+          "widthRatio": 0.887,
+          "runnerUpMargin": 0.294,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 35,
+          "truthCx": 720.0,
+          "detectedCx": 719.5,
+          "dCxPx": -0.5,
+          "truthW": 537.51,
+          "detectedW": 526.0,
+          "dWPx": -11.51,
+          "widthRatio": 0.979,
+          "runnerUpMargin": 0.319,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 36,
+          "truthCx": 1230.16,
+          "detectedCx": 1219.0,
+          "dCxPx": -11.16,
+          "truthW": 496.97,
+          "detectedW": 441.0,
+          "dWPx": -55.97,
+          "widthRatio": 0.887,
+          "runnerUpMargin": 0.295,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 44,
+          "truthCx": -47.5,
+          "detectedCx": 84.0,
+          "dCxPx": 131.5,
+          "truthW": 428.19,
+          "detectedW": 169.0,
+          "dWPx": -259.19,
+          "widthRatio": 0.395,
+          "runnerUpMargin": 0.367,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 45,
+          "truthCx": 443.83,
+          "detectedCx": 445.5,
+          "dCxPx": 1.67,
+          "truthW": 533.89,
+          "detectedW": 526.0,
+          "dWPx": -7.89,
+          "widthRatio": 0.985,
+          "runnerUpMargin": 0.004,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 46,
+          "truthCx": 996.17,
+          "detectedCx": 993.5,
+          "dCxPx": -2.67,
+          "truthW": 533.89,
+          "detectedW": 526.0,
+          "dWPx": -7.89,
+          "widthRatio": 0.985,
+          "runnerUpMargin": 0.006,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 47,
+          "truthCx": 1487.49,
+          "detectedCx": 1355.0,
+          "dCxPx": -132.49,
+          "truthW": 428.19,
+          "detectedW": 169.0,
+          "dWPx": -259.19,
+          "widthRatio": 0.395,
+          "runnerUpMargin": 0.371,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 54,
+          "truthCx": 183.59,
+          "detectedCx": 214.5,
+          "dCxPx": 30.91,
+          "truthW": 492.62,
+          "detectedW": 430.0,
+          "dWPx": -62.62,
+          "widthRatio": 0.873,
+          "runnerUpMargin": 0.073,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 55,
+          "truthCx": 720.0,
+          "detectedCx": 719.5,
+          "dCxPx": -0.5,
+          "truthW": 549.96,
+          "detectedW": 542.0,
+          "dWPx": -7.96,
+          "widthRatio": 0.986,
+          "runnerUpMargin": 0.015,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 56,
+          "truthCx": 1256.41,
+          "detectedCx": 1224.5,
+          "dCxPx": -31.91,
+          "truthW": 492.62,
+          "detectedW": 430.0,
+          "dWPx": -62.62,
+          "widthRatio": 0.873,
+          "runnerUpMargin": 0.075,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 65,
+          "truthCx": 457.67,
+          "detectedCx": 355.0,
+          "dCxPx": -102.67,
+          "truthW": 524.05,
+          "detectedW": 711.0,
+          "dWPx": 186.95,
+          "widthRatio": 1.357,
+          "runnerUpMargin": 0.482,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 1.36 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 66,
+          "truthCx": 982.33,
+          "detectedCx": 983.5,
+          "dCxPx": 1.17,
+          "truthW": 524.05,
+          "detectedW": 510.0,
+          "dWPx": -14.05,
+          "widthRatio": 0.973,
+          "runnerUpMargin": 0.315,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 67,
+          "truthCx": 1451.39,
+          "detectedCx": 1345.5,
+          "dCxPx": -105.89,
+          "truthW": 446.49,
+          "detectedW": 188.0,
+          "dWPx": -258.49,
+          "widthRatio": 0.421,
+          "runnerUpMargin": 0.455,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.42 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "780x470",
+      "status": "MEASURED",
+      "truthCardsOnScreen": 14,
+      "detections": 7,
+      "highConfidencePairs": 3,
+      "excludedPairs": 4,
+      "pairingConfidence": 0.429,
+      "allPairs": {
+        "worstCentreErrorPx": 74.23,
+        "worstWidthErrorPx": 139.93
+      },
+      "highConfidenceOnly": {
+        "worstCentreErrorPx": 1.59,
+        "worstWidthErrorPx": 4.19,
+        "meanWidthErrorPx": -4.09
+      },
+      "excluded": [
+        {
+          "code": 44,
+          "dCxPx": 71.23,
+          "dWPx": -139.93,
+          "because": [
+            "width ratio 0.40 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 47,
+          "dCxPx": -74.23,
+          "dWPx": -135.93,
+          "because": [
+            "width ratio 0.41 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 54,
+          "dCxPx": 16.56,
+          "dWPx": -33.83,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 56,
+          "dCxPx": -17.56,
+          "dWPx": -33.83,
+          "because": [
+            "clipped detection"
+          ]
+        }
+      ],
+      "gutterCentres": {
+        "truthCount": 2,
+        "targetFrameMatched": 1,
+        "targetFramePhantoms": 4,
+        "targetFrameWorstDeltaPx": 0.5,
+        "sourceExactFrameMatched": 1,
+        "sourceExactFramePhantoms": 4,
+        "sourceExactFrameWorstDeltaPx": 0.5,
+        "ourReadingIsAtLeastAsCloseToTruth": true
+      },
+      "pairs": [
+        {
+          "code": 44,
+          "truthCx": -25.73,
+          "detectedCx": 45.5,
+          "dCxPx": 71.23,
+          "truthW": 231.93,
+          "detectedW": 92.0,
+          "dWPx": -139.93,
+          "widthRatio": 0.397,
+          "runnerUpMargin": 0.368,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.40 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 45,
+          "truthCx": 240.41,
+          "detectedCx": 241.0,
+          "dCxPx": 0.59,
+          "truthW": 289.19,
+          "detectedW": 285.0,
+          "dWPx": -4.19,
+          "widthRatio": 0.986,
+          "runnerUpMargin": 0.004,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 46,
+          "truthCx": 539.59,
+          "detectedCx": 538.0,
+          "dCxPx": -1.59,
+          "truthW": 289.19,
+          "detectedW": 285.0,
+          "dWPx": -4.19,
+          "widthRatio": 0.986,
+          "runnerUpMargin": 0.007,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 47,
+          "truthCx": 805.73,
+          "detectedCx": 731.5,
+          "dCxPx": -74.23,
+          "truthW": 231.93,
+          "detectedW": 96.0,
+          "dWPx": -135.93,
+          "widthRatio": 0.414,
+          "runnerUpMargin": 0.389,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.41 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 54,
+          "truthCx": 99.44,
+          "detectedCx": 116.0,
+          "dCxPx": 16.56,
+          "truthW": 266.83,
+          "detectedW": 233.0,
+          "dWPx": -33.83,
+          "widthRatio": 0.873,
+          "runnerUpMargin": 0.072,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 55,
+          "truthCx": 390.0,
+          "detectedCx": 389.5,
+          "dCxPx": -0.5,
+          "truthW": 297.89,
+          "detectedW": 294.0,
+          "dWPx": -3.89,
+          "widthRatio": 0.987,
+          "runnerUpMargin": 0.015,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 56,
+          "truthCx": 680.56,
+          "detectedCx": 663.0,
+          "dCxPx": -17.56,
+          "truthW": 266.83,
+          "detectedW": 233.0,
+          "dWPx": -33.83,
+          "widthRatio": 0.873,
+          "runnerUpMargin": 0.077,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "960x500",
+      "status": "MEASURED",
+      "truthCardsOnScreen": 9,
+      "detections": 7,
+      "highConfidencePairs": 3,
+      "excludedPairs": 4,
+      "pairingConfidence": 0.429,
+      "allPairs": {
+        "worstCentreErrorPx": 88.16,
+        "worstWidthErrorPx": 173.46
+      },
+      "highConfidenceOnly": {
+        "worstCentreErrorPx": 2.12,
+        "worstWidthErrorPx": 4.93,
+        "meanWidthErrorPx": -4.83
+      },
+      "excluded": [
+        {
+          "code": 34,
+          "dCxPx": 20.11,
+          "dWPx": -42.41,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 36,
+          "dCxPx": -21.11,
+          "dWPx": -42.41,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 44,
+          "dCxPx": 87.16,
+          "dWPx": -173.46,
+          "because": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 47,
+          "dCxPx": -88.16,
+          "dWPx": -173.46,
+          "because": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        }
+      ],
+      "gutterCentres": {
+        "truthCount": 3,
+        "targetFrameMatched": 3,
+        "targetFramePhantoms": 2,
+        "targetFrameWorstDeltaPx": 2.1,
+        "sourceExactFrameMatched": 3,
+        "sourceExactFramePhantoms": 2,
+        "sourceExactFrameWorstDeltaPx": 0.9,
+        "ourReadingIsAtLeastAsCloseToTruth": true
+      },
+      "pairs": [
+        {
+          "code": 34,
+          "truthCx": 122.39,
+          "detectedCx": 142.5,
+          "dCxPx": 20.11,
+          "truthW": 328.41,
+          "detectedW": 286.0,
+          "dWPx": -42.41,
+          "widthRatio": 0.871,
+          "runnerUpMargin": 0.074,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 35,
+          "truthCx": 480.0,
+          "detectedCx": 479.5,
+          "dCxPx": -0.5,
+          "truthW": 366.64,
+          "detectedW": 362.0,
+          "dWPx": -4.64,
+          "widthRatio": 0.987,
+          "runnerUpMargin": 0.038,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 36,
+          "truthCx": 837.61,
+          "detectedCx": 816.5,
+          "dCxPx": -21.11,
+          "truthW": 328.41,
+          "detectedW": 286.0,
+          "dWPx": -42.41,
+          "widthRatio": 0.871,
+          "runnerUpMargin": 0.077,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 44,
+          "truthCx": -31.66,
+          "detectedCx": 55.5,
+          "dCxPx": 87.16,
+          "truthW": 285.46,
+          "detectedW": 112.0,
+          "dWPx": -173.46,
+          "widthRatio": 0.392,
+          "runnerUpMargin": 0.362,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 45,
+          "truthCx": 295.88,
+          "detectedCx": 297.0,
+          "dCxPx": 1.12,
+          "truthW": 355.93,
+          "detectedW": 351.0,
+          "dWPx": -4.93,
+          "widthRatio": 0.986,
+          "runnerUpMargin": 0.038,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 46,
+          "truthCx": 664.12,
+          "detectedCx": 662.0,
+          "dCxPx": -2.12,
+          "truthW": 355.93,
+          "detectedW": 351.0,
+          "dWPx": -4.93,
+          "widthRatio": 0.986,
+          "runnerUpMargin": 0.038,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 47,
+          "truthCx": 991.66,
+          "detectedCx": 903.5,
+          "dCxPx": -88.16,
+          "truthW": 285.46,
+          "detectedW": 112.0,
+          "dWPx": -173.46,
+          "widthRatio": 0.392,
+          "runnerUpMargin": 0.368,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "390x844",
+      "status": "MEASURED",
+      "truthCardsOnScreen": 15,
+      "detections": 6,
+      "highConfidencePairs": 2,
+      "excludedPairs": 4,
+      "pairingConfidence": 0.333,
+      "allPairs": {
+        "worstCentreErrorPx": 42.85,
+        "worstWidthErrorPx": 86.54
+      },
+      "highConfidenceOnly": {
+        "worstCentreErrorPx": 0.5,
+        "worstWidthErrorPx": 4.98,
+        "meanWidthErrorPx": -3.44
+      },
+      "excluded": [
+        {
+          "code": 36,
+          "dCxPx": 37.25,
+          "dWPx": -80.59,
+          "because": [
+            "width ratio 0.70 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 37,
+          "dCxPx": -38.25,
+          "dWPx": -80.59,
+          "because": [
+            "width ratio 0.70 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 52,
+          "dCxPx": 41.85,
+          "dWPx": -86.54,
+          "because": [
+            "width ratio 0.69 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 53,
+          "dCxPx": -42.85,
+          "dWPx": -86.54,
+          "because": [
+            "width ratio 0.69 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        }
+      ],
+      "gutterCentres": {
+        "truthCount": 7,
+        "targetFrameMatched": 6,
+        "targetFramePhantoms": 0,
+        "targetFrameWorstDeltaPx": 1.67,
+        "sourceExactFrameMatched": 6,
+        "sourceExactFramePhantoms": 0,
+        "sourceExactFrameWorstDeltaPx": 0.83,
+        "ourReadingIsAtLeastAsCloseToTruth": true
+      },
+      "pairs": [
+        {
+          "code": 36,
+          "truthCx": 57.75,
+          "detectedCx": 95.0,
+          "dCxPx": 37.25,
+          "truthW": 271.59,
+          "detectedW": 191.0,
+          "dWPx": -80.59,
+          "widthRatio": 0.703,
+          "runnerUpMargin": 0.183,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.70 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 37,
+          "truthCx": 332.25,
+          "detectedCx": 294.0,
+          "dCxPx": -38.25,
+          "truthW": 271.59,
+          "detectedW": 191.0,
+          "dWPx": -80.59,
+          "widthRatio": 0.703,
+          "runnerUpMargin": 0.188,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.70 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 44,
+          "truthCx": 195.0,
+          "detectedCx": 194.5,
+          "dCxPx": -0.5,
+          "truthW": 281.89,
+          "detectedW": 280.0,
+          "dWPx": -1.89,
+          "widthRatio": 0.993,
+          "runnerUpMargin": 0.003,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 52,
+          "truthCx": 52.15,
+          "detectedCx": 94.0,
+          "dCxPx": 41.85,
+          "truthW": 275.54,
+          "detectedW": 189.0,
+          "dWPx": -86.54,
+          "widthRatio": 0.686,
+          "runnerUpMargin": 0.181,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.69 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 53,
+          "truthCx": 337.85,
+          "detectedCx": 295.0,
+          "dCxPx": -42.85,
+          "truthW": 275.54,
+          "detectedW": 189.0,
+          "dWPx": -86.54,
+          "widthRatio": 0.686,
+          "runnerUpMargin": 0.186,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.69 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 60,
+          "truthCx": 195.0,
+          "detectedCx": 194.5,
+          "dCxPx": -0.5,
+          "truthW": 276.98,
+          "detectedW": 272.0,
+          "dWPx": -4.98,
+          "widthRatio": 0.982,
+          "runnerUpMargin": 0.016,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        }
+      ]
+    },
+    {
+      "id": "700x700",
+      "status": "MEASURED",
+      "truthCardsOnScreen": 18,
+      "detections": 13,
+      "highConfidencePairs": 4,
+      "excludedPairs": 9,
+      "pairingConfidence": 0.308,
+      "allPairs": {
+        "worstCentreErrorPx": 73.54,
+        "worstWidthErrorPx": 126.15
+      },
+      "highConfidenceOnly": {
+        "worstCentreErrorPx": 1.75,
+        "worstWidthErrorPx": 5.3,
+        "meanWidthErrorPx": -3.93
+      },
+      "excluded": [
+        {
+          "code": 45,
+          "dCxPx": -49.98,
+          "dWPx": 91.25,
+          "because": [
+            "width ratio 1.36 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 46,
+          "dCxPx": -35.02,
+          "dWPx": -118.75,
+          "because": [
+            "width ratio 0.53 outside [0.75, 1.25]"
+          ]
+        },
+        {
+          "code": 47,
+          "dCxPx": -73.54,
+          "dWPx": -82.05,
+          "because": [
+            "width ratio 0.62 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 54,
+          "dCxPx": 14.76,
+          "dWPx": -30.47,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 56,
+          "dCxPx": -15.76,
+          "dWPx": -30.47,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 64,
+          "dCxPx": 63.59,
+          "dWPx": -126.15,
+          "because": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 67,
+          "dCxPx": -64.59,
+          "dWPx": -126.15,
+          "because": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 74,
+          "dCxPx": 6.5,
+          "dWPx": -23.59,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 76,
+          "dCxPx": -7.5,
+          "dWPx": -23.59,
+          "because": [
+            "clipped detection"
+          ]
+        }
+      ],
+      "gutterCentres": {
+        "truthCount": 4,
+        "targetFrameMatched": 7,
+        "targetFramePhantoms": 3,
+        "targetFrameWorstDeltaPx": 19.5,
+        "sourceExactFrameMatched": 6,
+        "sourceExactFramePhantoms": 2,
+        "sourceExactFrameWorstDeltaPx": 6.88,
+        "ourReadingIsAtLeastAsCloseToTruth": true
+      },
+      "pairs": [
+        {
+          "code": 45,
+          "truthCx": 222.48,
+          "detectedCx": 172.5,
+          "dCxPx": -49.98,
+          "truthW": 254.75,
+          "detectedW": 346.0,
+          "dWPx": 91.25,
+          "widthRatio": 1.358,
+          "runnerUpMargin": 0.29,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 1.36 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 46,
+          "truthCx": 477.52,
+          "detectedCx": 442.5,
+          "dCxPx": -35.02,
+          "truthW": 254.75,
+          "detectedW": 136.0,
+          "dWPx": -118.75,
+          "widthRatio": 0.534,
+          "runnerUpMargin": 0.188,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.53 outside [0.75, 1.25]"
+          ]
+        },
+        {
+          "code": 47,
+          "truthCx": 705.54,
+          "detectedCx": 632.0,
+          "dCxPx": -73.54,
+          "truthW": 217.05,
+          "detectedW": 135.0,
+          "dWPx": -82.05,
+          "widthRatio": 0.622,
+          "runnerUpMargin": 0.476,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.62 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 54,
+          "truthCx": 89.24,
+          "detectedCx": 104.0,
+          "dCxPx": 14.76,
+          "truthW": 239.47,
+          "detectedW": 209.0,
+          "dWPx": -30.47,
+          "widthRatio": 0.873,
+          "runnerUpMargin": 0.072,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 55,
+          "truthCx": 350.0,
+          "detectedCx": 349.5,
+          "dCxPx": -0.5,
+          "truthW": 267.35,
+          "detectedW": 264.0,
+          "dWPx": -3.35,
+          "widthRatio": 0.987,
+          "runnerUpMargin": 0.011,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 56,
+          "truthCx": 610.76,
+          "detectedCx": 595.0,
+          "dCxPx": -15.76,
+          "truthW": 239.47,
+          "detectedW": 209.0,
+          "dWPx": -30.47,
+          "widthRatio": 0.873,
+          "runnerUpMargin": 0.077,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 64,
+          "truthCx": -23.09,
+          "detectedCx": 40.5,
+          "dCxPx": 63.59,
+          "truthW": 208.15,
+          "detectedW": 82.0,
+          "dWPx": -126.15,
+          "widthRatio": 0.394,
+          "runnerUpMargin": 0.364,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 65,
+          "truthCx": 215.75,
+          "detectedCx": 216.5,
+          "dCxPx": 0.75,
+          "truthW": 259.54,
+          "detectedW": 256.0,
+          "dWPx": -3.54,
+          "widthRatio": 0.986,
+          "runnerUpMargin": 0.006,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 66,
+          "truthCx": 484.25,
+          "detectedCx": 482.5,
+          "dCxPx": -1.75,
+          "truthW": 259.54,
+          "detectedW": 256.0,
+          "dWPx": -3.54,
+          "widthRatio": 0.986,
+          "runnerUpMargin": 0.01,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 67,
+          "truthCx": 723.09,
+          "detectedCx": 658.5,
+          "dCxPx": -64.59,
+          "truthW": 208.15,
+          "detectedW": 82.0,
+          "dWPx": -126.15,
+          "widthRatio": 0.394,
+          "runnerUpMargin": 0.372,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 74,
+          "truthCx": 102.0,
+          "detectedCx": 108.5,
+          "dCxPx": 6.5,
+          "truthW": 241.59,
+          "detectedW": 218.0,
+          "dWPx": -23.59,
+          "widthRatio": 0.902,
+          "runnerUpMargin": 0.059,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 75,
+          "truthCx": 350.0,
+          "detectedCx": 349.5,
+          "dCxPx": -0.5,
+          "truthW": 261.3,
+          "detectedW": 256.0,
+          "dWPx": -5.3,
+          "widthRatio": 0.98,
+          "runnerUpMargin": 0.078,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 76,
+          "truthCx": 598.0,
+          "detectedCx": 590.5,
+          "dCxPx": -7.5,
+          "truthW": 241.59,
+          "detectedW": 218.0,
+          "dWPx": -23.59,
+          "widthRatio": 0.902,
+          "runnerUpMargin": 0.063,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "667x375",
+      "status": "MEASURED",
+      "truthCardsOnScreen": 11,
+      "detections": 6,
+      "highConfidencePairs": 2,
+      "excludedPairs": 4,
+      "pairingConfidence": 0.333,
+      "allPairs": {
+        "worstCentreErrorPx": 60.5,
+        "worstWidthErrorPx": 120.33
+      },
+      "highConfidenceOnly": {
+        "worstCentreErrorPx": 0.92,
+        "worstWidthErrorPx": 3.74,
+        "meanWidthErrorPx": -3.52
+      },
+      "excluded": [
+        {
+          "code": 44,
+          "dCxPx": 60.5,
+          "dWPx": -120.33,
+          "because": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 46,
+          "dCxPx": 51.08,
+          "dWPx": 60.71,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 54,
+          "dCxPx": 13.96,
+          "dWPx": -29.18,
+          "because": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 56,
+          "dCxPx": -14.96,
+          "dWPx": -29.18,
+          "because": [
+            "clipped detection"
+          ]
+        }
+      ],
+      "gutterCentres": {
+        "truthCount": 5,
+        "targetFrameMatched": 6,
+        "targetFramePhantoms": 0,
+        "targetFrameWorstDeltaPx": 23.5,
+        "sourceExactFrameMatched": 5,
+        "sourceExactFramePhantoms": 0,
+        "sourceExactFrameWorstDeltaPx": 1.12,
+        "ourReadingIsAtLeastAsCloseToTruth": true
+      },
+      "pairs": [
+        {
+          "code": 44,
+          "truthCx": -22.0,
+          "detectedCx": 38.5,
+          "dCxPx": 60.5,
+          "truthW": 198.33,
+          "detectedW": 78.0,
+          "dWPx": -120.33,
+          "widthRatio": 0.393,
+          "runnerUpMargin": 0.364,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "width ratio 0.39 outside [0.75, 1.25]",
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 45,
+          "truthCx": 205.58,
+          "detectedCx": 206.5,
+          "dCxPx": 0.92,
+          "truthW": 247.29,
+          "detectedW": 244.0,
+          "dWPx": -3.29,
+          "widthRatio": 0.987,
+          "runnerUpMargin": 0.006,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 46,
+          "truthCx": 461.42,
+          "detectedCx": 512.5,
+          "dCxPx": 51.08,
+          "truthW": 247.29,
+          "detectedW": 308.0,
+          "dWPx": 60.71,
+          "widthRatio": 1.245,
+          "runnerUpMargin": 0.289,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 54,
+          "truthCx": 85.04,
+          "detectedCx": 99.0,
+          "dCxPx": 13.96,
+          "truthW": 228.18,
+          "detectedW": 199.0,
+          "dWPx": -29.18,
+          "widthRatio": 0.872,
+          "runnerUpMargin": 0.072,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        },
+        {
+          "code": 55,
+          "truthCx": 333.5,
+          "detectedCx": 333.0,
+          "dCxPx": -0.5,
+          "truthW": 254.74,
+          "detectedW": 251.0,
+          "dWPx": -3.74,
+          "widthRatio": 0.985,
+          "runnerUpMargin": 0.012,
+          "mutualNearest": true,
+          "unclipped": true,
+          "highConfidence": true,
+          "excludedBecause": []
+        },
+        {
+          "code": 56,
+          "truthCx": 581.96,
+          "detectedCx": 567.0,
+          "dCxPx": -14.96,
+          "truthW": 228.18,
+          "detectedW": 199.0,
+          "dWPx": -29.18,
+          "widthRatio": 0.872,
+          "runnerUpMargin": 0.077,
+          "mutualNearest": true,
+          "unclipped": false,
+          "highConfidence": false,
+          "excludedBecause": [
+            "clipped detection"
+          ]
+        }
+      ]
+    }
+  ]
+}

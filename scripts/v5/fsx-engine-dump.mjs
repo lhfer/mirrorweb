@@ -14,11 +14,14 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const opts = { origin: "http://127.0.0.1:5280", out: path.join(REPO, "artifacts/fsx/engine"), vps: [] };
+const opts = { origin: "http://127.0.0.1:5280", out: path.join(REPO, "artifacts/fsx/engine"), vps: [],
+               quality: "high", route: "foundation=layout&annotate=0" };
 for (const a of process.argv.slice(2)) {
   if (a.startsWith("--out=")) opts.out = path.resolve(REPO, a.slice(6));
   else if (a.startsWith("--vps=")) opts.vps = a.slice(6).split(",");
   else if (a.startsWith("--origin=")) opts.origin = a.slice(9);
+  else if (a.startsWith("--quality=")) opts.quality = a.slice(10);
+  else if (a === "--beauty") opts.route = "";
 }
 
 const browser = await chromium.launch({ channel: "chrome", headless: true,
@@ -28,18 +31,22 @@ const page = await ctx.newPage();
 const errors = [];
 page.on("pageerror", (e) => errors.push(String(e.message)));
 page.on("console", (m) => { if (m.type() === "error") errors.push(m.text()); });
-await page.goto(`${opts.origin}/?optics=v4&qa=1&composition=sourceExact&foundation=layout&annotate=0`,
+await page.goto(`${opts.origin}/?qa=1&composition=sourceExact${opts.route ? `&${opts.route}` : ""}`,
                 { waitUntil: "load" });
 await page.waitForFunction(() => window.__ILG_QA__?.getState?.()?.ready === true, undefined, { timeout: 120000 });
 await page.waitForTimeout(1800);
-await page.evaluate(() => {
-  window.__ILG_QA__.setQuality("high");
+await page.evaluate((q) => {
+  // Adaptive off first: with the sampler working it climbs back to high on an
+  // idle page and the requested level would not hold.
+  window.__ILG_QA__.setAdaptiveQuality?.(false);
+  window.__ILG_QA__.setQuality(q);
   window.__ILG_QA__.setPointer(0, 0);
   window.__ILG_QA__.pause();
   window.__ILG_QA__.setOffset(0, 0);
-});
+}, opts.quality);
 
-const out = { capturedAt: new Date().toISOString(), route: "composition=sourceExact", viewports: [], errors };
+const out = { capturedAt: new Date().toISOString(), route: `composition=sourceExact ${opts.route || "(beauty)"}`,
+              quality: opts.quality, viewports: [], errors };
 for (const vp of opts.vps) {
   const [w, h] = vp.split("x").map(Number);
   await page.setViewportSize({ width: w, height: h });

@@ -1,0 +1,235 @@
+{
+  "route": "?composition=sourceExact (beauty)",
+  "levels": [
+    "high",
+    "medium",
+    "low",
+    "high"
+  ],
+  "adaptive": {
+    "enabled": true,
+    "level": "high",
+    "appliedLevel": "high",
+    "changes": [
+      {
+        "atSeconds": 3.586399999976158,
+        "level": "medium"
+      },
+      {
+        "atSeconds": 6.0863000000715255,
+        "level": "high"
+      }
+    ],
+    "changeCount": 2,
+    "note": "changes recorded by the running sampler, not injected by the harness"
+  },
+  "viewports": [
+    {
+      "id": "1440x900",
+      "levelsSeen": [
+        "high",
+        "medium",
+        "low",
+        "high"
+      ],
+      "worstProjectedCornerDeltaPx": 0,
+      "worstWorldDelta": 0,
+      "steps": [
+        {
+          "label": "1440x900@high(base)",
+          "quality": "high",
+          "samplerLevel": "high",
+          "cardAspect": 1.3333333333333333,
+          "activeSlotCount": 100,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 768
+        },
+        {
+          "label": "1440x900@medium",
+          "quality": "medium",
+          "samplerLevel": "medium",
+          "cardAspect": 1.3333333333333333,
+          "activeSlotCount": 100,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 768
+        },
+        {
+          "label": "1440x900@low",
+          "quality": "low",
+          "samplerLevel": "low",
+          "cardAspect": 1.3333333333333333,
+          "activeSlotCount": 100,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 768
+        },
+        {
+          "label": "1440x900@high",
+          "quality": "high",
+          "samplerLevel": "high",
+          "cardAspect": 1.3333333333333333,
+          "activeSlotCount": 100,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 768
+        }
+      ]
+    },
+    {
+      "id": "390x844",
+      "levelsSeen": [
+        "high",
+        "medium",
+        "low",
+        "high"
+      ],
+      "worstProjectedCornerDeltaPx": 0,
+      "worstWorldDelta": 0,
+      "steps": [
+        {
+          "label": "390x844@high(base)",
+          "quality": "high",
+          "samplerLevel": "high",
+          "cardAspect": 1.3333333333333333,
+          "activeSlotCount": 96,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 768
+        },
+        {
+          "label": "390x844@medium",
+          "quality": "medium",
+          "samplerLevel": "medium",
+          "cardAspect": 1.3333333333333333,
+          "activeSlotCount": 96,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 768
+        },
+        {
+          "label": "390x844@low",
+          "quality": "low",
+          "samplerLevel": "low",
+          "cardAspect": 1.3333333333333333,
+          "activeSlotCount": 96,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 768
+        },
+        {
+          "label": "390x844@high",
+          "quality": "high",
+          "samplerLevel": "high",
+          "cardAspect": 1.3333333333333333,
+          "activeSlotCount": 96,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 768
+        }
+      ]
+    },
+    {
+      "id": "700x700",
+      "levelsSeen": [
+        "high",
+        "medium",
+        "low",
+        "high"
+      ],
+      "worstProjectedCornerDeltaPx": 0,
+      "worstWorldDelta": 0,
+      "steps": [
+        {
+          "label": "700x700@high(base)",
+          "quality": "high",
+          "samplerLevel": "high",
+          "cardAspect": 1.3333333333333333,
+          "activeSlotCount": 120,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 768
+        },
+        {
+          "label": "700x700@medium",
+          "quality": "medium",
+          "samplerLevel": "medium",
+          "cardAspect": 1.3333333333333333,
+          "activeSlotCount": 120,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 768
+        },
+        {
+          "label": "700x700@low",
+          "quality": "low",
+          "samplerLevel": "low",
+          "cardAspect": 1.3333333333333333,
+          "activeSlotCount": 120,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 768
+        },
+        {
+          "label": "700x700@high",
+          "quality": "high",
+          "samplerLevel": "high",
+          "cardAspect": 1.3333333333333333,
+          "activeSlotCount": 120,
+          "created": 256,
+          "destroyed": 0,
+          "materials": 5,
+          "geometries": 2,
+          "textures": 3,
+          "videos": 3,
+          "videoFrames": 768
+        }
+      ]
+    }
+  ]
+}

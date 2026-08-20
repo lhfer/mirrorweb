@@ -316,6 +316,33 @@ export class GridAppV4 {
     this.motion.velocityY = y;
   }
 
+  /**
+   * QA only. With the adaptive sampler actually working, an idle headless page
+   * climbs straight back to `high` after any manual step, which makes a
+   * level-by-level invariance sweep impossible to hold still. Turning the
+   * sampler off is a harness capability; it changes no product behaviour and
+   * the adaptive path is proven separately, with it on.
+   */
+  setAdaptiveQuality(enabled: boolean): void {
+    this.adaptiveQuality = enabled;
+  }
+
+  private adaptiveQuality = true;
+  /** Every level change the adaptive sampler made on its own, for evidence. */
+  private adaptiveChanges: Array<{ atSeconds: number; level: QualityLevel }> = [];
+
+  getAdaptiveState(): Record<string, unknown> {
+    return {
+      enabled: this.adaptiveQuality,
+      /** What the sampler believes. */
+      level: this.quality.level,
+      /** What the grid and the scene-colour pipeline are ACTUALLY running. */
+      appliedLevel: this.grid.getPoolState().quality,
+      changes: this.adaptiveChanges.slice(-20),
+      changeCount: this.adaptiveChanges.length,
+    };
+  }
+
   setQuality(level: QualityLevel): void {
     this.quality.level = level;
     this.grid.setQuality(level);
@@ -785,8 +812,19 @@ export class GridAppV4 {
     if (!this.motion.paused) this.elapsed += dt;
     this.frameTimes.push(dt * 1000);
     if (this.frameTimes.length > 180) this.frameTimes.shift();
-    const level = this.quality.sample(dt * 1000, now);
-    if (level !== this.quality.level) this.setQuality(level);
+    // Skip the sampler entirely when adaptive is off. Calling it and ignoring
+    // the answer is not the same thing: sample() mutates its own `level`, so the
+    // reported quality would drift away from the quality the grid is actually
+    // using.
+    if (!this.adaptiveQuality) return;
+    const { level, changed } = this.quality.sample(dt * 1000, now);
+    if (changed) {
+      this.adaptiveChanges.push({
+        atSeconds: this.startedAt ? (performance.now() - this.startedAt) / 1000 : 0,
+        level,
+      });
+      this.setQuality(level);
+    }
     this.motion.step(dt);
     this.grid.update(this.gridX(), this.gridY());
     this.applyPose();

@@ -1,0 +1,143 @@
+{
+  "checkedAt": "2026-08-20T18:58:28.715Z",
+  "origin": "http://127.0.0.1:5280",
+  "routes": [
+    {
+      "id": "bare",
+      "query": "",
+      "expect": {
+        "app": "v3",
+        "composition": null
+      },
+      "why": "the page default must not change: no composition and no optics still boots V3",
+      "url": "http://127.0.0.1:5280/?qa=1",
+      "resolved": {
+        "app": "v3",
+        "hasV4State": false,
+        "composition": null,
+        "sourceExact": null,
+        "frame": null,
+        "cameraOnAxis": null,
+        "ready": true
+      },
+      "pass": true,
+      "pageErrors": []
+    },
+    {
+      "id": "composition=v1",
+      "query": "composition=v1",
+      "expect": {
+        "app": "v4",
+        "composition": "v1"
+      },
+      "url": "http://127.0.0.1:5280/?qa=1&composition=v1",
+      "resolved": {
+        "app": "v4",
+        "hasV4State": true,
+        "composition": "v1",
+        "sourceExact": false,
+        "frame": null,
+        "cameraOnAxis": null,
+        "ready": true
+      },
+      "pass": true,
+      "pageErrors": []
+    },
+    {
+      "id": "composition=v2",
+      "query": "composition=v2",
+      "expect": {
+        "app": "v4",
+        "composition": "v2"
+      },
+      "url": "http://127.0.0.1:5280/?qa=1&composition=v2",
+      "resolved": {
+        "app": "v4",
+        "hasV4State": true,
+        "composition": "v2",
+        "sourceExact": false,
+        "frame": null,
+        "cameraOnAxis": null,
+        "ready": true
+      },
+      "pass": true,
+      "pageErrors": []
+    },
+    {
+      "id": "composition=sourceExact",
+      "query": "composition=sourceExact",
+      "expect": {
+        "app": "v4",
+        "composition": "sourceExact"
+      },
+      "why": "must reach V4 source-exact WITHOUT optics=v4",
+      "url": "http://127.0.0.1:5280/?qa=1&composition=sourceExact",
+      "resolved": {
+        "app": "v4",
+        "hasV4State": true,
+        "composition": "sourceExact",
+        "sourceExact": true,
+        "frame": {
+          "cols": 10,
+          "rows": 10,
+          "planeWidth": 547.2,
+          "layoutVersion": "target-layout-source-v2"
+        },
+        "cameraOnAxis": true,
+        "ready": true
+      },
+      "pass": true,
+      "pageErrors": []
+    },
+    {
+      "id": "optics=v4&composition=sourceExact",
+      "query": "optics=v4&composition=sourceExact",
+      "expect": {
+        "app": "v4",
+        "composition": "sourceExact"
+      },
+      "url": "http://127.0.0.1:5280/?qa=1&optics=v4&composition=sourceExact",
+      "resolved": {
+        "app": "v4",
+        "hasV4State": true,
+        "composition": "sourceExact",
+        "sourceExact": true,
+        "frame": {
+          "cols": 10,
+          "rows": 10,
+          "planeWidth": 547.2,
+          "layoutVersion": "target-layout-source-v2"
+        },
+        "cameraOnAxis": true,
+        "ready": true
+      },
+      "pass": true,
+      "pageErrors": []
+    },
+    {
+      "id": "optics=v4",
+      "query": "optics=v4",
+      "expect": {
+        "app": "v4",
+        "composition": "v1"
+      },
+      "why": "V4 with no composition keeps the accepted v1 baseline",
+      "url": "http://127.0.0.1:5280/?qa=1&optics=v4",
+      "resolved": {
+        "app": "v4",
+        "hasV4State": true,
+        "composition": "v1",
+        "sourceExact": false,
+        "frame": null,
+        "cameraOnAxis": null,
+        "ready": true
+      },
+      "pass": true,
+      "pageErrors": []
+    }
+  ],
+  "passed": 6,
+  "total": 6,
+  "verdict": "PASS",
+  "note": "sourceExact is reachable by its own route but is still NOT the bare-page default, and this branch is not merged to main."
+}

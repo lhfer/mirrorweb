@@ -1,0 +1,624 @@
+{
+  "gate": "source-exact engineering contract",
+  "contract": "config/target-layout-source-v2.json",
+  "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+  "layoutVersion": "target-layout-source-v2",
+  "isEngineeringGateOnly": "Passing this gate does NOT assert a Target visual result. It asserts that the engine, the model and the Target's own DOM agree about geometry.",
+  "tolerances": {
+    "perspectivePx": 0.01,
+    "sphereRadiusWorld": 0.01,
+    "planeSizeWorld": 0.01,
+    "cellWorld": 0.01,
+    "slotWorldPositionModel": 0.1,
+    "slotWorldPositionTarget": 0.1,
+    "orientationDeg": 0.05,
+    "projectedCornerPx": 0.5
+  },
+  "viewports": 3,
+  "passed": 3,
+  "verdict": "PASS",
+  "worstSlotWorldVsModel": 0.0,
+  "worstOrientationDegVsModel": 8.5e-07,
+  "worstProjectedCornerPx": 0.0,
+  "worstWorldDeltaToTargetDom": 0.005366,
+  "viewportsWithTargetDom": 3,
+  "results": [
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "MEASURED",
+        "codeBearingCards": 16,
+        "matched": 16,
+        "worstWorldDeltaToEngine": 0.004071,
+        "note": "Culled Target cards keep a STALE transform and empty text, so only code-bearing cards carry a current pose and only they can be compared. This is a property of the Target, not an unmeasured item."
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        },
+        {
+          "check": "every visible Target card matched by an engine slot (world)",
+          "value": 0.004071,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "16 of 16 code-bearing Target cards"
+        }
+      ]
+    },
+    {
+      "id": "390x844",
+      "viewport": [
+        390,
+        844
+      ],
+      "verdict": "PASS",
+      "cols": 8,
+      "rows": 12,
+      "activeSlotCount": 96,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "MEASURED",
+        "codeBearingCards": 17,
+        "matched": 17,
+        "worstWorldDeltaToEngine": 0.000514,
+        "note": "Culled Target cards keep a STALE transform and empty text, so only code-bearing cards carry a current pose and only they can be compared. This is a property of the Target, not an unmeasured item."
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 12, model 12"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 96, model 96"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "96 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "384 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        },
+        {
+          "check": "every visible Target card matched by an engine slot (world)",
+          "value": 0.000514,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "17 of 17 code-bearing Target cards"
+        }
+      ]
+    },
+    {
+      "id": "700x700",
+      "viewport": [
+        700,
+        700
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 12,
+      "activeSlotCount": 120,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "MEASURED",
+        "codeBearingCards": 34,
+        "matched": 34,
+        "worstWorldDeltaToEngine": 0.005366,
+        "note": "Culled Target cards keep a STALE transform and empty text, so only code-bearing cards carry a current pose and only they can be compared. This is a property of the Target, not an unmeasured item."
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 12, model 12"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 120, model 120"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "120 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "480 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        },
+        {
+          "check": "every visible Target card matched by an engine slot (world)",
+          "value": 0.005366,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "34 of 34 code-bearing Target cards"
+        }
+      ]
+    }
+  ]
+}

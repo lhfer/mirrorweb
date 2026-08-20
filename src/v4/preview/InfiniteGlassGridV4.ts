@@ -455,17 +455,32 @@ export class InfiniteGlassGridV4 {
     if (this.foundation || quality === this.quality) return;
     this.quality = quality;
     this.glassGeometry.dispose();
-    this.glassGeometry = createConvexGlassGeometryV4(quality);
+    // The source-exact card is 4:3 and is sized by a uniform scale off the
+    // reference plane. Rebuilding the volume at a new quality without the
+    // override would silently hand it TILE's 1.3508 aspect and TILE's width,
+    // changing both the shape and the size of every card the moment adaptive
+    // quality stepped -- which, until the fix in AdaptiveQuality, never happened
+    // and so was never seen.
+    this.glassGeometry = this.sourceExact
+      ? createConvexGlassGeometryV4(quality, {
+          width: REFERENCE_PLANE_WIDTH,
+          height: REFERENCE_PLANE_WIDTH / (4 / 3),
+        })
+      : createConvexGlassGeometryV4(quality);
     for (const slot of this.slots) {
       slot.glass.geometry = this.glassGeometry;
       if (slot.shell) slot.shell.geometry = this.glassGeometry;
     }
+    // Re-apply the layout frame: the scales live on the meshes, and a quality
+    // step must not be able to leave them describing the previous geometry.
+    if (this.sourceExact && this.frame) this.setFrame(this.frame);
   }
 
   getPoolState() {
     if (this.foundation) {
       return {
         slots: this.slots.length,
+        quality: this.quality,
         activeSlots: this.sourceExact ? this.activeSlotCount : this.slots.length,
         created: this.created,
         destroyed: this.destroyed,
@@ -481,6 +496,7 @@ export class InfiniteGlassGridV4 {
     }
     return {
       slots: this.slots.length,
+      quality: this.quality,
       activeSlots: this.sourceExact ? this.activeSlotCount : this.slots.length,
       created: this.created,
       destroyed: this.destroyed,

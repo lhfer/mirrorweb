@@ -11,8 +11,14 @@ import { installQAHooks } from "./debug/QAHooks";
 // because V4 is the build under review; the layout it shows is the shared
 // GRID/TILE/placeTile geometry, so it is equally valid for V3.
 const query = new URLSearchParams(location.search);
+// Any V5 composition selects the V4 build, because that is the build those
+// compositions exist in. `composition=sourceExact` previously fell through to
+// V3, so the route named in every brief and every preview link only worked when
+// `optics=v4` was passed alongside it -- a URL nobody would guess from the docs.
+// V4 remains opt-in: no composition and no optics still boots V3.
+const V5_COMPOSITIONS = new Set(["v1", "v2", "sourceExact"]);
 if (query.get("optics") === "v4" || query.get("foundation") === "layout"
-  || query.get("composition") === "v2") {
+  || V5_COMPOSITIONS.has(query.get("composition") ?? "")) {
   const { startGridPreviewV4 } = await import("./v4/preview/entry");
   await startGridPreviewV4();
 } else {
