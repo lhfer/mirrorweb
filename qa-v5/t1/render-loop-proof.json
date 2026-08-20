@@ -1,0 +1,300 @@
+{
+  "startedAt": "2026-08-20T20:35:19.950Z",
+  "route": "?qa=1&composition=sourceExact",
+  "viewport": [
+    1440,
+    900
+  ],
+  "assertions": [
+    {
+      "assertion": "render loop keeps drawing while the adaptive sampler is OFF",
+      "pass": true,
+      "detail": {
+        "framesIn1200ms": 165
+      }
+    },
+    {
+      "assertion": "the canvas actually changes while the sampler is OFF and motion runs",
+      "pass": true,
+      "detail": {
+        "before": "663a7d393c1eca7f",
+        "after": "ccf4c64f927d474a"
+      }
+    },
+    {
+      "assertion": "the sampler really was off for that window",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "assertion": "render loop keeps drawing while the adaptive sampler is ON",
+      "pass": true,
+      "detail": {
+        "framesIn800ms": 96
+      }
+    },
+    {
+      "assertion": "setQuality(\"medium\"): draws a frame synchronously (render stamp advances)",
+      "pass": true,
+      "detail": {
+        "before": 8,
+        "after": 9
+      }
+    },
+    {
+      "assertion": "setRenderLayers({\"glass\":false,\"media\":true,\"labels\":false}): draws a frame synchronously (render stamp advances)",
+      "pass": true,
+      "detail": {
+        "before": 9,
+        "after": 10
+      }
+    },
+    {
+      "assertion": "setRenderLayers({\"glass\":false,\"media\":true,\"labels\":false}): the canvas changes",
+      "pass": true,
+      "detail": {
+        "before": "659c7589f226f902",
+        "after": "db86654ed4f15325"
+      }
+    },
+    {
+      "assertion": "setRenderLayers(restore): draws a frame synchronously (render stamp advances)",
+      "pass": true,
+      "detail": {
+        "before": 10,
+        "after": 11
+      }
+    },
+    {
+      "assertion": "setRenderLayers(restore): the canvas changes",
+      "pass": true,
+      "detail": {
+        "before": "db86654ed4f15325",
+        "after": "659c7589f226f902"
+      }
+    },
+    {
+      "assertion": "setOffset([640,400]): draws a frame synchronously (render stamp advances)",
+      "pass": true,
+      "detail": {
+        "before": 11,
+        "after": 12
+      }
+    },
+    {
+      "assertion": "setOffset([640,400]): the canvas changes",
+      "pass": true,
+      "detail": {
+        "before": "659c7589f226f902",
+        "after": "defd06e1688803c9"
+      }
+    },
+    {
+      "assertion": "setPointer([0.35,-0.2]): draws a frame synchronously (render stamp advances)",
+      "pass": true,
+      "detail": {
+        "before": 12,
+        "after": 13
+      }
+    },
+    {
+      "assertion": "setDpr(2): draws a frame synchronously (render stamp advances)",
+      "pass": true,
+      "detail": {
+        "before": 13,
+        "after": 14
+      }
+    },
+    {
+      "assertion": "setDpr(restore): draws a frame synchronously (render stamp advances)",
+      "pass": true,
+      "detail": {
+        "before": 14,
+        "after": 15
+      }
+    },
+    {
+      "assertion": "setAdaptiveQuality(false): draws a frame synchronously (render stamp advances)",
+      "pass": true,
+      "detail": {
+        "before": 15,
+        "after": 16
+      }
+    },
+    {
+      "assertion": "reset(): draws a frame synchronously (render stamp advances)",
+      "pass": true,
+      "detail": {
+        "before": 16,
+        "after": 17
+      }
+    },
+    {
+      "assertion": "reset(): the canvas changes",
+      "pass": true,
+      "detail": {
+        "before": "defd06e1688803c9",
+        "after": "fb7e589ff78cfb11"
+      }
+    },
+    {
+      "assertion": "setPointer moves the target immediately while paused",
+      "pass": true,
+      "detail": {
+        "pointerX": 0,
+        "pointerTargetX": 0.6
+      }
+    },
+    {
+      "assertion": "the pointer path reaches the pixels once the page steps",
+      "pass": true,
+      "detail": {
+        "restSha": "fb7e589ff78cfb11",
+        "afterSteppingSha": "b70c25d4b84810aa",
+        "appliedPointerX": 0.5908831016340699
+      }
+    },
+    {
+      "assertion": "the render stamp only moves when a hook is called",
+      "pass": true,
+      "detail": {
+        "idleA": 21,
+        "idleB": 21
+      }
+    },
+    {
+      "assertion": "no console errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "assertion": "no page errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "ops": [
+    {
+      "op": "setQuality(\"medium\")",
+      "stampBefore": 8,
+      "stampAfter": 9,
+      "stampAdvanced": true,
+      "canvasShaBefore": "613317cc0a309d8344ef6729d1a14e955d5cc9421d373ccfca8e0b69cd493640",
+      "canvasShaAfter": "659c7589f226f9022bff700c557114af44e5947d2fff6be8d87da475d374b7ca",
+      "canvasChanged": true,
+      "expectedVisualChange": false
+    },
+    {
+      "op": "setRenderLayers({\"glass\":false,\"media\":true,\"labels\":false})",
+      "stampBefore": 9,
+      "stampAfter": 10,
+      "stampAdvanced": true,
+      "canvasShaBefore": "659c7589f226f9022bff700c557114af44e5947d2fff6be8d87da475d374b7ca",
+      "canvasShaAfter": "db86654ed4f15325b8628b0e04eb3b1b728915102939cae1c9927d3e1ae6eba2",
+      "canvasChanged": true,
+      "expectedVisualChange": true
+    },
+    {
+      "op": "setRenderLayers(restore)",
+      "stampBefore": 10,
+      "stampAfter": 11,
+      "stampAdvanced": true,
+      "canvasShaBefore": "db86654ed4f15325b8628b0e04eb3b1b728915102939cae1c9927d3e1ae6eba2",
+      "canvasShaAfter": "659c7589f226f9022bff700c557114af44e5947d2fff6be8d87da475d374b7ca",
+      "canvasChanged": true,
+      "expectedVisualChange": true
+    },
+    {
+      "op": "setOffset([640,400])",
+      "stampBefore": 11,
+      "stampAfter": 12,
+      "stampAdvanced": true,
+      "canvasShaBefore": "659c7589f226f9022bff700c557114af44e5947d2fff6be8d87da475d374b7ca",
+      "canvasShaAfter": "defd06e1688803c9fccceb80bc11d6deb5a57865386697d63e2a5e78ec12a09d",
+      "canvasChanged": true,
+      "expectedVisualChange": true
+    },
+    {
+      "op": "setPointer([0.35,-0.2])",
+      "stampBefore": 12,
+      "stampAfter": 13,
+      "stampAdvanced": true,
+      "canvasShaBefore": "defd06e1688803c9fccceb80bc11d6deb5a57865386697d63e2a5e78ec12a09d",
+      "canvasShaAfter": "defd06e1688803c9fccceb80bc11d6deb5a57865386697d63e2a5e78ec12a09d",
+      "canvasChanged": false,
+      "expectedVisualChange": false
+    },
+    {
+      "op": "setDpr(2)",
+      "stampBefore": 13,
+      "stampAfter": 14,
+      "stampAdvanced": true,
+      "canvasShaBefore": "defd06e1688803c9fccceb80bc11d6deb5a57865386697d63e2a5e78ec12a09d",
+      "canvasShaAfter": "57b25891d00a092454010de32fbe614d4783c4ceb555cd01b0bb3fa715372a3b",
+      "canvasChanged": true,
+      "expectedVisualChange": false
+    },
+    {
+      "op": "setDpr(restore)",
+      "stampBefore": 14,
+      "stampAfter": 15,
+      "stampAdvanced": true,
+      "canvasShaBefore": "57b25891d00a092454010de32fbe614d4783c4ceb555cd01b0bb3fa715372a3b",
+      "canvasShaAfter": "defd06e1688803c9fccceb80bc11d6deb5a57865386697d63e2a5e78ec12a09d",
+      "canvasChanged": true,
+      "expectedVisualChange": false
+    },
+    {
+      "op": "setAdaptiveQuality(false)",
+      "stampBefore": 15,
+      "stampAfter": 16,
+      "stampAdvanced": true,
+      "canvasShaBefore": "defd06e1688803c9fccceb80bc11d6deb5a57865386697d63e2a5e78ec12a09d",
+      "canvasShaAfter": "defd06e1688803c9fccceb80bc11d6deb5a57865386697d63e2a5e78ec12a09d",
+      "canvasChanged": false,
+      "expectedVisualChange": false
+    },
+    {
+      "op": "reset()",
+      "stampBefore": 16,
+      "stampAfter": 17,
+      "stampAdvanced": true,
+      "canvasShaBefore": "defd06e1688803c9fccceb80bc11d6deb5a57865386697d63e2a5e78ec12a09d",
+      "canvasShaAfter": "fb7e589ff78cfb1112cf11f33e6744b74c657d591a4b581745cbe44e409ffac4",
+      "canvasChanged": true,
+      "expectedVisualChange": true
+    }
+  ],
+  "loopWithSamplerOff": {
+    "adaptiveSampler": false,
+    "motionPaused": false,
+    "renderedFramesBefore": 387,
+    "renderedFramesAfter": 552,
+    "framesInWindow": 165,
+    "canvasShaBefore": "663a7d393c1eca7f54db95dda5f79906a3a35c278758c706483ad7cdcbb63f57",
+    "canvasShaAfter": "ccf4c64f927d474a55da21c5a49ae34f19dc2f6150f0e3fe5524338dc2e50f2e"
+  },
+  "pointerPath": {
+    "restSha": "fb7e589ff78cfb1112cf11f33e6744b74c657d591a4b581745cbe44e409ffac4",
+    "pausedSha": "fb7e589ff78cfb1112cf11f33e6744b74c657d591a4b581745cbe44e409ffac4",
+    "afterSteppingSha": "b70c25d4b84810aafac4144a40b715ad853a2068e6af4c1bacadc3d998f7d0ad",
+    "before": {
+      "pointerX": null,
+      "pointerTargetX": null
+    },
+    "whilePaused": {
+      "pointerX": 0,
+      "pointerTargetX": 0.6
+    },
+    "afterStepping": {
+      "pointerX": 0.5908831016340699,
+      "pointerTargetX": 0.6
+    },
+    "note": "setPointer writes the smoothing TARGET; MotionController.step carries the applied pointer toward it, so a paused page redraws an identical frame. Motion is frozen this round: this is recorded, not changed."
+  },
+  "consoleErrors": [],
+  "pageErrors": [],
+  "passed": 22,
+  "total": 22,
+  "verdict": "PASS"
+}

@@ -1,0 +1,776 @@
+{
+  "capturedAt": "2026-08-20T20:39:38.011Z",
+  "frames": 24,
+  "minUniqueRequired": 12,
+  "supersedes": "artifacts/fsx-a/recording (24 identical frames)",
+  "method": "explicit renderOnce() per frame; offsets read back from the engine",
+  "recordings": [
+    {
+      "name": "desktop",
+      "viewport": [
+        1440,
+        900
+      ],
+      "frameCount": 24,
+      "uniqueFrameCount": 24,
+      "firstSha": "613317cc0a309d8344ef6729d1a14e955d5cc9421d373ccfca8e0b69cd493640",
+      "lastSha": "7571b7dffe77445ca14c0733e007cacb324c1e15187eddb799cd6aa3f690ea8c",
+      "distinctEngineScrollX": 24,
+      "frames": [
+        {
+          "index": 0,
+          "requested": [
+            0,
+            0
+          ],
+          "engineScrollX": 0,
+          "engineScrollY": 0,
+          "gridX": 0,
+          "gridY": 0,
+          "renderStamp": 5,
+          "png": "artifacts/t1/recording-before/desktop/000.png",
+          "sha256": "613317cc0a309d8344ef6729d1a14e955d5cc9421d373ccfca8e0b69cd493640"
+        },
+        {
+          "index": 1,
+          "requested": [
+            39,
+            22
+          ],
+          "engineScrollX": 39,
+          "engineScrollY": 22,
+          "gridX": -39,
+          "gridY": 22,
+          "renderStamp": 7,
+          "png": "artifacts/t1/recording-before/desktop/001.png",
+          "sha256": "f85c13ef3d30d083b2c812e8eae1a204a2cc34ea740055ac9e454e8294d1236e"
+        },
+        {
+          "index": 2,
+          "requested": [
+            78,
+            43
+          ],
+          "engineScrollX": 78,
+          "engineScrollY": 43,
+          "gridX": -78,
+          "gridY": 43,
+          "renderStamp": 9,
+          "png": "artifacts/t1/recording-before/desktop/002.png",
+          "sha256": "0e4e1c883ba3bf9a6b43ed519a6754675826798317fa4af2747d6799b15c48df"
+        },
+        {
+          "index": 3,
+          "requested": [
+            117,
+            65
+          ],
+          "engineScrollX": 117,
+          "engineScrollY": 65,
+          "gridX": -117,
+          "gridY": 65,
+          "renderStamp": 11,
+          "png": "artifacts/t1/recording-before/desktop/003.png",
+          "sha256": "5028cb2e4ae40afa5b4c87bef923c6e478c1a7ed56de198ad5c9b882af7196f4"
+        },
+        {
+          "index": 4,
+          "requested": [
+            157,
+            87
+          ],
+          "engineScrollX": 157,
+          "engineScrollY": 87,
+          "gridX": -157,
+          "gridY": 87,
+          "renderStamp": 13,
+          "png": "artifacts/t1/recording-before/desktop/004.png",
+          "sha256": "ab8fed273bd47ac3ae8329b3e96f4ce41d5589826264a8f5a22064a1e84e9481"
+        },
+        {
+          "index": 5,
+          "requested": [
+            196,
+            109
+          ],
+          "engineScrollX": 196,
+          "engineScrollY": 109,
+          "gridX": -196,
+          "gridY": 109,
+          "renderStamp": 15,
+          "png": "artifacts/t1/recording-before/desktop/005.png",
+          "sha256": "2a13073ee976735f1c8475b5794d24d897f7e62fb0b9bfdb79d05b6dffb35934"
+        },
+        {
+          "index": 6,
+          "requested": [
+            235,
+            130
+          ],
+          "engineScrollX": 235,
+          "engineScrollY": 130,
+          "gridX": -235,
+          "gridY": 130,
+          "renderStamp": 17,
+          "png": "artifacts/t1/recording-before/desktop/006.png",
+          "sha256": "371d59efbf46a5ed4aa6f2cce1a776f298e7132960071fab82f6611c65d51fe7"
+        },
+        {
+          "index": 7,
+          "requested": [
+            274,
+            152
+          ],
+          "engineScrollX": 274,
+          "engineScrollY": 152,
+          "gridX": -274,
+          "gridY": 152,
+          "renderStamp": 19,
+          "png": "artifacts/t1/recording-before/desktop/007.png",
+          "sha256": "733a9e9653ab781ee833fc42d270de09fb75926a10331ff387fbe10ca4572461"
+        },
+        {
+          "index": 8,
+          "requested": [
+            313,
+            174
+          ],
+          "engineScrollX": 313,
+          "engineScrollY": 174,
+          "gridX": -313,
+          "gridY": 174,
+          "renderStamp": 21,
+          "png": "artifacts/t1/recording-before/desktop/008.png",
+          "sha256": "6aba055ffac2a9673f514a435163ab605c80afc25001b0f6785b3e5a9ff54bfb"
+        },
+        {
+          "index": 9,
+          "requested": [
+            352,
+            196
+          ],
+          "engineScrollX": 352,
+          "engineScrollY": 196,
+          "gridX": -352,
+          "gridY": 196,
+          "renderStamp": 23,
+          "png": "artifacts/t1/recording-before/desktop/009.png",
+          "sha256": "18c8318b0ee305676eb286628e30ad0071d614e336ffb2f0b251cda8fa76d43b"
+        },
+        {
+          "index": 10,
+          "requested": [
+            391,
+            217
+          ],
+          "engineScrollX": 391,
+          "engineScrollY": 217,
+          "gridX": -391,
+          "gridY": 217,
+          "renderStamp": 25,
+          "png": "artifacts/t1/recording-before/desktop/010.png",
+          "sha256": "37accf1ef1717e8acca6e3497be41ee1dba50eff051f8a9af4e281ea31f92e04"
+        },
+        {
+          "index": 11,
+          "requested": [
+            430,
+            239
+          ],
+          "engineScrollX": 430,
+          "engineScrollY": 239,
+          "gridX": -430,
+          "gridY": 239,
+          "renderStamp": 27,
+          "png": "artifacts/t1/recording-before/desktop/011.png",
+          "sha256": "bda206ae81074ddd39c8db4a654f725d9dea4acb543b0eaf62b672b9d24ed7e0"
+        },
+        {
+          "index": 12,
+          "requested": [
+            470,
+            261
+          ],
+          "engineScrollX": 470,
+          "engineScrollY": 261,
+          "gridX": -470,
+          "gridY": 261,
+          "renderStamp": 29,
+          "png": "artifacts/t1/recording-before/desktop/012.png",
+          "sha256": "5908e2449a38e026367b5362ffc9248a8154ab4c2a24fda3cea00cd69d8ef75f"
+        },
+        {
+          "index": 13,
+          "requested": [
+            509,
+            283
+          ],
+          "engineScrollX": 509,
+          "engineScrollY": 283,
+          "gridX": -509,
+          "gridY": 283,
+          "renderStamp": 31,
+          "png": "artifacts/t1/recording-before/desktop/013.png",
+          "sha256": "9b36dc595687b47077082b505698c462f0c15385a1976eb59a6e552815e18800"
+        },
+        {
+          "index": 14,
+          "requested": [
+            548,
+            304
+          ],
+          "engineScrollX": 548,
+          "engineScrollY": 304,
+          "gridX": -548,
+          "gridY": 304,
+          "renderStamp": 33,
+          "png": "artifacts/t1/recording-before/desktop/014.png",
+          "sha256": "36e4a419941ef3152cfe6943f57362b7b172aa840d8a9f747b4f563b295dd56c"
+        },
+        {
+          "index": 15,
+          "requested": [
+            587,
+            326
+          ],
+          "engineScrollX": 587,
+          "engineScrollY": 326,
+          "gridX": -587,
+          "gridY": 326,
+          "renderStamp": 35,
+          "png": "artifacts/t1/recording-before/desktop/015.png",
+          "sha256": "50c984bba7421cbfb7193a745c837e08e938ead97c6cd776b492c57de2e8f18f"
+        },
+        {
+          "index": 16,
+          "requested": [
+            626,
+            348
+          ],
+          "engineScrollX": 626,
+          "engineScrollY": 348,
+          "gridX": -626,
+          "gridY": 348,
+          "renderStamp": 37,
+          "png": "artifacts/t1/recording-before/desktop/016.png",
+          "sha256": "7e04e7a04b75ed62d2e2c127f98721ccaa4a65664afdf5ea2c97951af3ea9173"
+        },
+        {
+          "index": 17,
+          "requested": [
+            665,
+            370
+          ],
+          "engineScrollX": 665,
+          "engineScrollY": 370,
+          "gridX": -665,
+          "gridY": 370,
+          "renderStamp": 39,
+          "png": "artifacts/t1/recording-before/desktop/017.png",
+          "sha256": "060cb00d9962e788625d7c1bcb69d79bc5b50e1a17e1aead95a7a1236c24e05d"
+        },
+        {
+          "index": 18,
+          "requested": [
+            704,
+            391
+          ],
+          "engineScrollX": 704,
+          "engineScrollY": 391,
+          "gridX": -704,
+          "gridY": 391,
+          "renderStamp": 41,
+          "png": "artifacts/t1/recording-before/desktop/018.png",
+          "sha256": "f4eee1239385f14efb370072c58ca86cd6acd17b81ce0aa8cd90b82c3bad1cda"
+        },
+        {
+          "index": 19,
+          "requested": [
+            743,
+            413
+          ],
+          "engineScrollX": 743,
+          "engineScrollY": 413,
+          "gridX": -743,
+          "gridY": 413,
+          "renderStamp": 43,
+          "png": "artifacts/t1/recording-before/desktop/019.png",
+          "sha256": "1a18bd303d8bfd229d375c88cada010ef56dbe5f5858b9c710f1bad1d469fd0b"
+        },
+        {
+          "index": 20,
+          "requested": [
+            783,
+            435
+          ],
+          "engineScrollX": 783,
+          "engineScrollY": 435,
+          "gridX": -783,
+          "gridY": 435,
+          "renderStamp": 45,
+          "png": "artifacts/t1/recording-before/desktop/020.png",
+          "sha256": "af68473f3af4cf6d8f9ee459d0e3aeedf4cd6151904f59013f459b0069d43868"
+        },
+        {
+          "index": 21,
+          "requested": [
+            822,
+            457
+          ],
+          "engineScrollX": 822,
+          "engineScrollY": 457,
+          "gridX": -822,
+          "gridY": 457,
+          "renderStamp": 47,
+          "png": "artifacts/t1/recording-before/desktop/021.png",
+          "sha256": "d80e5fd95babace66147ec7a18c03acc658239ecfca080b52ab1bd8d889d382b"
+        },
+        {
+          "index": 22,
+          "requested": [
+            861,
+            478
+          ],
+          "engineScrollX": 861,
+          "engineScrollY": 478,
+          "gridX": -861,
+          "gridY": 478,
+          "renderStamp": 49,
+          "png": "artifacts/t1/recording-before/desktop/022.png",
+          "sha256": "59f3f900a5cd69426684b4e6886f9407c53ce8ea15a76ac225a42034e6b8f08c"
+        },
+        {
+          "index": 23,
+          "requested": [
+            900,
+            500
+          ],
+          "engineScrollX": 900,
+          "engineScrollY": 500,
+          "gridX": -900,
+          "gridY": 500,
+          "renderStamp": 51,
+          "png": "artifacts/t1/recording-before/desktop/023.png",
+          "sha256": "7571b7dffe77445ca14c0733e007cacb324c1e15187eddb799cd6aa3f690ea8c"
+        }
+      ]
+    },
+    {
+      "name": "mobile",
+      "viewport": [
+        390,
+        844
+      ],
+      "frameCount": 24,
+      "uniqueFrameCount": 24,
+      "firstSha": "8b8e2770d53a2d93d83a50cda8e5024c72da09909995e5b03e4dcb6b3e2b159e",
+      "lastSha": "e0e5710c41f4f00d82057d8cec6ce25e8208f46beff4b545de7eb5d51cfade91",
+      "distinctEngineScrollX": 24,
+      "frames": [
+        {
+          "index": 0,
+          "requested": [
+            0,
+            0
+          ],
+          "engineScrollX": 0,
+          "engineScrollY": 0,
+          "gridX": 0,
+          "gridY": 0,
+          "renderStamp": 5,
+          "png": "artifacts/t1/recording-before/mobile/000.png",
+          "sha256": "8b8e2770d53a2d93d83a50cda8e5024c72da09909995e5b03e4dcb6b3e2b159e"
+        },
+        {
+          "index": 1,
+          "requested": [
+            39,
+            22
+          ],
+          "engineScrollX": 39,
+          "engineScrollY": 22,
+          "gridX": -39,
+          "gridY": 22,
+          "renderStamp": 7,
+          "png": "artifacts/t1/recording-before/mobile/001.png",
+          "sha256": "762a232b9a8e79ca6f05e93e9ec7f5c57ebeb83d251c900d794bdb943934ae3a"
+        },
+        {
+          "index": 2,
+          "requested": [
+            78,
+            43
+          ],
+          "engineScrollX": 78,
+          "engineScrollY": 43,
+          "gridX": -78,
+          "gridY": 43,
+          "renderStamp": 9,
+          "png": "artifacts/t1/recording-before/mobile/002.png",
+          "sha256": "f17e2676d66286223f0e567f7eef41084707d8d9c3f86fe85f296220bff77470"
+        },
+        {
+          "index": 3,
+          "requested": [
+            117,
+            65
+          ],
+          "engineScrollX": 117,
+          "engineScrollY": 65,
+          "gridX": -117,
+          "gridY": 65,
+          "renderStamp": 11,
+          "png": "artifacts/t1/recording-before/mobile/003.png",
+          "sha256": "5641664b77816d686effeb5b27e01c4cf17d69c5184616fb01be296fa5cc97a6"
+        },
+        {
+          "index": 4,
+          "requested": [
+            157,
+            87
+          ],
+          "engineScrollX": 157,
+          "engineScrollY": 87,
+          "gridX": -157,
+          "gridY": 87,
+          "renderStamp": 13,
+          "png": "artifacts/t1/recording-before/mobile/004.png",
+          "sha256": "4dc80ac775121ac8412d9bfc1df69bc627e4b90b349ef11d4addde2ebab72dc9"
+        },
+        {
+          "index": 5,
+          "requested": [
+            196,
+            109
+          ],
+          "engineScrollX": 196,
+          "engineScrollY": 109,
+          "gridX": -196,
+          "gridY": 109,
+          "renderStamp": 15,
+          "png": "artifacts/t1/recording-before/mobile/005.png",
+          "sha256": "caf372790070fd3711c6270ec7db4f491dd5852f20399055f2988d8e9be177a7"
+        },
+        {
+          "index": 6,
+          "requested": [
+            235,
+            130
+          ],
+          "engineScrollX": 235,
+          "engineScrollY": 130,
+          "gridX": -235,
+          "gridY": 130,
+          "renderStamp": 17,
+          "png": "artifacts/t1/recording-before/mobile/006.png",
+          "sha256": "f1f1ecf9fb5ca462e7b6fa7493248d0e68c72559b93ea195d083c808ef8c0b17"
+        },
+        {
+          "index": 7,
+          "requested": [
+            274,
+            152
+          ],
+          "engineScrollX": 274,
+          "engineScrollY": 152,
+          "gridX": -274,
+          "gridY": 152,
+          "renderStamp": 19,
+          "png": "artifacts/t1/recording-before/mobile/007.png",
+          "sha256": "51a5fc797fe946f52ebd535ab75aa58fc90560cfcc43437b4b54806d95d8eead"
+        },
+        {
+          "index": 8,
+          "requested": [
+            313,
+            174
+          ],
+          "engineScrollX": 313,
+          "engineScrollY": 174,
+          "gridX": -313,
+          "gridY": 174,
+          "renderStamp": 21,
+          "png": "artifacts/t1/recording-before/mobile/008.png",
+          "sha256": "caa2c3daa2031c6a2fb746be67ad32ceedff27c47e69beb7cf7fa5b63478e2c2"
+        },
+        {
+          "index": 9,
+          "requested": [
+            352,
+            196
+          ],
+          "engineScrollX": 352,
+          "engineScrollY": 196,
+          "gridX": -352,
+          "gridY": 196,
+          "renderStamp": 23,
+          "png": "artifacts/t1/recording-before/mobile/009.png",
+          "sha256": "a3619e1ed15869497a3d7f7dad658fee00524f35807721047b19bbb80624c704"
+        },
+        {
+          "index": 10,
+          "requested": [
+            391,
+            217
+          ],
+          "engineScrollX": 391,
+          "engineScrollY": 217,
+          "gridX": -391,
+          "gridY": 217,
+          "renderStamp": 25,
+          "png": "artifacts/t1/recording-before/mobile/010.png",
+          "sha256": "cd17579bf14153a62a4867b2746a1e19170e47052a795ef3de639ddd6fe6b837"
+        },
+        {
+          "index": 11,
+          "requested": [
+            430,
+            239
+          ],
+          "engineScrollX": 430,
+          "engineScrollY": 239,
+          "gridX": -430,
+          "gridY": 239,
+          "renderStamp": 27,
+          "png": "artifacts/t1/recording-before/mobile/011.png",
+          "sha256": "d3bc718f5f3511d25da2a86ff580cb29af8e034b60e540f2da569ec91de84383"
+        },
+        {
+          "index": 12,
+          "requested": [
+            470,
+            261
+          ],
+          "engineScrollX": 470,
+          "engineScrollY": 261,
+          "gridX": -470,
+          "gridY": 261,
+          "renderStamp": 29,
+          "png": "artifacts/t1/recording-before/mobile/012.png",
+          "sha256": "8402a91423990b2d926459dca726ad6d0d76e705e99cbcce8f1f0d3c3c5237a4"
+        },
+        {
+          "index": 13,
+          "requested": [
+            509,
+            283
+          ],
+          "engineScrollX": 509,
+          "engineScrollY": 283,
+          "gridX": -509,
+          "gridY": 283,
+          "renderStamp": 31,
+          "png": "artifacts/t1/recording-before/mobile/013.png",
+          "sha256": "87dd4f487ae7366d8b356a0f6dfc540549d615210fabeb62481653ec14dcf7ba"
+        },
+        {
+          "index": 14,
+          "requested": [
+            548,
+            304
+          ],
+          "engineScrollX": 548,
+          "engineScrollY": 304,
+          "gridX": -548,
+          "gridY": 304,
+          "renderStamp": 33,
+          "png": "artifacts/t1/recording-before/mobile/014.png",
+          "sha256": "e710cec8da22be8aa649b807aff85943fdfe504eb425813b4b4798bc44862d7b"
+        },
+        {
+          "index": 15,
+          "requested": [
+            587,
+            326
+          ],
+          "engineScrollX": 587,
+          "engineScrollY": 326,
+          "gridX": -587,
+          "gridY": 326,
+          "renderStamp": 35,
+          "png": "artifacts/t1/recording-before/mobile/015.png",
+          "sha256": "3886ee55f6d09001a4189e5d61fa5d6e945de211f5ce1352dbe81b4d1872be94"
+        },
+        {
+          "index": 16,
+          "requested": [
+            626,
+            348
+          ],
+          "engineScrollX": 626,
+          "engineScrollY": 348,
+          "gridX": -626,
+          "gridY": 348,
+          "renderStamp": 37,
+          "png": "artifacts/t1/recording-before/mobile/016.png",
+          "sha256": "d9dcbeeca4e58d4d158c13c748afae2657a23dc438466ee8caba36034e41cf8d"
+        },
+        {
+          "index": 17,
+          "requested": [
+            665,
+            370
+          ],
+          "engineScrollX": 665,
+          "engineScrollY": 370,
+          "gridX": -665,
+          "gridY": 370,
+          "renderStamp": 39,
+          "png": "artifacts/t1/recording-before/mobile/017.png",
+          "sha256": "b728885fd663a73ee5c90f409d82176d9deac953137fcfe8a7ce981494277a82"
+        },
+        {
+          "index": 18,
+          "requested": [
+            704,
+            391
+          ],
+          "engineScrollX": 704,
+          "engineScrollY": 391,
+          "gridX": -704,
+          "gridY": 391,
+          "renderStamp": 41,
+          "png": "artifacts/t1/recording-before/mobile/018.png",
+          "sha256": "05072d224678eaa201cea58612a2fca2366b97c08955daea0997e7f037593441"
+        },
+        {
+          "index": 19,
+          "requested": [
+            743,
+            413
+          ],
+          "engineScrollX": 743,
+          "engineScrollY": 413,
+          "gridX": -743,
+          "gridY": 413,
+          "renderStamp": 43,
+          "png": "artifacts/t1/recording-before/mobile/019.png",
+          "sha256": "a74a59cd50e08548ffc8603cd0ec5d2fe6c4a1a47ad5093e62633d1158ef2423"
+        },
+        {
+          "index": 20,
+          "requested": [
+            783,
+            435
+          ],
+          "engineScrollX": 783,
+          "engineScrollY": 435,
+          "gridX": -783,
+          "gridY": 435,
+          "renderStamp": 45,
+          "png": "artifacts/t1/recording-before/mobile/020.png",
+          "sha256": "a832e4d67eda1b1894ecc8edd889452b82a02e135f9ec0abe93f72171f1d4a30"
+        },
+        {
+          "index": 21,
+          "requested": [
+            822,
+            457
+          ],
+          "engineScrollX": 822,
+          "engineScrollY": 457,
+          "gridX": -822,
+          "gridY": 457,
+          "renderStamp": 47,
+          "png": "artifacts/t1/recording-before/mobile/021.png",
+          "sha256": "e1b5b08e1f9d4c49630717985bf5fac129e859080cd06c2e8e472449d01f9a53"
+        },
+        {
+          "index": 22,
+          "requested": [
+            861,
+            478
+          ],
+          "engineScrollX": 861,
+          "engineScrollY": 478,
+          "gridX": -861,
+          "gridY": 478,
+          "renderStamp": 49,
+          "png": "artifacts/t1/recording-before/mobile/022.png",
+          "sha256": "6d8e87009b27c940f081898b38b9d84c9f8aab1df96543bf2403febdf6546cdb"
+        },
+        {
+          "index": 23,
+          "requested": [
+            900,
+            500
+          ],
+          "engineScrollX": 900,
+          "engineScrollY": 500,
+          "gridX": -900,
+          "gridY": 500,
+          "renderStamp": 51,
+          "png": "artifacts/t1/recording-before/mobile/023.png",
+          "sha256": "e0e5710c41f4f00d82057d8cec6ce25e8208f46beff4b545de7eb5d51cfade91"
+        }
+      ]
+    }
+  ],
+  "assertions": [
+    {
+      "assertion": "desktop: at least 24 frames",
+      "pass": true,
+      "detail": 24
+    },
+    {
+      "assertion": "desktop: at least 12 unique frames",
+      "pass": true,
+      "detail": {
+        "unique": 24,
+        "of": 24
+      }
+    },
+    {
+      "assertion": "desktop: first and last frame differ",
+      "pass": true,
+      "detail": {
+        "first": "613317cc0a309d83",
+        "last": "7571b7dffe77445c"
+      }
+    },
+    {
+      "assertion": "desktop: the engine's own scroll moved, not just the request",
+      "pass": true,
+      "detail": {
+        "distinctEngineScrollX": 24
+      }
+    },
+    {
+      "assertion": "mobile: at least 24 frames",
+      "pass": true,
+      "detail": 24
+    },
+    {
+      "assertion": "mobile: at least 12 unique frames",
+      "pass": true,
+      "detail": {
+        "unique": 24,
+        "of": 24
+      }
+    },
+    {
+      "assertion": "mobile: first and last frame differ",
+      "pass": true,
+      "detail": {
+        "first": "8b8e2770d53a2d93",
+        "last": "e0e5710c41f4f00d"
+      }
+    },
+    {
+      "assertion": "mobile: the engine's own scroll moved, not just the request",
+      "pass": true,
+      "detail": {
+        "distinctEngineScrollX": 24
+      }
+    },
+    {
+      "assertion": "no page errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "passed": 9,
+  "total": 9,
+  "verdict": "PASS"
+}

@@ -17,6 +17,13 @@ export type GridQaV4 = {
   setAdaptiveQuality: (enabled: boolean) => void;
   getAdaptiveState: () => Record<string, unknown>;
   setDpr: (value: number) => void;
+  /**
+   * Draw one frame now. QA calls this after any state change so a paused page
+   * yields a fresh canvas synchronously instead of waiting for a frame.
+   */
+  renderOnce: () => number;
+  /** Monotonic count of frames drawn through `renderOnce`. */
+  getRenderStamp: () => number;
   setPointer: (x: number, y: number) => void;
   setDebugMode: (mode: V4DebugMode) => void;
   setShellMode: (mode: V4ShellMode) => void;
@@ -27,6 +34,10 @@ export type GridQaV4 = {
   getCardQuads: () => Array<{ i: number; j: number; slotIndex: number; quad: number[][] }>;
   /** Source-exact per-slot engine truth, for the source-contract gate. */
   getSourceExactSlots: () => Array<Record<string, unknown>>;
+  /** The real glass mesh bounding box, scale and projected corners. */
+  getGlassMeshTruth: () => Record<string, unknown>;
+  /** Which render layers are actually visible, read off the scene. */
+  getRenderLayerState: () => Record<string, unknown>;
   getMetrics: () => Record<string, unknown>;
   getAssetState: () => Record<string, unknown>;
   getPoolState: () => Record<string, unknown>;
@@ -72,6 +83,8 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
       setAdaptiveQuality: (enabled) => app.setAdaptiveQuality(enabled),
       getAdaptiveState: () => app.getAdaptiveState(),
       setDpr: (value) => app.setDpr(value),
+      renderOnce: () => app.renderOnce(),
+      getRenderStamp: () => app.getRenderStamp(),
       setPointer: (x, y) => app.setPointer(x, y),
       setDebugMode: (mode) => app.setDebugMode(mode),
       setShellMode: (mode) => app.setShellMode(mode),
@@ -81,6 +94,8 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
       getV4State: () => app.getV4State(),
       getCardQuads: () => app.getCardQuads(),
       getSourceExactSlots: () => app.getSourceExactSlots(),
+      getGlassMeshTruth: () => app.getGlassMeshTruth(),
+      getRenderLayerState: () => app.getRenderLayerState(),
       getMetrics: () => app.getMetrics(),
       getAssetState: () => app.getAssetState(),
       getPoolState: () => app.getPoolState(),

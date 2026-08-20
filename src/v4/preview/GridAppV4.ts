@@ -295,20 +295,53 @@ export class GridAppV4 {
       this.grid.setMediaVisible(layers.media);
     }
     if (layers.labels !== undefined) this.labels.setVisible(layers.labels);
+    this.renderOnce();
   }
 
   private glassLayer = true;
   private mediaLayer = true;
 
+  /**
+   * QA only. What the render layers ARE, read off the scene.
+   *
+   * A capture that says "glass off" has to be able to show that the glass
+   * meshes were actually invisible when the pixels were taken, and which draw
+   * path produced them. Reporting the flags the setter just wrote would prove
+   * only that the setter ran.
+   */
+  getRenderLayerState(): Record<string, unknown> {
+    const active = this.grid.slots.filter((s) => s.active !== false);
+    return {
+      requested: { glass: this.glassLayer, media: this.mediaLayer,
+                   labels: this.labels ? this.labels.isVisible() : null },
+      actual: {
+        activeSlots: active.length,
+        glassMeshesVisible: active.filter((s) => s.glass.visible).length,
+        reflectionShellsVisible: active.filter((s) => s.shell?.visible).length,
+        mediaMeshesVisible: active.filter((s) => s.media?.visible).length,
+        labelLayerDisplay: this.labels ? (this.labels.isVisible() ? "block" : "none") : null,
+        labelElementsShown: this.labels ? this.labels.visibleCount() : null,
+      },
+      drawPath: this.layoutOnly
+        ? "foundation: scene straight to screen"
+        : this.glassLayer
+          ? "two-pass scene-colour pipeline (glass samples the scene colour target)"
+          : "direct scene render: the two-pass pipeline re-asserts glass-on every "
+            + "frame, so a glass-free frame cannot come out of it",
+      quality: this.grid.getPoolState().quality,
+      renderStamp: this.renderStamp,
+    };
+  }
+
   setPointer(x: number, y: number): void {
     this.motion.setPointer(x, y);
+    this.renderOnce();
   }
 
   setOffset(x: number, y: number): void {
     this.motion.scrollX = x;
     this.motion.scrollY = y;
-    this.grid.update(this.gridX(x), this.gridY(y));
-    this.applyPose();
+    this.renderOnce();
   }
 
   setVelocity(x: number, y: number): void {
@@ -325,6 +358,7 @@ export class GridAppV4 {
    */
   setAdaptiveQuality(enabled: boolean): void {
     this.adaptiveQuality = enabled;
+    this.renderOnce();
   }
 
   private adaptiveQuality = true;
@@ -348,12 +382,14 @@ export class GridAppV4 {
     this.grid.setQuality(level);
     this.pipeline.setQuality(level);
     this.grid.setSceneUvScale(this.pipeline.sceneUvScale);
+    this.renderOnce();
   }
 
   setDpr(value: number): void {
     this.renderer.setDpr(value);
     this.applyPipelineSize();
     this.labels.setSize(window.innerWidth, window.innerHeight);
+    this.renderOnce();
   }
 
   setDebugMode(mode: V4DebugMode): void {
@@ -385,8 +421,7 @@ export class GridAppV4 {
   reset(): void {
     this.motion.reset();
     this.elapsed = 0;
-    this.grid.update(this.gridX(0), this.gridY(0));
-    this.applyPose();
+    this.renderOnce();
   }
 
   getState(): Record<string, unknown> {
@@ -533,6 +568,41 @@ export class GridAppV4 {
     return out;
   }
 
+  /**
+   * QA only. The real glass mesh, measured -- not the frame that produced it.
+   *
+   * `getSourceExactSlots` projects the LAYOUT FRAME's half-extents, so it
+   * reports what the card was asked to be. A quality step rebuilds the glass
+   * geometry, and the question there is what the card actually became: this
+   * reads the geometry's own bounding box, takes its corners through the mesh's
+   * world matrix and projects those.
+   */
+  getGlassMeshTruth(): Record<string, unknown> {
+    const handle = this.renderer.handle;
+    const truth = this.grid.getGlassGeometryTruth();
+    if (!handle) return { ...truth, slots: [] };
+    this.applyPose();
+    this.grid.root.updateWorldMatrix(true, true);
+    const [minX, minY] = truth.boundingBoxLocal.min;
+    const [maxX, maxY] = truth.boundingBoxLocal.max;
+    const local: Array<[number, number]> = [
+      [minX, maxY], [maxX, maxY], [maxX, minY], [minX, minY],
+    ];
+    const slots: Array<Record<string, unknown>> = [];
+    const count = this.sourceExact ? this.grid.activeSlotCount : this.grid.slots.length;
+    for (let n = 0; n < count; n += 1) {
+      const mesh = this.grid.slots[n].glass;
+      const cornersPx = local.map(([x, y]) => {
+        const v = new Vector3(x, y, 0);
+        mesh.localToWorld(v);
+        v.project(handle.camera);
+        return [(v.x + 1) * 0.5 * window.innerWidth, (1 - v.y) * 0.5 * window.innerHeight];
+      });
+      slots.push({ slotIndex: this.grid.slots[n].slotIndex, cornersPx });
+    }
+    return { ...truth, slots };
+  }
+
   /** V4-specific evidence for the Round 1 engineering gate. */
   getV4State(): Record<string, unknown> {
     const asset = this.grid.getAssetState();
@@ -557,6 +627,12 @@ export class GridAppV4 {
       rowOrigin: rowOrigin(window.innerWidth, window.innerHeight, this.motion.scrollY,
                            effectiveCellH(this.grid.composition)),
       catalogRowAtCentre: this.catalogRowAtCentre(),
+      // Engine-side scroll, so a recording can log where the grid ACTUALLY is
+      // rather than the offset it asked for.
+      scrollX: this.motion.scrollX,
+      scrollY: this.motion.scrollY,
+      gridX: this.gridX(),
+      gridY: this.gridY(),
       ...this.runtimeTruth(),
       restOffset: restOffset(window.innerWidth, window.innerHeight, this.composition,
                              this.verticalMode, this.phaseModel),
@@ -731,6 +807,12 @@ export class GridAppV4 {
       textures: 0,
       backend: this.renderer.handle.backend,
       quality: this.quality.level,
+      /** Frames drawn by the render LOOP. Proof the loop is alive. */
+      renderedFrames: this.renderedFrames,
+      /** Frames drawn by an explicit `renderOnce`. Proof the hook path ran. */
+      renderStamp: this.renderStamp,
+      adaptiveSampler: this.adaptiveQuality,
+      motionPaused: this.motion.paused,
     };
   }
 
@@ -740,6 +822,38 @@ export class GridAppV4 {
 
   getAssetState() {
     return this.grid.getAssetState();
+  }
+
+  private renderStamp = 0;
+
+  /**
+   * Draw one frame NOW, synchronously.
+   *
+   * Every QA hook that changes what the page should look like ends with this.
+   * A paused capture used to depend on "some later frame will repaint" -- and
+   * when the tick was returning early that frame never arrived, so a screenshot
+   * taken after `setRenderLayers` showed the state BEFORE it. Waiting on a frame
+   * that may not come is not a capture protocol.
+   *
+   * The returned stamp is the proof that this path ran. The live loop repaints
+   * too, so an unchanged canvas hash alone cannot distinguish "the explicit
+   * redraw happened" from "the loop happened to redraw anyway"; the stamp can.
+   */
+  renderOnce(): number {
+    const handle = this.renderer.handle;
+    if (!handle) return this.renderStamp;
+    this.grid.update(this.gridX(), this.gridY());
+    this.applyPose();
+    if (!this.layoutOnly) this.labels.sync(this.gridAsV3(), handle.camera);
+    handle.renderer.info.reset?.();
+    this.drawFrame();
+    this.renderStamp += 1;
+    return this.renderStamp;
+  }
+
+  /** QA only. Monotonic count of frames drawn through `renderOnce`. */
+  getRenderStamp(): number {
+    return this.renderStamp;
   }
 
   /**
@@ -812,18 +926,24 @@ export class GridAppV4 {
     if (!this.motion.paused) this.elapsed += dt;
     this.frameTimes.push(dt * 1000);
     if (this.frameTimes.length > 180) this.frameTimes.shift();
-    // Skip the sampler entirely when adaptive is off. Calling it and ignoring
-    // the answer is not the same thing: sample() mutates its own `level`, so the
-    // reported quality would drift away from the quality the grid is actually
-    // using.
-    if (!this.adaptiveQuality) return;
-    const { level, changed } = this.quality.sample(dt * 1000, now);
-    if (changed) {
-      this.adaptiveChanges.push({
-        atSeconds: this.startedAt ? (performance.now() - this.startedAt) / 1000 : 0,
-        level,
-      });
-      this.setQuality(level);
+    // Only the SAMPLER is conditional. Turning adaptive quality off is a
+    // harness capability for holding a level still; it must never stop the
+    // page from stepping and drawing. The previous form was `if
+    // (!this.adaptiveQuality) return;`, which returned out of the whole tick
+    // and froze motion, recycling, pose, labels and the canvas along with it.
+    //
+    // The sampler is skipped rather than called-and-ignored because sample()
+    // mutates its own `level`: reading it and discarding the answer would drift
+    // the reported quality away from the quality the grid is actually running.
+    if (this.adaptiveQuality) {
+      const { level, changed } = this.quality.sample(dt * 1000, now);
+      if (changed) {
+        this.adaptiveChanges.push({
+          atSeconds: this.startedAt ? (performance.now() - this.startedAt) / 1000 : 0,
+          level,
+        });
+        this.setQuality(level);
+      }
     }
     this.motion.step(dt);
     this.grid.update(this.gridX(), this.gridY());

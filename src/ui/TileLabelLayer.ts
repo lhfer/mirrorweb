@@ -165,6 +165,18 @@ export class TileLabelLayer {
     this.renderer.domElement.style.display = visible ? "block" : "none";
   }
 
+  /** Read back, from the DOM, rather than from a flag the setter also wrote. */
+  isVisible(): boolean {
+    return this.renderer.domElement.style.display !== "none";
+  }
+
+  /** How many label elements are currently drawable. */
+  visibleCount(): number {
+    let n = 0;
+    for (const o of this.objects) if (o.element.style.visibility !== "hidden") n += 1;
+    return n;
+  }
+
   dispose() {
     this.clear();
     this.renderer.domElement.remove();

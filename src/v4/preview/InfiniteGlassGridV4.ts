@@ -476,6 +476,49 @@ export class InfiniteGlassGridV4 {
     if (this.sourceExact && this.frame) this.setFrame(this.frame);
   }
 
+  /**
+   * QA only. What the glass MESH actually is, read off the mesh.
+   *
+   * A quality step rebuilds this geometry, so reading the layout frame back
+   * afterwards proves nothing about the rebuild: the frame is the input, not
+   * the result. This reports the geometry's own bounding box, the scale each
+   * mesh actually carries, and therefore the card's real world footprint.
+   */
+  getGlassGeometryTruth() {
+    const g = this.glassGeometry;
+    if (!g.boundingBox) g.computeBoundingBox();
+    const bb = g.boundingBox!;
+    const sizeX = bb.max.x - bb.min.x;
+    const sizeY = bb.max.y - bb.min.y;
+    const sizeZ = bb.max.z - bb.min.z;
+    const slot = this.slots.find((s) => s.active !== false) ?? this.slots[0];
+    const scale = slot
+      ? [slot.glass.scale.x, slot.glass.scale.y, slot.glass.scale.z]
+      : [1, 1, 1];
+    return {
+      quality: this.quality,
+      geometryUuid: g.uuid,
+      vertexCount: g.getAttribute("position")?.count ?? 0,
+      indexCount: g.getIndex()?.count ?? 0,
+      boundingBoxLocal: {
+        min: [bb.min.x, bb.min.y, bb.min.z],
+        max: [bb.max.x, bb.max.y, bb.max.z],
+        size: [sizeX, sizeY, sizeZ],
+      },
+      /** Local aspect of the built outline, before any mesh scale. */
+      geometryAspect: sizeY ? sizeX / sizeY : 0,
+      meshScale: scale,
+      /** The card's real footprint in world units: geometry x scale. */
+      worldCardWidth: sizeX * scale[0],
+      worldCardHeight: sizeY * scale[1],
+      worldCardAspect: sizeY * scale[1] ? (sizeX * scale[0]) / (sizeY * scale[1]) : 0,
+      allSlotsShareGeometry: this.slots.every((s) => s.glass.geometry === g),
+      allSlotsShareScale: this.slots
+        .filter((s) => s.active !== false)
+        .every((s) => s.glass.scale.x === scale[0] && s.glass.scale.y === scale[1]),
+    };
+  }
+
   getPoolState() {
     if (this.foundation) {
       return {
