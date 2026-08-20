@@ -777,20 +777,20 @@
       "h": 900
     },
     "voidMask": {
-      "mode": "flat",
-      "rMax": 8,
-      "gMax": 8,
-      "bMin": -1,
-      "bMax": 8,
-      "bOverG": 0.0
+      "mode": "navy",
+      "rMax": 3,
+      "gMax": 10,
+      "bMin": 13,
+      "bMax": 42,
+      "bOverG": 2.2
     },
     "bandVoidMask": {
-      "mode": "flat",
-      "rMax": 8,
-      "gMax": 8,
-      "bMin": -1,
-      "bMax": 8,
-      "bOverG": 0.0
+      "mode": "navy-bands",
+      "rMax": 3,
+      "gMax": 10,
+      "bMin": 4,
+      "bMax": 42,
+      "bOverG": 1.5
     },
     "horizontalGutterBands": [
       {

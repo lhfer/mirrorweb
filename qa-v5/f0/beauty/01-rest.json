@@ -3,7 +3,7 @@
     "ready": true,
     "optics": "v4",
     "backend": "webgpu",
-    "quality": "high",
+    "quality": "medium",
     "debug": "off",
     "v4Debug": "beauty",
     "v4Shell": "energy-controlled",
@@ -11,7 +11,7 @@
     "glass": "v4-volume",
     "samplesScene": true,
     "normalPathDirectMedia": false,
-    "elapsed": 2.6581000000000006,
+    "elapsed": 3.0119000000000007,
     "scrollX": 0,
     "scrollY": 0,
     "velocityX": 0,
@@ -47,6 +47,7 @@
       "cols": 9,
       "rows": 9
     },
+    "compositionScale": 1,
     "landmarks": [
       {
         "i": -4,

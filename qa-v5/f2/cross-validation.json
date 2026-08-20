@@ -1,0 +1,139 @@
+{
+  "landscape": {
+    "model": "S = width / 1440",
+    "fittedGain": 1.0005,
+    "leaveOneOut": [
+      {
+        "viewport": "1000x700",
+        "heldOutGain": 0.9988,
+        "gainFromOthers": 1.0007,
+        "predictedScale": 0.69491,
+        "measuredScale": 0.6936,
+        "errorPct": 0.189
+      },
+      {
+        "viewport": "1100x720",
+        "heldOutGain": 0.9991,
+        "gainFromOthers": 1.0006,
+        "predictedScale": 0.76438,
+        "measuredScale": 0.7632,
+        "errorPct": 0.154
+      },
+      {
+        "viewport": "1366x768",
+        "heldOutGain": 1.0,
+        "gainFromOthers": 1.0005,
+        "predictedScale": 0.94913,
+        "measuredScale": 0.9486,
+        "errorPct": 0.056
+      },
+      {
+        "viewport": "1440x700",
+        "heldOutGain": 1.0026,
+        "gainFromOthers": 1.0003,
+        "predictedScale": 1.00029,
+        "measuredScale": 1.0026,
+        "errorPct": -0.231
+      },
+      {
+        "viewport": "1440x900",
+        "heldOutGain": 0.9994,
+        "gainFromOthers": 1.0006,
+        "predictedScale": 1.00061,
+        "measuredScale": 0.9994,
+        "errorPct": 0.121
+      },
+      {
+        "viewport": "1536x864",
+        "heldOutGain": 0.9958,
+        "gainFromOthers": 1.001,
+        "predictedScale": 1.0677,
+        "measuredScale": 1.0622,
+        "errorPct": 0.518
+      },
+      {
+        "viewport": "1920x1080",
+        "heldOutGain": 1.0027,
+        "gainFromOthers": 1.0003,
+        "predictedScale": 1.33371,
+        "measuredScale": 1.3369,
+        "errorPct": -0.239
+      },
+      {
+        "viewport": "2560x1440",
+        "heldOutGain": 0.9997,
+        "gainFromOthers": 1.0006,
+        "predictedScale": 1.7788,
+        "measuredScale": 1.7773,
+        "errorPct": 0.084
+      },
+      {
+        "viewport": "844x390",
+        "heldOutGain": 1.0032,
+        "gainFromOthers": 1.0002,
+        "predictedScale": 0.58624,
+        "measuredScale": 0.588,
+        "errorPct": -0.299
+      },
+      {
+        "viewport": "926x428",
+        "heldOutGain": 1.0044,
+        "gainFromOthers": 1.0001,
+        "predictedScale": 0.64312,
+        "measuredScale": 0.6459,
+        "errorPct": -0.43
+      },
+      {
+        "viewport": "960x720",
+        "heldOutGain": 0.9998,
+        "gainFromOthers": 1.0006,
+        "predictedScale": 0.66705,
+        "measuredScale": 0.6665,
+        "errorPct": 0.082
+      }
+    ],
+    "worstErrorPct": 0.518
+  },
+  "portrait": {
+    "model": "S = 1.8975 * width / 1440",
+    "sweepFlatMinimum": [
+      1.895,
+      1.9
+    ],
+    "note": "Gain fitted on 414x896 / 430x932 / 360x800; 390x844 is the gated viewport and was held out of the fit entirely.",
+    "leaveOneOut": [
+      {
+        "viewport": "414x896",
+        "heldOutGain": 6.6,
+        "gainFromOthers": 6.9835,
+        "predictedScale": 2.00776,
+        "measuredScale": 1.8975,
+        "errorPct": 5.811
+      },
+      {
+        "viewport": "430x932",
+        "heldOutGain": 6.3544,
+        "gainFromOthers": 7.0654,
+        "predictedScale": 2.1098,
+        "measuredScale": 1.8975,
+        "errorPct": 11.189
+      },
+      {
+        "viewport": "360x800",
+        "heldOutGain": 7.59,
+        "gainFromOthers": 6.6535,
+        "predictedScale": 1.66338,
+        "measuredScale": 1.8975,
+        "errorPct": -12.338
+      },
+      {
+        "viewport": "390x844",
+        "heldOutGain": 7.0062,
+        "gainFromOthers": 6.8481,
+        "predictedScale": 1.8547,
+        "measuredScale": 1.8975,
+        "errorPct": -2.255
+      }
+    ]
+  }
+}

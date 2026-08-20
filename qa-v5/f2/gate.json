@@ -1,0 +1,543 @@
+{
+  "gate": {
+    "rowBandPctOfHeight": 2.0,
+    "gutterCentrePctOfWidth": 2.0,
+    "cardSizePct": 3.0,
+    "gutterWidthPctOfWidth": 0.6,
+    "rowCountMustMatch": true
+  },
+  "verdict": "FAIL",
+  "viewports": [
+    {
+      "id": "1100x720",
+      "viewport": [
+        1100.0,
+        720.0
+      ],
+      "targetBands": [
+        42.5,
+        359.5,
+        674.5
+      ],
+      "localBands": [
+        41.5,
+        359.0,
+        677.0
+      ],
+      "gutters": [
+        {
+          "row": 200.0,
+          "targetCentre": 134.0,
+          "localCentre": 133.0,
+          "dPx": -1.0
+        },
+        {
+          "row": 200.0,
+          "targetCentre": 549.5,
+          "localCentre": 549.5,
+          "dPx": 0.0
+        },
+        {
+          "row": 517.0,
+          "targetCentre": 335.0,
+          "localCentre": 335.5,
+          "dPx": 0.5
+        },
+        {
+          "row": 517.0,
+          "targetCentre": 764.0,
+          "localCentre": 763.5,
+          "dPx": -0.5
+        }
+      ],
+      "cards": [
+        {
+          "row": 200.0,
+          "targetW": 402.0,
+          "localW": 402.0,
+          "dPct": 0.0
+        },
+        {
+          "row": 517.0,
+          "targetW": 414.0,
+          "localW": 412.0,
+          "dPct": -0.483
+        }
+      ],
+      "checks": [
+        {
+          "check": "1100x720 invented bands",
+          "value": 0.0,
+          "limit": 0,
+          "unit": "bands",
+          "pass": true,
+          "detail": "local bands with no Target counterpart"
+        },
+        {
+          "check": "1100x720 missing bands",
+          "value": 0.0,
+          "limit": 0,
+          "unit": "bands",
+          "pass": true,
+          "detail": "target 3, local 3, matched 3"
+        },
+        {
+          "check": "1100x720 row band centres",
+          "value": 0.347,
+          "limit": 2.0,
+          "unit": "% of height",
+          "pass": true,
+          "detail": "worst 2.5 px over 3 bands"
+        },
+        {
+          "check": "1100x720 unmatched gutters",
+          "value": 0.0,
+          "limit": 1,
+          "unit": "gutters",
+          "pass": true,
+          "detail": "0 Target gutters with no local counterpart within 138 px"
+        },
+        {
+          "check": "1100x720 gutter centres",
+          "value": 0.091,
+          "limit": 2.0,
+          "unit": "% of width",
+          "pass": true,
+          "detail": "worst 1.0 px"
+        },
+        {
+          "check": "1100x720 gutter widths",
+          "value": 0.182,
+          "limit": 0.6,
+          "unit": "% of width",
+          "pass": true,
+          "detail": "worst 2.0 px"
+        },
+        {
+          "check": "1100x720 unclipped card width",
+          "value": 0.483,
+          "limit": 3.0,
+          "unit": "%",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "1100x720 unclipped card height",
+          "value": 0.476,
+          "limit": 3.0,
+          "unit": "%",
+          "pass": true,
+          "detail": ""
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "id": "1366x768",
+      "viewport": [
+        1366.0,
+        768.0
+      ],
+      "targetBands": [
+        383.5
+      ],
+      "localBands": [
+        383.0
+      ],
+      "gutters": [],
+      "cards": [],
+      "checks": [
+        {
+          "check": "1366x768 invented bands",
+          "value": 0.0,
+          "limit": 0,
+          "unit": "bands",
+          "pass": true,
+          "detail": "local bands with no Target counterpart"
+        },
+        {
+          "check": "1366x768 missing bands",
+          "value": 0.0,
+          "limit": 0,
+          "unit": "bands",
+          "pass": true,
+          "detail": "target 1, local 1, matched 1"
+        },
+        {
+          "check": "1366x768 row band centres",
+          "value": 0.065,
+          "limit": 2.0,
+          "unit": "% of height",
+          "pass": true,
+          "detail": "worst 0.5 px over 1 bands"
+        },
+        {
+          "check": "1366x768 unmatched gutters",
+          "value": 0.0,
+          "limit": 1,
+          "unit": "gutters",
+          "pass": true,
+          "detail": "0 Target gutters with no local counterpart within 171 px"
+        },
+        {
+          "check": "1366x768 gutter centres",
+          "value": 0.0,
+          "limit": 2.0,
+          "unit": "% of width",
+          "pass": true,
+          "detail": "worst 0.0 px"
+        },
+        {
+          "check": "1366x768 gutter widths",
+          "value": 0.0,
+          "limit": 0.6,
+          "unit": "% of width",
+          "pass": true,
+          "detail": "worst 0.0 px"
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440.0,
+        900.0
+      ],
+      "targetBands": [
+        34.5,
+        449.5,
+        862.0
+      ],
+      "localBands": [
+        33.0,
+        449.5,
+        865.5
+      ],
+      "gutters": [
+        {
+          "row": 240.5,
+          "targetCentre": 175.5,
+          "localCentre": 174.5,
+          "dPx": -1.0
+        },
+        {
+          "row": 240.5,
+          "targetCentre": 719.5,
+          "localCentre": 719.5,
+          "dPx": 0.0
+        },
+        {
+          "row": 655.5,
+          "targetCentre": 439.0,
+          "localCentre": 439.0,
+          "dPx": 0.0
+        },
+        {
+          "row": 655.5,
+          "targetCentre": 1000.0,
+          "localCentre": 1000.0,
+          "dPx": 0.0
+        }
+      ],
+      "cards": [
+        {
+          "row": 240.5,
+          "targetW": 526.0,
+          "localW": 525.0,
+          "dPct": -0.19
+        },
+        {
+          "row": 655.5,
+          "targetW": 542.0,
+          "localW": 540.0,
+          "dPct": -0.369
+        }
+      ],
+      "checks": [
+        {
+          "check": "1440x900 invented bands",
+          "value": 0.0,
+          "limit": 0,
+          "unit": "bands",
+          "pass": true,
+          "detail": "local bands with no Target counterpart"
+        },
+        {
+          "check": "1440x900 missing bands",
+          "value": 0.0,
+          "limit": 0,
+          "unit": "bands",
+          "pass": true,
+          "detail": "target 3, local 3, matched 3"
+        },
+        {
+          "check": "1440x900 row band centres",
+          "value": 0.389,
+          "limit": 2.0,
+          "unit": "% of height",
+          "pass": true,
+          "detail": "worst 3.5 px over 3 bands"
+        },
+        {
+          "check": "1440x900 unmatched gutters",
+          "value": 0.0,
+          "limit": 1,
+          "unit": "gutters",
+          "pass": true,
+          "detail": "0 Target gutters with no local counterpart within 180 px"
+        },
+        {
+          "check": "1440x900 gutter centres",
+          "value": 0.069,
+          "limit": 2.0,
+          "unit": "% of width",
+          "pass": true,
+          "detail": "worst 1.0 px"
+        },
+        {
+          "check": "1440x900 gutter widths",
+          "value": 0.278,
+          "limit": 0.6,
+          "unit": "% of width",
+          "pass": true,
+          "detail": "worst 4.0 px"
+        },
+        {
+          "check": "1440x900 unclipped card width",
+          "value": 0.369,
+          "limit": 3.0,
+          "unit": "%",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "1440x900 unclipped card height",
+          "value": 0.553,
+          "limit": 3.0,
+          "unit": "%",
+          "pass": true,
+          "detail": ""
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "id": "1920x1080",
+      "viewport": [
+        1920.0,
+        1080.0
+      ],
+      "targetBands": [
+        539.5
+      ],
+      "localBands": [
+        539.0
+      ],
+      "gutters": [],
+      "cards": [],
+      "checks": [
+        {
+          "check": "1920x1080 invented bands",
+          "value": 0.0,
+          "limit": 0,
+          "unit": "bands",
+          "pass": true,
+          "detail": "local bands with no Target counterpart"
+        },
+        {
+          "check": "1920x1080 missing bands",
+          "value": 0.0,
+          "limit": 0,
+          "unit": "bands",
+          "pass": true,
+          "detail": "target 1, local 1, matched 1"
+        },
+        {
+          "check": "1920x1080 row band centres",
+          "value": 0.046,
+          "limit": 2.0,
+          "unit": "% of height",
+          "pass": true,
+          "detail": "worst 0.5 px over 1 bands"
+        },
+        {
+          "check": "1920x1080 unmatched gutters",
+          "value": 0.0,
+          "limit": 1,
+          "unit": "gutters",
+          "pass": true,
+          "detail": "0 Target gutters with no local counterpart within 240 px"
+        },
+        {
+          "check": "1920x1080 gutter centres",
+          "value": 0.0,
+          "limit": 2.0,
+          "unit": "% of width",
+          "pass": true,
+          "detail": "worst 0.0 px"
+        },
+        {
+          "check": "1920x1080 gutter widths",
+          "value": 0.0,
+          "limit": 0.6,
+          "unit": "% of width",
+          "pass": true,
+          "detail": "worst 0.0 px"
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "id": "390x844",
+      "viewport": [
+        390.0,
+        844.0
+      ],
+      "targetBands": [
+        12.0,
+        206.0,
+        421.5,
+        637.0,
+        829.5
+      ],
+      "localBands": [
+        205.0,
+        421.5,
+        636.0
+      ],
+      "gutters": [
+        {
+          "row": 314.0,
+          "targetCentre": 50.0,
+          "localCentre": 50.0,
+          "dPx": 0.0
+        },
+        {
+          "row": 529.0,
+          "targetCentre": 194.5,
+          "localCentre": 194.5,
+          "dPx": 0.0
+        }
+      ],
+      "cards": [],
+      "checks": [
+        {
+          "check": "390x844 invented bands",
+          "value": 0.0,
+          "limit": 0,
+          "unit": "bands",
+          "pass": true,
+          "detail": "local bands with no Target counterpart"
+        },
+        {
+          "check": "390x844 missing bands",
+          "value": 2.0,
+          "limit": 0,
+          "unit": "bands",
+          "pass": false,
+          "detail": "target 5, local 3, matched 3"
+        },
+        {
+          "check": "390x844 row band centres",
+          "value": 0.118,
+          "limit": 2.0,
+          "unit": "% of height",
+          "pass": true,
+          "detail": "worst 1.0 px over 3 bands"
+        },
+        {
+          "check": "390x844 unmatched gutters",
+          "value": 0.0,
+          "limit": 1,
+          "unit": "gutters",
+          "pass": true,
+          "detail": "0 Target gutters with no local counterpart within 49 px"
+        },
+        {
+          "check": "390x844 gutter centres",
+          "value": 0.0,
+          "limit": 2.0,
+          "unit": "% of width",
+          "pass": true,
+          "detail": "worst 0.0 px"
+        },
+        {
+          "check": "390x844 gutter widths",
+          "value": 0.513,
+          "limit": 0.6,
+          "unit": "% of width",
+          "pass": true,
+          "detail": "worst 2.0 px"
+        }
+      ],
+      "verdict": "FAIL"
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844.0,
+        390.0
+      ],
+      "targetBands": [
+        194.5
+      ],
+      "localBands": [
+        194.0
+      ],
+      "gutters": [],
+      "cards": [],
+      "checks": [
+        {
+          "check": "844x390 invented bands",
+          "value": 0.0,
+          "limit": 0,
+          "unit": "bands",
+          "pass": true,
+          "detail": "local bands with no Target counterpart"
+        },
+        {
+          "check": "844x390 missing bands",
+          "value": 0.0,
+          "limit": 0,
+          "unit": "bands",
+          "pass": true,
+          "detail": "target 1, local 1, matched 1"
+        },
+        {
+          "check": "844x390 row band centres",
+          "value": 0.128,
+          "limit": 2.0,
+          "unit": "% of height",
+          "pass": true,
+          "detail": "worst 0.5 px over 1 bands"
+        },
+        {
+          "check": "844x390 unmatched gutters",
+          "value": 0.0,
+          "limit": 1,
+          "unit": "gutters",
+          "pass": true,
+          "detail": "0 Target gutters with no local counterpart within 106 px"
+        },
+        {
+          "check": "844x390 gutter centres",
+          "value": 0.0,
+          "limit": 2.0,
+          "unit": "% of width",
+          "pass": true,
+          "detail": "worst 0.0 px"
+        },
+        {
+          "check": "844x390 gutter widths",
+          "value": 0.0,
+          "limit": 0.6,
+          "unit": "% of width",
+          "pass": true,
+          "detail": "worst 0.0 px"
+        }
+      ],
+      "verdict": "PASS"
+    }
+  ]
+}
