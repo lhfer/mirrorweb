@@ -11,8 +11,8 @@ Last updated: 2026-08-20T12:37:02Z
 | Current HEAD | the commit that ships this file, `v5-f26-composition-evidence`. Resolve with `git rev-parse HEAD`. |
 | Preview v1 | `http://127.0.0.1:5280/?optics=v4&composition=v1` |
 | Preview candidate | `http://127.0.0.1:5280/?optics=v4&composition=v2&verticalMode=tangent&portraitLaw=p1` |
-| Evidence index | [`qa-v5/f26/README.md`](../../qa-v5/f26/README.md) |
-| Private review package | `qa-v5/private/f26-review.zip` (git-ignored) |
+| Evidence index | [`qa-v5/f26r/README.md`](../../qa-v5/f26r/README.md) (supersedes f26 for the candidate comparison) |
+| Private review package | `qa-v5/private/f26r-review.zip` (git-ignored) |
 
 ## Commit ledger
 
@@ -29,12 +29,13 @@ Last updated: 2026-08-20T12:37:02Z
 - F3's `radiusY = -2053.4` — a parabolic diagnostic seed.
 - F2.5's portrait law `1.9468 / -0.31` — **misses the held-out scale by +5.09%**. Replaced by the cross-validated `1.87715 / +0.12204`, still selectable as `?portraitLaw=p0`.
 - F2.5's rest-phase scale switch at 0.674 — **23/39 against the runtime law**. Replaced by the aspect rule.
+- **F2.6's `portrait-candidate-gates.json` — INVALID.** `portraitLaw` never reached the camera, so p0 and p1 rendered byte identically and that file compared one candidate with itself. Superseded by `qa-v5/f26r/portrait-candidate-gates.json`.
 
 ## Verdicts
 
 | | |
 | --- | --- |
-| Engineering result | **READY FOR EXPLICIT PRODUCT EXCEPTION REVIEW** |
+| Engineering result | **READY FOR PRODUCT REVIEW AFTER EVIDENCE CORRECTION** |
 | Absolute Target Gate | **FAIL** — 5/6. Passing: 1100x720, 1366x768, 1440x900, 1920x1080, 844x390. Failing: 390x844. |
 | Landscape phase sweep | 35/39 against the runtime law |
 | Long scroll runtime | **PASS** 12/12 |
@@ -59,6 +60,19 @@ Contract coverage:
   "f0Regression": "PASS"
 }
 ```
+
+## F2.6R correction
+
+A harness defect, not a visual one: `portraitLaw` reached `compositionScale` but
+not `viewZoom` or `effectivePerspectivePx`, so with the focal mechanism the
+camera used the default law. p0 and p1 rendered byte identically at 390x844.
+Fixed, and proven fixed by SHA, by projected card size (278.823 px against
+266.576 px) and by a scale derived from the live camera projection rather than
+from config. `runtime-law-proof.json` passes 12/12.
+
+Consequence for the record: **p0 and p1 tie at 5/6 on the gate.** F2.6 claimed
+p1 was better there. p1 still ships, on the cross-validation alone. No visual
+parameter changed in this round.
 
 ## Shipping parameters
 

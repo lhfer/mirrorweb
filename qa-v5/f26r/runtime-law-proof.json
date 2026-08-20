@@ -1,0 +1,348 @@
+{
+  "defectBeingProvenFixed": "portraitLaw reached compositionScale but not viewZoom or effectivePerspectivePx; with the focal mechanism the camera used the default law, so p0 and p1 rendered byte identically while their JSON differed.",
+  "cameraPitchTolerance": {
+    "absolute": 0.0001,
+    "why": "the analytic scale is focal/perspectivePx and assumes an unpitched camera; the live projection measures along the real view axis, which CAMERA.y = 8 makes 1000.032 long. A fixed 3.2e-5 relative difference."
+  },
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "390x844 (portrait): p0 and p1 PNGs differ",
+      "pass": true,
+      "detail": "p0 13bd864c5657dccf  p1 8a0c03285d23a7d8"
+    },
+    {
+      "check": "360x800 (portrait): p0 and p1 PNGs differ",
+      "pass": true,
+      "detail": "p0 baf465ee41ff2eda  p1 9744b4ef5198060e"
+    },
+    {
+      "check": "500x900 (portrait): p0 and p1 PNGs differ",
+      "pass": true,
+      "detail": "p0 8becb8598aa5811a  p1 20fedcba38dcaa99"
+    },
+    {
+      "check": "1440x900 (landscape control): p0 and p1 PNGs identical",
+      "pass": true,
+      "detail": "both 766a181d4b436ffa -- landscape ignores the portrait gain"
+    },
+    {
+      "check": "390x844: p0 and p1 projected card size differs",
+      "pass": true,
+      "detail": "p0 278.823 px, p1 266.576 px, delta 12.247"
+    },
+    {
+      "check": "p0: live camera scale matches its own law at every viewport",
+      "pass": true,
+      "detail": "max |derived - analytic| = 3.1998e-05"
+    },
+    {
+      "check": "p1: live camera scale matches its own law at every viewport",
+      "pass": true,
+      "detail": "max |derived - analytic| = 3.1998e-05"
+    },
+    {
+      "check": "p2: live camera scale matches its own law at every viewport",
+      "pass": true,
+      "detail": "max |derived - analytic| = 3.1998e-05"
+    },
+    {
+      "check": "p2 camera scale equals p1's",
+      "pass": true,
+      "detail": "p2 shares p1's scale law and differs only in vertical geometry"
+    },
+    {
+      "check": "p2 vertical geometry differs from p1",
+      "pass": true,
+      "detail": "390x844: 201.917 vs 202.250; 360x800: 186.238 vs 186.545; 500x900: 260.444 vs 260.875; 1440x900: 392.757 vs 393.575"
+    },
+    {
+      "check": "portrait law propagated on every capture",
+      "pass": true,
+      "detail": "requested == renderer == grid"
+    },
+    {
+      "check": "reported scale matches live camera projection on every capture (1e-4, camera pitch)",
+      "pass": true,
+      "detail": "config-reported scale is the scale the camera actually uses"
+    }
+  ],
+  "captures": [
+    {
+      "law": "p0",
+      "viewport": "390x844",
+      "png": "qa-v5/f26r/portrait-candidates/p0/local/390x844/01-rest.png",
+      "sha256": "13bd864c5657dccf309afe5db34e7d40db111f3ec0e748bfe7af67795506995b",
+      "requestedPortraitLaw": "p0",
+      "rendererPortraitLaw": "p0",
+      "gridPortraitLaw": "p0",
+      "effectiveFov": 77.00895831208466,
+      "effectivePerspectivePx": 530.4415876777252,
+      "reportedCompositionScale": 0.5304415876777252,
+      "scaleDerivedFromActualCameraProjection": 0.5304246143616345,
+      "analyticScaleForThisLaw": 0.53044159,
+      "derivedMinusAnalytic": -1.6973e-05,
+      "cardProjectedWidthPx": 278.823,
+      "cardProjectedHeightPx": 211.1933,
+      "runtimeTruthAssertions": {
+        "portraitLawPropagated": true,
+        "reportedScaleMatchesCameraProjection": true,
+        "scaleDeltaPx": -1.6973316090740376e-05,
+        "allPass": true
+      }
+    },
+    {
+      "law": "p0",
+      "viewport": "360x800",
+      "png": "qa-v5/f26r/portrait-candidates/p0/local/360x800/01-rest.png",
+      "sha256": "baf465ee41ff2eda5e462f9aa794007b4c89c7af1979f865617006a89ba4565d",
+      "requestedPortraitLaw": "p0",
+      "rendererPortraitLaw": "p0",
+      "gridPortraitLaw": "p0",
+      "effectiveFov": 78.38552087942519,
+      "effectivePerspectivePx": 490.5750000000001,
+      "reportedCompositionScale": 0.4905750000000001,
+      "scaleDerivedFromActualCameraProjection": 0.4905593023534833,
+      "analyticScaleForThisLaw": 0.490575,
+      "derivedMinusAnalytic": -1.5698e-05,
+      "cardProjectedWidthPx": 257.8674,
+      "cardProjectedHeightPx": 195.3206,
+      "runtimeTruthAssertions": {
+        "portraitLawPropagated": true,
+        "reportedScaleMatchesCameraProjection": true,
+        "scaleDeltaPx": -1.5697646516821262e-05,
+        "allPass": true
+      }
+    },
+    {
+      "law": "p0",
+      "viewport": "500x900",
+      "png": "qa-v5/f26r/portrait-candidates/p0/local/500x900/01-rest.png",
+      "sha256": "8becb8598aa5811a68ccfb8c8613b996b3ffd880cee569aab7bdab0c5ea689f1",
+      "requestedPortraitLaw": "p0",
+      "rendererPortraitLaw": "p0",
+      "gridPortraitLaw": "p0",
+      "effectiveFov": 67.77452975173793,
+      "effectivePerspectivePx": 669.9922839506173,
+      "reportedCompositionScale": 0.6699922839506173,
+      "scaleDerivedFromActualCameraProjection": 0.6699708452265841,
+      "analyticScaleForThisLaw": 0.66999228,
+      "derivedMinusAnalytic": -2.1439e-05,
+      "cardProjectedWidthPx": 352.1769,
+      "cardProjectedHeightPx": 266.7549,
+      "runtimeTruthAssertions": {
+        "portraitLawPropagated": true,
+        "reportedScaleMatchesCameraProjection": true,
+        "scaleDeltaPx": -2.14387240331515e-05,
+        "allPass": true
+      }
+    },
+    {
+      "law": "p0",
+      "viewport": "1440x900",
+      "png": "qa-v5/f26r/portrait-candidates/p0/local/1440x900/01-rest.png",
+      "sha256": "766a181d4b436ffaa00af849569b11c71fe29b012d83985d9dccf02b3b347945",
+      "requestedPortraitLaw": "p0",
+      "rendererPortraitLaw": "p0",
+      "gridPortraitLaw": "p0",
+      "effectiveFov": 48.45549063590834,
+      "effectivePerspectivePx": 1000,
+      "reportedCompositionScale": 1,
+      "scaleDerivedFromActualCameraProjection": 0.9999680015359182,
+      "analyticScaleForThisLaw": 1.0,
+      "derivedMinusAnalytic": -3.1998e-05,
+      "cardProjectedWidthPx": 542.0696,
+      "cardProjectedHeightPx": 392.7565,
+      "runtimeTruthAssertions": {
+        "portraitLawPropagated": true,
+        "reportedScaleMatchesCameraProjection": true,
+        "scaleDeltaPx": -3.1998464081750555e-05,
+        "allPass": true
+      }
+    },
+    {
+      "law": "p1",
+      "viewport": "390x844",
+      "png": "qa-v5/f26r/portrait-candidates/p1/local/390x844/01-rest.png",
+      "sha256": "8a0c03285d23a7d8f74ae0d0da6c0da6d690fd60ae8138d7cb035bbac7d800e0",
+      "requestedPortraitLaw": "p1",
+      "rendererPortraitLaw": "p1",
+      "gridPortraitLaw": "p1",
+      "effectiveFov": 79.52868009111124,
+      "effectivePerspectivePx": 507.1416163112166,
+      "reportedCompositionScale": 0.5071416163112165,
+      "scaleDerivedFromActualCameraProjection": 0.5071253885584227,
+      "analyticScaleForThisLaw": 0.50714162,
+      "derivedMinusAnalytic": -1.6228e-05,
+      "cardProjectedWidthPx": 266.5755,
+      "cardProjectedHeightPx": 201.9165,
+      "runtimeTruthAssertions": {
+        "portraitLawPropagated": true,
+        "reportedScaleMatchesCameraProjection": true,
+        "scaleDeltaPx": -1.622775279375155e-05,
+        "allPass": true
+      }
+    },
+    {
+      "law": "p1",
+      "viewport": "360x800",
+      "png": "qa-v5/f26r/portrait-candidates/p1/local/360x800/01-rest.png",
+      "sha256": "9744b4ef5198060e940a0ca9b27930aad8f3aa45780ce83d5135ff108b779f36",
+      "requestedPortraitLaw": "p1",
+      "rendererPortraitLaw": "p1",
+      "gridPortraitLaw": "p1",
+      "effectiveFov": 81.06986968112082,
+      "effectivePerspectivePx": 467.76199999999994,
+      "reportedCompositionScale": 0.46776199999999996,
+      "scaleDerivedFromActualCameraProjection": 0.4677470323344442,
+      "analyticScaleForThisLaw": 0.467762,
+      "derivedMinusAnalytic": -1.4968e-05,
+      "cardProjectedWidthPx": 245.8759,
+      "cardProjectedHeightPx": 186.2377,
+      "runtimeTruthAssertions": {
+        "portraitLawPropagated": true,
+        "reportedScaleMatchesCameraProjection": true,
+        "scaleDeltaPx": -1.4967665555754017e-05,
+        "allPass": true
+      }
+    },
+    {
+      "law": "p1",
+      "viewport": "500x900",
+      "png": "qa-v5/f26r/portrait-candidates/p1/local/500x900/01-rest.png",
+      "sha256": "20fedcba38dcaa99e3e2376260e989fdf7e2ea3ae0b1c7df43d860fa3da58425",
+      "requestedPortraitLaw": "p1",
+      "rendererPortraitLaw": "p1",
+      "gridPortraitLaw": "p1",
+      "effectiveFov": 69.05000478349622,
+      "effectivePerspectivePx": 654.1423611111111,
+      "reportedCompositionScale": 0.6541423611111111,
+      "scaleDerivedFromActualCameraProjection": 0.6541214295602648,
+      "analyticScaleForThisLaw": 0.65414236,
+      "derivedMinusAnalytic": -2.0932e-05,
+      "cardProjectedWidthPx": 343.8455,
+      "cardProjectedHeightPx": 260.4443,
+      "runtimeTruthAssertions": {
+        "portraitLawPropagated": true,
+        "reportedScaleMatchesCameraProjection": true,
+        "scaleDeltaPx": -2.0931550846370328e-05,
+        "allPass": true
+      }
+    },
+    {
+      "law": "p1",
+      "viewport": "1440x900",
+      "png": "qa-v5/f26r/portrait-candidates/p1/local/1440x900/01-rest.png",
+      "sha256": "766a181d4b436ffaa00af849569b11c71fe29b012d83985d9dccf02b3b347945",
+      "requestedPortraitLaw": "p1",
+      "rendererPortraitLaw": "p1",
+      "gridPortraitLaw": "p1",
+      "effectiveFov": 48.45549063590834,
+      "effectivePerspectivePx": 1000,
+      "reportedCompositionScale": 1,
+      "scaleDerivedFromActualCameraProjection": 0.9999680015359182,
+      "analyticScaleForThisLaw": 1.0,
+      "derivedMinusAnalytic": -3.1998e-05,
+      "cardProjectedWidthPx": 542.0696,
+      "cardProjectedHeightPx": 392.7565,
+      "runtimeTruthAssertions": {
+        "portraitLawPropagated": true,
+        "reportedScaleMatchesCameraProjection": true,
+        "scaleDeltaPx": -3.1998464081750555e-05,
+        "allPass": true
+      }
+    },
+    {
+      "law": "p2",
+      "viewport": "390x844",
+      "png": "qa-v5/f26r/portrait-candidates/p2/local/390x844/01-rest.png",
+      "sha256": "0c1a2f4a87fe8f175362c4bfafd4ace6ffff8bc8df94e7cc81c0e872b331a691",
+      "requestedPortraitLaw": "p2",
+      "rendererPortraitLaw": "p2",
+      "gridPortraitLaw": "p2",
+      "effectiveFov": 79.52868009111124,
+      "effectivePerspectivePx": 507.1416163112166,
+      "reportedCompositionScale": 0.5071416163112165,
+      "scaleDerivedFromActualCameraProjection": 0.5071253885584227,
+      "analyticScaleForThisLaw": 0.50714162,
+      "derivedMinusAnalytic": -1.6228e-05,
+      "cardProjectedWidthPx": 266.3859,
+      "cardProjectedHeightPx": 202.2501,
+      "runtimeTruthAssertions": {
+        "portraitLawPropagated": true,
+        "reportedScaleMatchesCameraProjection": true,
+        "scaleDeltaPx": -1.622775279375155e-05,
+        "allPass": true
+      }
+    },
+    {
+      "law": "p2",
+      "viewport": "360x800",
+      "png": "qa-v5/f26r/portrait-candidates/p2/local/360x800/01-rest.png",
+      "sha256": "9fc82d78f8db48550b6967eb1a815c61eab14574cbe8f315c67180a31bdae59a",
+      "requestedPortraitLaw": "p2",
+      "rendererPortraitLaw": "p2",
+      "gridPortraitLaw": "p2",
+      "effectiveFov": 81.06986968112082,
+      "effectivePerspectivePx": 467.76199999999994,
+      "reportedCompositionScale": 0.46776199999999996,
+      "scaleDerivedFromActualCameraProjection": 0.4677470323344442,
+      "analyticScaleForThisLaw": 0.467762,
+      "derivedMinusAnalytic": -1.4968e-05,
+      "cardProjectedWidthPx": 245.701,
+      "cardProjectedHeightPx": 186.5454,
+      "runtimeTruthAssertions": {
+        "portraitLawPropagated": true,
+        "reportedScaleMatchesCameraProjection": true,
+        "scaleDeltaPx": -1.4967665555754017e-05,
+        "allPass": true
+      }
+    },
+    {
+      "law": "p2",
+      "viewport": "500x900",
+      "png": "qa-v5/f26r/portrait-candidates/p2/local/500x900/01-rest.png",
+      "sha256": "b136f15b5770f3c49d1e31c88c14f1e5b52c64cbecf16df47f54b0692000dc6f",
+      "requestedPortraitLaw": "p2",
+      "rendererPortraitLaw": "p2",
+      "gridPortraitLaw": "p2",
+      "effectiveFov": 69.05000478349622,
+      "effectivePerspectivePx": 654.1423611111111,
+      "reportedCompositionScale": 0.6541423611111111,
+      "scaleDerivedFromActualCameraProjection": 0.6541214295602648,
+      "analyticScaleForThisLaw": 0.65414236,
+      "derivedMinusAnalytic": -2.0932e-05,
+      "cardProjectedWidthPx": 343.6008,
+      "cardProjectedHeightPx": 260.8746,
+      "runtimeTruthAssertions": {
+        "portraitLawPropagated": true,
+        "reportedScaleMatchesCameraProjection": true,
+        "scaleDeltaPx": -2.0931550846370328e-05,
+        "allPass": true
+      }
+    },
+    {
+      "law": "p2",
+      "viewport": "1440x900",
+      "png": "qa-v5/f26r/portrait-candidates/p2/local/1440x900/01-rest.png",
+      "sha256": "a315684ec337b981da5258547b5f4a7c67f8c55a1c05fbb03acd2e4a377d07bd",
+      "requestedPortraitLaw": "p2",
+      "rendererPortraitLaw": "p2",
+      "gridPortraitLaw": "p2",
+      "effectiveFov": 48.45549063590834,
+      "effectivePerspectivePx": 1000,
+      "reportedCompositionScale": 1,
+      "scaleDerivedFromActualCameraProjection": 0.9999680015359182,
+      "analyticScaleForThisLaw": 1.0,
+      "derivedMinusAnalytic": -3.1998e-05,
+      "cardProjectedWidthPx": 541.7055,
+      "cardProjectedHeightPx": 393.5747,
+      "runtimeTruthAssertions": {
+        "portraitLawPropagated": true,
+        "reportedScaleMatchesCameraProjection": true,
+        "scaleDeltaPx": -3.1998464081750555e-05,
+        "allPass": true
+      }
+    }
+  ]
+}

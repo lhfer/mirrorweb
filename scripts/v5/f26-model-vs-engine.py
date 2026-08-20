@@ -22,6 +22,10 @@ spec = importlib.util.spec_from_file_location("f25", HERE / "f25-joint-fit.py")
 F = importlib.util.module_from_spec(spec); spec.loader.exec_module(F)
 
 VPS = ["1100x720", "1366x768", "1440x900", "1920x1080", "390x844", "844x390"]
+# Portrait-law dimension. F2.6 verified depth/tangent x zero/half-cell x six
+# viewports, but every capture ran the same portrait law -- which is precisely
+# the axis the propagation defect lived on, so it could not have been caught.
+PORTRAIT_VPS = ["390x844", "360x800", "500x900"]
 
 
 def model_quads(vw, vh, params, mode, scale, phase_x, tile):
@@ -52,12 +56,18 @@ if __name__ == "__main__":
     out = Path(args.get("--out", "qa-v5/f26/model-vs-engine.json"))
     cfg = json.loads(Path(args.get("--params", "qa-v5/f26/params.json")).read_text())
     rows, worst_geom, worst_law = [], 0.0, 0.0
-    for mode in ("depth", "tangent"):
-        p = dict(cfg[mode])
-        for vp in VPS:
-            f = root / mode / vp / "01-rest.json"
+    combos = [(m, vp, None) for m in ("depth", "tangent") for vp in VPS]
+    combos += [("tangent", vp, law) for law in ("p0", "p1", "p2") for vp in PORTRAIT_VPS]
+    for mode, vp, law in combos:
+        if True:
+            p = dict(cfg[mode])
+            if law:
+                p = dict(p, **{k: v for k, v in cfg["laws"][law].items()})
+            f = (root / mode / vp / "01-rest.json" if law is None
+                 else Path(args["--laws-dir"]) / law / "local" / vp / "01-rest.json")
             if not f.exists():
-                rows.append({"mode": mode, "viewport": vp, "status": "MISSING_CAPTURE"})
+                rows.append({"mode": mode, "viewport": vp, "portraitLaw": law,
+                             "status": "MISSING_CAPTURE"})
                 continue
             data = json.loads(f.read_text())
             st, v4 = data["state"], data.get("v4state", {})
@@ -84,7 +94,7 @@ if __name__ == "__main__":
             if peak is not None:
                 worst_geom = max(worst_geom, peak)
             rows.append({
-                "mode": mode, "viewport": vp,
+                "mode": mode, "viewport": vp, "portraitLaw": law,
                 "restPhase": "half-cell" if eng_phase > 1 else "zero",
                 "engineCompositionScale": eng_scale, "modelCompositionScale": round(law_scale, 6),
                 "scaleErrorPct": round(d_scale / max(eng_scale, 1e-9) * 100, 6),
@@ -110,6 +120,7 @@ if __name__ == "__main__":
     print(f"geometry worst {worst_geom:.6f} px   law worst {worst_law:.6f}")
     for r in rows:
         if "maxCornerErrorPx" in r:
-            print(f"  {r['mode']:<8} {r['viewport']:<10} phase={r['restPhase']:<9} "
+            print(f"  {r['mode']:<8} {str(r.get('portraitLaw') or '-'):<3} {r['viewport']:<10} "
+                  f"phase={r['restPhase']:<9} "
                   f"cards={r['cardsCompared']:>3} maxCorner={r['maxCornerErrorPx']} "
                   f"scaleErr={r['scaleErrorPct']}%")
