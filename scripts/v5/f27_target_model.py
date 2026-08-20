@@ -14,19 +14,15 @@ from __future__ import annotations
 
 import math
 
-# The Target's grid configuration object, verbatim.
-CFG = {
-    "perspective": 1200.0,
-    "sphereRadius": 5000.0,
-    "planeAspect": 4.0 / 3.0,
-    "planeWidthRatio": 0.38,
-    "planeWidthRatioPortrait": 0.72,
-    "gapRatio": 0.045,
-    "referenceWidth": 1728.0,
-    "coverageMargin": 1.15,
-    "minCols": 4, "maxCols": 16,
-    "minRows": 4, "maxRows": 16,
-}
+# The Target's grid configuration, read from the single source contract rather
+# than copied. A second hand-written copy drifts silently; this one cannot.
+import importlib.util as _ilu
+from pathlib import Path as _Path
+
+_spec = _ilu.spec_from_file_location("source_layout", _Path(__file__).resolve().parent / "source_layout.py")
+_SL = _ilu.module_from_spec(_spec)
+_spec.loader.exec_module(_SL)
+CFG = dict(_SL.GRID)
 
 
 def _edge(arc: float, half: float, persp: float, radius: float) -> float:

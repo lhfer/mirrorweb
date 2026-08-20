@@ -28,20 +28,18 @@
  * See docs/v5/TARGET_RESPONSIVE_SOURCE_FORENSICS.md for the bundle URL and hash.
  */
 
-export const TARGET_GRID = {
-  perspective: 1200,
-  sphereRadius: 5000,
-  planeAspect: 4 / 3,
-  planeWidthRatio: 0.38,
-  planeWidthRatioPortrait: 0.72,
-  gapRatio: 0.045,
-  referenceWidth: 1728,
-  coverageMargin: 1.15,
-  minCols: 4,
-  maxCols: 16,
-  minRows: 4,
-  maxRows: 16,
-} as const;
+import { TARGET_GRID as CONTRACT_GRID } from "../layout/SourceExactLayout";
+
+/**
+ * Re-exported from the single source contract.
+ *
+ * These constants used to be a hand-written copy here and a second hand-written
+ * copy in the Python model. Two copies of the same numbers drift, and the drift
+ * is invisible until a gate disagrees, so both now read
+ * config/target-layout-source-v2.json. The values are unchanged, which the v2
+ * SHA regression proof confirms byte for byte.
+ */
+export const TARGET_GRID = CONTRACT_GRID;
 
 /** Screen position of a card's near edge at arc distance `arc` along the sphere. */
 function edgeAt(arc: number, half: number, persp: number, radius: number): number {
