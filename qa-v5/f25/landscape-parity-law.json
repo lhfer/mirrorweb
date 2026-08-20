@@ -1,0 +1,307 @@
+{
+  "question": "What rule sets the Target's rest offset and row parity across landscape viewports, without a per-viewport magic number?",
+  "law": {
+    "statement": "restOffsetX = (compositionScale < 0.674) ? cellW/2 : 0",
+    "derivation": "The canonical horizontal phase -- scrollX mod cellW, folded once when scrollY crosses a row, so the two representations of one composition collapse -- is bimodal at 0 or half a cell. It does NOT separate on orientation: the landscape 844x390 sits at half a cell and the portrait 700x900 sits at zero. It separates cleanly on composition scale. The switch is the midpoint of the gap between the two best-fitted samples either side, 500x900 at 0.654 and 1000x700 at 0.694.",
+    "switch": 0.674,
+    "replaces": "the v1 orientation split, which the sweep does not support",
+    "verticalPhase": "one constant restY0: canonical y phase is 196-226 across every viewport measured, against cellH/2 = 210.2"
+  },
+  "agreement": {
+    "agrees": 4,
+    "disagrees": 5,
+    "disagreeing": [
+      "760x470",
+      "1024x768",
+      "1100x720",
+      "960x720",
+      "926x428"
+    ]
+  },
+  "viewports": [
+    {
+      "viewport": "667x375",
+      "status": "FIT_DID_NOT_CONVERGE"
+    },
+    {
+      "viewport": "760x470",
+      "viewportCss": [
+        760.0,
+        470.0
+      ],
+      "orientation": "landscape",
+      "measuredScale": 0.52729,
+      "fitRmsPx": 0.838,
+      "fittedScrollX": 0.699,
+      "fittedScrollY": 207.382,
+      "canonicalPhase": {
+        "x": 0.7,
+        "y": 207.38,
+        "foldedOneRow": false
+      },
+      "restPhaseX": "0",
+      "lawPredictsRestPhaseX": "cellW/2",
+      "lawAgrees": false,
+      "rowParity": [
+        {
+          "rowCentre": 124.0,
+          "kind": "centre-gutter"
+        },
+        {
+          "rowCentre": 344.0,
+          "kind": "centre-card"
+        }
+      ],
+      "centreOfViewportInRowBand": true,
+      "rowBands": [
+        15.5,
+        234.0,
+        453.5
+      ]
+    },
+    {
+      "viewport": "1024x768",
+      "viewportCss": [
+        1024.0,
+        768.0
+      ],
+      "orientation": "landscape",
+      "measuredScale": 0.54519,
+      "fitRmsPx": 63.907,
+      "fittedScrollX": 249.169,
+      "fittedScrollY": -253.39,
+      "canonicalPhase": {
+        "x": 529.74,
+        "y": 167.04,
+        "foldedOneRow": true
+      },
+      "restPhaseX": "0",
+      "lawPredictsRestPhaseX": "cellW/2",
+      "lawAgrees": false,
+      "rowParity": [
+        {
+          "rowCentre": 235.5,
+          "kind": "centre-gutter"
+        },
+        {
+          "rowCentre": 528.5,
+          "kind": "centre-card"
+        }
+      ],
+      "centreOfViewportInRowBand": true,
+      "rowBands": [
+        88.5,
+        383.5,
+        676.5
+      ]
+    },
+    {
+      "viewport": "800x425",
+      "viewportCss": [
+        800.0,
+        425.0
+      ],
+      "orientation": "landscape",
+      "measuredScale": 0.55595,
+      "fitRmsPx": 0.082,
+      "fittedScrollX": 1.095,
+      "fittedScrollY": -209.494,
+      "canonicalPhase": {
+        "x": 281.67,
+        "y": 210.94,
+        "foldedOneRow": true
+      },
+      "restPhaseX": "cellW/2",
+      "lawPredictsRestPhaseX": "cellW/2",
+      "lawAgrees": true,
+      "rowParity": [],
+      "centreOfViewportInRowBand": true,
+      "rowBands": [
+        212.0
+      ]
+    },
+    {
+      "viewport": "844x390",
+      "viewportCss": [
+        844.0,
+        390.0
+      ],
+      "orientation": "landscape",
+      "measuredScale": 0.58752,
+      "fitRmsPx": 0.23,
+      "fittedScrollX": 0.972,
+      "fittedScrollY": -209.29,
+      "canonicalPhase": {
+        "x": 281.54,
+        "y": 211.14,
+        "foldedOneRow": true
+      },
+      "restPhaseX": "cellW/2",
+      "lawPredictsRestPhaseX": "cellW/2",
+      "lawAgrees": true,
+      "rowParity": [],
+      "centreOfViewportInRowBand": true,
+      "rowBands": [
+        194.5
+      ]
+    },
+    {
+      "viewport": "844x390",
+      "viewportCss": [
+        844.0,
+        390.0
+      ],
+      "orientation": "landscape",
+      "measuredScale": 0.60325,
+      "fitRmsPx": 2.401,
+      "fittedScrollX": 271.585,
+      "fittedScrollY": 208.015,
+      "canonicalPhase": {
+        "x": 271.58,
+        "y": 208.01,
+        "foldedOneRow": false
+      },
+      "restPhaseX": "cellW/2",
+      "lawPredictsRestPhaseX": "cellW/2",
+      "lawAgrees": true,
+      "rowParity": [],
+      "centreOfViewportInRowBand": true,
+      "rowBands": [
+        194.5
+      ]
+    },
+    {
+      "viewport": "1100x720",
+      "viewportCss": [
+        1100.0,
+        720.0
+      ],
+      "orientation": "landscape",
+      "measuredScale": 0.66247,
+      "fitRmsPx": 60.461,
+      "fittedScrollX": 268.942,
+      "fittedScrollY": -249.834,
+      "canonicalPhase": {
+        "x": 549.51,
+        "y": 170.6,
+        "foldedOneRow": true
+      },
+      "restPhaseX": "0",
+      "lawPredictsRestPhaseX": "cellW/2",
+      "lawAgrees": false,
+      "rowParity": [
+        {
+          "rowCentre": 200.0,
+          "kind": "centre-gutter"
+        },
+        {
+          "rowCentre": 517.0,
+          "kind": "centre-card"
+        }
+      ],
+      "centreOfViewportInRowBand": true,
+      "rowBands": [
+        42.5,
+        359.5,
+        674.5
+      ]
+    },
+    {
+      "viewport": "960x720",
+      "viewportCss": [
+        960.0,
+        720.0
+      ],
+      "orientation": "landscape",
+      "measuredScale": 0.66573,
+      "fitRmsPx": 9.998,
+      "fittedScrollX": 281.248,
+      "fittedScrollY": 646.213,
+      "canonicalPhase": {
+        "x": 0.68,
+        "y": 225.78,
+        "foldedOneRow": true
+      },
+      "restPhaseX": "0",
+      "lawPredictsRestPhaseX": "cellW/2",
+      "lawAgrees": false,
+      "rowParity": [
+        {
+          "rowCentre": 220.5,
+          "kind": "centre-gutter"
+        },
+        {
+          "rowCentre": 496.0,
+          "kind": "centre-card"
+        }
+      ],
+      "centreOfViewportInRowBand": true,
+      "rowBands": [
+        83.0,
+        359.5,
+        634.5
+      ]
+    },
+    {
+      "viewport": "926x428",
+      "viewportCss": [
+        926.0,
+        428.0
+      ],
+      "orientation": "landscape",
+      "measuredScale": 0.68373,
+      "fitRmsPx": 7.767,
+      "fittedScrollX": 6.124,
+      "fittedScrollY": -209.556,
+      "canonicalPhase": {
+        "x": 286.69,
+        "y": 210.87,
+        "foldedOneRow": true
+      },
+      "restPhaseX": "cellW/2",
+      "lawPredictsRestPhaseX": "0",
+      "lawAgrees": false,
+      "rowParity": [],
+      "centreOfViewportInRowBand": true,
+      "rowBands": [
+        213.5
+      ]
+    },
+    {
+      "viewport": "1000x700",
+      "viewportCss": [
+        1000.0,
+        700.0
+      ],
+      "orientation": "landscape",
+      "measuredScale": 0.69385,
+      "fitRmsPx": 1.253,
+      "fittedScrollX": 281.317,
+      "fittedScrollY": 629.567,
+      "canonicalPhase": {
+        "x": 0.75,
+        "y": 209.14,
+        "foldedOneRow": true
+      },
+      "restPhaseX": "0",
+      "lawPredictsRestPhaseX": "0",
+      "lawAgrees": true,
+      "rowParity": [
+        {
+          "rowCentre": 205.0,
+          "kind": "centre-gutter"
+        },
+        {
+          "rowCentre": 491.0,
+          "kind": "centre-card"
+        }
+      ],
+      "centreOfViewportInRowBand": true,
+      "rowBands": [
+        61.5,
+        349.5,
+        634.5
+      ]
+    }
+  ]
+}

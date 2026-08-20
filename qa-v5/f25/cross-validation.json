@@ -1,0 +1,214 @@
+{
+  "excludedNonConvergedFits": [
+    {
+      "viewport": "1100x720",
+      "fitRmsPx": 60.461
+    },
+    {
+      "viewport": "320x900",
+      "fitRmsPx": 42.034
+    },
+    {
+      "viewport": "390x1000",
+      "fitRmsPx": 40.168
+    },
+    {
+      "viewport": "1170x2532",
+      "fitRmsPx": 18.825
+    },
+    {
+      "viewport": "414x896",
+      "fitRmsPx": 15.965
+    },
+    {
+      "viewport": "430x932",
+      "fitRmsPx": 55.09
+    },
+    {
+      "viewport": "700x900",
+      "fitRmsPx": 12.107
+    },
+    {
+      "viewport": "960x720",
+      "fitRmsPx": 9.998
+    }
+  ],
+  "convergenceThresholdRmsPx": 8.0,
+  "note": "Portrait scale law cross-validated AFTER the vertical candidate was introduced, because scale and vertical depth are coupled. Scales are the independent per-viewport measurements, never the law's own output.",
+  "shippedTangentParams": {
+    "radiusY": -4707.6005,
+    "cellH": 419.949,
+    "restY0": -200.9942,
+    "gainBase": 1.9468,
+    "gainSlope": -0.31
+  },
+  "models": {
+    "constant gain": {
+      "trainedOn": [
+        "360x800",
+        "414x896",
+        "430x932",
+        "390x700",
+        "500x900",
+        "700x900"
+      ],
+      "gainBase": 1.88347,
+      "gainAspectSlope": 0.0,
+      "heldOut": {
+        "viewport": "390x844",
+        "measuredScale": 0.50476,
+        "predictedScale": 0.51011,
+        "errorPct": 1.059
+      },
+      "trainingFit": [
+        {
+          "viewport": "360x800",
+          "measuredScale": 0.46778,
+          "predictedScale": 0.47087,
+          "errorPct": 0.66
+        },
+        {
+          "viewport": "390x700",
+          "measuredScale": 0.51051,
+          "predictedScale": 0.51011,
+          "errorPct": -0.079
+        },
+        {
+          "viewport": "500x900",
+          "measuredScale": 0.65406,
+          "predictedScale": 0.65398,
+          "errorPct": -0.012
+        }
+      ],
+      "worstTrainErrorPct": 0.66
+    },
+    "gain + aspect term": {
+      "trainedOn": [
+        "360x800",
+        "414x896",
+        "430x932",
+        "390x700",
+        "500x900",
+        "700x900"
+      ],
+      "gainBase": 1.87715,
+      "gainAspectSlope": 0.12202,
+      "heldOut": {
+        "viewport": "390x844",
+        "measuredScale": 0.50476,
+        "predictedScale": 0.50714,
+        "errorPct": 0.472
+      },
+      "trainingFit": [
+        {
+          "viewport": "360x800",
+          "measuredScale": 0.46778,
+          "predictedScale": 0.46776,
+          "errorPct": -0.004
+        },
+        {
+          "viewport": "390x700",
+          "measuredScale": 0.51051,
+          "predictedScale": 0.51028,
+          "errorPct": -0.044
+        },
+        {
+          "viewport": "500x900",
+          "measuredScale": 0.65406,
+          "predictedScale": 0.65414,
+          "errorPct": 0.013
+        }
+      ],
+      "worstTrainErrorPct": 0.044
+    }
+  },
+  "landscapeLeaveOneOut": {
+    "entries": [
+      {
+        "viewport": "1000x700",
+        "measuredScale": 0.69385,
+        "predictedScale": 0.69609,
+        "errorPct": 0.322
+      },
+      {
+        "viewport": "1366x768",
+        "measuredScale": 0.94867,
+        "predictedScale": 0.95075,
+        "errorPct": 0.219
+      },
+      {
+        "viewport": "1440x900",
+        "measuredScale": 0.99921,
+        "predictedScale": 1.00225,
+        "errorPct": 0.304
+      },
+      {
+        "viewport": "1536x864",
+        "measuredScale": 1.06723,
+        "predictedScale": 1.06906,
+        "errorPct": 0.172
+      },
+      {
+        "viewport": "1920x1080",
+        "measuredScale": 1.33685,
+        "predictedScale": 1.33632,
+        "errorPct": -0.039
+      },
+      {
+        "viewport": "2560x1440",
+        "measuredScale": 1.77736,
+        "predictedScale": 1.78178,
+        "errorPct": 0.249
+      },
+      {
+        "viewport": "844x390",
+        "measuredScale": 0.58752,
+        "predictedScale": 0.58577,
+        "errorPct": -0.297
+      }
+    ],
+    "worstErrorPct": 0.322
+  },
+  "verticalModelHeldOut": {
+    "depth": [
+      {
+        "viewport": "390x844",
+        "rmsPx": 5.149,
+        "medianPx": 2.859,
+        "p90Px": 7.777,
+        "maxPx": 14.588,
+        "observations": 19
+      }
+    ],
+    "depth+aspect": [
+      {
+        "viewport": "390x844",
+        "rmsPx": 4.92,
+        "medianPx": 1.863,
+        "p90Px": 6.497,
+        "maxPx": 15.377,
+        "observations": 19
+      }
+    ],
+    "tangent": [
+      {
+        "viewport": "390x844",
+        "rmsPx": 3.303,
+        "medianPx": 1.98,
+        "p90Px": 4.389,
+        "maxPx": 8.763,
+        "observations": 19
+      }
+    ],
+    "tangent+aspect": [
+      {
+        "viewport": "390x844",
+        "rmsPx": 2.649,
+        "medianPx": 1.373,
+        "p90Px": 4.515,
+        "maxPx": 6.207,
+        "observations": 19
+      }
+    ]
+  }
+}

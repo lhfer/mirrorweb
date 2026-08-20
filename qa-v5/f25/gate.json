@@ -1,0 +1,1333 @@
+{
+  "contract": {
+    "cardCentrePctOfViewport": 2.0,
+    "cardSizePct": 3.0,
+    "gutterPx": 3.0,
+    "edgeYawDeg": 0.75,
+    "rowParityMustMatch": true,
+    "centreDarkBandMustMatch": true,
+    "noCardOverlap": true,
+    "largeVoidExcessPctOfFrame": 2.0,
+    "f0RegressionMustPass": true
+  },
+  "verdict": "FAIL",
+  "contractCoverage": {
+    "cardCentre": "PASS",
+    "cardSize": "FAIL",
+    "gutterPx": "FAIL",
+    "edgeYaw": "FAIL",
+    "rowParity": "PASS",
+    "centreDarkBand": "PASS",
+    "overlap": "PASS",
+    "largeVoid": "FAIL",
+    "f0Regression": "PASS"
+  },
+  "f0Regression": {
+    "verdict": "PASS",
+    "checks": 20,
+    "passed": 20,
+    "source": "qa-v5/f0/gate.json"
+  },
+  "viewports": [
+    {
+      "id": "1100x720",
+      "viewport": [
+        1100.0,
+        720.0
+      ],
+      "verdict": "PASS",
+      "contractCoverage": {
+        "cardCentre": "PASS",
+        "cardSize": "PASS",
+        "gutterPx": "PASS",
+        "edgeYaw": "NOT_MEASURED",
+        "rowParity": "PASS",
+        "centreDarkBand": "PASS",
+        "overlap": "PASS",
+        "largeVoid": "PASS",
+        "f0Regression": "PASS"
+      },
+      "checks": [
+        {
+          "item": "cardCentre",
+          "check": "card centres",
+          "value": 0.412,
+          "limit": 2.0,
+          "unit": "% of viewport",
+          "pass": true,
+          "detail": "4 paired cards"
+        },
+        {
+          "item": "cardSize",
+          "check": "unclipped card width",
+          "value": 0.249,
+          "limit": 3.0,
+          "unit": "%",
+          "pass": true,
+          "detail": "2 unclipped cards"
+        },
+        {
+          "item": "cardSize",
+          "check": "unclipped card height",
+          "value": 1.474,
+          "limit": 3.0,
+          "unit": "%",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "item": "gutterPx",
+          "check": "gutter centre",
+          "value": 1.0,
+          "limit": 3.0,
+          "unit": "px",
+          "pass": true,
+          "detail": "3 gutters"
+        },
+        {
+          "item": "gutterPx",
+          "check": "gutter width",
+          "value": 0.0,
+          "limit": 3.0,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "item": "rowParity",
+          "check": "row parity",
+          "value": 0,
+          "limit": 0,
+          "unit": "rows",
+          "pass": true,
+          "detail": "1 classifiable rows, 0 without a resolved gutter: 200.0:centre-gutter/centre-gutter"
+        },
+        {
+          "item": "centreDarkBand",
+          "check": "viewport centre in a horizontal gutter",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "target True, local True"
+        },
+        {
+          "item": "overlap",
+          "check": "no card overlap",
+          "value": 0,
+          "limit": 0,
+          "unit": "pairs",
+          "pass": true,
+          "detail": "16 on-screen cards, min separation 10.65 px"
+        },
+        {
+          "item": "largeVoid",
+          "check": "largest void blob excess",
+          "value": 1.267,
+          "limit": 2.0,
+          "unit": "% of frame",
+          "pass": true,
+          "detail": "target 8.39%, local 9.65%"
+        }
+      ],
+      "gutters": [
+        {
+          "row": 200.0,
+          "targetCentre": 134.0,
+          "localCentre": 135.0,
+          "dCentrePx": 1.0,
+          "targetWidth": 11.0,
+          "localWidth": 11.0,
+          "dWidthPx": 0.0
+        },
+        {
+          "row": 200.0,
+          "targetCentre": 549.5,
+          "localCentre": 549.5,
+          "dCentrePx": 0.0,
+          "targetWidth": 16.0,
+          "localWidth": 16.0,
+          "dWidthPx": 0.0
+        },
+        {
+          "row": 200.0,
+          "targetCentre": 965.0,
+          "localCentre": 964.0,
+          "dCentrePx": -1.0,
+          "targetWidth": 11.0,
+          "localWidth": 11.0,
+          "dWidthPx": 0.0
+        }
+      ],
+      "cards": [
+        {
+          "row": 200.0,
+          "targetCx": 64.0,
+          "localCx": 64.5,
+          "centreErrPx": 4.53,
+          "unclipped": false
+        },
+        {
+          "row": 200.0,
+          "targetCx": 340.5,
+          "localCx": 341.0,
+          "centreErrPx": 4.53,
+          "unclipped": true
+        },
+        {
+          "row": 200.0,
+          "targetCx": 758.5,
+          "localCx": 758.0,
+          "centreErrPx": 4.53,
+          "unclipped": true
+        },
+        {
+          "row": 200.0,
+          "targetCx": 1035.0,
+          "localCx": 1034.5,
+          "centreErrPx": 4.53,
+          "unclipped": false
+        }
+      ],
+      "rowParity": [
+        {
+          "row": 200.0,
+          "target": "centre-gutter",
+          "local": "centre-gutter"
+        }
+      ],
+      "overlap": {
+        "status": "PASS",
+        "cards": 16,
+        "minSeparationPx": 10.65,
+        "overlaps": []
+      },
+      "auxiliaryFindings": {
+        "targetRowBands": [
+          42.5,
+          359.5,
+          674.5
+        ],
+        "localRowBands": [
+          37.5,
+          352.5,
+          665.5
+        ],
+        "missingRowBands": 0,
+        "inventedRowBands": 0,
+        "worstRowBandCentrePx": 9.0,
+        "targetRowHeights": [
+          305.0,
+          301.0
+        ],
+        "localRowHeights": [
+          298.0,
+          299.0
+        ],
+        "voidFraction": {
+          "target": 0.1316,
+          "local": 0.0965
+        },
+        "edgeTracesRejected": 2,
+        "rowsUsableForVerticalGeometry": 1,
+        "rowsPaired": 1,
+        "sliverRowsExcluded": 3,
+        "mergedRegionsExcluded": 0,
+        "asymmetricRowsExcluded": 1,
+        "parityRowsUnclassifiable": 0,
+        "note": "Auxiliary. Never changes the verdict and never excuses a contract failure."
+      }
+    },
+    {
+      "id": "1366x768",
+      "viewport": [
+        1366.0,
+        768.0
+      ],
+      "verdict": "PASS",
+      "contractCoverage": {
+        "cardCentre": "PASS",
+        "cardSize": "PASS",
+        "gutterPx": "PASS",
+        "edgeYaw": "PASS",
+        "rowParity": "PASS",
+        "centreDarkBand": "PASS",
+        "overlap": "PASS",
+        "largeVoid": "PASS",
+        "f0Regression": "PASS"
+      },
+      "checks": [
+        {
+          "item": "cardCentre",
+          "check": "card centres",
+          "value": 0.481,
+          "limit": 2.0,
+          "unit": "% of viewport",
+          "pass": true,
+          "detail": "3 paired cards"
+        },
+        {
+          "item": "cardSize",
+          "check": "unclipped card width",
+          "value": 0.389,
+          "limit": 3.0,
+          "unit": "%",
+          "pass": true,
+          "detail": "1 unclipped cards"
+        },
+        {
+          "item": "edgeYaw",
+          "check": "bottom edge slope",
+          "value": 0.004,
+          "limit": 0.75,
+          "unit": "deg",
+          "pass": true,
+          "detail": "1 edges with a valid trace and a usable lever arm on both sides, 1 rejected (truncated trace or too close to the vanishing line)"
+        },
+        {
+          "item": "gutterPx",
+          "check": "gutter centre",
+          "value": 1.5,
+          "limit": 3.0,
+          "unit": "px",
+          "pass": true,
+          "detail": "2 gutters"
+        },
+        {
+          "item": "gutterPx",
+          "check": "gutter width",
+          "value": 1.0,
+          "limit": 3.0,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "item": "rowParity",
+          "check": "row parity",
+          "value": 0,
+          "limit": 0,
+          "unit": "rows",
+          "pass": true,
+          "detail": "1 classifiable rows, 0 without a resolved gutter: 577.0:centre-card/centre-card"
+        },
+        {
+          "item": "centreDarkBand",
+          "check": "viewport centre in a horizontal gutter",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "target True, local True"
+        },
+        {
+          "item": "overlap",
+          "check": "no card overlap",
+          "value": 0,
+          "limit": 0,
+          "unit": "pairs",
+          "pass": true,
+          "detail": "16 on-screen cards, min separation 13.23 px"
+        },
+        {
+          "item": "largeVoid",
+          "check": "largest void blob excess",
+          "value": 1.083,
+          "limit": 2.0,
+          "unit": "% of frame",
+          "pass": true,
+          "detail": "target 6.66%, local 7.74%"
+        }
+      ],
+      "gutters": [
+        {
+          "row": 577.0,
+          "targetCentre": 416.5,
+          "localCentre": 418.0,
+          "dCentrePx": 1.5,
+          "targetWidth": 18.0,
+          "localWidth": 17.0,
+          "dWidthPx": -1.0
+        },
+        {
+          "row": 577.0,
+          "targetCentre": 948.5,
+          "localCentre": 947.0,
+          "dCentrePx": -1.5,
+          "targetWidth": 18.0,
+          "localWidth": 17.0,
+          "dWidthPx": -1.0
+        }
+      ],
+      "cards": [
+        {
+          "row": 577.0,
+          "targetCx": 203.5,
+          "localCx": 204.5,
+          "centreErrPx": 6.58,
+          "unclipped": false
+        },
+        {
+          "row": 577.0,
+          "targetCx": 682.5,
+          "localCx": 682.5,
+          "centreErrPx": 6.5,
+          "unclipped": true
+        },
+        {
+          "row": 577.0,
+          "targetCx": 1161.5,
+          "localCx": 1160.5,
+          "centreErrPx": 6.58,
+          "unclipped": false
+        }
+      ],
+      "rowParity": [
+        {
+          "row": 577.0,
+          "target": "centre-card",
+          "local": "centre-card"
+        }
+      ],
+      "overlap": {
+        "status": "PASS",
+        "cards": 16,
+        "minSeparationPx": 13.23,
+        "overlaps": []
+      },
+      "auxiliaryFindings": {
+        "targetRowBands": [
+          383.5
+        ],
+        "localRowBands": [
+          375.0
+        ],
+        "missingRowBands": 0,
+        "inventedRowBands": 0,
+        "worstRowBandCentrePx": 8.5,
+        "targetRowHeights": [
+          371.0
+        ],
+        "localRowHeights": [
+          372.0
+        ],
+        "voidFraction": {
+          "target": 0.1218,
+          "local": 0.0806
+        },
+        "edgeTracesRejected": 1,
+        "rowsUsableForVerticalGeometry": 1,
+        "rowsPaired": 1,
+        "sliverRowsExcluded": 1,
+        "mergedRegionsExcluded": 0,
+        "asymmetricRowsExcluded": 1,
+        "parityRowsUnclassifiable": 0,
+        "note": "Auxiliary. Never changes the verdict and never excuses a contract failure."
+      }
+    },
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440.0,
+        900.0
+      ],
+      "verdict": "PASS",
+      "contractCoverage": {
+        "cardCentre": "PASS",
+        "cardSize": "PASS",
+        "gutterPx": "PASS",
+        "edgeYaw": "PASS",
+        "rowParity": "PASS",
+        "centreDarkBand": "PASS",
+        "overlap": "PASS",
+        "largeVoid": "PASS",
+        "f0Regression": "PASS"
+      },
+      "checks": [
+        {
+          "item": "cardCentre",
+          "check": "card centres",
+          "value": 0.629,
+          "limit": 2.0,
+          "unit": "% of viewport",
+          "pass": true,
+          "detail": "7 paired cards"
+        },
+        {
+          "item": "cardSize",
+          "check": "unclipped card width",
+          "value": 0.38,
+          "limit": 3.0,
+          "unit": "%",
+          "pass": true,
+          "detail": "3 unclipped cards"
+        },
+        {
+          "item": "cardSize",
+          "check": "unclipped card height",
+          "value": 1.8,
+          "limit": 3.0,
+          "unit": "%",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "item": "edgeYaw",
+          "check": "bottom edge slope",
+          "value": 0.737,
+          "limit": 0.75,
+          "unit": "deg",
+          "pass": true,
+          "detail": "3 edges with a valid trace and a usable lever arm on both sides, 2 rejected (truncated trace or too close to the vanishing line)"
+        },
+        {
+          "item": "gutterPx",
+          "check": "gutter centre",
+          "value": 1.5,
+          "limit": 3.0,
+          "unit": "px",
+          "pass": true,
+          "detail": "5 gutters"
+        },
+        {
+          "item": "gutterPx",
+          "check": "gutter width",
+          "value": 1.0,
+          "limit": 3.0,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "item": "rowParity",
+          "check": "row parity",
+          "value": 0,
+          "limit": 0,
+          "unit": "rows",
+          "pass": true,
+          "detail": "2 classifiable rows, 0 without a resolved gutter: 240.5:centre-gutter/centre-gutter 655.5:centre-card/centre-card"
+        },
+        {
+          "item": "centreDarkBand",
+          "check": "viewport centre in a horizontal gutter",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "target True, local True"
+        },
+        {
+          "item": "overlap",
+          "check": "no card overlap",
+          "value": 0,
+          "limit": 0,
+          "unit": "pairs",
+          "pass": true,
+          "detail": "16 on-screen cards, min separation 13.95 px"
+        },
+        {
+          "item": "largeVoid",
+          "check": "largest void blob excess",
+          "value": 1.336,
+          "limit": 2.0,
+          "unit": "% of frame",
+          "pass": true,
+          "detail": "target 8.60%, local 9.94%"
+        }
+      ],
+      "gutters": [
+        {
+          "row": 240.5,
+          "targetCentre": 175.5,
+          "localCentre": 177.0,
+          "dCentrePx": 1.5,
+          "targetWidth": 14.0,
+          "localWidth": 15.0,
+          "dWidthPx": 1.0
+        },
+        {
+          "row": 240.5,
+          "targetCentre": 719.5,
+          "localCentre": 719.5,
+          "dCentrePx": 0.0,
+          "targetWidth": 22.0,
+          "localWidth": 22.0,
+          "dWidthPx": 0.0
+        },
+        {
+          "row": 240.5,
+          "targetCentre": 1263.5,
+          "localCentre": 1262.0,
+          "dCentrePx": -1.5,
+          "targetWidth": 14.0,
+          "localWidth": 15.0,
+          "dWidthPx": 1.0
+        },
+        {
+          "row": 655.5,
+          "targetCentre": 439.0,
+          "localCentre": 440.5,
+          "dCentrePx": 1.5,
+          "targetWidth": 19.0,
+          "localWidth": 18.0,
+          "dWidthPx": -1.0
+        },
+        {
+          "row": 655.5,
+          "targetCentre": 1000.0,
+          "localCentre": 998.5,
+          "dCentrePx": -1.5,
+          "targetWidth": 19.0,
+          "localWidth": 18.0,
+          "dWidthPx": -1.0
+        }
+      ],
+      "cards": [
+        {
+          "row": 240.5,
+          "targetCx": 84.0,
+          "localCx": 84.5,
+          "centreErrPx": 5.52,
+          "unclipped": false
+        },
+        {
+          "row": 240.5,
+          "targetCx": 445.5,
+          "localCx": 446.5,
+          "centreErrPx": 5.59,
+          "unclipped": true
+        },
+        {
+          "row": 240.5,
+          "targetCx": 993.5,
+          "localCx": 992.5,
+          "centreErrPx": 5.59,
+          "unclipped": true
+        },
+        {
+          "row": 240.5,
+          "targetCx": 1355.0,
+          "localCx": 1354.5,
+          "centreErrPx": 5.52,
+          "unclipped": false
+        },
+        {
+          "row": 655.5,
+          "targetCx": 214.5,
+          "localCx": 215.5,
+          "centreErrPx": 9.06,
+          "unclipped": false
+        },
+        {
+          "row": 655.5,
+          "targetCx": 719.5,
+          "localCx": 719.5,
+          "centreErrPx": 9.0,
+          "unclipped": true
+        },
+        {
+          "row": 655.5,
+          "targetCx": 1224.5,
+          "localCx": 1223.5,
+          "centreErrPx": 9.06,
+          "unclipped": false
+        }
+      ],
+      "rowParity": [
+        {
+          "row": 240.5,
+          "target": "centre-gutter",
+          "local": "centre-gutter"
+        },
+        {
+          "row": 655.5,
+          "target": "centre-card",
+          "local": "centre-card"
+        }
+      ],
+      "overlap": {
+        "status": "PASS",
+        "cards": 16,
+        "minSeparationPx": 13.95,
+        "overlaps": []
+      },
+      "auxiliaryFindings": {
+        "targetRowBands": [
+          34.5,
+          449.5,
+          862.0
+        ],
+        "localRowBands": [
+          28.0,
+          440.5,
+          850.0
+        ],
+        "missingRowBands": 0,
+        "inventedRowBands": 0,
+        "worstRowBandCentrePx": 12.0,
+        "targetRowHeights": [
+          400.0,
+          394.0
+        ],
+        "localRowHeights": [
+          391.0,
+          392.0
+        ],
+        "voidFraction": {
+          "target": 0.0916,
+          "local": 0.0994
+        },
+        "edgeTracesRejected": 2,
+        "rowsUsableForVerticalGeometry": 2,
+        "rowsPaired": 2,
+        "sliverRowsExcluded": 1,
+        "mergedRegionsExcluded": 0,
+        "asymmetricRowsExcluded": 0,
+        "parityRowsUnclassifiable": 0,
+        "note": "Auxiliary. Never changes the verdict and never excuses a contract failure."
+      }
+    },
+    {
+      "id": "1920x1080",
+      "viewport": [
+        1920.0,
+        1080.0
+      ],
+      "verdict": "PASS",
+      "contractCoverage": {
+        "cardCentre": "PASS",
+        "cardSize": "PASS",
+        "gutterPx": "PASS",
+        "edgeYaw": "PASS",
+        "rowParity": "PASS",
+        "centreDarkBand": "PASS",
+        "overlap": "PASS",
+        "largeVoid": "PASS",
+        "f0Regression": "PASS"
+      },
+      "checks": [
+        {
+          "item": "cardCentre",
+          "check": "card centres",
+          "value": 0.498,
+          "limit": 2.0,
+          "unit": "% of viewport",
+          "pass": true,
+          "detail": "3 paired cards"
+        },
+        {
+          "item": "cardSize",
+          "check": "unclipped card width",
+          "value": 0.277,
+          "limit": 3.0,
+          "unit": "%",
+          "pass": true,
+          "detail": "1 unclipped cards"
+        },
+        {
+          "item": "edgeYaw",
+          "check": "bottom edge slope",
+          "value": 0.134,
+          "limit": 0.75,
+          "unit": "deg",
+          "pass": true,
+          "detail": "1 edges with a valid trace and a usable lever arm on both sides, 1 rejected (truncated trace or too close to the vanishing line)"
+        },
+        {
+          "item": "gutterPx",
+          "check": "gutter centre",
+          "value": 1.5,
+          "limit": 3.0,
+          "unit": "px",
+          "pass": true,
+          "detail": "2 gutters"
+        },
+        {
+          "item": "gutterPx",
+          "check": "gutter width",
+          "value": 1.0,
+          "limit": 3.0,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "item": "rowParity",
+          "check": "row parity",
+          "value": 0,
+          "limit": 0,
+          "unit": "rows",
+          "pass": true,
+          "detail": "1 classifiable rows, 0 without a resolved gutter: 811.5:centre-card/centre-card"
+        },
+        {
+          "item": "centreDarkBand",
+          "check": "viewport centre in a horizontal gutter",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "target True, local True"
+        },
+        {
+          "item": "overlap",
+          "check": "no card overlap",
+          "value": 0,
+          "limit": 0,
+          "unit": "pairs",
+          "pass": true,
+          "detail": "15 on-screen cards, min separation 18.6 px"
+        },
+        {
+          "item": "largeVoid",
+          "check": "largest void blob excess",
+          "value": 1.575,
+          "limit": 2.0,
+          "unit": "% of frame",
+          "pass": true,
+          "detail": "target 6.59%, local 8.17%"
+        }
+      ],
+      "gutters": [
+        {
+          "row": 811.5,
+          "targetCentre": 585.5,
+          "localCentre": 587.0,
+          "dCentrePx": 1.5,
+          "targetWidth": 26.0,
+          "localWidth": 25.0,
+          "dWidthPx": -1.0
+        },
+        {
+          "row": 811.5,
+          "targetCentre": 1333.5,
+          "localCentre": 1332.0,
+          "dCentrePx": -1.5,
+          "targetWidth": 26.0,
+          "localWidth": 25.0,
+          "dWidthPx": -1.0
+        }
+      ],
+      "cards": [
+        {
+          "row": 811.5,
+          "targetCx": 286.0,
+          "localCx": 287.0,
+          "centreErrPx": 9.55,
+          "unclipped": false
+        },
+        {
+          "row": 811.5,
+          "targetCx": 959.5,
+          "localCx": 959.5,
+          "centreErrPx": 9.5,
+          "unclipped": true
+        },
+        {
+          "row": 811.5,
+          "targetCx": 1633.0,
+          "localCx": 1632.0,
+          "centreErrPx": 9.55,
+          "unclipped": false
+        }
+      ],
+      "rowParity": [
+        {
+          "row": 811.5,
+          "target": "centre-card",
+          "local": "centre-card"
+        }
+      ],
+      "overlap": {
+        "status": "PASS",
+        "cards": 15,
+        "minSeparationPx": 18.6,
+        "overlaps": []
+      },
+      "auxiliaryFindings": {
+        "targetRowBands": [
+          539.5
+        ],
+        "localRowBands": [
+          527.5
+        ],
+        "missingRowBands": 0,
+        "inventedRowBands": 0,
+        "worstRowBandCentrePx": 12.0,
+        "targetRowHeights": [
+          520.0
+        ],
+        "localRowHeights": [
+          521.0
+        ],
+        "voidFraction": {
+          "target": 0.137,
+          "local": 0.0817
+        },
+        "edgeTracesRejected": 1,
+        "rowsUsableForVerticalGeometry": 1,
+        "rowsPaired": 1,
+        "sliverRowsExcluded": 1,
+        "mergedRegionsExcluded": 0,
+        "asymmetricRowsExcluded": 1,
+        "parityRowsUnclassifiable": 0,
+        "note": "Auxiliary. Never changes the verdict and never excuses a contract failure."
+      }
+    },
+    {
+      "id": "390x844",
+      "viewport": [
+        390.0,
+        844.0
+      ],
+      "verdict": "FAIL",
+      "contractCoverage": {
+        "cardCentre": "PASS",
+        "cardSize": "FAIL",
+        "gutterPx": "FAIL",
+        "edgeYaw": "FAIL",
+        "rowParity": "PASS",
+        "centreDarkBand": "PASS",
+        "overlap": "PASS",
+        "largeVoid": "FAIL",
+        "f0Regression": "PASS"
+      },
+      "checks": [
+        {
+          "item": "cardCentre",
+          "check": "card centres",
+          "value": 1.245,
+          "limit": 2.0,
+          "unit": "% of viewport",
+          "pass": true,
+          "detail": "6 paired cards"
+        },
+        {
+          "item": "cardSize",
+          "check": "unclipped card width",
+          "value": 3.597,
+          "limit": 3.0,
+          "unit": "%",
+          "pass": false,
+          "detail": "2 unclipped cards"
+        },
+        {
+          "item": "cardSize",
+          "check": "unclipped card height",
+          "value": 0.962,
+          "limit": 3.0,
+          "unit": "%",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "item": "edgeYaw",
+          "check": "bottom edge slope",
+          "value": 1.202,
+          "limit": 0.75,
+          "unit": "deg",
+          "pass": false,
+          "detail": "4 edges with a valid trace and a usable lever arm on both sides, 1 rejected (truncated trace or too close to the vanishing line)"
+        },
+        {
+          "item": "gutterPx",
+          "check": "gutter centre",
+          "value": 4.0,
+          "limit": 3.0,
+          "unit": "px",
+          "pass": false,
+          "detail": "6 gutters"
+        },
+        {
+          "item": "gutterPx",
+          "check": "gutter width",
+          "value": 2.0,
+          "limit": 3.0,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "item": "rowParity",
+          "check": "row parity",
+          "value": 0,
+          "limit": 0,
+          "unit": "rows",
+          "pass": true,
+          "detail": "4 classifiable rows, 0 without a resolved gutter: 108.5:centre-gutter/centre-gutter 314.0:centre-card/centre-card 529.0:centre-gutter/centre-gutter 733.5:centre-card/centre-card"
+        },
+        {
+          "item": "centreDarkBand",
+          "check": "viewport centre in a horizontal gutter",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "target True, local True"
+        },
+        {
+          "item": "overlap",
+          "check": "no card overlap",
+          "value": 0,
+          "limit": 0,
+          "unit": "pairs",
+          "pass": true,
+          "detail": "15 on-screen cards, min separation 5.27 px"
+        },
+        {
+          "item": "largeVoid",
+          "check": "largest void blob excess",
+          "value": 2.031,
+          "limit": 2.0,
+          "unit": "% of frame",
+          "pass": false,
+          "detail": "target 6.78%, local 8.81%"
+        }
+      ],
+      "gutters": [
+        {
+          "row": 108.5,
+          "targetCentre": 194.5,
+          "localCentre": 194.5,
+          "dCentrePx": 0.0,
+          "targetWidth": 8.0,
+          "localWidth": 10.0,
+          "dWidthPx": 2.0
+        },
+        {
+          "row": 314.0,
+          "targetCentre": 50.0,
+          "localCentre": 46.0,
+          "dCentrePx": -4.0,
+          "targetWidth": 11.0,
+          "localWidth": 9.0,
+          "dWidthPx": -2.0
+        },
+        {
+          "row": 314.0,
+          "targetCentre": 339.0,
+          "localCentre": 343.0,
+          "dCentrePx": 4.0,
+          "targetWidth": 11.0,
+          "localWidth": 9.0,
+          "dWidthPx": -2.0
+        },
+        {
+          "row": 529.0,
+          "targetCentre": 194.5,
+          "localCentre": 194.5,
+          "dCentrePx": 0.0,
+          "targetWidth": 12.0,
+          "localWidth": 12.0,
+          "dWidthPx": 0.0
+        },
+        {
+          "row": 733.5,
+          "targetCentre": 56.0,
+          "localCentre": 52.0,
+          "dCentrePx": -4.0,
+          "targetWidth": 5.0,
+          "localWidth": 7.0,
+          "dWidthPx": 2.0
+        },
+        {
+          "row": 733.5,
+          "targetCentre": 333.0,
+          "localCentre": 337.0,
+          "dCentrePx": 4.0,
+          "targetWidth": 5.0,
+          "localWidth": 7.0,
+          "dWidthPx": 2.0
+        }
+      ],
+      "cards": [
+        {
+          "row": 108.5,
+          "targetCx": 95.0,
+          "localCx": 94.5,
+          "centreErrPx": 10.51,
+          "unclipped": false
+        },
+        {
+          "row": 108.5,
+          "targetCx": 294.0,
+          "localCx": 294.5,
+          "centreErrPx": 10.51,
+          "unclipped": false
+        },
+        {
+          "row": 314.0,
+          "targetCx": 194.5,
+          "localCx": 194.5,
+          "centreErrPx": 7.5,
+          "unclipped": true
+        },
+        {
+          "row": 529.0,
+          "targetCx": 94.0,
+          "localCx": 94.0,
+          "centreErrPx": 2.5,
+          "unclipped": false
+        },
+        {
+          "row": 529.0,
+          "targetCx": 295.0,
+          "localCx": 295.0,
+          "centreErrPx": 2.5,
+          "unclipped": false
+        },
+        {
+          "row": 733.5,
+          "targetCx": 194.5,
+          "localCx": 194.5,
+          "centreErrPx": 0.5,
+          "unclipped": true
+        }
+      ],
+      "rowParity": [
+        {
+          "row": 108.5,
+          "target": "centre-gutter",
+          "local": "centre-gutter"
+        },
+        {
+          "row": 314.0,
+          "target": "centre-card",
+          "local": "centre-card"
+        },
+        {
+          "row": 529.0,
+          "target": "centre-gutter",
+          "local": "centre-gutter"
+        },
+        {
+          "row": 733.5,
+          "target": "centre-card",
+          "local": "centre-card"
+        }
+      ],
+      "overlap": {
+        "status": "PASS",
+        "cards": 15,
+        "minSeparationPx": 5.27,
+        "overlaps": []
+      },
+      "auxiliaryFindings": {
+        "targetRowBands": [
+          12.0,
+          206.0,
+          421.5,
+          637.0,
+          829.5
+        ],
+        "localRowBands": [
+          196.5,
+          417.0,
+          636.0,
+          831.0
+        ],
+        "missingRowBands": 1,
+        "inventedRowBands": 0,
+        "worstRowBandCentrePx": 9.5,
+        "targetRowHeights": [
+          186.0,
+          207.0,
+          207.0,
+          184.0
+        ],
+        "localRowHeights": [
+          187.0,
+          210.0,
+          208.0,
+          185.0
+        ],
+        "voidFraction": {
+          "target": 0.0848,
+          "local": 0.0959
+        },
+        "edgeTracesRejected": 1,
+        "rowsUsableForVerticalGeometry": 4,
+        "rowsPaired": 4,
+        "sliverRowsExcluded": 0,
+        "mergedRegionsExcluded": 0,
+        "asymmetricRowsExcluded": 0,
+        "parityRowsUnclassifiable": 0,
+        "note": "Auxiliary. Never changes the verdict and never excuses a contract failure."
+      }
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844.0,
+        390.0
+      ],
+      "verdict": "PASS",
+      "contractCoverage": {
+        "cardCentre": "PASS",
+        "cardSize": "PASS",
+        "gutterPx": "PASS",
+        "edgeYaw": "NOT_MEASURED",
+        "rowParity": "PASS",
+        "centreDarkBand": "PASS",
+        "overlap": "PASS",
+        "largeVoid": "PASS",
+        "f0Regression": "PASS"
+      },
+      "checks": [
+        {
+          "item": "cardCentre",
+          "check": "card centres",
+          "value": 0.36,
+          "limit": 2.0,
+          "unit": "% of viewport",
+          "pass": true,
+          "detail": "3 paired cards"
+        },
+        {
+          "item": "cardSize",
+          "check": "unclipped card width",
+          "value": 0.0,
+          "limit": 3.0,
+          "unit": "%",
+          "pass": true,
+          "detail": "1 unclipped cards"
+        },
+        {
+          "item": "gutterPx",
+          "check": "gutter centre",
+          "value": 0.5,
+          "limit": 3.0,
+          "unit": "px",
+          "pass": true,
+          "detail": "2 gutters"
+        },
+        {
+          "item": "gutterPx",
+          "check": "gutter width",
+          "value": 1.0,
+          "limit": 3.0,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "item": "rowParity",
+          "check": "row parity",
+          "value": 0,
+          "limit": 0,
+          "unit": "rows",
+          "pass": true,
+          "detail": "1 classifiable rows, 0 without a resolved gutter: 94.5:centre-card/centre-card"
+        },
+        {
+          "item": "centreDarkBand",
+          "check": "viewport centre in a horizontal gutter",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "target True, local True"
+        },
+        {
+          "item": "overlap",
+          "check": "no card overlap",
+          "value": 0,
+          "limit": 0,
+          "unit": "pairs",
+          "pass": true,
+          "detail": "15 on-screen cards, min separation 7.0 px"
+        },
+        {
+          "item": "largeVoid",
+          "check": "largest void blob excess",
+          "value": 0.0,
+          "limit": 2.0,
+          "unit": "% of frame",
+          "pass": true,
+          "detail": "target 6.19%, local 6.18%"
+        }
+      ],
+      "gutters": [
+        {
+          "row": 94.5,
+          "targetCentre": 256.5,
+          "localCentre": 257.0,
+          "dCentrePx": 0.5,
+          "targetWidth": 12.0,
+          "localWidth": 11.0,
+          "dWidthPx": -1.0
+        },
+        {
+          "row": 94.5,
+          "targetCentre": 586.5,
+          "localCentre": 586.0,
+          "dCentrePx": -0.5,
+          "targetWidth": 12.0,
+          "localWidth": 11.0,
+          "dWidthPx": -1.0
+        }
+      ],
+      "cards": [
+        {
+          "row": 94.5,
+          "targetCx": 125.0,
+          "localCx": 125.5,
+          "centreErrPx": 3.04,
+          "unclipped": false
+        },
+        {
+          "row": 94.5,
+          "targetCx": 421.5,
+          "localCx": 421.5,
+          "centreErrPx": 3.0,
+          "unclipped": true
+        },
+        {
+          "row": 94.5,
+          "targetCx": 718.0,
+          "localCx": 717.5,
+          "centreErrPx": 3.04,
+          "unclipped": false
+        }
+      ],
+      "rowParity": [
+        {
+          "row": 94.5,
+          "target": "centre-card",
+          "local": "centre-card"
+        }
+      ],
+      "overlap": {
+        "status": "PASS",
+        "cards": 15,
+        "minSeparationPx": 7.0,
+        "overlaps": []
+      },
+      "auxiliaryFindings": {
+        "targetRowBands": [
+          194.5
+        ],
+        "localRowBands": [
+          189.5
+        ],
+        "missingRowBands": 0,
+        "inventedRowBands": 0,
+        "worstRowBandCentrePx": 5.0,
+        "targetRowHeights": [],
+        "localRowHeights": [],
+        "voidFraction": {
+          "target": 0.0639,
+          "local": 0.0618
+        },
+        "edgeTracesRejected": 1,
+        "rowsUsableForVerticalGeometry": 0,
+        "rowsPaired": 1,
+        "sliverRowsExcluded": 1,
+        "mergedRegionsExcluded": 0,
+        "asymmetricRowsExcluded": 1,
+        "parityRowsUnclassifiable": 0,
+        "note": "Auxiliary. Never changes the verdict and never excuses a contract failure."
+      }
+    }
+  ]
+}

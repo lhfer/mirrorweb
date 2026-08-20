@@ -1,0 +1,1247 @@
+{
+  "note": "Independent Target measurements. No value here is produced by evaluating the shipped responsive law.",
+  "detector": "scripts/v5/measure-layout.py",
+  "fitter": "scripts/v5/fit-scale.py",
+  "targetPixelPolicy": "numbers only; no Target pixels are stored in this file",
+  "viewports": [
+    {
+      "id": "1000x700",
+      "file": "1000x700-dpr1.png",
+      "viewportCss": [
+        1000.0,
+        700.0
+      ],
+      "orientation": "landscape",
+      "aspect": 1.42857,
+      "capture": {},
+      "voidPreset": "navy",
+      "structure": {
+        "bands": [
+          {
+            "y0": 57.0,
+            "y1": 66.0,
+            "centre": 61.5,
+            "height": 10.0,
+            "touchesFrameEdge": false
+          },
+          {
+            "y0": 344.0,
+            "y1": 355.0,
+            "centre": 349.5,
+            "height": 12.0,
+            "touchesFrameEdge": false
+          },
+          {
+            "y0": 627.0,
+            "y1": 642.0,
+            "centre": 634.5,
+            "height": 16.0,
+            "touchesFrameEdge": false
+          }
+        ],
+        "rows": [
+          {
+            "y0": 0.0,
+            "y1": 56.0,
+            "centre": 28.0,
+            "height": 57.0,
+            "clipped": true,
+            "gutterCentres": [
+              310.5,
+              688.5
+            ],
+            "gutterWidths": [
+              16.0,
+              16.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 362.0,
+                "h": null,
+                "cx": 499.5,
+                "cy": null
+              }
+            ]
+          },
+          {
+            "y0": 67.0,
+            "y1": 343.0,
+            "centre": 205.0,
+            "height": 277.0,
+            "clipped": false,
+            "gutterCentres": [
+              121.5,
+              499.5,
+              877.5
+            ],
+            "gutterWidths": [
+              10.0,
+              16.0,
+              10.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 365.0,
+                "h": 276.18,
+                "cx": 309.0,
+                "cy": 205.41
+              },
+              {
+                "w": 365.0,
+                "h": 262.65,
+                "cx": 690.0,
+                "cy": 212.18
+              }
+            ]
+          },
+          {
+            "y0": 356.0,
+            "y1": 626.0,
+            "centre": 491.0,
+            "height": 271.0,
+            "clipped": false,
+            "gutterCentres": [
+              305.0,
+              694.0
+            ],
+            "gutterWidths": [
+              13.0,
+              13.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 376.0,
+                "h": 278.88,
+                "cx": 499.5,
+                "cy": 494.94
+              }
+            ]
+          },
+          {
+            "y0": 643.0,
+            "y1": 699.0,
+            "centre": 671.0,
+            "height": 57.0,
+            "clipped": true,
+            "gutterCentres": [
+              499.5
+            ],
+            "gutterWidths": [
+              20.0
+            ],
+            "unclippedCards": []
+          }
+        ]
+      },
+      "fits": {
+        "focal": {
+          "hypothesis": "focal",
+          "scale": 0.69385,
+          "scrollX": 281.317,
+          "scrollY": 629.567,
+          "rmsPx": 1.253,
+          "maxPx": 2.5,
+          "observations": 17
+        }
+      }
+    },
+    {
+      "id": "1024x768",
+      "file": "1024x768-dpr1.png",
+      "viewportCss": [
+        1024.0,
+        768.0
+      ],
+      "orientation": "landscape",
+      "aspect": 1.33333,
+      "capture": {},
+      "voidPreset": "navy",
+      "structure": {
+        "bands": [
+          {
+            "y0": 84.0,
+            "y1": 93.0,
+            "centre": 88.5,
+            "height": 10.0,
+            "touchesFrameEdge": false
+          },
+          {
+            "y0": 378.0,
+            "y1": 389.0,
+            "centre": 383.5,
+            "height": 12.0,
+            "touchesFrameEdge": false
+          },
+          {
+            "y0": 668.0,
+            "y1": 685.0,
+            "centre": 676.5,
+            "height": 18.0,
+            "touchesFrameEdge": false
+          }
+        ],
+        "rows": [
+          {
+            "y0": 0.0,
+            "y1": 83.0,
+            "centre": 41.5,
+            "height": 84.0,
+            "clipped": true,
+            "gutterCentres": [
+              319.0,
+              704.0
+            ],
+            "gutterWidths": [
+              11.0,
+              11.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 374.0,
+                "h": null,
+                "cx": 511.5,
+                "cy": null
+              }
+            ]
+          },
+          {
+            "y0": 94.0,
+            "y1": 377.0,
+            "centre": 235.5,
+            "height": 284.0,
+            "clipped": false,
+            "gutterCentres": [
+              124.5,
+              140.5,
+              189.0,
+              202.0,
+              319.5,
+              329.5,
+              413.0,
+              469.0,
+              495.0,
+              511.5,
+              898.5
+            ],
+            "gutterWidths": [
+              10.0,
+              4.0,
+              5.0,
+              3.0,
+              8.0,
+              4.0,
+              103.0,
+              3.0,
+              5.0,
+              16.0,
+              10.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 112.0,
+                "h": 180.1,
+                "cx": 259.5,
+                "cy": 285.23
+              },
+              {
+                "w": 374.0,
+                "h": null,
+                "cx": 706.5,
+                "cy": null
+              }
+            ]
+          },
+          {
+            "y0": 390.0,
+            "y1": 667.0,
+            "centre": 528.5,
+            "height": 278.0,
+            "clipped": false,
+            "gutterCentres": [
+              312.0,
+              711.0
+            ],
+            "gutterWidths": [
+              13.0,
+              13.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 386.0,
+                "h": 285.74,
+                "cx": 511.5,
+                "cy": 532.37
+              }
+            ]
+          },
+          {
+            "y0": 686.0,
+            "y1": 767.0,
+            "centre": 726.5,
+            "height": 82.0,
+            "clipped": true,
+            "gutterCentres": [
+              138.0,
+              187.0,
+              332.0,
+              373.0,
+              380.5,
+              511.5
+            ],
+            "gutterWidths": [
+              9.0,
+              9.0,
+              75.0,
+              3.0,
+              4.0,
+              12.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 103.0,
+                "h": null,
+                "cx": 243.0,
+                "cy": null
+              },
+              {
+                "w": 123.0,
+                "h": 35.97,
+                "cx": 444.0,
+                "cy": 719.41
+              }
+            ]
+          }
+        ]
+      },
+      "fits": {
+        "focal": {
+          "hypothesis": "focal",
+          "scale": 0.54519,
+          "scrollX": 249.169,
+          "scrollY": -253.39,
+          "rmsPx": 63.907,
+          "maxPx": 195.893,
+          "observations": 30
+        }
+      }
+    },
+    {
+      "id": "1100x720",
+      "file": "1100x720-dpr1.png",
+      "viewportCss": [
+        1100.0,
+        720.0
+      ],
+      "orientation": "landscape",
+      "aspect": 1.52778,
+      "capture": {},
+      "voidPreset": "navy",
+      "structure": {
+        "bands": [
+          {
+            "y0": 38.0,
+            "y1": 47.0,
+            "centre": 42.5,
+            "height": 10.0,
+            "touchesFrameEdge": false
+          },
+          {
+            "y0": 353.0,
+            "y1": 366.0,
+            "centre": 359.5,
+            "height": 14.0,
+            "touchesFrameEdge": false
+          },
+          {
+            "y0": 668.0,
+            "y1": 681.0,
+            "centre": 674.5,
+            "height": 14.0,
+            "touchesFrameEdge": false
+          }
+        ],
+        "rows": [
+          {
+            "y0": 0.0,
+            "y1": 37.0,
+            "centre": 18.5,
+            "height": 38.0,
+            "clipped": true,
+            "gutterCentres": [
+              340.5,
+              758.5
+            ],
+            "gutterWidths": [
+              36.0,
+              36.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 382.0,
+                "h": 300.96,
+                "cx": 549.5,
+                "cy": 163.63
+              }
+            ]
+          },
+          {
+            "y0": 48.0,
+            "y1": 352.0,
+            "centre": 200.0,
+            "height": 305.0,
+            "clipped": false,
+            "gutterCentres": [
+              134.0,
+              549.5,
+              965.0
+            ],
+            "gutterWidths": [
+              11.0,
+              16.0,
+              11.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 402.0,
+                "h": 303.84,
+                "cx": 340.5,
+                "cy": 200.96
+              },
+              {
+                "w": 402.0,
+                "h": 337.99,
+                "cx": 758.5,
+                "cy": 183.81
+              }
+            ]
+          },
+          {
+            "y0": 367.0,
+            "y1": 667.0,
+            "centre": 517.0,
+            "height": 301.0,
+            "clipped": false,
+            "gutterCentres": [
+              17.0,
+              174.5,
+              182.0,
+              245.5,
+              335.0,
+              764.0
+            ],
+            "gutterWidths": [
+              9.0,
+              4.0,
+              5.0,
+              112.0,
+              15.0,
+              15.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 151.0,
+                "h": 133.28,
+                "cx": 97.0,
+                "cy": 544.62
+              },
+              {
+                "w": 414.0,
+                "h": 306.46,
+                "cx": 549.5,
+                "cy": 519.73
+              }
+            ]
+          },
+          {
+            "y0": 682.0,
+            "y1": 719.0,
+            "centre": 700.5,
+            "height": 38.0,
+            "clipped": true,
+            "gutterCentres": [
+              141.0,
+              549.5,
+              944.0
+            ],
+            "gutterWidths": [
+              13.0,
+              42.0,
+              3.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 381.0,
+                "h": null,
+                "cx": 338.0,
+                "cy": null
+              },
+              {
+                "w": 372.0,
+                "h": null,
+                "cx": 756.5,
+                "cy": null
+              }
+            ]
+          }
+        ]
+      },
+      "fits": {
+        "focal": {
+          "hypothesis": "focal",
+          "scale": 0.66247,
+          "scrollX": 268.942,
+          "scrollY": -249.834,
+          "rmsPx": 60.461,
+          "maxPx": 206.799,
+          "observations": 25
+        }
+      }
+    },
+    {
+      "id": "667x375",
+      "file": "667x375-dpr1.png",
+      "viewportCss": [
+        667.0,
+        375.0
+      ],
+      "orientation": "landscape",
+      "aspect": 1.77867,
+      "capture": {},
+      "voidPreset": "navy",
+      "structure": {
+        "bands": [
+          {
+            "y0": 184.0,
+            "y1": 190.0,
+            "centre": 187.0,
+            "height": 7.0,
+            "touchesFrameEdge": false
+          },
+          {
+            "y0": 370.0,
+            "y1": 374.0,
+            "centre": 372.0,
+            "height": 5.0,
+            "touchesFrameEdge": true
+          }
+        ],
+        "rows": [
+          {
+            "y0": 0.0,
+            "y1": 183.0,
+            "centre": 91.5,
+            "height": 184.0,
+            "clipped": true,
+            "gutterCentres": [
+              81.0,
+              332.5
+            ],
+            "gutterWidths": [
+              7.0,
+              10.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 243.0,
+                "h": 158.42,
+                "cx": 206.0,
+                "cy": 104.22
+              }
+            ]
+          },
+          {
+            "y0": 191.0,
+            "y1": 369.0,
+            "centre": 280.0,
+            "height": 179.0,
+            "clipped": false,
+            "gutterCentres": [
+              203.0,
+              241.0,
+              254.5,
+              323.5,
+              330.0,
+              335.0,
+              342.0,
+              353.0,
+              368.0,
+              416.5,
+              451.5,
+              463.0
+            ],
+            "gutterWidths": [
+              9.0,
+              17.0,
+              4.0,
+              4.0,
+              3.0,
+              5.0,
+              7.0,
+              13.0,
+              15.0,
+              22.0,
+              6.0,
+              9.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 65.0,
+                "h": 39.34,
+                "cx": 289.0,
+                "cy": 272.2
+              }
+            ]
+          }
+        ]
+      },
+      "fits": {
+        "focal": {
+          "hypothesis": "focal",
+          "failed": true
+        }
+      }
+    },
+    {
+      "id": "844x390",
+      "file": "844x390-dpr1-no-mobile-ua.png",
+      "viewportCss": [
+        844.0,
+        390.0
+      ],
+      "orientation": "landscape",
+      "aspect": 2.1641,
+      "capture": {},
+      "voidPreset": "navy",
+      "structure": {
+        "bands": [
+          {
+            "y0": 190.0,
+            "y1": 199.0,
+            "centre": 194.5,
+            "height": 10.0,
+            "touchesFrameEdge": false
+          }
+        ],
+        "rows": [
+          {
+            "y0": 0.0,
+            "y1": 189.0,
+            "centre": 94.5,
+            "height": 190.0,
+            "clipped": true,
+            "gutterCentres": [
+              256.5,
+              586.5,
+              612.0
+            ],
+            "gutterWidths": [
+              12.0,
+              12.0,
+              15.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 318.0,
+                "h": null,
+                "cx": 421.5,
+                "cy": null
+              }
+            ]
+          },
+          {
+            "y0": 200.0,
+            "y1": 389.0,
+            "centre": 294.5,
+            "height": 190.0,
+            "clipped": true,
+            "gutterCentres": [
+              102.0,
+              421.5
+            ],
+            "gutterWidths": [
+              9.0,
+              12.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 309.0,
+                "h": null,
+                "cx": 261.0,
+                "cy": null
+              }
+            ]
+          }
+        ]
+      },
+      "fits": {
+        "focal": {
+          "hypothesis": "focal",
+          "scale": 0.60325,
+          "scrollX": 271.585,
+          "scrollY": 208.015,
+          "rmsPx": 2.401,
+          "maxPx": 4.515,
+          "observations": 6
+        }
+      }
+    },
+    {
+      "id": "844x390",
+      "file": "844x390-dpr1.png",
+      "viewportCss": [
+        844.0,
+        390.0
+      ],
+      "orientation": "landscape",
+      "aspect": 2.1641,
+      "capture": {},
+      "voidPreset": "navy",
+      "structure": {
+        "bands": [
+          {
+            "y0": 190.0,
+            "y1": 199.0,
+            "centre": 194.5,
+            "height": 10.0,
+            "touchesFrameEdge": false
+          }
+        ],
+        "rows": [
+          {
+            "y0": 0.0,
+            "y1": 189.0,
+            "centre": 94.5,
+            "height": 190.0,
+            "clipped": true,
+            "gutterCentres": [
+              256.5,
+              586.5
+            ],
+            "gutterWidths": [
+              12.0,
+              12.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 318.0,
+                "h": null,
+                "cx": 421.5,
+                "cy": null
+              }
+            ]
+          },
+          {
+            "y0": 200.0,
+            "y1": 389.0,
+            "centre": 294.5,
+            "height": 190.0,
+            "clipped": true,
+            "gutterCentres": [
+              102.0,
+              421.5
+            ],
+            "gutterWidths": [
+              9.0,
+              12.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 309.0,
+                "h": null,
+                "cx": 261.0,
+                "cy": null
+              }
+            ]
+          }
+        ]
+      },
+      "fits": {
+        "focal": {
+          "hypothesis": "focal",
+          "scale": 0.58752,
+          "scrollX": 0.972,
+          "scrollY": -209.29,
+          "rmsPx": 0.23,
+          "maxPx": 0.5,
+          "observations": 5
+        }
+      }
+    },
+    {
+      "id": "926x428",
+      "file": "926x428-dpr1.png",
+      "viewportCss": [
+        926.0,
+        428.0
+      ],
+      "orientation": "landscape",
+      "aspect": 2.16355,
+      "capture": {},
+      "voidPreset": "navy",
+      "structure": {
+        "bands": [
+          {
+            "y0": 208.0,
+            "y1": 219.0,
+            "centre": 213.5,
+            "height": 12.0,
+            "touchesFrameEdge": false
+          }
+        ],
+        "rows": [
+          {
+            "y0": 0.0,
+            "y1": 207.0,
+            "centre": 103.5,
+            "height": 208.0,
+            "clipped": true,
+            "gutterCentres": [
+              282.0,
+              643.0
+            ],
+            "gutterWidths": [
+              13.0,
+              13.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 348.0,
+                "h": null,
+                "cx": 462.5,
+                "cy": null
+              }
+            ]
+          },
+          {
+            "y0": 220.0,
+            "y1": 427.0,
+            "centre": 323.5,
+            "height": 208.0,
+            "clipped": true,
+            "gutterCentres": [
+              11.0,
+              59.0,
+              80.5,
+              111.5,
+              462.5
+            ],
+            "gutterWidths": [
+              23.0,
+              9.0,
+              18.0,
+              10.0,
+              14.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 339.0,
+                "h": null,
+                "cx": 286.0,
+                "cy": null
+              }
+            ]
+          }
+        ]
+      },
+      "fits": {
+        "focal": {
+          "hypothesis": "focal",
+          "scale": 0.68373,
+          "scrollX": 6.124,
+          "scrollY": -209.556,
+          "rmsPx": 7.767,
+          "maxPx": 18.0,
+          "observations": 8
+        }
+      }
+    },
+    {
+      "id": "960x720",
+      "file": "960x720-dpr1.png",
+      "viewportCss": [
+        960.0,
+        720.0
+      ],
+      "orientation": "landscape",
+      "aspect": 1.33333,
+      "capture": {},
+      "voidPreset": "navy",
+      "structure": {
+        "bands": [
+          {
+            "y0": 79.0,
+            "y1": 87.0,
+            "centre": 83.0,
+            "height": 9.0,
+            "touchesFrameEdge": false
+          },
+          {
+            "y0": 354.0,
+            "y1": 365.0,
+            "centre": 359.5,
+            "height": 12.0,
+            "touchesFrameEdge": false
+          },
+          {
+            "y0": 627.0,
+            "y1": 642.0,
+            "centre": 634.5,
+            "height": 16.0,
+            "touchesFrameEdge": false
+          }
+        ],
+        "rows": [
+          {
+            "y0": 0.0,
+            "y1": 78.0,
+            "centre": 39.0,
+            "height": 79.0,
+            "clipped": true,
+            "gutterCentres": [
+              299.0,
+              660.0
+            ],
+            "gutterWidths": [
+              11.0,
+              11.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 350.0,
+                "h": null,
+                "cx": 479.5,
+                "cy": null
+              }
+            ]
+          },
+          {
+            "y0": 88.0,
+            "y1": 353.0,
+            "centre": 220.5,
+            "height": 266.0,
+            "clipped": false,
+            "gutterCentres": [
+              117.0,
+              479.5,
+              842.0
+            ],
+            "gutterWidths": [
+              9.0,
+              14.0,
+              9.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 351.0,
+                "h": 265.09,
+                "cx": 297.0,
+                "cy": 221.18
+              },
+              {
+                "w": 351.0,
+                "h": null,
+                "cx": 662.0,
+                "cy": null
+              }
+            ]
+          },
+          {
+            "y0": 366.0,
+            "y1": 626.0,
+            "centre": 496.0,
+            "height": 261.0,
+            "clipped": false,
+            "gutterCentres": [
+              292.5,
+              666.5
+            ],
+            "gutterWidths": [
+              12.0,
+              12.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 362.0,
+                "h": 267.61,
+                "cx": 479.5,
+                "cy": 499.31
+              }
+            ]
+          },
+          {
+            "y0": 643.0,
+            "y1": 719.0,
+            "centre": 681.0,
+            "height": 77.0,
+            "clipped": true,
+            "gutterCentres": [
+              174.0,
+              182.5,
+              195.5,
+              221.0,
+              244.5,
+              279.5,
+              326.0,
+              358.5,
+              368.5,
+              479.5
+            ],
+            "gutterWidths": [
+              3.0,
+              12.0,
+              10.0,
+              11.0,
+              20.0,
+              46.0,
+              45.0,
+              8.0,
+              6.0,
+              12.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 102.0,
+                "h": null,
+                "cx": 422.5,
+                "cy": null
+              }
+            ]
+          }
+        ]
+      },
+      "fits": {
+        "focal": {
+          "hypothesis": "focal",
+          "scale": 0.66573,
+          "scrollX": 281.248,
+          "scrollY": 646.213,
+          "rmsPx": 9.998,
+          "maxPx": 18.0,
+          "observations": 26
+        }
+      }
+    },
+    {
+      "id": "760x470",
+      "file": "760x470-dpr1.png",
+      "viewportCss": [
+        760.0,
+        470.0
+      ],
+      "orientation": "landscape",
+      "aspect": 1.61702,
+      "capture": {
+        "capturedAt": "2026-08-20T10:42:11.441Z",
+        "target": "https://infinite-liquid-glass.shader.se/?v=2",
+        "viewport": [
+          760,
+          470
+        ],
+        "dpr": 1,
+        "mobileEmulation": false,
+        "touch": false,
+        "control": null,
+        "declaredMode": "sweep",
+        "ready": true,
+        "canvasBuffer": [
+          760,
+          470
+        ],
+        "devicePixelRatio": 1
+      },
+      "voidPreset": "navy",
+      "structure": {
+        "bands": [
+          {
+            "y0": 13.0,
+            "y1": 18.0,
+            "centre": 15.5,
+            "height": 6.0,
+            "touchesFrameEdge": false
+          },
+          {
+            "y0": 230.0,
+            "y1": 238.0,
+            "centre": 234.0,
+            "height": 9.0,
+            "touchesFrameEdge": false
+          },
+          {
+            "y0": 450.0,
+            "y1": 457.0,
+            "centre": 453.5,
+            "height": 8.0,
+            "touchesFrameEdge": false
+          }
+        ],
+        "rows": [
+          {
+            "y0": 19.0,
+            "y1": 229.0,
+            "centre": 124.0,
+            "height": 211.0,
+            "clipped": false,
+            "gutterCentres": [
+              92.5,
+              379.5,
+              667.0
+            ],
+            "gutterWidths": [
+              8.0,
+              12.0,
+              7.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 277.0,
+                "h": 210.38,
+                "cx": 235.0,
+                "cy": 125.01
+              },
+              {
+                "w": 278.0,
+                "h": 118.22,
+                "cx": 524.5,
+                "cy": 146.99
+              }
+            ]
+          },
+          {
+            "y0": 239.0,
+            "y1": 449.0,
+            "centre": 344.0,
+            "height": 211.0,
+            "clipped": false,
+            "gutterCentres": [
+              231.5,
+              527.5
+            ],
+            "gutterWidths": [
+              10.0,
+              10.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 286.0,
+                "h": 212.62,
+                "cx": 379.5,
+                "cy": 344.81
+              }
+            ]
+          }
+        ]
+      },
+      "fits": {
+        "focal": {
+          "hypothesis": "focal",
+          "scale": 0.52729,
+          "scrollX": 0.699,
+          "scrollY": 207.382,
+          "rmsPx": 0.838,
+          "maxPx": 1.965,
+          "observations": 14
+        }
+      }
+    },
+    {
+      "id": "800x425",
+      "file": "800x425-dpr1.png",
+      "viewportCss": [
+        800.0,
+        425.0
+      ],
+      "orientation": "landscape",
+      "aspect": 1.88235,
+      "capture": {
+        "capturedAt": "2026-08-20T10:42:11.441Z",
+        "target": "https://infinite-liquid-glass.shader.se/?v=2",
+        "viewport": [
+          800,
+          425
+        ],
+        "dpr": 1,
+        "mobileEmulation": false,
+        "touch": false,
+        "control": null,
+        "declaredMode": "sweep",
+        "ready": true,
+        "canvasBuffer": [
+          800,
+          425
+        ],
+        "devicePixelRatio": 1
+      },
+      "voidPreset": "navy",
+      "structure": {
+        "bands": [
+          {
+            "y0": 208.0,
+            "y1": 216.0,
+            "centre": 212.0,
+            "height": 9.0,
+            "touchesFrameEdge": false
+          }
+        ],
+        "rows": [
+          {
+            "y0": 0.0,
+            "y1": 207.0,
+            "centre": 103.5,
+            "height": 208.0,
+            "clipped": true,
+            "gutterCentres": [
+              243.5,
+              555.5
+            ],
+            "gutterWidths": [
+              10.0,
+              10.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 302.0,
+                "h": null,
+                "cx": 399.5,
+                "cy": null
+              }
+            ]
+          },
+          {
+            "y0": 217.0,
+            "y1": 424.0,
+            "centre": 320.5,
+            "height": 208.0,
+            "clipped": true,
+            "gutterCentres": [
+              97.0,
+              399.5
+            ],
+            "gutterWidths": [
+              7.0,
+              12.0
+            ],
+            "unclippedCards": [
+              {
+                "w": 293.0,
+                "h": null,
+                "cx": 247.0,
+                "cy": null
+              }
+            ]
+          }
+        ]
+      },
+      "fits": {
+        "focal": {
+          "hypothesis": "focal",
+          "scale": 0.55595,
+          "scrollX": 1.095,
+          "scrollY": -209.494,
+          "rmsPx": 0.082,
+          "maxPx": 0.129,
+          "observations": 5
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,707 @@
+{
+  "note": "Joint recovery. No parameter is locked before the others; no per-viewport freedom; the portrait gain is NOT seeded from a flat-grid fit result.",
+  "fixedByPriorAcceptance": {
+    "TILE": [
+      540.7678,
+      401.5479
+    ],
+    "cellW": 561.14,
+    "horizontalRadius": -4058.94,
+    "landscapeGain": 1.0,
+    "restPhaseScaleSwitch": 0.674
+  },
+  "anomalyExcluded": [
+    "320x900",
+    "390x1000"
+  ],
+  "candidates": {
+    "depth": {
+      "mode": "depth",
+      "aspectTermFree": false,
+      "sharedParameters": {
+        "gainSlope": 0.0,
+        "radiusY": -6496.164,
+        "cellH": 423.6929,
+        "restY0": -202.4132,
+        "gainBase": 1.9026
+      },
+      "trainRmsPx": 26.196,
+      "trainMaxPx": 223.697,
+      "trainMedianPx": 1.27,
+      "trainP90Px": 9.387,
+      "trainedOn": [
+        "1440x900",
+        "1100x720",
+        "1920x1080",
+        "1366x768",
+        "844x390",
+        "1000x700",
+        "360x800",
+        "414x896",
+        "430x932",
+        "390x700",
+        "500x900",
+        "700x900"
+      ],
+      "heldOut": "390x844",
+      "heldOutScore": [
+        {
+          "viewport": "390x844",
+          "rmsPx": 5.149,
+          "medianPx": 2.859,
+          "p90Px": 7.777,
+          "maxPx": 14.588,
+          "observations": 19
+        }
+      ],
+      "perViewport": [
+        {
+          "viewport": "1000x700",
+          "rmsPx": 2.263,
+          "medianPx": 0.868,
+          "p90Px": 3.937,
+          "maxPx": 6.046,
+          "observations": 12
+        },
+        {
+          "viewport": "1100x720",
+          "rmsPx": 70.138,
+          "medianPx": 1.183,
+          "p90Px": 110.822,
+          "maxPx": 223.697,
+          "observations": 16
+        },
+        {
+          "viewport": "1366x768",
+          "rmsPx": 4.134,
+          "medianPx": 1.018,
+          "p90Px": 6.602,
+          "maxPx": 7.445,
+          "observations": 5
+        },
+        {
+          "viewport": "1440x900",
+          "rmsPx": 2.045,
+          "medianPx": 0.995,
+          "p90Px": 3.468,
+          "maxPx": 4.947,
+          "observations": 12
+        },
+        {
+          "viewport": "1920x1080",
+          "rmsPx": 6.304,
+          "medianPx": 1.374,
+          "p90Px": 10.068,
+          "maxPx": 11.929,
+          "observations": 5
+        },
+        {
+          "viewport": "360x800",
+          "rmsPx": 4.411,
+          "medianPx": 2.405,
+          "p90Px": 6.512,
+          "maxPx": 12.158,
+          "observations": 14
+        },
+        {
+          "viewport": "390x700",
+          "rmsPx": 2.648,
+          "medianPx": 1.083,
+          "p90Px": 3.663,
+          "maxPx": 6.873,
+          "observations": 10
+        },
+        {
+          "viewport": "414x896",
+          "rmsPx": 5.39,
+          "medianPx": 2.85,
+          "p90Px": 8.259,
+          "maxPx": 14.931,
+          "observations": 19
+        },
+        {
+          "viewport": "430x932",
+          "rmsPx": 24.556,
+          "medianPx": 3.641,
+          "p90Px": 15.568,
+          "maxPx": 107.8,
+          "observations": 22
+        },
+        {
+          "viewport": "500x900",
+          "rmsPx": 3.168,
+          "medianPx": 0.958,
+          "p90Px": 4.991,
+          "maxPx": 7.709,
+          "observations": 10
+        },
+        {
+          "viewport": "700x900",
+          "rmsPx": 8.041,
+          "medianPx": 8.125,
+          "p90Px": 11.01,
+          "maxPx": 13.97,
+          "observations": 10
+        },
+        {
+          "viewport": "844x390",
+          "rmsPx": 0.182,
+          "medianPx": 0.182,
+          "p90Px": 0.182,
+          "maxPx": 0.182,
+          "observations": 1
+        },
+        {
+          "viewport": "844x390",
+          "rmsPx": 0.182,
+          "medianPx": 0.182,
+          "p90Px": 0.182,
+          "maxPx": 0.182,
+          "observations": 1
+        },
+        {
+          "viewport": "390x844",
+          "rmsPx": 5.149,
+          "medianPx": 2.859,
+          "p90Px": 7.777,
+          "maxPx": 14.588,
+          "observations": 19
+        }
+      ],
+      "anomalySmoke": [
+        {
+          "viewport": "320x900",
+          "rmsPx": 45.376,
+          "medianPx": 10.418,
+          "p90Px": 82.302,
+          "maxPx": 84.0,
+          "observations": 25
+        },
+        {
+          "viewport": "390x1000",
+          "rmsPx": 61.618,
+          "medianPx": 36.05,
+          "p90Px": 100.421,
+          "maxPx": 149.588,
+          "observations": 34
+        }
+      ]
+    },
+    "depth+aspect": {
+      "mode": "depth",
+      "aspectTermFree": true,
+      "sharedParameters": {
+        "radiusY": -4550.5538,
+        "cellH": 425.5307,
+        "restY0": -203.3066,
+        "gainBase": 1.9254,
+        "gainSlope": -0.2776
+      },
+      "trainRmsPx": 26.13,
+      "trainMaxPx": 223.904,
+      "trainMedianPx": 1.432,
+      "trainP90Px": 8.198,
+      "trainedOn": [
+        "1440x900",
+        "1100x720",
+        "1920x1080",
+        "1366x768",
+        "844x390",
+        "1000x700",
+        "360x800",
+        "414x896",
+        "430x932",
+        "390x700",
+        "500x900",
+        "700x900"
+      ],
+      "heldOut": "390x844",
+      "heldOutScore": [
+        {
+          "viewport": "390x844",
+          "rmsPx": 4.92,
+          "medianPx": 1.863,
+          "p90Px": 6.497,
+          "maxPx": 15.377,
+          "observations": 19
+        }
+      ],
+      "perViewport": [
+        {
+          "viewport": "1000x700",
+          "rmsPx": 2.286,
+          "medianPx": 0.744,
+          "p90Px": 4.352,
+          "maxPx": 5.661,
+          "observations": 12
+        },
+        {
+          "viewport": "1100x720",
+          "rmsPx": 70.233,
+          "medianPx": 1.511,
+          "p90Px": 111.029,
+          "maxPx": 223.904,
+          "observations": 16
+        },
+        {
+          "viewport": "1366x768",
+          "rmsPx": 4.126,
+          "medianPx": 1.275,
+          "p90Px": 6.513,
+          "maxPx": 6.919,
+          "observations": 5
+        },
+        {
+          "viewport": "1440x900",
+          "rmsPx": 2.197,
+          "medianPx": 1.175,
+          "p90Px": 4.071,
+          "maxPx": 4.392,
+          "observations": 12
+        },
+        {
+          "viewport": "1920x1080",
+          "rmsPx": 6.255,
+          "medianPx": 1.735,
+          "p90Px": 9.943,
+          "maxPx": 11.189,
+          "observations": 5
+        },
+        {
+          "viewport": "360x800",
+          "rmsPx": 4.19,
+          "medianPx": 1.529,
+          "p90Px": 4.943,
+          "maxPx": 13.208,
+          "observations": 14
+        },
+        {
+          "viewport": "390x700",
+          "rmsPx": 2.525,
+          "medianPx": 1.114,
+          "p90Px": 3.459,
+          "maxPx": 6.456,
+          "observations": 10
+        },
+        {
+          "viewport": "414x896",
+          "rmsPx": 5.17,
+          "medianPx": 1.594,
+          "p90Px": 7.198,
+          "maxPx": 15.77,
+          "observations": 19
+        },
+        {
+          "viewport": "430x932",
+          "rmsPx": 24.564,
+          "medianPx": 2.561,
+          "p90Px": 15.863,
+          "maxPx": 107.8,
+          "observations": 22
+        },
+        {
+          "viewport": "500x900",
+          "rmsPx": 2.974,
+          "medianPx": 1.459,
+          "p90Px": 4.68,
+          "maxPx": 7.115,
+          "observations": 10
+        },
+        {
+          "viewport": "700x900",
+          "rmsPx": 1.958,
+          "medianPx": 1.219,
+          "p90Px": 3.233,
+          "maxPx": 3.395,
+          "observations": 10
+        },
+        {
+          "viewport": "844x390",
+          "rmsPx": 0.186,
+          "medianPx": 0.186,
+          "p90Px": 0.186,
+          "maxPx": 0.186,
+          "observations": 1
+        },
+        {
+          "viewport": "844x390",
+          "rmsPx": 0.186,
+          "medianPx": 0.186,
+          "p90Px": 0.186,
+          "maxPx": 0.186,
+          "observations": 1
+        },
+        {
+          "viewport": "390x844",
+          "rmsPx": 4.92,
+          "medianPx": 1.863,
+          "p90Px": 6.497,
+          "maxPx": 15.377,
+          "observations": 19
+        }
+      ],
+      "anomalySmoke": [
+        {
+          "viewport": "320x900",
+          "rmsPx": 45.789,
+          "medianPx": 9.923,
+          "p90Px": 82.74,
+          "maxPx": 85.173,
+          "observations": 25
+        },
+        {
+          "viewport": "390x1000",
+          "rmsPx": 62.382,
+          "medianPx": 36.05,
+          "p90Px": 100.975,
+          "maxPx": 152.458,
+          "observations": 34
+        }
+      ]
+    },
+    "tangent": {
+      "mode": "tangent",
+      "aspectTermFree": false,
+      "sharedParameters": {
+        "gainSlope": 0.0,
+        "radiusY": -5937.973,
+        "cellH": 420.6239,
+        "restY0": -201.1318,
+        "gainBase": 1.9223
+      },
+      "trainRmsPx": 26.02,
+      "trainMaxPx": 223.733,
+      "trainMedianPx": 1.274,
+      "trainP90Px": 9.076,
+      "trainedOn": [
+        "1440x900",
+        "1100x720",
+        "1920x1080",
+        "1366x768",
+        "844x390",
+        "1000x700",
+        "360x800",
+        "414x896",
+        "430x932",
+        "390x700",
+        "500x900",
+        "700x900"
+      ],
+      "heldOut": "390x844",
+      "heldOutScore": [
+        {
+          "viewport": "390x844",
+          "rmsPx": 3.303,
+          "medianPx": 1.98,
+          "p90Px": 4.389,
+          "maxPx": 8.763,
+          "observations": 19
+        }
+      ],
+      "perViewport": [
+        {
+          "viewport": "1000x700",
+          "rmsPx": 1.728,
+          "medianPx": 0.693,
+          "p90Px": 3.218,
+          "maxPx": 3.888,
+          "observations": 12
+        },
+        {
+          "viewport": "1100x720",
+          "rmsPx": 70.151,
+          "medianPx": 0.964,
+          "p90Px": 110.858,
+          "maxPx": 223.733,
+          "observations": 16
+        },
+        {
+          "viewport": "1366x768",
+          "rmsPx": 2.434,
+          "medianPx": 1.063,
+          "p90Px": 3.824,
+          "maxPx": 4.497,
+          "observations": 5
+        },
+        {
+          "viewport": "1440x900",
+          "rmsPx": 1.949,
+          "medianPx": 0.921,
+          "p90Px": 1.821,
+          "maxPx": 5.893,
+          "observations": 12
+        },
+        {
+          "viewport": "1920x1080",
+          "rmsPx": 3.944,
+          "medianPx": 1.436,
+          "p90Px": 6.162,
+          "maxPx": 7.786,
+          "observations": 5
+        },
+        {
+          "viewport": "360x800",
+          "rmsPx": 2.476,
+          "medianPx": 0.932,
+          "p90Px": 3.22,
+          "maxPx": 6.856,
+          "observations": 14
+        },
+        {
+          "viewport": "390x700",
+          "rmsPx": 2.399,
+          "medianPx": 1.111,
+          "p90Px": 2.718,
+          "maxPx": 6.51,
+          "observations": 10
+        },
+        {
+          "viewport": "414x896",
+          "rmsPx": 3.442,
+          "medianPx": 1.783,
+          "p90Px": 4.684,
+          "maxPx": 9.633,
+          "observations": 19
+        },
+        {
+          "viewport": "430x932",
+          "rmsPx": 23.886,
+          "medianPx": 3.045,
+          "p90Px": 14.799,
+          "maxPx": 107.8,
+          "observations": 22
+        },
+        {
+          "viewport": "500x900",
+          "rmsPx": 2.822,
+          "medianPx": 1.461,
+          "p90Px": 3.536,
+          "maxPx": 7.244,
+          "observations": 10
+        },
+        {
+          "viewport": "700x900",
+          "rmsPx": 9.093,
+          "medianPx": 7.551,
+          "p90Px": 13.251,
+          "maxPx": 14.887,
+          "observations": 10
+        },
+        {
+          "viewport": "844x390",
+          "rmsPx": 0.084,
+          "medianPx": 0.084,
+          "p90Px": 0.084,
+          "maxPx": 0.084,
+          "observations": 1
+        },
+        {
+          "viewport": "844x390",
+          "rmsPx": 0.084,
+          "medianPx": 0.084,
+          "p90Px": 0.084,
+          "maxPx": 0.084,
+          "observations": 1
+        },
+        {
+          "viewport": "390x844",
+          "rmsPx": 3.303,
+          "medianPx": 1.98,
+          "p90Px": 4.389,
+          "maxPx": 8.763,
+          "observations": 19
+        }
+      ],
+      "anomalySmoke": [
+        {
+          "viewport": "320x900",
+          "rmsPx": 45.553,
+          "medianPx": 11.27,
+          "p90Px": 82.74,
+          "maxPx": 84.0,
+          "observations": 25
+        },
+        {
+          "viewport": "390x1000",
+          "rmsPx": 60.941,
+          "medianPx": 36.05,
+          "p90Px": 100.975,
+          "maxPx": 136.98,
+          "observations": 34
+        }
+      ]
+    },
+    "tangent+aspect": {
+      "mode": "tangent",
+      "aspectTermFree": true,
+      "sharedParameters": {
+        "radiusY": -4707.6005,
+        "cellH": 419.949,
+        "restY0": -200.9942,
+        "gainBase": 1.9468,
+        "gainSlope": -0.31
+      },
+      "trainRmsPx": 25.897,
+      "trainMaxPx": 223.864,
+      "trainMedianPx": 1.125,
+      "trainP90Px": 6.3,
+      "trainedOn": [
+        "1440x900",
+        "1100x720",
+        "1920x1080",
+        "1366x768",
+        "844x390",
+        "1000x700",
+        "360x800",
+        "414x896",
+        "430x932",
+        "390x700",
+        "500x900",
+        "700x900"
+      ],
+      "heldOut": "390x844",
+      "heldOutScore": [
+        {
+          "viewport": "390x844",
+          "rmsPx": 2.649,
+          "medianPx": 1.373,
+          "p90Px": 4.515,
+          "maxPx": 6.207,
+          "observations": 19
+        }
+      ],
+      "perViewport": [
+        {
+          "viewport": "1000x700",
+          "rmsPx": 1.731,
+          "medianPx": 0.688,
+          "p90Px": 2.943,
+          "maxPx": 4.237,
+          "observations": 12
+        },
+        {
+          "viewport": "1100x720",
+          "rmsPx": 70.216,
+          "medianPx": 0.864,
+          "p90Px": 110.989,
+          "maxPx": 223.864,
+          "observations": 16
+        },
+        {
+          "viewport": "1366x768",
+          "rmsPx": 1.897,
+          "medianPx": 1.226,
+          "p90Px": 2.894,
+          "maxPx": 3.366,
+          "observations": 5
+        },
+        {
+          "viewport": "1440x900",
+          "rmsPx": 2.355,
+          "medianPx": 0.656,
+          "p90Px": 2.629,
+          "maxPx": 7.221,
+          "observations": 12
+        },
+        {
+          "viewport": "1920x1080",
+          "rmsPx": 3.18,
+          "medianPx": 1.665,
+          "p90Px": 4.856,
+          "maxPx": 6.195,
+          "observations": 5
+        },
+        {
+          "viewport": "360x800",
+          "rmsPx": 1.756,
+          "medianPx": 0.835,
+          "p90Px": 3.187,
+          "maxPx": 3.636,
+          "observations": 14
+        },
+        {
+          "viewport": "390x700",
+          "rmsPx": 2.444,
+          "medianPx": 1.27,
+          "p90Px": 2.876,
+          "maxPx": 6.458,
+          "observations": 10
+        },
+        {
+          "viewport": "414x896",
+          "rmsPx": 2.79,
+          "medianPx": 1.811,
+          "p90Px": 4.28,
+          "maxPx": 6.918,
+          "observations": 19
+        },
+        {
+          "viewport": "430x932",
+          "rmsPx": 23.816,
+          "medianPx": 2.524,
+          "p90Px": 13.087,
+          "maxPx": 107.8,
+          "observations": 22
+        },
+        {
+          "viewport": "500x900",
+          "rmsPx": 2.871,
+          "medianPx": 1.713,
+          "p90Px": 3.7,
+          "maxPx": 7.112,
+          "observations": 10
+        },
+        {
+          "viewport": "700x900",
+          "rmsPx": 1.099,
+          "medianPx": 0.55,
+          "p90Px": 1.762,
+          "maxPx": 1.964,
+          "observations": 10
+        },
+        {
+          "viewport": "844x390",
+          "rmsPx": 0.003,
+          "medianPx": 0.003,
+          "p90Px": 0.003,
+          "maxPx": 0.003,
+          "observations": 1
+        },
+        {
+          "viewport": "844x390",
+          "rmsPx": 0.003,
+          "medianPx": 0.003,
+          "p90Px": 0.003,
+          "maxPx": 0.003,
+          "observations": 1
+        },
+        {
+          "viewport": "390x844",
+          "rmsPx": 2.649,
+          "medianPx": 1.373,
+          "p90Px": 4.515,
+          "maxPx": 6.207,
+          "observations": 19
+        }
+      ],
+      "anomalySmoke": [
+        {
+          "viewport": "320x900",
+          "rmsPx": 45.986,
+          "medianPx": 11.084,
+          "p90Px": 83.105,
+          "maxPx": 86.334,
+          "observations": 25
+        },
+        {
+          "viewport": "390x1000",
+          "rmsPx": 61.751,
+          "medianPx": 36.05,
+          "p90Px": 101.188,
+          "maxPx": 137.217,
+          "observations": 34
+        }
+      ]
+    }
+  }
+}
