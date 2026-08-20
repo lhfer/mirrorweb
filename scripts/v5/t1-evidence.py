@@ -181,7 +181,8 @@ if __name__ == "__main__":
     for n in ["README.md", "MANIFEST.json", "target-typography-contract.json",
               "container-alignment.json", "depth-clipping.json", "label-ink.json",
               "quality-invariance.json", "render-loop-proof.json", "route-proof.json",
-              "recording.json", "viewport-gate.json", "attribution.json"]:
+              "recording.json", "viewport-gate.json", "attribution.json",
+              "source-contract.json"]:
         p = PUB / n
         if p.exists():
             shutil.copy2(p, PRIV / n)
