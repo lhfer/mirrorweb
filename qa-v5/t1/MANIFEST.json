@@ -2,12 +2,12 @@
   "stage": "t1",
   "repository": "lhfer/mirrorweb",
   "branch": "rebuild/liquid-glass-v5-source-exact",
-  "head": "847347d4da5bc7fc7fe73645cbdcd6cbaac105ef",
+  "head": "39ff3ded0706780771c020288235f9c87c740ae6",
   "codeCommit": "847347d",
   "evidenceCommit": "this commit",
-  "headSemantics": "`head` is the commit the evidence was CAPTURED at. The evidence commit that carries these files is necessarily later, and a file cannot contain its own hash; no hygiene commit is created to chase one.",
-  "route": "/?qa=1&composition=sourceExact (beauty, container alignment, depth/clipping, quality) and /?qa=1&composition=sourceExact&foundation=layout&annotate=0 (foundation state)",
-  "captureTimestampUtc": "2026-08-20T21:27:04Z",
+  "headSemantics": "Pixel evidence was CAPTURED at 847347d, the typography code commit. source-contract.json was re-run at 39ff3de, the typography evidence commit, and `head` names that run. The commit carrying this manifest is necessarily later than the manifest itself, because a file cannot contain its own hash.",
+  "route": "/?qa=1&composition=sourceExact (beauty, container alignment, depth/clipping, quality) and /?qa=1&composition=sourceExact&foundation=layout&annotate=0 (foundation state, source contract)",
+  "captureTimestampUtc": "2026-08-20T21:39:19Z",
   "fixedCaptureConditions": {
     "quality": "high (pinned; adaptive quality must not drift between captures)",
     "mediaTimeSeconds": 2,
@@ -27,8 +27,8 @@
   "files": [
     {
       "path": "qa-v5/t1/README.md",
-      "bytes": 5772,
-      "sha256": "c57270d2662d9ea50a2c7c308391a9265365166592198633f35fa0a0d95df541"
+      "bytes": 6218,
+      "sha256": "3e203634d1ea944198310ddc03512a707b276de0b3175132e656e7dc8c425254"
     },
     {
       "path": "qa-v5/t1/attribution.json",
@@ -556,14 +556,19 @@
       "sha256": "947a6e01b1d449ab5fff1630065b233297ed85cc575af57ef76119a9f66d8dab"
     },
     {
+      "path": "qa-v5/t1/source-contract.json",
+      "bytes": 188063,
+      "sha256": "535462caea95483731379f52421f86cec6770a233bded27aa8c96824c775b10e"
+    },
+    {
       "path": "qa-v5/t1/target-typography-contract.json",
       "bytes": 25927,
       "sha256": "baa7c4bb55f2b892ff1f62b1d929b429ef5722b14b2f4cc56193316e9237ef6f"
     },
     {
       "path": "qa-v5/t1/viewport-gate.json",
-      "bytes": 8852,
-      "sha256": "adf61077a7963b5d4c7a6ba2d6de731176027515cc4e0b8338c74e7318347d27"
+      "bytes": 8954,
+      "sha256": "82e0666cb359c750b08cbf9f4af6198bb04b67122b76cd89607423cca98863a5"
     }
   ]
 }

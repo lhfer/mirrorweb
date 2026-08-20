@@ -8,7 +8,8 @@
     "qualityInvariance": "qa-v5/t1/quality-invariance.json",
     "route": "qa-v5/t1/route-proof.json",
     "renderLoop": "qa-v5/t1/render-loop-proof.json",
-    "recording": "qa-v5/t1/recording.json"
+    "recording": "qa-v5/t1/recording.json",
+    "sourceContract": "qa-v5/t1/source-contract.json"
   },
   "viewports": [
     {
@@ -289,7 +290,7 @@
     {
       "check": "Source Contract 36/36",
       "pass": true,
-      "detail": "npm run v5:target-layout-source PASS 14/14; contract constants unchanged"
+      "detail": "36/36 viewports re-run at the tip; worst world delta vs Target DOM 0.005366; npm run v5:target-layout-source PASS 14/14"
     },
     {
       "check": "Route Proof",

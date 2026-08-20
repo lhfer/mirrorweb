@@ -59,7 +59,8 @@ that element, so the type was scaled against a card that did not exist: +113% at
 | `container-alignment.json` | **PASS 47/47.** Label corners reconstructed through the live CSS3D chain and validated against the browser's own bounding rect (0.005 px), then compared with the card mid-plane: worst 0.011 px against a 1 px gate. |
 | `depth-clipping.json` | **PASS 30/30.** The Target's clip structure reproduced; no title collides with a title on a non-overlapping card; at 1199 sampled pixels the topmost label is the nearest card's, 0 wrong. |
 | `label-ink.json` | **PASS.** Zero label ink outside the card silhouettes at all seven viewports, measured in pixels from a labels-only capture. |
-| `viewport-gate.json` | **PASS 7/7 viewports, 13/13 engineering.** Each row names the file that produced it. |
+| `source-contract.json` | **PASS 36/36.** The engineering contract re-run at this tip, not asserted from the freeze diff: engine vs model vs the Target's own DOM. Worst slot world delta vs model 0.0, worst orientation 1.21e-06 deg, worst projected corner 0.0 px, worst world delta vs Target DOM 0.005366 across 36 viewports. |
+| `viewport-gate.json` | **PASS 7/7 viewports, 13/13 engineering.** Each row names the file that produced it, including the Source Contract row, which now reads its verdict out of `source-contract.json` instead of asserting it. |
 | `attribution.json` | What is left, and which system owns it. |
 | `session/session.json` | One live page resized landscape → portrait → square → landscape: the label box tracks the frame at every step and slot identity holds. |
 

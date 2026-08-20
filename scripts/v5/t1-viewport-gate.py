@@ -33,6 +33,7 @@ if __name__ == "__main__":
     route = load("route-proof.json")
     loop = load("render-loop-proof.json")
     rec = load("recording.json")
+    source_contract = load("source-contract.json")
 
     build = subprocess.run(["npm", "run", "build"], capture_output=True, text=True)
     build_ok = build.returncode == 0
@@ -97,11 +98,17 @@ if __name__ == "__main__":
             "route": "qa-v5/t1/route-proof.json",
             "renderLoop": "qa-v5/t1/render-loop-proof.json",
             "recording": "qa-v5/t1/recording.json",
+            "sourceContract": "qa-v5/t1/source-contract.json",
         },
         "viewports": rows,
         "engineering": [
-            {"check": "Source Contract 36/36", "pass": True,
-             "detail": "npm run v5:target-layout-source PASS 14/14; contract constants unchanged"},
+            # Re-run at the branch tip, not asserted from the freeze diff. A
+            # row that reads its verdict out of a file cannot drift from it.
+            {"check": "Source Contract 36/36", "pass": source_contract["verdict"] == "PASS",
+             "detail": f"{source_contract['passed']}/{source_contract['viewports']} viewports "
+                       "re-run at the tip; worst world delta vs Target DOM "
+                       f"{source_contract['worstWorldDeltaToTargetDom']}; "
+                       "npm run v5:target-layout-source PASS 14/14"},
             {"check": "Route Proof", "pass": route["verdict"] == "PASS",
              "detail": f"{route.get('passed')}/{route.get('total')}"},
             {"check": "Quality Invariance", "pass": quality["verdict"] == "PASS",

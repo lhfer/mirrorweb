@@ -28,7 +28,8 @@ stated here and no further hygiene commit is created to chase it.
 | `evidenceReproducibilityCommit` | `4c3f7ed` `v5-fsx-evidence-reproducibility` |
 | `t0FixCommit` | `52afb05` `v5-t0-render-loop-evidence-fix` |
 | `typographyCodeCommit` | `847347d` `v5-t1-source-exact-typography-code` |
-| `typographyEvidenceCommit` | `v5-t1-source-exact-typography-evidence` — this delivery's last commit |
+| `typographyEvidenceCommit` | `39ff3de` `v5-t1-source-exact-typography-evidence` |
+| `sourceContractRerunCommit` | `v5-t1-source-contract-tip-rerun` — the 36-viewport engineering contract re-run at `39ff3de` so the Typography gate's Source Contract row reads a verdict out of a file instead of asserting one. Evidence only; no product code. |
 | `reviewHeadAtDelivery` | the branch tip after the commits above; resolve with `git rev-parse HEAD`. A file cannot contain its own hash and no hygiene commit is created to chase one. |
 
 ### Status
@@ -84,6 +85,7 @@ the quality sweep. Its route proof and source contract stand.
 | Container alignment | **PASS 47/47** — worst label corner error 0.011 px against the card mid-plane |
 | Clipping / depth | **PASS 30/30** — Target's clip structure reproduced; 1199 sampled pixels, 0 wrong depth |
 | Label ink outside card silhouettes | **0** at every viewport |
+| Source contract, re-run at this tip | **PASS 36/36** — slot world 0.0, orientation 1.21e-6 deg, projected corner 0.0 px, engine vs Target DOM 0.005366 world; `npm run v5:target-layout-source` **PASS 14/14** |
 | Viewport gate | **PASS 7/7 viewports, 13/13 engineering** |
 | Title baseline | matches the Target to three decimals at all seven viewports |
 | Build | PASS |
