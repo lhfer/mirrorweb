@@ -1,0 +1,365 @@
+{
+  "schemaVersion": 2,
+  "loopId": "ILG-STAGE-H-A2",
+  "immutable": true,
+  "immutabilityRule": "Fixed once, in Stage H, from a constrained read-only scan. No round may rescan or reselect a cell, a clip or a media time. A candidate that performs badly on high-texture must be reported, not routed around.",
+  "scannedFrom": {
+    "productBest": "ffcd8d90e167fe7f1e0039f7c96e9a6a68c26435",
+    "scanBuild": "the Stage H build, whose product render path is proven identical to the Best by the Stage H source-integrity evidence",
+    "scanArtifact": "qa/loop-a2/scan/state-scan.json"
+  },
+  "mediaTime": 2.016667,
+  "mediaTimeRationale": "Frame centre (60 + 0.5) / 30 fps. Never a frame boundary: a boundary lets the decoder snap either way.",
+  "catalogFormula": {
+    "cells": 24,
+    "clips": 3,
+    "clipIndex": "((i*7 + j*13) mod cells) mod clips, from src/content/catalog.ts:40-47"
+  },
+  "distinctStateCount": 12,
+  "contentStateCellsAreDistinct": true,
+  "captureOrderRule": "Position the grid first, then freeze the media, then poll the motion state until it stops changing, then pause the render loop. Freezing before positioning pins whichever clips happened to be decoded at that moment and the slot remap that follows can put different clips in front of the camera.",
+  "fairnessRule": "Best and Candidate must use the same clip, cell and media time for a given state. A state whose media-only hashes differ is BLOCKED, never swapped for an easier frame.",
+  "states": [
+    {
+      "stateId": "rest",
+      "cell": [
+        0,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "offset": [
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0
+      ],
+      "pointer": [
+        0,
+        0
+      ],
+      "note": "Coincides with pointer-center by construction: both are the home pose with the pointer centred. Kept because the required state list names both; counted once when counting distinct states."
+    },
+    {
+      "stateId": "pointer-left",
+      "cell": [
+        0,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "offset": [
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0
+      ],
+      "pointer": [
+        -0.9,
+        0
+      ]
+    },
+    {
+      "stateId": "pointer-center",
+      "cell": [
+        0,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "offset": [
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0
+      ],
+      "pointer": [
+        0,
+        0
+      ],
+      "note": "See rest."
+    },
+    {
+      "stateId": "pointer-right",
+      "cell": [
+        0,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "offset": [
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0
+      ],
+      "pointer": [
+        0.9,
+        0
+      ]
+    },
+    {
+      "stateId": "bright",
+      "cell": [
+        -1,
+        0
+      ],
+      "clipIndex": 2,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "offset": [
+        -557.72,
+        -211.05
+      ],
+      "velocity": [
+        0,
+        0
+      ],
+      "pointer": [
+        0,
+        0
+      ]
+    },
+    {
+      "stateId": "dark",
+      "cell": [
+        -2,
+        0
+      ],
+      "clipIndex": 1,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "offset": [
+        -1115.44,
+        -211.05
+      ],
+      "velocity": [
+        0,
+        0
+      ],
+      "pointer": [
+        0,
+        0
+      ]
+    },
+    {
+      "stateId": "high-texture",
+      "cell": [
+        -2,
+        1
+      ],
+      "clipIndex": 2,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "offset": [
+        -836.58,
+        216.95
+      ],
+      "velocity": [
+        0,
+        0
+      ],
+      "pointer": [
+        0,
+        0
+      ],
+      "note": "Mandatory in every round and never reselected because a candidate performs badly on it. The scan is constrained to give the four content states four different cells; without that constraint this state collapsed onto bright and added no coverage."
+    },
+    {
+      "stateId": "low-texture",
+      "cell": [
+        2,
+        1
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "offset": [
+        1394.3,
+        216.95
+      ],
+      "velocity": [
+        0,
+        0
+      ],
+      "pointer": [
+        0,
+        0
+      ]
+    },
+    {
+      "stateId": "left-tilt",
+      "cell": [
+        -3,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "offset": [
+        -1673.16,
+        -211.05
+      ],
+      "velocity": [
+        0,
+        0
+      ],
+      "pointer": [
+        -0.85,
+        0
+      ]
+    },
+    {
+      "stateId": "right-tilt",
+      "cell": [
+        3,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "offset": [
+        1673.16,
+        -211.05
+      ],
+      "velocity": [
+        0,
+        0
+      ],
+      "pointer": [
+        0.85,
+        0
+      ]
+    },
+    {
+      "stateId": "partial-viewport",
+      "cell": [
+        0,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "dpr": 1,
+      "offset": [
+        278.86,
+        214.0
+      ],
+      "velocity": [
+        0,
+        0
+      ],
+      "pointer": [
+        0,
+        0
+      ]
+    },
+    {
+      "stateId": "mobile-portrait",
+      "cell": [
+        0,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        390,
+        844
+      ],
+      "dpr": 1,
+      "offset": [
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0
+      ],
+      "pointer": [
+        0,
+        0
+      ]
+    },
+    {
+      "stateId": "mobile-landscape",
+      "cell": [
+        0,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        844,
+        390
+      ],
+      "dpr": 1,
+      "offset": [
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0
+      ],
+      "pointer": [
+        0,
+        0
+      ]
+    }
+  ]
+}

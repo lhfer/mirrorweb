@@ -1,0 +1,90 @@
+{
+  "generator": "stage-h-touch-gate",
+  "orientations": {
+    "portrait": {
+      "viewport": [
+        390,
+        844
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "eventCounts": {
+        "pointerdown": 1,
+        "pointermove": 1,
+        "pointerup": 0,
+        "touchstart": 1,
+        "touchmove": 16,
+        "touchend": 1
+      },
+      "moveSpanMs": 0,
+      "browserDpr": 3,
+      "rendererDpr": 1.5,
+      "canvasPixels": [
+        585,
+        1266
+      ],
+      "gridOffsetTotalPx": 42.92,
+      "gridOffsetDuringDragPx": 13.15,
+      "releaseSpeed": 416.12,
+      "coastDistancePx": 18.67,
+      "settledSpeed": 0,
+      "draggingSamples": 4,
+      "traceSamples": 391,
+      "pageScroll": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "landscape": {
+      "viewport": [
+        844,
+        390
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "eventCounts": {
+        "pointerdown": 1,
+        "pointermove": 1,
+        "pointerup": 0,
+        "touchstart": 1,
+        "touchmove": 16,
+        "touchend": 1
+      },
+      "moveSpanMs": 0,
+      "browserDpr": 3,
+      "rendererDpr": 1.5,
+      "canvasPixels": [
+        1266,
+        585
+      ],
+      "gridOffsetTotalPx": 54.04,
+      "gridOffsetDuringDragPx": 13.15,
+      "releaseSpeed": 543.37,
+      "coastDistancePx": 24.5,
+      "settledSpeed": 0,
+      "draggingSamples": 3,
+      "traceSamples": 373,
+      "pageScroll": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  "checks": {
+    "POINTER_TYPE_IS_TOUCH": true,
+    "TOUCH_DRAG_MOVES_GRID": false,
+    "RELEASE_PRODUCES_INERTIA": true,
+    "INERTIA_SETTLES": true,
+    "NO_PAGE_SCROLL": true,
+    "POINTER_CAPTURE_HELD": true,
+    "BOTH_ORIENTATIONS_RUN": true,
+    "MOBILE_DPR_CLAMPED_TO_1_5": true,
+    "CANVAS_SIZED_FOR_VIEWPORT": true
+  },
+  "status": "FAIL",
+  "failed": [
+    "TOUCH_DRAG_MOVES_GRID"
+  ]
+}

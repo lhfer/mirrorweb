@@ -1,0 +1,61 @@
+{
+  "generator": "stage-h-reproducibility",
+  "question": "Do two fully independent capture processes of the same build agree, state for state, on both the media and the rendered frame?",
+  "stateManifestHash": "e44fa4bad13d96a32b945a137cf84dc8da03514a498b1922614e56eec2387c32",
+  "manifestHashEqualAcrossRuns": true,
+  "totalStates": 13,
+  "distinctStates": 12,
+  "distinctStatesNote": "rest and pointer-center coincide by construction; both are named in the required state list and both are captured, but they count once.",
+  "mediaOnlyIdentical": 12,
+  "beautyIdentical": 12,
+  "mismatches": [
+    "pointer-right"
+  ],
+  "mismatchIsPositional": "One state differs per run and it is a different state each time (partial-viewport on one pair, pointer-right on the next). This is residual per-run nondeterminism, not a specific broken state.",
+  "maxMediaTimeDrift": 0,
+  "driftThreshold": 0.008333333333333333,
+  "highTexturePresent": true,
+  "highTextureIsDistinctFromBright": true,
+  "restEqualsPointerCentreWithinRun": true,
+  "blockedStates": [],
+  "validStateCount": [
+    13,
+    13
+  ],
+  "whatHadToBeFixedToGetHere": [
+    "setTime() never paused the clips, so a capture pinned nothing at all.",
+    "Reading the media state after resume() measured the resume, not the freeze.",
+    "A fixed settle delay left pointer and rotation mid-ease; the capture now polls the motion state until it stops changing.",
+    "Freezing before positioning the grid pinned whichever clips happened to be decoded at that moment; positioning now happens first.",
+    "A fresh browser context per state made every state decode its clips independently, and two states with byte-identical specs produced different frames. States sharing a viewport now share one warmed-up page, which is what made rest and pointer-center agree.",
+    "The scan picked each content extreme independently, which collapsed high-texture onto bright and voided the mandatory-high-texture safeguard. The scan now forces four distinct cells.",
+    "readMediaState() returned frameWait:'presented' and seekError:0 as constants, which made a caller believe a decoded frame had been verified when nothing had been. It now returns only what it can actually read.",
+    "The frozen gate briefly required the decoder to land on round(mediaTime*30); the clips are not all 30 fps, so that rejected good captures. It is reported, not gated."
+  ],
+  "residualWeakness": "One state per run still differs between processes. The count still meets the >=12 requirement, but which state drops is not predictable, so a key state could be the one blocked in a given round.",
+  "sourceIntegrity": {
+    "question": "Does the Stage H build render the deterministic optics bench identically to the pre-Stage-H build?",
+    "method": "glass-lab-v4 draws a checker scene with no video. reset() and pause() predate Stage H, so the same pin works on either build; without the pin two runs of one build already differ.",
+    "preStageH": {
+      "v4-selfStable": true,
+      "v4": "dc81256b91b1a4a7fdea0c748b62ee8d0e6e10865ab377f54ecd978ff6ae194e",
+      "v3-selfStable": true,
+      "v3": "dc81256b91b1a4a7fdea0c748b62ee8d0e6e10865ab377f54ecd978ff6ae194e"
+    },
+    "stageHRunA": {
+      "v4-selfStable": true,
+      "v4": "dc81256b91b1a4a7fdea0c748b62ee8d0e6e10865ab377f54ecd978ff6ae194e",
+      "v3-selfStable": true,
+      "v3": "dc81256b91b1a4a7fdea0c748b62ee8d0e6e10865ab377f54ecd978ff6ae194e"
+    },
+    "stageHRunB": {
+      "v4-selfStable": true,
+      "v4": "dc81256b91b1a4a7fdea0c748b62ee8d0e6e10865ab377f54ecd978ff6ae194e",
+      "v3-selfStable": true,
+      "v3": "dc81256b91b1a4a7fdea0c748b62ee8d0e6e10865ab377f54ecd978ff6ae194e"
+    },
+    "identical": true,
+    "independentlyReproducedByAuditor": "yes, at hash 6ba640b943acf6e6..., on its own pair of clean worktrees",
+    "diffShape": "234 insertions, 0 deletions across 6 files; every call site of every new method is a QA surface and the render loop gained none."
+  }
+}

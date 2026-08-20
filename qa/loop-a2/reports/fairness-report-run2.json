@@ -1,0 +1,474 @@
+{
+  "generator": "stage-h-capture",
+  "stateManifestHash": "e44fa4bad13d96a32b945a137cf84dc8da03514a498b1922614e56eec2387c32",
+  "manifestPath": "qa/loop-a2/fixed-state-manifest.json",
+  "validStateCount": 13,
+  "totalStateCount": 13,
+  "blockedStates": [],
+  "highTexturePresent": true,
+  "mediaTimeDrift": {
+    "max": 0,
+    "threshold": 0.008333333333333333
+  },
+  "mediaOnlyHashes": {
+    "rest": "5ec300bf43e520b55d50667d6d3a1961d417e8c82f735e4eddd2c48bb2df6922",
+    "pointer-left": "f21086a359077df4fbb7f8bbf4cc7facee92745ab6686cc208348f17f9dc6fab",
+    "pointer-center": "5ec300bf43e520b55d50667d6d3a1961d417e8c82f735e4eddd2c48bb2df6922",
+    "pointer-right": "38d38fb1906582648dd3c139530cbc7bb73c66ac050c36916cb0a111f051c413",
+    "bright": "a57f07ca454a1e7cf319d37860c6e9762937be704c9878334bdbe863707b7e39",
+    "dark": "d1017fce02fc43b719c195a7e8018e31e7b08b15d95dee722696708ef2a26774",
+    "high-texture": "c66a9cded516c1d5f49ccca2302b3141f1ae4d8a4f74fa3bd7133ea0f2320d9b",
+    "low-texture": "4df7453fff479aa015b87bb8bdc0adcbaf2f2407997b26aee862ba2601994961",
+    "left-tilt": "7057b62b53239479f86a153e462382777f5afa79c3e1db589fe6c79c61652c0d",
+    "right-tilt": "6449160cb81e8dffe5871e9bb08d06c687ab909263bb979cc69145e8409520a8",
+    "partial-viewport": "e203f9e5ffeec3900f191600ec6d601c19ab2df78a89afd2c43db1eeb35b22cf",
+    "mobile-portrait": "599c307874e6533459ac9d253915eb865a541f0bbf1cfecb86330599dddb5d1f",
+    "mobile-landscape": "3ed88c92d294d8bf7e4278416df3da84f1e69e18b9bb75f1722c7d31039003e5"
+  },
+  "beautyHashes": {
+    "rest": "25a183140c7dd77e6b5474d366cf893a45a624fb1097902c43cc8883c7b4d1a0",
+    "pointer-left": "1f10a159e48cc55d2051491c16282faf85d7bc5fd4c225a552e86eea1bdac2ac",
+    "pointer-center": "25a183140c7dd77e6b5474d366cf893a45a624fb1097902c43cc8883c7b4d1a0",
+    "pointer-right": "74a301e2ae6a3c54742fdbad80541675eabfb82730ff3f07ad2eade781f62496",
+    "bright": "b04931ad526dd9b50714d012af559970b62f2e8970505fc499e44b15f99a667a",
+    "dark": "8098812d63a480c07366b4e5b4a5f469d5efbcdb086c50bca4ba3eaae9598f54",
+    "high-texture": "a7f33215dace7bcec60f273842f96154695add277ba78de2ee1e8398034ccb7e",
+    "low-texture": "5e64ef1e0d972adf1860fa5924063fa983f55772fc68ac0e8dab96e71a8b9e32",
+    "left-tilt": "06ec88b7f3d1c8f3c0895caa103ebe1fd082746e37ac4c536d365ee541fa0460",
+    "right-tilt": "63b5ed77730d0150724d9be976d2b3034056812f055c74e8659f55cb167a46b9",
+    "partial-viewport": "e130d5e8c117c0dfd833fb0f2c90e255cc7ffb00d232b0c7f471b68566b0fe5d",
+    "mobile-portrait": "04d19b07b8d65b69497f8b98997f7fb435411926f93c806ad094410d650d0019",
+    "mobile-landscape": "bc03790aa7fdc33b00e3ba96c1ec7862ce4dfcb26898f67a8966b26c3e11fcc7"
+  },
+  "states": [
+    {
+      "stateId": "rest",
+      "cell": [
+        0,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "frozen": true,
+      "allPaused": true,
+      "maxSeekError": 0,
+      "freezeDrift": 0,
+      "captureDrift": 0,
+      "frameWait": [
+        "presented",
+        "presented",
+        "presented"
+      ],
+      "mediaTimes": [
+        2,
+        2,
+        2
+      ],
+      "motionSettled": true,
+      "beautyHash": "25a183140c7dd77e6b5474d366cf893a45a624fb1097902c43cc8883c7b4d1a0",
+      "mediaOnlyHash": "5ec300bf43e520b55d50667d6d3a1961d417e8c82f735e4eddd2c48bb2df6922",
+      "mediaOnlySelfStable": true,
+      "errors": []
+    },
+    {
+      "stateId": "pointer-left",
+      "cell": [
+        0,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "frozen": true,
+      "allPaused": true,
+      "maxSeekError": 0,
+      "freezeDrift": 0,
+      "captureDrift": 0,
+      "frameWait": [
+        "presented",
+        "presented",
+        "presented"
+      ],
+      "mediaTimes": [
+        2,
+        2,
+        2
+      ],
+      "motionSettled": true,
+      "beautyHash": "1f10a159e48cc55d2051491c16282faf85d7bc5fd4c225a552e86eea1bdac2ac",
+      "mediaOnlyHash": "f21086a359077df4fbb7f8bbf4cc7facee92745ab6686cc208348f17f9dc6fab",
+      "mediaOnlySelfStable": true,
+      "errors": []
+    },
+    {
+      "stateId": "pointer-center",
+      "cell": [
+        0,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "frozen": true,
+      "allPaused": true,
+      "maxSeekError": 0,
+      "freezeDrift": 0,
+      "captureDrift": 0,
+      "frameWait": [
+        "presented",
+        "presented",
+        "presented"
+      ],
+      "mediaTimes": [
+        2,
+        2,
+        2
+      ],
+      "motionSettled": true,
+      "beautyHash": "25a183140c7dd77e6b5474d366cf893a45a624fb1097902c43cc8883c7b4d1a0",
+      "mediaOnlyHash": "5ec300bf43e520b55d50667d6d3a1961d417e8c82f735e4eddd2c48bb2df6922",
+      "mediaOnlySelfStable": true,
+      "errors": []
+    },
+    {
+      "stateId": "pointer-right",
+      "cell": [
+        0,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "frozen": true,
+      "allPaused": true,
+      "maxSeekError": 0,
+      "freezeDrift": 0,
+      "captureDrift": 0,
+      "frameWait": [
+        "presented",
+        "presented",
+        "presented"
+      ],
+      "mediaTimes": [
+        2,
+        2,
+        2
+      ],
+      "motionSettled": true,
+      "beautyHash": "74a301e2ae6a3c54742fdbad80541675eabfb82730ff3f07ad2eade781f62496",
+      "mediaOnlyHash": "38d38fb1906582648dd3c139530cbc7bb73c66ac050c36916cb0a111f051c413",
+      "mediaOnlySelfStable": true,
+      "errors": []
+    },
+    {
+      "stateId": "bright",
+      "cell": [
+        -1,
+        0
+      ],
+      "clipIndex": 2,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "frozen": true,
+      "allPaused": true,
+      "maxSeekError": 0,
+      "freezeDrift": 0,
+      "captureDrift": 0,
+      "frameWait": [
+        "presented",
+        "presented",
+        "presented"
+      ],
+      "mediaTimes": [
+        2,
+        2,
+        2
+      ],
+      "motionSettled": true,
+      "beautyHash": "b04931ad526dd9b50714d012af559970b62f2e8970505fc499e44b15f99a667a",
+      "mediaOnlyHash": "a57f07ca454a1e7cf319d37860c6e9762937be704c9878334bdbe863707b7e39",
+      "mediaOnlySelfStable": true,
+      "errors": []
+    },
+    {
+      "stateId": "dark",
+      "cell": [
+        -2,
+        0
+      ],
+      "clipIndex": 1,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "frozen": true,
+      "allPaused": true,
+      "maxSeekError": 0,
+      "freezeDrift": 0,
+      "captureDrift": 0,
+      "frameWait": [
+        "presented",
+        "presented",
+        "presented"
+      ],
+      "mediaTimes": [
+        2,
+        2,
+        2
+      ],
+      "motionSettled": true,
+      "beautyHash": "8098812d63a480c07366b4e5b4a5f469d5efbcdb086c50bca4ba3eaae9598f54",
+      "mediaOnlyHash": "d1017fce02fc43b719c195a7e8018e31e7b08b15d95dee722696708ef2a26774",
+      "mediaOnlySelfStable": true,
+      "errors": []
+    },
+    {
+      "stateId": "high-texture",
+      "cell": [
+        -2,
+        1
+      ],
+      "clipIndex": 2,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "frozen": true,
+      "allPaused": true,
+      "maxSeekError": 0,
+      "freezeDrift": 0,
+      "captureDrift": 0,
+      "frameWait": [
+        "presented",
+        "presented",
+        "presented"
+      ],
+      "mediaTimes": [
+        2,
+        2,
+        2
+      ],
+      "motionSettled": true,
+      "beautyHash": "a7f33215dace7bcec60f273842f96154695add277ba78de2ee1e8398034ccb7e",
+      "mediaOnlyHash": "c66a9cded516c1d5f49ccca2302b3141f1ae4d8a4f74fa3bd7133ea0f2320d9b",
+      "mediaOnlySelfStable": true,
+      "errors": []
+    },
+    {
+      "stateId": "low-texture",
+      "cell": [
+        2,
+        1
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "frozen": true,
+      "allPaused": true,
+      "maxSeekError": 0,
+      "freezeDrift": 0,
+      "captureDrift": 0,
+      "frameWait": [
+        "presented",
+        "presented",
+        "presented"
+      ],
+      "mediaTimes": [
+        2,
+        2,
+        2
+      ],
+      "motionSettled": true,
+      "beautyHash": "5e64ef1e0d972adf1860fa5924063fa983f55772fc68ac0e8dab96e71a8b9e32",
+      "mediaOnlyHash": "4df7453fff479aa015b87bb8bdc0adcbaf2f2407997b26aee862ba2601994961",
+      "mediaOnlySelfStable": true,
+      "errors": []
+    },
+    {
+      "stateId": "left-tilt",
+      "cell": [
+        -3,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "frozen": true,
+      "allPaused": true,
+      "maxSeekError": 0,
+      "freezeDrift": 0,
+      "captureDrift": 0,
+      "frameWait": [
+        "presented",
+        "presented",
+        "presented"
+      ],
+      "mediaTimes": [
+        2,
+        2,
+        2
+      ],
+      "motionSettled": true,
+      "beautyHash": "06ec88b7f3d1c8f3c0895caa103ebe1fd082746e37ac4c536d365ee541fa0460",
+      "mediaOnlyHash": "7057b62b53239479f86a153e462382777f5afa79c3e1db589fe6c79c61652c0d",
+      "mediaOnlySelfStable": true,
+      "errors": []
+    },
+    {
+      "stateId": "right-tilt",
+      "cell": [
+        3,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "frozen": true,
+      "allPaused": true,
+      "maxSeekError": 0,
+      "freezeDrift": 0,
+      "captureDrift": 0,
+      "frameWait": [
+        "presented",
+        "presented",
+        "presented"
+      ],
+      "mediaTimes": [
+        2,
+        2,
+        2
+      ],
+      "motionSettled": true,
+      "beautyHash": "63b5ed77730d0150724d9be976d2b3034056812f055c74e8659f55cb167a46b9",
+      "mediaOnlyHash": "6449160cb81e8dffe5871e9bb08d06c687ab909263bb979cc69145e8409520a8",
+      "mediaOnlySelfStable": true,
+      "errors": []
+    },
+    {
+      "stateId": "partial-viewport",
+      "cell": [
+        0,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        1440,
+        900
+      ],
+      "frozen": true,
+      "allPaused": true,
+      "maxSeekError": 0,
+      "freezeDrift": 0,
+      "captureDrift": 0,
+      "frameWait": [
+        "presented",
+        "presented",
+        "presented"
+      ],
+      "mediaTimes": [
+        2,
+        2,
+        2
+      ],
+      "motionSettled": true,
+      "beautyHash": "e130d5e8c117c0dfd833fb0f2c90e255cc7ffb00d232b0c7f471b68566b0fe5d",
+      "mediaOnlyHash": "e203f9e5ffeec3900f191600ec6d601c19ab2df78a89afd2c43db1eeb35b22cf",
+      "mediaOnlySelfStable": true,
+      "errors": []
+    },
+    {
+      "stateId": "mobile-portrait",
+      "cell": [
+        0,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        390,
+        844
+      ],
+      "frozen": true,
+      "allPaused": true,
+      "maxSeekError": 0,
+      "freezeDrift": 0,
+      "captureDrift": 0,
+      "frameWait": [
+        "presented",
+        "presented",
+        "presented"
+      ],
+      "mediaTimes": [
+        2,
+        2,
+        2
+      ],
+      "motionSettled": true,
+      "beautyHash": "04d19b07b8d65b69497f8b98997f7fb435411926f93c806ad094410d650d0019",
+      "mediaOnlyHash": "599c307874e6533459ac9d253915eb865a541f0bbf1cfecb86330599dddb5d1f",
+      "mediaOnlySelfStable": true,
+      "errors": []
+    },
+    {
+      "stateId": "mobile-landscape",
+      "cell": [
+        0,
+        0
+      ],
+      "clipIndex": 0,
+      "mediaTime": 2.016667,
+      "viewport": [
+        844,
+        390
+      ],
+      "frozen": true,
+      "allPaused": true,
+      "maxSeekError": 0,
+      "freezeDrift": 0,
+      "captureDrift": 0,
+      "frameWait": [
+        "presented",
+        "presented",
+        "presented"
+      ],
+      "mediaTimes": [
+        2,
+        2,
+        2
+      ],
+      "motionSettled": true,
+      "beautyHash": "bc03790aa7fdc33b00e3ba96c1ec7862ce4dfcb26898f67a8966b26c3e11fcc7",
+      "mediaOnlyHash": "3ed88c92d294d8bf7e4278416df3da84f1e69e18b9bb75f1722c7d31039003e5",
+      "mediaOnlySelfStable": true,
+      "errors": []
+    }
+  ]
+}

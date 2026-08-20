@@ -1,0 +1,67 @@
+{
+  "loopId": "ILG-STAGE-H-A2",
+  "createdFrom": "The Stage A loop is closed and must not be reopened by raising maxStageRounds.",
+  "branch": "rebuild/liquid-glass-v4",
+  "targetUrl": "https://infinite-liquid-glass.shader.se/?v=2",
+  "productBest": "ffcd8d90e167fe7f1e0039f7c96e9a6a68c26435",
+  "productBestHead": "ba36d6f",
+  "productBestNote": "ba36d6f changes only comments; runtime behaviour is identical to ffcd8d9.",
+  "rejectedCandidates": {
+    "4b5bdf5": "Snell Screen Multitap - rejected, must not become Best and must not be built on",
+    "8612529": "Snell Screen Single Tap - rejected, must not become Best and must not be built on"
+  },
+  "stages": [
+    {
+      "id": "H",
+      "name": "Harness Integrity",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "id": "A2",
+      "name": "One-shot Optical Recovery",
+      "status": "NOT_STARTED",
+      "candidateLimit": 1,
+      "onFailure": "Keep ffcd8d9 as Best, set STOPPED_AFTER_A2, do not create a second candidate, do not enter Stage B."
+    }
+  ],
+  "stageHGates": {
+    "harnessAuditor": "PENDING",
+    "sourceIntegrity": "PENDING",
+    "fixedStateFairness": "PENDING",
+    "trueMobileTouch": "PENDING"
+  },
+  "qaResultSchema": {
+    "note": "verdict no longer carries two meanings. Candidate selection and stage completion are separate fields.",
+    "fields": [
+      "candidateDecision",
+      "stageVerdict",
+      "blindPreference"
+    ],
+    "candidateDecision": [
+      "ACCEPT_AS_BEST",
+      "REJECT",
+      "ROLLBACK"
+    ],
+    "stageVerdict": [
+      "PASS",
+      "FAIL",
+      "BLOCKED",
+      "PLATEAU"
+    ],
+    "blindPreference": [
+      "A",
+      "B",
+      "TIE",
+      "BLOCKED"
+    ],
+    "crossAgentScores": "Totals from different QA instances must not be compared across rounds."
+  },
+  "candidateSelectionBasis": [
+    "Blind A/B over the same fixed state set",
+    "The same harness version on both sides",
+    "Fixed severity definitions",
+    "Issues closed",
+    "New regressions"
+  ],
+  "status": "RUNNING"
+}

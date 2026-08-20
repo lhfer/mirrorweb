@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 2,
+  "loopId": "ILG-STAGE-H-A2",
+  "note": "Carries forward the open issues from the closed Stage A loop, plus findings recorded during this loop. Stage D entries are record-only.",
+  "issues": [
+    {
+      "id": "ILG-A-001",
+      "status": "OPEN",
+      "severity": "P1",
+      "subsystem": "v4-optics",
+      "title": "Card reads as flat media inside a thin coloured border, not as a glass volume",
+      "note": "The headline gap. Stage A2 is aimed at this issue.",
+      "carriedFrom": "stage-a-loop"
+    },
+    {
+      "id": "ILG-A-006",
+      "status": "OPEN",
+      "severity": "P1",
+      "subsystem": "v4-optics-reflection",
+      "title": "No specular signature; the pointer does not relocate a real highlight",
+      "note": "Out of reach in Stage A2: Reflection Lighting is on the forbidden list, so no A2 change can close it.",
+      "carriedFrom": "stage-a-loop"
+    },
+    {
+      "id": "ILG-A-002",
+      "status": "OPEN",
+      "severity": "P2",
+      "subsystem": "v4-optics",
+      "title": "Dispersion reads as a saturated rim outline that spills into the gutter",
+      "carriedFrom": "stage-a-loop"
+    },
+    {
+      "id": "ILG-A-003",
+      "status": "OPEN",
+      "severity": "P2",
+      "subsystem": "v4-optics",
+      "title": "Neighbour cards and the gutter barely enter the edge refraction",
+      "carriedFrom": "stage-a-loop"
+    },
+    {
+      "id": "ILG-A-007",
+      "status": "OPEN",
+      "severity": "P2",
+      "subsystem": "v4-optics",
+      "title": "No centre-to-rim sharpness gradient",
+      "carriedFrom": "stage-a-loop"
+    },
+    {
+      "id": "ILG-A-008",
+      "status": "OPEN",
+      "severity": "P2",
+      "subsystem": "v4-optics",
+      "title": "Tilt compresses in the right direction but far short of the Target magnitude",
+      "carriedFrom": "stage-a-loop"
+    },
+    {
+      "id": "GATE-001",
+      "status": "OPEN",
+      "severity": "P3",
+      "subsystem": "qa-harness",
+      "title": "V4_NORMAL_PATH_NO_DIRECT_MEDIA is partly self-reporting",
+      "carriedFrom": "stage-a-loop"
+    },
+    {
+      "id": "GATE-002",
+      "status": "OPEN",
+      "severity": "P3",
+      "subsystem": "qa-harness",
+      "title": "POINTER_CHANGES_REFLECTION cannot separate specular response from card-quad parallax",
+      "carriedFrom": "stage-a-loop"
+    },
+    {
+      "id": "GATE-003",
+      "status": "OPEN",
+      "severity": "P2",
+      "subsystem": "qa-harness",
+      "title": "The capture harness does not pin media playback time",
+      "note": "Stage H section 4 exists to close this.",
+      "carriedFrom": "stage-a-loop"
+    },
+    {
+      "id": "GATE-004",
+      "status": "OPEN",
+      "severity": "P3",
+      "subsystem": "qa-harness",
+      "title": "NO_FULL_SCREEN_DISPERSION has no lower bound, so removing chroma entirely still passes",
+      "carriedFrom": "stage-a-loop"
+    },
+    {
+      "id": "GATE-006",
+      "status": "OPEN",
+      "severity": "P2",
+      "subsystem": "v4-optics",
+      "title": "The aEdgeDistance vertex attribute cannot be read from the fragment shader",
+      "carriedFrom": "stage-a-loop"
+    },
+    {
+      "id": "R04-P2-02",
+      "status": "OPEN",
+      "severity": "P2",
+      "subsystem": "qa-harness",
+      "title": "DESKTOP_AND_MOBILE_RUN does not actually measure the mobile path",
+      "note": "Stage H section 7 exists to close this.",
+      "carriedFrom": "stage-a-loop"
+    },
+    {
+      "id": "ILG-D-QUALITY-001",
+      "status": "OPEN_RECORD_ONLY",
+      "severity": "P2",
+      "subsystem": "stage-d-runtime",
+      "title": "Automatic quality changes can never fire",
+      "observed": "AdaptiveQuality.sample() assigns this.level = next at src/quality/AdaptiveQuality.ts:28 and returns this.level at line 32, so GridAppV4.tick()'s guard `if (level !== this.quality.level)` at src/v4/preview/GridAppV4.ts:358-359 compares a value with itself and is always false. setQuality() is only ever reached through the QA API.",
+      "verifiedBy": "source read at both line ranges, this loop",
+      "sideEffect": "It also makes capture deterministic, because quality cannot flip mid-run. Fixing it will make runtime quality genuinely variable, and every harness assumption about a fixed quality:\"high\" will need rechecking.",
+      "stage": "D",
+      "doNotFixThisLoop": true
+    },
+    {
+      "id": "ILG-D-DRAWCALL-001",
+      "status": "OPEN_RECORD_ONLY",
+      "severity": "P2",
+      "subsystem": "stage-d-runtime",
+      "title": "The 81 slots are not instanced",
+      "observed": "InfiniteGlassGridV4 constructs three meshes per slot - glass, shell and media - at src/v4/preview/InfiniteGlassGridV4.ts:89, :92 and :95, with no InstancedMesh in the file. Materials (5) and geometries (2) are shared, which is why the pool counters look small; the measured cost is not. qa-v4/results/round1-grid-preview-gate.json reports drawCalls 1833 at 9x9 with slots 81.",
+      "verifiedBy": "source read plus the tracked gate artifact, this loop",
+      "relatedTo": "V4-R1-002, which inferred the same thing from the counter rather than from source",
+      "stage": "D",
+      "doNotFixThisLoop": true
+    }
+  ]
+}
