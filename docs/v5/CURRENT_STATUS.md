@@ -2,27 +2,69 @@
 
 Single canonical entry point. Every delivery updates this file.
 
-Last updated: 2026-08-20 (F2-SX source-exact rebase)
+Last updated: 2026-08-20 (FSX acceptance and integration hardening)
 
 | | |
 | --- | --- |
 | Repository | `lhfer/mirrorweb` |
-| Branch | `rebuild/liquid-glass-v5-source-exact` (from `rebuild/liquid-glass-v5-foundation`) |
+| Branch | `rebuild/liquid-glass-v5-source-exact` |
 | Source contract | [`config/target-layout-source-v2.json`](../../config/target-layout-source-v2.json), verified by `npm run v5:target-layout-source` |
-| F2-SX contract commit | `42ac438` `v5-fsx-source-contract` |
-| F2-SX code commit | `62bb251` `v5-fsx-source-exact-code` |
-| F2-SX evidence commit | `6d313bc` `v5-fsx-source-exact-evidence` |
-| Current HEAD | `e33149992e4e69cd483428c38decf4248d7875d5` (`v5-f26r-corrected-evidence`) at the time this row was written. Resolve the live value with `git rev-parse HEAD`. |
-| F2.6R code fix commit | `23de9c7` `v5-f26r-portrait-law-propagation` |
-| F2.6R evidence commit | `e331499` `v5-f26r-corrected-evidence` |
-| F2.6R corrected candidate gate | **FAIL** — p0 5/6, p1 5/6, p2 4/6 |
-| F2.6 original candidate comparison | **INVALID** — `qa-v5/f26/portrait-candidate-gates.json` compared one candidate with itself |
-| Preview v1 | `http://127.0.0.1:5280/?optics=v4&composition=v1` |
-| Preview current F2.7 | `http://127.0.0.1:5280/?optics=v4&composition=v2` |
-| Preview source-exact | `http://127.0.0.1:5280/?optics=v4&composition=sourceExact` |
-| Preview source-exact foundation | `http://127.0.0.1:5280/?optics=v4&composition=sourceExact&foundation=layout&annotate=0` |
-| Evidence index | [`qa-v5/fsx/README.md`](../../qa-v5/fsx/README.md) |
-| Private review package | `qa-v5/private/fsx-review.zip` (git-ignored) |
+
+### Commit semantics
+
+Each field names what that commit contains. `reviewHeadAtDelivery` is the branch
+tip this delivery was reviewed at; a file cannot contain its own hash, so it is
+stated here and no further hygiene commit is created to chase it.
+
+| field | value |
+| --- | --- |
+| `sourceContractCommit` | `42ac438` `v5-fsx-source-contract` |
+| `codeCommit` | `62bb251` `v5-fsx-source-exact-code` |
+| `evidenceCommit` | `6d313bc` `v5-fsx-source-exact-evidence` |
+| `metadataCommit` | `4c48aba` `v5-fsx-manifest-hygiene` |
+| `acceptanceCommit` | `v5-fsx-composition-accept` |
+| `hardeningCommit` | `v5-fsx-integration-hardening` |
+| `beautyEvidenceCommit` | `v5-fsx-beauty-baseline-evidence` |
+| `reviewHeadAtDelivery` | the branch tip after the three commits above; resolve with `git rev-parse HEAD` |
+
+### Status
+
+| | |
+| --- | --- |
+| SourceExact Composition Baseline | **ACCEPTED** |
+| Engineering PASS | **YES** |
+| Target Visual PASS | **NOT ASSERTED** |
+| Typography / Motion / Optics | **NOT STARTED** (Typography authorised next) |
+| Main merge | **NOT AUTHORISED** |
+| Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
+
+### Preview
+
+| | |
+| --- | --- |
+| Bare route | `http://127.0.0.1:5280/` — still V3, unchanged |
+| Current F2.7 | `http://127.0.0.1:5280/?composition=v2` |
+| Source-exact | `http://127.0.0.1:5280/?composition=sourceExact` |
+| Source-exact foundation | `http://127.0.0.1:5280/?composition=sourceExact&foundation=layout&annotate=0` |
+| Evidence index | [`qa-v5/fsx-a/README.md`](../../qa-v5/fsx-a/README.md) |
+| Private review package | `qa-v5/private/fsx-a-review.zip` (git-ignored) |
+
+## FSX-A integration hardening
+
+| | |
+| --- | --- |
+| Route proof | **PASS 6/6** — `?composition=sourceExact` reaches V4 without `optics=v4` |
+| Quality invariance | **PASS 43/43** — corner delta 0 px across high/medium/low/high, contract PASS at every level |
+| Adaptive quality | now fires: 2 spontaneous changes recorded by the running sampler |
+| Beauty baseline | 7 viewports x 4 render states, 0 capture errors |
+| Detector residual | **corrected**: all pairs 132.49 px / 280.50 px, high-confidence 14.17 px / 67.51 px, pairing confidence 0.357 |
+| Build | PASS |
+
+Three integration defects fixed, none of them in the composition:
+`?composition=sourceExact` routed to V3; `AdaptiveQuality.sample()` compared its
+return value with the field it had just written, so the adaptive path had never
+fired; and the quality rebuild dropped the source-exact 4:3 geometry override.
+See [`FSX_ACCEPTANCE.md`](FSX_ACCEPTANCE.md).
 
 ## Commit ledger
 

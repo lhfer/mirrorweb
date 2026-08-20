@@ -1,6 +1,25 @@
 {
   "$comment": "THE source contract. Every Target layout constant lives here once. TypeScript (src/layout/SourceExactLayout.ts) and Python (scripts/v5/source_layout.py) both READ this file; neither keeps its own copy, because two hand-maintained copies drift and the drift is invisible until a gate disagrees. Verified by `npm run v5:target-layout-source`.",
   "layoutVersion": "target-layout-source-v2",
+  "acceptance": {
+    "status": "ACCEPTED",
+    "acceptedAs": "SourceExact Composition Baseline",
+    "engineeringPass": true,
+    "targetVisualPass": "NOT ASSERTED",
+    "frozen": [
+      "every constant under `grid`",
+      "sourceExactLayout()",
+      "sphere placement",
+      "perspective and sphereRadius formulas",
+      "planeWidthRatio and planeWidthRatioPortrait",
+      "cell pitch formula",
+      "rows/cols coverage law",
+      "pool slot phase",
+      "slot identity"
+    ],
+    "note": "These are frozen by product decision. Changing any of them requires a new product authorisation and a re-derivation from source forensics, not an edit to this file.",
+    "supersedes": "The old F0 layout baseline is a Historical Accepted Baseline, superseded by the SourceExact composition. v1 and v2 remain reachable."
+  },
   "target": {
     "url": "https://infinite-liquid-glass.shader.se/?v=2",
     "captureTimestampUtc": "2026-08-20T08:25:00Z",
