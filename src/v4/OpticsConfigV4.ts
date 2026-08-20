@@ -33,6 +33,24 @@ export const V4_DEBUG_CODE: Readonly<Record<V4DebugMode, number>> = {
 export const V4_SHELL_MODES = ["additive", "energy-controlled", "off"] as const;
 export type V4ShellMode = (typeof V4_SHELL_MODES)[number];
 
+/**
+ * How the material turns the surface normal into a scene-colour sample offset.
+ *
+ * `projected-exit` is the original law: project the surface point and the Snell
+ * exit point and take the screen-space difference. It saturates by
+ * construction - moving the exit point further along the refracted ray
+ * converges on that ray's vanishing point - which is why `refractionDistance`
+ * is near-inert past about 150 (ILG-A-009).
+ *
+ * `snell-screen` displaces by tan(theta_t) scaled by thickness, so the offset
+ * rises monotonically with surface slope and has no upper asymptote.
+ *
+ * `snell-screen-multitap` accumulates several samples along that displacement,
+ * so a fragment integrates a segment of the refracted path instead of a point.
+ */
+export const V4_REFRACTION_MODELS = ["projected-exit", "snell-screen", "snell-screen-multitap"] as const;
+export type V4RefractionModel = (typeof V4_REFRACTION_MODELS)[number];
+
 export type V4GeometryConfig = {
   width: number;
   height: number;
@@ -75,27 +93,37 @@ export const V4_OPTICS_CONFIG = {
     lensRimWidthPx: 38,
   } satisfies V4GeometryConfig,
   quality: {
-    high: { radialSegments: 26, outlineSegments: 96, sidewallSegments: 7, shaderSamples: 3 },
-    medium: { radialSegments: 20, outlineSegments: 72, sidewallSegments: 6, shaderSamples: 3 },
-    low: { radialSegments: 15, outlineSegments: 56, sidewallSegments: 4, shaderSamples: 1 },
+    // `shaderSamples` is declared here but referenced nowhere in the codebase.
+    // `refractionTaps` is the live one, used by the multitap refraction model.
+    high: { radialSegments: 26, outlineSegments: 96, sidewallSegments: 7, shaderSamples: 3, refractionTaps: 4 },
+    medium: { radialSegments: 20, outlineSegments: 72, sidewallSegments: 6, shaderSamples: 3, refractionTaps: 3 },
+    low: { radialSegments: 15, outlineSegments: 56, sidewallSegments: 4, shaderSamples: 1, refractionTaps: 2 },
   } satisfies Record<
     V4QualityLevel,
-    { radialSegments: number; outlineSegments: number; sidewallSegments: number; shaderSamples: number }
+    {
+      radialSegments: number;
+      outlineSegments: number;
+      sidewallSegments: number;
+      shaderSamples: number;
+      refractionTaps: number;
+    }
   >,
   material: {
     ior: 1.48,
-    // Round 3 Stage A. What is measured: no zone is pinned against the
-    // maxRefractionUv clamp (0 of 64973 shoulder pixels, 0 of 58846 strong-rim
-    // pixels), read at the 8-bit endpoints and so independent of the output
-    // transfer. The clamp is not the limit, and neither it nor the scene-target
-    // overscan is touched here.
+    refractionModel: "snell-screen-multitap" as V4RefractionModel,
+    /** snell-screen: displacement at grazing incidence, in scene-target UV. */
+    refractionGainUv: 0.085,
+    /** snell-screen: distance from the silhouette the refracting band spans. */
+    edgeBandPx: 88,
+    // Only used by the `projected-exit` model, and near-inert even there:
+    // changing it from 300 to 1200 moves the beauty render by at most 4 of 255
+    // levels on 0.001% of pixels, because the projected exit point converges on
+    // the refracted ray's vanishing point instead of diverging (ILG-A-009).
     //
-    // What is NOT measured: how far the sample actually moves. The
-    // refraction-offset debug view appears to show a flat shoulder, but that
-    // view is unsound - it moves by at most 2 of 255 levels while this very
-    // change moves the beauty render on 34.9% of pixels. See GATE-005. The
-    // displacement increase below is therefore an experiment justified by the
-    // blind A/B and the engineering gate, not by that view.
+    // Measured on the debug view, which round 4 validated as sound after round
+    // 3 wrongly suspected it (GATE-005, closed as a false positive): across the
+    // 88px shoulder the offset spans 3 of 255 levels while the 38px strong rim
+    // spans 100, and no zone is pinned against the maxRefractionUv clamp.
     refractionDistance: 300,
     maxRefractionUv: 0.125,
     blurLod: 2.35,

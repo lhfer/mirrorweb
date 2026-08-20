@@ -12,7 +12,7 @@
   "desktopMetrics": {
     "backend": "webgpu",
     "medianFrameMs": 8.300000000000182,
-    "p95FrameMs": 9.699999999999818,
+    "p95FrameMs": 9.399999999999636,
     "drawCalls": 1833,
     "triangles": 311845,
     "quality": "high"
@@ -89,30 +89,30 @@
       "id": "NO_FIXED_BLACK_BODY_RIM",
       "status": "PASSED",
       "evidence": {
-        "minRimToCenterLuma": 0.6480640769004822,
-        "maxRimToCenterLuma": 1.3972028493881226,
-        "spread": 0.7491387724876404,
-        "minRimLuma": 0.32861942052841187
+        "minRimToCenterLuma": 0.6981807947158813,
+        "maxRimToCenterLuma": 1.267594814300537,
+        "spread": 0.5694140195846558,
+        "minRimLuma": 0.377588152885437
       }
     },
     {
       "id": "POINTER_CHANGES_REFLECTION",
       "status": "PASSED",
       "evidence": {
-        "meanAbsDelta": 0.13520537316799164,
-        "rimMeanAbsDelta": 0.1322132796049118,
-        "rimChangedPixelRatio": 0.7519099510029135
+        "meanAbsDelta": 0.13626468181610107,
+        "rimMeanAbsDelta": 0.13718430697917938,
+        "rimChangedPixelRatio": 0.7964365004910713
       }
     },
     {
       "id": "NO_FULL_SCREEN_DISPERSION",
       "status": "PASSED",
       "evidence": {
-        "interiorMean": 0.02683752030134201,
-        "rimMean": 0.2550904154777527,
-        "interiorActiveRatio": 0.039395576936360054,
-        "rimActiveRatio": 0.5699712144882254,
-        "frameActiveRatio": 0.18430246913580248
+        "interiorMean": 0.02675696089863777,
+        "rimMean": 0.24330292642116547,
+        "interiorActiveRatio": 0.038924260215586766,
+        "rimActiveRatio": 0.5609739339235087,
+        "frameActiveRatio": 0.1834891975308642
       }
     },
     {
@@ -123,7 +123,7 @@
         "clampHeadroomWithOverscan": 0.01154,
         "clampHeadroomWithoutOverscan": -0.135,
         "contentRunRatioPartialViewport": 0.08888888888888889,
-        "contentRunRatioRest": 0.09555555555555556,
+        "contentRunRatioRest": 0.1,
         "note": "positive headroom means no screen-UV sample can leave the scene target"
       }
     },
@@ -163,10 +163,10 @@
       "id": "VIDEO_UPLOAD_NOT_PER_RENDER_FRAME",
       "status": "PASSED",
       "evidence": {
-        "videoFramesTotal": 6156,
+        "videoFramesTotal": 6158,
         "clips": 3,
-        "perClipFrames": 2052,
-        "renderedFrames": 8796,
+        "perClipFrames": 2053,
+        "renderedFrames": 8791,
         "ratio": 0.233,
         "videoFrameCallback": true
       }
@@ -177,9 +177,9 @@
       "evidence": {
         "seconds": 60,
         "samples": 24,
-        "heapFloorStartMb": 12.62,
-        "heapFloorEndMb": 12.34,
-        "growth": 0.978,
+        "heapFloorStartMb": 12.61,
+        "heapFloorEndMb": 11.95,
+        "growth": 0.947,
         "poolStable": true
       }
     },

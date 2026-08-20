@@ -89,7 +89,7 @@ try {
     return best;
   });
 
-  for (const mode of ["optical-zones", "refraction-offset", "dispersion", "beauty"]) {
+  for (const mode of ["optical-zones", "refraction-offset", "dispersion", "beauty", "normals", "thickness"]) {
     await page.evaluate((value) => window.__ILG_QA__.setDebugMode(value), mode);
     await page.evaluate(() => window.__ILG_QA__.setTime(2));
     await page.waitForTimeout(900);
