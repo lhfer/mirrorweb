@@ -1,0 +1,504 @@
+{
+  "purpose": "Record where the source-exact composition still differs from the Target, and attribute each difference to the system that owns it. Nothing in typography, motion, optics or performance was modified this round.",
+  "fixedConditions": {
+    "quality": "high, adaptive sampler OFF",
+    "mediaTimeSeconds": 2,
+    "motion": "paused",
+    "pointer": [
+      0,
+      0
+    ],
+    "dpr": 1,
+    "composition": "sourceExact (defaults)"
+  },
+  "states": [
+    "1-foundation",
+    "2-media-only",
+    "3-glass-media",
+    "4-full-beauty"
+  ],
+  "captureErrors": [],
+  "findings": [
+    {
+      "system": "Typography",
+      "severity": "dominant",
+      "finding": "The CSS3D label element is still sized to the FIXED TILE, not to the card.",
+      "evidence": "src/ui/TileLabelLayer.ts sets el.style.width = TILE.width (539.8) and el.style.height = TILE.height (399.6). The source-exact card is frame.planeWidth x frame.planeHeight, which is 547.2 x 410.4 at 1440x900 but 280.8 x 210.6 at 390x844.",
+      "consequence": "Every type size in style.css is expressed in cqw against that container (8cqw, 9.2cqw, 2.5cqw, 1.7cqw), so on portrait the whole label block is sized for a card 1.92x wider than the one it sits on. Titles overflow their card and run across the gutter onto neighbours, and adjacent labels collide -- visible at 390x844 as overlapping ILG codes.",
+      "perViewport": [
+        {
+          "id": "1440x900",
+          "cardPlaneWidth": 547.2,
+          "labelElementWidth": 539.8,
+          "labelIsTooWideByPct": -1.4
+        },
+        {
+          "id": "1920x1080",
+          "cardPlaneWidth": 729.6,
+          "labelElementWidth": 539.8,
+          "labelIsTooWideByPct": -26.0
+        },
+        {
+          "id": "390x844",
+          "cardPlaneWidth": 280.8,
+          "labelElementWidth": 539.8,
+          "labelIsTooWideByPct": 92.2
+        },
+        {
+          "id": "844x390",
+          "cardPlaneWidth": 320.72,
+          "labelElementWidth": 539.8,
+          "labelIsTooWideByPct": 68.3
+        },
+        {
+          "id": "700x700",
+          "cardPlaneWidth": 266.0,
+          "labelElementWidth": 539.8,
+          "labelIsTooWideByPct": 102.9
+        },
+        {
+          "id": "667x375",
+          "cardPlaneWidth": 253.46,
+          "labelElementWidth": 539.8,
+          "labelIsTooWideByPct": 113.0
+        },
+        {
+          "id": "780x470",
+          "cardPlaneWidth": 296.4,
+          "labelElementWidth": 539.8,
+          "labelIsTooWideByPct": 82.1
+        }
+      ],
+      "notFixedBecause": "The brief freezes typography this round. This is the first thing the authorised Typography stage should address, and it is layout plumbing rather than a style value: the container has to match the card before any cqw size can be judged."
+    },
+    {
+      "system": "Typography",
+      "severity": "high",
+      "finding": "Labels are not clipped to their card and are drawn over everything.",
+      "consequence": "Text from a card behind can appear on top of a card in front. The CSS3D layer has no depth relationship with the WebGPU cards.",
+      "notFixedBecause": "Typography is frozen this round."
+    },
+    {
+      "system": "Optics",
+      "severity": "medium",
+      "finding": "Cyan/magenta chromatic fringing along card edges is stronger than the Target's.",
+      "evidence": "Visible on outer cards at 1440x900 and across the whole frame at 390x844. The Target's own dispersion parameter is 0.32 with 5 samples against our GLASS.dispersion 0.07 in a different formulation; the rim treatment differs too (Target rimWidth 10 * cardScale, rimIntensity 0.11).",
+      "notFixedBecause": "Optics is NOT STARTED and frozen."
+    },
+    {
+      "system": "Optics",
+      "severity": "medium",
+      "finding": "Media inside the glass reads more saturated and higher contrast than the Target.",
+      "notFixedBecause": "Optics is NOT STARTED and frozen. MediaFit and the accepted F1 focus values are unchanged and are not the cause: the cover matrix is correct, the tone response is not."
+    },
+    {
+      "system": "Motion",
+      "severity": "not observable at rest",
+      "finding": "Every capture is at rest with motion paused and the pointer at (0,0), so this baseline says nothing about drag feel. The known dragGain mismatch from F2.7 is unchanged and unmeasured here.",
+      "notFixedBecause": "Motion is frozen."
+    },
+    {
+      "system": "Performance",
+      "severity": "observation",
+      "finding": "120 fps and p95 8.7-10.3 ms at every viewport and every render state, with the adaptive sampler off and quality pinned high.",
+      "evidence": "Draw calls 1182 in beauty against 776-778 in foundation, for a 100-120 slot active pool across a two-pass pipeline. The 256-slot preallocation costs nothing at draw time because inactive slots are hidden.",
+      "note": "Headless capture on a developer machine. Not a device-class performance claim."
+    }
+  ],
+  "shots": {
+    "1440x900": {
+      "1-foundation": "artifacts/fsx-a/beauty/1440x900/1-foundation.png",
+      "2-media-only": "artifacts/fsx-a/beauty/1440x900/2-media-only.png",
+      "3-glass-media": "artifacts/fsx-a/beauty/1440x900/3-glass-media.png",
+      "4-full-beauty": "artifacts/fsx-a/beauty/1440x900/4-full-beauty.png"
+    },
+    "1920x1080": {
+      "1-foundation": "artifacts/fsx-a/beauty/1920x1080/1-foundation.png",
+      "2-media-only": "artifacts/fsx-a/beauty/1920x1080/2-media-only.png",
+      "3-glass-media": "artifacts/fsx-a/beauty/1920x1080/3-glass-media.png",
+      "4-full-beauty": "artifacts/fsx-a/beauty/1920x1080/4-full-beauty.png"
+    },
+    "390x844": {
+      "1-foundation": "artifacts/fsx-a/beauty/390x844/1-foundation.png",
+      "2-media-only": "artifacts/fsx-a/beauty/390x844/2-media-only.png",
+      "3-glass-media": "artifacts/fsx-a/beauty/390x844/3-glass-media.png",
+      "4-full-beauty": "artifacts/fsx-a/beauty/390x844/4-full-beauty.png"
+    },
+    "844x390": {
+      "1-foundation": "artifacts/fsx-a/beauty/844x390/1-foundation.png",
+      "2-media-only": "artifacts/fsx-a/beauty/844x390/2-media-only.png",
+      "3-glass-media": "artifacts/fsx-a/beauty/844x390/3-glass-media.png",
+      "4-full-beauty": "artifacts/fsx-a/beauty/844x390/4-full-beauty.png"
+    },
+    "700x700": {
+      "1-foundation": "artifacts/fsx-a/beauty/700x700/1-foundation.png",
+      "2-media-only": "artifacts/fsx-a/beauty/700x700/2-media-only.png",
+      "3-glass-media": "artifacts/fsx-a/beauty/700x700/3-glass-media.png",
+      "4-full-beauty": "artifacts/fsx-a/beauty/700x700/4-full-beauty.png"
+    },
+    "667x375": {
+      "1-foundation": "artifacts/fsx-a/beauty/667x375/1-foundation.png",
+      "2-media-only": "artifacts/fsx-a/beauty/667x375/2-media-only.png",
+      "3-glass-media": "artifacts/fsx-a/beauty/667x375/3-glass-media.png",
+      "4-full-beauty": "artifacts/fsx-a/beauty/667x375/4-full-beauty.png"
+    },
+    "780x470": {
+      "1-foundation": "artifacts/fsx-a/beauty/780x470/1-foundation.png",
+      "2-media-only": "artifacts/fsx-a/beauty/780x470/2-media-only.png",
+      "3-glass-media": "artifacts/fsx-a/beauty/780x470/3-glass-media.png",
+      "4-full-beauty": "artifacts/fsx-a/beauty/780x470/4-full-beauty.png"
+    }
+  },
+  "metrics": {
+    "1440x900": {
+      "1-foundation": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.3,
+        "drawCalls": 776,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      },
+      "2-media-only": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.3,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      },
+      "3-glass-media": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.3,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      },
+      "4-full-beauty": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.3,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      }
+    },
+    "1920x1080": {
+      "1-foundation": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.3,
+        "drawCalls": 776,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      },
+      "2-media-only": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 8.4,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      },
+      "3-glass-media": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.3,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      },
+      "4-full-beauty": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.3,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      }
+    },
+    "390x844": {
+      "1-foundation": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.4,
+        "drawCalls": 778,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 96,
+        "cols": 8,
+        "rows": 12
+      },
+      "2-media-only": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 8.5,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 96,
+        "cols": 8,
+        "rows": 12
+      },
+      "3-glass-media": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.2,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 96,
+        "cols": 8,
+        "rows": 12
+      },
+      "4-full-beauty": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10.3,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 96,
+        "cols": 8,
+        "rows": 12
+      }
+    },
+    "844x390": {
+      "1-foundation": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10.3,
+        "drawCalls": 778,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 80,
+        "cols": 10,
+        "rows": 8
+      },
+      "2-media-only": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10.2,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 80,
+        "cols": 10,
+        "rows": 8
+      },
+      "3-glass-media": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10.3,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 80,
+        "cols": 10,
+        "rows": 8
+      },
+      "4-full-beauty": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.4,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 80,
+        "cols": 10,
+        "rows": 8
+      }
+    },
+    "700x700": {
+      "1-foundation": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10.4,
+        "drawCalls": 776,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 120,
+        "cols": 10,
+        "rows": 12
+      },
+      "2-media-only": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10.3,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 120,
+        "cols": 10,
+        "rows": 12
+      },
+      "3-glass-media": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.5,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 120,
+        "cols": 10,
+        "rows": 12
+      },
+      "4-full-beauty": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10.3,
+        "drawCalls": 1185,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 120,
+        "cols": 10,
+        "rows": 12
+      }
+    },
+    "667x375": {
+      "1-foundation": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 8.7,
+        "drawCalls": 778,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      },
+      "2-media-only": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10.3,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      },
+      "3-glass-media": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 8.9,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      },
+      "4-full-beauty": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10.3,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      }
+    },
+    "780x470": {
+      "1-foundation": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10.3,
+        "drawCalls": 776,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      },
+      "2-media-only": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10.3,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      },
+      "3-glass-media": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 10.3,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      },
+      "4-full-beauty": {
+        "fps": 120,
+        "medianFrameMs": 8.3,
+        "p95FrameMs": 9.3,
+        "drawCalls": 1182,
+        "triangles": 0,
+        "backend": "webgpu",
+        "appliedQuality": "high",
+        "activeSlotCount": 100,
+        "cols": 10,
+        "rows": 10
+      }
+    }
+  }
+}

@@ -1,0 +1,534 @@
+{
+  "capturedAt": "2026-08-20T19:05:01.434Z",
+  "fixedConditions": {
+    "quality": "high, adaptive sampler OFF",
+    "mediaTimeSeconds": 2,
+    "motion": "paused",
+    "pointer": [
+      0,
+      0
+    ],
+    "dpr": 1,
+    "composition": "sourceExact (defaults)"
+  },
+  "states": [
+    "1-foundation",
+    "2-media-only",
+    "3-glass-media",
+    "4-full-beauty"
+  ],
+  "viewports": [
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "shots": [
+        {
+          "state": "1-foundation",
+          "png": "artifacts/fsx-a/beauty/1440x900/1-foundation.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.3,
+            "drawCalls": 776,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "2-media-only",
+          "png": "artifacts/fsx-a/beauty/1440x900/2-media-only.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.3,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "3-glass-media",
+          "png": "artifacts/fsx-a/beauty/1440x900/3-glass-media.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.3,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "4-full-beauty",
+          "png": "artifacts/fsx-a/beauty/1440x900/4-full-beauty.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.3,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "1920x1080",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "shots": [
+        {
+          "state": "1-foundation",
+          "png": "artifacts/fsx-a/beauty/1920x1080/1-foundation.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.3,
+            "drawCalls": 776,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "2-media-only",
+          "png": "artifacts/fsx-a/beauty/1920x1080/2-media-only.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 8.4,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "3-glass-media",
+          "png": "artifacts/fsx-a/beauty/1920x1080/3-glass-media.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.3,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "4-full-beauty",
+          "png": "artifacts/fsx-a/beauty/1920x1080/4-full-beauty.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.3,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "390x844",
+      "viewport": [
+        390,
+        844
+      ],
+      "shots": [
+        {
+          "state": "1-foundation",
+          "png": "artifacts/fsx-a/beauty/390x844/1-foundation.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.4,
+            "drawCalls": 778,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 96,
+            "cols": 8,
+            "rows": 12
+          }
+        },
+        {
+          "state": "2-media-only",
+          "png": "artifacts/fsx-a/beauty/390x844/2-media-only.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 8.5,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 96,
+            "cols": 8,
+            "rows": 12
+          }
+        },
+        {
+          "state": "3-glass-media",
+          "png": "artifacts/fsx-a/beauty/390x844/3-glass-media.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.2,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 96,
+            "cols": 8,
+            "rows": 12
+          }
+        },
+        {
+          "state": "4-full-beauty",
+          "png": "artifacts/fsx-a/beauty/390x844/4-full-beauty.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.3,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 96,
+            "cols": 8,
+            "rows": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844,
+        390
+      ],
+      "shots": [
+        {
+          "state": "1-foundation",
+          "png": "artifacts/fsx-a/beauty/844x390/1-foundation.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.3,
+            "drawCalls": 778,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 80,
+            "cols": 10,
+            "rows": 8
+          }
+        },
+        {
+          "state": "2-media-only",
+          "png": "artifacts/fsx-a/beauty/844x390/2-media-only.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.2,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 80,
+            "cols": 10,
+            "rows": 8
+          }
+        },
+        {
+          "state": "3-glass-media",
+          "png": "artifacts/fsx-a/beauty/844x390/3-glass-media.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.3,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 80,
+            "cols": 10,
+            "rows": 8
+          }
+        },
+        {
+          "state": "4-full-beauty",
+          "png": "artifacts/fsx-a/beauty/844x390/4-full-beauty.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.4,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 80,
+            "cols": 10,
+            "rows": 8
+          }
+        }
+      ]
+    },
+    {
+      "id": "700x700",
+      "viewport": [
+        700,
+        700
+      ],
+      "shots": [
+        {
+          "state": "1-foundation",
+          "png": "artifacts/fsx-a/beauty/700x700/1-foundation.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.4,
+            "drawCalls": 776,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 120,
+            "cols": 10,
+            "rows": 12
+          }
+        },
+        {
+          "state": "2-media-only",
+          "png": "artifacts/fsx-a/beauty/700x700/2-media-only.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.3,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 120,
+            "cols": 10,
+            "rows": 12
+          }
+        },
+        {
+          "state": "3-glass-media",
+          "png": "artifacts/fsx-a/beauty/700x700/3-glass-media.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.5,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 120,
+            "cols": 10,
+            "rows": 12
+          }
+        },
+        {
+          "state": "4-full-beauty",
+          "png": "artifacts/fsx-a/beauty/700x700/4-full-beauty.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.3,
+            "drawCalls": 1185,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 120,
+            "cols": 10,
+            "rows": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "667x375",
+      "viewport": [
+        667,
+        375
+      ],
+      "shots": [
+        {
+          "state": "1-foundation",
+          "png": "artifacts/fsx-a/beauty/667x375/1-foundation.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 8.7,
+            "drawCalls": 778,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "2-media-only",
+          "png": "artifacts/fsx-a/beauty/667x375/2-media-only.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.3,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "3-glass-media",
+          "png": "artifacts/fsx-a/beauty/667x375/3-glass-media.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 8.9,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "4-full-beauty",
+          "png": "artifacts/fsx-a/beauty/667x375/4-full-beauty.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.3,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "780x470",
+      "viewport": [
+        780,
+        470
+      ],
+      "shots": [
+        {
+          "state": "1-foundation",
+          "png": "artifacts/fsx-a/beauty/780x470/1-foundation.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.3,
+            "drawCalls": 776,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "2-media-only",
+          "png": "artifacts/fsx-a/beauty/780x470/2-media-only.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.3,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "3-glass-media",
+          "png": "artifacts/fsx-a/beauty/780x470/3-glass-media.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 10.3,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        },
+        {
+          "state": "4-full-beauty",
+          "png": "artifacts/fsx-a/beauty/780x470/4-full-beauty.png",
+          "metrics": {
+            "fps": 120,
+            "medianFrameMs": 8.3,
+            "p95FrameMs": 9.3,
+            "drawCalls": 1182,
+            "triangles": 0,
+            "backend": "webgpu",
+            "appliedQuality": "high",
+            "activeSlotCount": 100,
+            "cols": 10,
+            "rows": 10
+          }
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

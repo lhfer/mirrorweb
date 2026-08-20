@@ -1,0 +1,223 @@
+{
+  "stage": "fsx-a",
+  "repository": "lhfer/mirrorweb",
+  "branch": "rebuild/liquid-glass-v5-source-exact",
+  "head": "5c24a60e4b78eb12dd1aa00e25b439a3dac09ed0",
+  "codeCommit": "5c24a60",
+  "evidenceCommit": "this commit; reviewHeadAtDelivery is the branch tip, resolve with git rev-parse HEAD",
+  "route": "/?optics=v4 (beauty) and /?optics=v4&foundation=layout&annotate=0 (gate)",
+  "captureTimestampUtc": "2026-08-20T19:13:27Z",
+  "fixedCaptureConditions": {
+    "quality": "high (pinned; adaptive quality must not drift between captures)",
+    "mediaTimeSeconds": 2,
+    "mediaState": "frozen, frame-matched across runs",
+    "dpr": 1,
+    "pointer": [
+      0,
+      0
+    ],
+    "offset": "0,0 for gate captures; 260,180 additionally for session B",
+    "motion": "paused"
+  },
+  "gateVerdict": "Route proof PASS 6/6. Quality invariance PASS 43/43 with the source contract PASS at high, medium and low. Beauty baseline captured at 7 viewports x 4 states with 0 errors. Detector residual corrected. Composition unchanged and frozen.",
+  "privateReviewPackage": "qa-v5/private/fsx-a-review.zip",
+  "supersedes": "detector-residual-v2.json supersedes qa-v5/fsx/detector-residual.json AS QUOTED in the F2-SX reply: the reply's 2.67px/71.89px were an earlier run's maxima.",
+  "targetPixelPolicy": "This directory contains LOCAL pixels and Target-derived NUMBERS only. Target pixels and Target/local overlays live in qa-v5/private/, which is git-ignored.",
+  "files": [
+    {
+      "path": "qa-v5/fsx-a/README.md",
+      "bytes": 5998,
+      "sha256": "ccb2b658f8ea91dd06e8aa0eb529a9ac9f202219e776627c589d7bfda0ac2abd"
+    },
+    {
+      "path": "qa-v5/fsx-a/attribution.json",
+      "bytes": 15654,
+      "sha256": "ca1340ca3ea342f72486a6220c40df08c69ea6327e3560b42b89268931a64c89"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/1440x900/1-foundation.png",
+      "bytes": 30842,
+      "sha256": "841c0add056c9a6f8adb5d04e22a863760da46790216c8f4a029d51c1eb13c6e"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/1440x900/2-media-only.png",
+      "bytes": 481353,
+      "sha256": "d43bc040469475159865008593d167df6ba6e5b95e740527568ba85e81042bfb"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/1440x900/3-glass-media.png",
+      "bytes": 481410,
+      "sha256": "6742cab3b848498794e67cecea4e022e2b006e97edb818beeb5f80c461622f5a"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/1440x900/4-full-beauty.png",
+      "bytes": 489496,
+      "sha256": "c6480e78e5e732f1cf9060af51e4f46a5a828f7be94a86860146698306ccd379"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/1920x1080/1-foundation.png",
+      "bytes": 18174,
+      "sha256": "435cbcb70dc93145017f32f7211a7e0825991988b865979d524e7f89b6b481aa"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/1920x1080/2-media-only.png",
+      "bytes": 441612,
+      "sha256": "f591c501ed4b976d33e5eada0e8546eb4dbeb95cf48246106ccf89c645704a45"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/1920x1080/3-glass-media.png",
+      "bytes": 441612,
+      "sha256": "f591c501ed4b976d33e5eada0e8546eb4dbeb95cf48246106ccf89c645704a45"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/1920x1080/4-full-beauty.png",
+      "bytes": 444467,
+      "sha256": "73637ce4fb213b282f923f502e3db023ad268131afed3bec9f8e7f111667cbde"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/390x844/1-foundation.png",
+      "bytes": 17287,
+      "sha256": "d5872565f23c6c68d575a18f1fb34cbf63651c928e135b00d2c850e54b541246"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/390x844/2-media-only.png",
+      "bytes": 329956,
+      "sha256": "02cc39fe7f2e3f4f2dac7659f2b7e2404060c4b1df756f3ffcebedd41278a8cc"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/390x844/3-glass-media.png",
+      "bytes": 329956,
+      "sha256": "02cc39fe7f2e3f4f2dac7659f2b7e2404060c4b1df756f3ffcebedd41278a8cc"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/390x844/4-full-beauty.png",
+      "bytes": 356279,
+      "sha256": "4abaf331c903030b33b46cd2bc5dae17be9bd9a38a3e2c5d68ea5e7b0c991c60"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/667x375/1-foundation.png",
+      "bytes": 2421,
+      "sha256": "ed6f6577548bc388dc45139e15f739005d89b5f90abe1f5368d663a32d98f7ef"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/667x375/2-media-only.png",
+      "bytes": 356120,
+      "sha256": "16ac548ffab246cb444d10fe98ea051be02a3afeca6fc4c8b51910108ae78a24"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/667x375/3-glass-media.png",
+      "bytes": 356120,
+      "sha256": "16ac548ffab246cb444d10fe98ea051be02a3afeca6fc4c8b51910108ae78a24"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/667x375/4-full-beauty.png",
+      "bytes": 372512,
+      "sha256": "a308c34f960e6f5fd42293a9ce8c25e29ce1b54a2593939a417fbbd9d65d6adc"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/700x700/1-foundation.png",
+      "bytes": 5190,
+      "sha256": "d752f2b8885d73ed4eda324a1280f50adb3a7ef453c2592c67007d07361c366a"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/700x700/2-media-only.png",
+      "bytes": 696435,
+      "sha256": "6830b6bd2d3fc1d25e9f3b2da94bac4fb1021cc524ad189b4157a640453b33fe"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/700x700/3-glass-media.png",
+      "bytes": 696435,
+      "sha256": "6830b6bd2d3fc1d25e9f3b2da94bac4fb1021cc524ad189b4157a640453b33fe"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/700x700/4-full-beauty.png",
+      "bytes": 734732,
+      "sha256": "c75a5a8b49c3b8f1e31997e1fb90a124217607a331a7485b940854d9b9697998"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/780x470/1-foundation.png",
+      "bytes": 23570,
+      "sha256": "a5dafa24859828b7f64507057a78626569ea4067c7b965291d793f3350907764"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/780x470/2-media-only.png",
+      "bytes": 436935,
+      "sha256": "a177343a058d179d74e1f65bfa313c596f81dc686ee4b80d14c735f4e2a88517"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/780x470/3-glass-media.png",
+      "bytes": 436935,
+      "sha256": "a177343a058d179d74e1f65bfa313c596f81dc686ee4b80d14c735f4e2a88517"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/780x470/4-full-beauty.png",
+      "bytes": 459048,
+      "sha256": "eb8ffff4f4344c2572057ef014fa45a3f59c13d5dfef7138b07db0d173921886"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/844x390/1-foundation.png",
+      "bytes": 7628,
+      "sha256": "b5dbc1ab019228ad899cb19bf6ff4b58a7205df49abc97d74ec877e68347b5c3"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/844x390/2-media-only.png",
+      "bytes": 334293,
+      "sha256": "4acfbfd013b6be9a37c6feb852cb912dda51b5bd4d61d3269dbb8457dcc6a207"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/844x390/3-glass-media.png",
+      "bytes": 334293,
+      "sha256": "4acfbfd013b6be9a37c6feb852cb912dda51b5bd4d61d3269dbb8457dcc6a207"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/844x390/4-full-beauty.png",
+      "bytes": 352395,
+      "sha256": "1a01ff1b888a3818abcfdb2c4b27dd78dbb8b36bd85d61689d764f243d20dc61"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/attribution.json",
+      "bytes": 15654,
+      "sha256": "ca1340ca3ea342f72486a6220c40df08c69ea6327e3560b42b89268931a64c89"
+    },
+    {
+      "path": "qa-v5/fsx-a/beauty/beauty.json",
+      "bytes": 14147,
+      "sha256": "636e0bac8480bc502b3099f3962e3ef6f717bcab840f3aa607ffe3e8d8504ef2"
+    },
+    {
+      "path": "qa-v5/fsx-a/detector-residual-v2.json",
+      "bytes": 58005,
+      "sha256": "f10faf44b7ac589e2dce42f6c88b4126ffc9b46e84135cdbfca538b13727eec8"
+    },
+    {
+      "path": "qa-v5/fsx-a/quality-invariance.json",
+      "bytes": 1188257,
+      "sha256": "321ac6ef1788105da6cf2d688f6df9e748c1862f90cd3e35fbe7912b8d1c8db7"
+    },
+    {
+      "path": "qa-v5/fsx-a/route-proof.json",
+      "bytes": 3639,
+      "sha256": "cd8359adb2cd279ff31ec5ec620c4ea3940152ffc5efd633b039cf604517af20"
+    },
+    {
+      "path": "qa-v5/fsx-a/session/quality-sweep-trace.json",
+      "bytes": 5767,
+      "sha256": "e352f017b855305f08cc0b81f6f591c1533764979df077e7083ef1df2384b6b7"
+    },
+    {
+      "path": "qa-v5/fsx-a/session/source-contract-high.json",
+      "bytes": 16517,
+      "sha256": "53331a1beca15f8f2ff6651380f77ef2f0f92f1a0550551fd5c7e57ec119dbd8"
+    },
+    {
+      "path": "qa-v5/fsx-a/session/source-contract-low.json",
+      "bytes": 16517,
+      "sha256": "53331a1beca15f8f2ff6651380f77ef2f0f92f1a0550551fd5c7e57ec119dbd8"
+    },
+    {
+      "path": "qa-v5/fsx-a/session/source-contract-medium.json",
+      "bytes": 16517,
+      "sha256": "53331a1beca15f8f2ff6651380f77ef2f0f92f1a0550551fd5c7e57ec119dbd8"
+    }
+  ]
+}
