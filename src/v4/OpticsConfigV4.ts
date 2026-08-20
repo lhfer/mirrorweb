@@ -94,10 +94,14 @@ export const V4_OPTICS_CONFIG = {
   } satisfies V4GeometryConfig,
   quality: {
     // `shaderSamples` is declared here but referenced nowhere in the codebase.
-    // `refractionTaps` is the live one, used by the multitap refraction model.
-    high: { radialSegments: 26, outlineSegments: 96, sidewallSegments: 7, shaderSamples: 3, refractionTaps: 4 },
-    medium: { radialSegments: 20, outlineSegments: 72, sidewallSegments: 6, shaderSamples: 3, refractionTaps: 3 },
-    low: { radialSegments: 15, outlineSegments: 56, sidewallSegments: 4, shaderSamples: 1, refractionTaps: 2 },
+    // `refractionTaps` was briefly declared per quality level too, but the
+    // material is built once and quality changes at runtime without rebuilding
+    // it, so only one value was ever read. Rather than leave a second dead
+    // per-quality declaration, the tap count now lives on the material as a
+    // single honest constant.
+    high: { radialSegments: 26, outlineSegments: 96, sidewallSegments: 7, shaderSamples: 3 },
+    medium: { radialSegments: 20, outlineSegments: 72, sidewallSegments: 6, shaderSamples: 3 },
+    low: { radialSegments: 15, outlineSegments: 56, sidewallSegments: 4, shaderSamples: 1 },
   } satisfies Record<
     V4QualityLevel,
     {
@@ -105,12 +109,13 @@ export const V4_OPTICS_CONFIG = {
       outlineSegments: number;
       sidewallSegments: number;
       shaderSamples: number;
-      refractionTaps: number;
     }
   >,
   material: {
     ior: 1.48,
-    refractionModel: "snell-screen-multitap" as V4RefractionModel,
+    refractionModel: "snell-screen" as V4RefractionModel,
+    /** snell-screen-multitap only. Fixed: the material is built once. */
+    refractionTaps: 4,
     /** snell-screen: displacement at grazing incidence, in scene-target UV. */
     refractionGainUv: 0.085,
     /** snell-screen: distance from the silhouette the refracting band spans. */
@@ -120,10 +125,13 @@ export const V4_OPTICS_CONFIG = {
     // levels on 0.001% of pixels, because the projected exit point converges on
     // the refracted ray's vanishing point instead of diverging (ILG-A-009).
     //
-    // Measured on the debug view, which round 4 validated as sound after round
-    // 3 wrongly suspected it (GATE-005, closed as a false positive): across the
-    // 88px shoulder the offset spans 3 of 255 levels while the 38px strong rim
-    // spans 100, and no zone is pinned against the maxRefractionUv clamp.
+    // The debug view was validated in round 4 after round 3 wrongly suspected
+    // it (GATE-005, closed as a false positive). It shows the shoulder doing
+    // almost no optical work compared with the strong rim. That comparison is
+    // qualitative on purpose: the view's level domain is not the UV domain,
+    // because the debug colour passes through the renderer's tone curve. What
+    // it does establish exactly is that no zone is pinned against the
+    // maxRefractionUv clamp, since saturation is read at the 8-bit endpoints.
     refractionDistance: 300,
     maxRefractionUv: 0.125,
     blurLod: 2.35,

@@ -266,7 +266,7 @@ export function createLiquidGlassMaterialV4(
   // point it lands on. Taps are unrolled at a fixed count because the material
   // is built once and quality changes at runtime without rebuilding it.
   const multitap = V4_OPTICS_CONFIG.material.refractionModel === "snell-screen-multitap";
-  const tapCount = V4_OPTICS_CONFIG.quality.high.refractionTaps;
+  const tapCount = V4_OPTICS_CONFIG.material.refractionTaps;
   const gather = (target: any, base: any) => {
     if (!multitap) return sceneColor.sample(target).level(blurLod);
     let accumulated: any = sceneColor.sample(target).level(blurLod);
