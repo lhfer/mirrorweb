@@ -97,7 +97,11 @@ if __name__ == "__main__":
             dst = PUB / "beauty" / vp / f"{st}.png"
             dst.parent.mkdir(parents=True, exist_ok=True)
             im = Image.open(src).convert("RGB")
-            im.thumbnail((900, 900), Image.LANCZOS)
+            # 720, matching what is committed. This used to be 900, so re-running
+            # the script re-encoded 20 tracked frames and silently invalidated
+            # every SHA in MANIFEST.json -- an evidence bundle that no longer
+            # verified against its own manifest.
+            im.thumbnail((720, 720), Image.LANCZOS)
             im.save(dst, optimize=True)
     shutil.copy2(ART / "fsx-a/beauty/beauty.json", PUB / "beauty" / "beauty.json")
 

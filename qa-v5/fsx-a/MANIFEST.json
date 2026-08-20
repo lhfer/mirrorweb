@@ -2,11 +2,11 @@
   "stage": "fsx-a",
   "repository": "lhfer/mirrorweb",
   "branch": "rebuild/liquid-glass-v5-source-exact",
-  "head": "5c24a60e4b78eb12dd1aa00e25b439a3dac09ed0",
+  "head": "6d1d5bb9cf3d379130fbae46bb4b936a9b0079fc",
   "codeCommit": "5c24a60",
   "evidenceCommit": "this commit; reviewHeadAtDelivery is the branch tip, resolve with git rev-parse HEAD",
   "route": "/?optics=v4 (beauty) and /?optics=v4&foundation=layout&annotate=0 (gate)",
-  "captureTimestampUtc": "2026-08-20T19:13:27Z",
+  "captureTimestampUtc": "2026-08-20T19:17:08Z",
   "fixedCaptureConditions": {
     "quality": "high (pinned; adaptive quality must not drift between captures)",
     "mediaTimeSeconds": 2,
@@ -36,43 +36,43 @@
     },
     {
       "path": "qa-v5/fsx-a/beauty/1440x900/1-foundation.png",
-      "bytes": 30842,
-      "sha256": "841c0add056c9a6f8adb5d04e22a863760da46790216c8f4a029d51c1eb13c6e"
+      "bytes": 19038,
+      "sha256": "8f092143de755c26af0aa70fd07ae65e9da648aa90fe8831ed428b204acf68fd"
     },
     {
       "path": "qa-v5/fsx-a/beauty/1440x900/2-media-only.png",
-      "bytes": 481353,
-      "sha256": "d43bc040469475159865008593d167df6ba6e5b95e740527568ba85e81042bfb"
+      "bytes": 472868,
+      "sha256": "5f0cc213a6635d4c27dd68b06d9d79a807d3bfcdd5b11e11762014534c8f1c4a"
     },
     {
       "path": "qa-v5/fsx-a/beauty/1440x900/3-glass-media.png",
-      "bytes": 481410,
-      "sha256": "6742cab3b848498794e67cecea4e022e2b006e97edb818beeb5f80c461622f5a"
+      "bytes": 473125,
+      "sha256": "e3f25924a853d04d1922843e9b897699637f76fb3e242d0006dfdd649c301d95"
     },
     {
       "path": "qa-v5/fsx-a/beauty/1440x900/4-full-beauty.png",
-      "bytes": 489496,
-      "sha256": "c6480e78e5e732f1cf9060af51e4f46a5a828f7be94a86860146698306ccd379"
+      "bytes": 481111,
+      "sha256": "8821811e23131e17e9089599cd0553572182ca23eeee666c9aca6064c5b29d77"
     },
     {
       "path": "qa-v5/fsx-a/beauty/1920x1080/1-foundation.png",
-      "bytes": 18174,
-      "sha256": "435cbcb70dc93145017f32f7211a7e0825991988b865979d524e7f89b6b481aa"
+      "bytes": 15272,
+      "sha256": "20b95d14274e820b4187e1a5e8e2b2402f1d1e99c73fd17ca97eae540ccc7b97"
     },
     {
       "path": "qa-v5/fsx-a/beauty/1920x1080/2-media-only.png",
-      "bytes": 441612,
-      "sha256": "f591c501ed4b976d33e5eada0e8546eb4dbeb95cf48246106ccf89c645704a45"
+      "bytes": 434453,
+      "sha256": "537ae52ea1a3fcfbd4c08fc9f9c5e834279aae8b6ed0b3449cf66f651cdbc1ec"
     },
     {
       "path": "qa-v5/fsx-a/beauty/1920x1080/3-glass-media.png",
-      "bytes": 441612,
-      "sha256": "f591c501ed4b976d33e5eada0e8546eb4dbeb95cf48246106ccf89c645704a45"
+      "bytes": 434453,
+      "sha256": "537ae52ea1a3fcfbd4c08fc9f9c5e834279aae8b6ed0b3449cf66f651cdbc1ec"
     },
     {
       "path": "qa-v5/fsx-a/beauty/1920x1080/4-full-beauty.png",
-      "bytes": 444467,
-      "sha256": "73637ce4fb213b282f923f502e3db023ad268131afed3bec9f8e7f111667cbde"
+      "bytes": 437336,
+      "sha256": "85eed34d489c24f04e0a170dd852fe797bd0aba66dbab55de797757e17d18a02"
     },
     {
       "path": "qa-v5/fsx-a/beauty/390x844/1-foundation.png",
