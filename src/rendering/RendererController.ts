@@ -5,7 +5,9 @@ import {
   Scene,
   WebGPURenderer,
 } from "three/webgpu";
-import { CAMERA, CLEAR_COLOR, compositionScale, effectivePerspectivePx, viewZoom, type CompositionVersion, type PortraitLaw, type VerticalMode } from "../config";
+import { CAMERA, CLEAR_COLOR, compositionScale, effectivePerspectivePx, verticalScaleY, viewZoom,
+  PORTRAIT_VERTICAL, type CompositionVersion, type PortraitLaw, type PortraitVerticalModel,
+  type VerticalMode } from "../config";
 import { detectBackend, resolveDpr, type Backend } from "../quality/DeviceProfile";
 
 export type RendererHandle = {
@@ -25,6 +27,9 @@ export class RendererController {
   composition: CompositionVersion = "v1";
   verticalMode: VerticalMode = "tangent";
   portraitLaw: PortraitLaw = "p1";
+  portraitVertical: PortraitVerticalModel = PORTRAIT_VERTICAL.model;
+  /** Vertical projection multiplier actually applied this resize. */
+  verticalScaleY = 1;
   private dprOverride?: number;
 
   async init(host: HTMLElement, forceWebGL = false): Promise<RendererHandle> {
@@ -75,13 +80,21 @@ export class RendererController {
     // the camera silently used the default one -- p0 and p1 rendered byte
     // identically and their gate comparison was meaningless.
     this.viewZoom = viewZoom(width, height, this.composition, this.verticalMode, this.portraitLaw);
-    this.handle.camera.aspect = width / height;
     // fov is always derived from the effective focal length, so one world unit
     // stays one CSS pixel at z = 0 divided by the composition scale, whichever
     // mechanism the responsive law uses.
     const focal = effectivePerspectivePx(width, height, this.composition, this.verticalMode,
                                          this.portraitLaw);
-    this.handle.camera.fov = (2 * Math.atan(height / 2 / focal) * 180) / Math.PI;
+    // Portrait-only anamorphic Y (F2.7). Vertical screen scale is focal/z and
+    // horizontal is (focal/z) * (width/height) / aspect, so raising the focal
+    // length by k and the aspect by the same k scales Y alone and leaves X
+    // exactly where it was. Doing it here rather than as a scene-root scaleY
+    // matters: a non-uniform root scale would perturb vertex normals, and the
+    // refraction that reads them is frozen this round.
+    const k = verticalScaleY(width, height, this.composition, this.portraitVertical);
+    this.verticalScaleY = k;
+    this.handle.camera.aspect = (k * width) / height;
+    this.handle.camera.fov = (2 * Math.atan(height / 2 / (focal * k)) * 180) / Math.PI;
     this.handle.camera.position.z = CAMERA.z * this.viewZoom;
     this.handle.camera.updateProjectionMatrix();
   }

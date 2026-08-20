@@ -130,17 +130,30 @@ def fit(xs, ys):
 
 
 def measure(path: Path, void_max: int | None = None,
-            mask_override: "np.ndarray | None" = None) -> dict:
+            mask_override: "np.ndarray | None" = None,
+            band_mask_override: "np.ndarray | None" = None) -> dict:
     rgb = np.asarray(Image.open(path).convert("RGB"))
     h, w = rgb.shape[:2]
     if void_max is not None:
         void = band_void = flat_void(void_max)
     else:
         void, band_void = pick_void(rgb)
-    # A caller can supply a consensus mask built from several frames of the same
+    # A caller can supply consensus masks built from several frames of the same
     # viewport, which is how video content is kept out of the geometry.
+    #
+    # There are TWO presets here for a reason -- strict for per-card edge
+    # tracing, relaxed for gutters and bands -- so a consensus caller must
+    # supply two masks as well. Feeding one relaxed mask to both, which is what
+    # a single `mask_override` did, hands edge tracing a mask that calls more
+    # pixels void: card edges then truncate and their measured slope goes wrong.
+    # That alone turned two passing viewports into edge-yaw failures.
     raw = mask_override if mask_override is not None else void_mask(rgb, void)
-    band_raw = mask_override if mask_override is not None else void_mask(rgb, band_void)
+    if band_mask_override is not None:
+        band_raw = band_mask_override
+    elif mask_override is not None:
+        band_raw = mask_override
+    else:
+        band_raw = void_mask(rgb, band_void)
     mv = despeckle(raw, axis=0)             # per-card edge tracing: strict
     mg = despeckle(band_raw, axis=0)        # vertical gutters: relaxed
     mh = despeckle(band_raw, axis=1)        # row bands: relaxed

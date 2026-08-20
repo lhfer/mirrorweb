@@ -1,8 +1,14 @@
 import { AmbientLight, Vector3, type DirectionalLight } from "three/webgpu";
 import {
-  CAMERA, GRID, TILE, compositionScale, compositionVersion, portraitLaw, restOffset,
-  verticalMode, type CompositionVersion, type PortraitLaw, type QualityLevel, type VerticalMode,
+  CAMERA, GRID, TILE, compositionParams, compositionScale, compositionVersion, isPortrait,
+  landscapeRowOrigin, phaseModel, portraitLaw,
+  portraitVerticalModel, restOffset, verticalMode, verticalOverride,
+  type CompositionVersion, type LandscapeRowOrigin, type PhaseModel, type PortraitLaw,
+  type PortraitVerticalModel,
+  type QualityLevel, type VerticalMode,
 } from "../../config";
+import { rowOrigin } from "../../scene/RowPhase";
+import { catalogAt } from "../../content/catalog";
 import { readDebugMode, type DebugMode } from "../../debug/DebugMode";
 import { isFoundationLayout, readFoundationMode, type FoundationMode } from "../../debug/FoundationMode";
 import { FoundationOverlay } from "../../debug/FoundationOverlay";
@@ -44,6 +50,12 @@ export type GridAppV4Options = {
   composition?: CompositionVersion;
   vertical?: VerticalMode;
   portraitLaw?: PortraitLaw;
+  /** F2.7. `rowOrigin` derives the rest phase; `aspect` is the F2.6 rollback. */
+  phaseModel?: PhaseModel;
+  /** F2.7 portrait-only vertical composition: v0 control, v1, v2. */
+  portraitVertical?: PortraitVerticalModel;
+  /** Diagnostic only, default off. See config.ts. */
+  landscapeRowOrigin?: LandscapeRowOrigin;
 };
 
 /**
@@ -80,6 +92,9 @@ export class GridAppV4 {
   readonly composition: CompositionVersion;
   readonly verticalMode: VerticalMode;
   readonly portraitLaw: PortraitLaw;
+  readonly phaseModel: PhaseModel;
+  readonly portraitVertical: PortraitVerticalModel;
+  readonly landscapeRowOrigin: LandscapeRowOrigin;
   private foundationOverlay?: FoundationOverlay;
 
   constructor(private readonly options: GridAppV4Options = {}) {
@@ -89,8 +104,29 @@ export class GridAppV4 {
     this.composition = options.composition ?? compositionVersion();
     this.verticalMode = options.vertical ?? verticalMode();
     this.portraitLaw = options.portraitLaw ?? portraitLaw();
+    this.phaseModel = options.phaseModel ?? phaseModel();
+    this.portraitVertical = options.portraitVertical ?? portraitVerticalModel();
+    this.landscapeRowOrigin = options.landscapeRowOrigin ?? landscapeRowOrigin();
     this.grid.composition = { version: this.composition, verticalMode: this.verticalMode,
-                              portraitLaw: this.portraitLaw };
+                              portraitLaw: this.portraitLaw,
+                              vertical: verticalOverride(window.innerWidth, window.innerHeight,
+                                                         this.composition, this.portraitVertical,
+                                                         this.landscapeRowOrigin) };
+  }
+
+  /**
+   * Re-resolve the portrait-only vertical override.
+   *
+   * It depends on the viewport, and placement does not see one, so it has to be
+   * refreshed whenever the viewport changes -- including across an orientation
+   * flip, where it appears or disappears entirely.
+   */
+  private syncVerticalOverride(): void {
+    this.grid.composition = {
+      ...this.grid.composition,
+      vertical: verticalOverride(window.innerWidth, window.innerHeight,
+                                 this.composition, this.portraitVertical, this.landscapeRowOrigin),
+    };
   }
 
   private get layoutOnly(): boolean {
@@ -103,11 +139,13 @@ export class GridAppV4 {
    * QA landmarks all agree about where the grid actually is.
    */
   private gridX(scrollX = this.motion.scrollX): number {
-    return scrollX + restOffset(window.innerWidth, window.innerHeight, this.composition, this.verticalMode).x;
+    return scrollX + restOffset(window.innerWidth, window.innerHeight, this.composition,
+                                this.verticalMode, this.phaseModel).x;
   }
 
   private gridY(scrollY = this.motion.scrollY): number {
-    return scrollY + restOffset(window.innerWidth, window.innerHeight, this.composition, this.verticalMode).y;
+    return scrollY + restOffset(window.innerWidth, window.innerHeight, this.composition,
+                                this.verticalMode, this.phaseModel).y;
   }
 
   async start(): Promise<void> {
@@ -123,6 +161,7 @@ export class GridAppV4 {
     this.renderer.composition = this.composition;
     this.renderer.verticalMode = this.verticalMode;
     this.renderer.portraitLaw = this.portraitLaw;
+    this.renderer.portraitVertical = this.portraitVertical;
     const handle = await this.renderer.init(
       document.getElementById(this.options.viewportId ?? "viewport")!,
       false,
@@ -408,9 +447,16 @@ export class GridAppV4 {
       composition: this.composition,
       verticalMode: this.verticalMode,
       portraitLaw: this.portraitLaw,
+      phaseModel: this.phaseModel,
+      portraitVertical: this.portraitVertical,
+      landscapeRowOrigin: this.landscapeRowOrigin,
       effectiveCellH: effectiveCellH(this.grid.composition),
+      rowOrigin: rowOrigin(window.innerWidth, window.innerHeight, this.motion.scrollY,
+                           effectiveCellH(this.grid.composition)),
+      catalogRowAtCentre: this.catalogRowAtCentre(),
       ...this.runtimeTruth(),
-      restOffset: restOffset(window.innerWidth, window.innerHeight, this.composition, this.verticalMode),
+      restOffset: restOffset(window.innerWidth, window.innerHeight, this.composition,
+                             this.verticalMode, this.phaseModel),
       route: location.pathname,
       normalPathDirectMedia: false,
       v3Preserved: true,
@@ -434,21 +480,60 @@ export class GridAppV4 {
    * config function by construction -- which is exactly the failure it exists
    * to catch.
    */
+  /**
+   * Which catalog row the viewport centre is looking at.
+   *
+   * Kept separate from the geometry row index and from the pool's recycling
+   * origin on purpose: aligning grey slabs while the catalog silently steps a
+   * row is exactly the failure this reports. `restY0 = -cellH/2` puts row j = 1
+   * immediately below the centre, so that is the row named here.
+   */
+  private catalogRowAtCentre(): Record<string, unknown> {
+    const composition = this.grid.composition;
+    const cellH = effectiveCellH(composition);
+    const restY0 = composition.version === "v2"
+      ? (composition.vertical?.restY0
+         ?? compositionParams(composition.verticalMode, composition.portraitLaw).restY0)
+      : GRID.restY0;
+    // Row v = j * cellH + restY0 - scrollY; the row just below the viewport
+    // centre is the smallest j whose v is not negative.
+    const j = Math.ceil((this.gridY() - restY0) / cellH);
+    return {
+      geometryRowIndex: j,
+      rowAboveCentre: j - 1,
+      recyclingOriginJ: Math.round(this.gridY() / cellH),
+      restY0,
+      codes: [-1, 0, 1].map((di) => catalogAt(di, j).code),
+    };
+  }
+
   private runtimeTruth(): Record<string, unknown> {
     const handle = this.renderer.handle;
     const requested = this.portraitLaw;
     const rendererLaw = this.renderer.portraitLaw;
     const gridLaw = this.grid.composition.portraitLaw ?? null;
     let derived: number | null = null;
+    let derivedY: number | null = null;
     let fov: number | null = null;
     let focalPx: number | null = null;
     if (handle) {
       const camera = handle.camera;
       fov = camera.fov;
       focalPx = (window.innerHeight / 2) / Math.tan((camera.fov * Math.PI) / 360);
-      const a = new Vector3(0, 0, 0).project(camera);
-      const b = new Vector3(100, 0, 0).project(camera);
-      derived = ((b.x - a.x) * 0.5 * window.innerWidth) / 100;
+      // Symmetric, short probes about the origin. A 0..100 segment measures a
+      // secant, and with CAMERA.y = 8 the far end of a VERTICAL secant sits
+      // measurably closer to the camera than the near end -- that alone showed
+      // up as 7.4e-4 on the Y axis, which is pitch, not a projection error.
+      // A short segment centred on the origin measures the local scale instead.
+      const xm = new Vector3(-1, 0, 0).project(camera);
+      const xp = new Vector3(1, 0, 0).project(camera);
+      derived = ((xp.x - xm.x) * 0.5 * window.innerWidth) / 2;
+      // The anamorphic portrait scale lives in the projection, so the only
+      // honest proof it is running is to project a VERTICAL world segment
+      // through the live camera and measure what comes out.
+      const ym = new Vector3(0, -1, 0).project(camera);
+      const yp = new Vector3(0, 1, 0).project(camera);
+      derivedY = ((yp.y - ym.y) * 0.5 * window.innerHeight) / 2;
     }
     const reported = this.renderer.compositionScale;
     const lawsAgree = requested === rendererLaw && requested === gridLaw;
@@ -457,6 +542,12 @@ export class GridAppV4 {
     // real view axis, and CAMERA.y = 8 makes that axis 1000.032 long rather
     // than 1000. That is a fixed 3.2e-5 relative difference by construction.
     const scaleAgrees = derived !== null && Math.abs(derived - reported) <= 1e-4 * Math.max(1, reported);
+    const k = this.renderer.verticalScaleY;
+    const expectedY = reported * k;
+    const verticalAgrees = derivedY !== null
+      && Math.abs(derivedY - expectedY) <= 1e-4 * Math.max(1, expectedY);
+    // Landscape must be untouched by the portrait model, at every model.
+    const landscapeUntouched = isPortrait(window.innerWidth, window.innerHeight) || k === 1;
     return {
       requestedPortraitLaw: requested,
       rendererPortraitLaw: rendererLaw,
@@ -465,11 +556,17 @@ export class GridAppV4 {
       effectiveFov: fov,
       reportedCompositionScale: reported,
       scaleDerivedFromActualCameraProjection: derived,
+      verticalScaleDerivedFromActualCameraProjection: derivedY,
+      reportedVerticalScaleY: k,
+      expectedVerticalScreenScale: expectedY,
       runtimeTruthAssertions: {
         portraitLawPropagated: lawsAgree,
         reportedScaleMatchesCameraProjection: scaleAgrees,
         scaleDeltaPx: derived === null ? null : derived - reported,
-        allPass: lawsAgree && scaleAgrees,
+        verticalScaleMatchesCameraProjection: verticalAgrees,
+        verticalDeltaPx: derivedY === null ? null : derivedY - expectedY,
+        landscapeVerticalScaleIsExactlyOne: landscapeUntouched,
+        allPass: lawsAgree && scaleAgrees && verticalAgrees && landscapeUntouched,
       },
     };
   }
@@ -535,6 +632,10 @@ export class GridAppV4 {
   private bindWindow(): void {
     const apply = () => {
       this.renderer.resize();
+      // The portrait vertical override depends on the viewport, so it has to be
+      // re-resolved before placement -- an orientation flip adds or removes it
+      // entirely.
+      this.syncVerticalOverride();
       // The rest offset is regime-dependent, so a resize can flip the brick
       // parity; re-place the grid before anything reads its positions.
       this.grid.update(this.gridX(), this.gridY());

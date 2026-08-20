@@ -13,6 +13,13 @@ export type Composition = {
   version: CompositionVersion;
   verticalMode: VerticalMode;
   portraitLaw?: PortraitLaw;
+  /**
+   * Portrait-only vertical override (F2.7 V2), resolved by the app at resize
+   * time because it depends on the viewport and placement does not see one.
+   * Undefined under V0 and V1, and in landscape under every model, so landscape
+   * placement is bit-identical to before.
+   */
+  vertical?: { radiusY: number; cellH: number; restY0: number };
 };
 
 export const V1_COMPOSITION: Composition = { version: "v1", verticalMode: "depth" };
@@ -27,9 +34,9 @@ export const V1_COMPOSITION: Composition = { version: "v1", verticalMode: "depth
  * parity break. Both sides now read this.
  */
 export function effectiveCellH(composition: Composition = V1_COMPOSITION): number {
-  return composition.version === "v2"
-    ? compositionParams(composition.verticalMode, composition.portraitLaw).cellH
-    : GRID.cellH;
+  if (composition.version !== "v2") return GRID.cellH;
+  return composition.vertical?.cellH
+    ?? compositionParams(composition.verticalMode, composition.portraitLaw).cellH;
 }
 
 const _pose: TilePose = { x: 0, y: 0, z: 0, rotX: 0, rotY: 0 };
@@ -61,8 +68,9 @@ export function placeTile(
   const u = brickColumn(i, j) * GRID.cellW - scrollX;
   const v2 = composition.version === "v2";
   const params = compositionParams(composition.verticalMode, composition.portraitLaw);
-  const cellH = v2 ? params.cellH : GRID.cellH;
-  const restY0 = v2 ? params.restY0 : GRID.restY0;
+  const over = v2 ? composition.vertical : undefined;
+  const cellH = v2 ? (over?.cellH ?? params.cellH) : GRID.cellH;
+  const restY0 = v2 ? (over?.restY0 ?? params.restY0) : GRID.restY0;
   const v = j * cellH + restY0 - scrollY;
 
   const r = GRID.radius;
@@ -71,7 +79,7 @@ export function placeTile(
   out.z = r * (1 - Math.cos(theta));
   out.rotY = -theta;
 
-  const radiusY = v2 ? params.radiusY : 0;
+  const radiusY = v2 ? (over?.radiusY ?? params.radiusY) : 0;
   out.y = v;
   if (radiusY) {
     // Exact cosine DEPTH law: a row recedes with its vertical distance from the

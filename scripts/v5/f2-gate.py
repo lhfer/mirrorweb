@@ -35,6 +35,34 @@ def _load(name: str, filename: str):
 
 ML = _load("measure_layout", "measure-layout.py")
 
+
+def consensus_measure(pngs: list[str], frac: float = 0.8):
+    """
+    Measure a Target viewport from several frames instead of one.
+
+    The cards contain video. A dark enough frame reads as void, which invents
+    gutters and truncates card edges; several frames of the same viewport tell
+    that apart, because a real gutter is void in every one of them. Thresholds
+    are untouched -- this changes only how reliably the Target's structure is
+    observed, and it can only make the Target's geometry MORE complete.
+    """
+    import numpy as np
+    from PIL import Image
+    edge_votes = band_votes = None
+    for f in pngs:
+        rgb = np.asarray(Image.open(f).convert("RGB"))
+        edge_preset, band_preset = ML.pick_void(rgb)
+        e = ML.void_mask(rgb, edge_preset)
+        b = ML.void_mask(rgb, band_preset)
+        edge_votes = e.astype(np.int16) if edge_votes is None else edge_votes + e
+        band_votes = b.astype(np.int16) if band_votes is None else band_votes + b
+    need = int(np.ceil(frac * len(pngs)))
+    # Both presets get their own consensus. The detector uses the strict one for
+    # card edges and the relaxed one for gutters and bands; collapsing them into
+    # a single mask would hand edge tracing the wrong preset.
+    return ML.measure(Path(pngs[0]), mask_override=(edge_votes >= need),
+                      band_mask_override=(band_votes >= need))
+
 # Approved contract. Do not relax to make a candidate green.
 CONTRACT = {
     "cardCentrePctOfViewport": 2.0,
@@ -187,7 +215,9 @@ def overlap_check(local_json: Path, vw: float, vh: float) -> dict:
 
 
 def compare(entry: dict) -> dict:
-    t = normalise(ML.measure(Path(entry["targetPng"])), entry.get("targetDpr", 1))
+    frames = entry.get("targetFrames")
+    t = normalise(consensus_measure(frames) if frames else ML.measure(Path(entry["targetPng"])),
+                  entry.get("targetDpr", 1))
     l = normalise(ML.measure(Path(entry["localPng"])), entry.get("localDpr", 1))
     vw, vh = t["viewW"], t["viewH"]
     checks = []

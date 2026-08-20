@@ -98,6 +98,8 @@ export function isPortrait(width: number, height: number): boolean {
   return width < height;
 }
 
+import { rowOriginHalfCellPhase, targetLayout } from "./scene/RowPhase";
+
 export const COMPOSITION_VERSIONS = ["v1", "v2"] as const;
 export type CompositionVersion = (typeof COMPOSITION_VERSIONS)[number];
 export const VERTICAL_MODES = ["depth", "tangent"] as const;
@@ -180,9 +182,133 @@ export const COMPOSITION_V2 = {
    *
    * Misses, recorded rather than tuned away: 667x375, 700x700, 780x470,
    * 1440x1080. See qa-v5/f26/landscape-phase.json.
+   *
+   * SUPERSEDED in F2.7 by `phaseModel: "rowOrigin"`, which has no threshold at
+   * all. Kept reachable as `?phaseModel=aspect` so the change is reversible.
    */
   restPhaseAspectThreshold: 0.5525,
+  /** Which rest-phase law runs. See src/scene/RowPhase.ts. */
+  phaseModel: "rowOrigin" as PhaseModel,
 } as const;
+
+export const PHASE_MODELS = ["aspect", "rowOrigin"] as const;
+export type PhaseModel = (typeof PHASE_MODELS)[number];
+
+export function phaseModel(search: string = location.search): PhaseModel {
+  const value = new URLSearchParams(search).get("phaseModel");
+  return (PHASE_MODELS as readonly string[]).includes(value ?? "")
+    ? (value as PhaseModel)
+    : COMPOSITION_V2.phaseModel;
+}
+
+/**
+ * Portrait-only vertical composition (Stage F2.7 part B).
+ *
+ * The horizontal scale law is frozen this round, so the only lever left in
+ * portrait is the vertical one. V0 is the control -- P1 exactly as it ships.
+ * V1 adds one shared vertical scale, applied in the PROJECTION rather than as a
+ * scene-root scale: a non-uniform root scale would perturb normals and so would
+ * change the frozen refraction, while an anamorphic projection cannot.
+ * V2 additionally refits the portrait row geometry under V1's scale.
+ *
+ * `scaleY` is not eyeballed. Source forensics gives the Target's exact portrait
+ * card height at any viewport (planeWidth / planeAspect, with planeWidth =
+ * 0.72 * width), so the required multiplier is the ratio of that to what our
+ * frozen geometry renders. See qa-v5/f27/portrait-vertical-models.json.
+ */
+export const PORTRAIT_VERTICAL_MODELS = ["v0", "v1", "v2"] as const;
+export type PortraitVerticalModel = (typeof PORTRAIT_VERTICAL_MODELS)[number];
+
+export const PORTRAIT_VERTICAL = {
+  models: {
+    /** Control: P1 exactly as it ships. */
+    v0: { scaleY: 1, radiusY: null as number | null, cellH: null as number | null, restY0: null as number | null },
+    /**
+     * One shared vertical scale, nothing else.
+     *
+     * 1.03883 is the median of the required ratio over the five training
+     * viewports, measured with the gate's own detector against a five-frame
+     * Target consensus. An entirely independent route agrees: source forensics
+     * gives the Target's portrait card height exactly (0.72 * width / (4/3)),
+     * and dividing that by what our frozen geometry renders gives 1.03923 --
+     * 0.04% away, from arithmetic rather than from pixels.
+     */
+    v1: { scaleY: 1.03883, radiusY: null as number | null, cellH: null as number | null, restY0: null as number | null },
+    /**
+     * V1 plus the portrait row origin.
+     *
+     * `restY0` is NOT fitted. The Target's rows sit at half-integer multiples of
+     * cellH about the viewport centre, so the row origin is exactly -cellH/2.
+     * The F2.5 joint fit landed on -200.99 instead, which pushes the centre
+     * seam 9 world units off centre -- that is the centre-dark-band failure
+     * 390x844 has carried since F2. radiusY and cellH keep V1's values, because
+     * nothing in the evidence asks them to move.
+     */
+    v2: { scaleY: 1.03883, radiusY: -4707.6 as number | null, cellH: 419.95 as number | null,
+          restY0: -209.975 as number | null },
+  },
+  model: "v1" as PortraitVerticalModel,
+} as const;
+
+/**
+ * DIAGNOSTIC ONLY, default off.
+ *
+ * The Target's rows sit at half-integer multiples of cellH about the viewport
+ * centre, so the row origin is exactly -cellH/2 in BOTH regimes. F2.5's joint
+ * fit moved it to -200.99, and that 9-unit offset is why the viewport centre
+ * misses the horizontal gutter at 667x375, 700x700 and 780x470.
+ *
+ * F2.7 authorises a portrait-only vertical change, so this is NOT shipped. It
+ * exists as a runnable variant, `?landscapeRowOrigin=centred`, so the product
+ * owner is deciding on measured evidence rather than on a claim.
+ */
+export const LANDSCAPE_ROW_ORIGINS = ["f25", "centred"] as const;
+export type LandscapeRowOrigin = (typeof LANDSCAPE_ROW_ORIGINS)[number];
+
+export function landscapeRowOrigin(search: string = location.search): LandscapeRowOrigin {
+  const value = new URLSearchParams(search).get("landscapeRowOrigin");
+  return (LANDSCAPE_ROW_ORIGINS as readonly string[]).includes(value ?? "")
+    ? (value as LandscapeRowOrigin)
+    : "f25";
+}
+
+export function portraitVerticalModel(search: string = location.search): PortraitVerticalModel {
+  const value = new URLSearchParams(search).get("portraitVertical");
+  return (PORTRAIT_VERTICAL_MODELS as readonly string[]).includes(value ?? "")
+    ? (value as PortraitVerticalModel)
+    : PORTRAIT_VERTICAL.model;
+}
+
+/**
+ * Vertical projection multiplier. Landscape is untouched at every viewport and
+ * under every model, so nothing that currently passes can move.
+ */
+export function verticalScaleY(
+  width: number, height: number,
+  version: CompositionVersion = "v1",
+  model: PortraitVerticalModel = PORTRAIT_VERTICAL.model,
+): number {
+  if (version !== "v2" || !isPortrait(width, height)) return 1;
+  return PORTRAIT_VERTICAL.models[model].scaleY;
+}
+
+/** Portrait row geometry override, non-null only under V2. */
+export function verticalOverride(
+  width: number, height: number,
+  version: CompositionVersion = "v1",
+  model: PortraitVerticalModel = PORTRAIT_VERTICAL.model,
+  landscape: LandscapeRowOrigin = "f25",
+): { radiusY: number; cellH: number; restY0: number } | undefined {
+  if (version !== "v2") return undefined;
+  if (!isPortrait(width, height)) {
+    if (landscape !== "centred") return undefined;
+    const p = compositionParams(COMPOSITION_V2.verticalMode, COMPOSITION_V2.portraitLaw);
+    return { radiusY: p.radiusY, cellH: p.cellH, restY0: -p.cellH / 2 };
+  }
+  const m = PORTRAIT_VERTICAL.models[model];
+  if (m.radiusY === null || m.cellH === null || m.restY0 === null) return undefined;
+  return { radiusY: m.radiusY, cellH: m.cellH, restY0: m.restY0 };
+}
 
 export const PORTRAIT_LAWS = ["p0", "p1", "p2"] as const;
 export type PortraitLaw = (typeof PORTRAIT_LAWS)[number];
@@ -261,16 +387,26 @@ export function restOffset(
   height: number,
   version: CompositionVersion = "v1",
   mode: VerticalMode = COMPOSITION_V2.verticalMode,
+  phase: PhaseModel = COMPOSITION_V2.phaseModel,
 ): { x: number; y: number } {
   if (version === "v2") {
-    // Portrait, or a wide-and-short landscape window, takes the half-cell phase.
-    const half = isPortrait(width, height)
-      || height < COMPOSITION_V2.restPhaseAspectThreshold * width;
     void mode;
+    // rowOrigin: the phase is the parity of the Target's own pool row count,
+    // derived from its coverage calculation. No threshold, nothing fitted.
+    // aspect: the superseded F2.6 rule, kept for rollback and comparison.
+    const half = phase === "rowOrigin"
+      ? rowOriginHalfCellPhase(width, height)
+      : isPortrait(width, height) || height < COMPOSITION_V2.restPhaseAspectThreshold * width;
+    // y is 0 because the Target's initial scroll is 0: its scroll springs are
+    // constructed at zero and nothing seeds them. There is no integer row
+    // branch to unwrap, so originJ is 0 at every viewport.
     return { x: half ? GRID.cellW / 2 : 0, y: 0 };
   }
   return isPortrait(width, height) ? RESPONSIVE.restOffset.portrait : RESPONSIVE.restOffset.landscape;
 }
+
+/** Re-exported so runtime evidence can report what the phase law was told. */
+export { targetLayout };
 
 /**
  * Camera distance multiplier the render path applies. Under the "camera"
