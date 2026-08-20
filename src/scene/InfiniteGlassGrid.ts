@@ -15,6 +15,14 @@ export type Slot = {
   i: number;
   j: number;
   slotIndex: number;
+  /**
+   * Source-exact pool identity. The Target binds a card's label to its slot,
+   * so its ILG code is `slotIndex + 1` and survives wrapping. Undefined on the
+   * legacy paths, where the label is still bound to the world cell.
+   */
+  code?: number;
+  /** False while a slot sits outside the active cols x rows. */
+  active?: boolean;
 };
 
 const pose: TilePose = { x: 0, y: 0, z: 0, rotX: 0, rotY: 0 };

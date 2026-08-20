@@ -73,8 +73,20 @@ def pick_void(rgb: np.ndarray) -> tuple[dict, dict]:
     is harmless there. Per-card edge tracing walks single columns and is not
     robust to leakage, so it keeps the strict preset.
     """
+    # The test is a FRACTION of the frame, not an absolute pixel count.
+    #
+    # It used to be `navy.sum() >= 20000`, which is ~1.5% of a 1440x900 frame but
+    # 8% of a 667x375 one. A small viewport with a perfectly normal amount of
+    # void therefore fell through to the black preset, which does not match the
+    # navy background at all, and the whole frame read as one solid card: no
+    # gutters, no row bands, nothing measurable. 667x375 has 16588 void pixels,
+    # which is 6.6% of the frame and 3412 short of the old threshold.
+    #
+    # This is a detector defect that has silently degraded every small-viewport
+    # measurement since F0. Fixing it can only make MORE structure measurable;
+    # it does not move any gate threshold.
     navy = void_mask(rgb, NAVY_VOID)
-    if navy.sum() >= 20000:
+    if navy.sum() >= 0.01 * rgb.shape[0] * rgb.shape[1]:
         return NAVY_VOID, NAVY_VOID_BANDS
     return BLACK_VOID, BLACK_VOID
 

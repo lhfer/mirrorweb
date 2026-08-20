@@ -8,6 +8,11 @@ import {
 } from "three/webgpu";
 import { CanvasTexture, SRGBColorSpace, LinearFilter } from "three/webgpu";
 import { GRID, TILE, type QualityLevel } from "../../config";
+import {
+  placeSourceExactSlot, slotCode, REFERENCE_PLANE_WIDTH,
+  type SourceExactLayoutFrame, type SlotPose,
+} from "../../layout/SourceExactLayout";
+import { Quaternion, Vector3 } from "three/webgpu";
 import { catalogAt } from "../../content/catalog";
 import { clipFocus } from "../../content/VideoClips";
 import { createTestPattern } from "../../content/TestPatterns";
@@ -38,9 +43,28 @@ export type SlotV4 = {
   i: number;
   j: number;
   slotIndex: number;
+  /** Source-exact only: the ILG code bound to this POOL SLOT, = slotIndex + 1. */
+  code?: number;
+  /** Source-exact only: false while the slot is outside the active cols x rows. */
+  active?: boolean;
 };
 
 const pose: TilePose = { x: 0, y: 0, z: 0, rotX: 0, rotY: 0 };
+
+/**
+ * Source-exact pool capacity.
+ *
+ * The Target's counts move with the viewport and are clamped to 16, so 16 x 16
+ * is the most it can ever ask for. Allocating all of them once and switching
+ * slots on and off is what makes a resize free of mesh, material, texture and
+ * video churn -- the alternative, rebuilding the pool per viewport, reloads
+ * video and pops resources in exactly the way the runtime gate forbids.
+ */
+const SOURCE_EXACT_POOL = 16 * 16;
+const _sePose: SlotPose = { x: 0, y: 0, z: 0, nx: 0, ny: 0, nz: 1, xArc: 0, yArc: 0, poolRow: 0, poolCol: 0 };
+const _seFrom = new Vector3(0, 0, 1);
+const _seTo = new Vector3();
+const _seQuat = new Quaternion();
 
 /**
  * The real brick grid, rendered with V4 optics.
@@ -68,6 +92,10 @@ export class InfiniteGlassGridV4 {
   private slabMaterial?: MeshBasicMaterial;
   private mediaFitMode: MediaFitMode = "cover";
   composition: Composition = V1_COMPOSITION;
+  /** Set only on the source-exact path. Everything reads it, nobody recomputes it. */
+  frame?: SourceExactLayoutFrame;
+  activeSlotCount = 0;
+  private sourceExact = false;
   private mediaFits: MediaFitResult[] = [];
   private calibrationTextures: CanvasTexture[] = [];
 
@@ -86,10 +114,14 @@ export class InfiniteGlassGridV4 {
     debugMode: V4DebugMode = "beauty",
     shellMode: V4ShellMode = "energy-controlled",
     foundation = false,
+    frame?: SourceExactLayoutFrame,
   ): void {
     this.disposePool();
     this.quality = quality;
     this.foundation = foundation;
+    this.sourceExact = Boolean(frame);
+    this.frame = frame;
+    this.activeSlotCount = frame ? frame.activeSlotCount : 0;
     if (foundation) {
       this.buildFoundationPool();
       return;
@@ -107,6 +139,10 @@ export class InfiniteGlassGridV4 {
     });
     this.applyMediaFits();
 
+    if (this.sourceExact) {
+      this.buildSourceExactPool();
+      return;
+    }
     const halfCols = Math.floor(GRID.cols / 2);
     const halfRows = Math.floor(GRID.rows / 2);
     let slotIndex = 0;
@@ -133,13 +169,76 @@ export class InfiniteGlassGridV4 {
   }
 
   /**
+   * Source-exact beauty pool.
+   *
+   * Card ASPECT is a constant 4/3 in the Target, so only card SIZE varies with
+   * the viewport -- which means the glass volume can be built once at a
+   * reference size and scaled UNIFORMLY. A uniform scale leaves surface normals
+   * pointing where they did, so the frozen refraction is untouched; a
+   * non-uniform one would not. It is also what the Target does: its own
+   * `cardScale` multiplies thickness and rim width the same way.
+   *
+   * Geometry is rebuilt here at 4:3 rather than at TILE's 1.3508, because the
+   * contract says the card is 4/3. Every optical parameter is left alone.
+   */
+  private buildSourceExactPool(): void {
+    this.glassGeometry.dispose();
+    this.glassGeometry = createConvexGlassGeometryV4(this.quality, {
+      width: REFERENCE_PLANE_WIDTH,
+      height: REFERENCE_PLANE_WIDTH / (4 / 3),
+    });
+    this.mediaGeometry.dispose();
+    this.mediaGeometry = new PlaneGeometry(1, 1);
+    for (let n = 0; n < SOURCE_EXACT_POOL; n += 1) {
+      const group = new Group();
+      const glass = new Mesh(this.glassGeometry, this.handle!.bodyMaterial);
+      glass.name = "MirrorWeb.V4.RefractionBody";
+      glass.renderOrder = 10;
+      const shell = new Mesh(this.glassGeometry, this.handle!.reflectionMaterial);
+      shell.name = "MirrorWeb.V4.ReflectionShell";
+      shell.renderOrder = 11;
+      // Clip binding is by POOL SLOT and is set once, here. Resize never
+      // rebinds it, so a resize cannot reload a video -- and unlike the Target,
+      // which shuffles its clip list with Math.random() on load, this is
+      // deterministic and therefore reproducible for QA.
+      const media = new Mesh(this.mediaGeometry, this.mediaForSlot(n));
+      media.name = "MirrorWeb.V4.Media";
+      media.renderOrder = -1;
+      group.add(glass, shell, media);
+      group.visible = false;
+      this.root.add(group);
+      this.slots.push({ group, glass, shell, media, i: 0, j: 0, slotIndex: n,
+                        code: slotCode(n), active: false });
+      this.created += 1;
+    }
+  }
+
+  /**
    * Layout-only pool: one flat grey slab per cell whose silhouette is exactly
    * TILE.width x TILE.height. No glass, no shell, no media, no per-card colour.
    */
   private buildFoundationPool(): void {
-    this.slabGeometry = new PlaneGeometry(TILE.width, TILE.height);
+    // A UNIT plane on the source-exact path: the card's size is a per-viewport
+    // fact from the layout frame, applied as a mesh scale, not a constant baked
+    // into geometry. Legacy keeps its fixed TILE-sized slab.
+    this.slabGeometry = this.sourceExact
+      ? new PlaneGeometry(1, 1)
+      : new PlaneGeometry(TILE.width, TILE.height);
     this.slabMaterial = new MeshBasicMaterial({ color: FOUNDATION_SLAB_COLOR, toneMapped: false });
     this.slabMaterial.name = "MirrorWeb.V5.FoundationSlab";
+    if (this.sourceExact) {
+      for (let n = 0; n < SOURCE_EXACT_POOL; n += 1) {
+        const group = new Group();
+        const slab = new Mesh(this.slabGeometry, this.slabMaterial);
+        slab.name = "MirrorWeb.V5.FoundationSlab";
+        group.add(slab);
+        group.visible = false;
+        this.root.add(group);
+        this.slots.push({ group, glass: slab, i: 0, j: 0, slotIndex: n, code: slotCode(n), active: false });
+        this.created += 1;
+      }
+      return;
+    }
     const halfCols = Math.floor(GRID.cols / 2);
     const halfRows = Math.floor(GRID.rows / 2);
     let slotIndex = 0;
@@ -194,11 +293,16 @@ export class InfiniteGlassGridV4 {
       const sourceWidth = video?.videoWidth || image?.width || 0;
       const sourceHeight = video?.videoHeight || image?.height || 0;
       if (!sourceWidth || !sourceHeight) continue;
+      // Card size is a per-viewport fact on the source-exact path, so the cover
+      // matrix is recomputed from the layout frame rather than from the fixed
+      // TILE. The accepted F1 focus values are passed through unchanged.
+      const cardW = this.frame ? this.frame.planeWidth : TILE.width;
+      const cardH = this.frame ? this.frame.planeHeight : TILE.height;
       const fit = computeMediaFit(
         sourceWidth,
         sourceHeight,
-        TILE.width,
-        TILE.height,
+        cardW,
+        cardH,
         this.mediaFitMode,
         clipFocus(index),
       );
@@ -264,7 +368,65 @@ export class InfiniteGlassGridV4 {
     }
   }
 
+  /**
+   * Re-point the pool at a new layout frame.
+   *
+   * Only `activeSlotCount` and the per-slot scales change. No mesh is created or
+   * destroyed, no material is rebuilt, no texture or video is touched, and slot
+   * identity -- and therefore the ILG code bound to it -- is stable across every
+   * resize. Slots beyond the active count are hidden, not removed.
+   */
+  setFrame(frame: SourceExactLayoutFrame): void {
+    this.frame = frame;
+    this.activeSlotCount = Math.min(frame.activeSlotCount, this.slots.length);
+    for (let n = 0; n < this.slots.length; n += 1) {
+      const slot = this.slots[n];
+      const active = n < this.activeSlotCount;
+      slot.active = active;
+      slot.group.visible = active;
+      if (!active) continue;
+      if (this.foundation) {
+        slot.glass.scale.set(frame.planeWidth, frame.planeHeight, 1);
+      } else {
+        slot.glass.scale.setScalar(frame.cardScale);
+        slot.shell?.scale.setScalar(frame.cardScale);
+        if (slot.media) {
+          slot.media.scale.set(frame.planeWidth, frame.planeHeight, 1);
+          // The media plane sits behind the glass volume, and that clearance is
+          // in card units, so it has to scale with the card or media pokes
+          // through the back of a small one.
+          slot.media.position.z = (-TILE.thickness * 0.5 - TILE.backDish - 2) * frame.cardScale;
+        }
+      }
+    }
+    if (!this.foundation) this.applyMediaFits();
+  }
+
+  /**
+   * Source-exact placement: one sphere, and the orientation is the exact
+   * rotation taking the card's local +Z onto the surface normal -- a quaternion,
+   * not a pair of independent Euler angles that only approximate it.
+   */
+  updateSourceExact(scrollX: number, scrollY: number): void {
+    const frame = this.frame;
+    if (!frame) return;
+    for (let n = 0; n < this.activeSlotCount; n += 1) {
+      const slot = this.slots[n];
+      placeSourceExactSlot(n, scrollX, scrollY, frame, _sePose);
+      slot.group.position.set(_sePose.x, _sePose.y, _sePose.z);
+      _seTo.set(_sePose.nx, _sePose.ny, _sePose.nz);
+      _seQuat.setFromUnitVectors(_seFrom, _seTo);
+      slot.group.quaternion.copy(_seQuat);
+      slot.i = _sePose.poolCol;
+      slot.j = _sePose.poolRow;
+    }
+  }
+
   update(scrollX: number, scrollY: number): void {
+    if (this.sourceExact) {
+      this.updateSourceExact(scrollX, scrollY);
+      return;
+    }
     const originI = Math.round(scrollX / GRID.cellW);
     const originJ = Math.round(scrollY / effectiveCellH(this.composition));
     const halfCols = Math.floor(GRID.cols / 2);
@@ -304,11 +466,12 @@ export class InfiniteGlassGridV4 {
     if (this.foundation) {
       return {
         slots: this.slots.length,
+        activeSlots: this.sourceExact ? this.activeSlotCount : this.slots.length,
         created: this.created,
         destroyed: this.destroyed,
         remaps: this.remaps,
-        cols: GRID.cols,
-        rows: GRID.rows,
+        cols: this.frame ? this.frame.cols : GRID.cols,
+        rows: this.frame ? this.frame.rows : GRID.rows,
         materials: 1,
         geometries: 1,
         textures: 0,
@@ -318,11 +481,12 @@ export class InfiniteGlassGridV4 {
     }
     return {
       slots: this.slots.length,
+      activeSlots: this.sourceExact ? this.activeSlotCount : this.slots.length,
       created: this.created,
       destroyed: this.destroyed,
       remaps: this.remaps,
-      cols: GRID.cols,
-      rows: GRID.rows,
+      cols: this.frame ? this.frame.cols : GRID.cols,
+      rows: this.frame ? this.frame.rows : GRID.rows,
       // One refraction body plus one reflection shell serve the whole pool.
       materials: 2 + this.mediaMaterials.length,
       geometries: 2,
@@ -358,6 +522,11 @@ export class InfiniteGlassGridV4 {
       placeholderTileCount: 0,
       unreadyVisibleTileCount: ready ? 0 : this.slots.length,
     };
+  }
+
+  /** Deterministic clip binding by pool slot. Never re-evaluated after build. */
+  private mediaForSlot(slotIndex: number): MeshBasicMaterial {
+    return this.mediaMaterials[slotIndex % Math.max(1, this.mediaMaterials.length)];
   }
 
   private mediaFor(i: number, j: number): MeshBasicMaterial {

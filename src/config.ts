@@ -98,9 +98,23 @@ export function isPortrait(width: number, height: number): boolean {
   return width < height;
 }
 
+/** True for the source-exact path, which must not touch any fitted law. */
+export function isSourceExact(version: CompositionVersion): boolean {
+  return version === "sourceExact";
+}
+
 import { rowOriginHalfCellPhase, targetLayout } from "./scene/RowPhase";
 
-export const COMPOSITION_VERSIONS = ["v1", "v2"] as const;
+/**
+ * `sourceExact` is a SEPARATE PATH, not another set of parameters.
+ *
+ * It consults none of the functions below -- not the scale laws, not the rest
+ * phase, not the portrait vertical model, not the fitted restY0 or radiusY. It
+ * reads config/target-layout-source-v2.json and computes the Target's own
+ * layout. v1 and v2 are untouched and stay reachable; the SHA regression proof
+ * in qa-v5/fsx/default-proof.json shows they render byte for byte as before.
+ */
+export const COMPOSITION_VERSIONS = ["v1", "v2", "sourceExact"] as const;
 export type CompositionVersion = (typeof COMPOSITION_VERSIONS)[number];
 export const VERTICAL_MODES = ["depth", "tangent"] as const;
 export type VerticalMode = (typeof VERTICAL_MODES)[number];

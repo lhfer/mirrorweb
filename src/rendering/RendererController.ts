@@ -5,9 +5,10 @@ import {
   Scene,
   WebGPURenderer,
 } from "three/webgpu";
-import { CAMERA, CLEAR_COLOR, compositionScale, effectivePerspectivePx, verticalScaleY, viewZoom,
-  PORTRAIT_VERTICAL, type CompositionVersion, type PortraitLaw, type PortraitVerticalModel,
-  type VerticalMode } from "../config";
+import { CAMERA, CLEAR_COLOR, compositionScale, effectivePerspectivePx, isSourceExact,
+  verticalScaleY, viewZoom, PORTRAIT_VERTICAL, type CompositionVersion, type PortraitLaw,
+  type PortraitVerticalModel, type VerticalMode } from "../config";
+import { sourceExactLayout, TARGET_CAMERA, type SourceExactLayoutFrame } from "../layout/SourceExactLayout";
 import { detectBackend, resolveDpr, type Backend } from "../quality/DeviceProfile";
 
 export type RendererHandle = {
@@ -30,6 +31,11 @@ export class RendererController {
   portraitVertical: PortraitVerticalModel = PORTRAIT_VERTICAL.model;
   /** Vertical projection multiplier actually applied this resize. */
   verticalScaleY = 1;
+  /**
+   * The one layout frame for this viewport, on the source-exact path.
+   * Computed here, at resize, and handed to everyone else. Nobody recomputes it.
+   */
+  frame?: SourceExactLayoutFrame;
   private dprOverride?: number;
 
   async init(host: HTMLElement, forceWebGL = false): Promise<RendererHandle> {
@@ -74,6 +80,29 @@ export class RendererController {
     this.handle.renderer.setSize(width, height, false);
     this.handle.canvas.style.width = "100%";
     this.handle.canvas.style.height = "100%";
+    if (isSourceExact(this.composition)) {
+      // Source-exact camera, re-asserted every resize because the legacy branch
+      // below writes position.z and fov too and would otherwise fight it.
+      // The camera stands at the focal distance, on axis, with no pitch: world
+      // units are CSS pixels on the z = 0 plane by construction, so there is no
+      // composition scale to carry and none is computed.
+      const frame = sourceExactLayout(width, height);
+      this.frame = frame;
+      this.compositionScale = 1;
+      this.viewZoom = 1;
+      this.verticalScaleY = 1;
+      const camera = this.handle.camera;
+      camera.position.set(0, 0, frame.perspective);
+      camera.lookAt(0, 0, 0);
+      camera.aspect = width / Math.max(height, 1);
+      camera.fov = (2 * Math.atan(height / 2 / frame.perspective) * 180) / Math.PI;
+      camera.near = TARGET_CAMERA.near;
+      camera.far = TARGET_CAMERA.far;
+      camera.updateProjectionMatrix();
+      camera.updateMatrixWorld();
+      return;
+    }
+    this.frame = undefined;
     this.compositionScale = compositionScale(width, height, this.composition, this.verticalMode, this.portraitLaw);
     // portraitLaw MUST reach all three. It used to be passed only to
     // compositionScale, so the reported scale followed the requested law while

@@ -1,6 +1,7 @@
 import { AmbientLight, Vector3, type DirectionalLight } from "three/webgpu";
 import {
   CAMERA, GRID, TILE, compositionParams, compositionScale, compositionVersion, isPortrait,
+  isSourceExact,
   landscapeRowOrigin, phaseModel, portraitLaw,
   portraitVerticalModel, restOffset, verticalMode, verticalOverride,
   type CompositionVersion, type LandscapeRowOrigin, type PhaseModel, type PortraitLaw,
@@ -8,6 +9,7 @@ import {
   type QualityLevel, type VerticalMode,
 } from "../../config";
 import { rowOrigin } from "../../scene/RowPhase";
+import { sourceExactLayout, slotCode, type SourceExactLayoutFrame } from "../../layout/SourceExactLayout";
 import { catalogAt } from "../../content/catalog";
 import { readDebugMode, type DebugMode } from "../../debug/DebugMode";
 import { isFoundationLayout, readFoundationMode, type FoundationMode } from "../../debug/FoundationMode";
@@ -95,6 +97,10 @@ export class GridAppV4 {
   readonly phaseModel: PhaseModel;
   readonly portraitVertical: PortraitVerticalModel;
   readonly landscapeRowOrigin: LandscapeRowOrigin;
+  /** True for ?composition=sourceExact. Nothing fitted runs on that path. */
+  get sourceExact(): boolean { return isSourceExact(this.composition); }
+  /** The one layout frame for this viewport; the renderer owns it. */
+  private get frame(): SourceExactLayoutFrame | undefined { return this.renderer.frame; }
   private foundationOverlay?: FoundationOverlay;
 
   constructor(private readonly options: GridAppV4Options = {}) {
@@ -139,11 +145,21 @@ export class GridAppV4 {
    * QA landmarks all agree about where the grid actually is.
    */
   private gridX(scrollX = this.motion.scrollX): number {
+    // Source-exact has NO rest offset. Its phase falls out of an even column
+    // count putting a seam on the centre line; adding a rest offset on top
+    // would shift the grid a second time.
+    //
+    // The sign flips because the Target's placement adds scrollX where the
+    // legacy path subtracts it. Converting here, at the single boundary between
+    // motion state and layout, keeps drag direction identical -- Motion is
+    // frozen and must not change feel.
+    if (this.sourceExact) return -scrollX;
     return scrollX + restOffset(window.innerWidth, window.innerHeight, this.composition,
                                 this.verticalMode, this.phaseModel).x;
   }
 
   private gridY(scrollY = this.motion.scrollY): number {
+    if (this.sourceExact) return scrollY;
     return scrollY + restOffset(window.innerWidth, window.innerHeight, this.composition,
                                 this.verticalMode, this.phaseModel).y;
   }
@@ -188,7 +204,9 @@ export class GridAppV4 {
       this.v4Debug,
       this.v4Shell,
       this.layoutOnly,
+      this.frame,
     );
+    if (this.frame) this.grid.setFrame(this.frame);
     this.grid.setSceneUvScale(this.pipeline.sceneUvScale);
     handle.scene.add(this.grid.root);
 
@@ -408,8 +426,12 @@ export class GridAppV4 {
     if (!handle) return [];
     this.applyPose();
     this.grid.root.updateWorldMatrix(true, true);
-    const halfWidth = TILE.width * 0.5;
-    const halfHeight = TILE.height * 0.5;
+    // Half-extents come from the layout frame on the source-exact path, because
+    // the card's size is a per-viewport fact there and the slot group carries
+    // position and orientation only.
+    const frame = this.frame;
+    const halfWidth = (frame ? frame.planeWidth : TILE.width) * 0.5;
+    const halfHeight = (frame ? frame.planeHeight : TILE.height) * 0.5;
     // Corners are taken on the card MID-PLANE (local z = 0), not the front
     // face. That is the plane whose outline a pixel detector actually reads off
     // a rendered card, and the plane the V5 layout fitter models, so quads,
@@ -421,7 +443,10 @@ export class GridAppV4 {
       [halfWidth, -halfHeight],
       [-halfWidth, -halfHeight],
     ];
-    return this.grid.slots.map((slot) => ({
+    const slots = this.sourceExact
+      ? this.grid.slots.slice(0, this.grid.activeSlotCount)
+      : this.grid.slots;
+    return slots.map((slot) => ({
       i: slot.i,
       j: slot.j,
       slotIndex: slot.slotIndex,
@@ -432,6 +457,53 @@ export class GridAppV4 {
         return [(_ndc.x + 1) * 0.5, (1 - _ndc.y) * 0.5];
       }),
     }));
+  }
+
+  /**
+   * Per-slot engine truth on the source-exact path.
+   *
+   * World position and orientation are read back off the live object matrices,
+   * not recomputed from the model -- otherwise the source-contract gate would
+   * be comparing the model with itself. Projected corners come from the live
+   * camera the same way.
+   */
+  getSourceExactSlots(): Array<Record<string, unknown>> {
+    const handle = this.renderer.handle;
+    const frame = this.frame;
+    if (!handle || !frame) return [];
+    this.applyPose();
+    this.grid.root.updateWorldMatrix(true, true);
+    const halfW = frame.planeWidth * 0.5;
+    const halfH = frame.planeHeight * 0.5;
+    const corners: Array<[number, number]> = [
+      [-halfW, halfH], [halfW, halfH], [halfW, -halfH], [-halfW, -halfH],
+    ];
+    const out: Array<Record<string, unknown>> = [];
+    for (let n = 0; n < this.grid.activeSlotCount; n += 1) {
+      const slot = this.grid.slots[n];
+      const pos = new Vector3();
+      slot.group.getWorldPosition(pos);
+      // The card's normal is its local +Z taken to world; that is exactly the
+      // quantity the contract's quaternion is defined to produce.
+      const normal = new Vector3(0, 0, 1).applyQuaternion(slot.group.quaternion).normalize();
+      out.push({
+        slotIndex: slot.slotIndex,
+        code: slot.code,
+        poolCol: slot.i,
+        poolRow: slot.j,
+        world: [pos.x, pos.y, pos.z],
+        normal: [normal.x, normal.y, normal.z],
+        quaternion: [slot.group.quaternion.x, slot.group.quaternion.y,
+                     slot.group.quaternion.z, slot.group.quaternion.w],
+        cornersPx: corners.map(([x, y]) => {
+          const v = new Vector3(x, y, 0);
+          slot.group.localToWorld(v);
+          v.project(handle.camera);
+          return [(v.x + 1) * 0.5 * window.innerWidth, (1 - v.y) * 0.5 * window.innerHeight];
+        }),
+      });
+    }
+    return out;
   }
 
   /** V4-specific evidence for the Round 1 engineering gate. */
@@ -448,6 +520,10 @@ export class GridAppV4 {
       verticalMode: this.verticalMode,
       portraitLaw: this.portraitLaw,
       phaseModel: this.phaseModel,
+      sourceExact: this.sourceExact,
+      sourceExactFrame: this.frame ?? null,
+      activeSlotCount: this.sourceExact ? this.grid.activeSlotCount : null,
+      slotIdentity: this.sourceExact ? this.slotIdentity() : null,
       portraitVertical: this.portraitVertical,
       landscapeRowOrigin: this.landscapeRowOrigin,
       effectiveCellH: effectiveCellH(this.grid.composition),
@@ -507,11 +583,34 @@ export class GridAppV4 {
     };
   }
 
+  /**
+   * Pool identity: what the source-exact path guarantees about its slots.
+   *
+   * ILG code is slotIndex + 1 and is bound to the SLOT, so it survives wrapping
+   * and every resize -- the Target's own rule. Reported as data; no typography
+   * parameter changes this stage.
+   */
+  private slotIdentity(): Record<string, unknown> {
+    const active = this.grid.slots.slice(0, this.grid.activeSlotCount);
+    return {
+      activeSlotCount: active.length,
+      poolCapacity: this.grid.slots.length,
+      codesAreSlotIndexPlusOne: active.every((s) => s.code === slotCode(s.slotIndex)),
+      firstCodes: active.slice(0, 6).map((s) => s.code),
+      lastCode: active.length ? active[active.length - 1].code : null,
+      allActiveVisibleFlagSet: active.every((s) => s.active === true),
+      inactiveHidden: this.grid.slots.slice(this.grid.activeSlotCount)
+        .every((s) => s.active === false && s.group.visible === false),
+    };
+  }
+
   private runtimeTruth(): Record<string, unknown> {
     const handle = this.renderer.handle;
     const requested = this.portraitLaw;
     const rendererLaw = this.renderer.portraitLaw;
     const gridLaw = this.grid.composition.portraitLaw ?? null;
+    const frame = this.frame;
+    const frameScaleTarget = frame ? 1 : null;
     let derived: number | null = null;
     let derivedY: number | null = null;
     let fov: number | null = null;
@@ -536,14 +635,23 @@ export class GridAppV4 {
       derivedY = ((yp.y - ym.y) * 0.5 * window.innerHeight) / 2;
     }
     const reported = this.renderer.compositionScale;
-    const lawsAgree = requested === rendererLaw && requested === gridLaw;
+    // On the source-exact path there is no fitted law to propagate. What has to
+    // be true instead is that the camera the renderer built is the one the
+    // contract specifies, and that one world unit is one CSS pixel at z = 0.
+    const lawsAgree = frame
+      ? true
+      : requested === rendererLaw && requested === gridLaw;
     // Tolerance, not slop. The config scale is focal / perspectivePx, which
     // treats the camera as unpitched; the live projection measures along the
     // real view axis, and CAMERA.y = 8 makes that axis 1000.032 long rather
     // than 1000. That is a fixed 3.2e-5 relative difference by construction.
-    const scaleAgrees = derived !== null && Math.abs(derived - reported) <= 1e-4 * Math.max(1, reported);
+    // Source-exact: the camera stands at the focal distance on the axis, so a
+    // world unit projects to exactly one CSS pixel at z = 0. That is the whole
+    // claim, and it is measured through the live camera rather than asserted.
+    const scaleAgrees = derived !== null
+      && Math.abs(derived - (frameScaleTarget ?? reported)) <= 1e-4 * Math.max(1, reported);
     const k = this.renderer.verticalScaleY;
-    const expectedY = reported * k;
+    const expectedY = (frameScaleTarget ?? reported) * k;
     const verticalAgrees = derivedY !== null
       && Math.abs(derivedY - expectedY) <= 1e-4 * Math.max(1, expectedY);
     // Landscape must be untouched by the portrait model, at every model.
@@ -559,6 +667,16 @@ export class GridAppV4 {
       verticalScaleDerivedFromActualCameraProjection: derivedY,
       reportedVerticalScaleY: k,
       expectedVerticalScreenScale: expectedY,
+      sourceExactCamera: frame ? {
+        expectedPerspective: frame.perspective,
+        actualCameraZ: handle ? handle.camera.position.z : null,
+        actualFovDeg: fov,
+        expectedFovDeg: (2 * Math.atan(window.innerHeight / 2 / frame.perspective) * 180) / Math.PI,
+        cameraOnAxis: handle ? handle.camera.position.x === 0 && handle.camera.position.y === 0 : null,
+        near: handle ? handle.camera.near : null,
+        far: handle ? handle.camera.far : null,
+        oneWorldUnitIsOneCssPixelAtZ0: derived,
+      } : null,
       runtimeTruthAssertions: {
         portraitLawPropagated: lawsAgree,
         reportedScaleMatchesCameraProjection: scaleAgrees,
@@ -636,6 +754,9 @@ export class GridAppV4 {
       // re-resolved before placement -- an orientation flip adds or removes it
       // entirely.
       this.syncVerticalOverride();
+      // Source-exact: the layout frame IS the resize. Slot count, card size and
+      // media fit all follow from it, and nothing is created or destroyed.
+      if (this.frame) this.grid.setFrame(this.frame);
       // The rest offset is regime-dependent, so a resize can flip the brick
       // parity; re-place the grid before anything reads its positions.
       this.grid.update(this.gridX(), this.gridY());
@@ -679,6 +800,28 @@ export class GridAppV4 {
   private applyPose(): void {
     const handle = this.renderer.handle;
     if (!handle) return;
+    const frame = this.frame;
+    if (frame) {
+      // Source-exact camera pose. The Target's parallax ORBITS the camera on a
+      // sphere of radius `perspective` about the origin and never rotates the
+      // grid; it also has no standing pitch, so at rest the camera is exactly
+      // on axis. Writing CAMERA.y here -- which the legacy branch below does --
+      // is what left a 3.2e-5 residual in every scale proof so far.
+      this.grid.root.rotation.set(0, 0, 0);
+      const yaw = -(0.05 * this.motion.pointerX);
+      const pitch = 0.05 * this.motion.pointerY;
+      const r = frame.perspective;
+      handle.camera.position.set(
+        Math.sin(yaw) * Math.cos(pitch) * r,
+        Math.sin(pitch) * r,
+        Math.cos(yaw) * Math.cos(pitch) * r,
+      );
+      handle.camera.lookAt(0, 0, 0);
+      if (this.pointerLight) {
+        updatePointerKeyLightV4(this.pointerLight, this.motion.pointerX, this.motion.pointerY);
+      }
+      return;
+    }
     this.grid.root.rotation.set(this.motion.rotX, this.motion.rotY, 0);
     handle.camera.position.set(
       this.motion.camX,

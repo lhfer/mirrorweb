@@ -22,6 +22,8 @@ export type GridQaV4 = {
   getState: () => Record<string, unknown>;
   getV4State: () => Record<string, unknown>;
   getCardQuads: () => Array<{ i: number; j: number; slotIndex: number; quad: number[][] }>;
+  /** Source-exact per-slot engine truth, for the source-contract gate. */
+  getSourceExactSlots: () => Array<Record<string, unknown>>;
   getMetrics: () => Record<string, unknown>;
   getAssetState: () => Record<string, unknown>;
   getPoolState: () => Record<string, unknown>;
@@ -73,6 +75,7 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
       getState: () => app.getState(),
       getV4State: () => app.getV4State(),
       getCardQuads: () => app.getCardQuads(),
+      getSourceExactSlots: () => app.getSourceExactSlots(),
       getMetrics: () => app.getMetrics(),
       getAssetState: () => app.getAssetState(),
       getPoolState: () => app.getPoolState(),
