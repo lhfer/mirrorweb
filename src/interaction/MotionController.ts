@@ -1,5 +1,30 @@
 import { GRID, MOTION } from "../config";
-import { SourceExactMotion, type PanInfo } from "./SourceExactMotion";
+import { SourceExactMotion, SOURCE_EXACT_VELOCITY_WINDOW_MS, type PanInfo }
+  from "./SourceExactMotion";
+
+/** One release, recorded from inside the model. QA evidence; never read back. */
+export type ReleaseRecord = {
+  recordedAtStep: number;
+  commitStep: number;
+  cancelled: boolean;
+  eventTimeStamp: number;
+  listenerEntryTime: number;
+  historyCount: number;
+  history: Array<[number, number, number]>;
+  newestUsed: [number, number, number] | null;
+  oldestUsed: [number, number, number] | null;
+  windowDtMs: number;
+  clampedToSecondPoint: boolean;
+  velocityWindowMs: number;
+  computedVelocityX: number;
+  computedVelocityY: number;
+  releasePointX: number; releasePointY: number;
+  releaseDeltaX: number; releaseDeltaY: number;
+  releaseOffsetX: number; releaseOffsetY: number;
+  targetXBeforeRelease: number; targetYBeforeRelease: number;
+  flingDeltaX: number; flingDeltaY: number;
+  targetXAfterRelease: number; targetYAfterRelease: number;
+};
 
 const TILT = (MOTION.tiltDeg * Math.PI) / 180;
 
@@ -90,6 +115,15 @@ export class MotionController {
     this.pendingWheelY = 0;
     this.magnitude = 0;
     this.pendingRelease = null;
+    // The QA readbacks are part of the truth this controller publishes, so a
+    // reset has to clear them too: a stale releaseVelocity or motionSteps
+    // surviving a reset makes a fixed-state capture describe the run before
+    // it. Semantics of the readback only -- nothing here feeds the model.
+    this.motionSteps = 0;
+    this.releaseVelocityX = 0;
+    this.releaseVelocityY = 0;
+    this.lastReleaseStep = -1;
+    this.releaseRecords.length = 0;
     this.se?.reset();
   }
 
@@ -162,14 +196,59 @@ export class MotionController {
    * the same frame loop as everything else, so the release is just another
    * frame's retarget. Recorded here and applied on the next frame.
    */
-  pointerUp(x: number, y: number, tMs: number, cancelled = false): void {
+  pointerUp(x: number, y: number, tMs: number, cancelled = false,
+            qa?: { eventTimeStamp?: number; listenerEntryTime?: number }): void {
     if (!this.se) return;
+    const history = this.se.session.historySnapshot();
     const info = this.se.session.up(x, y, cancelled);
     this.dragging = false;
-    if (info) this.pendingRelease = info;
+    if (!info) return;
+    this.pendingRelease = info;
+    const w = this.se.session.lastVelocityWindow;
+    this.releaseRecords.push({
+      recordedAtStep: this.motionSteps,
+      commitStep: -1,
+      cancelled,
+      eventTimeStamp: qa?.eventTimeStamp ?? tMs,
+      listenerEntryTime: qa?.listenerEntryTime ?? tMs,
+      historyCount: history.length,
+      history,
+      newestUsed: w ? w.newest : null,
+      oldestUsed: w ? w.oldest : null,
+      windowDtMs: w ? w.dtMs : 0,
+      clampedToSecondPoint: w ? w.clampedToSecondPoint : false,
+      velocityWindowMs: SOURCE_EXACT_VELOCITY_WINDOW_MS,
+      computedVelocityX: info.velocity[0],
+      computedVelocityY: info.velocity[1],
+      releasePointX: info.point[0], releasePointY: info.point[1],
+      releaseDeltaX: info.delta[0], releaseDeltaY: info.delta[1],
+      releaseOffsetX: info.offset[0], releaseOffsetY: info.offset[1],
+      targetXBeforeRelease: this.se.targetX, targetYBeforeRelease: this.se.targetY,
+      flingDeltaX: 0, flingDeltaY: 0,
+      targetXAfterRelease: 0, targetYAfterRelease: 0,
+    });
+    if (this.releaseRecords.length > 64) this.releaseRecords.shift();
   }
 
   private pendingRelease: PanInfo | null = null;
+
+  /**
+   * QA-only: the complete truth of every release the model committed.
+   *
+   * The M2 round could not settle five runs because it had to infer the
+   * release window from an external scroll curve: from outside, a pointerup
+   * dispatched between two sample callbacks may or may not have been preceded
+   * by the page's own frame callback pushing another point into the gesture
+   * history, and the two readings give different flings. Nothing outside can
+   * see that. So it is recorded from inside instead: the history as it stood,
+   * the two points the velocity window actually used, the velocity that came
+   * out, and the scroll target either side of the fling.
+   *
+   * Written, never read. No branch in this file or below it consults this
+   * array, and the motion produced with it present is the motion produced
+   * without it. Capped so a long session cannot grow it without bound.
+   */
+  readonly releaseRecords: ReleaseRecord[] = [];
 
   /* ---- readbacks -------------------------------------------------------
    *
@@ -191,6 +270,8 @@ export class MotionController {
   lastReleaseStep = -1;
   /** Releases recorded but not yet committed. 0 or 1 by construction. */
   get pendingReleaseCount(): number { return this.pendingRelease ? 1 : 0; }
+  /** The magnitude writer order this build is running. Evidence, not a switch. */
+  get magnitudeWriterOrder(): string { return this.se ? this.se.magnitudeWriterOrder : "n/a"; }
 
   /**
    * Jump the scroll, for a harness that needs a fixed state.
@@ -299,7 +380,18 @@ export class MotionController {
       this.releaseVelocityX = this.pendingRelease.velocity[0];
       this.releaseVelocityY = this.pendingRelease.velocity[1];
       this.lastReleaseStep = this.motionSteps;
+      const beforeX = se.targetX, beforeY = se.targetY;
       se.onPanEnd(this.pendingRelease, nowMs);
+      const rec = this.releaseRecords[this.releaseRecords.length - 1];
+      if (rec && rec.commitStep < 0) {
+        rec.commitStep = this.motionSteps;
+        rec.targetXBeforeRelease = beforeX;
+        rec.targetYBeforeRelease = beforeY;
+        rec.targetXAfterRelease = se.targetX;
+        rec.targetYAfterRelease = se.targetY;
+        rec.flingDeltaX = se.targetX - beforeX;
+        rec.flingDeltaY = se.targetY - beforeY;
+      }
       this.pendingRelease = null;
     }
     se.advance(nowMs);

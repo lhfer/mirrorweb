@@ -484,6 +484,11 @@ export class GridAppV4 {
       releaseVelocityY: this.motion.releaseVelocityY,
       lastReleaseStep: this.motion.lastReleaseStep,
       pendingReleaseCount: this.motion.pendingReleaseCount,
+      // Which of the magnitude MotionValue's two writers writes last in a
+      // frame, exposed so evidence records the order that was actually
+      // running rather than the order a document says should be.
+      magnitudeWriterOrder: this.motion.magnitudeWriterOrder,
+      releaseRecords: this.motion.releaseRecords,
       maxZoomZ: frame ? sourceExactMaxZoomZ(frame.perspective) : null,
       renderCamera: handle
         ? [handle.camera.position.x, handle.camera.position.y, handle.camera.position.z]

@@ -360,7 +360,7 @@ class SourceExactMotion:
     # "gestureLastWhileActive" is the order recovered from the bundle's frame
     # scheduler; see qa-v5/motion-final/magnitude-writer-order-source.json.
     # "scrollLastAlways" is the pre-M3 behaviour, kept as the control.
-    magnitude_writer_order: str = "scrollLastAlways"
+    magnitude_writer_order: str = "gestureLastWhileActive"
     gesture_mag: float = 0.0
     gesture_wrote_this_frame: bool = False
     session: PanSession = field(default_factory=PanSession)

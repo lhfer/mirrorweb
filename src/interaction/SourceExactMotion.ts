@@ -173,6 +173,9 @@ export class Spring {
   }
 }
 
+/** The Target's gesture velocity window, in ms. Read from the contract. */
+export const SOURCE_EXACT_VELOCITY_WINDOW_MS: number = VELOCITY.sampleWindowMs;
+
 export type PanInfo = { point: [number, number]; delta: [number, number];
                         offset: [number, number]; velocity: [number, number] };
 
@@ -202,6 +205,29 @@ export class PanSession {
   private pending: [number, number] | null = null;
   started = false;
   active = false;
+
+  /* ---- QA-only readback ------------------------------------------------
+   *
+   * The velocity window this session last used, recorded as it is used. It is
+   * WRITTEN by `velocityOfHistory` and read by nothing: no branch below
+   * consults it, so the velocity computed with it present is the velocity
+   * computed without it. It exists because the M2 round had to infer the
+   * release window from an external scroll curve and could not settle five
+   * runs; a window that is recorded cannot be mis-inferred.
+   */
+  lastVelocityWindow: {
+    historyCount: number;
+    newest: [number, number, number] | null;
+    oldest: [number, number, number] | null;
+    dtMs: number;
+    velocity: [number, number];
+    clampedToSecondPoint: boolean;
+  } | null = null;
+
+  /** A copy of the gesture history, for evidence. Never read back. */
+  historySnapshot(): Array<[number, number, number]> {
+    return this.history.map((h) => [h[0], h[1], h[2]] as [number, number, number]);
+  }
 
   down(x: number, y: number, t: number): void {
     this.active = true;
@@ -249,7 +275,7 @@ export class PanSession {
 
   private velocityOfHistory(): [number, number] {
     const h = this.history;
-    if (h.length < 2) return [0, 0];
+    if (h.length < 2) { this.recordWindow(h.length, null, null, 0, [0, 0], false); return [0, 0]; }
     const newest = h[h.length - 1];
     let i = h.length - 1;
     let oldest: [number, number, number] | null = null;
@@ -258,20 +284,39 @@ export class PanSession {
       if (newest[2] - oldest[2] > VELOCITY.sampleWindowMs) break;
       i -= 1;
     }
-    if (!oldest) return [0, 0];
+    if (!oldest) { this.recordWindow(h.length, newest, null, 0, [0, 0], false); return [0, 0]; }
+    let clamped = false;
     if (oldest === h[0] && h.length > 2
         && newest[2] - oldest[2] > 2 * VELOCITY.sampleWindowMs) {
       oldest = h[1];
+      clamped = true;
     }
     const dt = (newest[2] - oldest[2]) / 1000;
-    if (dt === 0) return [0, 0];
+    if (dt === 0) {
+      this.recordWindow(h.length, newest, oldest, 0, [0, 0], clamped);
+      return [0, 0];
+    }
     const vx = (newest[0] - oldest[0]) / dt;
     const vy = (newest[1] - oldest[1]) / dt;
-    return [Number.isFinite(vx) ? vx : 0, Number.isFinite(vy) ? vy : 0];
+    const v: [number, number] = [Number.isFinite(vx) ? vx : 0, Number.isFinite(vy) ? vy : 0];
+    this.recordWindow(h.length, newest, oldest, dt * 1000, v, clamped);
+    return v;
+  }
+
+  private recordWindow(count: number, newest: [number, number, number] | null,
+                       oldest: [number, number, number] | null, dtMs: number,
+                       velocity: [number, number], clamped: boolean): void {
+    this.lastVelocityWindow = {
+      historyCount: count,
+      newest: newest ? [newest[0], newest[1], newest[2]] : null,
+      oldest: oldest ? [oldest[0], oldest[1], oldest[2]] : null,
+      dtMs, velocity: [velocity[0], velocity[1]], clampedToSecondPoint: clamped,
+    };
   }
 
   reset(): void {
     this.history = []; this.pending = null; this.started = false; this.active = false;
+    this.lastVelocityWindow = null;
   }
 }
 
@@ -330,6 +375,31 @@ export class SourceExactMotion {
   /** The last gesture velocity, published exactly as the Target publishes it. */
   gestureVelocityX = 0;
   gestureVelocityY = 0;
+  /**
+   * Which of the magnitude MotionValue's TWO writers writes last in a frame.
+   *
+   * The Target's magnitude source `g` is written from two places, and they
+   * disagree by construction: the gesture writes the FINGER's speed, the
+   * scroll MotionValues write the SPRING's, which is the finger's times the
+   * 1.5 drag gain minus the spring's own lag. Whichever runs last in the frame
+   * is the one the magnitude spring retargets to at that frame's postRender.
+   *
+   * The order is not a choice; it is read out of the bundle's own scheduler.
+   * `onPan` is dispatched with `frame.update(cb, false, true)` -- the third
+   * argument appends it to the LIVE update set, so it runs after every spring
+   * tick already queued, on every frame the pan session dispatches. `onPanEnd`
+   * is scheduled straight onto `postRender` from the pointerup listener, which
+   * puts it ahead of the spring's own `startAnimation` in that same postRender
+   * pass. So the gesture writer wins every frame that carries a gesture, and
+   * the scroll writer stands alone on every frame that does not.
+   *
+   * Full derivation with byte offsets:
+   * qa-v5/motion-final/magnitude-writer-order-source.json.
+   */
+  magnitudeWriterOrder: "gestureLastWhileActive" | "scrollLastAlways" =
+    "gestureLastWhileActive";
+  private gestureMagnitude = 0;
+  private gestureWroteThisFrame = false;
 
   /**
    * What the Target's renderer paints THIS frame: the model's PREVIOUS frame.
@@ -372,6 +442,19 @@ export class SourceExactMotion {
     this.publishVelocity(info, nowMs);
   }
 
+  /** Writer A: `g.set(hypot(t.velocity.x, t.velocity.y))`, in onPan/onPanEnd. */
+  writeMagnitudeFromGesture(magnitude: number, nowMs: number): void {
+    this.gestureMagnitude = magnitude;
+    this.gestureWroteThisFrame = true;
+    this.magnitude.setTarget(magnitude, nowMs);
+  }
+
+  /** Writer B: `g.set(hypot(f.getVelocity(), p.getVelocity()))`, in the scroll
+   *  MotionValues' own change handlers. */
+  writeMagnitudeFromScrollMotionValue(magnitude: number, nowMs: number): void {
+    this.magnitude.setTarget(magnitude, nowMs);
+  }
+
   setPointer(ndcX: number, ndcY: number, nowMs: number): void {
     this.pointerX.setTarget(Math.max(-1, Math.min(1, ndcX)), nowMs);
     this.pointerY.setTarget(Math.max(-1, Math.min(1, ndcY)), nowMs);
@@ -382,7 +465,7 @@ export class SourceExactMotion {
     this.gestureVelocityY = info.velocity[1];
     this.scrollX.setTarget(this.targetX, nowMs);
     this.scrollY.setTarget(this.targetY, nowMs);
-    this.magnitude.setTarget(Math.hypot(info.velocity[0], info.velocity[1]), nowMs);
+    this.writeMagnitudeFromGesture(Math.hypot(info.velocity[0], info.velocity[1]), nowMs);
   }
 
   /** Advance every spring to this frame. */
@@ -396,8 +479,15 @@ export class SourceExactMotion {
     // reads, not the spring's analytic one.
     this.mvX.update(this.scrollX.value, nowMs);
     this.mvY.update(this.scrollY.value, nowMs);
-    this.magnitude.setTarget(Math.hypot(this.mvX.velocity(nowMs), this.mvY.velocity(nowMs)),
-                             nowMs);
+    this.writeMagnitudeFromScrollMotionValue(
+      Math.hypot(this.mvX.velocity(nowMs), this.mvY.velocity(nowMs)), nowMs);
+    // Both writers land in the same frame step and the magnitude spring
+    // retargets to whichever wrote LAST. On a frame the gesture dispatched,
+    // that is the gesture -- see `magnitudeWriterOrder`.
+    if (this.magnitudeWriterOrder === "gestureLastWhileActive" && this.gestureWroteThisFrame) {
+      this.magnitude.setTarget(this.gestureMagnitude, nowMs);
+    }
+    this.gestureWroteThisFrame = false;
     this.magnitude.advance(nowMs);
     this.pointerX.advance(nowMs);
     this.pointerY.advance(nowMs);
@@ -409,6 +499,7 @@ export class SourceExactMotion {
     this.pointerX.reset(); this.pointerY.reset();
     this.targetX = 0; this.targetY = 0;
     this.gestureVelocityX = 0; this.gestureVelocityY = 0;
+    this.gestureMagnitude = 0; this.gestureWroteThisFrame = false;
     this.mvX.reset(); this.mvY.reset();
     const p = this.published;
     p.scrollX = 0; p.scrollY = 0; p.velocityX = 0; p.velocityY = 0;

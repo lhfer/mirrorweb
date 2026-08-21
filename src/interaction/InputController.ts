@@ -113,7 +113,12 @@ export class InputController {
     this.motion.setPointer(this.ndcX(event.clientX), this.ndcY(event.clientY));
     if (this.motion.sourceExact) {
       if (this.pointerId !== null && event.pointerId !== this.pointerId) return;
-      this.motion.pointerUp(event.clientX, event.clientY, event.timeStamp);
+      // The two clocks the release evidence needs, taken where they are true:
+      // the event's own timestamp, and the moment this listener was entered.
+      // Recorded by the controller, read back by nothing.
+      this.motion.pointerUp(event.clientX, event.clientY, event.timeStamp, false,
+                            { eventTimeStamp: event.timeStamp,
+                              listenerEntryTime: performance.now() });
       this.pointerId = null;
       return;
     }
@@ -131,7 +136,9 @@ export class InputController {
   private onPointerCancel(event: PointerEvent) {
     if (!this.motion.sourceExact) { this.onPointerUp(event); return; }
     if (this.pointerId !== null && event.pointerId !== this.pointerId) return;
-    this.motion.pointerUp(event.clientX, event.clientY, event.timeStamp, true);
+    this.motion.pointerUp(event.clientX, event.clientY, event.timeStamp, true,
+                          { eventTimeStamp: event.timeStamp,
+                            listenerEntryTime: performance.now() });
     this.pointerId = null;
   }
 
