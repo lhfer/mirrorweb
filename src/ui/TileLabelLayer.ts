@@ -5,10 +5,23 @@ import { catalogAt } from "../content/catalog";
 import { isLayoutDebug, type DebugMode } from "../debug/DebugMode";
 import type { SourceExactLayoutFrame } from "../layout/SourceExactLayout";
 import type { InfiniteGlassGrid } from "../scene/InfiniteGlassGrid";
+import type { LabelCullingVerdict } from "./SourceExactLabelCulling";
 
 const _dir = new Vector3();
 const _toCam = new Vector3();
 const _quat = new Quaternion();
+
+/**
+ * Guarded visibility write: the DOM is touched only when the state actually
+ * changes. The Target guards its hide path exactly like this (`Po` in the
+ * bundle); it assigns `visible` unconditionally, where this helper guards
+ * both directions -- observationally identical, and the write hygiene the
+ * V0 brief requires.
+ */
+function setVisibility(el: HTMLElement, visible: boolean): void {
+  const want = visible ? "visible" : "hidden";
+  if (el.style.visibility !== want) el.style.visibility = want;
+}
 
 /** Legacy paths (V3, composition v1/v2) keep the offset they were tuned with. */
 const TYPE_Z = TILE.thickness * 0.5 + TILE.frontBulge + 6;
@@ -135,6 +148,12 @@ export class TileLabelLayer {
    */
   private frame?: SourceExactLayoutFrame;
 
+  /**
+   * The verdicts of the most recent `sync`, kept for QA readbacks only.
+   * Undefined on the legacy paths and before the first culled sync.
+   */
+  private lastCulling?: LabelCullingVerdict[];
+
   constructor(host: HTMLElement) {
     this.renderer.domElement.style.position = "absolute";
     this.renderer.domElement.style.inset = "0";
@@ -151,6 +170,13 @@ export class TileLabelLayer {
     for (const slot of grid.slots) {
       const el = document.createElement("div");
       el.style.containerType = "inline-size";
+      // Source-exact: the Target's label element carries
+      // `backface-visibility: hidden` INLINE, and that CSS is its ONLY
+      // backface handling -- there is no JS backface test in its culling.
+      // A coverage-drawn but back-facing card must hide at paint, not render
+      // mirrored. Byte-anchored in qa-v5/culling/target-culling-source.json
+      // -> labelInitialStyle.
+      if (frame) el.style.backfaceVisibility = "hidden";
       if (slot.code !== undefined) bindSlotCard(el, slot.code, slot.slotIndex, mode);
       else bindCard(el, slot.i, slot.j, slot.slotIndex, mode);
       const object = new CSS3DObject(el);
@@ -200,30 +226,71 @@ export class TileLabelLayer {
       slots: this.objects.map((o, n) => {
         const r = o.element.getBoundingClientRect();
         const cs = getComputedStyle(o.element);
+        const verdict = this.lastCulling ? this.lastCulling[n] : undefined;
         return {
           slotIndex: n,
           visible: o.element.style.visibility !== "hidden",
           cssWidth: parseFloat(cs.width),
           cssHeight: parseFloat(cs.height),
           objectScale: [o.scale.x, o.scale.y, o.scale.z],
-          /** Screen-space AABB of the projected element. */
+          /**
+           * Screen-space AABB of the projected element. On the source-exact
+           * path a CULLED slot's rect is STALE BY DESIGN -- the Target
+           * leaves culled transforms unwritten -- so a reader must treat
+           * `rectPx` of a slot with `culling.coverageVisible === false` as
+           * the last drawn pose, not the current one.
+           */
           rectPx: [r.x, r.y, r.width, r.height],
           world: [o.position.x, o.position.y, o.position.z],
+          /** The full coverage verdict, when the culled path is active. */
+          culling: verdict ?? null,
         };
       }),
     };
   }
 
-  sync(grid: InfiniteGlassGrid, camera: PerspectiveCamera) {
+  /**
+   * Per-slot pose and visibility.
+   *
+   * With `culling` verdicts (the source-exact path), visibility is the
+   * Target's own rule and nothing else:
+   *
+   * - a coverage-drawn slot gets its pose synced and `visibility:visible`;
+   * - a culled slot gets `visibility:hidden` and its pose is NOT touched --
+   *   the Target leaves culled labels' transforms stale, and our
+   *   CSS3DRenderer's style cache then skips their DOM transform writes for
+   *   free. The motion round measured exactly this staleness on the Target's
+   *   recorded card matrices.
+   * - both writes are guarded on the current inline value. The Target guards
+   *   only the hide and assigns `visible` unconditionally; the guard is
+   *   observationally identical and declared in
+   *   `qa-v5/culling/target-culling-source.json` -> observedNotApplied.
+   *
+   * The JS backface dot-product does NOT feed visibility on this path: the
+   * Target has no JS backface test -- its labels carry inline
+   * `backface-visibility: hidden` and ours now do too (see `attach`).
+   *
+   * Without `culling` (legacy V3 / composition v1/v2), behaviour is
+   * unchanged: pose every frame, backface dot-product decides visibility.
+   */
+  sync(grid: InfiniteGlassGrid, camera: PerspectiveCamera, culling?: LabelCullingVerdict[]) {
+    this.lastCulling = culling;
     for (let n = 0; n < grid.slots.length; n += 1) {
       const slot = grid.slots[n];
       const object = this.objects[n];
       if (slot.active === false) {
-        object.element.style.visibility = "hidden";
+        setVisibility(object.element, false);
+        continue;
+      }
+      if (culling) {
+        const verdict = culling[n];
+        const draw = verdict ? verdict.coverageVisible : true;
+        if (draw) this.syncPose(slot, object, camera, true);
+        setVisibility(object.element, draw);
         continue;
       }
       if (slot.code !== undefined) {
-        this.syncPose(slot, object, camera);
+        this.syncPose(slot, object, camera, false);
         continue;
       }
       const key = slot.i * 10007 + slot.j;
@@ -231,16 +298,20 @@ export class TileLabelLayer {
         this.boundKey[n] = key;
         bindCard(object.element, slot.i, slot.j, slot.slotIndex, this.mode);
       }
-      this.syncPose(slot, object, camera);
+      this.syncPose(slot, object, camera, false);
     }
   }
 
-  private syncPose(slot: InfiniteGlassGrid["slots"][number], object: CSS3DObject, camera: PerspectiveCamera) {
+  private syncPose(
+    slot: InfiniteGlassGrid["slots"][number], object: CSS3DObject, camera: PerspectiveCamera,
+    skipBackfaceVisibility: boolean,
+  ) {
     slot.group.getWorldPosition(object.position);
     object.quaternion.copy(slot.group.getWorldQuaternion(_quat));
     slot.group.getWorldDirection(_dir);
     const push = this.frame ? TYPE_Z_SOURCE_EXACT : TYPE_Z;
     if (push !== 0) object.position.addScaledVector(_dir, push);
+    if (skipBackfaceVisibility) return;
     _toCam.subVectors(camera.position, object.position);
     object.element.style.visibility = _toCam.dot(_dir) > 0 ? "visible" : "hidden";
   }

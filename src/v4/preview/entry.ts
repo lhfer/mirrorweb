@@ -49,6 +49,9 @@ export type GridQaV4 = {
   getMetrics: () => Record<string, unknown>;
   getAssetState: () => Record<string, unknown>;
   getPoolState: () => Record<string, unknown>;
+  /** QA-only labels.sync CPU probe: arm/disarm and drain samples. */
+  setLabelSyncProbe: (on: boolean) => void;
+  getLabelSyncStats: () => Record<string, unknown>;
   reset: () => void;
 };
 
@@ -111,6 +114,8 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
       getMetrics: () => app.getMetrics(),
       getAssetState: () => app.getAssetState(),
       getPoolState: () => app.getPoolState(),
+      setLabelSyncProbe: (on) => app.setLabelSyncProbe(on),
+      getLabelSyncStats: () => app.getLabelSyncStats(),
       reset: () => app.reset(),
     };
     const host = window as Window & {

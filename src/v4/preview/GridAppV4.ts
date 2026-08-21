@@ -26,6 +26,7 @@ import type { InfiniteGlassGrid } from "../../scene/InfiniteGlassGrid";
 import { LoadingOverlay } from "../../ui/LoadingOverlay";
 import { PageOverlay } from "../../ui/PageOverlay";
 import { TileLabelLayer } from "../../ui/TileLabelLayer";
+import { SourceExactLabelCulling } from "../../ui/SourceExactLabelCulling";
 import {
   createPointerKeyLightV4,
   updatePointerKeyLightV4,
@@ -80,8 +81,23 @@ export class GridAppV4 {
   private loading!: LoadingOverlay;
   private input!: InputController;
   private pointerLight?: DirectionalLight;
-  /** The CSS3D transform camera: same orbit AND same velocity dolly as the render camera; drives CSS3D, projection and culling. */
+  /** The CSS3D transform camera: same orbit AND same velocity dolly as the render camera; drives the CSS3D transform. */
   private css3dTransformCamera?: PerspectiveCamera;
+  /**
+   * The coverage camera: same lens, same pointer orbit, NO velocity dolly.
+   * The Target keeps a dedicated dolly-free camera whose ONLY job is the
+   * label coverage projection -- it renders nothing, transforms nothing and
+   * gates nothing else. Byte-anchored in
+   * `qa-v5/culling/target-culling-source.json` -> coverageCameraPose.
+   */
+  private sourceExactCoverageCamera?: PerspectiveCamera;
+  private readonly labelCulling = new SourceExactLabelCulling();
+  /**
+   * QA-only labels.sync CPU probe. OFF by default so the product frame loop
+   * carries no timing calls; a perf harness turns it on for a measured run.
+   */
+  private labelSyncProbe = false;
+  private labelSyncTimes: number[] = [];
   private environment?: ReturnType<typeof createStripLightEnvironmentV4>;
   private raf = 0;
   private lastT = 0;
@@ -235,7 +251,7 @@ export class GridAppV4 {
     }
     this.grid.update(this.gridX(0), this.gridY(0));
     this.applyPose();
-    if (!this.layoutOnly) this.labels.sync(this.gridAsV3(), this.poseCamera());
+    this.syncLabels();
 
     // Before the input controller is built: it decides at wire-up time whether
     // to take pointer capture and whether to register a wheel listener, and
@@ -991,7 +1007,7 @@ export class GridAppV4 {
     if (!handle) return this.renderStamp;
     this.grid.update(this.gridX(), this.gridY());
     this.applyPose();
-    if (!this.layoutOnly) this.labels.sync(this.gridAsV3(), this.poseCamera());
+    this.syncLabels();
     handle.renderer.info.reset?.();
     this.drawFrame();
     this.renderStamp += 1;
@@ -1099,7 +1115,7 @@ export class GridAppV4 {
     this.grid.update(this.gridX(), this.gridY());
     this.applyPose();
     const handle = this.renderer.handle;
-    if (!this.layoutOnly) this.labels.sync(this.gridAsV3(), this.poseCamera());
+    this.syncLabels();
     handle.renderer.info.reset?.();
     this.drawFrame();
     this.renderedFrames += 1;
@@ -1131,6 +1147,65 @@ export class GridAppV4 {
     const handle = this.renderer.handle;
     if (this.frame && this.css3dTransformCamera) return this.css3dTransformCamera;
     return handle.camera;
+  }
+
+  /**
+   * The coverage camera, lens re-copied from the render camera each frame --
+   * the Target does exactly this (`Py.fov = n.fov, ...` before its coverage
+   * loop), so a resize or a quality change cannot leave the two disagreeing
+   * about fov, aspect, near or far.
+   */
+  private coverageCameraFor(render: PerspectiveCamera): PerspectiveCamera {
+    if (!this.sourceExactCoverageCamera) this.sourceExactCoverageCamera = new PerspectiveCamera();
+    const c = this.sourceExactCoverageCamera;
+    if (c.fov !== render.fov || c.aspect !== render.aspect
+        || c.near !== render.near || c.far !== render.far) {
+      c.fov = render.fov; c.aspect = render.aspect;
+      c.near = render.near; c.far = render.far;
+      c.updateProjectionMatrix();
+    }
+    return c;
+  }
+
+  /**
+   * Sync the label layer, with coverage verdicts on the source-exact path.
+   *
+   * The verdict inputs mirror the Target's own: its coverage test reads the
+   * live `window.innerWidth/Height` and the live layout frame every frame.
+   * `applyPose` has already posed the coverage camera when this runs -- the
+   * Target's camera component subscribes before its grid component, so its
+   * camera writes precede its coverage loop the same way.
+   */
+  private syncLabels(): void {
+    if (this.layoutOnly) return;
+    const t0 = this.labelSyncProbe ? performance.now() : 0;
+    if (this.frame && this.sourceExactCoverageCamera) {
+      const verdicts = this.labelCulling.compute(
+        this.grid.slots, this.sourceExactCoverageCamera,
+        window.innerWidth, window.innerHeight,
+        this.frame.planeWidth, this.frame.planeHeight,
+      );
+      this.labels.sync(this.gridAsV3(), this.poseCamera(), verdicts);
+    } else {
+      this.labels.sync(this.gridAsV3(), this.poseCamera());
+    }
+    if (this.labelSyncProbe) {
+      this.labelSyncTimes.push(performance.now() - t0);
+      if (this.labelSyncTimes.length > 6000) this.labelSyncTimes.splice(0, 2000);
+    }
+  }
+
+  /** QA only. Arm or disarm the labels.sync CPU probe; arming clears it. */
+  setLabelSyncProbe(on: boolean): void {
+    this.labelSyncProbe = on;
+    this.labelSyncTimes.length = 0;
+  }
+
+  /** QA only. The probe's samples in ms, drained on read. */
+  getLabelSyncStats(): Record<string, unknown> {
+    const samples = this.labelSyncTimes.slice();
+    this.labelSyncTimes.length = 0;
+    return { probe: this.labelSyncProbe, samples };
   }
 
   private applyPose(): void {
@@ -1167,6 +1242,13 @@ export class GridAppV4 {
       label.position.set(ox, oy, oz + dz);
       label.lookAt(0, 0, 0);
       label.updateMatrixWorld();
+      // The coverage camera: the SAME orbit, WITHOUT the dolly. The Target's
+      // deciding line poses both cameras together -- `Py.position.set(d,h,f)`
+      // against `t.position.set(d,h,f+p)` -- and this is that line, ours.
+      const coverage = this.coverageCameraFor(handle.camera);
+      coverage.position.set(ox, oy, oz);
+      coverage.lookAt(0, 0, 0);
+      coverage.updateMatrixWorld();
       if (this.pointerLight) {
         // The Target's scene has no light at all: its highlight moves because
         // the CAMERA orbits against a fixed environment, not because anything
