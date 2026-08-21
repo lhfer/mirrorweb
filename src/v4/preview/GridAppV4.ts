@@ -1,4 +1,6 @@
-import { AmbientLight, PerspectiveCamera, Vector3, type DirectionalLight } from "three/webgpu";
+import { AmbientLight, EquirectangularReflectionMapping, PerspectiveCamera, Vector3,
+  type DirectionalLight, type Texture } from "three/webgpu";
+import { HDRLoader } from "three/examples/jsm/loaders/HDRLoader.js";
 import {
   CAMERA, GRID, TILE, compositionParams, compositionScale, compositionVersion, isPortrait,
   isSourceExact,
@@ -31,7 +33,7 @@ import {
   createPointerKeyLightV4,
   updatePointerKeyLightV4,
 } from "../../materials/LiquidGlassMaterialV4";
-import { V4_DEBUG_MODES, V4_OPTICS_CONFIG, type V4DebugMode, type V4ShellMode } from "../OpticsConfigV4";
+import { V4_DEBUG_MODES, V4_OPTICS_CONFIG, type V4DebugMode, type V4DispersionLaw, type V4ShellMode } from "../OpticsConfigV4";
 import { createStripLightEnvironmentV4 } from "../StripLightEnvironmentV4";
 import { InfiniteGlassGridV4 } from "./InfiniteGlassGridV4";
 import { SceneColorPipelineV4 } from "./SceneColorPipelineV4";
@@ -61,6 +63,8 @@ export type GridAppV4Options = {
   portraitVertical?: PortraitVerticalModel;
   /** Diagnostic only, default off. See config.ts. */
   landscapeRowOrigin?: LandscapeRowOrigin;
+  /** O2 lane switch (?dispersionLaw=); default from OpticsConfigV4. */
+  dispersionLaw?: V4DispersionLaw;
 };
 
 /**
@@ -81,6 +85,9 @@ export class GridAppV4 {
   private loading!: LoadingOverlay;
   private input!: InputController;
   private pointerLight?: DirectionalLight;
+  /** O2 System B: the white studio equirect (byte-identical to the
+   *  Target's served env; provenance in public/hdri/PROVENANCE.md). */
+  private envHdr?: Texture;
   /** The CSS3D transform camera: same orbit AND same velocity dolly as the render camera; drives the CSS3D transform. */
   private css3dTransformCamera?: PerspectiveCamera;
   /**
@@ -125,7 +132,13 @@ export class GridAppV4 {
 
   constructor(private readonly options: GridAppV4Options = {}) {
     this.v4Debug = options.debugMode ?? "beauty";
-    this.v4Shell = options.shellMode ?? "energy-controlled";
+    // O2 System B: the separate reflection shell is DISABLED in Beauty on
+    // the source-exact route (the Target has no shell; the white
+    // reflection lives in the body LERP). The shell survives as a QA
+    // control -- an explicit ?shell= or setShellMode restores it.
+    this.v4Shell = options.shellMode
+      ?? (isSourceExact(options.composition ?? compositionVersion())
+            ? "off" : "energy-controlled");
     this.foundation = options.foundation ?? readFoundationMode();
     this.composition = options.composition ?? compositionVersion();
     this.verticalMode = options.vertical ?? verticalMode();
@@ -217,6 +230,26 @@ export class GridAppV4 {
       this.grid.reel?.unlock();
     }
 
+    // O2 System B: the source-exact route awaits the studio environment
+    // BEFORE the material is built, so ready===true means the reflection
+    // is live (capture determinism). Loader output matches the Target's
+    // byte-anchored parameters: RGBE half-float, LinearSRGB, Linear
+    // filters, no mips, flipY -- HDRLoader's own defaults -- plus the
+    // equirect mapping assignment, which is the Target's ONLY processing.
+    // ?systemB=off builds the material WITHOUT the env texture: the System
+    // B uniforms are then never referenced and the generated shader is the
+    // pre-O2 one, byte for byte -- the structural control the lane
+    // equivalence gate compares against base commits.
+    const systemBOff =
+      new URLSearchParams(location.search).get("systemB") === "off";
+    if (!this.layoutOnly && this.sourceExact && !systemBOff) {
+      const hdr = await new HDRLoader()
+        .loadAsync(V4_OPTICS_CONFIG.material.systemB.assetPath);
+      hdr.mapping = EquirectangularReflectionMapping;
+      hdr.name = "MirrorWeb.V4.WhiteStudioEnvironment";
+      this.envHdr = hdr;
+    }
+
     this.pipeline = new SceneColorPipelineV4(this.quality.level, this.options.overscan);
     this.applyPipelineSize();
     this.grid.build(
@@ -226,6 +259,10 @@ export class GridAppV4 {
       this.v4Shell,
       this.layoutOnly,
       this.frame,
+      {
+        envTexture: this.envHdr ?? null,
+        dispersionLaw: this.options.dispersionLaw,
+      },
     );
     if (this.frame) this.grid.setFrame(this.frame);
     this.grid.setSceneUvScale(this.pipeline.sceneUvScale);
@@ -1232,6 +1269,25 @@ export class GridAppV4 {
   private coverageDrawsScratch: boolean[] = [];
 
   /** QA only. A/B the coverage-driven render culling on this build. */
+  /** O2 QA floor levers -- measurement controls only (pre-registered). */
+  setEnvMixScale(value: number): void {
+    this.grid.setEnvMixScale(value);
+    this.renderOnce();
+  }
+
+  setRimScale(value: number): void {
+    this.grid.setRimScale(value);
+    this.renderOnce();
+  }
+
+  getOpticsState(): Record<string, unknown> {
+    return {
+      ...this.grid.getOpticsState(),
+      envTextureLoaded: Boolean(this.envHdr),
+      shellModeApplied: this.v4Shell,
+    };
+  }
+
   setRenderCulling(on: boolean): void {
     this.renderCulling = on;
     this.syncLabels();
@@ -1361,6 +1417,7 @@ export class GridAppV4 {
     this.grid.dispose();
     this.pipeline?.dispose();
     this.environment?.dispose();
+    this.envHdr?.dispose();
     this.renderer.dispose();
   }
 }

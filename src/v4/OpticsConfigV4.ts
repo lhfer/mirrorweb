@@ -31,6 +31,13 @@ export const V4_DEBUG_CODE: Readonly<Record<V4DebugMode, number>> = {
 };
 
 export const V4_SHELL_MODES = ["additive", "energy-controlled", "off"] as const;
+
+// O2 System B lane switch: "v1-taps" restores the 5159cf8 dispersion
+// verbatim (the B-only lane base); "o1-spectral" is the e01fb30 law (the
+// A+B lane base). Selected at material build time; overridable per page
+// load with ?dispersionLaw=.
+export const V4_DISPERSION_LAWS = ["v1-taps", "o1-spectral"] as const;
+export type V4DispersionLaw = (typeof V4_DISPERSION_LAWS)[number];
 export type V4ShellMode = (typeof V4_SHELL_MODES)[number];
 
 export type V4GeometryConfig = {
@@ -111,6 +118,28 @@ export const V4_OPTICS_CONFIG = {
     roughnessRim: 0.055,
     fresnelPower: 5,
     adaptivityRadiusUv: 0.0035,
+    // O2: the pre-selection default preserves current behaviour (the O1
+    // spectral law). The pre-registered §四 rule decides the shipped
+    // default AFTER both lanes are scored; flipping it is the execution
+    // of that rule, recorded in candidate-selection.json.
+    dispersionLaw: "o1-spectral" as V4DispersionLaw,
+    // O2 System B -- the Target's shipped values, adopted verbatim
+    // (byte-anchored in qa-v5/optics-o2/target-system-b-source.json).
+    // None of these is a tunable; see o2-selected-system.json.
+    systemB: {
+      fresnelF0: 0.045,
+      envIntensity: 1.93,
+      envMaxMix: 0.27,
+      envRotationY: -2,
+      envRotationX: 0,
+      rimIntensity: 0.11,
+      // Guard ceiling on the HDR sample before the LERP: a hot texel must
+      // not inject Inf (0 * Inf = NaN would break the envMixScale=0
+      // floor's exact equivalence to the pre-O2 body).
+      envSampleCeiling: 16,
+      // The product asset; byte-identical to the Target's served env.
+      assetPath: "/hdri/studio_small_03_1k.hdr",
+    },
     zoneCoefficients: {
       // Center remains on the same scene-color path. Its near-zero projected
       // normal only produces a deliberately tiny refraction displacement.

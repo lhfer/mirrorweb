@@ -10,19 +10,26 @@ import {
   Fn,
   abs,
   attribute,
+  cameraWorldMatrix,
   cameraProjectionMatrix,
   clamp,
+  cos,
+  equirectUV,
   float,
   max,
   min,
   mix,
   normalView,
+  normalViewGeometry,
   positionView,
   positionViewDirection,
   pow,
+  reflect,
   screenUV,
+  sin,
   texture,
   uniform,
+  varying,
   vec2,
   vec3,
   vec4,
@@ -31,6 +38,7 @@ import {
   V4_DEBUG_CODE,
   V4_OPTICS_CONFIG,
   type V4DebugMode,
+  type V4DispersionLaw,
   type V4ShellMode,
 } from "../v4/OpticsConfigV4";
 
@@ -56,6 +64,18 @@ export function createLiquidGlassParamsV4() {
     roughnessRim: uniform(defaults.roughnessRim),
     fresnelPower: uniform(defaults.fresnelPower),
     adaptivityRadiusUv: uniform(defaults.adaptivityRadiusUv),
+    // O2 System B -- the Target's fresnel-capped LERP toward the white
+    // studio environment. Source values adopted verbatim
+    // (qa-v5/optics-o2/o2-selected-system.json); the *Scale uniforms are
+    // QA-only floor instruments with product value 1.
+    fresnelF0: uniform(defaults.systemB.fresnelF0),
+    envIntensity: uniform(defaults.systemB.envIntensity),
+    envMaxMix: uniform(defaults.systemB.envMaxMix),
+    envRotationY: uniform(defaults.systemB.envRotationY),
+    envRotationX: uniform(defaults.systemB.envRotationX),
+    rimIntensity: uniform(defaults.systemB.rimIntensity),
+    envMixScale: uniform(1),
+    rimScale: uniform(1),
     // Maps screen space into the scene-color target. 1 means the target covers
     // exactly the visible frame; a smaller value means the target was rendered
     // with overscan, which is what stops a partially off-screen card from
@@ -76,6 +96,7 @@ export type LiquidGlassMaterialV4Handle = {
   getDebugMode: () => V4DebugMode;
   setShellMode: (mode: V4ShellMode) => void;
   getShellMode: () => V4ShellMode;
+  getDispersionLaw: () => V4DispersionLaw;
   dispose: () => void;
 };
 
@@ -88,12 +109,29 @@ function luminanceNode(color: any) {
  * media-map parameter by design, so direct media cannot become the optical
  * body accidentally.
  */
+export type LiquidGlassMaterialV4Options = {
+  /**
+   * O2 System B: the white studio equirect. When absent the body renders
+   * exactly the pre-O2 composition (legacy callers stay byte-identical).
+   */
+  envTexture?: Texture | null;
+  /**
+   * O2 lane switch: "v1-taps" is the 5159cf8 dispersion restored verbatim
+   * (the B-only lane base); "o1-spectral" is the e01fb30 law (the A+B lane
+   * base). Chosen at material build time -- a JS branch, not a shader one.
+   */
+  dispersionLaw?: V4DispersionLaw;
+};
+
 export function createLiquidGlassMaterialV4(
   sceneColorTexture: Texture,
   params: LiquidGlassParamsV4 = createLiquidGlassParamsV4(),
   initialDebugMode: V4DebugMode = "beauty",
   initialShellMode: V4ShellMode = "energy-controlled",
+  options: LiquidGlassMaterialV4Options = {},
 ): LiquidGlassMaterialV4Handle {
+  const dispersionLaw: V4DispersionLaw =
+    options.dispersionLaw ?? V4_OPTICS_CONFIG.material.dispersionLaw;
   const sceneColor = texture(sceneColorTexture);
   const debugCode = uniform(V4_DEBUG_CODE[initialDebugMode]);
   let debugMode = initialDebugMode;
@@ -215,41 +253,78 @@ export function createLiquidGlassMaterialV4(
   //     colours instead of a manufactured pure cyan/magenta line.
   // Screen-space analogue: sample_i displaces by
   // refractionOffset * (1 + dispersionSpread * offset_i * zone).
-  const DISPERSION_SAMPLES = 5; // the Target's own count (low tier caps at 3)
-  const spectral = (() => {
-    const n = DISPERSION_SAMPLES;
-    const tent = (x: number, c: number) => Math.max(0, 1 - Math.abs(x - c) / 0.5);
-    const rows: Array<{ offset: number; weight: [number, number, number] }> = [];
-    const sums: [number, number, number] = [0, 0, 0];
-    for (let i = 0; i < n; i += 1) {
-      const s = i / (n - 1);
-      const w: [number, number, number] = [tent(s, 0), tent(s, 0.5), tent(s, 1)];
-      sums[0] += w[0]; sums[1] += w[1]; sums[2] += w[2];
-      rows.push({ offset: s - 0.5, weight: w });
-    }
-    return rows.map(({ offset, weight }) => ({
-      offset,
-      weight: [weight[0] / sums[0], weight[1] / sums[1], weight[2] / sums[2]] as
-        [number, number, number],
-    }));
-  })();
+  // The two lanes are selected HERE, at build time, as plain JS -- no
+  // shader branch exists. "v1-taps" below is the 5159cf8 block restored
+  // verbatim; the blocking equivalence gate proves each lane pixel-equal
+  // to its base commit's build.
+  // Loosely typed on purpose: the two lanes produce different node
+  // subclasses (a Join vs a reduced Add tree) with one vec3 meaning.
+  let refractedColor: any;
+  let dispersionDebug: any;
+  if (dispersionLaw === "v1-taps") {
+    const fallbackDirection = vec2(normalView.x, normalView.y.negate())
+      .add(vec2(1e-5, 0))
+      .normalize();
+    const dispersionDirection = refractionOffset.length().greaterThan(1e-5)
+      .select(refractionOffset.normalize(), fallbackDirection);
+    const dispersionDelta = dispersionDirection
+      .mul(params.dispersionUv)
+      .mul(dispersionZone)
+      .mul(params.sceneUvScale);
+    const uvR = clamp(refractedUv.add(dispersionDelta), vec2(0.001), vec2(0.999));
+    const uvB = clamp(refractedUv.sub(dispersionDelta), vec2(0.001), vec2(0.999));
 
-  // Built as a pure expression tree: this block runs at material BUILD time,
-  // outside any Fn scope, where VarNode assignments do not emit.
-  const spectralSamples = spectral.map(({ offset }) => {
-    const scale = float(1).add(
-      params.dispersionSpread.mul(offset).mul(dispersionZone));
-    const sampleUv = clamp(
-      screenUV.add(refractionOffset.mul(scale))
-        .sub(vec2(0.5)).mul(params.sceneUvScale).add(vec2(0.5)),
-      vec2(0.001), vec2(0.999));
-    return sceneColor.sample(sampleUv).level(blurLod);
-  });
-  const refractedColor = spectralSamples
-    .map((s, i) => s.rgb.mul(vec3(...spectral[i].weight)))
-    .reduce((a, b) => a.add(b));
-  const spectralEnds = [spectralSamples[0],
-                        spectralSamples[spectralSamples.length - 1]];
+    const sampleR = sceneColor.sample(uvR).level(blurLod);
+    const sampleG = sceneColor.sample(refractedUv).level(blurLod);
+    const sampleB = sceneColor.sample(uvB).level(blurLod);
+    refractedColor = vec3(sampleR.r, sampleG.g, sampleB.b);
+    dispersionDebug = vec3(
+      abs(sampleR.r.sub(sampleG.r)).mul(5),
+      0,
+      abs(sampleB.b.sub(sampleG.b)).mul(5),
+    );
+  } else {
+    const DISPERSION_SAMPLES = 5; // the Target's own count (low tier caps at 3)
+    const spectral = (() => {
+      const n = DISPERSION_SAMPLES;
+      const tent = (x: number, c: number) => Math.max(0, 1 - Math.abs(x - c) / 0.5);
+      const rows: Array<{ offset: number; weight: [number, number, number] }> = [];
+      const sums: [number, number, number] = [0, 0, 0];
+      for (let i = 0; i < n; i += 1) {
+        const s = i / (n - 1);
+        const w: [number, number, number] = [tent(s, 0), tent(s, 0.5), tent(s, 1)];
+        sums[0] += w[0]; sums[1] += w[1]; sums[2] += w[2];
+        rows.push({ offset: s - 0.5, weight: w });
+      }
+      return rows.map(({ offset, weight }) => ({
+        offset,
+        weight: [weight[0] / sums[0], weight[1] / sums[1], weight[2] / sums[2]] as
+          [number, number, number],
+      }));
+    })();
+
+    // Built as a pure expression tree: this block runs at material BUILD
+    // time, outside any Fn scope, where VarNode assignments do not emit.
+    const spectralSamples = spectral.map(({ offset }) => {
+      const scale = float(1).add(
+        params.dispersionSpread.mul(offset).mul(dispersionZone));
+      const sampleUv = clamp(
+        screenUV.add(refractionOffset.mul(scale))
+          .sub(vec2(0.5)).mul(params.sceneUvScale).add(vec2(0.5)),
+        vec2(0.001), vec2(0.999));
+      return sceneColor.sample(sampleUv).level(blurLod);
+    });
+    refractedColor = spectralSamples
+      .map((s, i) => s.rgb.mul(vec3(...spectral[i].weight)))
+      .reduce((a, b) => a.add(b));
+    const spectralEnds = [spectralSamples[0],
+                          spectralSamples[spectralSamples.length - 1]];
+    dispersionDebug = vec3(
+      abs(spectralEnds[0].r.sub(spectralEnds[1].r)).mul(5),
+      0,
+      abs(spectralEnds[0].b.sub(spectralEnds[1].b)).mul(5),
+    );
+  }
 
   const adaptRadius = params.adaptivityRadiusUv.mul(params.sceneUvScale);
   const sampleLeft = sceneColor.sample(clamp(refractedUv.sub(vec2(adaptRadius, 0)), vec2(0.001), vec2(0.999))).level(float(0));
@@ -293,6 +368,71 @@ export function createLiquidGlassMaterialV4(
     .add(vec3(adaptiveEdgeLift))
     .sub(vec3(adaptiveInternalShadow));
 
+  // O2 System B -- the Target's white studio reflection as a fresnel-capped
+  // LERP inside the body colour (source contract:
+  // qa-v5/optics-o2/target-system-b-source.json). Everything here follows
+  // the byte-anchored sites: Schlick fresnel F0 0.045 exponent 5 on the
+  // bevel-territory normal; the world reflection of the view direction
+  // rotated -2 rad about Y (0 about X); the equirect sampled at level 0;
+  // the LERP factor min(saturate(schlick * envIntensity), envMaxMix); a
+  // weak additive white rim. Our structural analogues, declared in
+  // o2-selected-system.json BEFORE this code existed: the geometry's baked
+  // shoulder/rim vertex normal stands in for the Target's analytic bevel
+  // normal, and the strongLensRim zone drives the rim in place of the
+  // Target's rounded-rect SDF. The env sample is clamped to a finite
+  // ceiling so a hot HDR texel cannot inject Inf into the LERP (and so
+  // envMixScale=0 reproduces `beauty` exactly -- 0 * Inf would not).
+  // Without an env texture the body renders the pre-O2 composition
+  // unchanged.
+  let bodyBeauty = beauty;
+  if (options.envTexture) {
+    const envTex = texture(options.envTexture);
+    // Branch-safe inputs: the debug select chain makes three's TSL emit
+    // the normalView varying unpack only into the FIRST branch that
+    // references it (the normals debug view), so the beauty path reads
+    // the shared normal globals as zeros -- the latent state V1's
+    // `facing` has always had. System B therefore reads the interpolated
+    // geometry normal through its own varying and mirrors the Target's
+    // law in view space; the rotation to world (three's own
+    // reflectVector idiom) preserves dot products and commutes with
+    // reflect, so the math equals the Target's world-space form at the
+    // pre-registered analytic-vs-geometry normal analogue.
+    const o2NormalView = varying(normalViewGeometry, "v_o2NormalView").normalize();
+    const o2Facing = clamp(o2NormalView.dot(positionViewDirection), 0, 1);
+    const schlick = params.fresnelF0.add(
+      float(1).sub(params.fresnelF0).mul(
+        pow(clamp(float(1).sub(o2Facing), 0, 1), 5)));
+    const reflected = reflect(positionViewDirection.negate(), o2NormalView)
+      .transformDirection(cameraWorldMatrix);
+    const cy = cos(params.envRotationY);
+    const sy = sin(params.envRotationY);
+    const rotY = vec3(
+      reflected.x.mul(cy).sub(reflected.z.mul(sy)),
+      reflected.y,
+      reflected.x.mul(sy).add(reflected.z.mul(cy)),
+    );
+    const cx = cos(params.envRotationX);
+    const sx = sin(params.envRotationX);
+    const envDirection = vec3(
+      rotY.x,
+      rotY.y.mul(cx).sub(rotY.z.mul(sx)),
+      rotY.y.mul(sx).add(rotY.z.mul(cx)),
+    );
+    const envSample = clamp(
+      envTex.sample(equirectUV(envDirection)).rgb,
+      vec3(0),
+      vec3(V4_OPTICS_CONFIG.material.systemB.envSampleCeiling),
+    );
+    const envMixFactor = min(
+      clamp(schlick.mul(params.envIntensity), 0, 1),
+      params.envMaxMix,
+    ).mul(params.envMixScale);
+    const rimTerm = strongLensRim
+      .mul(params.rimIntensity)
+      .mul(params.rimScale);
+    bodyBeauty = mix(beauty, envSample, envMixFactor).add(vec3(rimTerm));
+  }
+
   const edgeDebug = vec3(shoulder, strongLensRim, sidewall);
   // Unlike edge-mask's continuous weights, this palette is deliberately
   // one-hot so screen-space QA can measure each optical band independently.
@@ -312,13 +452,6 @@ export function createLiquidGlassMaterialV4(
   );
   const reflectionDebugBody = vec3(0);
   const fresnelDebug = vec3(fresnel);
-  // The spread between the spectral end samples, on the R and B channels --
-  // the same "how far apart do the fringes sit" view the old tap split had.
-  const dispersionDebug = vec3(
-    abs(spectralEnds[0].r.sub(spectralEnds[1].r)).mul(5),
-    0,
-    abs(spectralEnds[0].b.sub(spectralEnds[1].b)).mul(5),
-  );
   const adaptivityDebug = vec3(localLuma, localContrast, localChroma);
 
   const bodyColorNode = Fn(() => debugCode.equal(V4_DEBUG_CODE["edge-mask"]).select(
@@ -337,7 +470,7 @@ export function createLiquidGlassMaterialV4(
                 fresnelDebug,
                 debugCode.equal(V4_DEBUG_CODE.dispersion).select(
                   dispersionDebug,
-                  debugCode.equal(V4_DEBUG_CODE.adaptivity).select(adaptivityDebug, beauty),
+                  debugCode.equal(V4_DEBUG_CODE.adaptivity).select(adaptivityDebug, bodyBeauty),
                 ),
               ),
             ),
@@ -410,6 +543,7 @@ export function createLiquidGlassMaterialV4(
     getDebugMode: () => debugMode,
     setShellMode,
     getShellMode: () => shellMode,
+    getDispersionLaw: () => dispersionLaw,
     dispose: () => {
       bodyMaterial.dispose();
       reflectionMaterial.dispose();

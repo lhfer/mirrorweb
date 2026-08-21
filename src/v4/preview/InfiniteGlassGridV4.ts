@@ -26,6 +26,7 @@ import {
 import { effectiveCellH, placeTile, V1_COMPOSITION, type Composition, type TilePose } from "../../scene/GridCurvature";
 import { createConvexGlassGeometryV4 } from "../../scene/ConvexGlassGeometryV4";
 import {
+  type LiquidGlassMaterialV4Options,
   createLiquidGlassMaterialV4,
   createLiquidGlassParamsV4,
   type LiquidGlassMaterialV4Handle,
@@ -115,6 +116,7 @@ export class InfiniteGlassGridV4 {
     shellMode: V4ShellMode = "energy-controlled",
     foundation = false,
     frame?: SourceExactLayoutFrame,
+    materialOptions?: LiquidGlassMaterialV4Options,
   ): void {
     this.disposePool();
     this.quality = quality;
@@ -128,7 +130,12 @@ export class InfiniteGlassGridV4 {
     }
     this.glassGeometry.dispose();
     this.glassGeometry = createConvexGlassGeometryV4(quality);
-    this.handle = createLiquidGlassMaterialV4(sceneColor, this.params, debugMode, shellMode);
+    this.handle = createLiquidGlassMaterialV4(
+      sceneColor, this.params, debugMode, shellMode, materialOptions ?? {});
+    // The build-time shell mode must seed the SAME flags the setter keeps,
+    // or the mesh-visibility truth disagrees with the material state.
+    this.shellEnabled = shellMode !== "off";
+    this.debugShellOn = debugMode === "beauty" || debugMode === "reflection";
     this.mediaFitMode = readMediaFitMode();
     const calibration = new URLSearchParams(location.search).get("mediacal") === "1";
     const maps = calibration ? this.buildCalibrationTextures() : (this.reel?.textures ?? []);
@@ -406,6 +413,32 @@ export class InfiniteGlassGridV4 {
    * wiring. `null` turns coverage culling off entirely (legacy route,
    * foundation, or the QA A/B toggle) and restores the pre-V1 behaviour.
    */
+  /** O2 QA-only floor levers (o2-selected-system.json); product value 1. */
+  setEnvMixScale(value: number): void {
+    this.params.envMixScale.value = Math.max(0, Math.min(1, value));
+  }
+
+  setRimScale(value: number): void {
+    this.params.rimScale.value = Math.max(0, Math.min(1, value));
+  }
+
+  getOpticsState(): Record<string, unknown> {
+    return {
+      dispersionLaw: this.handle?.getDispersionLaw() ?? null,
+      envMixScale: this.params.envMixScale.value,
+      rimScale: this.params.rimScale.value,
+      shellMode: this.handle?.getShellMode() ?? null,
+      systemB: {
+        fresnelF0: this.params.fresnelF0.value,
+        envIntensity: this.params.envIntensity.value,
+        envMaxMix: this.params.envMaxMix.value,
+        envRotationY: this.params.envRotationY.value,
+        envRotationX: this.params.envRotationX.value,
+        rimIntensity: this.params.rimIntensity.value,
+      },
+    };
+  }
+
   setCoverageDraws(draws: boolean[] | null): void {
     if (this.foundation) return;
     this.coverageDraws = draws;

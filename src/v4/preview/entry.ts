@@ -1,6 +1,6 @@
 import type { QualityLevel } from "../../config";
 import type { MediaFitMode } from "../../content/MediaFit";
-import { V4_DEBUG_MODES, V4_SHELL_MODES, type V4DebugMode, type V4ShellMode } from "../OpticsConfigV4";
+import { V4_DEBUG_MODES, V4_SHELL_MODES, type V4DebugMode, type V4DispersionLaw, type V4ShellMode } from "../OpticsConfigV4";
 import { GridAppV4, type GridAppV4Options } from "./GridAppV4";
 
 export type GridQaV4 = {
@@ -53,6 +53,9 @@ export type GridQaV4 = {
   setLabelSyncProbe: (on: boolean) => void;
   getLabelSyncStats: () => Record<string, unknown>;
   setRenderCulling: (on: boolean) => void;
+  setEnvMixScale: (value: number) => void;
+  setRimScale: (value: number) => void;
+  getOpticsState: () => Record<string, unknown>;
   getRenderCullingTruth: () => Record<string, unknown>;
   getRenderPassStats: () => Record<string, number | null>;
   reset: () => void;
@@ -66,6 +69,12 @@ export function parseV4ShellMode(value: string | null): V4ShellMode {
   return V4_SHELL_MODES.includes(value as V4ShellMode) ? (value as V4ShellMode) : "energy-controlled";
 }
 
+export function parseDispersionLaw(value: string | null): V4DispersionLaw | undefined {
+  if (value === "v1" || value === "v1-taps") return "v1-taps";
+  if (value === "o1" || value === "o1-spectral") return "o1-spectral";
+  return undefined;
+}
+
 /**
  * Boots the V4 multi-card preview and publishes the same QA surface the V3 app
  * exposes, so one capture harness can drive both optical versions through the
@@ -76,7 +85,8 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
   const overscanQuery = Number(query.get("overscan"));
   const app = new GridAppV4({
     debugMode: parseV4DebugMode(query.get("v4debug")),
-    shellMode: parseV4ShellMode(query.get("shell")),
+    shellMode: query.has("shell") ? parseV4ShellMode(query.get("shell")) : undefined,
+    dispersionLaw: parseDispersionLaw(query.get("dispersionLaw")),
     ...(Number.isFinite(overscanQuery) && overscanQuery >= 1 ? { overscan: overscanQuery } : {}),
     ...options,
   });
@@ -120,6 +130,9 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
       setLabelSyncProbe: (on) => app.setLabelSyncProbe(on),
       getLabelSyncStats: () => app.getLabelSyncStats(),
       setRenderCulling: (on) => app.setRenderCulling(on),
+    setEnvMixScale: (value) => app.setEnvMixScale(value),
+    setRimScale: (value) => app.setRimScale(value),
+    getOpticsState: () => app.getOpticsState(),
       getRenderCullingTruth: () => app.getRenderCullingTruth(),
       getRenderPassStats: () => app.getRenderPassStats(),
       reset: () => app.reset(),
