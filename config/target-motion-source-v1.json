@@ -127,7 +127,7 @@
       "maxZoomZ": "0.1 * perspective",
       "maxZoomZFactor": 0.1,
       "asymptote": "0.3 * perspective",
-      "appliedTo": "the render camera's z only, added after the orbit",
+      "appliedTo": "the z of BOTH cameras, added after the orbit: the render camera and the CSS3D transform camera sit at the same dollied z, so glass and labels never separate. The dolly-free camera is a projection and culling concept only, never a rendering camera.",
       "note": "Zero at rest, so it changes nothing the layout contract measures."
     },
     "css3dCameraExcludesDolly": false,

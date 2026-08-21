@@ -428,12 +428,13 @@ export function sourceExactOrbit(pointerX: number, pointerY: number, perspective
 }
 
 /**
- * The velocity dolly, added to the RENDER camera's z only.
+ * The velocity dolly, added to the z of BOTH cameras.
  *
- * The Target keeps a second camera at the same orbit position without this
- * term and uses it for the CSS3D transform, the projection and the culling. So
- * during fast motion the glass dollies and the labels do not -- they separate,
- * on purpose. Zero at rest, so nothing the layout contract measures moves.
+ * The render camera and the CSS3D transform camera sit at the same orbit
+ * position AND the same dollied z, so glass and labels never separate. The
+ * dolly-free camera in the bundle is a projection and culling concept only --
+ * it reproduces the Target's label coverage test, it is not a rendering
+ * camera. Zero at rest, so nothing the layout contract measures moves.
  */
 /**
  * The Target's dolly scale for a viewport: `0.1 * perspective`.

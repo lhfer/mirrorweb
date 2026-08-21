@@ -80,8 +80,8 @@ export class GridAppV4 {
   private loading!: LoadingOverlay;
   private input!: InputController;
   private pointerLight?: DirectionalLight;
-  /** Orbit without the velocity dolly; drives CSS3D, projection and culling. */
-  private labelCamera?: PerspectiveCamera;
+  /** The CSS3D transform camera: same orbit AND same velocity dolly as the render camera; drives CSS3D, projection and culling. */
+  private css3dTransformCamera?: PerspectiveCamera;
   private environment?: ReturnType<typeof createStripLightEnvironmentV4>;
   private raf = 0;
   private lastT = 0;
@@ -440,14 +440,14 @@ export class GridAppV4 {
   /**
    * QA only. Everything the motion gate needs, read off the live model.
    *
-   * `renderCamera` and `labelCamera` are reported separately on purpose: the
-   * Target dollies one and not the other, so a gate that measured a single
-   * camera would either miss the dolly or call the separation a defect.
+   * `renderCamera` and `css3dTransformCamera` are reported separately on purpose: the
+   * Target dollies BOTH, so `camerasSeparated` must read false at every moment
+   * and a regression that un-dollied the label camera could not pass quietly.
    */
   getMotionTruth(): Record<string, unknown> {
     const handle = this.renderer.handle;
     const frame = this.frame;
-    const label = frame ? this.labelCamera : undefined;
+    const label = frame ? this.css3dTransformCamera : undefined;
     return {
       sourceExact: this.motion.sourceExact,
       contract: this.motion.sourceExact ? MOTION_CONTRACT.motionVersion : "legacy MOTION",
@@ -475,11 +475,29 @@ export class GridAppV4 {
            this.pointerLight.position.z]
         : null,
       dollyZ: frame ? sourceExactDolly(this.motion.magnitude, sourceExactMaxZoomZ(frame.perspective)) : 0,
+      // Scheduling readbacks. Which frame the model has reached, which frame a
+      // release was committed on and with what velocity -- so a replay can be
+      // checked against the frame the engine actually did the work on instead
+      // of against a frame inferred from a curve.
+      motionSteps: this.motion.motionSteps,
+      releaseVelocityX: this.motion.releaseVelocityX,
+      releaseVelocityY: this.motion.releaseVelocityY,
+      lastReleaseStep: this.motion.lastReleaseStep,
+      pendingReleaseCount: this.motion.pendingReleaseCount,
       maxZoomZ: frame ? sourceExactMaxZoomZ(frame.perspective) : null,
       renderCamera: handle
         ? [handle.camera.position.x, handle.camera.position.y, handle.camera.position.z]
         : null,
+      css3dTransformCamera: label
+        ? [label.position.x, label.position.y, label.position.z] : null,
+      // The same three numbers under the name they were published as before
+      // this round. `labelCamera` was a misnomer -- the camera drives the CSS3D
+      // transform, the projection and the culling, and "label" named only the
+      // first thing that happened to use it -- but T1's depth-clipping evidence
+      // reads this key, and an evidence script that stops reproducing is a
+      // break rather than a rename. Kept as an alias, marked as one.
       labelCamera: label ? [label.position.x, label.position.y, label.position.z] : null,
+      labelCameraIsAliasOf: "css3dTransformCamera",
       // Kept as a readback: the Target's CSS3D camera carries the dolly, so
       // this must be false at every moment. It is the thing that would go
       // wrong silently if the label camera were ever un-dollied again.
@@ -612,12 +630,11 @@ export class GridAppV4 {
   /**
    * QA only. Card mid-plane screen rects, in PIXELS, through the LABEL camera.
    *
-   * Deliberately not `getCardQuads`: that one projects through the render
-   * camera, which carries the velocity dolly, and returns normalised
-   * coordinates. Comparing a label rect against a dollied card would report
-   * the Target's own render/CSS3D camera separation as a defect. The invariant
-   * worth gating is label-to-card-plane through the camera the label layer
-   * itself uses, so this projects through exactly that one.
+   * Deliberately not `getCardQuads`: that one returns normalised coordinates,
+   * and a label rect is measured in pixels. Both cameras carry the same
+   * velocity dolly, so neither projection is an "un-dollied" one. The
+   * invariant worth gating is label-to-card-plane through the camera the label
+   * layer itself uses, so this projects through exactly that one.
    */
   getCardPlaneRects(): Array<{ slotIndex: number; rectPx: number[] }> {
     const handle = this.renderer.handle;
@@ -1086,14 +1103,15 @@ export class GridAppV4 {
   /**
    * The camera the CSS3D layer, the projection and the culling use.
    *
-   * A clone of the render camera's lens, kept at the orbit position WITHOUT
-   * the velocity dolly. It is created once and its lens re-copied each frame,
+   * A clone of the render camera's lens, kept at the SAME orbit position AND
+   * carrying the same velocity dolly. It is created once and its lens
+   * re-copied each frame,
    * so a resize or a quality change cannot leave the two disagreeing about
    * fov, aspect, near or far.
    */
-  private labelCameraFor(render: PerspectiveCamera): PerspectiveCamera {
-    if (!this.labelCamera) this.labelCamera = new PerspectiveCamera();
-    const c = this.labelCamera;
+  private css3dTransformCameraFor(render: PerspectiveCamera): PerspectiveCamera {
+    if (!this.css3dTransformCamera) this.css3dTransformCamera = new PerspectiveCamera();
+    const c = this.css3dTransformCamera;
     if (c.fov !== render.fov || c.aspect !== render.aspect
         || c.near !== render.near || c.far !== render.far) {
       c.fov = render.fov; c.aspect = render.aspect;
@@ -1106,7 +1124,7 @@ export class GridAppV4 {
   /** Whichever camera the label layer and the projections should use. */
   private poseCamera(): PerspectiveCamera {
     const handle = this.renderer.handle;
-    if (this.frame && this.labelCamera) return this.labelCamera;
+    if (this.frame && this.css3dTransformCamera) return this.css3dTransformCamera;
     return handle.camera;
   }
 
@@ -1123,12 +1141,11 @@ export class GridAppV4 {
       this.grid.root.rotation.set(0, 0, 0);
       const [ox, oy, oz] = sourceExactOrbit(this.motion.pointerX, this.motion.pointerY,
                                             frame.perspective);
-      // The Target keeps TWO cameras at the same orbit position: the render
-      // camera carries a velocity dolly on z, and a second one without it does
-      // the CSS3D transform, the projection and the culling. So under fast
-      // motion the glass dollies and the labels do not -- they separate, and
-      // that separation is the Target's own behaviour rather than a defect to
-      // correct. Both are identical at rest, where the layout contract measures.
+      // The Target keeps TWO cameras at the same orbit position and BOTH carry
+      // the velocity dolly on z: the render camera here, and the CSS3D transform
+      // camera set below. They sit at the same z at every moment, not merely at
+      // rest, so glass and labels never separate. The dolly-free camera in the
+      // bundle is a projection and culling concept only; it renders nothing.
       const dz = sourceExactDolly(this.motion.magnitude, sourceExactMaxZoomZ(frame.perspective));
       handle.camera.position.set(ox, oy, oz + dz);
       handle.camera.lookAt(0, 0, 0);
@@ -1141,7 +1158,7 @@ export class GridAppV4 {
       // camera but produces no velocity. A dolly-free CSS3D camera cannot do
       // that. The dolly-free camera in the bundle drives projection and
       // culling, not the transform.
-      const label = this.labelCameraFor(handle.camera);
+      const label = this.css3dTransformCameraFor(handle.camera);
       label.position.set(ox, oy, oz + dz);
       label.lookAt(0, 0, 0);
       label.updateMatrixWorld();

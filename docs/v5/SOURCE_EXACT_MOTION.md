@@ -27,7 +27,8 @@ pointer         =  spring(80, 18, 0.8)   chasing clamp(client / size * 2 - 1)
 
 camera          =  orbit at radius `perspective`, yaw = -0.05 * pointerX,
                    pitch = 0.05 * pointerY
-render camera z += 3 * maxZoomZ * tanh(0.04 * |velocity| / (3 * maxZoomZ))
+camera z       += 3 * maxZoomZ * tanh(0.04 * |velocity| / (3 * maxZoomZ))
+                   (both cameras: the render camera and the CSS3D camera)
 ```
 
 All three springs are overdamped — damping ratios 1.131, 1.309, 1.125 — so

@@ -171,6 +171,27 @@ export class MotionController {
 
   private pendingRelease: PanInfo | null = null;
 
+  /* ---- readbacks -------------------------------------------------------
+   *
+   * Four numbers that answer, from outside, questions the M2 brief asks about
+   * scheduling: on which frame did the model actually run, on which frame was
+   * a release committed, and with what velocity. They are RECORDED, never
+   * read back into the model -- nothing below `step()` consults them and no
+   * branch depends on them, so the motion produced with them present is the
+   * motion produced without them. They exist because the alternative is to
+   * infer the release frame from a curve, which is how the last round put a
+   * one-frame attribution error into a product verdict.
+   */
+  /** Frames of motion this controller has actually integrated. */
+  motionSteps = 0;
+  /** Velocity carried by the last release the model committed, in px/s. */
+  releaseVelocityX = 0;
+  releaseVelocityY = 0;
+  /** `motionSteps` at the frame that release was committed on; -1 if none. */
+  lastReleaseStep = -1;
+  /** Releases recorded but not yet committed. 0 or 1 by construction. */
+  get pendingReleaseCount(): number { return this.pendingRelease ? 1 : 0; }
+
   /**
    * Jump the scroll, for a harness that needs a fixed state.
    *
@@ -211,6 +232,9 @@ export class MotionController {
     this.velocityX = x;
     this.velocityY = y;
     if (!this.se) return;
+    this.releaseVelocityX = x;
+    this.releaseVelocityY = y;
+    this.lastReleaseStep = this.motionSteps;
     this.se.onPanEnd({ point: [0, 0], delta: [0, 0], offset: [0, 0], velocity: [x, y] },
                      this.nowMs);
   }
@@ -236,6 +260,7 @@ export class MotionController {
 
   step(dt: number, nowMs?: number) {
     if (this.paused) return;
+    this.motionSteps += 1;
     this.nowMs = nowMs ?? (this.nowMs + dt * 1000);
     if (this.se) { this.stepSourceExact(this.nowMs); return; }
     this.consumeDrag(dt);
@@ -271,6 +296,9 @@ export class MotionController {
     if (info) se.onPan(info, nowMs);
     // The release, on the frame -- never in the event handler.
     if (this.pendingRelease) {
+      this.releaseVelocityX = this.pendingRelease.velocity[0];
+      this.releaseVelocityY = this.pendingRelease.velocity[1];
+      this.lastReleaseStep = this.motionSteps;
       se.onPanEnd(this.pendingRelease, nowMs);
       this.pendingRelease = null;
     }
