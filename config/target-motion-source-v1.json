@@ -12,12 +12,16 @@
     "method": "read-only source forensics on the public bundle, plus live input-driven DOM traces. No Target code is stored in this repository, nothing was modified or republished, and no Target pixel is committed.",
     "settingsAreLiveValues": "The settings object is created once as a React useState initial value and its setter is never called anywhere in the bundle; there is no debug panel, no query-string override and no runtime mutation path. The literals below are therefore the live values, and the live follow-ratio measurement confirms it."
   },
-
   "input": {
     "gesture": {
       "library": "framer-motion PanSession, as bundled",
       "surface": "a single full-viewport div, `fixed inset-0 z-10 touch-none cursor-grab active:cursor-grabbing`, with onPan and onPanEnd. Nothing else in the app handles drag.",
-      "listeners": ["pointerdown on the element", "pointermove on window (capture, passive)", "pointerup on window (capture, passive)", "pointercancel on window (capture, passive)"],
+      "listeners": [
+        "pointerdown on the element",
+        "pointermove on window (capture, passive)",
+        "pointerup on window (capture, passive)",
+        "pointercancel on window (capture, passive)"
+      ],
       "pointerCapture": false,
       "pointerCaptureNote": "PanSession never calls setPointerCapture. It listens on window in the capture phase, so a pointer that leaves the element still drives the gesture and `lostpointercapture` is never involved.",
       "touchAndMouseSharePath": true,
@@ -47,12 +51,14 @@
     "pointerPosition": {
       "listener": "window pointermove",
       "normalisation": "clamp(clientX / innerWidth * 2 - 1, -1, 1), clamp(clientY / innerHeight * 2 - 1, -1, 1)",
-      "range": [-1, 1],
+      "range": [
+        -1,
+        1
+      ],
       "usesSameEventStreamAsDrag": true,
       "note": "A separate window listener from the pan gesture, but the same pointermove events, so touch drives it too."
     }
   },
-
   "drag": {
     "gain": 1.5,
     "gainNote": "scrollTarget += gain * panDelta, on BOTH axes. World units per css pixel. At the z = 0 tangent plane one world unit is one css pixel, so content moves 1.5x the finger.",
@@ -63,14 +69,13 @@
     "flingNote": "On pan end the scroll target jumps by releaseVelocity * fling, once. There is no separate inertia integrator and no decay law of its own: the spring below carries the release.",
     "stopCondition": "the spring's own rest test; there is no stopThreshold and no explicit zeroing of velocity"
   },
-
   "springs": {
     "$note": "framer-motion springs, integrated by its closed-form solution rather than a step integrator. On every target change a new solve is started from the current value carrying the current generator velocity.",
     "scroll": {
       "stiffness": 100,
       "damping": 16,
       "mass": 0.5,
-      "restDelta": 1e-5,
+      "restDelta": 1e-05,
       "restSpeed": 0.01,
       "dampingRatio": 1.1313708498984762,
       "regime": "overdamped",
@@ -102,12 +107,10 @@
       "note": "The scroll spring supplies restDelta explicitly; restSpeed falls back to the 0.01 written at the call site, not to the delta-dependent default."
     }
   },
-
   "velocityMagnitude": {
     "rawSource": "hypot of the two scroll springs' own generator velocities, refreshed on every spring change, and additionally set directly from the gesture velocity on pan and on pan end",
     "smoothedBy": "springs.magnitude"
   },
-
   "camera": {
     "orbit": {
       "law": "yaw = -pointerGain * pointerX, pitch = pointerGain * pointerY, both in radians; position = (sin(yaw) cos(pitch) P, sin(pitch) P, cos(yaw) cos(pitch) P), lookAt origin",
@@ -119,6 +122,7 @@
     "velocityDolly": {
       "law": "dz = 3 * maxZoomZ * tanh(0.04 * smoothedMagnitude / (3 * maxZoomZ))",
       "maxZoomZ": "0.1 * perspective",
+      "maxZoomZFactor": 0.1,
       "asymptote": "0.3 * perspective",
       "appliedTo": "the render camera's z only, added after the orbit",
       "note": "Zero at rest, so it changes nothing the layout contract measures."
@@ -126,31 +130,31 @@
     "css3dCameraExcludesDolly": true,
     "css3dCameraNote": "The Target keeps a SECOND camera at the orbit position WITHOUT the dolly, and uses it for the CSS3D transform, the projection and the culling. So during fast motion the glass dollies and the labels do not: the two separate on purpose. A reproduction that dollies the label camera as well would be wrong."
   },
-
   "light": {
     "pointerDrivenLight": false,
     "velocityDrivenLight": false,
     "note": "The Target's scene contains no light object at all -- only groups and meshes. Its highlight moves because the CAMERA orbits relative to a fixed studio environment map, not because anything moves a light. There is therefore no pointer-to-light gain to reproduce; the correct source-exact value is zero travel."
   },
-
   "resize": {
     "motionStatePreserved": true,
     "note": "The scroll, velocity and pointer motion values are module-scope and are never reset. A resize recomputes the layout frame only.",
     "regridDebounceMs": 150,
     "regridNote": "The first layout runs immediately; every later one is debounced by 150 ms before cols, rows and the slot count change."
   },
-
   "loadIn": {
-    "gapRatioSpring": { "stiffness": 100, "damping": 18, "mass": 0.7, "restDelta": 2e-4 },
+    "gapRatioSpring": {
+      "stiffness": 100,
+      "damping": 18,
+      "mass": 0.7,
+      "restDelta": 0.0002
+    },
     "from": 3,
     "to": "grid.gapRatio",
     "note": "A one-shot intro that animates the grid gap from 3 down to the contract gap ratio once the scene is ready. Recorded because it is a spring in the same file; it is a load-in animation, not motion input, and is out of scope for this stage."
   },
-
   "deadCode": {
     "rawVelocityMotionValues": "The raw per-axis velocities are published to two motion values that nothing in the bundle ever reads. Only the smoothed magnitude is consumed."
   },
-
   "notInTheTarget": [
     "wheel or trackpad handling of any kind",
     "a maximum velocity clamp",

@@ -151,6 +151,59 @@ def pointer_track(run: dict) -> list[tuple[float, float, float]]:
     return out
 
 
+def pointer_settle_63(run: dict) -> float | None:
+    """Time constant of the pointer smoothing, measured as a step response.
+
+    The sweep moves the mouse to a corner in a burst of moves that all land
+    inside one frame, then holds for half a second. To the page that is a STEP,
+    so the settle time is readable directly: from the end of the burst, how
+    long until the camera yaw has covered 63.2% of its way to the plateau.
+
+    Read from the yaw rather than from any internal value, so the same
+    instrument works on the Target -- which exposes nothing -- and on us.
+    """
+    track = pointer_track(run)
+    if len(track) < 12:
+        return None
+    moves = [e for e in run["events"] if e["type"] == "pointermove"]
+    if len(moves) < 4:
+        return None
+    bursts, cur = [], [moves[0]]
+    for e in moves[1:]:
+        if e["t"] - cur[-1]["t"] > 200.0:
+            bursts.append(cur); cur = [e]
+        else:
+            cur.append(e)
+    bursts.append(cur)
+
+    def yaw_at(t):
+        return min(track, key=lambda p: abs(p[0] - t))[1]
+
+    times = []
+    for k, b in enumerate(bursts):
+        t_end = b[-1]["t"]
+        nxt = bursts[k + 1][0]["t"] if k + 1 < len(bursts) else track[-1][0]
+        plateau_t = nxt - 40.0
+        if plateau_t - t_end < 220.0:
+            continue
+        y0, y1 = yaw_at(b[0]["t"]), yaw_at(plateau_t)
+        if abs(y1 - y0) < 0.012:      # a step too small to time
+            continue
+        want = y0 + 0.632 * (y1 - y0)
+        for t, yaw, _ in track:
+            if t < t_end:
+                continue
+            if t > plateau_t:
+                break
+            if (yaw - want) * (1 if y1 > y0 else -1) >= 0:
+                times.append(t - t_end)
+                break
+    if not times:
+        return None
+    times.sort()
+    return round(times[len(times) // 2], 3)
+
+
 def input_events(run: dict, kinds: tuple[str, ...]) -> list[dict]:
     return [e for e in run["events"] if e["type"] in kinds]
 

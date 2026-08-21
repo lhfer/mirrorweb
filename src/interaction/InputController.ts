@@ -1,5 +1,27 @@
 import type { MotionController } from "./MotionController";
 
+/**
+ * Input for both paths.
+ *
+ * The legacy path accumulates a drag delta with its own timestamp and hands it
+ * to the legacy model; it is untouched. The source-exact path forwards the raw
+ * pointer instead, because the Target's gesture layer does its own history,
+ * its own 3 px threshold and its own 100 ms velocity window, and a controller
+ * that pre-digested the movement would be answering a different question.
+ *
+ * Two differences on the source-exact path are deliberate and both come from
+ * the Target:
+ *
+ *  - no pointer capture. The Target listens on the window in the capture phase
+ *    and never calls setPointerCapture, so `lostpointercapture` cannot strand
+ *    a gesture -- there is nothing to lose.
+ *  - no wheel listener at all. The Target registers none; the only
+ *    addEventListener("wheel") in its whole bundle is inside three.js
+ *    OrbitControls, which it never mounts. So wheel and trackpad move nothing,
+ *    at any deltaMode. Not registering is the faithful reproduction, and it
+ *    also leaves the page's own default behaviour alone rather than
+ *    preventing it.
+ */
 export class InputController {
   private lastX = 0;
   private lastY = 0;
@@ -8,6 +30,8 @@ export class InputController {
   private viewW = 1;
   private viewH = 1;
   downs = 0;
+  /** Read back rather than inferred: the Target registers none, and so must we. */
+  readonly wheelListenerRegistered: boolean;
 
   constructor(
     private readonly canvas: HTMLCanvasElement,
@@ -17,15 +41,19 @@ export class InputController {
     this.onPointerDown = this.onPointerDown.bind(this);
     this.onPointerMove = this.onPointerMove.bind(this);
     this.onPointerUp = this.onPointerUp.bind(this);
+    this.onPointerCancel = this.onPointerCancel.bind(this);
     this.onLostPointerCapture = this.onLostPointerCapture.bind(this);
     this.onWheel = this.onWheel.bind(this);
     this.setViewSize(window.innerWidth, window.innerHeight);
+    this.wheelListenerRegistered = !this.motion.sourceExact;
     window.addEventListener("pointerdown", this.onPointerDown, { capture: true });
     window.addEventListener("pointermove", this.onPointerMove, { capture: true });
     window.addEventListener("pointerup", this.onPointerUp, { capture: true });
-    window.addEventListener("pointercancel", this.onPointerUp, { capture: true });
-    this.canvas.addEventListener("lostpointercapture", this.onLostPointerCapture);
-    window.addEventListener("wheel", this.onWheel, { passive: false, capture: true });
+    window.addEventListener("pointercancel", this.onPointerCancel, { capture: true });
+    if (!this.motion.sourceExact) {
+      this.canvas.addEventListener("lostpointercapture", this.onLostPointerCapture);
+      window.addEventListener("wheel", this.onWheel, { passive: false, capture: true });
+    }
   }
 
   setViewSize(width: number, height: number) {
@@ -37,7 +65,7 @@ export class InputController {
     window.removeEventListener("pointerdown", this.onPointerDown, true);
     window.removeEventListener("pointermove", this.onPointerMove, true);
     window.removeEventListener("pointerup", this.onPointerUp, true);
-    window.removeEventListener("pointercancel", this.onPointerUp, true);
+    window.removeEventListener("pointercancel", this.onPointerCancel, true);
     this.canvas.removeEventListener("lostpointercapture", this.onLostPointerCapture);
     window.removeEventListener("wheel", this.onWheel, true);
   }
@@ -52,6 +80,10 @@ export class InputController {
     this.downs += 1;
     this.onUnlock?.();
     this.motion.setPointer(this.ndcX(event.clientX), this.ndcY(event.clientY));
+    if (this.motion.sourceExact) {
+      this.motion.pointerDown(event.clientX, event.clientY, event.timeStamp);
+      return;
+    }
     this.motion.beginDrag();
     try {
       this.canvas.setPointerCapture?.(event.pointerId);
@@ -62,6 +94,11 @@ export class InputController {
 
   private onPointerMove(event: PointerEvent) {
     this.motion.setPointer(this.ndcX(event.clientX), this.ndcY(event.clientY));
+    if (this.motion.sourceExact) {
+      if (this.pointerId !== null && event.pointerId !== this.pointerId) return;
+      this.motion.pointerMove(event.clientX, event.clientY);
+      return;
+    }
     if (!this.motion.dragging) return;
     if (this.pointerId !== null && event.pointerId !== this.pointerId) return;
     const now = performance.now();
@@ -74,9 +111,27 @@ export class InputController {
 
   private onPointerUp(event: PointerEvent) {
     this.motion.setPointer(this.ndcX(event.clientX), this.ndcY(event.clientY));
+    if (this.motion.sourceExact) {
+      if (this.pointerId !== null && event.pointerId !== this.pointerId) return;
+      this.motion.pointerUp(event.clientX, event.clientY, event.timeStamp);
+      this.pointerId = null;
+      return;
+    }
     if (!this.motion.dragging) return;
     if (this.pointerId !== null && event.pointerId !== this.pointerId) return;
     this.motion.endDrag();
+    this.pointerId = null;
+  }
+
+  /**
+   * A cancelled pointer ends the gesture like a release, but the Target
+   * measures the release from the last MOVE rather than from the cancel point.
+   * The legacy path has no such distinction and keeps its old handler.
+   */
+  private onPointerCancel(event: PointerEvent) {
+    if (!this.motion.sourceExact) { this.onPointerUp(event); return; }
+    if (this.pointerId !== null && event.pointerId !== this.pointerId) return;
+    this.motion.pointerUp(event.clientX, event.clientY, event.timeStamp, true);
     this.pointerId = null;
   }
 

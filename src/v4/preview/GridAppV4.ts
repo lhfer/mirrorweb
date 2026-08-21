@@ -1,4 +1,4 @@
-import { AmbientLight, Vector3, type DirectionalLight } from "three/webgpu";
+import { AmbientLight, PerspectiveCamera, Vector3, type DirectionalLight } from "three/webgpu";
 import {
   CAMERA, GRID, TILE, compositionParams, compositionScale, compositionVersion, isPortrait,
   isSourceExact,
@@ -17,6 +17,8 @@ import { FoundationOverlay } from "../../debug/FoundationOverlay";
 import { effectiveCellH } from "../../scene/GridCurvature";
 import { InputController } from "../../interaction/InputController";
 import { MotionController } from "../../interaction/MotionController";
+import { MOTION_CONTRACT, sourceExactDolly, sourceExactMaxZoomZ, sourceExactOrbit }
+  from "../../interaction/SourceExactMotion";
 import { AdaptiveQuality } from "../../quality/AdaptiveQuality";
 import { isMobileViewport } from "../../quality/DeviceProfile";
 import { RendererController } from "../../rendering/RendererController";
@@ -78,6 +80,8 @@ export class GridAppV4 {
   private loading!: LoadingOverlay;
   private input!: InputController;
   private pointerLight?: DirectionalLight;
+  /** Orbit without the velocity dolly; drives CSS3D, projection and culling. */
+  private labelCamera?: PerspectiveCamera;
   private environment?: ReturnType<typeof createStripLightEnvironmentV4>;
   private raf = 0;
   private lastT = 0;
@@ -149,11 +153,12 @@ export class GridAppV4 {
     // count putting a seam on the centre line; adding a rest offset on top
     // would shift the grid a second time.
     //
-    // The sign flips because the Target's placement adds scrollX where the
-    // legacy path subtracts it. Converting here, at the single boundary between
-    // motion state and layout, keeps drag direction identical -- Motion is
-    // frozen and must not change feel.
-    if (this.sourceExact) return -scrollX;
+    // No sign conversion any more either. The composition round inverted
+    // scrollX here because the legacy model SUBTRACTS the drag while the
+    // Target ADDS it, and motion was frozen at the time. The source-exact
+    // model now carries the Target's own sign from the gesture onward, so the
+    // conversion would flip the drag direction back to wrong.
+    if (this.sourceExact) return scrollX;
     return scrollX + restOffset(window.innerWidth, window.innerHeight, this.composition,
                                 this.verticalMode, this.phaseModel).x;
   }
@@ -230,8 +235,12 @@ export class GridAppV4 {
     }
     this.grid.update(this.gridX(0), this.gridY(0));
     this.applyPose();
-    if (!this.layoutOnly) this.labels.sync(this.gridAsV3(), handle.camera);
+    if (!this.layoutOnly) this.labels.sync(this.gridAsV3(), this.poseCamera());
 
+    // Before the input controller is built: it decides at wire-up time whether
+    // to take pointer capture and whether to register a wheel listener, and
+    // both answers come from which motion model is running.
+    if (this.sourceExact) this.motion.enableSourceExact();
     this.input = new InputController(handle.canvas, this.motion, () => this.grid.reel?.unlock());
     this.bindWindow();
     this.drawFrame();
@@ -342,15 +351,26 @@ export class GridAppV4 {
     this.renderOnce();
   }
 
+  /**
+   * QA only. Move the APPLIED pointer, not just its smoothing target, so a
+   * paused sweep actually changes the pose. `setPointer` keeps its documented
+   * behaviour; this is the fixed-state form.
+   */
+  jumpPointer(x: number, y: number): void {
+    this.motion.jumpPointer(x, y);
+    this.renderOnce();
+  }
+
   setOffset(x: number, y: number): void {
-    this.motion.scrollX = x;
-    this.motion.scrollY = y;
+    // Through the controller, not into the field: on the source-exact path the
+    // scroll is a spring, and writing only the field would leave the spring
+    // pulling the page back to where it was on the very next frame.
+    this.motion.setScroll(x, y);
     this.renderOnce();
   }
 
   setVelocity(x: number, y: number): void {
-    this.motion.velocityX = x;
-    this.motion.velocityY = y;
+    this.motion.setReleaseVelocity(x, y);
   }
 
   /**
@@ -415,6 +435,57 @@ export class GridAppV4 {
   setMediaFitMode(mode: MediaFitMode): void {
     if (!MEDIA_FIT_MODES.includes(mode)) throw new Error(`Unknown media fit mode: ${mode}`);
     this.grid.setMediaFitMode(mode);
+  }
+
+  /**
+   * QA only. Everything the motion gate needs, read off the live model.
+   *
+   * `renderCamera` and `labelCamera` are reported separately on purpose: the
+   * Target dollies one and not the other, so a gate that measured a single
+   * camera would either miss the dolly or call the separation a defect.
+   */
+  getMotionTruth(): Record<string, unknown> {
+    const handle = this.renderer.handle;
+    const frame = this.frame;
+    const label = frame ? this.labelCamera : undefined;
+    return {
+      sourceExact: this.motion.sourceExact,
+      contract: this.motion.sourceExact ? MOTION_CONTRACT.motionVersion : "legacy MOTION",
+      takesPointerCapture: this.motion.dragSurfaceTakesPointerCapture,
+      wheelListenerRegistered: this.input ? this.input.wheelListenerRegistered : null,
+      scrollX: this.motion.scrollX,
+      scrollY: this.motion.scrollY,
+      scrollTargetX: this.motion.scrollTargetX,
+      scrollTargetY: this.motion.scrollTargetY,
+      velocityX: this.motion.velocityX,
+      velocityY: this.motion.velocityY,
+      magnitude: this.motion.magnitude,
+      dragging: this.motion.dragging,
+      gestureStarted: this.motion.gestureStarted,
+      pointerX: this.motion.pointerX,
+      pointerY: this.motion.pointerY,
+      pointerTargetX: this.motion.pointerTargetX,
+      pointerTargetY: this.motion.pointerTargetY,
+      rotX: this.motion.rotX,
+      rotY: this.motion.rotY,
+      lightX: this.motion.lightX,
+      lightY: this.motion.lightY,
+      lightWorld: this.pointerLight
+        ? [this.pointerLight.position.x, this.pointerLight.position.y,
+           this.pointerLight.position.z]
+        : null,
+      dollyZ: frame ? sourceExactDolly(this.motion.magnitude, sourceExactMaxZoomZ(frame.perspective)) : 0,
+      maxZoomZ: frame ? sourceExactMaxZoomZ(frame.perspective) : null,
+      renderCamera: handle
+        ? [handle.camera.position.x, handle.camera.position.y, handle.camera.position.z]
+        : null,
+      labelCamera: label ? [label.position.x, label.position.y, label.position.z] : null,
+      camerasSeparated: !!(handle && label)
+        && Math.abs(handle.camera.position.z - label.position.z) > 1e-9,
+      gridX: this.gridX(),
+      gridY: this.gridY(),
+      renderStamp: this.renderStamp,
+    };
   }
 
   /** QA only. Label boxes and projected rects, for container alignment. */
@@ -529,6 +600,43 @@ export class GridAppV4 {
         return [(_ndc.x + 1) * 0.5, (1 - _ndc.y) * 0.5];
       }),
     }));
+  }
+
+  /**
+   * QA only. Card mid-plane screen rects, in PIXELS, through the LABEL camera.
+   *
+   * Deliberately not `getCardQuads`: that one projects through the render
+   * camera, which carries the velocity dolly, and returns normalised
+   * coordinates. Comparing a label rect against a dollied card would report
+   * the Target's own render/CSS3D camera separation as a defect. The invariant
+   * worth gating is label-to-card-plane through the camera the label layer
+   * itself uses, so this projects through exactly that one.
+   */
+  getCardPlaneRects(): Array<{ slotIndex: number; rectPx: number[] }> {
+    const handle = this.renderer.handle;
+    const frame = this.frame;
+    const halfWidth = frame ? frame.planeWidth / 2 : TILE.width / 2;
+    const halfHeight = frame ? frame.planeHeight / 2 : TILE.height / 2;
+    const camera = this.poseCamera();
+    const w = window.innerWidth, h = window.innerHeight;
+    const slots = this.sourceExact
+      ? this.grid.slots.slice(0, this.grid.activeSlotCount)
+      : this.grid.slots;
+    if (!handle) return [];
+    return slots.map((slot) => {
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      for (const [x, y] of [[-halfWidth, halfHeight], [halfWidth, halfHeight],
+                            [halfWidth, -halfHeight], [-halfWidth, -halfHeight]]) {
+        _ndc.set(x, y, 0);
+        slot.group.localToWorld(_ndc);
+        _ndc.project(camera);
+        const px = (_ndc.x + 1) * 0.5 * w;
+        const py = (1 - _ndc.y) * 0.5 * h;
+        minX = Math.min(minX, px); maxX = Math.max(maxX, px);
+        minY = Math.min(minY, py); maxY = Math.max(maxY, py);
+      }
+      return { slotIndex: slot.slotIndex, rectPx: [minX, minY, maxX - minX, maxY - minY] };
+    });
   }
 
   /**
@@ -854,7 +962,7 @@ export class GridAppV4 {
     if (!handle) return this.renderStamp;
     this.grid.update(this.gridX(), this.gridY());
     this.applyPose();
-    if (!this.layoutOnly) this.labels.sync(this.gridAsV3(), handle.camera);
+    if (!this.layoutOnly) this.labels.sync(this.gridAsV3(), this.poseCamera());
     handle.renderer.info.reset?.();
     this.drawFrame();
     this.renderStamp += 1;
@@ -886,11 +994,11 @@ export class GridAppV4 {
       this.grid.setGlassVisible(false);
       this.grid.setMediaVisible(this.mediaLayer);
       handle.renderer.render(handle.scene, handle.camera);
-      this.labels.render(handle.camera);
+      this.labels.render(this.poseCamera());
       return;
     }
     this.pipeline.draw(handle.renderer, handle.scene, handle.camera, this.grid);
-    this.labels.render(handle.camera);
+    this.labels.render(this.poseCamera());
   }
 
   private applyPipelineSize(): void {
@@ -958,15 +1066,42 @@ export class GridAppV4 {
         this.setQuality(level);
       }
     }
-    this.motion.step(dt);
+    this.motion.step(dt, now);
     this.grid.update(this.gridX(), this.gridY());
     this.applyPose();
     const handle = this.renderer.handle;
-    if (!this.layoutOnly) this.labels.sync(this.gridAsV3(), handle.camera);
+    if (!this.layoutOnly) this.labels.sync(this.gridAsV3(), this.poseCamera());
     handle.renderer.info.reset?.();
     this.drawFrame();
     this.renderedFrames += 1;
   };
+
+  /**
+   * The camera the CSS3D layer, the projection and the culling use.
+   *
+   * A clone of the render camera's lens, kept at the orbit position WITHOUT
+   * the velocity dolly. It is created once and its lens re-copied each frame,
+   * so a resize or a quality change cannot leave the two disagreeing about
+   * fov, aspect, near or far.
+   */
+  private labelCameraFor(render: PerspectiveCamera): PerspectiveCamera {
+    if (!this.labelCamera) this.labelCamera = new PerspectiveCamera();
+    const c = this.labelCamera;
+    if (c.fov !== render.fov || c.aspect !== render.aspect
+        || c.near !== render.near || c.far !== render.far) {
+      c.fov = render.fov; c.aspect = render.aspect;
+      c.near = render.near; c.far = render.far;
+      c.updateProjectionMatrix();
+    }
+    return c;
+  }
+
+  /** Whichever camera the label layer and the projections should use. */
+  private poseCamera(): PerspectiveCamera {
+    const handle = this.renderer.handle;
+    if (this.frame && this.labelCamera) return this.labelCamera;
+    return handle.camera;
+  }
 
   private applyPose(): void {
     const handle = this.renderer.handle;
@@ -979,17 +1114,28 @@ export class GridAppV4 {
       // on axis. Writing CAMERA.y here -- which the legacy branch below does --
       // is what left a 3.2e-5 residual in every scale proof so far.
       this.grid.root.rotation.set(0, 0, 0);
-      const yaw = -(0.05 * this.motion.pointerX);
-      const pitch = 0.05 * this.motion.pointerY;
-      const r = frame.perspective;
-      handle.camera.position.set(
-        Math.sin(yaw) * Math.cos(pitch) * r,
-        Math.sin(pitch) * r,
-        Math.cos(yaw) * Math.cos(pitch) * r,
-      );
+      const [ox, oy, oz] = sourceExactOrbit(this.motion.pointerX, this.motion.pointerY,
+                                            frame.perspective);
+      // The Target keeps TWO cameras at the same orbit position: the render
+      // camera carries a velocity dolly on z, and a second one without it does
+      // the CSS3D transform, the projection and the culling. So under fast
+      // motion the glass dollies and the labels do not -- they separate, and
+      // that separation is the Target's own behaviour rather than a defect to
+      // correct. Both are identical at rest, where the layout contract measures.
+      const dz = sourceExactDolly(this.motion.magnitude, sourceExactMaxZoomZ(frame.perspective));
+      handle.camera.position.set(ox, oy, oz + dz);
       handle.camera.lookAt(0, 0, 0);
+      const label = this.labelCameraFor(handle.camera);
+      label.position.set(ox, oy, oz);
+      label.lookAt(0, 0, 0);
+      label.updateMatrixWorld();
       if (this.pointerLight) {
-        updatePointerKeyLightV4(this.pointerLight, this.motion.pointerX, this.motion.pointerY);
+        // The Target's scene has no light at all: its highlight moves because
+        // the CAMERA orbits against a fixed environment, not because anything
+        // moves a light. Our rig is held at its base position so the highlight
+        // is driven by the same thing -- the orbit. The light's own intensity,
+        // colour and base position are untouched; only what drives it changes.
+        updatePointerKeyLightV4(this.pointerLight, 0, 0);
       }
       return;
     }

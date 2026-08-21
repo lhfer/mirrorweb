@@ -36,7 +36,14 @@ for (const a of process.argv.slice(2)) {
   else if (a.startsWith("--shots=")) opts.shots = path.resolve(REPO, a.slice(8));
   else if (a.startsWith("--vps=")) opts.vps = a.slice(6).split(",");
   else if (a.startsWith("--origin=")) opts.origin = a.slice(9);
+  // "x,y;x,y;..." -- the pointer positions to repeat the sweep at. T1 measured
+  // at the origin only, where the camera is on axis; motion moves the camera,
+  // so the carry-forward re-takes the overlap count at the orbit's extremes.
+  else if (a.startsWith("--pointers=")) {
+    opts.pointers = a.slice(11).split(";").map((s2) => s2.split(",").map(Number));
+  }
 }
+if (!opts.pointers) opts.pointers = [[0, 0]];
 
 function readDepthGeometry() {
   const host = document.getElementById("labels");
@@ -164,6 +171,7 @@ const report = { startedAt: new Date().toISOString(),
   viewports: [], assertions: [] };
 const A = (n, ok, d) => report.assertions.push({ assertion: n, pass: !!ok, detail: d ?? null });
 const OFFSETS = [[0, 0], [313, 197], [-640, 480]];
+report.pointers = opts.pointers;
 
 for (const vp of opts.vps) {
   const [w, h] = vp.split("x").map(Number);
@@ -171,12 +179,22 @@ for (const vp of opts.vps) {
   await page.waitForTimeout(400);
   const entry = { id: vp, viewport: [w, h], offsets: [] };
   for (const [ox, oy] of OFFSETS) {
+   for (const [px, py] of opts.pointers) {
     await page.evaluate(`window.__readDepthGeometry = ${readDepthGeometry.toString()}`);
-    const dom = await page.evaluate(([x, y]) => {
+    const dom = await page.evaluate(([x, y, ppx, ppy]) => {
       const qa = window.__ILG_QA__;
+      // `jumpPointer`, not `setPointer`: this page is PAUSED, and setPointer
+      // writes only the smoothing target -- the applied pointer would stay at
+      // zero and every "extreme" would render the same on-axis camera. An
+      // instrument that cannot move what it claims to sweep is not evidence.
+      qa.jumpPointer(ppx, ppy);
       qa.setOffset(x, y); qa.renderOnce();
-      return window.__readDepthGeometry();
-    }, [ox, oy]);
+      const geom = window.__readDepthGeometry();
+      const t = qa.getMotionTruth();
+      geom.labelCamera = t.labelCamera;
+      geom.appliedPointer = [t.pointerX, t.pointerY];
+      return geom;
+    }, [ox, oy, px, py]);
 
     const cards = dom.cards;
     const clipOk = cards.every((c) => c.clipStyle && c.clipStyle.overflow === "hidden"
@@ -239,14 +257,15 @@ for (const vp of opts.vps) {
     const wrong = decided.filter((p) => p.topCode !== p.nearerCode);
     const overlapped = probes.filter((p) => p.coveringCards > 0).length;
 
-    entry.offsets.push({ offset: [ox, oy], visibleCards: cards.length,
+    entry.offsets.push({ offset: [ox, oy], pointer: [px, py], visibleCards: cards.length,
       clipStructureMatchesTarget: clipOk,
       clipSample: cards[0]?.clipStyle ?? null,
       titleCollisionsBetweenNonOverlappingCards: titleCollisions, collisionExamples,
       depthProbes: probes.length, depthDecided: decided.length,
       depthSamplesWithAnotherCardPlaneOverThem: overlapped,
-      depthWrong: wrong.length, depthWrongExamples: wrong.slice(0, 5) });
-    if (ox === 0 && oy === 0) {
+      depthWrong: wrong.length, depthWrongExamples: wrong.slice(0, 5),
+      appliedPointer: dom.appliedPointer, labelCamera: dom.labelCamera });
+    if (ox === 0 && oy === 0 && px === 0 && py === 0) {
       // The page footer is a separate DOM overlay, not part of the card type
       // layer. Leaving it in would put its ink outside every card silhouette
       // and make the clip measurement about the footer instead.
@@ -264,7 +283,9 @@ for (const vp of opts.vps) {
           cards: cards.map((c) => ({ code: c.code, quad: c.quad, titleQuad: c.titleQuad })) }, null, 2));
       await page.evaluate(() => window.__ILG_QA__.setRenderLayers({ glass: true, media: true, labels: true }));
     }
+   }
   }
+  await page.evaluate(() => window.__ILG_QA__.jumpPointer(0, 0));
   report.viewports.push(entry);
   A(`${vp}: clip layer matches the Target's (overflow hidden, no clip-path, no radius, full card box)`,
     entry.offsets.every((o) => o.clipStructureMatchesTarget), entry.offsets[0].clipSample);
@@ -283,6 +304,18 @@ for (const vp of opts.vps) {
   A(`${vp}: the depth probe resolved a topmost label at on-screen samples`,
     entry.offsets.every((o) => o.depthDecided >= 20),
     entry.offsets.map((o) => ({ probes: o.depthProbes, decided: o.depthDecided })));
+  // The sweep proves itself. If the pointer never reached the pose, every
+  // "extreme" above was the same frame and the depth count means nothing.
+  if (opts.pointers.length > 1) {
+    const cams = entry.offsets.filter((o) => o.labelCamera).map((o) => o.labelCamera);
+    const spreadX = cams.length ? Math.max(...cams.map((c) => c[0])) - Math.min(...cams.map((c) => c[0])) : 0;
+    const spreadY = cams.length ? Math.max(...cams.map((c) => c[1])) - Math.min(...cams.map((c) => c[1])) : 0;
+    entry.pointerSweepMovedCameraBy = [spreadX, spreadY];
+    A(`${vp}: the pointer sweep actually moved the camera`,
+      spreadX > 1 && spreadY > 1,
+      { spreadX, spreadY, appliedPointers: entry.offsets.map((o) => o.appliedPointer),
+        labelCameras: cams.slice(0, 8) });
+  }
 }
 A("no console errors", consoleErrors.length === 0, consoleErrors.slice(0, 5));
 A("no page errors", pageErrors.length === 0, pageErrors.slice(0, 5));
@@ -292,6 +325,7 @@ const overlapTotal = report.viewports
   .flatMap((v) => v.offsets)
   .reduce((n, o) => n + o.depthSamplesWithAnotherCardPlaneOverThem, 0);
 report.actualOverlappingCardPlaneSamples = overlapTotal;
+report.pointerSweep = opts.pointers;
 report.scope = overlapTotal === 0
   ? "PROVEN: the clip STRUCTURE matches the Target's, and within every sampled "
     + "card interior the topmost label is that card's own. NOT PROVEN: real "
@@ -299,7 +333,7 @@ report.scope = overlapTotal === 0
     + "planes were observed overlapping on screen in any tested configuration, "
     + "so the rear-card-text-over-front-card case was never exercised. Carried "
     + "forward to the motion stage, where the pointer orbit and scroll offsets "
-    + "move the planes."
+    + `move the planes. Pointer positions swept: ${JSON.stringify(opts.pointers)}.`
   : `${overlapTotal} samples had another card plane over them; the occlusion `
     + "case was exercised.";
 report.passed = report.assertions.filter((a) => a.pass).length;

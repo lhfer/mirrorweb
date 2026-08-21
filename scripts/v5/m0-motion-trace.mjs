@@ -190,6 +190,12 @@ function installRecorder() {
       t,
       w: window.innerWidth, h: window.innerHeight,
       camera: M.cameraEl ? M.cameraEl.style.transform || null : null,
+      // The Target never calls preventDefault on a wheel event, and neither
+      // does the source-exact path -- there is no listener to call it. So the
+      // document's own scroll position is worth recording: "the cards did not
+      // move" and "the page did not scroll" are two different claims.
+      docScrollTop: (document.scrollingElement || document.documentElement).scrollTop,
+      docScrollLeft: (document.scrollingElement || document.documentElement).scrollLeft,
       perspective: perspectiveOf(),
       cards: pos,
     });
@@ -371,6 +377,19 @@ for (const vp of opts.vps) {
       // tail is inside this run's release curve.
       await page.mouse.move(Math.round(w / 2), Math.round(h / 2));
       await page.waitForTimeout(1500);
+      // A dev server can reload the page under us -- an HMR update wipes the
+      // recorder and every later evaluate fails on a missing global. Re-install
+      // rather than crash, and record that it happened.
+      const alive = await page.evaluate(() => typeof window.__M0 !== "undefined");
+      if (!alive) {
+        run.errors.push(`${vp} ${seq} #${rep}: recorder was gone (page reloaded); reinstalled`);
+        if (opts.local) {
+          await page.waitForFunction(() => window.__ILG_QA__?.getState?.()?.ready === true,
+            undefined, { timeout: 180000 });
+        }
+        await page.waitForTimeout(opts.settle);
+        await page.evaluate(installRecorder);
+      }
       await page.evaluate(() => window.__M0.discover());
       await page.evaluate(() => window.__M0.start());
       const { tailMs } = await runSequence(page, cdp, seq, w, h);

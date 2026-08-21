@@ -30,6 +30,9 @@ stated here and no further hygiene commit is created to chase it.
 | `typographyCodeCommit` | `847347d` `v5-t1-source-exact-typography-code` |
 | `typographyEvidenceCommit` | `39ff3de` `v5-t1-source-exact-typography-evidence` |
 | `sourceContractRerunCommit` | `v5-t1-source-contract-tip-rerun` — the 36-viewport engineering contract re-run at `39ff3de` so the Typography gate's Source Contract row reads a verdict out of a file instead of asserting one. Evidence only; no product code. |
+| `motionForensicsCommit` | `990bcce` `v5-m0-target-motion-forensics` — the motion source contract, read out of the Target's bundle and replayed against it. No product code. |
+| `motionCodeCommit` | `v5-m1-source-exact-motion-code` |
+| `motionEvidenceCommit` | `v5-m1-source-exact-motion-evidence` |
 | `typographyAcceptCommit` | `v5-t1-source-exact-typography-accept` — product acceptance of T0 and T1, the typography freeze contract, and three evidence wording corrections. No product visual code. |
 | `reviewHeadAtDelivery` | the branch tip after the commits above; resolve with `git rev-parse HEAD`. A file cannot contain its own hash and no hygiene commit is created to chase one. |
 
@@ -42,7 +45,7 @@ stated here and no further hygiene commit is created to chase it.
 | Target Visual PASS | **NOT ASSERTED** |
 | T0 Render Loop Repair | **ACCEPTED** |
 | Typography | **ACCEPTED** — frozen, see the freeze contract below |
-| Motion / Pointer | **AUTHORISED**, in progress |
+| Motion / Pointer | **CANDIDATE** — source-exact model implemented, see below |
 | Optics / Media / Layout | **NOT AUTHORISED THIS ROUND**, unmodified |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
@@ -99,6 +102,25 @@ container query against that box — so type was scaled against a card that did
 not exist, by +113% at 667x375 down to −26% at 1920x1080. It was −1.4% at
 1440x900, the viewport the layer was tuned at, which is why it went unseen.
 See [`SOURCE_EXACT_TYPOGRAPHY.md`](SOURCE_EXACT_TYPOGRAPHY.md).
+
+## M0 / M1 — source-exact motion
+
+The Target's motion was read out of its bundle, not fitted to a recording. The
+whole model, its absences and the two things that make it feel the way it does
+are in [`SOURCE_EXACT_MOTION.md`](SOURCE_EXACT_MOTION.md); the contract itself
+is [`config/target-motion-source-v1.json`](../../config/target-motion-source-v1.json).
+
+What our previous model had and the Target does not: wheel handling of any
+kind, a maximum velocity, a stop threshold, an exponential inertia decay, a
+pointer-driven card tilt, a pointer-driven camera translation, a pointer-driven
+light, and pointer capture on the drag surface. The Target's scene contains no
+light object at all — its highlight moves because the camera orbits against a
+fixed environment.
+
+Our previous drag gain was 0.58 against the Target's 1.5, and the source-exact
+path inverted `scrollX` at the layout boundary because the legacy model
+subtracts the drag where the Target adds it. Both are gone: the model carries
+the Target's own sign from the gesture onward.
 
 ## FSX-A integration hardening
 

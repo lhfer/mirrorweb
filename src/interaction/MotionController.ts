@@ -1,7 +1,22 @@
 import { GRID, MOTION } from "../config";
+import { SourceExactMotion, type PanInfo } from "./SourceExactMotion";
 
 const TILT = (MOTION.tiltDeg * Math.PI) / 180;
 
+/**
+ * Motion for both paths.
+ *
+ * The legacy model -- drag gain, exponential inertia, wheel gain, card tilt,
+ * camera parallax, pointer easing, light travel -- is untouched and still runs
+ * v1, v2 and the bare route. `enableSourceExact()` swaps in the model read out
+ * of the Target's own bundle instead, which shares none of those parts: it has
+ * springs where the legacy path has an inertia integrator, no wheel handling
+ * at all, and no maximum speed or stop threshold.
+ *
+ * One class rather than two because everything downstream -- pose, recycling,
+ * QA readback -- consumes the same fields; splitting it would mean two
+ * readbacks and, sooner or later, two answers to the same question.
+ */
 export class MotionController {
   scrollX = 0;
   scrollY = 0;
@@ -24,6 +39,33 @@ export class MotionController {
   private pendingDragDt = 0;
   private pendingWheelX = 0;
   private pendingWheelY = 0;
+  /** Smoothed |velocity|, the Target's camera-dolly driver. Source-exact only. */
+  magnitude = 0;
+  private se: SourceExactMotion | null = null;
+  private nowMs = 0;
+
+  /** Swap in the Target's model. Irreversible for the lifetime of the app. */
+  enableSourceExact(): void {
+    this.se = new SourceExactMotion();
+  }
+
+  get sourceExact(): boolean {
+    return this.se !== null;
+  }
+
+  /** The spring's target, not its value. Source-exact only; 0 on the legacy path. */
+  get scrollTargetX(): number { return this.se ? this.se.targetX : 0; }
+  get scrollTargetY(): number { return this.se ? this.se.targetY : 0; }
+  /** Has the gesture passed the 3 px threshold? Source-exact only. */
+  get gestureStarted(): boolean { return this.se ? this.se.session.started : this.dragging; }
+
+  get dragSurfaceTakesPointerCapture(): boolean {
+    // The Target's PanSession listens on the window in the capture phase and
+    // never calls setPointerCapture, which is why lostpointercapture plays no
+    // part in its gesture. Reproduced, and exposed so a proof can assert it
+    // rather than read it out of a comment.
+    return this.se === null;
+  }
 
   reset() {
     this.scrollX = 0;
@@ -46,11 +88,105 @@ export class MotionController {
     this.pendingDragDt = 0;
     this.pendingWheelX = 0;
     this.pendingWheelY = 0;
+    this.magnitude = 0;
+    this.se?.reset();
   }
 
   setPointer(x: number, y: number) {
     this.pointerTargetX = clamp(x, -1, 1);
     this.pointerTargetY = clamp(y, -1, 1);
+    if (this.se) this.se.setPointer(this.pointerTargetX, this.pointerTargetY, this.nowMs);
+  }
+
+  /**
+   * Jump the smoothed pointer, for a harness that needs a fixed state.
+   *
+   * `setPointer` writes the smoothing TARGET, and `step` carries the applied
+   * pointer toward it -- so on a PAUSED page `setPointer` moves nothing, which
+   * the T0 render-loop evidence records deliberately. A paused sweep across
+   * pointer extremes therefore needs this: the spring value and the applied
+   * fields are written too, so the very next `renderOnce` draws the pose.
+   */
+  jumpPointer(x: number, y: number): void {
+    this.pointerTargetX = clamp(x, -1, 1);
+    this.pointerTargetY = clamp(y, -1, 1);
+    this.pointerX = this.pointerTargetX;
+    this.pointerY = this.pointerTargetY;
+    if (this.se) {
+      this.se.pointerX.reset(this.pointerTargetX);
+      this.se.pointerY.reset(this.pointerTargetY);
+      // The Target's source-exact pose carries no tilt, no camera translation
+      // and no light travel; only the orbit reads the pointer.
+      return;
+    }
+    this.rotX = this.pointerY * TILT;
+    this.rotY = -this.pointerX * TILT;
+    this.camX = this.pointerX * GRID.cellW * MOTION.parallax;
+    this.camY = -this.pointerY * GRID.cellH * MOTION.parallax;
+    this.lightX = -420 + this.pointerX * MOTION.lightTravel;
+    this.lightY = 720 - this.pointerY * MOTION.lightTravel * 0.7;
+  }
+
+  /* ---------------- source-exact gesture input ---------------- */
+
+  /** Raw pointer down, in client pixels. Source-exact only. */
+  pointerDown(x: number, y: number, tMs: number): void {
+    this.se?.session.down(x, y, tMs);
+    if (this.se) this.dragging = true;
+  }
+
+  /** Raw pointer move. Stored; the Target dispatches on the frame, not here. */
+  pointerMove(x: number, y: number): void {
+    this.se?.session.move(x, y);
+  }
+
+  /** Raw pointer up or cancel. The release fling is applied here, once. */
+  pointerUp(x: number, y: number, tMs: number, cancelled = false): void {
+    if (!this.se) return;
+    this.nowMs = tMs;
+    const info = this.se.session.up(x, y, cancelled);
+    this.dragging = false;
+    if (info) this.se.onPanEnd(info, tMs);
+  }
+
+  /**
+   * Jump the scroll, for a harness that needs a fixed state.
+   *
+   * On the source-exact path this has to move the spring as well as its
+   * target: writing only the target would leave the page sliding into the
+   * requested offset over the next second, and a capture taken during that
+   * would be of somewhere else.
+   */
+  setScroll(x: number, y: number): void {
+    this.scrollX = x;
+    this.scrollY = y;
+    // The legacy path keeps its old semantics exactly -- it wrote the two
+    // fields and nothing else, and a harness that relied on carrying a
+    // velocity across a jump must keep working.
+    if (!this.se) return;
+    this.velocityX = 0;
+    this.velocityY = 0;
+    this.se.targetX = x;
+    this.se.targetY = y;
+    this.se.scrollX.reset(x);
+    this.se.scrollY.reset(y);
+    this.se.magnitude.reset(0);
+    this.magnitude = 0;
+  }
+
+  /**
+   * Hand the model a release velocity, for a harness that needs a repeatable
+   * flick. It goes through the SAME path a real release takes -- the fling
+   * term -- rather than writing a velocity field the source-exact model does
+   * not have. Evidence recordings still use real input; this exists for fixed
+   * states, not for recordings.
+   */
+  setReleaseVelocity(x: number, y: number): void {
+    this.velocityX = x;
+    this.velocityY = y;
+    if (!this.se) return;
+    this.se.onPanEnd({ point: [0, 0], delta: [0, 0], offset: [0, 0], velocity: [x, y] },
+                     this.nowMs);
   }
 
   beginDrag() {
@@ -72,8 +208,10 @@ export class MotionController {
     this.dragging = false;
   }
 
-  step(dt: number) {
+  step(dt: number, nowMs?: number) {
     if (this.paused) return;
+    this.nowMs = nowMs ?? (this.nowMs + dt * 1000);
+    if (this.se) { this.stepSourceExact(this.nowMs); return; }
     this.consumeDrag(dt);
     this.consumeWheel();
     if (!this.dragging) this.integrateInertia(dt);
@@ -84,6 +222,33 @@ export class MotionController {
     this.camY = -this.pointerY * GRID.cellH * MOTION.parallax;
     this.lightX = -420 + this.pointerX * MOTION.lightTravel;
     this.lightY = 720 - this.pointerY * MOTION.lightTravel * 0.7;
+  }
+
+  /**
+   * One frame of the Target's model.
+   *
+   * The pan dispatch runs every frame while the gesture is alive, not only on
+   * frames that carried a move -- that is what makes the velocity decay to
+   * zero when a finger holds still, and with it the fling.
+   */
+  private stepSourceExact(nowMs: number) {
+    const se = this.se!;
+    const info: PanInfo | null = se.session.frame(nowMs);
+    if (info) se.onPan(info, nowMs);
+    se.advance(nowMs);
+    this.scrollX = se.scrollX.value;
+    this.scrollY = se.scrollY.value;
+    this.velocityX = se.scrollX.velocity;
+    this.velocityY = se.scrollY.velocity;
+    this.magnitude = se.magnitude.value;
+    this.dragging = se.session.active;
+    this.pointerX = se.pointerX.value;
+    this.pointerY = se.pointerY.value;
+    // The Target tilts nothing, translates nothing and moves no light. Held at
+    // zero rather than left stale, so a readback cannot report a pose the
+    // source-exact path never applies.
+    this.rotX = 0; this.rotY = 0; this.camX = 0; this.camY = 0;
+    this.lightX = -420; this.lightY = 720;
   }
 
   private consumeDrag(dt: number) {

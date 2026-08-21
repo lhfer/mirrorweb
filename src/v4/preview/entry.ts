@@ -25,6 +25,8 @@ export type GridQaV4 = {
   /** Monotonic count of frames drawn through `renderOnce`. */
   getRenderStamp: () => number;
   setPointer: (x: number, y: number) => void;
+  /** Move the APPLIED pointer, for a fixed state on a paused page. */
+  jumpPointer: (x: number, y: number) => void;
   setDebugMode: (mode: V4DebugMode) => void;
   setShellMode: (mode: V4ShellMode) => void;
   setMediaFitMode: (mode: MediaFitMode) => void;
@@ -40,6 +42,10 @@ export type GridQaV4 = {
   getRenderLayerState: () => Record<string, unknown>;
   /** Label element boxes and projected rects, for container alignment. */
   getLabelTruth: () => Record<string, unknown>;
+  /** The live motion model: springs, gesture, both cameras, the dolly. */
+  getMotionTruth: () => Record<string, unknown>;
+  /** Card mid-plane screen rects in pixels, through the label camera. */
+  getCardPlaneRects: () => Array<{ slotIndex: number; rectPx: number[] }>;
   getMetrics: () => Record<string, unknown>;
   getAssetState: () => Record<string, unknown>;
   getPoolState: () => Record<string, unknown>;
@@ -88,6 +94,7 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
       renderOnce: () => app.renderOnce(),
       getRenderStamp: () => app.getRenderStamp(),
       setPointer: (x, y) => app.setPointer(x, y),
+      jumpPointer: (x, y) => app.jumpPointer(x, y),
       setDebugMode: (mode) => app.setDebugMode(mode),
       setShellMode: (mode) => app.setShellMode(mode),
       setMediaFitMode: (mode) => app.setMediaFitMode(mode),
@@ -99,6 +106,8 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
       getGlassMeshTruth: () => app.getGlassMeshTruth(),
       getRenderLayerState: () => app.getRenderLayerState(),
       getLabelTruth: () => app.getLabelTruth(),
+      getMotionTruth: () => app.getMotionTruth(),
+      getCardPlaneRects: () => app.getCardPlaneRects(),
       getMetrics: () => app.getMetrics(),
       getAssetState: () => app.getAssetState(),
       getPoolState: () => app.getPoolState(),
