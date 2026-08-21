@@ -77,10 +77,13 @@ CLIPS = [("1440x900", "slow-horizontal-drag"), ("1440x900", "fast-flick"),
          ("390x844", "touch-drag-release"), ("390x844", "long-drag-multi-wrap"),
          ("390x844", "orientation-flip")]
 
-NUMBERS = ["target-culling-source.json", "coverage-truth.json", "slot-verdicts.json",
-           "edge-pop-in.json", "transform-writes.json", "performance.json",
-           "typography-regression.json", "motion-regression.json",
-           "source-contract.json", "MANIFEST.json"]
+# The COMPLETE public tree, verbatim -- including README.md: the public
+# MANIFEST lists it with a SHA, and a package that carries the manifest but
+# not a file it references fails its own audit.
+NUMBERS = ["README.md", "target-culling-source.json", "coverage-truth.json",
+           "slot-verdicts.json", "edge-pop-in.json", "transform-writes.json",
+           "performance.json", "typography-regression.json",
+           "motion-regression.json", "source-contract.json", "MANIFEST.json"]
 
 
 def main() -> int:
