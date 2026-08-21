@@ -53,7 +53,12 @@ def frame_for(width: float, height: float) -> dict:
 def arcs(sample_frame: dict, radius: float) -> dict[int, tuple[float, float]]:
     """Arc coordinates of every LIVE card in one recorded frame."""
     out: dict[int, tuple[float, float]] = {}
-    for code, x, y, z in sample_frame["cards"]:
+    for entry in sample_frame["cards"]:
+        # A card entry is [code, x, y, z] and, once the recorder started
+        # capturing screen rects for the wrap check, [code, x, y, z, left, top,
+        # width, height]. Only the world triple matters here, and a fixed-width
+        # unpack would refuse to read the newer traces.
+        code, x, y, z = entry[0], entry[1], entry[2], entry[3]
         if x is None:
             continue
         ny = max(-1.0, min(1.0, y / radius))

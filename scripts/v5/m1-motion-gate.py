@@ -68,6 +68,14 @@ FLOORS = {
     "orbitRad": 0.002,
     "settleMs": 16.6,           # two frames at the 120 Hz these pages run at
     "zeroMotionWorldUnits": 1.0,
+    # A scale-free fraction: one frame losing a tenth of the speed it had.
+    # Comfortably above the recovery's own noise, well below anything a viewer
+    # would read as a stop.
+    "speedDropFraction": 0.10,
+    # The camera's distance from the origin as a multiple of the orbit radius.
+    # The Target's dolly reaches 22% of it, so a page that dropped the dolly
+    # misses by twenty floors.
+    "dollyRatio": 0.01,
 }
 
 # A resize re-tiles the grid mid-run, so a pointwise trajectory comparison
@@ -140,7 +148,9 @@ def landmarks(run, obs):
                     "timeTo10PctMs": decay["timeTo10PctMs"],
                     "timeToVisualStopMs": decay["timeToVisualStopMs"],
                     "travelAfterRelease": decay["travelAfterRelease"],
-                    "maxFrameVelocityStep": decay["maxFrameVelocityStep"]})
+                    "maxFrameVelocityStep": decay["maxFrameVelocityStep"],
+                    "maxSingleFrameSpeedDropFraction":
+                        decay["maxSingleFrameSpeedDropFraction"]})
 
     pt = MT.pointer_track(run)
     if pt:
@@ -165,6 +175,23 @@ def landmarks(run, obs):
         if settle is not None:
             out["pointerSettle63Ms"] = settle
 
+    # The dolly, on its own row.
+    #
+    # Making the orbit recovery dolly-immune -- which it had to be -- removed
+    # the gate's only remaining view of the dolly: nothing else looked at the
+    # camera's distance from the origin, so a page that dropped the dolly from
+    # its CSS3D camera again, which is exactly the defect this round found,
+    # would pass every row. The camera rides an orbit of radius `perspective`,
+    # and the dolly is the only thing that takes it off that sphere.
+    persp = MT.frame_for(*run["viewport"])["perspective"]
+    dists = []
+    for sample in run["frames"]:
+        pos = MT.camera_position(sample)
+        if pos is not None:
+            dists.append(math.dist(pos, (0.0, 0.0, 0.0)) / persp)
+    if dists:
+        out["cameraDistanceOverPerspectivePeak"] = round(max(dists), 6)
+
     # The pointer spring's dynamics, on ANY stimulus.
     #
     # Drive the contract's pointer spring with this side's own recorded
@@ -185,6 +212,10 @@ def landmarks(run, obs):
     return out
 
 
+# Landmarks where only an EXCESS is a defect. Everything else is compared
+# two-sided, because a difference in either direction is a difference.
+ONE_SIDED_UPPER = {"maxSingleFrameSpeedDropFraction"}
+
 LANDMARK_UNIT = {
     "totalX": "travelWorldUnits", "totalY": "travelWorldUnits",
     "followRatioX": "followRatio", "followRatioY": "followRatio",
@@ -194,10 +225,12 @@ LANDMARK_UNIT = {
     "timeToVisualStopMs": "decayMs",
     "travelAfterRelease": "travelWorldUnits",
     "maxFrameVelocityStep": "releaseVelocity",
+    "maxSingleFrameSpeedDropFraction": "speedDropFraction",
     "orbitYawMin": "orbitRad", "orbitYawMax": "orbitRad",
     "orbitPitchMin": "orbitRad", "orbitPitchMax": "orbitRad",
     "pointerSettle63Ms": "settleMs",
     "pointerModelResidualRad": "orbitRad",
+    "cameraDistanceOverPerspectivePeak": "dollyRatio",
 }
 
 
@@ -252,6 +285,20 @@ def wrap_continuity(run, obs):
                                                   "moved": round(d, 3),
                                                   "fieldMoved": round(field, 3)}
     # --- the screen-pixel measure the brief actually asks for ---------------
+    #
+    # Second attempt. The first one compared each card's screen movement with
+    # the MEDIAN card's, and flagged anything more than 2 px above it -- which
+    # under perspective is just parallax: a near card legitimately moves faster
+    # on screen than the median. It fired ~7,900 times on the TARGET and ~8,600
+    # on ours out of ~165,000 checks each, worst excess ~8 px on both. Equal
+    # firing on the page that is correct by definition, again.
+    #
+    # A wrap is a DISCRETE event, so find it as one: the card's world position
+    # jumps by a full period while the field steps by a frame's worth. That is
+    # what the world-unit pass above already identifies, reliably. The only
+    # question the brief asks is whether such a jump was ever VISIBLE -- so for
+    # each card that wrapped, ask whether its rect was inside the viewport in
+    # both frames, and if it was, measure how far it moved on screen.
     px_checked = px_jumps = 0
     px_worst, px_worst_at = 0.0, None
     have_rects = False
@@ -261,8 +308,7 @@ def wrap_continuity(run, obs):
             continue
         w, h = fb["w"], fb["h"]
 
-        def on_screen(c):
-            # [code, x, y, z, left, top, width, height]
+        def rect_centre(c):
             if len(c) < 8 or c[4] is None:
                 return None
             left, top, cw, ch = c[4], c[5], c[6], c[7]
@@ -270,23 +316,35 @@ def wrap_continuity(run, obs):
                 return None
             return (left + cw / 2.0, top + ch / 2.0)
 
-        a = {c[0]: p for c in fa["cards"] if (p := on_screen(c)) is not None}
-        b = {c[0]: p for c in fb["cards"] if (p := on_screen(c)) is not None}
-        shared = a.keys() & b.keys()
-        if len(shared) < 4:
+        wa = {c[0]: (c[1], c[2], c[3]) for c in fa["cards"] if c[1] is not None}
+        wb = {c[0]: (c[1], c[2], c[3]) for c in fb["cards"] if c[1] is not None}
+        shared_w = wa.keys() & wb.keys()
+        if len(shared_w) < 4:
             continue
-        have_rects = True
-        moves = sorted(math.dist(a[c], b[c]) for c in shared)
-        field = moves[len(moves) // 2]
-        for c in shared:
-            d = math.dist(a[c], b[c])
+        moves = sorted(math.dist(wa[c], wb[c]) for c in shared_w)
+        field_w = moves[len(moves) // 2]
+        limit_w = max(field_w * 4.0, field_w + 40.0)
+
+        ra = {c[0]: p for c in fa["cards"] if (p := rect_centre(c)) is not None}
+        rb = {c[0]: p for c in fb["cards"] if (p := rect_centre(c)) is not None}
+        if ra and rb:
+            have_rects = True
+        screen_moves = sorted(math.dist(ra[c], rb[c]) for c in ra.keys() & rb.keys())
+        field_px = screen_moves[len(screen_moves) // 2] if screen_moves else 0.0
+
+        for c in shared_w:
+            if math.dist(wa[c], wb[c]) <= limit_w:
+                continue                      # not a wrap
+            if c not in ra or c not in rb:
+                continue                      # wrapped off screen: invisible, correct
             px_checked += 1
-            if d - field > 2.0:
+            d = math.dist(ra[c], rb[c])
+            if d - field_px > 2.0:
                 px_jumps += 1
-                if d - field > px_worst:
-                    px_worst, px_worst_at = d - field, {"frame": k, "code": c,
-                                                        "movedPx": round(d, 3),
-                                                        "fieldMovedPx": round(field, 3)}
+                if d - field_px > px_worst:
+                    px_worst, px_worst_at = d - field_px, {
+                        "frame": k, "code": c, "movedPx": round(d, 3),
+                        "fieldMovedPx": round(field_px, 3)}
 
     return {"framePairs": len(frames) - 1, "cardFrameChecks": checked,
             "worldUnitFlags": jumps, "worstExcessWorldUnits": round(worst, 3),
@@ -294,7 +352,7 @@ def wrap_continuity(run, obs):
             "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a "
                              "correct recycle registers here -- it does on the Target too",
             "screenRectsAvailable": have_rects,
-            "onScreenCardFrameChecks": px_checked,
+            "wrapsThatHappenedWhileOnScreen": px_checked,
             "visibleTeleports": px_jumps,
             "worstExcessPx": round(px_worst, 3), "worstAt": px_worst_at}
 
@@ -409,6 +467,13 @@ if __name__ == "__main__":
                 continue
             delta = abs(ours - spec["targetMean"])
             ok = delta <= spec["threshold"]
+            if name in ONE_SIDED_UPPER:
+                # Smaller is never worse. "No abrupt stop" is a claim about our
+                # own curve: a page that loses LESS speed in a single frame
+                # than the Target does is not stopping abruptly, and failing it
+                # for that would be failing it for being smoother. Only an
+                # excess counts.
+                ok = (ours - spec["targetMean"]) <= spec["threshold"]
             row = {"viewport": key[0], "sequence": key[1], "landmark": name,
                    "target": round(spec["targetMean"], 5), "ours": round(ours, 5),
                    "delta": round(delta, 5),
@@ -420,6 +485,53 @@ if __name__ == "__main__":
             compare_rows.append(row)
             if not ok:
                 failures.append(row)
+
+    # ---- systematic sign, across cells -----------------------------------
+    #
+    # The check shape this round was missing, and the reason a real defect
+    # survived forty rows.
+    #
+    # Every other row asks "is this cell within threshold". A difference that
+    # is SMALL in every cell but lands on the SAME SIDE in every cell is not
+    # noise -- it is a defect whose size happens to sit under the floor. The
+    # one-frame render lead was exactly that: latencyMs was negative in 40 of
+    # 40 pairs and failed none of them.
+    #
+    # Two conditions, both required, so this cannot fire on a rounding bias:
+    # the sign must be lopsided beyond what a fair coin would give (a two-sided
+    # sign test at p < 0.001), AND the typical difference must exceed the
+    # TARGET'S OWN repeatability on that landmark, so a systematic difference
+    # smaller than the Target's own spread is reported rather than gated.
+    systematic_rows = []
+    by_landmark = {}
+    for r in compare_rows:
+        if "pass" not in r or r.get("target") is None or r.get("ours") is None:
+            continue
+        by_landmark.setdefault(r["landmark"], []).append(r)
+    for name, rows in sorted(by_landmark.items()):
+        diffs = [r["ours"] - r["target"] for r in rows]
+        n = sum(1 for d in diffs if abs(d) > 1e-12)
+        if n < 8:
+            continue
+        k = sum(1 for d in diffs if d > 0)
+        tail = min(k, n - k)
+        p_val = min(1.0, 2.0 * sum(math.comb(n, i) for i in range(tail + 1)) / (2 ** n))
+        med_abs = statistics.median([abs(d) for d in diffs])
+        med_rep = statistics.median([r["targetRepeatability"] for r in rows])
+        lopsided = p_val < 0.001
+        bigger = med_abs > med_rep
+        row = {"landmark": name, "cells": n, "oursHigherIn": k,
+               "signTestP": round(p_val, 8),
+               "medianAbsDelta": round(med_abs, 6),
+               "medianTargetRepeatability": round(med_rep, 6),
+               "lopsided": lopsided, "largerThanTargetOwnSpread": bigger,
+               "pass": not (lopsided and bigger)}
+        systematic_rows.append(row)
+        if not row["pass"]:
+            failures.append({**row, "viewport": "ALL", "sequence": "ALL",
+                             "target": None, "ours": None,
+                             "delta": row["medianAbsDelta"],
+                             "threshold": row["medianTargetRepeatability"]})
 
     # ---- direction and axis signs ----------------------------------------
     #
@@ -563,6 +675,18 @@ if __name__ == "__main__":
         "rows": [r for r in compare_rows
                  if r.get("landmark") in ("totalX", "totalY", "followRatioX", "followRatioY",
                                           "latencyMs")],
+        "systematicSign": {
+            "what": "landmarks whose difference lands on the SAME SIDE in cell after cell",
+            "why": "a difference that is small in every cell but never changes sign is a defect "
+                   "sitting under the floor, not noise. The one-frame render lead this round was "
+                   "exactly that: latencyMs was negative in 40 of 40 pairs and failed none of "
+                   "them. No per-cell threshold can see it.",
+            "rule": "FAIL when the sign is lopsided beyond a two-sided sign test at p < 0.001 AND "
+                    "the median absolute difference exceeds the Target's own median repeatability "
+                    "on that landmark. Both are required, so a systematic difference smaller than "
+                    "the Target's own spread is reported and not gated.",
+            "rows": systematic_rows,
+        },
         "axisSigns": {
             "what": "which way each axis moved, and whether the input axes drove the output "
                     "axes the same way on both sides",
@@ -636,9 +760,19 @@ if __name__ == "__main__":
     w("wrap-continuity.json", {
         "what": "does any card that is ON SCREEN in two consecutive frames jump by more than "
                 "2 px beyond what the whole field moved?",
-        "rule": "screen-space, from each card's own getBoundingClientRect(), judged only while "
-                "the card's rect intersects the viewport in BOTH frames; allowance is the "
-                "field's median screen step + 2.0 px, which is the product brief's number",
+        "rule": "a wrap is found as the DISCRETE event it is -- a card whose world position "
+                "jumps by a full period while the field steps by a frame's worth -- and then "
+                "asked whether it was VISIBLE: was the card's rect inside the viewport in both "
+                "frames, and if so did it move more than 2 px beyond what the field moved on "
+                "screen. 2.0 px is the product brief's number.",
+        "twoEarlierVersionsWereWrong": "the first compared world-unit movement for any un-hidden "
+                "card, and an un-hidden card can be far off screen, so it flagged correct "
+                "recycles -- 14 of them on the TARGET. The second compared each card's SCREEN "
+                "movement against the median card's, which under perspective is just parallax: a "
+                "near card legitimately moves faster than the median. It fired ~7,900 times on "
+                "the Target and ~8,600 on ours out of ~165,000 checks each. Both are recorded "
+                "here because both fired on the page that is correct by definition, which is the "
+                "only reliable way to catch an instrument measuring the wrong thing.",
         "supersedes": "the world-unit version, which flagged correct recycles -- fourteen of them "
                       "on the TARGET, which is correct by definition. Its count is still reported "
                       "per row as worldUnitFlags so the substitution is visible.",
@@ -682,7 +816,8 @@ if __name__ == "__main__":
                              or sign_fail or our_real_errors) else "FAIL"
     summary = {
         "verdict": verdict,
-        "verdictInputs": ["landmark comparisons", "axis signs", "wheel absence (our side)",
+        "verdictInputs": ["landmark comparisons", "systematic sign across cells", "axis signs",
+                          "wheel absence (our side)",
                           "visible wrap teleports (our side)",
                           "gestures that never came to rest (our side)",
                           "console and page errors (our side)"],
@@ -691,6 +826,8 @@ if __name__ == "__main__":
         "notMeasurableOnBothSides": [r for r in compare_rows if r.get("status")],
         "instrumentUnreadableRuns": unreadable,
         "axisSigns": {"total": len(sign_rows), "failures": sign_fail},
+        "systematicSign": {"total": len(systematic_rows),
+                           "failures": [r for r in systematic_rows if not r["pass"]]},
         "wheel": {"passed": sum(1 for r in wheel_rows if r["pass"]), "total": len(wheel_rows),
                   "ourFailures": wheel_fail},
         "visibleTeleports": sum(r["visibleTeleports"] for r in wrap_rows),

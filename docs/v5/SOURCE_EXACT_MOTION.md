@@ -237,6 +237,34 @@ thing in frame; the cross-side correlation is reported and not gated, and how fa
 the highlight travels and how bright it is are left to the optics stage, which
 has not run.
 
+## A defect found in a frozen file, and left alone
+
+Motion made it visible, so it is recorded here rather than left for someone to
+rediscover.
+
+Our page keeps roughly **81 label elements un-hidden per frame** at 1440×900
+where the Target keeps about **16**. The reason is that `TileLabelLayer` has
+exactly one visibility rule — a back-face test, `_toCam.dot(_dir) > 0` — while
+the Target culls on screen coverage. Its rule is spelled out corner by corner in
+the bundle: project the card's four quad corners through the **dolly-free**
+camera, discard any corner outside `-1 < z < 1`, reject the card if the screen
+AABB area is ≤ 1, and draw only if that AABB overlaps the viewport inflated by
+**64 px**. It computes a second flag in the same pass — a strict-viewport
+overlap requiring at least half the AABB area — which we do not compute at all.
+
+This is not a motion defect and it is not fixed here. `TileLabelLayer` is
+frozen by the product decision that opened this stage, and the right response to
+finding a defect in a frozen file is to say so, not to reach into it. Two
+consequences are worth stating plainly, because both touch this stage's numbers:
+
+- a five-fold difference in how many DOM elements have their transform written
+  and their style recomputed every frame, on exactly the frames whose timing
+  this gate measures;
+- the world-unit wrap check counted "un-hidden" cards, and un-hidden means
+  something different on the two pages — which is part of why it read 309 on
+  our side and 14 on the Target's before it was replaced by the screen-space
+  test.
+
 ## Resize
 
 The Target's scroll, velocity and pointer are module-scope motion values that

@@ -105,8 +105,11 @@ def replay(run: dict) -> dict:
         info = model.session.frame(t)
         if info is not None:
             pending.append(("pan", info, t))
-        for kind, i, at in pending:
-            (model.on_pan if kind == "pan" else model.on_pan_end)(i, at)
+        for kind, i, _at in pending:
+            # Stamped with the FRAME's clock, not the event's. The Target has
+            # no out-of-band path: a release is dispatched by the same frame
+            # loop as a pan, so it retargets on the frame like everything else.
+            (model.on_pan if kind == "pan" else model.on_pan_end)(i, t)
         pending = []
 
         model.advance(t)
@@ -190,18 +193,25 @@ def decay_stats(t, v, release_t):
     def vel(i):
         a = max(i0, i - 1); b = min(len(t) - 1, i + 1)
         return (v[b] - v[a]) / ((t[b] - t[a]) / 1000.0) if t[b] != t[a] else 0.0
-    v0 = max((abs(vel(i)) for i in range(i0, min(i0 + 4, len(t)))), default=0.0)
+    window = range(i0, min(i0 + 4, len(t)))
+    v0 = max((abs(vel(i)) for i in window), default=0.0)
     if v0 <= 0:
         return None
+    # WHERE the peak is, not just how big it is. A curve that RAMPS UP after
+    # release is already below half its own peak on its first sample, so a scan
+    # that starts at the release instant answers "0 ms" for a page that has not
+    # decayed at all. That is what it did: 1.7 ms against the Target's 180 ms,
+    # on a page whose curve then tracked the Target's for the next 100 ms.
+    i_peak = max(window, key=lambda i: abs(vel(i)))
 
     def time_to(frac):
-        for i in range(i0, len(t)):
+        for i in range(i_peak, len(t)):
             if abs(vel(i)) <= frac * v0:
                 return round(t[i] - release_t, 2)
         return None
 
     def time_to_still(eps_units_per_s):
-        for i in range(i0, len(t)):
+        for i in range(i_peak, len(t)):
             if all(abs(vel(j)) <= eps_units_per_s for j in range(i, min(i + 5, len(t)))):
                 return round(t[i] - release_t, 2)
         return None
@@ -285,6 +295,14 @@ def release_time(run):
 if __name__ == "__main__":
     args = {a.split("=", 1)[0][2:]: a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--")}
     trace = json.loads(Path(args["trace"]).read_text())
+    # The Target is captured one viewport per process -- the harness holds every
+    # frame in memory until it writes, and four viewports in one process
+    # exhausts Node's heap. The shards are merged here; the split changes
+    # nothing a run measures.
+    for extra in [e for e in args.get("extra", "").split(",") if e]:
+        e = json.loads(Path(extra).read_text())
+        trace["runs"].extend(e["runs"])
+        trace.setdefault("errors", []).extend(e.get("errors", []))
     out_path = Path(args["out"])
 
     per_run = []

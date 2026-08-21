@@ -89,6 +89,7 @@ export class MotionController {
     this.pendingWheelX = 0;
     this.pendingWheelY = 0;
     this.magnitude = 0;
+    this.pendingRelease = null;
     this.se?.reset();
   }
 
@@ -147,14 +148,28 @@ export class MotionController {
     this.se?.session.move(x, y);
   }
 
-  /** Raw pointer up or cancel. The release fling is applied here, once. */
+  /**
+   * Raw pointer up or cancel. The gesture ends here; the FLING does not.
+   *
+   * Applying the fling in the event handler advances the springs to the event
+   * timestamp, off the frame grid -- so the next frame publishes a value that
+   * already contains a partial extra step, and the release reads as an
+   * instantaneous velocity spike instead of a ramp. Measured on a touch
+   * release at 1440x900: the first frame after release came out at -7969
+   * against the Target's -2889, settling back to agreement within about 20 ms.
+   *
+   * The Target has no out-of-band path at all. Its pan end is dispatched by
+   * the same frame loop as everything else, so the release is just another
+   * frame's retarget. Recorded here and applied on the next frame.
+   */
   pointerUp(x: number, y: number, tMs: number, cancelled = false): void {
     if (!this.se) return;
-    this.nowMs = tMs;
     const info = this.se.session.up(x, y, cancelled);
     this.dragging = false;
-    if (info) this.se.onPanEnd(info, tMs);
+    if (info) this.pendingRelease = info;
   }
+
+  private pendingRelease: PanInfo | null = null;
 
   /**
    * Jump the scroll, for a harness that needs a fixed state.
@@ -254,6 +269,11 @@ export class MotionController {
     se.setPointer(this.pointerTargetX, this.pointerTargetY, nowMs);
     const info: PanInfo | null = se.session.frame(nowMs);
     if (info) se.onPan(info, nowMs);
+    // The release, on the frame -- never in the event handler.
+    if (this.pendingRelease) {
+      se.onPanEnd(this.pendingRelease, nowMs);
+      this.pendingRelease = null;
+    }
     se.advance(nowMs);
     const p = se.published;
     this.scrollX = p.scrollX;
