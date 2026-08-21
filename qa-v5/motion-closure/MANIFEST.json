@@ -2,11 +2,11 @@
   "stage": "motion-closure",
   "repository": "lhfer/mirrorweb",
   "branch": "rebuild/liquid-glass-v5-source-exact",
-  "capturedAtHead": "30dcf64",
+  "capturedAtHead": "631b974",
   "capturedAtHeadMeaning": "the commit every trace, gate and recording in this directory was captured at. It is a fact this file can hold.",
   "reviewHead": "resolve with `git rev-parse HEAD`. A file cannot contain the hash of the commit that carries it, so this is NOT stated here and no hygiene commit is created to chase one. capturedAtHead and reviewHead are separate facts and neither stands in for the other.",
   "route": "/?qa=1&composition=sourceExact",
-  "captureTimestampUtc": "2026-08-21T13:01:45Z",
+  "captureTimestampUtc": "2026-08-21T13:05:11Z",
   "fixedCaptureConditions": {
     "quality": "high (pinned, adaptive sampler off)",
     "mediaTimeSeconds": 2,
@@ -28,8 +28,8 @@
   "productException": "qa-v5/motion-closure/product-exception-candidate.json",
   "privateReviewPackage": {
     "path": "qa-v5/private/motion-closure-review.zip",
-    "bytes": 44709137,
-    "sha256": "8b6487f158cbe01927fc9c2ad9087ccc19741599b6f670e8089c2700ee4c1112",
+    "bytes": 44710971,
+    "sha256": "19663c219395f13d12b64bd9d037a99156a9479f2063b78857e7d24c68183e6f",
     "gitIgnored": true,
     "containsTargetPixels": true
   },
@@ -41,8 +41,13 @@
   "files": [
     {
       "path": "qa-v5/motion-closure/README.md",
-      "bytes": 10231,
-      "sha256": "5d3ce62d1f922bb1ee14dbe0e5c8adad67c30f10f58c3e0ec085bc60a7cd7d23"
+      "bytes": 10275,
+      "sha256": "21fe1ca3112f13de675444b7817552e84c5dc39805300045df35db9c568b4981"
+    },
+    {
+      "path": "qa-v5/motion-closure/card-label-motion.json",
+      "bytes": 13546,
+      "sha256": "679fdc5fa3b9ecf6852a937e4fb331875b28b91eb4eb98f5bac69497a6d461de"
     },
     {
       "path": "qa-v5/motion-closure/continuity-and-input.json",

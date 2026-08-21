@@ -232,6 +232,12 @@ stage_frozen() {
   # Repo-RELATIVE paths: the aggregator echoes its inputs into the evidence, and
   # an absolute path is a local username in a public file. The hygiene stage
   # fails on one; this is what keeps it from having to.
+  say "  card and label under motion"
+  node scripts/v5/m1-card-label-motion.mjs '--origin=http://127.0.0.1:5281' \
+    "--out=qa-v5/motion-closure/card-label-motion.json" > "$LOGS/clm.log" 2>&1 \
+    || { tail -20 "$LOGS/clm.log"; die "m1-card-label-motion"; }
+  need_file "$OUT/card-label-motion.json"
+  tail -2 "$LOGS/clm.log"
   python3 scripts/v5/m1-typography-regression.py \
     "--alignment=artifacts/motion/m2-typography/container-alignment.json" \
     "--ink=artifacts/motion/m2-typography/label-ink.json" \
