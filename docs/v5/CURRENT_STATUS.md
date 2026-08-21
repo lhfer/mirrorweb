@@ -30,6 +30,7 @@ stated here and no further hygiene commit is created to chase it.
 | `typographyCodeCommit` | `847347d` `v5-t1-source-exact-typography-code` |
 | `typographyEvidenceCommit` | `39ff3de` `v5-t1-source-exact-typography-evidence` |
 | `sourceContractRerunCommit` | `v5-t1-source-contract-tip-rerun` — the 36-viewport engineering contract re-run at `39ff3de` so the Typography gate's Source Contract row reads a verdict out of a file instead of asserting one. Evidence only; no product code. |
+| `typographyAcceptCommit` | `v5-t1-source-exact-typography-accept` — product acceptance of T0 and T1, the typography freeze contract, and three evidence wording corrections. No product visual code. |
 | `reviewHeadAtDelivery` | the branch tip after the commits above; resolve with `git rev-parse HEAD`. A file cannot contain its own hash and no hygiene commit is created to chase one. |
 
 ### Status
@@ -39,8 +40,10 @@ stated here and no further hygiene commit is created to chase it.
 | SourceExact Composition Baseline | **ACCEPTED** |
 | Engineering PASS | **YES** |
 | Target Visual PASS | **NOT ASSERTED** |
-| Typography | **CANDIDATE — READY FOR TYPOGRAPHY PRODUCT REVIEW**, not accepted |
-| Motion / Optics | **NOT STARTED**, unmodified |
+| T0 Render Loop Repair | **ACCEPTED** |
+| Typography | **ACCEPTED** — frozen, see the freeze contract below |
+| Motion / Pointer | **AUTHORISED**, in progress |
+| Optics / Media / Layout | **NOT AUTHORISED THIS ROUND**, unmodified |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
 
@@ -69,7 +72,7 @@ canvas. That is why media-only and glass+media came out byte identical and the
 | | |
 | --- | --- |
 | Render loop proof | **PASS 22/22** — 165 frames in 1200 ms with the sampler off; it was 0 |
-| Hook redraw | every named hook advances a render stamp synchronously; a paused page does not repaint on its own |
+| Hook redraw | every named hook advances a render stamp synchronously; with no QA hook called the explicit render stamp stays unchanged between two reads. The stamp counts `renderOnce()` calls, so it says the explicit draw path did not run -- not that the browser did not composite, which the stamp cannot see |
 | Media-only vs glass+media | 70–84% of pixels differ, mean delta 11.6–18.1; was byte identical |
 | Recordings | 24/24 unique frames desktop and mobile; offsets read back from the engine |
 | Quality invariance | **PASS 57/57**, off the real mesh: bbox 656.64 x 492.48 (exactly 4:3), 5570/3242/1850 vertices, a new geometry per level, a redrawn silhouette each |
@@ -83,11 +86,11 @@ the quality sweep. Its route proof and source contract stand.
 | --- | --- |
 | Typography contract | **PASS 29/29** measured Target properties, at all seven viewports |
 | Container alignment | **PASS 47/47** — worst label corner error 0.011 px against the card mid-plane |
-| Clipping / depth | **PASS 30/30** — Target's clip structure reproduced; 1199 sampled pixels, 0 wrong depth |
+| Clipping / depth | **PASS 30/30** — Target's clip structure reproduced; 1199 sampled pixels, 0 wrong depth. **Scope:** `actualOverlappingCardPlaneSamples = 0`; with no two card planes observed overlapping on screen this establishes the clip structure and single-card interior ordering, not real occlusion ordering. Carried to the motion stage |
 | Label ink outside card silhouettes | **0** at every viewport |
 | Source contract, re-run at this tip | **PASS 36/36** — slot world 0.0, orientation 1.21e-6 deg, projected corner 0.0 px, engine vs Target DOM 0.005366 world; `npm run v5:target-layout-source` **PASS 14/14** |
 | Viewport gate | **PASS 7/7 viewports, 13/13 engineering** |
-| Title baseline | matches the Target to three decimals at all seven viewports |
+| Title box bottom offset | `titleBoxBottomOffsetPct` -- card bottom to the bottom EDGE of the title box, as a percentage of card height -- matches the Target to three decimals at all seven viewports. Renamed from `titleBaseline`: the instrument reads boxes, not font metrics, so no baseline was ever measured |
 | Build | PASS |
 
 The defect: `TileLabelLayer` sized every label to the fixed `TILE` box while the
@@ -279,7 +282,8 @@ scale, `radiusY`, the aspect phase threshold, the fitted `restY0` and the fixed
 9x9 world grid, and makes `TILE`, `GRID.cellW` and `GRID.radius` irrelevant to
 layout: the source contract replaces all of them.
 
-Typography, Motion and Optics remain **NOT STARTED**.
+Typography is **ACCEPTED and frozen**; Motion is authorised and in progress;
+Optics remains **NOT STARTED**.
 
 ### Superseded F2.7 decisions
 
@@ -293,12 +297,32 @@ Typography, Motion and Optics remain **NOT STARTED**.
    the composition can be rebuilt on the Target's own numbers rather than fitted
    to them. Forensics makes that a transcription job rather than a fit.
 
-Typography, Motion and Optics remain **NOT STARTED**.
+## Typography freeze contract
+
+Accepted by the product owner at `34ad481` and frozen from that commit. Each
+line names the artefact that holds it, so a later change is a diff and not an
+argument. Changing any of these needs a new product authorisation.
+
+| frozen | where it lives | what fixes it |
+| --- | --- | --- |
+| SourceExact `TileLabelLayer` plumbing | [`src/ui/TileLabelLayer.ts`](../../src/ui/TileLabelLayer.ts) | `attach(grid, mode, frame)` / `setFrame(frame)` / `applyBox()`; the frame is the single source of the label box |
+| Scheme A: element = `frame.planeWidth` x `frame.planeHeight`, object scale = 1 | `applyBox()` | the Target's label element width equals the card plane width and its `matrix3d` basis columns are unit length, at all seven viewports |
+| SourceExact `TYPE_Z = 0` | `TYPE_Z_SOURCE_EXACT` | radial distance from the sphere centre to each Target label = R within 1.2e-3 world units, across 36 viewports |
+| `.tile-card-se` / `.se-*` typography CSS | [`src/style.css`](../../src/style.css) | 29/29 measured Target properties, at seven viewports, one instrument both sides |
+| Rule / title / deck DOM order | `bindSlotCard` | the Target's rule PRECEDES the title; our earlier markup had title, rule, deck |
+| Clip layer | `.se-clip` | one absolute layer at the card box, `overflow: hidden`, no clip-path, no radius |
+| Footer typography | `.experiment-link`, `.cta-link`, `.cta-arrow`, `.brand-word` | the Target's own footer computed styles |
+
+Scope carried forward rather than claimed: `actualOverlappingCardPlaneSamples`
+is **0**, so the depth result establishes the clip structure and single-card
+interior ordering only. Motion moves the planes; the count is re-taken there.
 
 ## Frozen systems
 
-Typography and TileLabelLayer visual parameters, MotionController,
-InputController, MOTION, LiquidGlassMaterialV4, refraction, dispersion, blur,
-reflection, environment, video focus and MediaFit, grid pool structure,
-TILE.width, TILE.height, GRID.cellW, the horizontal radius, and the accepted F1
-are all unchanged.
+TileLabelLayer plumbing, the typography CSS above, LiquidGlassMaterialV4,
+refraction, dispersion, blur, reflection, environment, video focus and MediaFit,
+grid pool structure, TILE.width, TILE.height, GRID.cellW, the horizontal radius,
+and the accepted F1 are all unchanged.
+
+`MotionController`, `InputController`, `MOTION` and the source-exact pointer /
+pose mapping are **UNFROZEN** for the authorised Motion stage. Nothing else is.

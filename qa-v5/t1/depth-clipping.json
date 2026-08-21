@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-08-20T21:11:42.682Z",
+  "startedAt": "2026-08-21T03:45:33.370Z",
   "targetReference": "qa-v5/t1/target-typography-contract.json (clip layer: overflow hidden, clip-path none, border-radius 0, at the full card box)",
   "viewports": [
     {
@@ -754,17 +754,20 @@
         {
           "probes": 51,
           "decided": 51,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
           "probes": 59,
           "decided": 59,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
           "probes": 57,
           "decided": 57,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         }
       ]
     },
@@ -822,17 +825,20 @@
         {
           "probes": 51,
           "decided": 51,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
           "probes": 52,
           "decided": 52,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
           "probes": 48,
           "decided": 48,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         }
       ]
     },
@@ -890,17 +896,20 @@
         {
           "probes": 42,
           "decided": 42,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
           "probes": 48,
           "decided": 48,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
           "probes": 52,
           "decided": 52,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         }
       ]
     },
@@ -958,17 +967,20 @@
         {
           "probes": 51,
           "decided": 51,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
           "probes": 43,
           "decided": 43,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
           "probes": 42,
           "decided": 42,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         }
       ]
     },
@@ -1026,17 +1038,20 @@
         {
           "probes": 102,
           "decided": 102,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
           "probes": 105,
           "decided": 105,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
           "probes": 93,
           "decided": 93,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         }
       ]
     },
@@ -1094,17 +1109,20 @@
         {
           "probes": 51,
           "decided": 51,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
           "probes": 48,
           "decided": 48,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
           "probes": 51,
           "decided": 51,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         }
       ]
     },
@@ -1162,17 +1180,20 @@
         {
           "probes": 51,
           "decided": 51,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
           "probes": 51,
           "decided": 51,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
           "probes": 51,
           "decided": 51,
-          "wrong": 0
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
         }
       ]
     },
@@ -1207,6 +1228,8 @@
   ],
   "consoleErrors": [],
   "pageErrors": [],
+  "actualOverlappingCardPlaneSamples": 0,
+  "scope": "PROVEN: the clip STRUCTURE matches the Target's, and within every sampled card interior the topmost label is that card's own. NOT PROVEN: real occlusion ordering. actualOverlappingCardPlaneSamples = 0 -- no two card planes were observed overlapping on screen in any tested configuration, so the rear-card-text-over-front-card case was never exercised. Carried forward to the motion stage, where the pointer orbit and scroll offsets move the planes.",
   "passed": 30,
   "total": 30,
   "verdict": "PASS"

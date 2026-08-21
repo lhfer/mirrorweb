@@ -73,7 +73,7 @@ if __name__ == "__main__":
                         "match at all seven viewports",
             "labelContainerCornerErrorPx": {r["viewport"]: r["labelContainerCornerErrorPx"]
                                             for r in gate["viewports"]},
-            "titleBaselinePctFromCardBottom": contract["reported"]["titleBaselineFromCardBottomPct"],
+            "titleBoxBottomOffsetPct": contract["reported"]["titleBoxBottomOffsetPct"],
             "labelInkOutsideCardSilhouette": {r["viewport"]: r["labelInkOutsideCardSilhouette"]
                                               for r in gate["viewports"]},
             "residual": "none measured on any gated property",

@@ -117,7 +117,11 @@ def measure(doc, side):
         if title and title.get("localBox"):
             b = title["localBox"]
             row["titleLocalBox"] = b
-            row["titleBaselineFromBottomPct"] = round((H - (b[1] + b[3])) / H * 100, 3)
+            # The BOTTOM EDGE OF THE TITLE BOX, as a percentage of card height --
+            # not a typographic baseline. `b[1] + b[3]` is the box bottom; no font
+            # metric is read anywhere in this instrument, so calling it a baseline
+            # claimed a measurement that was never taken.
+            row["titleBoxBottomOffsetPct"] = round((H - (b[1] + b[3])) / H * 100, 3)
             row["titleLineCount"] = title.get("lineCount")
         out[vp["id"]] = row
     return out
@@ -142,9 +146,11 @@ def reported_block(T, L):
     """
     return {
         "note": "text-dependent; reported for the visual gate, not asserted",
-        "titleBaselineFromCardBottomPct": {
-            v: {"target": T[v].get("titleBaselineFromBottomPct"),
-                "ours": L[v].get("titleBaselineFromBottomPct")} for v in VPS if v in T and v in L},
+        "titleBoxBottomOffsetPct": {
+            "what": "distance from the card bottom to the BOTTOM EDGE of the title box, as a percentage of card height. Not a font baseline: this instrument reads boxes, not font metrics.",
+            "perViewport": {
+                v: {"target": T[v].get("titleBoxBottomOffsetPct"),
+                    "ours": L[v].get("titleBoxBottomOffsetPct")} for v in VPS if v in T and v in L}},
         "titleLineCount": {
             v: {"target": T[v].get("titleLineCount"), "ours": L[v].get("titleLineCount")}
             for v in VPS if v in T and v in L},

@@ -5,9 +5,9 @@
   "head": "39ff3ded0706780771c020288235f9c87c740ae6",
   "codeCommit": "847347d",
   "evidenceCommit": "this commit",
-  "headSemantics": "Pixel evidence was CAPTURED at 847347d, the typography code commit. source-contract.json was re-run at 39ff3de, the typography evidence commit, and `head` names that run. The commit carrying this manifest is necessarily later than the manifest itself, because a file cannot contain its own hash.",
+  "headSemantics": "Pixel evidence was CAPTURED at 847347d, the typography code commit. source-contract.json was re-run at 39ff3de. target-typography-contract.json, depth-clipping.json, attribution.json and viewport-gate.json were REGENERATED at the typography-accept commit, which renamed titleBaseline to titleBoxBottomOffsetPct and surfaced actualOverlappingCardPlaneSamples; the generators and the artefacts changed together. `head` names the source-contract run. The commit carrying this manifest is necessarily later than the manifest itself, because a file cannot contain its own hash.",
   "route": "/?qa=1&composition=sourceExact (beauty, container alignment, depth/clipping, quality) and /?qa=1&composition=sourceExact&foundation=layout&annotate=0 (foundation state, source contract)",
-  "captureTimestampUtc": "2026-08-20T21:39:19Z",
+  "captureTimestampUtc": "2026-08-21T03:47:29Z",
   "fixedCaptureConditions": {
     "quality": "high (pinned; adaptive quality must not drift between captures)",
     "mediaTimeSeconds": 2,
@@ -27,13 +27,13 @@
   "files": [
     {
       "path": "qa-v5/t1/README.md",
-      "bytes": 6218,
-      "sha256": "3e203634d1ea944198310ddc03512a707b276de0b3175132e656e7dc8c425254"
+      "bytes": 6967,
+      "sha256": "7ef16711a485080e74da1f94e8e32fde6879c2338567cc630d9476ac875d4c48"
     },
     {
       "path": "qa-v5/t1/attribution.json",
-      "bytes": 9030,
-      "sha256": "6467849f8affe423678b9661a6cc517713711c9a8f4dc45593729aa351a3d931"
+      "bytes": 9294,
+      "sha256": "0b9ab9113f0787390890ef415aefef145e9ec486dad70c0801a347a1f9fa10d4"
     },
     {
       "path": "qa-v5/t1/beauty-before.json",
@@ -52,8 +52,8 @@
     },
     {
       "path": "qa-v5/t1/depth-clipping.json",
-      "bytes": 28240,
-      "sha256": "5735fd0d035289277d5a2713a6219fb914ccb271bebfc15051ad940f1e2b1e7d"
+      "bytes": 29837,
+      "sha256": "e2398e79959878012ebf304ada09e94285923e8e42bdc11b76491fdac6def020"
     },
     {
       "path": "qa-v5/t1/label-ink.json",
@@ -562,13 +562,13 @@
     },
     {
       "path": "qa-v5/t1/target-typography-contract.json",
-      "bytes": 25927,
-      "sha256": "baa7c4bb55f2b892ff1f62b1d929b429ef5722b14b2f4cc56193316e9237ef6f"
+      "bytes": 26191,
+      "sha256": "cb522b1bcd18ab660f894f4b8ed2680066ce2c2409e02f15a11fa362845334a5"
     },
     {
       "path": "qa-v5/t1/viewport-gate.json",
-      "bytes": 8954,
-      "sha256": "82e0666cb359c750b08cbf9f4af6198bb04b67122b76cd89607423cca98863a5"
+      "bytes": 9066,
+      "sha256": "e3a443b45904f69f9688845c57c39010dd50f43388b5812f0417f1fa793c415c"
     }
   ]
 }

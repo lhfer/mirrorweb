@@ -14,7 +14,7 @@
   "viewports": [
     {
       "viewport": "1440x900",
-      "titleBaselinePctFromCardBottom": {
+      "titleBoxBottomOffsetPct": {
         "target": 18.127,
         "ours": 18.127
       },
@@ -53,7 +53,7 @@
     },
     {
       "viewport": "1920x1080",
-      "titleBaselinePctFromCardBottom": {
+      "titleBoxBottomOffsetPct": {
         "target": 18.127,
         "ours": 18.127
       },
@@ -92,7 +92,7 @@
     },
     {
       "viewport": "390x844",
-      "titleBaselinePctFromCardBottom": {
+      "titleBoxBottomOffsetPct": {
         "target": 17.851,
         "ours": 17.851
       },
@@ -131,7 +131,7 @@
     },
     {
       "viewport": "844x390",
-      "titleBaselinePctFromCardBottom": {
+      "titleBoxBottomOffsetPct": {
         "target": 18.098,
         "ours": 18.098
       },
@@ -170,7 +170,7 @@
     },
     {
       "viewport": "700x700",
-      "titleBaselinePctFromCardBottom": {
+      "titleBoxBottomOffsetPct": {
         "target": 18.296,
         "ours": 18.296
       },
@@ -209,7 +209,7 @@
     },
     {
       "viewport": "667x375",
-      "titleBaselinePctFromCardBottom": {
+      "titleBoxBottomOffsetPct": {
         "target": 17.935,
         "ours": 17.935
       },
@@ -248,7 +248,7 @@
     },
     {
       "viewport": "780x470",
-      "titleBaselinePctFromCardBottom": {
+      "titleBoxBottomOffsetPct": {
         "target": 18.128,
         "ours": 18.128
       },
@@ -351,7 +351,7 @@
     {
       "check": "No rear-card text over a front card",
       "pass": true,
-      "detail": "1199 sampled pixels, 0 wrong"
+      "detail": "1199 sampled pixels, 0 wrong; actual overlapping card-plane samples 0 -- with none observed this row establishes the structure and single-card interior ordering, NOT real occlusion ordering"
     },
     {
       "check": "Console / page errors = 0",

@@ -189,8 +189,11 @@ await page.evaluate(() => { window.__ILG_QA__.setPointer(0, 0); window.__ILG_QA_
 await page.waitForTimeout(500);
 await page.evaluate(() => window.__ILG_QA__.pause());
 
-// A paused page with the sampler off must NOT repaint on its own between two
-// reads. Without this, "the stamp advanced" could be a coincidence of timing.
+// With the sampler off, the EXPLICIT RENDER STAMP must stay unchanged between
+// two reads when no QA hook is called. That is what is measured -- the stamp
+// counts `renderOnce()` calls, so this says nothing about whether the browser
+// composited or the canvas repainted; it says the explicit draw path did not
+// run. Without it, "the stamp advanced" could be a coincidence of timing.
 const idleA = await page.evaluate(() => window.__ILG_QA__.getRenderStamp());
 await page.waitForTimeout(700);
 const idleB = await page.evaluate(() => window.__ILG_QA__.getRenderStamp());

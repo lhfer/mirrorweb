@@ -63,7 +63,7 @@ if __name__ == "__main__":
         worst_box = max(o["worstBoxErrorPx"] for o in a["offsets"])
         entry = {
             "viewport": vp,
-            "titleBaselinePctFromCardBottom": contract["reported"]["titleBaselineFromCardBottomPct"][vp],
+            "titleBoxBottomOffsetPct": contract["reported"]["titleBoxBottomOffsetPct"]["perViewport"][vp],
             "titleSizeCqw": dict(zip(["target", "ours"], prop(contract, "titleFontSizeCqw", vp)[:2])),
             "cardPaddingCqw": dict(zip(["target", "ours"], prop(contract, "cardPaddingCqw", vp)[:2])),
             "metaSizeCqw": dict(zip(["target", "ours"], prop(contract, "metaFontSizeCqw", vp)[:2])),
@@ -134,9 +134,16 @@ if __name__ == "__main__":
             {"check": "No text collision caused by a wrong container",
              "pass": all(r["titleCollisionsBetweenNonOverlappingCards"] == 0 for r in rows),
              "detail": "and zero label ink outside any card silhouette"},
+            # The overlap count belongs in the detail, not only in the source
+            # file: with it at zero this row is a structural result, and a row
+            # that reads "0 wrong" alone would be taken for an occlusion proof.
             {"check": "No rear-card text over a front card",
              "pass": all(r["depthOrderWrong"] == 0 for r in rows),
-             "detail": f"{sum(r['depthSamples'] for r in rows)} sampled pixels, 0 wrong"},
+             "detail": f"{sum(r['depthSamples'] for r in rows)} sampled pixels, 0 wrong; "
+                       f"actual overlapping card-plane samples "
+                       f"{depth['actualOverlappingCardPlaneSamples']} -- with none observed "
+                       "this row establishes the structure and single-card interior ordering, "
+                       "NOT real occlusion ordering"},
             {"check": "Console / page errors = 0",
              "pass": not (align["consoleErrors"] or align["pageErrors"]
                           or depth["consoleErrors"] or depth["pageErrors"]

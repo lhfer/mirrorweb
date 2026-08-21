@@ -271,9 +271,15 @@ for (const vp of opts.vps) {
   A(`${vp}: no title collides with a title on a non-overlapping card`,
     entry.offsets.every((o) => o.titleCollisionsBetweenNonOverlappingCards === 0),
     entry.offsets.map((o) => o.titleCollisionsBetweenNonOverlappingCards));
+  // Report the OVERLAP count in the same detail as the verdict. Without it the
+  // row reads as "rear-card text never covers a front card, proven", when what
+  // was actually sampled is single-card interiors: if no two card planes ever
+  // overlap on screen, no sample can exercise the occlusion case at all.
   A(`${vp}: at every sampled pixel the topmost label is the nearest card's`,
     entry.offsets.every((o) => o.depthWrong === 0),
-    entry.offsets.map((o) => ({ probes: o.depthProbes, decided: o.depthDecided, wrong: o.depthWrong })));
+    entry.offsets.map((o) => ({ probes: o.depthProbes, decided: o.depthDecided,
+      wrong: o.depthWrong,
+      samplesWithAnotherCardPlaneOverThem: o.depthSamplesWithAnotherCardPlaneOverThem })));
   A(`${vp}: the depth probe resolved a topmost label at on-screen samples`,
     entry.offsets.every((o) => o.depthDecided >= 20),
     entry.offsets.map((o) => ({ probes: o.depthProbes, decided: o.depthDecided })));
@@ -281,6 +287,21 @@ for (const vp of opts.vps) {
 A("no console errors", consoleErrors.length === 0, consoleErrors.slice(0, 5));
 A("no page errors", pageErrors.length === 0, pageErrors.slice(0, 5));
 report.consoleErrors = consoleErrors; report.pageErrors = pageErrors;
+// What this file does and does not establish, stated where the verdict is.
+const overlapTotal = report.viewports
+  .flatMap((v) => v.offsets)
+  .reduce((n, o) => n + o.depthSamplesWithAnotherCardPlaneOverThem, 0);
+report.actualOverlappingCardPlaneSamples = overlapTotal;
+report.scope = overlapTotal === 0
+  ? "PROVEN: the clip STRUCTURE matches the Target's, and within every sampled "
+    + "card interior the topmost label is that card's own. NOT PROVEN: real "
+    + "occlusion ordering. actualOverlappingCardPlaneSamples = 0 -- no two card "
+    + "planes were observed overlapping on screen in any tested configuration, "
+    + "so the rear-card-text-over-front-card case was never exercised. Carried "
+    + "forward to the motion stage, where the pointer orbit and scroll offsets "
+    + "move the planes."
+  : `${overlapTotal} samples had another card plane over them; the occlusion `
+    + "case was exercised.";
 report.passed = report.assertions.filter((a) => a.pass).length;
 report.total = report.assertions.length;
 report.verdict = report.passed === report.total ? "PASS" : "FAIL";

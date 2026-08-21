@@ -27,19 +27,22 @@ synchronously at the end of every state hook.
 
 | file | what it settles |
 | --- | --- |
-| `render-loop-proof.json` | **PASS 22/22.** 165 frames in 1200 ms with the sampler off; it was 0. Every hook advances a monotonic render stamp; a paused page does not repaint between two reads. |
+| `render-loop-proof.json` | **PASS 22/22.** 165 frames in 1200 ms with the sampler off; it was 0. Every hook advances a monotonic render stamp; with no QA hook called the explicit render stamp stays unchanged between two reads. |
 | `beauty-before.json` | The four render states per viewport, each hashed, with the render-layer state read back off the scene, and the media-only / glass+media pixel diff: 70–84% of pixels differ, mean delta 11.6–18.1. |
 | `recording.json` | 24/24 unique frames on desktop and mobile, offsets read back from the engine rather than logged as requested. |
 | `quality-invariance.json` | **PASS 57/57**, off the real glass mesh — geometry bounding box 656.64 × 492.48 (exactly 4:3), 5570/3242/1850 vertices across high/medium/low, a fresh geometry per level, a redrawn silhouette each, and the label rect unchanged. |
 
 The stamp, not the hash, is the primary evidence for the hook path: the live
 loop repaints too, so an unchanged hash cannot distinguish "the explicit redraw
-ran" from "the loop happened to redraw anyway".
+ran" from "the loop happened to redraw anyway". The stamp counts `renderOnce()`
+calls and nothing else, so the idle check states that the explicit render stamp
+stays unchanged without a QA hook -- not that the page did not repaint, which
+the stamp cannot see.
 
 One finding recorded rather than patched: `setPointer` writes the smoothing
 TARGET and `MotionController.step` carries the applied pointer toward it, so a
-paused page legitimately redraws an identical frame. Motion is frozen. The proof
-steps the page briefly and shows the pixels move.
+paused page legitimately produces an identical frame. Motion is frozen this
+round. The proof steps the page briefly and shows the pixels move.
 
 **`qa-v5/fsx-a` is superseded** for the media/glass comparison, the recordings
 and the quality sweep. Its route proof and source contract stand.
@@ -57,7 +60,7 @@ that element, so the type was scaled against a card that did not exist: +113% at
 | --- | --- |
 | `target-typography-contract.json` | **PASS 29/29.** Every measured Target property, per viewport, beside ours. Both sides read by the same instrument. |
 | `container-alignment.json` | **PASS 47/47.** Label corners reconstructed through the live CSS3D chain and validated against the browser's own bounding rect (0.005 px), then compared with the card mid-plane: worst 0.011 px against a 1 px gate. |
-| `depth-clipping.json` | **PASS 30/30.** The Target's clip structure reproduced; no title collides with a title on a non-overlapping card; at 1199 sampled pixels the topmost label is the nearest card's, 0 wrong. |
+| `depth-clipping.json` | **PASS 30/30.** The Target's clip structure reproduced; no title collides with a title on a non-overlapping card; at 1199 sampled pixels the topmost label is the nearest card's, 0 wrong. **Scope:** `actualOverlappingCardPlaneSamples = 0` -- no two card planes were observed overlapping on screen, so this proves the clip structure and single-card interior ordering, not real occlusion ordering. Carried to the motion stage. |
 | `label-ink.json` | **PASS.** Zero label ink outside the card silhouettes at all seven viewports, measured in pixels from a labels-only capture. |
 | `source-contract.json` | **PASS 36/36.** The engineering contract re-run at this tip, not asserted from the freeze diff: engine vs model vs the Target's own DOM. Worst slot world delta vs model 0.0, worst orientation 1.21e-06 deg, worst projected corner 0.0 px, worst world delta vs Target DOM 0.005366 across 36 viewports. |
 | `viewport-gate.json` | **PASS 7/7 viewports, 13/13 engineering.** Each row names the file that produced it, including the Source Contract row, which now reads its verdict out of `source-contract.json` instead of asserting it. |
@@ -81,7 +84,11 @@ container-query scale, every ratio identical to the digit across all seven.
 * one clip: an absolute layer at the card box with `overflow: hidden`, no
   clip-path, no radius.
 
-Title baseline now matches the Target to three decimals at every viewport.
+The title box's bottom offset -- distance from the card bottom to the bottom
+edge of the title box, as a percentage of card height -- now matches the Target
+to three decimals at every viewport. It is reported as
+`titleBoxBottomOffsetPct`; this instrument reads boxes, not font metrics, so
+nothing here is a typographic baseline.
 
 ## Visual set
 

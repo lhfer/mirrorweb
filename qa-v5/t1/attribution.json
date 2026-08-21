@@ -12,34 +12,37 @@
       "667x375": 0.0041,
       "780x470": 0.0064
     },
-    "titleBaselinePctFromCardBottom": {
-      "1440x900": {
-        "target": 18.127,
-        "ours": 18.127
-      },
-      "1920x1080": {
-        "target": 18.127,
-        "ours": 18.127
-      },
-      "390x844": {
-        "target": 17.851,
-        "ours": 17.851
-      },
-      "844x390": {
-        "target": 18.098,
-        "ours": 18.098
-      },
-      "700x700": {
-        "target": 18.296,
-        "ours": 18.296
-      },
-      "667x375": {
-        "target": 17.935,
-        "ours": 17.935
-      },
-      "780x470": {
-        "target": 18.128,
-        "ours": 18.128
+    "titleBoxBottomOffsetPct": {
+      "what": "distance from the card bottom to the BOTTOM EDGE of the title box, as a percentage of card height. Not a font baseline: this instrument reads boxes, not font metrics.",
+      "perViewport": {
+        "1440x900": {
+          "target": 18.127,
+          "ours": 18.127
+        },
+        "1920x1080": {
+          "target": 18.127,
+          "ours": 18.127
+        },
+        "390x844": {
+          "target": 17.851,
+          "ours": 17.851
+        },
+        "844x390": {
+          "target": 18.098,
+          "ours": 18.098
+        },
+        "700x700": {
+          "target": 18.296,
+          "ours": 18.296
+        },
+        "667x375": {
+          "target": 17.935,
+          "ours": 17.935
+        },
+        "780x470": {
+          "target": 18.128,
+          "ours": 18.128
+        }
       }
     },
     "labelInkOutsideCardSilhouette": {
