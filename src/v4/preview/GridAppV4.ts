@@ -965,7 +965,9 @@ export class GridAppV4 {
       medianFrameMs: pick(0.5),
       p95FrameMs: pick(0.95),
       p99FrameMs: pick(0.99),
-      drawCalls: info.render?.calls ?? 0,
+      // `render.calls` counts render() INVOCATIONS since load; the per-frame
+      // draw-call field in the WebGPU Info is `drawCalls`.
+      drawCalls: (info.render as { drawCalls?: number })?.drawCalls ?? 0,
       triangles: info.render?.triangles ?? 0,
       textures: 0,
       backend: this.renderer.handle.backend,
@@ -1042,7 +1044,16 @@ export class GridAppV4 {
       this.labels.render(this.poseCamera());
       return;
     }
-    this.pipeline.draw(handle.renderer, handle.scene, handle.camera, this.grid);
+    this.pipeline.draw(handle.renderer, handle.scene, handle.camera, this.grid,
+      (pass, calls, triangles) => {
+        if (pass === "sceneColor") {
+          this.lastPassStats.sceneColorCalls = calls;
+          this.lastPassStats.sceneColorTriangles = triangles;
+        } else {
+          this.lastPassStats.finalCalls = calls;
+          this.lastPassStats.finalTriangles = triangles;
+        }
+      });
     this.labels.render(this.poseCamera());
   }
 
@@ -1186,13 +1197,83 @@ export class GridAppV4 {
         this.frame.planeWidth, this.frame.planeHeight,
       );
       this.labels.sync(this.gridAsV3(), this.poseCamera(), verdicts);
+      // V1: the SAME verdict array, applied to the WebGL card in the same
+      // sync -- the Target writes s.visible and draws/hides the label in one
+      // loop iteration, so label and card can never disagree. The scratch
+      // array is reused; setCoverageDraws stores the reference and the
+      // applier reads it fresh every call.
+      if (this.renderCulling) {
+        const draws = this.coverageDrawsScratch;
+        draws.length = verdicts.length;
+        for (let n = 0; n < verdicts.length; n += 1) {
+          draws[n] = verdicts[n].coverageVisible;
+        }
+        this.grid.setCoverageDraws(draws);
+      } else {
+        this.grid.setCoverageDraws(null);
+      }
     } else {
       this.labels.sync(this.gridAsV3(), this.poseCamera());
+      this.grid.setCoverageDraws(null);
     }
     if (this.labelSyncProbe) {
       this.labelSyncTimes.push(performance.now() - t0);
       if (this.labelSyncTimes.length > 6000) this.labelSyncTimes.splice(0, 2000);
     }
+  }
+
+  /**
+   * V1 render culling. ON by default on the source-exact route -- it is the
+   * product behaviour, not an option. The QA toggle exists so one build can
+   * measure its own before/after (the V0-accepted Before build cannot carry
+   * the per-pass probes, the same reasoning as the labels.sync probe).
+   */
+  private renderCulling = true;
+  private coverageDrawsScratch: boolean[] = [];
+
+  /** QA only. A/B the coverage-driven render culling on this build. */
+  setRenderCulling(on: boolean): void {
+    this.renderCulling = on;
+    this.syncLabels();
+    this.renderOnce();
+  }
+
+  /**
+   * QA only. The brief's five named visibility states, per slot, read off
+   * the scene -- plus the composed grid flags. `requested*` are the QA layer
+   * requests, `coverageVisible` the verdict, `effective*` what the meshes
+   * actually carry after the one applier composed active AND coverage AND
+   * pass AND requested.
+   */
+  getRenderCullingTruth(): Record<string, unknown> {
+    const verdicts = this.labels.lastCulling;
+    const slots = this.grid.slots.map((s, n) => ({
+      slotIndex: s.slotIndex,
+      active: s.active !== false,
+      coverageVisible: verdicts ? (verdicts[n]?.coverageVisible ?? null) : null,
+      requestedGlassVisible: this.glassLayer,
+      requestedMediaVisible: this.mediaLayer,
+      requestedShellVisible: this.glassLayer,
+      effectiveGlassVisible: s.glass.visible,
+      effectiveShellVisible: s.shell ? s.shell.visible : null,
+      effectiveMediaVisible: s.media ? s.media.visible : null,
+    }));
+    return {
+      renderCulling: this.renderCulling,
+      grid: this.grid.getRenderCullingState(),
+      passStats: this.lastPassStats,
+      slots,
+    };
+  }
+
+  private lastPassStats: Record<string, number | null> = {
+    sceneColorCalls: null, sceneColorTriangles: null,
+    finalCalls: null, finalTriangles: null,
+  };
+
+  /** QA only. Last frame's per-pass draw calls and triangles. */
+  getRenderPassStats(): Record<string, number | null> {
+    return { ...this.lastPassStats };
   }
 
   /** QA only. Arm or disarm the labels.sync CPU probe; arming clears it. */

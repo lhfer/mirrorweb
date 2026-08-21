@@ -86,8 +86,25 @@ export class SceneColorPipelineV4 {
     scene: Scene,
     camera: PerspectiveCamera,
     grid: InfiniteGlassGridV4,
+    collect?: (pass: "sceneColor" | "final", calls: number, triangles: number) => void,
   ): void {
     this.syncOverscanCamera(camera);
+
+    // Per-pass stats need deterministic reset boundaries. The renderer's own
+    // autoReset fires inside its INTERNAL animation loop, not per render()
+    // call, and `info.render.calls` counts render() invocations since load --
+    // the per-frame field is `drawCalls`. While collecting, take explicit
+    // control of the reset; restore the flag afterwards.
+    const info = renderer.info as unknown as {
+      autoReset: boolean;
+      reset: () => void;
+      render: { drawCalls: number; triangles: number };
+    };
+    const prevAutoReset = collect ? info.autoReset : false;
+    if (collect) {
+      info.autoReset = false;
+      info.reset();
+    }
 
     grid.setGlassVisible(false);
     grid.setMediaVisible(true);
@@ -96,11 +113,19 @@ export class SceneColorPipelineV4 {
     renderer.clear();
     renderer.render(scene, this.overscanCamera);
     renderer.setRenderTarget(null);
+    if (collect) {
+      collect("sceneColor", info.render.drawCalls, info.render.triangles);
+      info.reset();
+    }
 
     renderer.toneMapping = ACESFilmicToneMapping;
     grid.setGlassVisible(true);
     grid.setMediaVisible(false);
     renderer.render(scene, camera);
+    if (collect) {
+      collect("final", info.render.drawCalls, info.render.triangles);
+      info.autoReset = prevAutoReset;
+    }
   }
 
   private syncOverscanCamera(camera: PerspectiveCamera): void {

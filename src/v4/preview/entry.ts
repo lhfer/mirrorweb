@@ -52,6 +52,9 @@ export type GridQaV4 = {
   /** QA-only labels.sync CPU probe: arm/disarm and drain samples. */
   setLabelSyncProbe: (on: boolean) => void;
   getLabelSyncStats: () => Record<string, unknown>;
+  setRenderCulling: (on: boolean) => void;
+  getRenderCullingTruth: () => Record<string, unknown>;
+  getRenderPassStats: () => Record<string, number | null>;
   reset: () => void;
 };
 
@@ -116,6 +119,9 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
       getPoolState: () => app.getPoolState(),
       setLabelSyncProbe: (on) => app.setLabelSyncProbe(on),
       getLabelSyncStats: () => app.getLabelSyncStats(),
+      setRenderCulling: (on) => app.setRenderCulling(on),
+      getRenderCullingTruth: () => app.getRenderCullingTruth(),
+      getRenderPassStats: () => app.getRenderPassStats(),
       reset: () => app.reset(),
     };
     const host = window as Window & {

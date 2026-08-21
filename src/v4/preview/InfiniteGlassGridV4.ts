@@ -336,36 +336,98 @@ export class InfiniteGlassGridV4 {
   setDebugMode(mode: V4DebugMode): void {
     if (this.foundation) return;
     this.handle?.setDebugMode(mode);
-    const beauty = mode === "beauty" || mode === "reflection";
-    for (const slot of this.slots) {
-      if (slot.shell) slot.shell.visible = beauty && this.shellEnabled;
-    }
+    this.debugShellOn = mode === "beauty" || mode === "reflection";
+    this.applyEffectiveVisibility();
   }
 
   setShellMode(mode: V4ShellMode): void {
     if (this.foundation) return;
     this.handle?.setShellMode(mode);
     this.shellEnabled = mode !== "off";
-    for (const slot of this.slots) {
-      if (slot.shell) slot.shell.visible = this.shellEnabled;
-    }
+    this.applyEffectiveVisibility();
   }
 
   private shellEnabled = true;
+  private debugShellOn = true;
+  private passGlass = true;
+  private passMedia = true;
+  private coverageDraws: boolean[] | null = null;
+
+  /**
+   * V1 render culling: no system writes `.visible` on a slot mesh directly.
+   * Every writer sets its own flag -- the scene-colour pipeline's per-pass
+   * layer flips, the QA layer requests, the shell mode, the debug mode, the
+   * active window and the coverage verdict -- and ONE applier composes them.
+   * That is the layered-state model the render-culling round requires: the
+   * Target collapses the same AND to a single `s.visible = o.draw` because
+   * its card is one mesh and it has no layer system.
+   *
+   * The media plane is deliberately NOT coverage-culled. It is the input of
+   * the scene-colour target -- our architecture's equivalent of the Target's
+   * per-card texture binds, which the Target does not cull either (its
+   * refraction samples the card's OWN media texture, so hiding a card can
+   * never change another card's pixels). Coverage-culling the scene-colour
+   * input would break exactly that invariant: an edge card's glass samples
+   * the target beyond the 64 px coverage margin, so removing a culled
+   * neighbour's media from the target would move pixels INSIDE the strict
+   * viewport. Media draw calls outside the overscan frustum are already
+   * skipped by the renderer's own frustum culling.
+   */
+  private applyEffectiveVisibility(): void {
+    if (this.foundation) return;
+    const draws = this.coverageDraws;
+    for (const slot of this.slots) {
+      const activeOk = slot.active !== false;
+      const cov = draws === null ? true : (draws[slot.slotIndex] ?? true);
+      slot.glass.visible = activeOk && cov && this.passGlass;
+      if (slot.shell) {
+        slot.shell.visible =
+          slot.glass.visible && this.shellEnabled && this.debugShellOn;
+      }
+      if (slot.media) slot.media.visible = activeOk && this.passMedia;
+    }
+  }
 
   setGlassVisible(visible: boolean): void {
     if (this.foundation) return;
-    for (const slot of this.slots) {
-      slot.glass.visible = visible;
-      if (slot.shell) slot.shell.visible = visible && this.shellEnabled;
-    }
+    this.passGlass = visible;
+    this.applyEffectiveVisibility();
   }
 
   setMediaVisible(visible: boolean): void {
     if (this.foundation) return;
-    for (const slot of this.slots) {
-      if (slot.media) slot.media.visible = visible;
-    }
+    this.passMedia = visible;
+    this.applyEffectiveVisibility();
+  }
+
+  /**
+   * The per-slot coverage verdict, the SAME array the label layer consumed
+   * this frame -- one verdict, two surfaces, exactly the Target's one-loop
+   * wiring. `null` turns coverage culling off entirely (legacy route,
+   * foundation, or the QA A/B toggle) and restores the pre-V1 behaviour.
+   */
+  setCoverageDraws(draws: boolean[] | null): void {
+    if (this.foundation) return;
+    this.coverageDraws = draws;
+    this.applyEffectiveVisibility();
+  }
+
+  /** QA only. The composed visibility state, read off the scene. */
+  getRenderCullingState(): Record<string, unknown> {
+    const active = this.slots.filter((s) => s.active !== false);
+    return {
+      coverageCulling: this.coverageDraws !== null,
+      passGlass: this.passGlass,
+      passMedia: this.passMedia,
+      shellEnabled: this.shellEnabled,
+      debugShellOn: this.debugShellOn,
+      activeSlots: active.length,
+      coverageDrawn: this.coverageDraws
+        ? this.coverageDraws.filter(Boolean).length : null,
+      glassVisible: active.filter((s) => s.glass.visible).length,
+      shellVisible: active.filter((s) => s.shell?.visible).length,
+      mediaVisible: active.filter((s) => s.media?.visible).length,
+    };
   }
 
   /**
@@ -399,7 +461,10 @@ export class InfiniteGlassGridV4 {
         }
       }
     }
-    if (!this.foundation) this.applyMediaFits();
+    if (!this.foundation) {
+      this.applyMediaFits();
+      this.applyEffectiveVisibility();
+    }
   }
 
   /**

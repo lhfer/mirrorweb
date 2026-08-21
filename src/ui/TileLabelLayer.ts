@@ -152,7 +152,8 @@ export class TileLabelLayer {
    * The verdicts of the most recent `sync`, kept for QA readbacks only.
    * Undefined on the legacy paths and before the first culled sync.
    */
-  private lastCulling?: LabelCullingVerdict[];
+  /** The verdict array consumed by the last sync -- QA readback surface. */
+  lastCulling?: LabelCullingVerdict[];
 
   constructor(host: HTMLElement) {
     this.renderer.domElement.style.position = "absolute";
