@@ -51,7 +51,7 @@ stated here and no further hygiene commit is created to chase it.
 | T0 Render Loop Repair | **ACCEPTED** |
 | Typography | **ACCEPTED** — frozen, see the freeze contract below |
 | Motion / Pointer / Touch | **ACCEPTED — FROZEN**, see [`MOTION_FREEZE_CONTRACT.md`](MOTION_FREEZE_CONTRACT.md). M0–M3 results below are history |
-| V0 CSS3D label coverage culling | **READY FOR CSS3D CULLING PRODUCT REVIEW** — absolute gate PASS, see the V0 section |
+| V0 CSS3D label coverage culling | **ACCEPTED — FROZEN**, see [`CULLING_FREEZE_CONTRACT.md`](CULLING_FREEZE_CONTRACT.md). The V0 section below is history |
 | Optics / Media / Layout | **NOT AUTHORISED THIS ROUND**, unmodified |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
@@ -224,7 +224,9 @@ Evidence: [`qa-v5/motion-final/`](../../qa-v5/motion-final/).
 
 ## V0 — source-exact CSS3D label coverage culling
 
-**READY FOR CSS3D CULLING PRODUCT REVIEW.** The Target keeps ~16 labels alive
+**ACCEPTED by product.** Culling behaviour baseline `820cd92`, accepted review
+tip `b4a4450`; the freeze is recorded in
+[`CULLING_FREEZE_CONTRACT.md`](CULLING_FREEZE_CONTRACT.md). The Target keeps ~16 labels alive
 at 1440x900 where our page kept 81 — its only test was a JS backface
 dot-product. V0 read the Target's culling out of its bundle byte by byte
 (30 anchored sites, live bundle byte-identical) and implemented it in
@@ -275,9 +277,9 @@ See [`FSX_ACCEPTANCE.md`](FSX_ACCEPTANCE.md).
 **Accepted by product**
 - `62f5772` F0/F1 Foundation baseline · `b524dc5` NL-03 media focus
 - M3 motion source reconciliation: `b8cbbd2` writer-order forensics · `4df03f2` writer-order code (motion behaviour baseline) · `8f906f1` evidence · `b99e5ce` hygiene (accepted review tip) · `17fcaca` acceptance record (docs)
+- V0 label coverage culling: `820cd92` code (culling behaviour baseline) · `7f9e0ef` evidence · `b4a4450` package hygiene (accepted review tip)
 
 **Candidate, not accepted**
-- V0 label coverage culling: `820cd92` code · the evidence commit at this tip
 - `dd6d7bf` / `4ca597f` F2 · `b5cff63` F2 audit · `730beb7` F3 diagnosis
 - `f56f55e` / `ba4ba32` F2.5 · this delivery's three F2.6 commits
 
