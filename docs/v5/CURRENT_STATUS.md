@@ -2,7 +2,7 @@
 
 Single canonical entry point. Every delivery updates this file.
 
-Last updated: 2026-08-21 (M3 final motion source reconciliation: the magnitude MotionValue's two writers, read out of the Target's frame scheduler)
+Last updated: 2026-08-21 (V1 render culling frozen; O1 first optics candidate FAILED its absolute gate — attribution corrected to System B by the floor experiment)
 
 | | |
 | --- | --- |
@@ -53,7 +53,8 @@ stated here and no further hygiene commit is created to chase it.
 | Motion / Pointer / Touch | **ACCEPTED — FROZEN**, see [`MOTION_FREEZE_CONTRACT.md`](MOTION_FREEZE_CONTRACT.md). M0–M3 results below are history |
 | V0 CSS3D label coverage culling | **ACCEPTED — FROZEN**, see [`CULLING_FREEZE_CONTRACT.md`](CULLING_FREEZE_CONTRACT.md). The V0 section below is history |
 | V1 WebGL render culling | **GATE PASS — FROZEN**, see [`RENDER_CULLING_FREEZE_CONTRACT.md`](RENDER_CULLING_FREEZE_CONTRACT.md) |
-| Optics / Media / Layout | **NOT AUTHORISED THIS ROUND**, unmodified |
+| Optics | **O1 System A candidate FAILED ABSOLUTE GATE** — the pre-registered white-lever condition fired; attribution corrected to System B. See the O0/O1 section |
+| Media / Layout | unmodified, frozen |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
 
@@ -256,6 +257,54 @@ flagged for a product decision. Evidence:
 [`qa-v5/culling/README.md`](../../qa-v5/culling/README.md); private package
 `qa-v5/private/culling-review.zip`.
 
+## O0 / O1 — first Liquid Glass optics candidate
+
+**O1 FAILED ITS ABSOLUTE GATE**, by its own pre-registered failure
+condition. Everything below is measured, committed evidence:
+[`qa-v5/optics/README.md`](../../qa-v5/optics/README.md).
+
+O0 read the Target's complete glass shader out of its bundle (17
+byte-anchored sites: 5-sample IOR-spread refraction inside the card's OWN
+media with per-channel tent weights, fresnel-capped LERP toward a white
+equirect env reflection, white rim, NO scene-colour pass, NO tone mapping)
+and measured both pages' edge bands. System A (edge energy / dispersion /
+saturation) was selected and its failure conditions pre-registered in
+[`o1-selected-system.json`](../../qa-v5/optics/o1-selected-system.json)
+BEFORE any candidate code.
+
+The candidate ported the Target's dispersion law verbatim (commit
+`v5-o1-first-optics-candidate-code`). Every touched metric moved in the
+pre-registered direction on desktop AND mobile (edge chroma 63.1 → 59.6
+desktop rest, fringe R-B down in all 4 states, bright/dark cohorts both
+falling 4/4, media-only bit-identical to pre-O1, every frozen suite PASS)
+— and the **floor experiment** ended the round: rebuilt with
+`dispersionSpread=0`, the page measures edge chroma 59.04 vs Before's
+63.13. The entire dispersion mechanism is worth **4.09 edge-chroma
+points on our own page**; its share of the gap to the Target is
+**9.5–15% depending on the Target's media draw**. The white reflection
+ratio at spread 0.3 differs from the floor's by **+0.001**: the system's
+one tunable lever cannot move the white band at all. The pre-registered
+condition "white reflection ratio does not move (wrong root cause →
+System B next)" fired.
+
+The corrected attribution, forward-written into
+[`o0-source-diagnosis.json`](../../qa-v5/optics/o0-source-diagnosis.json)
+(`attributionCorrectedByFloorExperiment`): the Target's edge is
+desaturated by System B's mechanism — a fresnel-capped LERP toward the
+white studio env reflection — while our shell ADDS white over a
+still-saturated refracted edge. The Target's bright/dark edge cohorts are
+nearly equal (18.9 / 21.7) where ours diverge (75 / 28): its edge chroma
+is luminance-independent, ours is media-dominated. O2 must select System
+B and must read the `targetLaneVariance` warning: the Target's absolute
+band statistics swing with its per-load media shuffle by 20–50× the
+deltas under judgment, so O2's gate must lean on within-page controls and
+source reads, not cross-page absolutes.
+
+The dispersion-law port itself is source-exact, visibly reduces the
+synthetic cyan/magenta fringe lines, and regresses nothing; it stays in
+the tree as committed candidate code. The round stops here per the brief:
+a failed O1 does not authorise O2.
+
 ## FSX-A integration hardening
 
 | | |
@@ -281,7 +330,8 @@ See [`FSX_ACCEPTANCE.md`](FSX_ACCEPTANCE.md).
 - V0 label coverage culling: `820cd92` code (culling behaviour baseline) · `7f9e0ef` evidence · `b4a4450` package hygiene (accepted review tip)
 
 **Candidate, not accepted**
-- V1 render culling: `cba2e72` forensics · `b625f90` code (render culling behaviour baseline) · `04cff37` evidence · the accept record at this tip
+- V1 render culling: `cba2e72` forensics · `b625f90` code (render culling behaviour baseline) · `04cff37` evidence · `5159cf8` accept record — GATE PASS, frozen
+- O0/O1 optics: `03676b1` O0 source diagnosis + pre-registered system selection · `e01fb30` O1 candidate code (the Target's dispersion law, System A only) · the O1 evidence commit — **O1 FAILED ABSOLUTE GATE**; attribution corrected to System B
 - `dd6d7bf` / `4ca597f` F2 · `b5cff63` F2 audit · `730beb7` F3 diagnosis
 - `f56f55e` / `ba4ba32` F2.5 · this delivery's three F2.6 commits
 
@@ -441,8 +491,11 @@ scale, `radiusY`, the aspect phase threshold, the fitted `restY0` and the fixed
 9x9 world grid, and makes `TILE`, `GRID.cellW` and `GRID.radius` irrelevant to
 layout: the source contract replaces all of them.
 
-Typography is **ACCEPTED and frozen**; Motion is authorised and in progress;
-Optics remains **NOT STARTED**.
+Typography is **ACCEPTED and frozen**; Motion is **ACCEPTED and frozen**;
+label and render culling are frozen. Optics: the O1 System A candidate
+**FAILED its absolute gate**; the O2 selection must read the corrected
+attribution (System B) and the Target-lane variance warning in
+`qa-v5/optics/o0-source-diagnosis.json`.
 
 ### Superseded F2.7 decisions
 

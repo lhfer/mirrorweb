@@ -1,0 +1,994 @@
+{
+ "what": "O1 absolute gate. Scores the candidate on the brief's named metrics and evaluates every failure condition pre-registered in o1-selected-system.json before the candidate code existed. Conditions are interpreted by the selection file's own declared signs; a rejected alternative coding is recorded inside condition 3.",
+ "verdict": "FAILED",
+ "firedFailureConditions": [
+  "white reflection ratio does not move (wrong root cause -> System B next)"
+ ],
+ "lanes": {
+  "target": "https://infinite-liquid-glass.shader.se (live)",
+  "before": "the V0-accepted build -- optics-identical to pre-O1 (V1 pixel gate: bit-exact; V1 touched no material)",
+  "candidate": "the O1 build, dispersionSpread=0.3"
+ },
+ "metrics": {
+  "1440x900/rest": {
+   "target": {
+    "repeats": 3,
+    "cardsAnalysed": 3.0,
+    "edgeChromaMean": 20.14,
+    "edgeChromaP95": 52.0,
+    "fringeRB": 19.64,
+    "whiteReflectionRatio": 0.1041,
+    "edgeLuminanceMean": 87.55,
+    "interiorSaturationMean": 0.45,
+    "interiorLuminanceMean": 95.32,
+    "gutterInkRatio": 0.56,
+    "fringeWidthPxMean": 3.31,
+    "edgeChromaPerRepeat": [
+     15.13,
+     26.78,
+     18.52
+    ],
+    "whitePerRepeat": [
+     0.0944,
+     0.1467,
+     0.0713
+    ]
+   },
+   "candidate-beauty": {
+    "repeats": 3,
+    "cardsAnalysed": 3.0,
+    "edgeChromaMean": 59.63,
+    "edgeChromaP95": 173.33,
+    "fringeRB": 58.02,
+    "whiteReflectionRatio": 0.153,
+    "edgeLuminanceMean": 122.28,
+    "interiorSaturationMean": 0.49,
+    "interiorLuminanceMean": 154.36,
+    "gutterInkRatio": 0.61,
+    "fringeWidthPxMean": 9.28,
+    "edgeChromaPerRepeat": [
+     59.21,
+     60.46,
+     59.21
+    ],
+    "whitePerRepeat": [
+     0.1517,
+     0.1555,
+     0.1517
+    ]
+   },
+   "before-beauty": {
+    "repeats": 3,
+    "cardsAnalysed": 3.0,
+    "edgeChromaMean": 63.13,
+    "edgeChromaP95": 175.0,
+    "fringeRB": 59.46,
+    "whiteReflectionRatio": 0.1438,
+    "edgeLuminanceMean": 120.89,
+    "interiorSaturationMean": 0.49,
+    "interiorLuminanceMean": 154.49,
+    "gutterInkRatio": 0.62,
+    "fringeWidthPxMean": 13.57,
+    "edgeChromaPerRepeat": [
+     63.13,
+     63.13,
+     63.13
+    ],
+    "whitePerRepeat": [
+     0.1438,
+     0.1438,
+     0.1438
+    ]
+   },
+   "candidate-media-only": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 51.16,
+    "edgeChromaP95": 127.0,
+    "fringeRB": 46.82,
+    "whiteReflectionRatio": 0.1393,
+    "edgeLuminanceMean": 108.93,
+    "interiorSaturationMean": 0.4982,
+    "interiorLuminanceMean": 148.56,
+    "gutterInkRatio": 0.4939825741165821,
+    "fringeWidthPxMean": 11.14
+   },
+   "candidate-glass-only": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 48.42,
+    "edgeChromaP95": 138.0,
+    "fringeRB": 44.76,
+    "whiteReflectionRatio": 0.133,
+    "edgeLuminanceMean": 105.07,
+    "interiorSaturationMean": 0.496,
+    "interiorLuminanceMean": 148.75,
+    "gutterInkRatio": 0.46086854611878053,
+    "fringeWidthPxMean": 7.96
+   },
+   "before-media-only": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 51.16,
+    "edgeChromaP95": 127.0,
+    "fringeRB": 46.82,
+    "whiteReflectionRatio": 0.1393,
+    "edgeLuminanceMean": 108.93,
+    "interiorSaturationMean": 0.4982,
+    "interiorLuminanceMean": 148.56,
+    "gutterInkRatio": 0.4924994342245643,
+    "fringeWidthPxMean": 11.46
+   },
+   "before-glass-only": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 52.56,
+    "edgeChromaP95": 141.0,
+    "fringeRB": 47.1,
+    "whiteReflectionRatio": 0.125,
+    "edgeLuminanceMean": 104.32,
+    "interiorSaturationMean": 0.496,
+    "interiorLuminanceMean": 148.75,
+    "gutterInkRatio": 0.4611554750897158,
+    "fringeWidthPxMean": 12.96
+   }
+  },
+  "1440x900/pointer-corner-br": {
+   "target": {
+    "repeats": 3,
+    "cardsAnalysed": 3.0,
+    "edgeChromaMean": 20.33,
+    "edgeChromaP95": 53.67,
+    "fringeRB": 19.82,
+    "whiteReflectionRatio": 0.1044,
+    "edgeLuminanceMean": 86.22,
+    "interiorSaturationMean": 0.44,
+    "interiorLuminanceMean": 93.76,
+    "gutterInkRatio": 0.54,
+    "fringeWidthPxMean": 2.9,
+    "edgeChromaPerRepeat": [
+     15.8,
+     25.98,
+     19.22
+    ],
+    "whitePerRepeat": [
+     0.0855,
+     0.1644,
+     0.0634
+    ]
+   },
+   "candidate-beauty": {
+    "repeats": 3,
+    "cardsAnalysed": 3.0,
+    "edgeChromaMean": 48.77,
+    "edgeChromaP95": 143.0,
+    "fringeRB": 45.77,
+    "whiteReflectionRatio": 0.1528,
+    "edgeLuminanceMean": 109.71,
+    "interiorSaturationMean": 0.47,
+    "interiorLuminanceMean": 156.05,
+    "gutterInkRatio": 0.65,
+    "fringeWidthPxMean": 7.95,
+    "edgeChromaPerRepeat": [
+     48.78,
+     48.76,
+     48.76
+    ],
+    "whitePerRepeat": [
+     0.1528,
+     0.1528,
+     0.1528
+    ]
+   },
+   "before-beauty": {
+    "repeats": 3,
+    "cardsAnalysed": 3.0,
+    "edgeChromaMean": 53.23,
+    "edgeChromaP95": 149.0,
+    "fringeRB": 48.51,
+    "whiteReflectionRatio": 0.1461,
+    "edgeLuminanceMean": 109.03,
+    "interiorSaturationMean": 0.47,
+    "interiorLuminanceMean": 156.04,
+    "gutterInkRatio": 0.65,
+    "fringeWidthPxMean": 13.01,
+    "edgeChromaPerRepeat": [
+     53.23,
+     53.23,
+     53.24
+    ],
+    "whitePerRepeat": [
+     0.1461,
+     0.1461,
+     0.1461
+    ]
+   },
+   "candidate-media-only": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 55.04,
+    "edgeChromaP95": 132.0,
+    "fringeRB": 51.48,
+    "whiteReflectionRatio": 0.1502,
+    "edgeLuminanceMean": 114.21,
+    "interiorSaturationMean": 0.4974,
+    "interiorLuminanceMean": 151.21,
+    "gutterInkRatio": 0.7036347524937605,
+    "fringeWidthPxMean": 11.36
+   },
+   "candidate-glass-only": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 51.89,
+    "edgeChromaP95": 152.0,
+    "fringeRB": 49.11,
+    "whiteReflectionRatio": 0.1457,
+    "edgeLuminanceMean": 109.58,
+    "interiorSaturationMean": 0.494,
+    "interiorLuminanceMean": 151.48,
+    "gutterInkRatio": 0.6505483427772403,
+    "fringeWidthPxMean": 8.21
+   },
+   "before-media-only": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 55.04,
+    "edgeChromaP95": 132.0,
+    "fringeRB": 51.48,
+    "whiteReflectionRatio": 0.1502,
+    "edgeLuminanceMean": 114.21,
+    "interiorSaturationMean": 0.4974,
+    "interiorLuminanceMean": 151.21,
+    "gutterInkRatio": 0.7036347524937605,
+    "fringeWidthPxMean": 11.36
+   },
+   "before-glass-only": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 56.28,
+    "edgeChromaP95": 157.0,
+    "fringeRB": 51.78,
+    "whiteReflectionRatio": 0.1391,
+    "edgeLuminanceMean": 108.87,
+    "interiorSaturationMean": 0.494,
+    "interiorLuminanceMean": 151.48,
+    "gutterInkRatio": 0.652495386441422,
+    "fringeWidthPxMean": 13.0
+   }
+  },
+  "390x844/rest": {
+   "target": {
+    "repeats": 3,
+    "cardsAnalysed": 2.0,
+    "edgeChromaMean": 32.46,
+    "edgeChromaP95": 88.0,
+    "fringeRB": 28.48,
+    "whiteReflectionRatio": 0.1302,
+    "edgeLuminanceMean": 91.44,
+    "interiorSaturationMean": 0.59,
+    "interiorLuminanceMean": 89.53,
+    "gutterInkRatio": 0.44,
+    "fringeWidthPxMean": 11.05,
+    "edgeChromaPerRepeat": [
+     23.4,
+     44.58,
+     29.4
+    ],
+    "whitePerRepeat": [
+     0.0417,
+     0.196,
+     0.1528
+    ]
+   },
+   "candidate-beauty": {
+    "repeats": 3,
+    "cardsAnalysed": 2.0,
+    "edgeChromaMean": 37.83,
+    "edgeChromaP95": 124.33,
+    "fringeRB": 20.35,
+    "whiteReflectionRatio": 0.2902,
+    "edgeLuminanceMean": 117.33,
+    "interiorSaturationMean": 0.43,
+    "interiorLuminanceMean": 139.57,
+    "gutterInkRatio": 0.7,
+    "fringeWidthPxMean": 16.4,
+    "edgeChromaPerRepeat": [
+     37.89,
+     37.89,
+     37.71
+    ],
+    "whitePerRepeat": [
+     0.2894,
+     0.2894,
+     0.2918
+    ]
+   },
+   "before-beauty": {
+    "repeats": 3,
+    "cardsAnalysed": 2.0,
+    "edgeChromaMean": 42.0,
+    "edgeChromaP95": 126.33,
+    "fringeRB": 23.39,
+    "whiteReflectionRatio": 0.2858,
+    "edgeLuminanceMean": 117.37,
+    "interiorSaturationMean": 0.43,
+    "interiorLuminanceMean": 139.57,
+    "gutterInkRatio": 0.71,
+    "fringeWidthPxMean": 19.8,
+    "edgeChromaPerRepeat": [
+     41.79,
+     42.1,
+     42.1
+    ],
+    "whitePerRepeat": [
+     0.2875,
+     0.285,
+     0.285
+    ]
+   },
+   "candidate-media-only": {
+    "cardsAnalysed": 2,
+    "edgeChromaMean": 40.43,
+    "edgeChromaP95": 142.0,
+    "fringeRB": 26.32,
+    "whiteReflectionRatio": 0.3189,
+    "edgeLuminanceMean": 115.78,
+    "interiorSaturationMean": 0.4294,
+    "interiorLuminanceMean": 144.59,
+    "gutterInkRatio": 0.46323964266816076,
+    "fringeWidthPxMean": 16.55
+   },
+   "candidate-glass-only": {
+    "cardsAnalysed": 2,
+    "edgeChromaMean": 38.6,
+    "edgeChromaP95": 148.0,
+    "fringeRB": 26.52,
+    "whiteReflectionRatio": 0.2949,
+    "edgeLuminanceMean": 115.25,
+    "interiorSaturationMean": 0.4094,
+    "interiorLuminanceMean": 149.15,
+    "gutterInkRatio": 0.4381361471659352,
+    "fringeWidthPxMean": 13.3
+   },
+   "before-media-only": {
+    "cardsAnalysed": 2,
+    "edgeChromaMean": 40.43,
+    "edgeChromaP95": 142.0,
+    "fringeRB": 26.32,
+    "whiteReflectionRatio": 0.3189,
+    "edgeLuminanceMean": 115.78,
+    "interiorSaturationMean": 0.4294,
+    "interiorLuminanceMean": 144.59,
+    "gutterInkRatio": 0.46323964266816076,
+    "fringeWidthPxMean": 16.55
+   },
+   "before-glass-only": {
+    "cardsAnalysed": 2,
+    "edgeChromaMean": 43.23,
+    "edgeChromaP95": 160.0,
+    "fringeRB": 30.72,
+    "whiteReflectionRatio": 0.2923,
+    "edgeLuminanceMean": 115.5,
+    "interiorSaturationMean": 0.4003,
+    "interiorLuminanceMean": 151.36,
+    "gutterInkRatio": 0.44310081862607775,
+    "fringeWidthPxMean": 16.7
+   }
+  },
+  "390x844/pointer-corner-br": {
+   "target": {
+    "repeats": 3,
+    "cardsAnalysed": 2.0,
+    "edgeChromaMean": 28.55,
+    "edgeChromaP95": 75.33,
+    "fringeRB": 25.99,
+    "whiteReflectionRatio": 0.1535,
+    "edgeLuminanceMean": 93.54,
+    "interiorSaturationMean": 0.51,
+    "interiorLuminanceMean": 94.89,
+    "gutterInkRatio": 0.41,
+    "fringeWidthPxMean": 9.06,
+    "edgeChromaPerRepeat": [
+     22.91,
+     30.91,
+     31.84
+    ],
+    "whitePerRepeat": [
+     0.0424,
+     0.2434,
+     0.1747
+    ]
+   },
+   "candidate-beauty": {
+    "repeats": 3,
+    "cardsAnalysed": 2.0,
+    "edgeChromaMean": 43.33,
+    "edgeChromaP95": 125.0,
+    "fringeRB": 21.88,
+    "whiteReflectionRatio": 0.3678,
+    "edgeLuminanceMean": 135.46,
+    "interiorSaturationMean": 0.39,
+    "interiorLuminanceMean": 156.74,
+    "gutterInkRatio": 0.67,
+    "fringeWidthPxMean": 12.38,
+    "edgeChromaPerRepeat": [
+     43.33,
+     43.33,
+     43.33
+    ],
+    "whitePerRepeat": [
+     0.3678,
+     0.3678,
+     0.3678
+    ]
+   },
+   "before-beauty": {
+    "repeats": 3,
+    "cardsAnalysed": 2.0,
+    "edgeChromaMean": 50.08,
+    "edgeChromaP95": 132.67,
+    "fringeRB": 26.81,
+    "whiteReflectionRatio": 0.3604,
+    "edgeLuminanceMean": 135.56,
+    "interiorSaturationMean": 0.39,
+    "interiorLuminanceMean": 156.72,
+    "gutterInkRatio": 0.67,
+    "fringeWidthPxMean": 16.06,
+    "edgeChromaPerRepeat": [
+     50.2,
+     49.84,
+     50.2
+    ],
+    "whitePerRepeat": [
+     0.3604,
+     0.3603,
+     0.3604
+    ]
+   },
+   "candidate-media-only": {
+    "cardsAnalysed": 2,
+    "edgeChromaMean": 49.78,
+    "edgeChromaP95": 130.0,
+    "fringeRB": 22.21,
+    "whiteReflectionRatio": 0.3944,
+    "edgeLuminanceMean": 139.92,
+    "interiorSaturationMean": 0.4497,
+    "interiorLuminanceMean": 144.57,
+    "gutterInkRatio": 0.7103848132042829,
+    "fringeWidthPxMean": 15.38
+   },
+   "candidate-glass-only": {
+    "cardsAnalysed": 2,
+    "edgeChromaMean": 46.67,
+    "edgeChromaP95": 130.0,
+    "fringeRB": 22.93,
+    "whiteReflectionRatio": 0.3564,
+    "edgeLuminanceMean": 133.55,
+    "interiorSaturationMean": 0.4312,
+    "interiorLuminanceMean": 149.16,
+    "gutterInkRatio": 0.673103598759371,
+    "fringeWidthPxMean": 12.75
+   },
+   "before-media-only": {
+    "cardsAnalysed": 2,
+    "edgeChromaMean": 49.78,
+    "edgeChromaP95": 130.0,
+    "fringeRB": 22.21,
+    "whiteReflectionRatio": 0.3944,
+    "edgeLuminanceMean": 139.92,
+    "interiorSaturationMean": 0.4497,
+    "interiorLuminanceMean": 144.57,
+    "gutterInkRatio": 0.7103848132042829,
+    "fringeWidthPxMean": 15.38
+   },
+   "before-glass-only": {
+    "cardsAnalysed": 2,
+    "edgeChromaMean": 53.03,
+    "edgeChromaP95": 133.0,
+    "fringeRB": 27.65,
+    "whiteReflectionRatio": 0.3498,
+    "edgeLuminanceMean": 133.56,
+    "interiorSaturationMean": 0.4296,
+    "interiorLuminanceMean": 149.34,
+    "gutterInkRatio": 0.6784806969966178,
+    "fringeWidthPxMean": 16.81
+   }
+  }
+ },
+ "directionChecks": {
+  "1440x900/rest": {
+   "edgeChroma": {
+    "target": 20.14,
+    "before": 63.13,
+    "candidate": 59.63,
+    "movedInExpectedDirection": true,
+    "movedTowardTargetSample": true,
+    "overcorrectedBelowTargetSample": false
+   },
+   "fringeRB": {
+    "target": 19.64,
+    "before": 59.46,
+    "candidate": 58.02,
+    "movedInExpectedDirection": true,
+    "movedTowardTargetSample": true
+   },
+   "whiteReflectionRatio": {
+    "target": 0.1041,
+    "before": 0.1438,
+    "candidate": 0.153,
+    "movedInExpectedDirection": true,
+    "movedTowardTargetSample": false
+   },
+   "fringeWidthPx": {
+    "target": 3.31,
+    "before": 13.57,
+    "candidate": 9.28
+   }
+  },
+  "1440x900/pointer-corner-br": {
+   "edgeChroma": {
+    "target": 20.33,
+    "before": 53.23,
+    "candidate": 48.77,
+    "movedInExpectedDirection": true,
+    "movedTowardTargetSample": true,
+    "overcorrectedBelowTargetSample": false
+   },
+   "fringeRB": {
+    "target": 19.82,
+    "before": 48.51,
+    "candidate": 45.77,
+    "movedInExpectedDirection": true,
+    "movedTowardTargetSample": true
+   },
+   "whiteReflectionRatio": {
+    "target": 0.1044,
+    "before": 0.1461,
+    "candidate": 0.1528,
+    "movedInExpectedDirection": true,
+    "movedTowardTargetSample": false
+   },
+   "fringeWidthPx": {
+    "target": 2.9,
+    "before": 13.01,
+    "candidate": 7.95
+   }
+  },
+  "390x844/rest": {
+   "edgeChroma": {
+    "target": 32.46,
+    "before": 42.0,
+    "candidate": 37.83,
+    "movedInExpectedDirection": true,
+    "movedTowardTargetSample": true,
+    "overcorrectedBelowTargetSample": false
+   },
+   "fringeRB": {
+    "target": 28.48,
+    "before": 23.39,
+    "candidate": 20.35,
+    "movedInExpectedDirection": true,
+    "movedTowardTargetSample": false
+   },
+   "whiteReflectionRatio": {
+    "target": 0.1302,
+    "before": 0.2858,
+    "candidate": 0.2902,
+    "movedInExpectedDirection": true,
+    "movedTowardTargetSample": false
+   },
+   "fringeWidthPx": {
+    "target": 11.05,
+    "before": 19.8,
+    "candidate": 16.4
+   }
+  },
+  "390x844/pointer-corner-br": {
+   "edgeChroma": {
+    "target": 28.55,
+    "before": 50.08,
+    "candidate": 43.33,
+    "movedInExpectedDirection": true,
+    "movedTowardTargetSample": true,
+    "overcorrectedBelowTargetSample": false
+   },
+   "fringeRB": {
+    "target": 25.99,
+    "before": 26.81,
+    "candidate": 21.88,
+    "movedInExpectedDirection": true,
+    "movedTowardTargetSample": false
+   },
+   "whiteReflectionRatio": {
+    "target": 0.1535,
+    "before": 0.3604,
+    "candidate": 0.3678,
+    "movedInExpectedDirection": true,
+    "movedTowardTargetSample": false
+   },
+   "fringeWidthPx": {
+    "target": 9.06,
+    "before": 16.06,
+    "candidate": 12.38
+   }
+  }
+ },
+ "brightDarkCohorts": {
+  "1440x900/rest": {
+   "target": {
+    "cards": 9,
+    "interiorLumaMedian": 106.7,
+    "darkEdgeChroma": 18.87,
+    "brightEdgeChroma": 21.69
+   },
+   "candidate-beauty": {
+    "cards": 9,
+    "interiorLumaMedian": 138.8,
+    "darkEdgeChroma": 75.28,
+    "brightEdgeChroma": 28.08
+   },
+   "before-beauty": {
+    "cards": 9,
+    "interiorLumaMedian": 138.8,
+    "darkEdgeChroma": 75.74,
+    "brightEdgeChroma": 37.69
+   }
+  },
+  "1440x900/pointer-corner-br": {
+   "target": {
+    "cards": 9,
+    "interiorLumaMedian": 111.1,
+    "darkEdgeChroma": 19.34,
+    "brightEdgeChroma": 21.46
+   },
+   "candidate-beauty": {
+    "cards": 9,
+    "interiorLumaMedian": 141.2,
+    "darkEdgeChroma": 60.62,
+    "brightEdgeChroma": 34.7
+   },
+   "before-beauty": {
+    "cards": 9,
+    "interiorLumaMedian": 141.2,
+    "darkEdgeChroma": 62.2,
+    "brightEdgeChroma": 36.07
+   }
+  },
+  "390x844/rest": {
+   "target": {
+    "cards": 6,
+    "interiorLumaMedian": 90.0,
+    "darkEdgeChroma": 31.27,
+    "brightEdgeChroma": 33.81
+   },
+   "candidate-beauty": {
+    "cards": 6,
+    "interiorLumaMedian": 143.3,
+    "darkEdgeChroma": 48.66,
+    "brightEdgeChroma": 25.58
+   },
+   "before-beauty": {
+    "cards": 6,
+    "interiorLumaMedian": 143.3,
+    "darkEdgeChroma": 54.53,
+    "brightEdgeChroma": 27.82
+   }
+  },
+  "390x844/pointer-corner-br": {
+   "target": {
+    "cards": 6,
+    "interiorLumaMedian": 97.4,
+    "darkEdgeChroma": 30.33,
+    "brightEdgeChroma": 26.37
+   },
+   "candidate-beauty": {
+    "cards": 6,
+    "interiorLumaMedian": 160.2,
+    "darkEdgeChroma": 55.08,
+    "brightEdgeChroma": 28.82
+   },
+   "before-beauty": {
+    "cards": 6,
+    "interiorLumaMedian": 160.2,
+    "darkEdgeChroma": 65.28,
+    "brightEdgeChroma": 31.32
+   }
+  }
+ },
+ "targetLaneVariance": {
+  "what": "how much each lane's band statistics move across fresh loads (every load reshuffles the media). OUR lanes are deterministic; the TARGET's numbers are draw-dominated.",
+  "perState": {
+   "1440x900/rest": {
+    "targetEdgeChromaPerRepeat": [
+     15.13,
+     26.78,
+     18.52
+    ],
+    "targetWhitePerRepeat": [
+     0.0944,
+     0.1467,
+     0.0713
+    ],
+    "targetO0SessionDraw": {
+     "edgeChromaMean": 35.91,
+     "whiteReflectionRatio": 0.2035
+    },
+    "beforeEdgeChromaPerRepeat": [
+     63.13,
+     63.13,
+     63.13
+    ],
+    "candidateEdgeChromaPerRepeat": [
+     59.21,
+     60.46,
+     59.21
+    ]
+   },
+   "1440x900/pointer-corner-br": {
+    "targetEdgeChromaPerRepeat": [
+     15.8,
+     25.98,
+     19.22
+    ],
+    "targetWhitePerRepeat": [
+     0.0855,
+     0.1644,
+     0.0634
+    ],
+    "targetO0SessionDraw": {
+     "edgeChromaMean": 37.96,
+     "whiteReflectionRatio": 0.1871
+    },
+    "beforeEdgeChromaPerRepeat": [
+     53.23,
+     53.23,
+     53.24
+    ],
+    "candidateEdgeChromaPerRepeat": [
+     48.78,
+     48.76,
+     48.76
+    ]
+   },
+   "390x844/rest": {
+    "targetEdgeChromaPerRepeat": [
+     23.4,
+     44.58,
+     29.4
+    ],
+    "targetWhitePerRepeat": [
+     0.0417,
+     0.196,
+     0.1528
+    ],
+    "targetO0SessionDraw": {
+     "edgeChromaMean": 37.58,
+     "whiteReflectionRatio": 0.172
+    },
+    "beforeEdgeChromaPerRepeat": [
+     41.79,
+     42.1,
+     42.1
+    ],
+    "candidateEdgeChromaPerRepeat": [
+     37.89,
+     37.89,
+     37.71
+    ]
+   },
+   "390x844/pointer-corner-br": {
+    "targetEdgeChromaPerRepeat": [
+     22.91,
+     30.91,
+     31.84
+    ],
+    "targetWhitePerRepeat": [
+     0.0424,
+     0.2434,
+     0.1747
+    ],
+    "targetO0SessionDraw": {
+     "edgeChromaMean": 38.84,
+     "whiteReflectionRatio": 0.1767
+    },
+    "beforeEdgeChromaPerRepeat": [
+     50.2,
+     49.84,
+     50.2
+    ],
+    "candidateEdgeChromaPerRepeat": [
+     43.33,
+     43.33,
+     43.33
+    ]
+   }
+  },
+  "reading": "the Target's desktop edge chroma sampled 35.91 in the O0 session and 15.13-26.78 across this session's three draws; its mobile white ratio spans 0.042-0.243 within ONE session. Our own lanes spread at most 1.3 chroma points across loads. The candidate-vs-before deltas being judged (3-7 chroma points, 0.004-0.007 white) are 20-50x smaller than the Target lane's draw swing.",
+  "methodRequirementForO2": "cross-page ABSOLUTE band statistics against a single Target draw must not decide a gate. O2's gate must lean on within-page controls (before/candidate/floor on our page), source reads, and draw-stable structural measures; Target-lane numbers are context, reported with their per-draw range."
+ },
+ "floorExperiment": {
+  "what": "the DECISIVE attribution instrument: the O1 build rebuilt with dispersionSpread=0 (dispersion OFF, everything else identical), desktop rest, single capture. Entirely within our own page, so media-draw variance does not touch it.",
+  "captureFile": "private package: floor/floor-1440x900-rest.png",
+  "edgeChromaMean": 59.04,
+  "fringeRB": 57.38,
+  "whiteReflectionRatio": 0.152,
+  "samePageLeverEffect": {
+   "edgeChromaPoints": 4.09,
+   "reading": "before 63.13 -> floor 59.04: the ENTIRE dispersion mechanism is worth 4.09 edge-chroma points on our page (media-stable, within-page)."
+  },
+  "shareOfTargetGap": {
+   "targetDraws": {
+    "o0SessionDraw": 35.91,
+    "thisSessionMean": 20.14
+   },
+   "sharePctPerDraw": {
+    "o0SessionDraw": 15.0,
+    "thisSessionMean": 9.5
+   },
+   "reading": "the gap to the Target depends on the Target's media draw; dispersion's share of it is 9.5-15.0% across the observed draws -- a small minority under every draw."
+  },
+  "conclusion": "dispersion owns 9.5-15.0% of the desktop edge-chroma gap to the Target (depending on the Target's media draw; the same-page lever effect is exact: 4.09 points). The residual is System B: the Target desaturates its edges by LERPing toward the white env reflection under a fresnel cap (source-anchored in the O0 forensics), while our shell ADDS white over a still-saturated refracted edge."
+ },
+ "mediaOnlyInvariance": {
+  "what": "media-only invariance: the O1 build vs the pre-O1 build (V1-frozen product code), frozen media, glass and labels off. The O1 change lives in the glass material only, so the requirement is identity.",
+  "rows": [
+   {
+    "viewport": "1440x900",
+    "state": "rest",
+    "differingPixels": 0,
+    "maxChannelDelta": 0
+   },
+   {
+    "viewport": "1440x900",
+    "state": "pointer-corner-br",
+    "differingPixels": 0,
+    "maxChannelDelta": 0
+   },
+   {
+    "viewport": "390x844",
+    "state": "rest",
+    "differingPixels": 0,
+    "maxChannelDelta": 0
+   },
+   {
+    "viewport": "390x844",
+    "state": "pointer-corner-br",
+    "differingPixels": 0,
+    "maxChannelDelta": 0
+   }
+  ],
+  "pass": true
+ },
+ "interiorBeautyOverMediaOnlySaturation": {
+  "1440x900/rest": {
+   "before": 0.984,
+   "candidate": 0.984
+  },
+  "1440x900/pointer-corner-br": {
+   "before": 0.945,
+   "candidate": 0.945
+  },
+  "390x844/rest": {
+   "before": 1.001,
+   "candidate": 1.001
+  },
+  "390x844/pointer-corner-br": {
+   "before": 0.867,
+   "candidate": 0.867
+  }
+ },
+ "failureConditions": [
+  {
+   "condition": "edge chroma falls BELOW the Target's (overcorrection is a failure, not a win)",
+   "fired": false,
+   "measured": {
+    "candidateEdgeChroma": {
+     "1440x900/rest": 59.63,
+     "1440x900/pointer-corner-br": 48.77,
+     "390x844/rest": 37.83,
+     "390x844/pointer-corner-br": 43.33
+    },
+    "targetSampleMean": {
+     "1440x900/rest": 20.14,
+     "1440x900/pointer-corner-br": 20.33,
+     "390x844/rest": 32.46,
+     "390x844/pointer-corner-br": 28.55
+    },
+    "note": "evaluated against this session's 3-draw Target mean; the candidate sits ABOVE it in every state, so the condition does not fire under any observed draw (Target per-draw ranges in targetLaneVariance)."
+   }
+  },
+  {
+   "condition": "white reflection ratio does not move (wrong root cause -> System B next)",
+   "fired": true,
+   "measured": {
+    "whiteBefore": 0.1438,
+    "whiteCandidate": 0.153,
+    "whiteAtFloorSpread0": 0.152,
+    "leverEffectOnWhite": 0.001,
+    "targetWhiteSampleRange": "0.071-0.147 across this session's desktop draws; 0.204 in the O0 session's draw"
+   },
+   "rationale": "fired on the LEVER-NULL result, which is same-page and media-stable: white at dispersionSpread=0.3 (0.153) differs from the floor's at spread=0 (0.152) by +0.0010 -- the system's ONE tunable lever contributes essentially nothing to the white band. The visual gap O1 targeted (the Target's white desaturating rim) is produced by System B's mechanism, byte-anchored in the O0 forensics as a fresnel-capped LERP toward the white env reflection. Cross-page white-ratio comparisons are NOT part of this firing: min(RGB)>180 counts bright media as 'white', and the Target lane's draw range (targetLaneVariance) spans our own values in both directions. The pre-registered consequence applies: wrong root cause, System B next."
+  },
+  {
+   "condition": "any mobile metric regresses while desktop improves",
+   "fired": false,
+   "measured": {
+    "interpretation": "'regresses' is read by the selection file's own declared signs (expectedVisualChange: edge chroma DOWN, fringe R-B DOWN, white UP): a mobile metric fires this condition by moving AGAINST those signs while desktop improves.",
+    "desktopImprovedOnDeclaredSigns": true,
+    "mobileAgainstDeclaredSigns": "none",
+    "rejectedCoding": {
+     "what": "distance-to-this-session's-Target-sample; it fires on 4 mobile rows",
+     "rows": [
+      {
+       "metric": "390x844/rest:fringeRB",
+       "target": 28.48,
+       "before": 23.39,
+       "candidate": 20.35
+      },
+      {
+       "metric": "390x844/rest:whiteReflectionRatio",
+       "target": 0.1302,
+       "before": 0.2858,
+       "candidate": 0.2902
+      },
+      {
+       "metric": "390x844/pointer-corner-br:fringeRB",
+       "target": 25.99,
+       "before": 26.81,
+       "candidate": 21.88
+      },
+      {
+       "metric": "390x844/pointer-corner-br:whiteReflectionRatio",
+       "target": 0.1535,
+       "before": 0.3604,
+       "candidate": 0.3678
+      }
+     ],
+     "whyRejected": "the comparator swings with the Target's per-load media draw by 20-50x the deltas being judged (mobile white draw range 0.042-0.243 vs candidate deltas 0.004-0.007) -- that coding measures the Target's draw, not the candidate. Recorded here so the rejection is auditable."
+    }
+   }
+  },
+  {
+   "condition": "media-only differs from pre-O1 by a single pixel",
+   "fired": false,
+   "measured": [
+    {
+     "viewport": "1440x900",
+     "state": "rest",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "viewport": "1440x900",
+     "state": "pointer-corner-br",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "viewport": "390x844",
+     "state": "rest",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "viewport": "390x844",
+     "state": "pointer-corner-br",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    }
+   ]
+  },
+  {
+   "condition": "any frozen regression (label culling, render culling, motion, typography, contract, build) fails",
+   "fired": false,
+   "measured": {
+    "renderCullingGate": true,
+    "labelCullingGate": true,
+    "sourceContract": true,
+    "typography": true,
+    "motionFreeze": true,
+    "cardLabelMotion": true,
+    "typescript": true,
+    "build": true
+   }
+  }
+ ],
+ "visuallyObviousGlassAdvance": {
+  "required": "the brief: O1 must produce a visually OBVIOUS glass advance",
+  "met": false,
+  "observed": "the synthetic cyan/magenta fringe LINES are visibly reduced in the edge strips (private package, roi/edge-compare-*.png), but the frame still reads as a dark chromatic rim next to the Target's white glassy one -- the dominant visual gap is the white desaturating LERP (System B), which O1's one-system scope could not touch."
+ },
+ "runtimeMethod": "identical to O0 (o0-optics-report.py): same layout-twin card rects, same bands, distribution statistics only, media live on every lane; metric lanes averaged over 3 repeat loads, cohorts pooled across repeats."
+}

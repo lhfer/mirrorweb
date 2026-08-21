@@ -1,0 +1,38 @@
+{
+ "stage": "optics-o1",
+ "verdict": "FAILED",
+ "repository": "lhfer/mirrorweb",
+ "branch": "rebuild/liquid-glass-v5-source-exact",
+ "capturedAtHead": "e01fb3068fa5057f50032e4ef8b3076b69f07bc8",
+ "capturedAtHeadMeaning": "the commit every capture and gate in this directory was taken at. REQUIRED input -- no current-HEAD fallback.",
+ "reviewHeadMeaning": "NOT stated here: a committed file cannot contain the hash of the commit that carries it. It is in the private package's manifest.",
+ "route": "/?composition=sourceExact&qa",
+ "captureTimestampUtc": "2026-08-21T21:35:28Z",
+ "files": [
+  {
+   "file": "README.md",
+   "bytes": 4761,
+   "sha256": "d77497db3056864b6566d097184113c363e7521fda97da42efd7a0b575c44bb4"
+  },
+  {
+   "file": "o0-source-diagnosis.json",
+   "bytes": 20708,
+   "sha256": "d8f4aa28410a24b0a4b6ba608521f978c755f61f1c7a5ef2b5017ed522495f23"
+  },
+  {
+   "file": "o1-selected-system.json",
+   "bytes": 2297,
+   "sha256": "9da55591a3591cdad94b0aa3dc3e5c62f86108a6219731a54163895baaf49b36"
+  },
+  {
+   "file": "o1-optics-gate.json",
+   "bytes": 27073,
+   "sha256": "1e854f910e75e32611bc7a13147b1c6a2a1f7c024e097a24358eacca912421ef"
+  },
+  {
+   "file": "o1-regressions.json",
+   "bytes": 1403,
+   "sha256": "ac757cb9ffe9807632a899b1d813162024c0618b6ca60ea1bb99a65a654ee2e9"
+  }
+ ]
+}

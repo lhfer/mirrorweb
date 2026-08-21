@@ -371,5 +371,27 @@
    }
   ],
   "caveat": "interior-saturation numbers compare DIFFERENT media sets (the Target shuffles its clips per load) and are indicative only; edge-band numbers are glass-dominated and carry the decision. Mobile flips fringeRB because the candidate's gutter spill (0.71 vs 0.42 ink ratio) floods the band -- recorded, not chased this round."
+ },
+ "attributionCorrectedByFloorExperiment": {
+  "when": "O1 gate (this round), after the candidate was measured",
+  "original": "systemGapRanking placed System A first because the edge-band gaps were the largest DIRECTLY measured on the brief's named metrics",
+  "correction": "dispersion owns 9.5-15.0% of the desktop edge-chroma gap to the Target (depending on the Target's media draw; the same-page lever effect is exact: 4.09 points). The residual is System B: the Target desaturates its edges by LERPing toward the white env reflection under a fresnel cap (source-anchored in the O0 forensics), while our shell ADDS white over a still-saturated refracted edge.",
+  "samePageLeverEffect": {
+   "edgeChromaPoints": 4.09,
+   "reading": "before 63.13 -> floor 59.04: the ENTIRE dispersion mechanism is worth 4.09 edge-chroma points on our page (media-stable, within-page)."
+  },
+  "shareOfTargetGap": {
+   "targetDraws": {
+    "o0SessionDraw": 35.91,
+    "thisSessionMean": 20.14
+   },
+   "sharePctPerDraw": {
+    "o0SessionDraw": 15.0,
+    "thisSessionMean": 9.5
+   },
+   "reading": "the gap to the Target depends on the Target's media draw; dispersion's share of it is 9.5-15.0% across the observed draws -- a small minority under every draw."
+  },
+  "targetLaneVarianceWarning": "cross-page ABSOLUTE band statistics against a single Target draw must not decide a gate. O2's gate must lean on within-page controls (before/candidate/floor on our page), source reads, and draw-stable structural measures; Target-lane numbers are context, reported with their per-draw range.",
+  "consequence": "the O2 system selection must read THIS field: the dominant remaining edge gap belongs to System B (environment / white studio reflection), not A."
  }
 }

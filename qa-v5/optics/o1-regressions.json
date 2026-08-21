@@ -1,0 +1,71 @@
+{
+ "what": "every frozen suite re-run at the O1 candidate build. O1 touched only the glass material's dispersion law; this file proves nothing else moved.",
+ "renderCullingGate": {
+  "framesChecked": 20203,
+  "slotMismatches": 0,
+  "labelMeshDisagreements": 0,
+  "strictViewportMissing": 0,
+  "mediaPassLeaks": 0,
+  "shellGlassMismatches": 0,
+  "settledSnapshots": "35 (all PASS)",
+  "errors": 0,
+  "pass": true
+ },
+ "labelCullingGate": {
+  "framesChecked": 20307,
+  "slotMismatches": 0,
+  "beyondBoundary": 0,
+  "identity": "40/40",
+  "snapshotBitExact": true,
+  "staleRects": true,
+  "edgePopIn": true,
+  "writes": true,
+  "errors": {
+   "target": 0,
+   "before": 0,
+   "candidate": 0,
+   "pass": true
+  },
+  "pass": true
+ },
+ "sourceContract": {
+  "verdict": "PASS",
+  "passed": 36,
+  "viewports": 36,
+  "pass": true
+ },
+ "typography": {
+  "verdict": "PASS",
+  "passed": 4,
+  "pass": true
+ },
+ "motionFreeze": {
+  "pass": true,
+  "engineVsContract": {
+   "rowsTotal": 15,
+   "rowsFailed": 0,
+   "rowsExactToFloatingPoint": 15,
+   "worstRecoveryError": 0.009979,
+   "threshold": 0.1
+  },
+  "releaseHistory": {
+   "releases": 11,
+   "exact": 11,
+   "mismatched": 0,
+   "worstVelocityError": 0.0,
+   "gesturesWithNoRecordedRelease": []
+  }
+ },
+ "cardLabelMotion": {
+  "assertions": 34,
+  "failed": 0,
+  "pass": true
+ },
+ "typescript": {
+  "pass": true
+ },
+ "build": {
+  "pass": true
+ },
+ "pass": true
+}
