@@ -1,0 +1,222 @@
+{
+ "what": "V1 render-culling source forensics: the object behind `s.visible = o.draw`, its creation chain, material, passes, and everything hiding it can and cannot touch.",
+ "bundle": {
+  "path": "artifacts/f27/bundles/03lo820gl57km.js",
+  "sha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+  "bytes": 2008349
+ },
+ "liveBundle": {
+  "sha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+  "matchesCapturedBundle": true
+ },
+ "objectCreationChain": "PP component -> <group> -> <mesh ref->a.current[t]> (geometry: shared PlaneGeometry(1,1,16,12); material: b[m[t]] per media)",
+ "sceneParentChain": "scene -> group (single, anonymous) -> card meshes; scene.backgroundNode = screen-space gradient node",
+ "materialAndPass": "MeshBasicNodeMaterial per media; single forward pass; no render targets, no scene-color pass, no onBeforeRender hooks in the app module",
+ "sites": [
+  {
+   "id": "meshJsx",
+   "byteOffset": 1981367,
+   "occurrences": 1,
+   "verbatim": "(0,eP.jsx)(\"mesh\",{ref:e=>{a.current[t]=e},geometry:y,material:b[m[t]]?.material,frustumCulled:!1},t)",
+   "whatItSettles": "`s` is a plain react-three-fiber \"mesh\" element -- a THREE.Mesh, not a Group and not a parent of anything. Its ref callback writes it into a.current[t], the exact array the visibility loop iterates. One shared geometry `y`; material comes from the per-MEDIA material array b, indexed by the slot->media assignment m[t]; frustumCulled is disabled, so the coverage verdict is the ONLY culling this mesh has.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "meshGroupParent",
+   "byteOffset": 1981309,
+   "occurrences": 1,
+   "verbatim": "(0,eP.jsx)(\"group\",{children:Array.from({length:g},(e,t)=>",
+   "whatItSettles": "Parent chain: every card mesh is a direct child of ONE anonymous <group>, which is a direct child of the scene. There is no per-slot group -- the mesh IS the whole WebGL card.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "planeGeometry",
+   "byteOffset": 1973254,
+   "occurrences": 1,
+   "verbatim": "new eF.PlaneGeometry(1,1,16,12)",
+   "whatItSettles": "The shared card geometry: a unit plane, 16x12 segments. The dome shape comes from the material's positionNode, not from the geometry.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "materialClass",
+   "byteOffset": 1976795,
+   "occurrences": 1,
+   "verbatim": "new ek.MeshBasicNodeMaterial({transparent:!0,alphaTest:.001,depthWrite:!0,depthTest:!0,side:eF.FrontSide,toneMapped:!1})",
+   "whatItSettles": "The material is a WebGPU MeshBasicNodeMaterial: transparent, alphaTest .001, depth write+test on, FRONT side only, NOT tone mapped. One instance per MEDIA (not per slot) -- slots showing the same clip share the material and its uniforms.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "materialPerMedia",
+   "byteOffset": 1973290,
+   "occurrences": 1,
+   "verbatim": "b=(0,eB.useMemo)(()=>c.map(e=>(function(e,t,r=bH,i)",
+   "whatItSettles": "The material array b is built by mapping the MEDIA list c -- one material per clip, each closing over that clip's VideoTexture.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "positionNodeDome",
+   "byteOffset": 1976923,
+   "occurrences": 1,
+   "verbatim": "m.positionNode=(0,dB.vec3)(dB.positionLocal.xy,u(dB.positionLocal.xy.mul(n.planeSize)))",
+   "whatItSettles": "positionNode bulges the plane onto a sphere section (z = sqrt(max(R^2-|p|^2,1)) - R, R = the LAYOUT sphere radius uniform). The glass body is this displaced plane -- there is no separate glass geometry.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "singleMaterialAllOptics",
+   "byteOffset": 1977011,
+   "occurrences": 1,
+   "verbatim": "m.colorNode=p(),m.opacityNode=g(),{material:m,uniforms:n}",
+   "whatItSettles": "colorNode carries the ENTIRE card appearance -- refracted media, environment reflection, fresnel mix, rim light; opacityNode is the antialiased rounded-rect cutout. Glass Body, Media Plane and Reflection Shell are ONE node material on ONE mesh: one draw call per card, nothing else to hide.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "verdictWiring",
+   "byteOffset": 1980416,
+   "occurrences": 1,
+   "verbatim": "s.visible=o.draw,o.draw?i(a,s):n(a),o.interactive&&PA.push(a)",
+   "whatItSettles": "The SAME coverage verdict, in the SAME loop iteration, writes the mesh's .visible AND draws/hides the CSS3D label (i = draw callback into the label DOM registry L7, n = hide callback). WebGL and CSS3D can never disagree by construction -- there is no second coverage state.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "nullMeshSkip",
+   "byteOffset": 1979750,
+   "occurrences": 1,
+   "verbatim": "PA.length=0;for(let a=0;a<e.length;a+=1){let s=e[a];if(!s)continue;",
+   "whatItSettles": "A slot whose mesh ref is not mounted yet is skipped entirely -- neither mesh nor label changes state.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "meshPoseUnconditional",
+   "byteOffset": 1979632,
+   "occurrences": 1,
+   "verbatim": "t.position.set(PT.x*u,PT.y*u,PT.z*u-u),t.quaternion.setFromUnitVectors(P_,PT),t.scale.set(d,h,1)",
+   "whatItSettles": "The mesh pose loop runs for EVERY mounted mesh EVERY frame, before the verdict, with no visibility check: hidden meshes keep receiving transforms. Culling skips the draw, never the pose. (The CSS3D label is the opposite: hidden labels keep a stale transform. Both are already frozen behaviours -- labels in V0, meshes here.)",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "canvasMount",
+   "byteOffset": 1989481,
+   "occurrences": 1,
+   "verbatim": "(0,eP.jsxs)(mL,{renderer:!0,dpr:PE.dpr,style:i,camera:n,children:[a,s,o]})",
+   "whatItSettles": "One Canvas, WebGPU renderer, dpr capped by device tier, camera fov 45. The children are: the background node element, the PG scene wrapper, and a literal `false`.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "backgroundNode",
+   "byteOffset": 1304796,
+   "occurrences": 1,
+   "verbatim": "(0,eP.jsx)(\"primitive\",{attach:\"backgroundNode\",object:i})",
+   "whatItSettles": "The page background is a scene backgroundNode (a screen-space navy-to-black gradient: mix(#0a1c3d, #000) over screenUV), not a mesh. Card visibility cannot affect it and it cannot affect card culling.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "sceneChildren",
+   "byteOffset": 1983976,
+   "occurrences": 1,
+   "verbatim": "n=(0,eP.jsxs)(eB.Suspense,{fallback:null,children:[t,r,i]})",
+   "whatItSettles": "PG renders exactly: PB (camera/scroll springs -- no objects), PP (the card field -- the ONLY object container), PF (onReady signal). The card meshes are the only WebGL objects in the scene; `s.visible` therefore toggles exactly one draw call and there is no reflection shell, media plane, or scene-color proxy anywhere to keep in sync.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "refractionSamplesOwnMedia",
+   "byteOffset": 1975551,
+   "occurrences": 1,
+   "verbatim": "a=S.add(r.xy.mul(i).mul(n.refractStrength).div(n.planeSize)),o=(0,dB.clamp)(a,0,1).mul(n.coverScale).add(n.coverOffset);_=_.add(s.sample(o)",
+   "whatItSettles": "The refraction loop displaces UV WITHIN the card's own media texture (s = texture(clip video)) -- there is NO scene-color sampling, no readback, no second pass. Hiding a card cannot change what any other card refracts.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "envReflectionSameMaterial",
+   "byteOffset": 1976103,
+   "occurrences": 1,
+   "verbatim": "D=(0,dB.texture)(t,(0,dB.equirectUV)(P)).rgb",
+   "whatItSettles": "The white-studio reflection is an equirect env-texture sample inside the same colorNode -- part of the same single draw call, not a separate shell object or pass.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "videoPlaysFromMount",
+   "byteOffset": 1971831,
+   "occurrences": 1,
+   "verbatim": "t.muted=!0,t.play()}return()=>{for(let e of r)e.image.pause()}",
+   "whatItSettles": "Every clip's HTMLVideoElement plays from the moment the media set mounts and pauses only on unmount. Per-slot visibility does not touch playback or decode -- the elements are shared by all slots showing that clip.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "videoTexturePerClip",
+   "byteOffset": 1970454,
+   "occurrences": 1,
+   "verbatim": "let e=new eF.VideoTexture(n);e.colorSpace=eF.SRGBColorSpace",
+   "whatItSettles": "One VideoTexture per clip, sRGB, shared by every slot with that clip via the shared material. Whether the renderer skips the GPU upload for a clip whose every mesh is hidden is renderer-internal and not readable from this bundle.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "coverFitPerMedia",
+   "byteOffset": 1978784,
+   "occurrences": 1,
+   "verbatim": "b[e].uniforms.coverScale.value.set(t.scaleX,t.scaleY),b[e].uniforms.coverOffset.value.set(t.offsetX,t.offsetY)",
+   "whatItSettles": "Cover fit is a per-MEDIA uniform recomputed when the plane aspect changes -- shared by all slots with that clip, unrelated to visibility.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "mediaAssignment",
+   "byteOffset": 1981421,
+   "occurrences": 1,
+   "verbatim": "material:b[m[t]]?.material",
+   "whatItSettles": "The slot->clip assignment m is a neighbour-avoiding round-robin computed from cols x rows; it decides WHICH material a mesh gets and never changes with visibility.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "noLayerDebugMode",
+   "byteOffset": 1304343,
+   "occurrences": 1,
+   "verbatim": "bq={glass:bH,grid:bV,drag:bW}",
+   "whatItSettles": "The settings store contains exactly glass (optics), grid (layout) and drag (motion) parameter groups. The shipped bundle has NO glass-off, media-only, layer-debug or URL-parameter surface that composes with mesh visibility -- searched: no glassOnly/mediaOnly/layers/leva/searchParams reads in the app module. The verdict is the only visibility writer.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "regridDebounce",
+   "byteOffset": 1973001,
+   "occurrences": 1,
+   "verbatim": "let r=window.setTimeout(e,150);return()=>window.clearTimeout(r)",
+   "whatItSettles": "The cols x rows layout STATE (not just the label pool) commits on a 150 ms debounce after resize -- the state setter u() lives inside this debounced callback. This upgrades the V0 gate's transition-window rationale from measured to source-read.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "deviceTierCaps",
+   "byteOffset": 1969070,
+   "occurrences": 1,
+   "verbatim": "PE={dpr:\"low\"===Pb?[1,1.5]:[1,2],maxDispersionSamples:\"low\"===Pb?3:1/0,videoCount:\"low\"===Pb?8:1/0,maxVideoHeight:\"low\"===Pb?540:1/0}",
+   "whatItSettles": "Device-tier caps: dpr, dispersion sample count, clip count, video height. These are load-time constants, not per-frame quality adaptation -- the Target has no runtime adaptive quality for the verdict to compose with.",
+   "confidence": "SOURCE_READ"
+  }
+ ],
+ "questions": {
+  "whereIsSCreated": "PP's JSX: <group>{Array.from({length: cols*rows}, (_, t) => <mesh ref={e => a.current[t] = e} ...>)}</group> -- see meshJsx. a.current is the array the visibility loop iterates.",
+  "threeJsType": "THREE.Mesh (r3f intrinsic \"mesh\"). Not a Group, not a parent; it has no children in JSX and nothing is ever attached to it.",
+  "isMeshGroupOrParent": "Mesh. The only group is the single shared parent of all card meshes; hiding THAT would hide every card, and the Target never touches it.",
+  "material": "MeshBasicNodeMaterial (WebGPU node material), one instance per media clip, shared across slots showing that clip. transparent, alphaTest .001, depth write+test, FrontSide, toneMapped false.",
+  "whatSCorrespondsTo": {
+   "glassBody": "YES -- the dome, bevel, rim and fresnel all live in this mesh's material nodes",
+   "reflectionShell": "NO SEPARATE OBJECT -- reflection is an env-texture term inside the same colorNode",
+   "mediaPlane": "NO SEPARATE OBJECT -- the media is the material's video texture, refracted in the same colorNode",
+   "cardGroup": "NO -- there is no per-slot group",
+   "sceneColorProxy": "DOES NOT EXIST -- no scene-color pass anywhere"
+  },
+  "sChildren": "Empty. Labels are CSS3D DOM nodes in a separate tree, driven by the same verdict loop's callbacks.",
+  "whichDrawCallsDoesVisibleToggle": "Exactly one: the mesh's single draw in the single forward pass. The scene contains only card meshes and a backgroundNode.",
+  "affectsSceneColorPass": "No such pass exists (refraction samples the card's own media texture).",
+  "affectsRefractionReflectionPass": "No such passes exist; both effects are terms of the one material.",
+  "affectsMediaDecode": "No. Videos play from mount to unmount, shared across slots. Renderer-internal texture-upload skipping for fully hidden clips is not readable from the bundle (INFERRED possible, not relied on).",
+  "affectsCss3d": "The same loop iteration drives the label DOM via draw/hide callbacks -- one verdict, two surfaces, zero drift.",
+  "separateMediaController": "None. Cover-fit uniforms are per media and aspect-driven; playback is mount-driven.",
+  "layerDebugGlassOffComposition": "No such mode ships. The verdict is the only writer of mesh.visible in the bundle."
+ },
+ "implementationConstraints": {
+  "targetFact": "In the Target, ONE mesh is the whole WebGL card, so s.visible = o.draw is the complete render culling.",
+  "ourPage": "Our source-exact composition renders a card as more than one WebGL object (glass mesh, media surface) with QA layer toggles and adaptive quality the Target does not have. The brief's layered visibility (coverageVisible AND requestedLayerVisible AND quality/runtime) is therefore the faithful mapping: the Target's single AND collapses because it has one object and no layer system.",
+  "mustNotHideSlotGroup": "The Target has no per-slot group; hiding a whole slot group on our side is only equivalent if EVERY object in that group belongs to the card's pixels. Otherwise hide per object."
+ },
+ "sitesTotal": 22,
+ "sitesFailed": 0,
+ "pass": true
+}
