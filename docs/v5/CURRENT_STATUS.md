@@ -50,7 +50,7 @@ stated here and no further hygiene commit is created to chase it.
 | Target Visual PASS | **NOT ASSERTED** |
 | T0 Render Loop Repair | **ACCEPTED** |
 | Typography | **ACCEPTED** — frozen, see the freeze contract below |
-| Motion / Pointer | see **M3 result** below. M0/M1/M2 results are kept as history and are no longer the current state |
+| Motion / Pointer / Touch | **ACCEPTED — FROZEN**, see [`MOTION_FREEZE_CONTRACT.md`](MOTION_FREEZE_CONTRACT.md). M0–M3 results below are history |
 | Optics / Media / Layout | **NOT AUTHORISED THIS ROUND**, unmodified |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
@@ -183,6 +183,13 @@ whichever order fits is a fit and not a reading. M3 read it.
 
 ### M3 result — the magnitude has two writers and the Target's scheduler picks one
 
+**ACCEPTED by product.** Motion behaviour baseline `4df03f2`, accepted review
+tip `b99e5ce`. Motion / pointer / touch are frozen — the contract, the accepted
+known deviation (release scroll retarget, +1 postRender frame), and the
+standing items (two unresolved summary rows, eight `dollyPeakTimeMs` cells) are
+in [`MOTION_FREEZE_CONTRACT.md`](MOTION_FREEZE_CONTRACT.md). M4 is not
+authorised.
+
 M2 recorded the two-writer hypothesis and refused to act on it. M3 read the
 Target's frame scheduler and found which writer wins, so the order is a source
 read rather than a fit.
@@ -235,9 +242,9 @@ See [`FSX_ACCEPTANCE.md`](FSX_ACCEPTANCE.md).
 
 **Accepted by product**
 - `62f5772` F0/F1 Foundation baseline · `b524dc5` NL-03 media focus
+- M3 motion source reconciliation: `b8cbbd2` writer-order forensics · `4df03f2` writer-order code (motion behaviour baseline) · `8f906f1` evidence · `b99e5ce` hygiene (accepted review tip)
 
 **Candidate, not accepted**
-- M3 motion source reconciliation: `b8cbbd2` writer-order forensics · `4df03f2` writer-order code · the evidence commit that carries this line
 - `dd6d7bf` / `4ca597f` F2 · `b5cff63` F2 audit · `730beb7` F3 diagnosis
 - `f56f55e` / `ba4ba32` F2.5 · this delivery's three F2.6 commits
 
