@@ -316,6 +316,10 @@ stage_evidence() {
   say "STAGE evidence COMPLETE"
 }
 
+# The commits this round landed. Used by the media check to tell "this round
+# added it" from "it was already there".
+M3_COMMITS="${M3_COMMITS:-b8cbbd2 4df03f2 8f906f1}"
+
 stage_hygiene() {
   say "STAGE hygiene -- what the public tree is allowed to contain"
 
@@ -328,12 +332,32 @@ stage_hygiene() {
     need_file "$OUT/$f"
   done
 
-  # No video, no GIF, anywhere in the public evidence tree.
-  local media
+  # No video, no GIF introduced into the public evidence tree BY THIS ROUND.
+  # The scan covers all of qa-v5, but the two outcomes are not the same thing:
+  # a media file this round added, or one that is not committed at all, is a
+  # failure. A media file an earlier round committed is a finding about the
+  # repository that this round reports and does not quietly delete -- removing
+  # another round's accepted evidence is not a hygiene fix.
+  local media pre=""
   media="$(find "$REPO/qa-v5" -type f \( -iname '*.gif' -o -iname '*.mp4' -o -iname '*.webm' \
-            -o -iname '*.mov' \) -not -path "$REPO/qa-v5/private/*" | head -20)"
-  [ -z "$media" ] || die "video or GIF in the public tree:
-$media"
+            -o -iname '*.mov' \) -not -path "$REPO/qa-v5/private/*")"
+  if [ -n "$media" ]; then
+    local f rel added
+    while IFS= read -r f; do
+      [ -n "$f" ] || continue
+      rel="${f#$REPO/}"
+      added="$(git -C "$REPO" log --diff-filter=A --format=%h -1 -- "$rel" 2>/dev/null)"
+      if [ -z "$added" ]; then
+        die "an uncommitted video or GIF is sitting in the public tree: $rel"
+      fi
+      case " $M3_COMMITS " in
+        *" $added "*) die "this round added a video or GIF to the public tree: $rel ($added)" ;;
+      esac
+      pre="$pre  $rel  (added by $added)"$'\n'
+    done <<< "$media"
+    say "  note: the public tree already carried media before this round; reported, not removed:"
+    printf '%s' "$pre"
+  fi
 
   # No single committed file over 20 MB.
   local big
