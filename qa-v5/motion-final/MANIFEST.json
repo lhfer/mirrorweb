@@ -1,0 +1,126 @@
+{
+  "stage": "motion-final",
+  "repository": "lhfer/mirrorweb",
+  "branch": "rebuild/liquid-glass-v5-source-exact",
+  "capturedAtHead": "4df03f2",
+  "capturedAtHeadMeaning": "the commit every trace and gate in this directory was captured at. It is a fact this file can hold, and it is REQUIRED -- the tool has no current-HEAD fallback, because a default here makes the evidence commit look like the capture commit.",
+  "reviewHeadMeaning": "the commit this evidence is reviewed at. It is NOT stated in this public manifest, because a file cannot contain the hash of the commit that carries it. It IS stated, as a full SHA, in the private package's PACKAGE-MANIFEST.json, which is built after the evidence commit and is not itself committed.",
+  "route": "/?qa=1&composition=sourceExact",
+  "captureTimestampUtc": "2026-08-21T15:39:56Z",
+  "fixedCaptureConditions": {
+    "quality": "high (pinned, adaptive sampler off)",
+    "mediaTimeSeconds": 2,
+    "dpr": 1,
+    "motion": "NOT paused -- every trace is driven by real pointer and touch events. No QA hook moves either page.",
+    "server": "vite preview against the built bundle, so no HMR reload can wipe a recorder mid-capture",
+    "clock": "the raw rAF timestamp is recorded per frame, unrounded, because it is the number the engine stamps its gesture history with."
+  },
+  "targetCapture": {
+    "reCaptured": false,
+    "traces": "artifacts/motion/m2-target-* (the M2 capture)",
+    "why": "the scheduler-invariant baseline was sealed from those traces before any candidate existed. Re-capturing the Target would invalidate the seal."
+  },
+  "baselineSha256": "a0a5a1f6b95b685e18453d889a9a57798fd6f73e9e47d9edc9c2a087ddf29224",
+  "verdict": "FAIL",
+  "verdictSource": "qa-v5/motion-final/gate-summary.json",
+  "verdictNote": "one field, not two. It is read out of gate-summary.json and is never typed here.",
+  "landmarkComparisons": 2570,
+  "landmarkFailures": 65,
+  "unresolvedAttribution": 2,
+  "releasesExact": "132/132",
+  "engineVsContractExact": "180/180",
+  "magnitudeWriterOrder": "gestureLastWhileActive",
+  "targetPixelPolicy": "This directory contains LOCAL numbers and Target-derived NUMBERS only. Target pixels live in qa-v5/private/, which is git-ignored.",
+  "privateReviewPackage": {
+    "path": "qa-v5/private/motion-final-review.zip",
+    "builtSeparately": true,
+    "gitIgnored": true,
+    "containsTargetPixels": true
+  },
+  "supersedes": {
+    "path": "qa-v5/motion-closure",
+    "note": "the M2 round. Nothing in that directory is rewritten: its FAIL stands and every result file there is byte-identical. What changed is that M2's remaining failures now have a mechanism."
+  },
+  "files": [
+    {
+      "path": "qa-v5/motion-final/README.md",
+      "bytes": 14222,
+      "sha256": "b5657a3c0a32b8737bff50bb621ffbebcd4361efbe299d5ce596db520a3e9541"
+    },
+    {
+      "path": "qa-v5/motion-final/callback-order-proof.json",
+      "bytes": 132672,
+      "sha256": "0a5056b8f881ef77a49ba24d2fa87c573ed76046a5ad0b3017b5570e1c85b4ba"
+    },
+    {
+      "path": "qa-v5/motion-final/capture-acceptance-rule.json",
+      "bytes": 10636,
+      "sha256": "1c1b215c8bd190edeb0b2549dc2152bfdc9620f86cc9cf74777b6fc553dd7b29"
+    },
+    {
+      "path": "qa-v5/motion-final/card-label-motion.json",
+      "bytes": 13531,
+      "sha256": "69f5ea8ba693d0a38b82f47b0a0809890ad3046fdd3acdf20b773fd3aee66dd4"
+    },
+    {
+      "path": "qa-v5/motion-final/continuity-and-input.json",
+      "bytes": 109853,
+      "sha256": "ee0a6f3770aefed263422a62a9f84e8b38d260bc49327ffee31fa97b0d5e1295"
+    },
+    {
+      "path": "qa-v5/motion-final/contract-vs-target-v2.json",
+      "bytes": 1420477,
+      "sha256": "060467baab6cd7b4a949ba7b099f04c29337d72868cf9259420833978fd7f14d"
+    },
+    {
+      "path": "qa-v5/motion-final/dolly-envelope.json",
+      "bytes": 542414,
+      "sha256": "4f4604adccf36061ec8465e8e6abbbed1ede698a01e4e44d43dcae5c5099a4da"
+    },
+    {
+      "path": "qa-v5/motion-final/engine-vs-contract-v3.json",
+      "bytes": 291313,
+      "sha256": "33d73e5805c208d00c868d8170d778dd462056a66645e4804c3a563dd3561d7f"
+    },
+    {
+      "path": "qa-v5/motion-final/failure-attribution-v2.json",
+      "bytes": 71949,
+      "sha256": "30e6def634efbb0007b85f47b2ca4458ddf4ef59673c039503b2307a5eb16f85"
+    },
+    {
+      "path": "qa-v5/motion-final/gate-summary.json",
+      "bytes": 36971,
+      "sha256": "56ee138cd3011936e57cb499811c9be7e3976606139426c4b6906165d2186cc9"
+    },
+    {
+      "path": "qa-v5/motion-final/magnitude-writer-order-source.json",
+      "bytes": 52328,
+      "sha256": "af27efd71763c3ddd403bfb18a4e121ece64ad84d6a645c1470d0b26ccd678fc"
+    },
+    {
+      "path": "qa-v5/motion-final/raw-scheduler-metrics.json",
+      "bytes": 172879,
+      "sha256": "e4ef92fc3edfa0aa76d2f46744ae6f06a83490a645fb174ae09e76fe5fbca12b"
+    },
+    {
+      "path": "qa-v5/motion-final/release-history-proof.json",
+      "bytes": 239132,
+      "sha256": "e7cbc64c59a3dd581794c2fd1d57a1aae8fc7328f54cb9c7ce7dcd149d40463f"
+    },
+    {
+      "path": "qa-v5/motion-final/scheduler-invariant-gate.json",
+      "bytes": 1253576,
+      "sha256": "ef25d775a6a3c4236bd1bd8fa36900545f89c954cd70e8d264ce1144f836c8c0"
+    },
+    {
+      "path": "qa-v5/motion-final/source-contract.json",
+      "bytes": 170080,
+      "sha256": "81836776feb5dd47ad0653451fadea75ed958056bf318987d8a55a735fb21738"
+    },
+    {
+      "path": "qa-v5/motion-final/typography-regression.json",
+      "bytes": 4848,
+      "sha256": "0000843dfc2a25af1113b26d2128b82d4b441f1a8e8b2bb3963a64ca351d2ac3"
+    }
+  ]
+}

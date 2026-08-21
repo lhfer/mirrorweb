@@ -178,7 +178,7 @@ def main() -> int:
     closure = Path(args["closure"])
     out_zip = Path(args["out"])
     traces = Path(args.get("traces", REPO / "artifacts/motion"))
-    work = Path(args.get("work", REPO / "artifacts/motion/m2-package"))
+    work = Path(args.get("work", REPO / "artifacts/motion/m3-package"))
     if work.exists():
         shutil.rmtree(work)
     work.mkdir(parents=True)

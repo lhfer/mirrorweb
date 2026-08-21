@@ -277,9 +277,9 @@ It shows up as three failing families, and they are the same fact three times:
 - `frameStepJitterFraction` — 27 rows, ours lower in **26 of 26**;
 - `maxFrameVelocityStep` — 8 rows, ours lower in **7 of 7**. Jitter is what a
   frame-to-frame velocity step *is*;
-- `cameraDistanceOverPerspectivePeak` — 17 rows. The dolly is driven by the
-  magnitude spring, whose source is a MotionValue *backward difference*, and a
-  backward difference is exactly what jitter inflates.
+- `cameraDistanceOverPerspectivePeak` — 17 rows. **This attribution was wrong
+  and is corrected below.** It is not jitter. It was the magnitude
+  MotionValue's two writers, and which of them the frame lets write last.
 
 The `systematicSign` row catches all three by sign alone, which is what it was
 added for.
@@ -289,6 +289,137 @@ constant — running our own model and our own paint in two rAF callbacks and
 letting the interleaving fall where it may. That is a product decision about
 how far "source-exact" reaches, not an engineering one, and it is not taken
 here.
+
+## The magnitude has TWO writers, and the frame decides between them
+
+The value the camera dolly is driven from, `g` in the bundle, is written from
+two places:
+
+```js
+// the gesture, in onPan and onPanEnd
+g.set(Math.hypot(t.velocity.x, t.velocity.y))
+
+// the scroll springs, in their own change handlers
+g.set(Math.hypot(f.getVelocity(), p.getVelocity()))
+```
+
+They are not two estimates of one quantity. The first is the FINGER's velocity,
+straight out of PanSession's 100 ms history window. The second is the SPRING's
+— `MotionValue.getVelocity()`, a one-frame backward difference of the spring's
+own output — which while a finger is down is the finger's velocity times the
+1.5 drag gain, minus the spring's lag. They differ by about the drag gain, and
+whichever writes last in a frame is the one the magnitude spring retargets to
+at that frame's `postRender`.
+
+Two lines of the bundle settle which:
+
+```js
+let Sy = e => (t,r) => { e && mH.update(() => e(t,r), !1, !0) }
+```
+
+Every pan handler is wrapped in this. The third argument is `immediate`, and
+with the step already being processed it adds the callback to the Set that is
+being iterated *right now* — `Set.forEach` visits entries added during
+iteration. So the application's `onPan` runs after every callback already
+queued in the update step, including all three spring ticks, whatever order
+they were registered in. And:
+
+```js
+onEnd: (e,t) => { delete this.session; i && mH.postRender(() => i(e,t)) }
+```
+
+`onPanEnd` is not wrapped. It is scheduled straight onto `postRender` from
+inside the pointerup listener, which runs in the input-dispatch phase — so it
+is the first entry in that frame's postRender set, ahead of the spring's own
+retarget in the same pass.
+
+**The gesture writer wins every frame that carries a pan dispatch, and the
+release frame. The scroll writer stands alone on every frame that carries
+neither**, which is every frame after the release.
+
+That is what the dolly residual was. It was never a scale factor: it changed
+SIGN with the phase of the gesture. The Target dollied *less* than the frozen
+law during a drag (0.80 on the slow drags) and *more* during a fling (1.17 to
+1.20). Two writers that disagree by the drag gain, with the gesture one winning
+while the finger is down, is exactly that shape — and it is what a constant
+fitted to the residual could never be, because such a constant would be wrong
+in both phases at once.
+
+Replayed on the Target's own recorded input over 124 runs, changing nothing but
+which writer the magnitude spring retargets to:
+
+| order | signed median ratio | median absolute residual |
+|---|---|---|
+| scroll writer last, always | 0.955 (−4.5%) | 17.7% |
+| gesture writer last while the gesture is alive | 0.984 (−1.6%) | 1.6% |
+
+Both numbers are quoted because they say different things. The signed ratio is
+much the smaller of the two under the old order **because the drag and flick
+residuals had opposite signs and cancelled**; quoting only −4.5% understates
+what any single sequence showed.
+
+The derivation, with twenty byte offsets into the bundle and the verbatim text
+at each, is in `qa-v5/motion-final/magnitude-writer-order-source.json`.
+
+### What that also implies, and what was not done about it
+
+`onPanEnd` running at `postRender` means its `d.set(target + velocity * 0.1)`
+schedules the SCROLL retarget into the *next* frame's postRender, one frame
+later than a drag frame does. That is a real asymmetry in the scroll path, read
+from the same two lines. It is recorded and NOT implemented: the product
+re-authorised two scheduling semantics for this round — the release history
+window and the magnitude writer order — and this is neither.
+
+## The release velocity is quantised, and the Target disagrees with itself
+
+framer-motion measures the release velocity over a window it defines with a
+strict `>`:
+
+```
+while (i >= 0) { p = history[i]; if (timestamp - p.timestamp > 100) break; i-- }
+```
+
+The gesture history is fed from the frame callback, so its points are one frame
+apart. A release therefore measures over either N or N+1 of them, and the span
+of the window it actually used is either about 100.1 ms or about 108.3 ms —
+never a value in between. One extra 8.3 ms sample inside a 100 ms window moves
+the computed velocity by roughly 8%, and which side a release lands on is
+decided by sub-millisecond dispatch timing that nothing in either page controls.
+
+This is not a statement about our engine. **The Target's own three repeats of
+the same scripted gesture land on opposite sides of that boundary in 33 of its
+44 cells — 75% — with a median repeat-to-repeat release-velocity spread of 7.78%
+and a maximum of 8.81%.** The gesture is identical each time; the answer is not.
+
+It was found while checking whether one candidate capture was noisier than
+another. On the fast gestures, where the releases live, it was not: those two
+captures have identical move counts, identical median inter-event intervals to
+0.05 ms, and identical frame cadence. (The slow multi-step drags are a separate
+and real difference — one capture dispatches them 3.4 ms slower per step, which
+accumulates into a gesture 103 ms longer. That does not touch the release
+velocity; it moves the dolly peak TIME, and it is the whole of what is left
+failing in the dolly.) Their
+per-run release velocities agree to 0.00% on every run where both landed on the
+same side of the boundary, and differ by 6.7% to 7.6% on every run where they
+did not. There is no continuum between those two populations, which is what
+rules out noise and identifies a quantum.
+
+Three consequences, all of them recorded rather than acted on:
+
+- The release-velocity landmark family carries an irreducible one-sample
+  quantum. No implementation of this contract can close it, because the source
+  of it disagrees with itself by the same amount.
+- A candidate-vs-Target difference on those landmarks is only meaningful above
+  that quantum. Below it, it is the boundary, and the frozen attribution sends
+  it to `TARGET_INPUT_VARIATION` on the strength of the input-stream residual
+  rather than on this argument.
+- Nothing was added to the gate to make it boundary-aware. Discovering a
+  quantisation and then teaching the scorer to forgive it is the same move as
+  fitting, one step removed.
+
+`qa-v5/motion-final/capture-acceptance-rule.json` carries the three falsification
+tests — event stream, raw clock, release record — that got here, in the order
+they were run.
 
 ## A defect found in a frozen file, and left alone
 

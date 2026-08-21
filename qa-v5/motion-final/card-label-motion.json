@@ -1,0 +1,526 @@
+{
+  "startedAt": "2026-08-21T15:36:14.377Z",
+  "origin": "http://127.0.0.1:5281",
+  "gate": "label corners against the card mid-plane projected through the CSS3D camera",
+  "gateWhy": "the Target's CSS3D camera carries the velocity dolly -- its recorded distance from the origin goes 1000.000 at rest, 1158.13 on a flick, 1223.01 on a long drag, and exactly 1000.000 through a pointer sweep. There is no glass/label separation to allow for, and an earlier version of this file gated on the assumption that there was. The two cameras must now agree at every frame.",
+  "thresholdPx": 1,
+  "viewports": [
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "runs": [
+        {
+          "kind": "drag",
+          "frames": 385,
+          "movingFrames": 256,
+          "worstCornerDeltaPx": 0.0064,
+          "worstAtSlot": 43,
+          "worstAtMagnitude": 0.023,
+          "comparedPerFrameMin": 81,
+          "dollyPeakZ": 34.186,
+          "cameraSeparationPeakZ": 0,
+          "scrollTravel": 837.434
+        },
+        {
+          "kind": "flick",
+          "frames": 401,
+          "movingFrames": 206,
+          "worstCornerDeltaPx": 0.0065,
+          "worstAtSlot": 35,
+          "worstAtMagnitude": 0.014,
+          "comparedPerFrameMin": 82,
+          "dollyPeakZ": 154.698,
+          "cameraSeparationPeakZ": 0,
+          "scrollTravel": -1420.339
+        }
+      ]
+    },
+    {
+      "id": "390x844",
+      "viewport": [
+        390,
+        844
+      ],
+      "runs": [
+        {
+          "kind": "drag",
+          "frames": 385,
+          "movingFrames": 241,
+          "worstCornerDeltaPx": 0.0032,
+          "worstAtSlot": 41,
+          "worstAtMagnitude": 0.019,
+          "comparedPerFrameMin": 93,
+          "dollyPeakZ": 14.817,
+          "cameraSeparationPeakZ": 0,
+          "scrollTravel": 362.864
+        },
+        {
+          "kind": "flick",
+          "frames": 401,
+          "movingFrames": 192,
+          "worstCornerDeltaPx": 0.0032,
+          "worstAtSlot": 45,
+          "worstAtMagnitude": 1.589,
+          "comparedPerFrameMin": 93,
+          "dollyPeakZ": 69.887,
+          "cameraSeparationPeakZ": 0,
+          "scrollTravel": -615.66
+        }
+      ]
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844,
+        390
+      ],
+      "runs": [
+        {
+          "kind": "drag",
+          "frames": 385,
+          "movingFrames": 241,
+          "worstCornerDeltaPx": 0.0045,
+          "worstAtSlot": 32,
+          "worstAtMagnitude": 0.002,
+          "comparedPerFrameMin": 68,
+          "dollyPeakZ": 14.841,
+          "cameraSeparationPeakZ": 0,
+          "scrollTravel": 362.864
+        },
+        {
+          "kind": "flick",
+          "frames": 401,
+          "movingFrames": 192,
+          "worstCornerDeltaPx": 0.0044,
+          "worstAtSlot": 34,
+          "worstAtMagnitude": 0.026,
+          "comparedPerFrameMin": 68,
+          "dollyPeakZ": 70.16,
+          "cameraSeparationPeakZ": 0,
+          "scrollTravel": -617.107
+        }
+      ]
+    },
+    {
+      "id": "700x700",
+      "viewport": [
+        700,
+        700
+      ],
+      "runs": [
+        {
+          "kind": "drag",
+          "frames": 385,
+          "movingFrames": 252,
+          "worstCornerDeltaPx": 0,
+          "worstAtSlot": 54,
+          "worstAtMagnitude": 401.728,
+          "comparedPerFrameMin": 90,
+          "dollyPeakZ": 26.338,
+          "cameraSeparationPeakZ": 0,
+          "scrollTravel": 651.337
+        },
+        {
+          "kind": "flick",
+          "frames": 401,
+          "movingFrames": 202,
+          "worstCornerDeltaPx": 0.0001,
+          "worstAtSlot": 50,
+          "worstAtMagnitude": 0.36,
+          "comparedPerFrameMin": 89,
+          "dollyPeakZ": 105.257,
+          "cameraSeparationPeakZ": 0,
+          "scrollTravel": -1105.03
+        }
+      ]
+    }
+  ],
+  "assertions": [
+    {
+      "assertion": "1440x900 drag: label corners track the card plane within 1 px throughout",
+      "pass": true,
+      "detail": {
+        "kind": "drag",
+        "frames": 385,
+        "movingFrames": 256,
+        "worstCornerDeltaPx": 0.0064,
+        "worstAtSlot": 43,
+        "worstAtMagnitude": 0.023,
+        "comparedPerFrameMin": 81,
+        "dollyPeakZ": 34.186,
+        "cameraSeparationPeakZ": 0,
+        "scrollTravel": 837.434
+      }
+    },
+    {
+      "assertion": "1440x900 drag: the page actually moved",
+      "pass": true,
+      "detail": {
+        "scrollTravel": 837.434,
+        "movingFrames": 256
+      }
+    },
+    {
+      "assertion": "1440x900 drag: every visible label was compared against a card",
+      "pass": true,
+      "detail": {
+        "comparedPerFrameMin": 81
+      }
+    },
+    {
+      "assertion": "1440x900 flick: label corners track the card plane within 1 px throughout",
+      "pass": true,
+      "detail": {
+        "kind": "flick",
+        "frames": 401,
+        "movingFrames": 206,
+        "worstCornerDeltaPx": 0.0065,
+        "worstAtSlot": 35,
+        "worstAtMagnitude": 0.014,
+        "comparedPerFrameMin": 82,
+        "dollyPeakZ": 154.698,
+        "cameraSeparationPeakZ": 0,
+        "scrollTravel": -1420.339
+      }
+    },
+    {
+      "assertion": "1440x900 flick: the page actually moved",
+      "pass": true,
+      "detail": {
+        "scrollTravel": -1420.339,
+        "movingFrames": 206
+      }
+    },
+    {
+      "assertion": "1440x900 flick: every visible label was compared against a card",
+      "pass": true,
+      "detail": {
+        "comparedPerFrameMin": 82
+      }
+    },
+    {
+      "assertion": "1440x900: the CSS3D camera carries the dolly -- the two cameras never separate",
+      "pass": true,
+      "detail": [
+        {
+          "kind": "drag",
+          "dollyPeakZ": 34.186,
+          "cameraSeparationPeakZ": 0
+        },
+        {
+          "kind": "flick",
+          "dollyPeakZ": 154.698,
+          "cameraSeparationPeakZ": 0
+        }
+      ]
+    },
+    {
+      "assertion": "1440x900: the dolly actually engaged, so the row above was exercised",
+      "pass": true,
+      "detail": [
+        {
+          "kind": "drag",
+          "dollyPeakZ": 34.186
+        },
+        {
+          "kind": "flick",
+          "dollyPeakZ": 154.698
+        }
+      ]
+    },
+    {
+      "assertion": "390x844 drag: label corners track the card plane within 1 px throughout",
+      "pass": true,
+      "detail": {
+        "kind": "drag",
+        "frames": 385,
+        "movingFrames": 241,
+        "worstCornerDeltaPx": 0.0032,
+        "worstAtSlot": 41,
+        "worstAtMagnitude": 0.019,
+        "comparedPerFrameMin": 93,
+        "dollyPeakZ": 14.817,
+        "cameraSeparationPeakZ": 0,
+        "scrollTravel": 362.864
+      }
+    },
+    {
+      "assertion": "390x844 drag: the page actually moved",
+      "pass": true,
+      "detail": {
+        "scrollTravel": 362.864,
+        "movingFrames": 241
+      }
+    },
+    {
+      "assertion": "390x844 drag: every visible label was compared against a card",
+      "pass": true,
+      "detail": {
+        "comparedPerFrameMin": 93
+      }
+    },
+    {
+      "assertion": "390x844 flick: label corners track the card plane within 1 px throughout",
+      "pass": true,
+      "detail": {
+        "kind": "flick",
+        "frames": 401,
+        "movingFrames": 192,
+        "worstCornerDeltaPx": 0.0032,
+        "worstAtSlot": 45,
+        "worstAtMagnitude": 1.589,
+        "comparedPerFrameMin": 93,
+        "dollyPeakZ": 69.887,
+        "cameraSeparationPeakZ": 0,
+        "scrollTravel": -615.66
+      }
+    },
+    {
+      "assertion": "390x844 flick: the page actually moved",
+      "pass": true,
+      "detail": {
+        "scrollTravel": -615.66,
+        "movingFrames": 192
+      }
+    },
+    {
+      "assertion": "390x844 flick: every visible label was compared against a card",
+      "pass": true,
+      "detail": {
+        "comparedPerFrameMin": 93
+      }
+    },
+    {
+      "assertion": "390x844: the CSS3D camera carries the dolly -- the two cameras never separate",
+      "pass": true,
+      "detail": [
+        {
+          "kind": "drag",
+          "dollyPeakZ": 14.817,
+          "cameraSeparationPeakZ": 0
+        },
+        {
+          "kind": "flick",
+          "dollyPeakZ": 69.887,
+          "cameraSeparationPeakZ": 0
+        }
+      ]
+    },
+    {
+      "assertion": "390x844: the dolly actually engaged, so the row above was exercised",
+      "pass": true,
+      "detail": [
+        {
+          "kind": "drag",
+          "dollyPeakZ": 14.817
+        },
+        {
+          "kind": "flick",
+          "dollyPeakZ": 69.887
+        }
+      ]
+    },
+    {
+      "assertion": "844x390 drag: label corners track the card plane within 1 px throughout",
+      "pass": true,
+      "detail": {
+        "kind": "drag",
+        "frames": 385,
+        "movingFrames": 241,
+        "worstCornerDeltaPx": 0.0045,
+        "worstAtSlot": 32,
+        "worstAtMagnitude": 0.002,
+        "comparedPerFrameMin": 68,
+        "dollyPeakZ": 14.841,
+        "cameraSeparationPeakZ": 0,
+        "scrollTravel": 362.864
+      }
+    },
+    {
+      "assertion": "844x390 drag: the page actually moved",
+      "pass": true,
+      "detail": {
+        "scrollTravel": 362.864,
+        "movingFrames": 241
+      }
+    },
+    {
+      "assertion": "844x390 drag: every visible label was compared against a card",
+      "pass": true,
+      "detail": {
+        "comparedPerFrameMin": 68
+      }
+    },
+    {
+      "assertion": "844x390 flick: label corners track the card plane within 1 px throughout",
+      "pass": true,
+      "detail": {
+        "kind": "flick",
+        "frames": 401,
+        "movingFrames": 192,
+        "worstCornerDeltaPx": 0.0044,
+        "worstAtSlot": 34,
+        "worstAtMagnitude": 0.026,
+        "comparedPerFrameMin": 68,
+        "dollyPeakZ": 70.16,
+        "cameraSeparationPeakZ": 0,
+        "scrollTravel": -617.107
+      }
+    },
+    {
+      "assertion": "844x390 flick: the page actually moved",
+      "pass": true,
+      "detail": {
+        "scrollTravel": -617.107,
+        "movingFrames": 192
+      }
+    },
+    {
+      "assertion": "844x390 flick: every visible label was compared against a card",
+      "pass": true,
+      "detail": {
+        "comparedPerFrameMin": 68
+      }
+    },
+    {
+      "assertion": "844x390: the CSS3D camera carries the dolly -- the two cameras never separate",
+      "pass": true,
+      "detail": [
+        {
+          "kind": "drag",
+          "dollyPeakZ": 14.841,
+          "cameraSeparationPeakZ": 0
+        },
+        {
+          "kind": "flick",
+          "dollyPeakZ": 70.16,
+          "cameraSeparationPeakZ": 0
+        }
+      ]
+    },
+    {
+      "assertion": "844x390: the dolly actually engaged, so the row above was exercised",
+      "pass": true,
+      "detail": [
+        {
+          "kind": "drag",
+          "dollyPeakZ": 14.841
+        },
+        {
+          "kind": "flick",
+          "dollyPeakZ": 70.16
+        }
+      ]
+    },
+    {
+      "assertion": "700x700 drag: label corners track the card plane within 1 px throughout",
+      "pass": true,
+      "detail": {
+        "kind": "drag",
+        "frames": 385,
+        "movingFrames": 252,
+        "worstCornerDeltaPx": 0,
+        "worstAtSlot": 54,
+        "worstAtMagnitude": 401.728,
+        "comparedPerFrameMin": 90,
+        "dollyPeakZ": 26.338,
+        "cameraSeparationPeakZ": 0,
+        "scrollTravel": 651.337
+      }
+    },
+    {
+      "assertion": "700x700 drag: the page actually moved",
+      "pass": true,
+      "detail": {
+        "scrollTravel": 651.337,
+        "movingFrames": 252
+      }
+    },
+    {
+      "assertion": "700x700 drag: every visible label was compared against a card",
+      "pass": true,
+      "detail": {
+        "comparedPerFrameMin": 90
+      }
+    },
+    {
+      "assertion": "700x700 flick: label corners track the card plane within 1 px throughout",
+      "pass": true,
+      "detail": {
+        "kind": "flick",
+        "frames": 401,
+        "movingFrames": 202,
+        "worstCornerDeltaPx": 0.0001,
+        "worstAtSlot": 50,
+        "worstAtMagnitude": 0.36,
+        "comparedPerFrameMin": 89,
+        "dollyPeakZ": 105.257,
+        "cameraSeparationPeakZ": 0,
+        "scrollTravel": -1105.03
+      }
+    },
+    {
+      "assertion": "700x700 flick: the page actually moved",
+      "pass": true,
+      "detail": {
+        "scrollTravel": -1105.03,
+        "movingFrames": 202
+      }
+    },
+    {
+      "assertion": "700x700 flick: every visible label was compared against a card",
+      "pass": true,
+      "detail": {
+        "comparedPerFrameMin": 89
+      }
+    },
+    {
+      "assertion": "700x700: the CSS3D camera carries the dolly -- the two cameras never separate",
+      "pass": true,
+      "detail": [
+        {
+          "kind": "drag",
+          "dollyPeakZ": 26.338,
+          "cameraSeparationPeakZ": 0
+        },
+        {
+          "kind": "flick",
+          "dollyPeakZ": 105.257,
+          "cameraSeparationPeakZ": 0
+        }
+      ]
+    },
+    {
+      "assertion": "700x700: the dolly actually engaged, so the row above was exercised",
+      "pass": true,
+      "detail": [
+        {
+          "kind": "drag",
+          "dollyPeakZ": 26.338
+        },
+        {
+          "kind": "flick",
+          "dollyPeakZ": 105.257
+        }
+      ]
+    },
+    {
+      "assertion": "no console errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "assertion": "no page errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "passed": 34,
+  "total": 34,
+  "verdict": "PASS"
+}

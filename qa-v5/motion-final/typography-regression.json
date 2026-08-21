@@ -1,0 +1,212 @@
+{
+  "what": "the accepted T1 typography gates, re-run at the motion tip",
+  "why": "typography is frozen by diff this stage, and a diff cannot see a regression that arrives from another file -- the motion work moved the camera the label layer projects through",
+  "rows": [
+    {
+      "gate": "container alignment",
+      "source": "artifacts/motion/m3-typography/container-alignment.json",
+      "verdict": "PASS",
+      "passed": 47,
+      "total": 47
+    },
+    {
+      "gate": "label ink",
+      "source": "artifacts/motion/m3-typography/label-ink.json",
+      "verdict": "PASS",
+      "passed": 1,
+      "total": 1
+    },
+    {
+      "gate": "depth / clipping (pointer-swept)",
+      "source": "artifacts/motion/m3-typography/depth-clipping.json",
+      "verdict": "PASS",
+      "passed": 37,
+      "total": 37
+    }
+  ],
+  "assertions": [
+    {
+      "assertion": "container alignment: PASS at this tip",
+      "pass": true,
+      "detail": {
+        "gate": "container alignment",
+        "source": "artifacts/motion/m3-typography/container-alignment.json",
+        "verdict": "PASS",
+        "passed": 47,
+        "total": 47
+      }
+    },
+    {
+      "assertion": "label ink: PASS at this tip",
+      "pass": true,
+      "detail": {
+        "gate": "label ink",
+        "source": "artifacts/motion/m3-typography/label-ink.json",
+        "verdict": "PASS",
+        "passed": 1,
+        "total": 1
+      }
+    },
+    {
+      "assertion": "depth / clipping (pointer-swept): PASS at this tip",
+      "pass": true,
+      "detail": {
+        "gate": "depth / clipping (pointer-swept)",
+        "source": "artifacts/motion/m3-typography/depth-clipping.json",
+        "verdict": "PASS",
+        "passed": 37,
+        "total": 37
+      }
+    },
+    {
+      "assertion": "the pointer sweep moved the camera at every viewport",
+      "pass": true,
+      "detail": [
+        {
+          "viewport": "1440x900",
+          "cameraSpread": [
+            99.83341664682816,
+            99.95833854135667
+          ]
+        },
+        {
+          "viewport": "1920x1080",
+          "cameraSpread": [
+            133.1112221957709,
+            133.2777847218089
+          ]
+        },
+        {
+          "viewport": "390x844",
+          "cameraSpread": [
+            58.51347475689094,
+            58.58669286729515
+          ]
+        },
+        {
+          "viewport": "844x390",
+          "cameraSpread": [
+            58.51347475689094,
+            58.58669286729515
+          ]
+        },
+        {
+          "viewport": "700x700",
+          "cameraSpread": [
+            48.53013309220813,
+            48.590859013159495
+          ]
+        },
+        {
+          "viewport": "667x375",
+          "cameraSpread": [
+            46.24228396071832,
+            46.3001470882534
+          ]
+        },
+        {
+          "viewport": "780x470",
+          "cameraSpread": [
+            54.076434017031914,
+            54.14410004323486
+          ]
+        }
+      ]
+    }
+  ],
+  "depthCarryForward": {
+    "pointerPositionsSwept": [
+      [
+        0,
+        0
+      ],
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        -1,
+        1
+      ]
+    ],
+    "scrollOffsetsSwept": [
+      [
+        0,
+        0
+      ],
+      [
+        313,
+        197
+      ],
+      [
+        -640,
+        480
+      ]
+    ],
+    "cameraActuallyMovedPerViewport": [
+      {
+        "viewport": "1440x900",
+        "cameraSpread": [
+          99.83341664682816,
+          99.95833854135667
+        ]
+      },
+      {
+        "viewport": "1920x1080",
+        "cameraSpread": [
+          133.1112221957709,
+          133.2777847218089
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "cameraSpread": [
+          58.51347475689094,
+          58.58669286729515
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "cameraSpread": [
+          58.51347475689094,
+          58.58669286729515
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "cameraSpread": [
+          48.53013309220813,
+          48.590859013159495
+        ]
+      },
+      {
+        "viewport": "667x375",
+        "cameraSpread": [
+          46.24228396071832,
+          46.3001470882534
+        ]
+      },
+      {
+        "viewport": "780x470",
+        "cameraSpread": [
+          54.076434017031914,
+          54.14410004323486
+        ]
+      }
+    ],
+    "depthSamplesWithAnotherCardPlaneOverThem": 0,
+    "status": "NOT APPLICABLE \u2014 no overlapping card planes observed",
+    "whatThisDoesNotClaim": "Real occlusion ordering is still unproven. The sampled hits are single-card interiors, and a single-card interior sample cannot exercise rear-text-over-front-card. This is stated rather than converted into a PASS."
+  },
+  "passed": 4,
+  "total": 4,
+  "verdict": "PASS"
+}

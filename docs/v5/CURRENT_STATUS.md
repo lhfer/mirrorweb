@@ -2,7 +2,7 @@
 
 Single canonical entry point. Every delivery updates this file.
 
-Last updated: 2026-08-21 (M2 motion closure: instrument and gate repair, failure attribution, MOTION-EXC-01 candidate)
+Last updated: 2026-08-21 (M3 final motion source reconciliation: the magnitude MotionValue's two writers, read out of the Target's frame scheduler)
 
 | | |
 | --- | --- |
@@ -50,7 +50,7 @@ stated here and no further hygiene commit is created to chase it.
 | Target Visual PASS | **NOT ASSERTED** |
 | T0 Render Loop Repair | **ACCEPTED** |
 | Typography | **ACCEPTED** — frozen, see the freeze contract below |
-| Motion / Pointer | **CANDIDATE FAILED THE ABSOLUTE GATE** — 806/870 landmarks, 64 failures, all tracing to one characterised difference. See below |
+| Motion / Pointer | see **M3 result** below. M0/M1/M2 results are kept as history and are no longer the current state |
 | Optics / Media / Layout | **NOT AUTHORISED THIS ROUND**, unmodified |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
@@ -151,6 +151,69 @@ independent rAF loops against our one. It surfaces as `frameStepJitterFraction`
 (ours lower in 26/26), `maxFrameVelocityStep` (7/7) and the dolly peak, whose
 magnitude source is a backward difference that jitter inflates.
 
+### M2 result — the instrument was the largest single defect
+
+The M1 replay decided which frame consumed an event with `event.t <= frame.t`.
+Those are two different points in the frame pipeline: listener entry on
+`performance.now()` against the rAF timestamp, which is when the frame STARTED.
+Chrome dispatches input before the rAF block, so a median of 88% of all
+recorded events were handed to the following frame — one dispatch late, always
+the same direction. That is the whole of M1's "persistent final error": 0.1457
+of travel on every reverse-flick row and 0.0527 on every fast-flick row,
+identical across four viewports and three repeats.
+
+M2 replaced the clock comparison with a monotone callback counter, sealed a
+Target-only baseline by SHA-256 before capturing any candidate, and made the
+one-sided gate direction-aware.
+
+| | |
+| --- | --- |
+| Motion gate | **FAIL** — 149 failures of 2472 product-gated comparisons, 90 distinct cells across the 120 Hz and 60 Hz grids |
+| Engine vs contract v2 | 180 rows, **175 exact to floating point**, 3 sub-frame race, 2 failures |
+| Contract vs Target | the frozen contract on the Target's own input reproduced it in **1518/1576** |
+| Dolly attribution | M1 blamed the Target's frame-step jitter. **Refuted by measurement**: feeding the magnitude spring the Target's own jittered scroll moved the peak by 0.3% while the Target stood 17.7% from the frozen law |
+| Failure split | 92 dolly, 53 release velocity, 1 travel, 3 systematic sign |
+| MOTION-EXC-01 | raised: the Target's raw frame-step scheduling irregularity is not reproduced |
+| Baseline | sealed at `a0a5a1f6b95b685e18453d889a9a57798fd6f73e9e47d9edc9c2a087ddf29224` |
+
+Evidence: [`qa-v5/motion-closure/`](../../qa-v5/motion-closure/). M2 recorded a
+hypothesis it deliberately did not act on — that the magnitude source has two
+writers that disagree by construction — because closing a residual by picking
+whichever order fits is a fit and not a reading. M3 read it.
+
+### M3 result — the magnitude has two writers and the Target's scheduler picks one
+
+M2 recorded the two-writer hypothesis and refused to act on it. M3 read the
+Target's frame scheduler and found which writer wins, so the order is a source
+read rather than a fit.
+
+| | |
+| --- | --- |
+| Writer order | `gestureLastWhileActive`, read from the bundle: `onPan` is scheduled with `immediate=true` into the update Set that is being iterated, so the gesture writer lands after every spring tick; `onPanEnd` is scheduled onto `postRender` from the pointerup listener, so it is first in that set, ahead of the spring's retarget |
+| Dolly on the Target's own input | signed **1.0249**, median absolute **2.58%** — against **0.9514** / **17.82%** under the pre-M3 order. Both numbers are reported: the drag and flick residuals have opposite signs and the signed one cancels them |
+| Dolly cells failing | **8 of 432**, from 92 of 432 under the M2 order |
+| Engine vs contract | **180/180 exact to floating point**, 0 failures, worst final error 0.00e+00 against a 0.13276 gate |
+| Release velocity | **132/132 exact to floating point** against the engine's own release record. 48 runs carry no release by design — 36 wheel, 12 pointer sweep |
+| Landmark failures | **65** of 2570 comparisons, 2472 product-gated |
+| Attribution | candidate-owned **0**; source contract 38, target input variation 18, instrument unreadable 7, unresolved **2** |
+| Constants | unchanged. Drag gain 1.5, fling 0.1, both springs, 3 px threshold, 100 ms window, orbit ±0.05 rad, dolly formula, publication delay all frozen |
+| MOTION-EXC-01 | still raised, unchanged, and still covers only the raw single-frame numbers |
+
+Two results that are worth carrying forward on their own:
+
+- **The release velocity is quantised.** framer-motion's window is a strict
+  `> 100 ms` over a history fed at frame rate, so a release measures over N or
+  N+1 points and nothing between. The Target's own three repeats of one scripted
+  gesture land on opposite sides in **33 of its 44 cells**, spreading its own
+  release velocity by a median 7.78%. No implementation can close that; the gate
+  was deliberately NOT taught to forgive it.
+- **The eight dolly cells that still fail are all `dollyPeakTimeMs` on slow
+  drags**, with a candidate residual of **0.0 ms** on every one. Our capture's
+  31-step drag ran 1106 ms against the Target's 1003 ms, and a flat dolly peak
+  sitting at the release moves with it. Reported per §8 and not excepted.
+
+Evidence: [`qa-v5/motion-final/`](../../qa-v5/motion-final/).
+
 ## FSX-A integration hardening
 
 | | |
@@ -174,6 +237,7 @@ See [`FSX_ACCEPTANCE.md`](FSX_ACCEPTANCE.md).
 - `62f5772` F0/F1 Foundation baseline · `b524dc5` NL-03 media focus
 
 **Candidate, not accepted**
+- M3 motion source reconciliation: `b8cbbd2` writer-order forensics · `4df03f2` writer-order code · the evidence commit that carries this line
 - `dd6d7bf` / `4ca597f` F2 · `b5cff63` F2 audit · `730beb7` F3 diagnosis
 - `f56f55e` / `ba4ba32` F2.5 · this delivery's three F2.6 commits
 

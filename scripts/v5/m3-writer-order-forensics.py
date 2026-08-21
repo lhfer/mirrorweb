@@ -46,7 +46,14 @@ def _load(name, filename):
 
 MT = _load("motion_trace", "motion_trace.py")
 SM = _load("source_motion", "source_motion.py")
-R = _load("m2_replay", "m2_replay.py")
+# The M3 replay, not the M2 one. Both are honest, but they stamp the gesture
+# history from different clocks -- M2 from the listener-entry time, M3 from
+# the event's own timeStamp, which is the number the engine stamps with --
+# and the 100 ms velocity window is a strict `>`, so the two can disagree on
+# the last history point of a fling. dolly-envelope.json measures the same
+# thing through the M3 replay; this probe used to run the M2 one, and the two
+# files quoted different ratios for one measurement. They now share a replay.
+R = _load("m3_replay", "m3_replay.py")
 LM = _load("m2_landmarks", "m2_landmarks.py")
 
 
@@ -206,18 +213,7 @@ def probe(target_traces: list) -> dict:
             a = LM.R.median_peak(obs, 3)
             peaks = {}
             for order in ("gestureLastWhileActive", "scrollLastAlways"):
-                orig = R.SM.SourceExactMotion
-
-                def factory(*args, _o=order, _c=orig, **kw):
-                    m = _c(*args, **kw)
-                    m.magnitude_writer_order = _o
-                    return m
-
-                R.SM.SourceExactMotion = factory
-                try:
-                    pred = R.replay(run)
-                finally:
-                    R.SM.SourceExactMotion = orig
+                pred = R.replay(run, writer_order=order)
                 maxz = SM.CAMERA["velocityDolly"]["maxZoomZFactor"] * persp
                 peaks[order] = LM.R.median_peak(
                     [SM.dolly(m, maxz) / persp for m in pred["magnitude"]], 3)
@@ -254,6 +250,23 @@ def probe(target_traces: list) -> dict:
             "runs": len(rs),
         }
     return {"rows": rows,
+            "replayAndClock":
+                "scripts/v5/m3_replay.py, gesture history stamped from the event's "
+                "own timeStamp and the springs integrated on the raw rAF clock where "
+                "the trace carries one. dolly-envelope.json measures the same ratio "
+                "through the same replay, so the two files agree by construction "
+                "rather than by coincidence. An earlier draft of this probe ran the "
+                "M2 replay, which stamps from the listener-entry time, and reported "
+                "0.9843 / 1.57% where this reports the numbers below -- the same "
+                "conclusion from a slightly different last history point on some "
+                "flings, but two numbers for one measurement.",
+            "whyTheseDifferSlightlyFromDollyEnvelope":
+                "dolly-envelope.json reports 0.9514 / 17.82% and 1.0249 / 2.58% against this "
+                "file's 0.955 / 17.68% and 1.0261 / 2.64%. Same replay, same clock, same "
+                "constants -- the two differ only in which runs each includes: this probe "
+                "takes every non-wheel run with enough live cards (124), while the envelope "
+                "reads through the landmark reader's own admission rule (120). Neither is a "
+                "filtered-to-fit set and the conclusion is the same in both.",
             "scrollLastAlways": stats("ratioScrollLast"),
             "gestureLastWhileActive": stats("ratioGestureLast"),
             "bySequence": by_seq}

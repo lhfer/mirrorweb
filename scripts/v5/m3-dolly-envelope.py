@@ -216,6 +216,10 @@ def main() -> int:
                             "two because the drag and flick residuals have opposite "
                             "signs and cancel: reporting only the signed number "
                             "understates what any single sequence shows.",
+            "replayAndClock":
+                "scripts/v5/m3_replay.py, gesture history stamped from the event's own "
+                "timeStamp. magnitude-writer-order-source.json reports the same ratio "
+                "through the same replay; these are the numbers to quote.",
             "scrollLastAlways": summarise(ratios["scrollLastAlways"]),
             "gestureLastWhileActive": summarise(ratios["gestureLastWhileActive"]),
         },

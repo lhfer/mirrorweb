@@ -362,17 +362,29 @@ print(f"manifest verified: {len(m['files'])} files, capturedAtHead {m['capturedA
 PY
 
   # The private package, if it has been built, must carry real SHAs and not prose.
-  local pm="$REPO/qa-v5/private/motion-final-review"
-  if [ -f "$pm/PACKAGE-MANIFEST.json" ]; then
-    python3 - "$pm/PACKAGE-MANIFEST.json" <<'PY' || die "private manifest heads"
+  # The package is a ZIP, so the manifest is read OUT of the archive. An earlier
+  # draft of this check tested for a DIRECTORY that is never created, so the
+  # `if` was always false and the check the brief asks for never ran at all. A
+  # check that cannot fail is worse than no check, because it reports success.
+  local pz="$REPO/qa-v5/private/motion-final-review.zip"
+  if [ -f "$pz" ]; then
+    unzip -p "$pz" PACKAGE-MANIFEST.json > "$REPO/artifacts/motion/.pm.json" \
+      || die "the private package carries no PACKAGE-MANIFEST.json"
+    [ -s "$REPO/artifacts/motion/.pm.json" ] \
+      || die "the private package's PACKAGE-MANIFEST.json is empty"
+    python3 - "$REPO/artifacts/motion/.pm.json" <<'PY' || die "private manifest heads"
 import json, re, sys
 m = json.loads(open(sys.argv[1]).read())
 for k in ("capturedAtHead", "reviewHead"):
     v = m.get(k)
     if not isinstance(v, str) or not re.fullmatch(r"[0-9a-f]{40}|[0-9a-f]{7,12}", v):
         print(f"{k} is not a SHA: {v!r}"); raise SystemExit(1)
-print("private manifest heads are SHAs")
+print(f"private manifest heads are SHAs: capturedAtHead {m['capturedAtHead']}, "
+      f"reviewHead {m['reviewHead']}")
 PY
+    rm -f "$REPO/artifacts/motion/.pm.json"
+  else
+    say "  note: the private package has not been built yet; its head check is skipped"
   fi
 
   # CURRENT_STATUS must have been brought to this round.

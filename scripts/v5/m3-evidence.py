@@ -27,6 +27,14 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 
 
+# Measured once, from the Target's own traces replayed through m3_replay, and
+# recorded here rather than recomputed on every evidence build: how often the
+# Target's own three repeats of one gesture land on opposite sides of
+# framer-motion's strict `> 100 ms` velocity window. The measurement is in
+# capture-acceptance-rule.json under thePremiseWasFalsified.whatItActuallyIs.
+STRADDLE = {"cells": 33, "total": 44, "spread": "7.78%", "max": "8.81%"}
+
+
 def git(*a):
     try:
         return subprocess.run(["git", "-C", str(REPO), *a], capture_output=True,
@@ -183,6 +191,73 @@ run three times, nudged either way by 1e-9, and a cell whose answer moves is
 flagged `windowBoundarySensitive` and carries both readings. It is never
 resolved by picking whichever fits. {boundary_cells} cells are flagged.
 
+The obvious question about a bracket that wide is whether it explains away the
+cells the contract misses. It does not: of the {cvt_misses} cells the contract
+misses, {cvt_miss_boundary} are boundary sensitive, but only
+**{cvt_miss_closes} of them would actually close under the other reading**, and
+those twelve are reported as misses rather than closed.
+
+## The release velocity is quantised, and the Target disagrees with itself
+
+framer-motion measures the release over a window it closes with a strict `>`,
+and the gesture history is fed at frame rate. A release therefore measures over
+either N or N+1 points, and the span it actually used is either about 100.1 ms
+or about 108.3 ms, never between. One extra 8.3 ms sample inside a 100 ms window
+moves the answer by roughly 8%.
+
+**The Target's own three repeats of one scripted gesture land on opposite sides
+of that boundary in {straddle_cells} of its {straddle_total} cells**, spreading
+its own release velocity by a median {straddle_spread} and up to
+{straddle_max}. The gesture is identical each time; the answer is not.
+
+This was found while checking whether one candidate capture was noisier than
+another, and three tests falsified that: the fast gestures' event streams are
+identical across every lane, stripping the raw rAF clock changes nothing, and
+stripping the release record changes nothing. The per-run differences are 0.00%
+wherever two captures landed on the same side and 6.7-7.6% wherever they did
+not, with nothing in between — a quantum, not noise.
+
+Nothing was added to the gate to make it boundary-aware. Discovering a
+quantisation and then teaching the scorer to forgive it is fitting, one step
+removed. It reaches the gate as `inputStreamResidual` and is categorised by the
+attribution rule that was frozen before any of this was measured.
+
+## Which capture was scored, and why
+
+`capture-acceptance-rule.json` carries this in full, including the parts that
+did not go the way the rule expected. In short: a first M3 capture overlapped
+the visual recording lane, so a rule was written — before any gate was run —
+that it would be replaced only on capture quality and that the replacement's
+verdict would stand whatever it turned out to be. **The replacement then FAILED
+that rule on 4 of its 6 landmarks**, and the investigation above showed the
+rule's premise was wrong rather than the capture. The clean capture was scored
+anyway, on three grounds fixed before its verdict existed: it ran on an idle
+machine, its input stream matches the Target's on the fast gestures, and it
+agrees with the Target's window side in 75 of 132 runs against the replaced
+capture's 71.
+
+For comparison, and not re-run: the replaced capture gave 84 landmark failures,
+the same 180/180 engine-vs-contract, the same 132/132 releases, and 13 failing
+dolly cells against this one's {dolly_failed}.
+
+## The dolly cells that still fail
+
+{dolly_table}
+
+All of them are the same landmark, all on slow drags, all in the same direction,
+and the candidate residual is **0.0 ms on every one** — our engine reproduces
+the frozen contract on our own input exactly. The difference is that our
+capture's 31-step drag ran 1106 ms against the Target's 1003 ms: the drag
+dispatched 3.4 ms slower per step and a dolly peak that sits at the release
+moves with it. Visually this is the camera reaching its furthest point about a
+tenth of a second later on a one-second drag, at the same depth.
+
+Reported per §8. No exception is proposed and none is taken.
+
+## The two unresolved rows
+
+{unresolved_text}
+
 ## What was found and NOT acted on
 
 `onPanEnd` running at `postRender` also means its `d.set(+fling)` schedules the
@@ -224,6 +299,7 @@ def main() -> int:
     attr = json.loads((d / "failure-attribution-v2.json").read_text())
     dolly = json.loads((d / "dolly-envelope.json").read_text())
 
+    MISS = cvt["windowBoundary"]["amongTheCellsTheContractMisses"]
     dres = dolly["dollyResidualOnTheTargetsOwnInput"]
     b, a = dres["scrollLastAlways"], dres["gestureLastWhileActive"]
     by_seq = wo["measured"]["bySequence"]
@@ -243,6 +319,49 @@ def main() -> int:
     filelist = "\n".join(f"- `{e['path'].split('/')[-1]}` — {e['bytes']:,} bytes"
                          for e in entries)
 
+    # The remaining failing dolly cells, per section 8: Target, Contract,
+    # Candidate, direction, visual magnitude, root cause.
+    cvt_ix = {r["exactCellKey"]: r for r in cvt["rows"]}
+    dfails = [r for r in dolly["rows"]
+              if r["landmark"].startswith("dolly") and r.get("productGated")
+              and r.get("candidatePass") is False]
+    if dfails:
+        dolly_table = ("| cell | Target | Contract on Target input | Candidate | "
+                       "direction | size |\n|---|---|---|---|---|---|\n")
+        for r in sorted(dfails, key=lambda r: -abs(r["candidateDelta"])):
+            c = cvt_ix.get(r["exactCellKey"])
+            con = "n/a" if not c else f"{c['contractOnTargetInput']:.1f}"
+            pct = abs(r["candidateDelta"]) / abs(r["target"]) * 100 if r["target"] else 0.0
+            dolly_table += (f"| `{r['exactCellKey']}` | {r['target']:.1f} | {con} | "
+                            f"{r['candidate']:.1f} | "
+                            f"{'later' if r['candidate'] > r['target'] else 'earlier'} | "
+                            f"+{r['candidateDelta']:.1f} ms, {pct:.1f}% |\n")
+    else:
+        dolly_table = "None. Every product-gated dolly cell passes."
+
+    # The rows the frozen attribution rule declined to assign, quoted rather
+    # than summarised: a goal the brief set at zero and this round did not reach.
+    unres = [r for r in attr["rows"] if r["category"] == "UNRESOLVED_ATTRIBUTION"]
+    if not unres:
+        unresolved_text = "None. Every failing cell is attributed."
+    else:
+        unresolved_text = (
+            f"{len(unres)} rows are `UNRESOLVED_ATTRIBUTION`. The brief asked for zero and "
+            "this round did not reach it. Both are systematic-sign SUMMARY rows — "
+            "`viewport=ALL, sequence=ALL` — rather than exact cells, and in both the largest "
+            "term is target input variation which just misses the bar the rule sets for "
+            "carrying a summary:\n\n")
+        for r in unres:
+            unresolved_text += f"- `{r['exactCellKey']}` — {r['why']}\n"
+        unresolved_text += (
+            "\nThe rule was frozen before this capture was scored. Moving its qualifying "
+            "threshold from p<0.05 to p<0.10 would attribute both to target input variation "
+            "and report zero unresolved; that change is named here and was NOT made, because "
+            "choosing a threshold after seeing which side of it the data fell on is the "
+            "failure mode this file exists to prevent. The candidate term on both rows is "
+            "0.00673 and 0.0 against gate thresholds of 0.4217 and 2.08, so neither row can "
+            "be the engine's — but that is a bound, not the attribution the rule requires.")
+
     (d / "README.md").write_text(README.format(
         sites=len(wo["sourceRead"]["sites"]),
         drag_dir="LESS" if drag < 1 else "MORE",
@@ -256,6 +375,12 @@ def main() -> int:
         verdict=gate["verdict"], baseline_sha=gate["baselineSha256"],
         gate_table=gate_table,
         boundary_cells=cvt["windowBoundary"]["sensitiveCells"],
+        cvt_misses=MISS["misses"], cvt_miss_boundary=MISS["ofThoseWindowBoundarySensitive"],
+        cvt_miss_closes=MISS["ofThoseThatWouldCloseUnderTheOtherReading"],
+        straddle_cells=STRADDLE["cells"], straddle_total=STRADDLE["total"],
+        straddle_spread=STRADDLE["spread"], straddle_max=STRADDLE["max"],
+        dolly_failed=dolly["dollyCells"]["candidate"]["failed"],
+        dolly_table=dolly_table, unresolved_text=unresolved_text,
         filelist=filelist))
 
     # README is written first so the manifest hashes it too.

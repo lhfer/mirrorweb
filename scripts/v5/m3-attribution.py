@@ -37,8 +37,17 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import math
+import statistics
 import sys
 from pathlib import Path
+
+
+def sign_test_p(n: int, k: int) -> float:
+    """Exact two-sided sign test. Same function the gate uses, restated once."""
+    lo = min(k, n - k)
+    tail = sum(math.comb(n, i) for i in range(lo + 1)) / (2 ** n)
+    return min(1.0, 2 * tail)
 
 HERE = Path(__file__).resolve().parent
 
@@ -157,24 +166,86 @@ def main() -> int:
         row["termSizes"] = {k: round(v, 6) for k, v in terms.items()}
         rows.append(row)
 
-    # A systematic-sign summary is resolved by the cells it summarises.
+    # A systematic-sign summary is not a cell and cannot be attributed like one.
+    #
+    # It says: across every cell of this landmark, the candidate's difference
+    # from the Target lands on the SAME SIDE far more often than chance. Most
+    # of those cells PASS individually -- the sign is lopsided, each cell is
+    # inside its threshold -- so resolving the summary from the failing cells
+    # alone would leave it unexplained, which is what a first pass did.
+    #
+    # It is resolved instead by running the SAME sign test on the three terms
+    # of the decomposition, over every cell of that landmark. If the frozen
+    # contract's own difference from the Target is lopsided in the SAME
+    # direction and at least as large, the lopsidedness is the contract's and
+    # no implementation of it can be otherwise. That is a measurement on the
+    # same cells, not an appeal to the landmark's name.
     for row in rows:
         if not row.get("isSystematicSignSummary"):
             continue
-        kin = [r for r in rows if not r.get("isSystematicSignSummary")
-               and r["landmark"] == row["landmark"] and r["grid"] == row["grid"]]
-        cats = {r["category"] for r in kin}
+        kin = [c for c in cvt["rows"]
+               if c["landmark"] == row["landmark"] and c["grid"] == row["grid"]
+               and c["candidateObserved"] is not None
+               and c["contractOnCandidateInput"] is not None]
         row["systematicSignCells"] = len(kin)
-        row["systematicSignCellCategories"] = sorted(cats)
-        if kin and cats and cats <= {"SOURCE_CONTRACT_RESIDUAL_EXACT_CELL",
-                                     "TARGET_INPUT_VARIATION",
-                                     "INSTRUMENT_UNREADABLE", "MOTION-EXC-01"}:
-            row["category"] = "SOURCE_CONTRACT_RESIDUAL_EXACT_CELL"
-            row["why"] = ("every failing cell beneath this summary attributes away "
-                          "from the candidate: " + ", ".join(sorted(cats)))
-        elif "CANDIDATE_IMPLEMENTATION_RESIDUAL" in cats:
-            row["category"] = "CANDIDATE_IMPLEMENTATION_RESIDUAL"
-            row["why"] = "at least one failing cell beneath this summary is ours."
+        if not kin:
+            row["why"] = ("no exact cell of this landmark is covered by the "
+                          "four-column decomposition, so the summary cannot be "
+                          "resolved by measurement.")
+            continue
+
+        def lopsided(vals):
+            n = sum(1 for v in vals if abs(v) > 1e-12)
+            if n < 8:
+                return None
+            k = sum(1 for v in vals if v > 0)
+            return {"cells": n, "higher": k, "p": round(sign_test_p(n, k), 8),
+                    "medianAbs": round(statistics.median([abs(v) for v in vals]), 6),
+                    "signedMedian": round(statistics.median(vals), 6)}
+
+        total = lopsided([c["candidateObserved"] - c["targetObserved"] for c in kin])
+        terms = {
+            "SOURCE_CONTRACT_RESIDUAL_EXACT_CELL":
+                lopsided([c["inheritedResidual"] for c in kin]),
+            "CANDIDATE_IMPLEMENTATION_RESIDUAL":
+                lopsided([c["candidateResidual"] for c in kin]),
+            "TARGET_INPUT_VARIATION":
+                lopsided([c["inputStreamResidual"] for c in kin]),
+        }
+        row["signTestOnTerms"] = {"total": total, **terms}
+        # The SAME rule the individual cells use -- the largest of the three
+        # terms -- with "exceeds this cell's threshold" replaced by the only
+        # analogue a summary has: the term must itself be lopsided. A summary
+        # is a claim about SIGN, so the test that qualifies a term is a sign
+        # test.
+        #
+        # p < 0.05 here, against p < 0.001 in the gate, and the difference is
+        # deliberate rather than convenient. The gate's job is to be
+        # conservative about declaring a FAIL; this file's job, once a FAIL has
+        # been declared, is to say which of three measured terms carries it.
+        # Those are different questions and they do not take the same line.
+        live = {k: v for k, v in terms.items() if v is not None}
+        if not live:
+            row["why"] = ("fewer than eight cells carry a difference in any term, so "
+                          "no sign test on this landmark is meaningful.")
+        else:
+            biggest = max(live, key=lambda k: live[k]["medianAbs"])
+            v = live[biggest]
+            others = ", ".join(
+                f"{k.split('_')[0].lower()} {live[k]['medianAbs']:.5g} (p={live[k]['p']:.2g})"
+                for k in live if k != biggest)
+            if v["p"] < 0.05:
+                row["category"] = biggest
+                row["why"] = (
+                    f"of the three terms measured over the same {v['cells']} cells, the "
+                    f"{biggest} one is the largest at {v['medianAbs']:.5g} and is itself "
+                    f"lopsided (higher in {v['higher']}, p={v['p']:.2g}). The others: "
+                    f"{others}. Total difference {total['medianAbs']:.5g}.")
+            else:
+                row["why"] = (
+                    f"the largest term, {biggest} at {v['medianAbs']:.5g}, is not itself "
+                    f"lopsided (p={v['p']:.2g}), so no term carries the summary. "
+                    f"Others: {others}.")
 
     counts = {c: sum(1 for r in rows if r["category"] == c) for c in CATEGORIES}
     doc = {

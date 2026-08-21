@@ -243,6 +243,23 @@ def main() -> int:
                     sensitive.append(row["exactCellKey"])
 
     fails = [r for r in rows if not r["contractReproducesTarget"]]
+    # A reviewer's first question about a bracketed replay is whether the cells
+    # the contract MISSES are the same cells the bracket cannot resolve -- i.e.
+    # whether "the contract misses N cells" is a measurement or an artefact of
+    # the window boundary. It is answered here rather than left to be asked.
+    fails_boundary = [r for r in fails if r["windowBoundarySensitive"]]
+    closes = []
+    for r in fails_boundary:
+        lo = r["contractOnTargetInputWindowLow"]
+        hi = r["contractOnTargetInputWindowHigh"]
+        t_obs = r["targetObserved"]
+        thr = r["threshold"]
+        for alt in (lo, hi):
+            if alt is None:
+                continue
+            if LM.judge(r["landmark"], alt, t_obs, thr)[0]:
+                closes.append(r["exactCellKey"])
+                break
     by_lm, totals = {}, {}
     for r in rows:
         totals[r["landmark"]] = totals.get(r["landmark"], 0) + 1
@@ -284,6 +301,19 @@ def main() -> int:
                               "never resolved by picking the one that fits.",
             "sensitiveCells": len(sensitive),
             "sensitiveCellKeys": sorted(set(sensitive)),
+            "amongTheCellsTheContractMisses": {
+                "misses": len(fails),
+                "ofThoseWindowBoundarySensitive": len(fails_boundary),
+                "ofThoseThatWouldCloseUnderTheOtherReading": len(closes),
+                "cellsThatWouldClose": sorted(set(closes)),
+                "reading": "a miss that would close under the other reading is not "
+                           "counted as closed. It is reported here and left as a miss, "
+                           "because choosing the reading that fits is the failure mode "
+                           "this bracket exists to prevent. The number that matters for "
+                           "attribution is the first one: the contract's misses that are "
+                           "NOT boundary sensitive are measurements the boundary cannot "
+                           "explain away.",
+            },
             "notAnIssueOnOurSide": "our traces carry the raw rAF timestamps the engine "
                                    "stamped its own history with, so there is nothing to "
                                    "bracket -- see release-history-proof.json.",
