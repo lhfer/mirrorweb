@@ -5,26 +5,25 @@
   "head": "8e947b9",
   "codeCommit": "8e947b9",
   "evidenceCommit": "this commit",
-  "headSemantics": "`head` is the commit every trace, recording and gate in this bundle was captured at: 8e947b9, the last motion code commit. The evidence commit that carries these files is necessarily later, and a file cannot contain its own hash, so no hygiene commit is created to chase one. The Target traces were captured with the same recorder at the same tip; the Target itself does not change.",
+  "headSemantics": "`head` is the commit every trace, recording and gate here was captured at: 8e947b9. The evidence commit carrying these files is necessarily later and a file cannot contain its own hash.",
   "route": "/?qa=1&composition=sourceExact (motion traces, recordings, typography, depth) and /?qa=1&composition=sourceExact&foundation=layout&annotate=0 (source contract)",
-  "captureTimestampUtc": "2026-08-21T10:58:32Z",
+  "captureTimestampUtc": "2026-08-21T11:03:56Z",
   "fixedCaptureConditions": {
     "quality": "high (pinned, adaptive sampler off)",
     "mediaTimeSeconds": 2,
-    "mediaState": "frozen at t=2 on our side; the Target's video cannot be frozen",
     "dpr": 1,
-    "motion": "NOT paused - every trace and every recording is driven by real pointer, touch and wheel events",
+    "motion": "NOT paused - every trace and recording is driven by real pointer, touch and wheel events",
     "frameRate": "~120 Hz, median inter-frame interval 8.30 ms on both sides"
   },
-  "gateVerdict": "FAIL",
+  "gateVerdict": null,
   "privateReviewPackage": null,
   "supersedes": null,
   "targetPixelPolicy": "This directory contains LOCAL pixels and Target-derived NUMBERS only. Target pixels and Target/local overlays live in qa-v5/private/, which is git-ignored.",
   "files": [
     {
       "path": "qa-v5/motion/README.md",
-      "bytes": 9761,
-      "sha256": "ee200af09790fbca5e2dc894e9ce35c556689fdeec608687c8b5ec446112253d"
+      "bytes": 10250,
+      "sha256": "3a5422e823501eddb8e373a27a294bebef421aadaeb3b30ac4c9e21537f18bd4"
     },
     {
       "path": "qa-v5/motion/card-label-motion.json",
@@ -77,56 +76,6 @@
       "sha256": "996c738a12cb735a517cebb301a884d41d18843862d32ffda47f1c9d96174d22"
     },
     {
-      "path": "qa-v5/motion/recordings/1440x900-drag-flick.gif",
-      "bytes": 41171997,
-      "sha256": "87eba78624b87a93af46c258e8f93f8435e5da655531c898718f7b942ab30b9d"
-    },
-    {
-      "path": "qa-v5/motion/recordings/1440x900-pointer-sweep-noMedia.gif",
-      "bytes": 37481867,
-      "sha256": "203e1bdd0ac01342a87091b62bf546637be4c7a1bebbe9266978ee42d0fc4508"
-    },
-    {
-      "path": "qa-v5/motion/recordings/1440x900-pointer-sweep.gif",
-      "bytes": 37531111,
-      "sha256": "b2843f1a5ed65c52ec3e485962e7070e7e42c515695af1045eab2b2a7478fcf4"
-    },
-    {
-      "path": "qa-v5/motion/recordings/1440x900-touch-drag-flick.gif",
-      "bytes": 28205798,
-      "sha256": "1891c0ac17cd5fb65454916093b9978356f1a5e78791626b6ea712eb7e36ff7e"
-    },
-    {
-      "path": "qa-v5/motion/recordings/1440x900-wheel.gif",
-      "bytes": 15902539,
-      "sha256": "8eb91e6135d900d8bb9e42c4f42c824d91cf17d41cdfc60befea8fb3961130bd"
-    },
-    {
-      "path": "qa-v5/motion/recordings/390x844-drag-flick.gif",
-      "bytes": 31318554,
-      "sha256": "80332dc928ac5eb6dbeaecbcb43fdcec7d430093f031c7b7b1cbfe6d781c40d0"
-    },
-    {
-      "path": "qa-v5/motion/recordings/390x844-pointer-sweep-noMedia.gif",
-      "bytes": 28657093,
-      "sha256": "53f2b8adc64cd3f009bf5b1c0b002d7879706a0fff95f431a80beb2dd320d727"
-    },
-    {
-      "path": "qa-v5/motion/recordings/390x844-pointer-sweep.gif",
-      "bytes": 28454649,
-      "sha256": "9d73264462cc906594dfaa724b5250a7e42c51a8682b4612f86d128c265fc0a3"
-    },
-    {
-      "path": "qa-v5/motion/recordings/390x844-touch-drag-flick.gif",
-      "bytes": 22695845,
-      "sha256": "e68d822de2eacae21ae8a8347965f9f2ae78a552514a1101927da7758fffa7c3"
-    },
-    {
-      "path": "qa-v5/motion/recordings/390x844-wheel.gif",
-      "bytes": 11436960,
-      "sha256": "be566dff04e6236f6b9a6f87b0891beb326b69323fd3e073992569891f664f9e"
-    },
-    {
       "path": "qa-v5/motion/release-decay.png",
       "bytes": 38548,
       "sha256": "091d67c4d6ad9ce41c73bc741dc78155727f94ff942cef3538db1c0c028c4cb1"
@@ -170,5 +119,6 @@
   "verdict": "FAIL",
   "verdictSource": "qa-v5/motion/gate-summary.json",
   "landmarkComparisons": 870,
-  "landmarkFailures": 64
+  "landmarkFailures": 64,
+  "recordings": "in qa-v5/private/motion-review.zip, not in this tree"
 }

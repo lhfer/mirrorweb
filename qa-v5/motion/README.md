@@ -96,6 +96,13 @@ Four questions, each meaningful only if the one before it held:
 | `source-contract.json` | The 36-viewport engineering contract, re-run at this tip. |
 | `input-trajectories.json` | What was actually dispatched, on both sides, and by what means. |
 | `gate-summary.json` | Every landmark comparison, and every failure. |
+| `release-decay.png` | The Target's release-decay landmarks, drawn from the numbers rather than from frames. |
+
+The **recordings** are not here. They are in `qa-v5/private/motion-review.zip`,
+which is where the brief puts them and where Target pixels are allowed to live.
+An earlier pass wrote them into this tree as well and put 274 MB of GIF into the
+repository; a repository is forever, so they were taken back out. The blobs
+remain in history because this branch does not force-push.
 
 ## One camera, not two
 

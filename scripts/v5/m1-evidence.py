@@ -27,7 +27,14 @@ PRIV = REPO / "qa-v5/private/motion"
 
 CAP = 720          # public frames
 PRIV_CAP = 1400    # private comparisons, where a reviewer is looking closely
-GIF_CAP = 620
+# A recording is for WATCHING, not for measuring -- every number in this round
+# comes from the traces, not from these frames. The first pass wrote 620 px
+# GIFs at every second frame and produced 41 MB per clip, 274 MB of them, which
+# went into the repository before anyone looked at the size. Sampled and capped
+# to something a review can actually open; the numbers are unaffected.
+GIF_CAP = 360
+GIF_STEP = 5
+GIF_MAX_FRAMES = 90
 
 
 def font(size=18):
@@ -60,16 +67,20 @@ def strip(pairs, out_path, cap=PRIV_CAP):
     return True
 
 
-def gif(frame_dir, out_path, step=2, ms=60, cap=GIF_CAP):
+def gif(frame_dir, out_path, step=GIF_STEP, ms=90, cap=GIF_CAP):
     src = sorted(Path(frame_dir).glob("*.jpg"))[::step]
     if len(src) < 4:
         return False
+    if len(src) > GIF_MAX_FRAMES:
+        k = len(src) / GIF_MAX_FRAMES
+        src = [src[int(i * k)] for i in range(GIF_MAX_FRAMES)]
     frames = []
     for p in src:
         im = Image.open(p).convert("RGB")
         im.thumbnail((cap, cap), Image.LANCZOS)
         frames.append(im)
     out_path.parent.mkdir(parents=True, exist_ok=True)
+    frames = [f.convert("P", palette=Image.ADAPTIVE, colors=128) for f in frames]
     frames[0].save(out_path, save_all=True, append_images=frames[1:],
                    duration=ms, loop=0, optimize=True)
     return True
@@ -159,10 +170,12 @@ if __name__ == "__main__":
 
     idx = {label: load_index(label) for label in ("target", "before", "candidate")}
 
-    # Public: our own recordings, plus the decay plot drawn from numbers.
-    for rec in (idx["candidate"] or {}).get("recordings", []):
-        out = PUB / "recordings" / f"{rec['viewport']}-{rec['sequence']}.gif"
-        gif(REPO / rec["dir"], out)
+    # Public: the decay plot, drawn from numbers. NOT the recordings.
+    #
+    # The brief's public list is numbers and text; the recordings belong to the
+    # private package. Writing them here as well put 274 MB of GIF into the
+    # repository, and a repository is forever. They are still produced -- for
+    # the package, below -- and a reviewer reads them there.
     decay_plot(PUB / "target-motion-contract.json", PUB, PUB / "release-decay.png")
 
     # Private: anything alongside Target pixels.
