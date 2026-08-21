@@ -1,0 +1,164 @@
+{
+  "$comment": "THE source contract for motion. Every Target motion constant lives here once, read out of the Target's own application bundle rather than fitted to a recording. TypeScript (src/interaction/SourceExactMotion.ts) and Python (scripts/v5/source_motion.py) both READ this file; neither keeps its own copy. Verified against the live Target by scripts/v5/m0-motion-trace.mjs plus scripts/v5/m0-motion-contract.py, which replay the Target's own recorded input through this model and compare the predicted scroll trajectory with the observed one.",
+  "motionVersion": "target-motion-source-v1",
+  "acceptance": {
+    "status": "CANDIDATE",
+    "note": "Not yet accepted by the product owner. Nothing here may be edited to make a candidate agree with a measurement; a disagreement means the model is wrong, not the number."
+  },
+  "target": {
+    "url": "https://infinite-liquid-glass.shader.se/?v=2",
+    "appBundlePath": "/_next/static/immutable/chunks/03lo820gl57km.js",
+    "appBundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+    "method": "read-only source forensics on the public bundle, plus live input-driven DOM traces. No Target code is stored in this repository, nothing was modified or republished, and no Target pixel is committed.",
+    "settingsAreLiveValues": "The settings object is created once as a React useState initial value and its setter is never called anywhere in the bundle; there is no debug panel, no query-string override and no runtime mutation path. The literals below are therefore the live values, and the live follow-ratio measurement confirms it."
+  },
+
+  "input": {
+    "gesture": {
+      "library": "framer-motion PanSession, as bundled",
+      "surface": "a single full-viewport div, `fixed inset-0 z-10 touch-none cursor-grab active:cursor-grabbing`, with onPan and onPanEnd. Nothing else in the app handles drag.",
+      "listeners": ["pointerdown on the element", "pointermove on window (capture, passive)", "pointerup on window (capture, passive)", "pointercancel on window (capture, passive)"],
+      "pointerCapture": false,
+      "pointerCaptureNote": "PanSession never calls setPointerCapture. It listens on window in the capture phase, so a pointer that leaves the element still drives the gesture and `lostpointercapture` is never involved.",
+      "touchAndMouseSharePath": true,
+      "touchAndMouseNote": "One pointer-event path for both. `touch-action: none` on the surface, so a touch drag is not stolen by the browser's own scrolling.",
+      "distanceThresholdPx": 3,
+      "distanceThresholdNote": "Pan does not start until |offset from pointerdown| >= 3 px. Below that no onPan and no onPanEnd fire at all, so a tap moves nothing.",
+      "firstDeltaIncludesPreThresholdOffset": true,
+      "firstDeltaNote": "Before the threshold is crossed updatePoint returns without pushing to history, so the first delta handed to onPan is measured from the pointerdown point and carries the whole pre-threshold movement.",
+      "dispatchCadence": "per animation frame",
+      "dispatchNote": "handlePointerMove only stores the event; updatePoint is scheduled on the frame loop, so onPan fires at most once per frame and its `delta` is the accumulated movement since the previous frame."
+    },
+    "velocityEstimation": {
+      "method": "finite difference between the newest history point and the oldest history point still inside the window",
+      "sampleWindowMs": 100,
+      "fallback": "if the only in-window point is history[0], history has more than 2 entries and the gap exceeds 2x the window, history[1] is used instead",
+      "unit": "css px per second",
+      "infinityGuard": "a non-finite component is replaced with 0",
+      "maxVelocity": null,
+      "maxVelocityNote": "There is no clamp anywhere: no maxSpeed, no velocity ceiling, no per-axis limit."
+    },
+    "wheel": {
+      "handled": false,
+      "note": "The application registers no wheel listener. The only addEventListener(\"wheel\") in the whole bundle is inside three.js OrbitControls, which the app never mounts. Wheel and trackpad therefore produce no motion, at any deltaMode.",
+      "deltaModeHandling": "none",
+      "gain": 0
+    },
+    "pointerPosition": {
+      "listener": "window pointermove",
+      "normalisation": "clamp(clientX / innerWidth * 2 - 1, -1, 1), clamp(clientY / innerHeight * 2 - 1, -1, 1)",
+      "range": [-1, 1],
+      "usesSameEventStreamAsDrag": true,
+      "note": "A separate window listener from the pan gesture, but the same pointermove events, so touch drives it too."
+    }
+  },
+
+  "drag": {
+    "gain": 1.5,
+    "gainNote": "scrollTarget += gain * panDelta, on BOTH axes. World units per css pixel. At the z = 0 tangent plane one world unit is one css pixel, so content moves 1.5x the finger.",
+    "signX": 1,
+    "signY": 1,
+    "signNote": "Both axes are positive on the scroll TARGET. The placement law consumes them as xArc = wrap(colTerm + scrollX + rowOffset, periodX) and yArc = wrap(-rowTerm - scrollY, periodY), which makes content follow the finger on both axes.",
+    "fling": 0.1,
+    "flingNote": "On pan end the scroll target jumps by releaseVelocity * fling, once. There is no separate inertia integrator and no decay law of its own: the spring below carries the release.",
+    "stopCondition": "the spring's own rest test; there is no stopThreshold and no explicit zeroing of velocity"
+  },
+
+  "springs": {
+    "$note": "framer-motion springs, integrated by its closed-form solution rather than a step integrator. On every target change a new solve is started from the current value carrying the current generator velocity.",
+    "scroll": {
+      "stiffness": 100,
+      "damping": 16,
+      "mass": 0.5,
+      "restDelta": 1e-5,
+      "restSpeed": 0.01,
+      "dampingRatio": 1.1313708498984762,
+      "regime": "overdamped",
+      "appliesTo": "scrollX and scrollY, one spring each, same constants"
+    },
+    "magnitude": {
+      "stiffness": 140,
+      "damping": 24,
+      "mass": 0.6,
+      "restDelta": 0.001,
+      "restSpeed": 0.01,
+      "dampingRatio": 1.3093073414159542,
+      "regime": "overdamped",
+      "appliesTo": "the scalar hypot(velocityX, velocityY) that drives the camera dolly"
+    },
+    "pointer": {
+      "stiffness": 80,
+      "damping": 18,
+      "mass": 0.8,
+      "restDelta": 0.001,
+      "restSpeed": 0.01,
+      "dampingRatio": 1.125,
+      "regime": "overdamped",
+      "appliesTo": "the normalised pointer x and y that drive the camera orbit"
+    },
+    "restDefaults": {
+      "restSpeedWhenUnset": "0.01 for a delta below 5 units, else 2",
+      "restDeltaWhenUnset": "0.005 for a delta below 5 units, else 0.5",
+      "note": "The scroll spring supplies restDelta explicitly; restSpeed falls back to the 0.01 written at the call site, not to the delta-dependent default."
+    }
+  },
+
+  "velocityMagnitude": {
+    "rawSource": "hypot of the two scroll springs' own generator velocities, refreshed on every spring change, and additionally set directly from the gesture velocity on pan and on pan end",
+    "smoothedBy": "springs.magnitude"
+  },
+
+  "camera": {
+    "orbit": {
+      "law": "yaw = -pointerGain * pointerX, pitch = pointerGain * pointerY, both in radians; position = (sin(yaw) cos(pitch) P, sin(pitch) P, cos(yaw) cos(pitch) P), lookAt origin",
+      "pointerGain": 0.05,
+      "pointerGainDeg": 2.8647889756541165,
+      "radius": "P, the layout frame's perspective; the orbit does not change the camera's distance from the origin",
+      "note": "The cards are not tilted and the camera is not translated. The whole pointer response is an orbit of the camera about the origin at the base radius, so the base camera law is untouched at pointer (0, 0)."
+    },
+    "velocityDolly": {
+      "law": "dz = 3 * maxZoomZ * tanh(0.04 * smoothedMagnitude / (3 * maxZoomZ))",
+      "maxZoomZ": "0.1 * perspective",
+      "asymptote": "0.3 * perspective",
+      "appliedTo": "the render camera's z only, added after the orbit",
+      "note": "Zero at rest, so it changes nothing the layout contract measures."
+    },
+    "css3dCameraExcludesDolly": true,
+    "css3dCameraNote": "The Target keeps a SECOND camera at the orbit position WITHOUT the dolly, and uses it for the CSS3D transform, the projection and the culling. So during fast motion the glass dollies and the labels do not: the two separate on purpose. A reproduction that dollies the label camera as well would be wrong."
+  },
+
+  "light": {
+    "pointerDrivenLight": false,
+    "velocityDrivenLight": false,
+    "note": "The Target's scene contains no light object at all -- only groups and meshes. Its highlight moves because the CAMERA orbits relative to a fixed studio environment map, not because anything moves a light. There is therefore no pointer-to-light gain to reproduce; the correct source-exact value is zero travel."
+  },
+
+  "resize": {
+    "motionStatePreserved": true,
+    "note": "The scroll, velocity and pointer motion values are module-scope and are never reset. A resize recomputes the layout frame only.",
+    "regridDebounceMs": 150,
+    "regridNote": "The first layout runs immediately; every later one is debounced by 150 ms before cols, rows and the slot count change."
+  },
+
+  "loadIn": {
+    "gapRatioSpring": { "stiffness": 100, "damping": 18, "mass": 0.7, "restDelta": 2e-4 },
+    "from": 3,
+    "to": "grid.gapRatio",
+    "note": "A one-shot intro that animates the grid gap from 3 down to the contract gap ratio once the scene is ready. Recorded because it is a spring in the same file; it is a load-in animation, not motion input, and is out of scope for this stage."
+  },
+
+  "deadCode": {
+    "rawVelocityMotionValues": "The raw per-axis velocities are published to two motion values that nothing in the bundle ever reads. Only the smoothed magnitude is consumed."
+  },
+
+  "notInTheTarget": [
+    "wheel or trackpad handling of any kind",
+    "a maximum velocity clamp",
+    "a stop threshold separate from the spring rest test",
+    "an exponential inertia decay term",
+    "a card tilt driven by the pointer",
+    "a camera translation driven by the pointer",
+    "a light position driven by the pointer or by velocity",
+    "pointer capture on the drag surface"
+  ]
+}
