@@ -237,6 +237,58 @@ thing in frame; the cross-side correlation is reported and not gated, and how fa
 the highlight travels and how bright it is are left to the optics stage, which
 has not run.
 
+## The difference that is left, and what it is
+
+The gate fails, and after four engine fixes what remains is one thing wearing
+three hats.
+
+**The Target's motion is jittery frame to frame and ours is smooth.** Measured
+as each frame's step against the average of its two neighbours — so the decay
+envelope cancels and only the frame-to-frame irregularity is left — at
+1440×900:
+
+| sequence | Target | ours | ratio |
+| --- | --- | --- | --- |
+| slow horizontal drag | 0.1424 | 0.0189 | 7.5× |
+| medium drag | 0.1286 | 0.0191 | 6.7× |
+| diagonal drag | 0.1318 | 0.0184 | 7.2× |
+| fast flick | 0.1325 | 0.0136 | 9.8× |
+| reverse flick | 0.1251 | 0.0149 | 8.4× |
+| long drag across wraps | 0.1143 | 0.0166 | 6.9× |
+| touch drag + release | 0.1009 | 0.0182 | 5.5× |
+| pointercancel | 0.1054 | 0.0213 | 4.9× |
+| **median** | **0.127** | **0.018** | **6.9×** |
+
+The Target's scroll advances by 12.7% more or less than its local trend on a
+typical frame; ours advances by 1.8%. It is not measurement noise: the
+per-frame agreement *between cards* is 0.001–0.011 world units on both sides,
+and our own recovery was checked against the engine's own scroll to 0.025.
+Both pages are steady at ~8.3 ms per frame.
+
+The mechanism is the same one that produced the one-frame delay. The Target
+computes in framer-motion's frame loop and paints in r3f's — two independent
+rAF callbacks. A frame on which framer did not tick between two r3f paints
+repaints the same value, and the next frame carries double. We compute and
+paint in one callback, so our steps are even.
+
+It shows up as three failing families, and they are the same fact three times:
+
+- `frameStepJitterFraction` — 27 rows, ours lower in **26 of 26**;
+- `maxFrameVelocityStep` — 8 rows, ours lower in **7 of 7**. Jitter is what a
+  frame-to-frame velocity step *is*;
+- `cameraDistanceOverPerspectivePeak` — 17 rows. The dolly is driven by the
+  magnitude spring, whose source is a MotionValue *backward difference*, and a
+  backward difference is exactly what jitter inflates.
+
+The `systematicSign` row catches all three by sign alone, which is what it was
+added for.
+
+Reproducing it would mean reproducing a scheduling race rather than a motion
+constant — running our own model and our own paint in two rAF callbacks and
+letting the interleaving fall where it may. That is a product decision about
+how far "source-exact" reaches, not an engineering one, and it is not taken
+here.
+
 ## A defect found in a frozen file, and left alone
 
 Motion made it visible, so it is recorded here rather than left for someone to

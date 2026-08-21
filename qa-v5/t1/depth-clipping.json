@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-08-21T03:45:33.370Z",
+  "startedAt": "2026-08-21T08:42:42.891Z",
   "targetReference": "qa-v5/t1/target-typography-contract.json (clip layer: overflow hidden, clip-path none, border-radius 0, at the full card box)",
   "viewports": [
     {
@@ -11,6 +11,10 @@
       "offsets": [
         {
           "offset": [
+            0,
+            0
+          ],
+          "pointer": [
             0,
             0
           ],
@@ -38,12 +42,25 @@
           "depthDecided": 51,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            1000
+          ]
         },
         {
           "offset": [
             313,
             197
+          ],
+          "pointer": [
+            0,
+            0
           ],
           "visibleCards": 83,
           "clipStructureMatchesTarget": true,
@@ -69,12 +86,25 @@
           "depthDecided": 59,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            1000
+          ]
         },
         {
           "offset": [
             -640,
             480
+          ],
+          "pointer": [
+            0,
+            0
           ],
           "visibleCards": 81,
           "clipStructureMatchesTarget": true,
@@ -100,7 +130,16 @@
           "depthDecided": 57,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            1000
+          ]
         }
       ]
     },
@@ -113,6 +152,10 @@
       "offsets": [
         {
           "offset": [
+            0,
+            0
+          ],
+          "pointer": [
             0,
             0
           ],
@@ -140,12 +183,25 @@
           "depthDecided": 51,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            1333.3333333333335
+          ]
         },
         {
           "offset": [
             313,
             197
+          ],
+          "pointer": [
+            0,
+            0
           ],
           "visibleCards": 81,
           "clipStructureMatchesTarget": true,
@@ -171,12 +227,25 @@
           "depthDecided": 52,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            1333.3333333333335
+          ]
         },
         {
           "offset": [
             -640,
             480
+          ],
+          "pointer": [
+            0,
+            0
           ],
           "visibleCards": 82,
           "clipStructureMatchesTarget": true,
@@ -202,7 +271,16 @@
           "depthDecided": 48,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            1333.3333333333335
+          ]
         }
       ]
     },
@@ -215,6 +293,10 @@
       "offsets": [
         {
           "offset": [
+            0,
+            0
+          ],
+          "pointer": [
             0,
             0
           ],
@@ -242,12 +324,25 @@
           "depthDecided": 42,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            586.1111111111111
+          ]
         },
         {
           "offset": [
             313,
             197
+          ],
+          "pointer": [
+            0,
+            0
           ],
           "visibleCards": 94,
           "clipStructureMatchesTarget": true,
@@ -273,12 +368,25 @@
           "depthDecided": 48,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            586.1111111111111
+          ]
         },
         {
           "offset": [
             -640,
             480
+          ],
+          "pointer": [
+            0,
+            0
           ],
           "visibleCards": 94,
           "clipStructureMatchesTarget": true,
@@ -300,11 +408,20 @@
           },
           "titleCollisionsBetweenNonOverlappingCards": 0,
           "collisionExamples": [],
-          "depthProbes": 52,
-          "depthDecided": 52,
+          "depthProbes": 55,
+          "depthDecided": 55,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            586.1111111111111
+          ]
         }
       ]
     },
@@ -317,6 +434,10 @@
       "offsets": [
         {
           "offset": [
+            0,
+            0
+          ],
+          "pointer": [
             0,
             0
           ],
@@ -344,12 +465,25 @@
           "depthDecided": 51,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            586.1111111111111
+          ]
         },
         {
           "offset": [
             313,
             197
+          ],
+          "pointer": [
+            0,
+            0
           ],
           "visibleCards": 69,
           "clipStructureMatchesTarget": true,
@@ -375,12 +509,25 @@
           "depthDecided": 43,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            586.1111111111111
+          ]
         },
         {
           "offset": [
             -640,
             480
+          ],
+          "pointer": [
+            0,
+            0
           ],
           "visibleCards": 70,
           "clipStructureMatchesTarget": true,
@@ -406,7 +553,16 @@
           "depthDecided": 42,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            586.1111111111111
+          ]
         }
       ]
     },
@@ -419,6 +575,10 @@
       "offsets": [
         {
           "offset": [
+            0,
+            0
+          ],
+          "pointer": [
             0,
             0
           ],
@@ -446,12 +606,25 @@
           "depthDecided": 102,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            486.11111111111114
+          ]
         },
         {
           "offset": [
             313,
             197
+          ],
+          "pointer": [
+            0,
+            0
           ],
           "visibleCards": 89,
           "clipStructureMatchesTarget": true,
@@ -473,16 +646,29 @@
           },
           "titleCollisionsBetweenNonOverlappingCards": 0,
           "collisionExamples": [],
-          "depthProbes": 105,
-          "depthDecided": 105,
+          "depthProbes": 102,
+          "depthDecided": 102,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            486.11111111111114
+          ]
         },
         {
           "offset": [
             -640,
             480
+          ],
+          "pointer": [
+            0,
+            0
           ],
           "visibleCards": 90,
           "clipStructureMatchesTarget": true,
@@ -508,7 +694,16 @@
           "depthDecided": 93,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            486.11111111111114
+          ]
         }
       ]
     },
@@ -521,6 +716,10 @@
       "offsets": [
         {
           "offset": [
+            0,
+            0
+          ],
+          "pointer": [
             0,
             0
           ],
@@ -548,12 +747,25 @@
           "depthDecided": 51,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            463.1944444444444
+          ]
         },
         {
           "offset": [
             313,
             197
+          ],
+          "pointer": [
+            0,
+            0
           ],
           "visibleCards": 82,
           "clipStructureMatchesTarget": true,
@@ -579,12 +791,25 @@
           "depthDecided": 48,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            463.1944444444444
+          ]
         },
         {
           "offset": [
             -640,
             480
+          ],
+          "pointer": [
+            0,
+            0
           ],
           "visibleCards": 81,
           "clipStructureMatchesTarget": true,
@@ -610,7 +835,16 @@
           "depthDecided": 51,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            463.1944444444444
+          ]
         }
       ]
     },
@@ -623,6 +857,10 @@
       "offsets": [
         {
           "offset": [
+            0,
+            0
+          ],
+          "pointer": [
             0,
             0
           ],
@@ -650,12 +888,25 @@
           "depthDecided": 51,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            541.6666666666666
+          ]
         },
         {
           "offset": [
             313,
             197
+          ],
+          "pointer": [
+            0,
+            0
           ],
           "visibleCards": 81,
           "clipStructureMatchesTarget": true,
@@ -681,12 +932,25 @@
           "depthDecided": 51,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            541.6666666666666
+          ]
         },
         {
           "offset": [
             -640,
             480
+          ],
+          "pointer": [
+            0,
+            0
           ],
           "visibleCards": 82,
           "clipStructureMatchesTarget": true,
@@ -712,7 +976,16 @@
           "depthDecided": 51,
           "depthSamplesWithAnotherCardPlaneOverThem": 0,
           "depthWrong": 0,
-          "depthWrongExamples": []
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            541.6666666666666
+          ]
         }
       ]
     }
@@ -906,8 +1179,8 @@
           "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
-          "probes": 52,
-          "decided": 52,
+          "probes": 55,
+          "decided": 55,
           "wrong": 0,
           "samplesWithAnotherCardPlaneOverThem": 0
         }
@@ -926,8 +1199,8 @@
           "decided": 48
         },
         {
-          "probes": 52,
-          "decided": 52
+          "probes": 55,
+          "decided": 55
         }
       ]
     },
@@ -1042,8 +1315,8 @@
           "samplesWithAnotherCardPlaneOverThem": 0
         },
         {
-          "probes": 105,
-          "decided": 105,
+          "probes": 102,
+          "decided": 102,
           "wrong": 0,
           "samplesWithAnotherCardPlaneOverThem": 0
         },
@@ -1064,8 +1337,8 @@
           "decided": 102
         },
         {
-          "probes": 105,
-          "decided": 105
+          "probes": 102,
+          "decided": 102
         },
         {
           "probes": 93,
@@ -1226,10 +1499,22 @@
       "detail": []
     }
   ],
+  "pointers": [
+    [
+      0,
+      0
+    ]
+  ],
   "consoleErrors": [],
   "pageErrors": [],
   "actualOverlappingCardPlaneSamples": 0,
-  "scope": "PROVEN: the clip STRUCTURE matches the Target's, and within every sampled card interior the topmost label is that card's own. NOT PROVEN: real occlusion ordering. actualOverlappingCardPlaneSamples = 0 -- no two card planes were observed overlapping on screen in any tested configuration, so the rear-card-text-over-front-card case was never exercised. Carried forward to the motion stage, where the pointer orbit and scroll offsets move the planes.",
+  "pointerSweep": [
+    [
+      0,
+      0
+    ]
+  ],
+  "scope": "PROVEN: the clip STRUCTURE matches the Target's, and within every sampled card interior the topmost label is that card's own. NOT PROVEN: real occlusion ordering. actualOverlappingCardPlaneSamples = 0 -- no two card planes were observed overlapping on screen in any tested configuration, so the rear-card-text-over-front-card case was never exercised. Carried forward to the motion stage, where the pointer orbit and scroll offsets move the planes. Pointer positions swept: [[0,0]].",
   "passed": 30,
   "total": 30,
   "verdict": "PASS"

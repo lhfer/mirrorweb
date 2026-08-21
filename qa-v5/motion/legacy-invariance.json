@@ -1,0 +1,272 @@
+{
+  "checkedAt": "2026-08-21T08:53:19.189Z",
+  "before": "http://127.0.0.1:5281",
+  "after": "http://127.0.0.1:5280",
+  "what": "v1, v2 and the bare route rendered by the pre-motion commit and by the candidate, under identical fixed conditions",
+  "fixed": {
+    "quality": "high",
+    "adaptiveSampler": "off",
+    "dpr": 1,
+    "pointer": [
+      0,
+      0
+    ],
+    "mediaTimeSeconds": 2,
+    "motion": "paused",
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "rows": [
+    {
+      "viewport": "1440x900",
+      "route": "bare",
+      "beforeSha": "b87ba8c902ecef0021996b296e2066678b5fc4cb65c39ede68b46ee2923d28b1",
+      "afterSha": "bb647b9a5b46b07756472cbcad5af055dc60697b4793a32f583747bff080abb7",
+      "pixelsIdentical": false,
+      "beforeBytes": 1700814,
+      "afterBytes": 1700630,
+      "beforeGeometry": "0f4ab18ad2673af6c8cef311d293deeb077129923940930201797a6e81963cd7",
+      "afterGeometry": "0f4ab18ad2673af6c8cef311d293deeb077129923940930201797a6e81963cd7",
+      "geometryIdentical": true,
+      "landmarkCount": 81,
+      "beforeErrors": [],
+      "afterErrors": [],
+      "pixelsStatus": "NOT MEASURABLE -- the same-commit control differs across origins"
+    },
+    {
+      "viewport": "1440x900",
+      "route": "composition=v1",
+      "beforeSha": "d2cbcd31a69194cc516230b95f47e19a72a617b498e4fcd7481baf7c39f05040",
+      "afterSha": "48327a41e5681efed2a9c97f0695e724e7960e04229f9347ccb3121f12cd8804",
+      "pixelsIdentical": false,
+      "beforeBytes": 1570008,
+      "afterBytes": 1569912,
+      "beforeGeometry": "15f8617f63aba591bf795bbd430c0b6f6421384dfe1f6f8cce8aec7f055ac4b5",
+      "afterGeometry": "15f8617f63aba591bf795bbd430c0b6f6421384dfe1f6f8cce8aec7f055ac4b5",
+      "geometryIdentical": true,
+      "landmarkCount": 81,
+      "beforeErrors": [],
+      "afterErrors": [],
+      "pixelsStatus": "NOT MEASURABLE -- the same-commit control differs across origins"
+    },
+    {
+      "viewport": "1440x900",
+      "route": "composition=v2",
+      "beforeSha": "fa2dfde36677618ed725e5f9ee1ba14e5db7c29b29f4fca9388eae587e9c0dd1",
+      "afterSha": "51833151d35ddc5454fec0e9637296606b5e7193bfa7ccdd5cd7fa1a36802183",
+      "pixelsIdentical": false,
+      "beforeBytes": 1579654,
+      "afterBytes": 1580055,
+      "beforeGeometry": "7e7755698a3dceda46db12eebe7112d0df987ae44d5587f8dfcdc23ad59e1327",
+      "afterGeometry": "7e7755698a3dceda46db12eebe7112d0df987ae44d5587f8dfcdc23ad59e1327",
+      "geometryIdentical": true,
+      "landmarkCount": 81,
+      "beforeErrors": [],
+      "afterErrors": [],
+      "pixelsStatus": "NOT MEASURABLE -- the same-commit control differs across origins"
+    },
+    {
+      "viewport": "390x844",
+      "route": "bare",
+      "beforeSha": "fa79d40b3ed140c5070d27377cc3c6f50f9bd33235dfc6c6d077aff2f15af19a",
+      "afterSha": "ca8344e2c33c953a1b2833bde0b28e2ba3a4d0f11c54c0a472fa6400c643b5ae",
+      "pixelsIdentical": false,
+      "beforeBytes": 523318,
+      "afterBytes": 523471,
+      "beforeGeometry": "3d6065a1597b9c920687e2f59d95b58b8f1139531eb034db3d1ba7b8d1ea6449",
+      "afterGeometry": "3d6065a1597b9c920687e2f59d95b58b8f1139531eb034db3d1ba7b8d1ea6449",
+      "geometryIdentical": true,
+      "landmarkCount": 81,
+      "beforeErrors": [],
+      "afterErrors": [],
+      "pixelsStatus": "NOT MEASURABLE -- the same-commit control differs across origins"
+    },
+    {
+      "viewport": "390x844",
+      "route": "composition=v1",
+      "beforeSha": "c1434466d59fc5c8344f4907713c604d454cc8f01442dcd16361f5020b3b24c9",
+      "afterSha": "1c2b6bb499355d00f0e3ae12c35f3ee7c23add04adc6e957c980661598a924fd",
+      "pixelsIdentical": false,
+      "beforeBytes": 447549,
+      "afterBytes": 447319,
+      "beforeGeometry": "793bc911fd95eea88f26a9ff5c9c0050ce194192e7dff48ff753fb88e9eb7800",
+      "afterGeometry": "793bc911fd95eea88f26a9ff5c9c0050ce194192e7dff48ff753fb88e9eb7800",
+      "geometryIdentical": true,
+      "landmarkCount": 81,
+      "beforeErrors": [],
+      "afterErrors": [],
+      "pixelsStatus": "NOT MEASURABLE -- the same-commit control differs across origins"
+    },
+    {
+      "viewport": "390x844",
+      "route": "composition=v2",
+      "beforeSha": "d3b4cdad30cc3b8102ba3d520f5bef2f95895f22b81ec857953102869ca1177d",
+      "afterSha": "2a05e7888ff137f2533d4e8691b1f815058c35b06b1ce11584b9c6e5cfa68734",
+      "pixelsIdentical": false,
+      "beforeBytes": 454167,
+      "afterBytes": 454776,
+      "beforeGeometry": "79289ad9430f2df9c5621c5556471c75a5d2b72a1bd9e379050438d489ae5524",
+      "afterGeometry": "79289ad9430f2df9c5621c5556471c75a5d2b72a1bd9e379050438d489ae5524",
+      "geometryIdentical": true,
+      "landmarkCount": 81,
+      "beforeErrors": [],
+      "afterErrors": [],
+      "pixelsStatus": "NOT MEASURABLE -- the same-commit control differs across origins"
+    }
+  ],
+  "assertions": [
+    {
+      "assertion": "control: the same commit on two origins renders identical geometry",
+      "pass": true,
+      "detail": {
+        "what": "the SAME COMMIT served on two origins, compared with the same harness",
+        "origins": [
+          "http://127.0.0.1:5282",
+          "http://127.0.0.1:5280"
+        ],
+        "route": "bare",
+        "viewport": "1440x900",
+        "pixelsIdentical": false,
+        "geometryIdentical": true,
+        "meaning": "a whole-frame pixel comparison across origins is NOT capable here -- identical code produces different bytes, because each origin decodes the media independently. The pixel rows are reported and NOT gated; the geometry readback carries the verdict."
+      }
+    },
+    {
+      "assertion": "1440x900 bare: geometry identical to the pre-motion commit",
+      "pass": true,
+      "detail": {
+        "viewport": "1440x900",
+        "route": "bare",
+        "beforeSha": "b87ba8c902ecef0021996b296e2066678b5fc4cb65c39ede68b46ee2923d28b1",
+        "afterSha": "bb647b9a5b46b07756472cbcad5af055dc60697b4793a32f583747bff080abb7",
+        "pixelsIdentical": false,
+        "beforeBytes": 1700814,
+        "afterBytes": 1700630,
+        "beforeGeometry": "0f4ab18ad2673af6c8cef311d293deeb077129923940930201797a6e81963cd7",
+        "afterGeometry": "0f4ab18ad2673af6c8cef311d293deeb077129923940930201797a6e81963cd7",
+        "geometryIdentical": true,
+        "landmarkCount": 81,
+        "beforeErrors": [],
+        "afterErrors": [],
+        "pixelsStatus": "NOT MEASURABLE -- the same-commit control differs across origins"
+      }
+    },
+    {
+      "assertion": "1440x900 composition=v1: geometry identical to the pre-motion commit",
+      "pass": true,
+      "detail": {
+        "viewport": "1440x900",
+        "route": "composition=v1",
+        "beforeSha": "d2cbcd31a69194cc516230b95f47e19a72a617b498e4fcd7481baf7c39f05040",
+        "afterSha": "48327a41e5681efed2a9c97f0695e724e7960e04229f9347ccb3121f12cd8804",
+        "pixelsIdentical": false,
+        "beforeBytes": 1570008,
+        "afterBytes": 1569912,
+        "beforeGeometry": "15f8617f63aba591bf795bbd430c0b6f6421384dfe1f6f8cce8aec7f055ac4b5",
+        "afterGeometry": "15f8617f63aba591bf795bbd430c0b6f6421384dfe1f6f8cce8aec7f055ac4b5",
+        "geometryIdentical": true,
+        "landmarkCount": 81,
+        "beforeErrors": [],
+        "afterErrors": [],
+        "pixelsStatus": "NOT MEASURABLE -- the same-commit control differs across origins"
+      }
+    },
+    {
+      "assertion": "1440x900 composition=v2: geometry identical to the pre-motion commit",
+      "pass": true,
+      "detail": {
+        "viewport": "1440x900",
+        "route": "composition=v2",
+        "beforeSha": "fa2dfde36677618ed725e5f9ee1ba14e5db7c29b29f4fca9388eae587e9c0dd1",
+        "afterSha": "51833151d35ddc5454fec0e9637296606b5e7193bfa7ccdd5cd7fa1a36802183",
+        "pixelsIdentical": false,
+        "beforeBytes": 1579654,
+        "afterBytes": 1580055,
+        "beforeGeometry": "7e7755698a3dceda46db12eebe7112d0df987ae44d5587f8dfcdc23ad59e1327",
+        "afterGeometry": "7e7755698a3dceda46db12eebe7112d0df987ae44d5587f8dfcdc23ad59e1327",
+        "geometryIdentical": true,
+        "landmarkCount": 81,
+        "beforeErrors": [],
+        "afterErrors": [],
+        "pixelsStatus": "NOT MEASURABLE -- the same-commit control differs across origins"
+      }
+    },
+    {
+      "assertion": "390x844 bare: geometry identical to the pre-motion commit",
+      "pass": true,
+      "detail": {
+        "viewport": "390x844",
+        "route": "bare",
+        "beforeSha": "fa79d40b3ed140c5070d27377cc3c6f50f9bd33235dfc6c6d077aff2f15af19a",
+        "afterSha": "ca8344e2c33c953a1b2833bde0b28e2ba3a4d0f11c54c0a472fa6400c643b5ae",
+        "pixelsIdentical": false,
+        "beforeBytes": 523318,
+        "afterBytes": 523471,
+        "beforeGeometry": "3d6065a1597b9c920687e2f59d95b58b8f1139531eb034db3d1ba7b8d1ea6449",
+        "afterGeometry": "3d6065a1597b9c920687e2f59d95b58b8f1139531eb034db3d1ba7b8d1ea6449",
+        "geometryIdentical": true,
+        "landmarkCount": 81,
+        "beforeErrors": [],
+        "afterErrors": [],
+        "pixelsStatus": "NOT MEASURABLE -- the same-commit control differs across origins"
+      }
+    },
+    {
+      "assertion": "390x844 composition=v1: geometry identical to the pre-motion commit",
+      "pass": true,
+      "detail": {
+        "viewport": "390x844",
+        "route": "composition=v1",
+        "beforeSha": "c1434466d59fc5c8344f4907713c604d454cc8f01442dcd16361f5020b3b24c9",
+        "afterSha": "1c2b6bb499355d00f0e3ae12c35f3ee7c23add04adc6e957c980661598a924fd",
+        "pixelsIdentical": false,
+        "beforeBytes": 447549,
+        "afterBytes": 447319,
+        "beforeGeometry": "793bc911fd95eea88f26a9ff5c9c0050ce194192e7dff48ff753fb88e9eb7800",
+        "afterGeometry": "793bc911fd95eea88f26a9ff5c9c0050ce194192e7dff48ff753fb88e9eb7800",
+        "geometryIdentical": true,
+        "landmarkCount": 81,
+        "beforeErrors": [],
+        "afterErrors": [],
+        "pixelsStatus": "NOT MEASURABLE -- the same-commit control differs across origins"
+      }
+    },
+    {
+      "assertion": "390x844 composition=v2: geometry identical to the pre-motion commit",
+      "pass": true,
+      "detail": {
+        "viewport": "390x844",
+        "route": "composition=v2",
+        "beforeSha": "d3b4cdad30cc3b8102ba3d520f5bef2f95895f22b81ec857953102869ca1177d",
+        "afterSha": "2a05e7888ff137f2533d4e8691b1f815058c35b06b1ce11584b9c6e5cfa68734",
+        "pixelsIdentical": false,
+        "beforeBytes": 454167,
+        "afterBytes": 454776,
+        "beforeGeometry": "79289ad9430f2df9c5621c5556471c75a5d2b72a1bd9e379050438d489ae5524",
+        "afterGeometry": "79289ad9430f2df9c5621c5556471c75a5d2b72a1bd9e379050438d489ae5524",
+        "geometryIdentical": true,
+        "landmarkCount": 81,
+        "beforeErrors": [],
+        "afterErrors": [],
+        "pixelsStatus": "NOT MEASURABLE -- the same-commit control differs across origins"
+      }
+    }
+  ],
+  "control": {
+    "what": "the SAME COMMIT served on two origins, compared with the same harness",
+    "origins": [
+      "http://127.0.0.1:5282",
+      "http://127.0.0.1:5280"
+    ],
+    "route": "bare",
+    "viewport": "1440x900",
+    "pixelsIdentical": false,
+    "geometryIdentical": true,
+    "meaning": "a whole-frame pixel comparison across origins is NOT capable here -- identical code produces different bytes, because each origin decodes the media independently. The pixel rows are reported and NOT gated; the geometry readback carries the verdict."
+  },
+  "passed": 7,
+  "total": 7,
+  "verdict": "PASS"
+}

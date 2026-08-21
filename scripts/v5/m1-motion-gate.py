@@ -76,6 +76,10 @@ FLOORS = {
     # The Target's dolly reaches 22% of it, so a page that dropped the dolly
     # misses by twenty floors.
     "dollyRatio": 0.01,
+    # A fraction of the step. 0.02 is two percent off the local trend; the
+    # Target sits at 0.127 and we sit at 0.018, so this floor is well inside
+    # the gap rather than chosen to straddle it.
+    "stepJitter": 0.02,
 }
 
 # A resize re-tiles the grid mid-run, so a pointwise trajectory comparison
@@ -175,6 +179,34 @@ def landmarks(run, obs):
         if settle is not None:
             out["pointerSettle63Ms"] = settle
 
+    # How EVENLY the page advances, frame to frame.
+    #
+    # The mechanism behind two whole families of landmark difference, so it is
+    # measured directly instead of being inferred from them. The Target
+    # computes its motion in framer-motion's frame loop and paints it in r3f's
+    # -- two independent rAF callbacks -- while we do both in one. A frame on
+    # which framer did not tick between two r3f paints repaints the same value,
+    # and the next frame carries double.
+    #
+    # Measured against the LOCAL TREND, not against the run's mean. A
+    # coefficient of variation over the whole moving stretch was tried first
+    # and is useless here: it is dominated by the decay envelope, which both
+    # sides share, and it came out at 0.7544 for the Target against 0.7549 for
+    # us -- identical, while the frame-to-frame behaviour is anything but. Each
+    # step is compared with the average of its two neighbours instead, so the
+    # envelope cancels and only the jitter is left.
+    steps = [abs(obs["scrollX"][i] - obs["scrollX"][i - 1])
+             for i in range(1, len(obs["scrollX"]))]
+    live = [i for i, v in enumerate(steps) if v > 0.5]
+    if len(live) >= 30:
+        devs = []
+        for i in range(live[0] + 1, live[-1]):
+            trend = (steps[i - 1] + steps[i + 1]) / 2.0
+            if trend > 0.5:
+                devs.append(abs(steps[i] - trend) / trend)
+        if devs:
+            out["frameStepJitterFraction"] = round(statistics.median(devs), 5)
+
     # The dolly, on its own row.
     #
     # Making the orbit recovery dolly-immune -- which it had to be -- removed
@@ -231,6 +263,7 @@ LANDMARK_UNIT = {
     "pointerSettle63Ms": "settleMs",
     "pointerModelResidualRad": "orbitRad",
     "cameraDistanceOverPerspectivePeak": "dollyRatio",
+    "frameStepJitterFraction": "stepJitter",
 }
 
 
@@ -674,7 +707,7 @@ if __name__ == "__main__":
         "targetRepeatability": repeat_rows,
         "rows": [r for r in compare_rows
                  if r.get("landmark") in ("totalX", "totalY", "followRatioX", "followRatioY",
-                                          "latencyMs")],
+                                          "latencyMs", "frameStepJitterFraction")],
         "systematicSign": {
             "what": "landmarks whose difference lands on the SAME SIDE in cell after cell",
             "why": "a difference that is small in every cell but never changes sign is a defect "

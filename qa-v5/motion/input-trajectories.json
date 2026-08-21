@@ -1,0 +1,3658 @@
+{
+  "what": "what was actually dispatched, on both sides, and by what means",
+  "everySequenceIsRealInput": "mouse, wheel and touch are dispatched as trusted browser input through the automation protocol. No QA hook moves either page. The one exception is labelled: wheel deltaMode 1 and 2 cannot be produced by a real device through the protocol and are dispatched as synthetic WheelEvents, which still reach a listener if one exists.",
+  "sides": {
+    "target": [
+      {
+        "viewport": "1440x900",
+        "sequence": "diagonal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          437,
+          436,
+          441
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          378,
+          378,
+          378
+        ],
+        "fingerDy": [
+          378,
+          378,
+          378
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "fast-flick",
+        "runs": 3,
+        "framesPerRun": [
+          425,
+          425,
+          424
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -648,
+          -648,
+          -648
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "long-drag-multi-wrap",
+        "runs": 3,
+        "framesPerRun": [
+          529,
+          530,
+          530
+        ],
+        "eventsPerRun": [
+          43,
+          43,
+          43
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -5760,
+          -5760,
+          -5760
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "lostpointercapture",
+        "runs": 3,
+        "framesPerRun": [
+          361,
+          363,
+          363
+        ],
+        "eventsPerRun": [
+          12,
+          12,
+          12
+        ],
+        "eventTypes": [
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -360,
+          -360,
+          -360
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "medium-drag",
+        "runs": 3,
+        "framesPerRun": [
+          355,
+          355,
+          355
+        ],
+        "eventsPerRun": [
+          17,
+          17,
+          17
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          567,
+          567,
+          567
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "pointer-sweep",
+        "runs": 3,
+        "framesPerRun": [
+          627,
+          624,
+          625
+        ],
+        "eventsPerRun": [
+          84,
+          84,
+          84
+        ],
+        "eventTypes": [
+          "pointermove"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "pointercancel",
+        "runs": 3,
+        "framesPerRun": [
+          348,
+          349,
+          350
+        ],
+        "eventsPerRun": [
+          26,
+          26,
+          26
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointercancel",
+          "pointerdown",
+          "pointermove",
+          "touchcancel",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -450,
+          -450,
+          -450
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "resize-during-motion",
+        "runs": 3,
+        "framesPerRun": [
+          492,
+          493,
+          492
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -612,
+          -612,
+          -612
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "reverse-flick",
+        "runs": 3,
+        "framesPerRun": [
+          441,
+          441,
+          441
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -36,
+          -36,
+          -36
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "slow-horizontal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          439,
+          442,
+          440
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          540,
+          540,
+          540
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "slow-vertical-drag",
+        "runs": 3,
+        "framesPerRun": [
+          439,
+          436,
+          440
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          0,
+          0,
+          0
+        ],
+        "fingerDy": [
+          540,
+          540,
+          540
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "touch-drag-release",
+        "runs": 3,
+        "framesPerRun": [
+          450,
+          449,
+          450
+        ],
+        "eventsPerRun": [
+          30,
+          30,
+          30
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup",
+          "touchend",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -648,
+          -648,
+          -648
+        ],
+        "fingerDy": [
+          -324,
+          -324,
+          -324
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "wheel-deltamode",
+        "runs": 3,
+        "framesPerRun": [
+          453,
+          452,
+          452
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "wheel-mouse-steps",
+        "runs": 3,
+        "framesPerRun": [
+          374,
+          373,
+          373
+        ],
+        "eventsPerRun": [
+          13,
+          13,
+          13
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "wheel-trackpad-small",
+        "runs": 3,
+        "framesPerRun": [
+          406,
+          396,
+          392
+        ],
+        "eventsPerRun": [
+          41,
+          41,
+          41
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "diagonal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          435,
+          434,
+          442
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          163.8,
+          163.8,
+          163.8
+        ],
+        "fingerDy": [
+          163.8,
+          163.8,
+          163.8
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "fast-flick",
+        "runs": 3,
+        "framesPerRun": [
+          426,
+          425,
+          425
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -280.8,
+          -280.8,
+          -280.8
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "long-drag-multi-wrap",
+        "runs": 3,
+        "framesPerRun": [
+          530,
+          530,
+          529
+        ],
+        "eventsPerRun": [
+          43,
+          43,
+          43
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -1560,
+          -1560,
+          -1560
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "lostpointercapture",
+        "runs": 3,
+        "framesPerRun": [
+          364,
+          363,
+          364
+        ],
+        "eventsPerRun": [
+          12,
+          12,
+          12
+        ],
+        "eventTypes": [
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -156.0,
+          -156.0,
+          -156.0
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "medium-drag",
+        "runs": 3,
+        "framesPerRun": [
+          357,
+          357,
+          355
+        ],
+        "eventsPerRun": [
+          17,
+          17,
+          17
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          245.7,
+          245.7,
+          245.7
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "pointer-sweep",
+        "runs": 3,
+        "framesPerRun": [
+          625,
+          624,
+          627
+        ],
+        "eventsPerRun": [
+          84,
+          84,
+          84
+        ],
+        "eventTypes": [
+          "pointermove"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "pointercancel",
+        "runs": 3,
+        "framesPerRun": [
+          350,
+          348,
+          352
+        ],
+        "eventsPerRun": [
+          26,
+          26,
+          26
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointercancel",
+          "pointerdown",
+          "pointermove",
+          "touchcancel",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -195,
+          -195,
+          -195
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "resize-during-motion",
+        "runs": 3,
+        "framesPerRun": [
+          491,
+          492,
+          493
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -265.2,
+          -265.2,
+          -265.2
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "reverse-flick",
+        "runs": 3,
+        "framesPerRun": [
+          441,
+          442,
+          440
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -15.6,
+          -15.6,
+          -15.6
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "slow-horizontal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          439,
+          439,
+          438
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          234,
+          234,
+          234
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "slow-vertical-drag",
+        "runs": 3,
+        "framesPerRun": [
+          441,
+          435,
+          435
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          0,
+          0,
+          0
+        ],
+        "fingerDy": [
+          234,
+          234,
+          234
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "touch-drag-release",
+        "runs": 3,
+        "framesPerRun": [
+          449,
+          449,
+          449
+        ],
+        "eventsPerRun": [
+          30,
+          30,
+          30
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup",
+          "touchend",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -280.8,
+          -280.8,
+          -280.8
+        ],
+        "fingerDy": [
+          -140.4,
+          -140.4,
+          -140.4
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "wheel-deltamode",
+        "runs": 3,
+        "framesPerRun": [
+          452,
+          453,
+          457
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "wheel-mouse-steps",
+        "runs": 3,
+        "framesPerRun": [
+          373,
+          373,
+          373
+        ],
+        "eventsPerRun": [
+          13,
+          13,
+          13
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "wheel-trackpad-small",
+        "runs": 3,
+        "framesPerRun": [
+          396,
+          397,
+          396
+        ],
+        "eventsPerRun": [
+          41,
+          41,
+          41
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "diagonal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          433,
+          433,
+          434
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          294,
+          294,
+          294
+        ],
+        "fingerDy": [
+          294,
+          294,
+          294
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "fast-flick",
+        "runs": 3,
+        "framesPerRun": [
+          425,
+          425,
+          425
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -504,
+          -504,
+          -504
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "long-drag-multi-wrap",
+        "runs": 3,
+        "framesPerRun": [
+          529,
+          529,
+          529
+        ],
+        "eventsPerRun": [
+          43,
+          43,
+          43
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -2800,
+          -2800,
+          -2800
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "lostpointercapture",
+        "runs": 3,
+        "framesPerRun": [
+          361,
+          363,
+          362
+        ],
+        "eventsPerRun": [
+          12,
+          12,
+          12
+        ],
+        "eventTypes": [
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -280,
+          -280,
+          -280
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "medium-drag",
+        "runs": 3,
+        "framesPerRun": [
+          356,
+          356,
+          355
+        ],
+        "eventsPerRun": [
+          17,
+          17,
+          17
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          441,
+          441,
+          441
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "pointer-sweep",
+        "runs": 3,
+        "framesPerRun": [
+          626,
+          624,
+          624
+        ],
+        "eventsPerRun": [
+          84,
+          84,
+          84
+        ],
+        "eventTypes": [
+          "pointermove"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "pointercancel",
+        "runs": 3,
+        "framesPerRun": [
+          347,
+          347,
+          348
+        ],
+        "eventsPerRun": [
+          26,
+          26,
+          26
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointercancel",
+          "pointerdown",
+          "pointermove",
+          "touchcancel",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -350,
+          -350,
+          -350
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "resize-during-motion",
+        "runs": 3,
+        "framesPerRun": [
+          483,
+          490,
+          490
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -476,
+          -476,
+          -476
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "reverse-flick",
+        "runs": 3,
+        "framesPerRun": [
+          441,
+          442,
+          441
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -28,
+          -28,
+          -28
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "slow-horizontal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          433,
+          435,
+          433
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          420,
+          420,
+          420
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "slow-vertical-drag",
+        "runs": 3,
+        "framesPerRun": [
+          433,
+          437,
+          433
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          0,
+          0,
+          0
+        ],
+        "fingerDy": [
+          420,
+          420,
+          420
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "touch-drag-release",
+        "runs": 3,
+        "framesPerRun": [
+          449,
+          449,
+          449
+        ],
+        "eventsPerRun": [
+          30,
+          30,
+          30
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup",
+          "touchend",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -504,
+          -504,
+          -504
+        ],
+        "fingerDy": [
+          -252,
+          -252,
+          -252
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "wheel-deltamode",
+        "runs": 3,
+        "framesPerRun": [
+          451,
+          450,
+          451
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "wheel-mouse-steps",
+        "runs": 3,
+        "framesPerRun": [
+          375,
+          373,
+          373
+        ],
+        "eventsPerRun": [
+          13,
+          13,
+          13
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "wheel-trackpad-small",
+        "runs": 3,
+        "framesPerRun": [
+          390,
+          390,
+          388
+        ],
+        "eventsPerRun": [
+          41,
+          41,
+          41
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "diagonal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          442,
+          439,
+          440
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          163.8,
+          163.8,
+          163.8
+        ],
+        "fingerDy": [
+          163.8,
+          163.8,
+          163.8
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "fast-flick",
+        "runs": 3,
+        "framesPerRun": [
+          425,
+          425,
+          425
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -280.8,
+          -280.8,
+          -280.8
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "long-drag-multi-wrap",
+        "runs": 3,
+        "framesPerRun": [
+          529,
+          529,
+          527
+        ],
+        "eventsPerRun": [
+          43,
+          43,
+          43
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -3360,
+          -3360,
+          -3360
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "lostpointercapture",
+        "runs": 3,
+        "framesPerRun": [
+          362,
+          364,
+          365
+        ],
+        "eventsPerRun": [
+          12,
+          12,
+          12
+        ],
+        "eventTypes": [
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -156.0,
+          -156.0,
+          -156.0
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "medium-drag",
+        "runs": 3,
+        "framesPerRun": [
+          356,
+          355,
+          355
+        ],
+        "eventsPerRun": [
+          17,
+          17,
+          17
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          245.7,
+          245.7,
+          245.7
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "pointer-sweep",
+        "runs": 3,
+        "framesPerRun": [
+          627,
+          626,
+          624
+        ],
+        "eventsPerRun": [
+          84,
+          84,
+          84
+        ],
+        "eventTypes": [
+          "pointermove"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "pointercancel",
+        "runs": 3,
+        "framesPerRun": [
+          351,
+          347,
+          349
+        ],
+        "eventsPerRun": [
+          26,
+          26,
+          26
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointercancel",
+          "pointerdown",
+          "pointermove",
+          "touchcancel",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -195,
+          -195,
+          -195
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "resize-during-motion",
+        "runs": 3,
+        "framesPerRun": [
+          491,
+          491,
+          491
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -265.2,
+          -265.2,
+          -265.2
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "reverse-flick",
+        "runs": 3,
+        "framesPerRun": [
+          441,
+          441,
+          441
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -15.6,
+          -15.6,
+          -15.6
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "slow-horizontal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          439,
+          439,
+          434
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          234,
+          234,
+          234
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "slow-vertical-drag",
+        "runs": 3,
+        "framesPerRun": [
+          439,
+          437,
+          437
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          0,
+          0,
+          0
+        ],
+        "fingerDy": [
+          234,
+          234,
+          234
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "touch-drag-release",
+        "runs": 3,
+        "framesPerRun": [
+          449,
+          449,
+          450
+        ],
+        "eventsPerRun": [
+          30,
+          30,
+          30
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup",
+          "touchend",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -280.8,
+          -280.8,
+          -280.8
+        ],
+        "fingerDy": [
+          -140.4,
+          -140.4,
+          -140.4
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "wheel-deltamode",
+        "runs": 3,
+        "framesPerRun": [
+          452,
+          452,
+          453
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "wheel-mouse-steps",
+        "runs": 3,
+        "framesPerRun": [
+          373,
+          374,
+          374
+        ],
+        "eventsPerRun": [
+          13,
+          13,
+          13
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "wheel-trackpad-small",
+        "runs": 3,
+        "framesPerRun": [
+          399,
+          396,
+          400
+        ],
+        "eventsPerRun": [
+          41,
+          41,
+          41
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      }
+    ],
+    "ours": [
+      {
+        "viewport": "1440x900",
+        "sequence": "diagonal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          433,
+          434,
+          433
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          378,
+          378,
+          378
+        ],
+        "fingerDy": [
+          378,
+          378,
+          378
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "fast-flick",
+        "runs": 3,
+        "framesPerRun": [
+          425,
+          425,
+          426
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -648,
+          -648,
+          -648
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "long-drag-multi-wrap",
+        "runs": 3,
+        "framesPerRun": [
+          529,
+          530,
+          529
+        ],
+        "eventsPerRun": [
+          43,
+          43,
+          43
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -5760,
+          -5760,
+          -5760
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "lostpointercapture",
+        "runs": 3,
+        "framesPerRun": [
+          364,
+          363,
+          362
+        ],
+        "eventsPerRun": [
+          12,
+          12,
+          12
+        ],
+        "eventTypes": [
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -360,
+          -360,
+          -360
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "medium-drag",
+        "runs": 3,
+        "framesPerRun": [
+          355,
+          355,
+          355
+        ],
+        "eventsPerRun": [
+          17,
+          17,
+          17
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          567,
+          567,
+          567
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "pointer-sweep",
+        "runs": 3,
+        "framesPerRun": [
+          625,
+          625,
+          625
+        ],
+        "eventsPerRun": [
+          84,
+          84,
+          84
+        ],
+        "eventTypes": [
+          "pointermove"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "pointercancel",
+        "runs": 3,
+        "framesPerRun": [
+          347,
+          348,
+          348
+        ],
+        "eventsPerRun": [
+          26,
+          26,
+          26
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointercancel",
+          "pointerdown",
+          "pointermove",
+          "touchcancel",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -450,
+          -450,
+          -450
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "resize-during-motion",
+        "runs": 3,
+        "framesPerRun": [
+          488,
+          490,
+          490
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -612,
+          -612,
+          -612
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "reverse-flick",
+        "runs": 3,
+        "framesPerRun": [
+          441,
+          441,
+          455
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -36,
+          -36,
+          -36
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "slow-horizontal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          434,
+          433,
+          433
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          540,
+          540,
+          540
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "slow-vertical-drag",
+        "runs": 3,
+        "framesPerRun": [
+          434,
+          433,
+          434
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          0,
+          0,
+          0
+        ],
+        "fingerDy": [
+          540,
+          540,
+          540
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "touch-drag-release",
+        "runs": 3,
+        "framesPerRun": [
+          449,
+          449,
+          449
+        ],
+        "eventsPerRun": [
+          30,
+          30,
+          30
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup",
+          "touchend",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -648,
+          -648,
+          -648
+        ],
+        "fingerDy": [
+          -324,
+          -324,
+          -324
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "wheel-deltamode",
+        "runs": 3,
+        "framesPerRun": [
+          452,
+          453,
+          452
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "wheel-mouse-steps",
+        "runs": 3,
+        "framesPerRun": [
+          373,
+          373,
+          373
+        ],
+        "eventsPerRun": [
+          13,
+          13,
+          13
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "1440x900",
+        "sequence": "wheel-trackpad-small",
+        "runs": 3,
+        "framesPerRun": [
+          392,
+          394,
+          395
+        ],
+        "eventsPerRun": [
+          41,
+          41,
+          41
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "diagonal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          441,
+          440,
+          442
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          163.8,
+          163.8,
+          163.8
+        ],
+        "fingerDy": [
+          163.8,
+          163.8,
+          163.8
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "fast-flick",
+        "runs": 3,
+        "framesPerRun": [
+          425,
+          425,
+          425
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -280.8,
+          -280.8,
+          -280.8
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "long-drag-multi-wrap",
+        "runs": 3,
+        "framesPerRun": [
+          529,
+          529,
+          529
+        ],
+        "eventsPerRun": [
+          43,
+          43,
+          43
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -1560,
+          -1560,
+          -1560
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "lostpointercapture",
+        "runs": 3,
+        "framesPerRun": [
+          364,
+          364,
+          364
+        ],
+        "eventsPerRun": [
+          12,
+          12,
+          12
+        ],
+        "eventTypes": [
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -156.0,
+          -156.0,
+          -156.0
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "medium-drag",
+        "runs": 3,
+        "framesPerRun": [
+          355,
+          355,
+          356
+        ],
+        "eventsPerRun": [
+          17,
+          17,
+          17
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          245.7,
+          245.7,
+          245.7
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "pointer-sweep",
+        "runs": 3,
+        "framesPerRun": [
+          624,
+          625,
+          625
+        ],
+        "eventsPerRun": [
+          84,
+          84,
+          84
+        ],
+        "eventTypes": [
+          "pointermove"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "pointercancel",
+        "runs": 3,
+        "framesPerRun": [
+          348,
+          350,
+          349
+        ],
+        "eventsPerRun": [
+          26,
+          26,
+          26
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointercancel",
+          "pointerdown",
+          "pointermove",
+          "touchcancel",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -195,
+          -195,
+          -195
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "resize-during-motion",
+        "runs": 3,
+        "framesPerRun": [
+          488,
+          488,
+          490
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -265.2,
+          -265.2,
+          -265.2
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "reverse-flick",
+        "runs": 3,
+        "framesPerRun": [
+          442,
+          441,
+          441
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -15.6,
+          -15.6,
+          -15.6
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "slow-horizontal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          445,
+          445,
+          436
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          234,
+          234,
+          234
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "slow-vertical-drag",
+        "runs": 3,
+        "framesPerRun": [
+          438,
+          442,
+          444
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          0,
+          0,
+          0
+        ],
+        "fingerDy": [
+          234,
+          234,
+          234
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "touch-drag-release",
+        "runs": 3,
+        "framesPerRun": [
+          449,
+          449,
+          449
+        ],
+        "eventsPerRun": [
+          30,
+          30,
+          30
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup",
+          "touchend",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -280.8,
+          -280.8,
+          -280.8
+        ],
+        "fingerDy": [
+          -140.4,
+          -140.4,
+          -140.4
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "wheel-deltamode",
+        "runs": 3,
+        "framesPerRun": [
+          453,
+          452,
+          453
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "wheel-mouse-steps",
+        "runs": 3,
+        "framesPerRun": [
+          373,
+          375,
+          373
+        ],
+        "eventsPerRun": [
+          13,
+          13,
+          13
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "390x844",
+        "sequence": "wheel-trackpad-small",
+        "runs": 3,
+        "framesPerRun": [
+          395,
+          396,
+          396
+        ],
+        "eventsPerRun": [
+          41,
+          41,
+          41
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "diagonal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          434,
+          435,
+          435
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          294,
+          294,
+          294
+        ],
+        "fingerDy": [
+          294,
+          294,
+          294
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "fast-flick",
+        "runs": 3,
+        "framesPerRun": [
+          425,
+          426,
+          426
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -504,
+          -504,
+          -504
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "long-drag-multi-wrap",
+        "runs": 3,
+        "framesPerRun": [
+          544,
+          529,
+          531
+        ],
+        "eventsPerRun": [
+          43,
+          43,
+          43
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -2800,
+          -2800,
+          -2800
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "lostpointercapture",
+        "runs": 3,
+        "framesPerRun": [
+          364,
+          364,
+          364
+        ],
+        "eventsPerRun": [
+          12,
+          12,
+          12
+        ],
+        "eventTypes": [
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -280,
+          -280,
+          -280
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "medium-drag",
+        "runs": 3,
+        "framesPerRun": [
+          355,
+          355,
+          355
+        ],
+        "eventsPerRun": [
+          17,
+          17,
+          17
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          441,
+          441,
+          441
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "pointer-sweep",
+        "runs": 3,
+        "framesPerRun": [
+          625,
+          626,
+          624
+        ],
+        "eventsPerRun": [
+          84,
+          84,
+          84
+        ],
+        "eventTypes": [
+          "pointermove"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "pointercancel",
+        "runs": 3,
+        "framesPerRun": [
+          348,
+          347,
+          348
+        ],
+        "eventsPerRun": [
+          26,
+          26,
+          26
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointercancel",
+          "pointerdown",
+          "pointermove",
+          "touchcancel",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -350,
+          -350,
+          -350
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "resize-during-motion",
+        "runs": 3,
+        "framesPerRun": [
+          489,
+          491,
+          490
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -476,
+          -476,
+          -476
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "reverse-flick",
+        "runs": 3,
+        "framesPerRun": [
+          441,
+          447,
+          441
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -28,
+          -28,
+          -28
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "slow-horizontal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          434,
+          434,
+          433
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          420,
+          420,
+          420
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "slow-vertical-drag",
+        "runs": 3,
+        "framesPerRun": [
+          433,
+          435,
+          435
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          0,
+          0,
+          0
+        ],
+        "fingerDy": [
+          420,
+          420,
+          420
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "touch-drag-release",
+        "runs": 3,
+        "framesPerRun": [
+          449,
+          449,
+          448
+        ],
+        "eventsPerRun": [
+          30,
+          30,
+          30
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup",
+          "touchend",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -504,
+          -504,
+          -504
+        ],
+        "fingerDy": [
+          -252,
+          -252,
+          -252
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "wheel-deltamode",
+        "runs": 3,
+        "framesPerRun": [
+          449,
+          449,
+          448
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "wheel-mouse-steps",
+        "runs": 3,
+        "framesPerRun": [
+          375,
+          373,
+          374
+        ],
+        "eventsPerRun": [
+          13,
+          13,
+          13
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "700x700",
+        "sequence": "wheel-trackpad-small",
+        "runs": 3,
+        "framesPerRun": [
+          385,
+          385,
+          385
+        ],
+        "eventsPerRun": [
+          41,
+          41,
+          41
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "diagonal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          441,
+          442,
+          440
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          163.8,
+          163.8,
+          163.8
+        ],
+        "fingerDy": [
+          163.8,
+          163.8,
+          163.8
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "fast-flick",
+        "runs": 3,
+        "framesPerRun": [
+          425,
+          425,
+          425
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -280.8,
+          -280.8,
+          -280.8
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "long-drag-multi-wrap",
+        "runs": 3,
+        "framesPerRun": [
+          530,
+          530,
+          529
+        ],
+        "eventsPerRun": [
+          43,
+          43,
+          43
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -3360,
+          -3360,
+          -3360
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "lostpointercapture",
+        "runs": 3,
+        "framesPerRun": [
+          365,
+          362,
+          363
+        ],
+        "eventsPerRun": [
+          12,
+          12,
+          12
+        ],
+        "eventTypes": [
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -156.0,
+          -156.0,
+          -156.0
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "medium-drag",
+        "runs": 3,
+        "framesPerRun": [
+          355,
+          355,
+          356
+        ],
+        "eventsPerRun": [
+          17,
+          17,
+          17
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          245.7,
+          245.7,
+          245.7
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "pointer-sweep",
+        "runs": 3,
+        "framesPerRun": [
+          624,
+          625,
+          625
+        ],
+        "eventsPerRun": [
+          84,
+          84,
+          84
+        ],
+        "eventTypes": [
+          "pointermove"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "pointercancel",
+        "runs": 3,
+        "framesPerRun": [
+          347,
+          348,
+          347
+        ],
+        "eventsPerRun": [
+          26,
+          26,
+          26
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointercancel",
+          "pointerdown",
+          "pointermove",
+          "touchcancel",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -195,
+          -195,
+          -195
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "resize-during-motion",
+        "runs": 3,
+        "framesPerRun": [
+          486,
+          489,
+          488
+        ],
+        "eventsPerRun": [
+          11,
+          11,
+          11
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -265.2,
+          -265.2,
+          -265.2
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "reverse-flick",
+        "runs": 3,
+        "framesPerRun": [
+          442,
+          442,
+          441
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          -15.6,
+          -15.6,
+          -15.6
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "slow-horizontal-drag",
+        "runs": 3,
+        "framesPerRun": [
+          438,
+          445,
+          438
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          234,
+          234,
+          234
+        ],
+        "fingerDy": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "slow-vertical-drag",
+        "runs": 3,
+        "framesPerRun": [
+          441,
+          442,
+          438
+        ],
+        "eventsPerRun": [
+          33,
+          33,
+          33
+        ],
+        "eventTypes": [
+          "pointerdown",
+          "pointermove",
+          "pointerup"
+        ],
+        "fingerDx": [
+          0,
+          0,
+          0
+        ],
+        "fingerDy": [
+          234,
+          234,
+          234
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "touch-drag-release",
+        "runs": 3,
+        "framesPerRun": [
+          449,
+          449,
+          449
+        ],
+        "eventsPerRun": [
+          30,
+          30,
+          30
+        ],
+        "eventTypes": [
+          "gotpointercapture",
+          "lostpointercapture",
+          "pointerdown",
+          "pointermove",
+          "pointerup",
+          "touchend",
+          "touchmove",
+          "touchstart"
+        ],
+        "fingerDx": [
+          -280.8,
+          -280.8,
+          -280.8
+        ],
+        "fingerDy": [
+          -140.4,
+          -140.4,
+          -140.4
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "wheel-deltamode",
+        "runs": 3,
+        "framesPerRun": [
+          449,
+          450,
+          461
+        ],
+        "eventsPerRun": [
+          19,
+          19,
+          19
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "wheel-mouse-steps",
+        "runs": 3,
+        "framesPerRun": [
+          374,
+          373,
+          373
+        ],
+        "eventsPerRun": [
+          13,
+          13,
+          13
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "viewport": "844x390",
+        "sequence": "wheel-trackpad-small",
+        "runs": 3,
+        "framesPerRun": [
+          386,
+          386,
+          385
+        ],
+        "eventsPerRun": [
+          41,
+          41,
+          41
+        ],
+        "eventTypes": [
+          "pointermove",
+          "wheel"
+        ],
+        "fingerDx": [
+          null,
+          null,
+          null
+        ],
+        "fingerDy": [
+          null,
+          null,
+          null
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,893 @@
+{
+  "what": "a resize taken while the page is still moving, on both sides",
+  "rows": [
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 268.3,
+          "from": [
+            1440,
+            900
+          ],
+          "to": [
+            1123,
+            774
+          ],
+          "meanStepBefore": 42.8074,
+          "meanStepAfter": 24.5391
+        },
+        {
+          "atMs": 1485.4,
+          "from": [
+            1123,
+            774
+          ],
+          "to": [
+            1440,
+            900
+          ],
+          "meanStepBefore": 0.0018,
+          "meanStepAfter": 0.001
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1281.4757
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 276.5,
+          "from": [
+            1440,
+            900
+          ],
+          "to": [
+            1123,
+            774
+          ],
+          "meanStepBefore": 42.0011,
+          "meanStepAfter": 28.5132
+        },
+        {
+          "atMs": 1493.3,
+          "from": [
+            1123,
+            774
+          ],
+          "to": [
+            1440,
+            900
+          ],
+          "meanStepBefore": 0.0018,
+          "meanStepAfter": 0.001
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1307.0309
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 267.5,
+          "from": [
+            1440,
+            900
+          ],
+          "to": [
+            1123,
+            774
+          ],
+          "meanStepBefore": 42.7591,
+          "meanStepAfter": 27.0616
+        },
+        {
+          "atMs": 1484.4,
+          "from": [
+            1123,
+            774
+          ],
+          "to": [
+            1440,
+            900
+          ],
+          "meanStepBefore": 0.0017,
+          "meanStepAfter": 0.0008
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1295.6759
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 268.7,
+          "from": [
+            390,
+            844
+          ],
+          "to": [
+            304,
+            726
+          ],
+          "meanStepBefore": 18.1832,
+          "meanStepAfter": 11.8299
+        },
+        {
+          "atMs": 1477.4,
+          "from": [
+            304,
+            726
+          ],
+          "to": [
+            390,
+            844
+          ],
+          "meanStepBefore": 0.0009,
+          "meanStepAfter": 0.0003
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -551.6644
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 269.1,
+          "from": [
+            390,
+            844
+          ],
+          "to": [
+            304,
+            726
+          ],
+          "meanStepBefore": 17.6336,
+          "meanStepAfter": 11.9567
+        },
+        {
+          "atMs": 1486,
+          "from": [
+            304,
+            726
+          ],
+          "to": [
+            390,
+            844
+          ],
+          "meanStepBefore": 0.0008,
+          "meanStepAfter": 0.0003
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -553.2104
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 271,
+          "from": [
+            390,
+            844
+          ],
+          "to": [
+            304,
+            726
+          ],
+          "meanStepBefore": 18.2523,
+          "meanStepAfter": 11.5536
+        },
+        {
+          "atMs": 1495.9,
+          "from": [
+            304,
+            726
+          ],
+          "to": [
+            390,
+            844
+          ],
+          "meanStepBefore": 0.0008,
+          "meanStepAfter": 0.0003
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -560.9974
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 267.4,
+          "from": [
+            700,
+            700
+          ],
+          "to": [
+            546,
+            602
+          ],
+          "meanStepBefore": 31.4443,
+          "meanStepAfter": 44.6654
+        },
+        {
+          "atMs": 1492.3,
+          "from": [
+            546,
+            602
+          ],
+          "to": [
+            700,
+            700
+          ],
+          "meanStepBefore": 0.001,
+          "meanStepAfter": 0.0004
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -2128.7749
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 271.3,
+          "from": [
+            700,
+            700
+          ],
+          "to": [
+            546,
+            602
+          ],
+          "meanStepBefore": 31.9556,
+          "meanStepAfter": 21.8639
+        },
+        {
+          "atMs": 1479.6,
+          "from": [
+            546,
+            602
+          ],
+          "to": [
+            700,
+            700
+          ],
+          "meanStepBefore": 0.0012,
+          "meanStepAfter": 0.0009
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1462.6958
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 268.1,
+          "from": [
+            700,
+            700
+          ],
+          "to": [
+            546,
+            602
+          ],
+          "meanStepBefore": 31.7812,
+          "meanStepAfter": 21.0487
+        },
+        {
+          "atMs": 1475.8,
+          "from": [
+            546,
+            602
+          ],
+          "to": [
+            700,
+            700
+          ],
+          "meanStepBefore": 0.0013,
+          "meanStepAfter": 0.0008
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1995.1327
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 277,
+          "from": [
+            844,
+            390
+          ],
+          "to": [
+            658,
+            335
+          ],
+          "meanStepBefore": 17.244,
+          "meanStepAfter": 11.3648
+        },
+        {
+          "atMs": 1493.9,
+          "from": [
+            658,
+            335
+          ],
+          "to": [
+            844,
+            390
+          ],
+          "meanStepBefore": 0.0008,
+          "meanStepAfter": 0.0002
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1299.1251
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 269.2,
+          "from": [
+            844,
+            390
+          ],
+          "to": [
+            658,
+            335
+          ],
+          "meanStepBefore": 18.4464,
+          "meanStepAfter": 12.5107
+        },
+        {
+          "atMs": 1477.4,
+          "from": [
+            658,
+            335
+          ],
+          "to": [
+            844,
+            390
+          ],
+          "meanStepBefore": 0.001,
+          "meanStepAfter": 0.0004
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -582.6179
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 261.4,
+          "from": [
+            844,
+            390
+          ],
+          "to": [
+            658,
+            335
+          ],
+          "meanStepBefore": 19.4938,
+          "meanStepAfter": 12.4703
+        },
+        {
+          "atMs": 1478,
+          "from": [
+            658,
+            335
+          ],
+          "to": [
+            844,
+            390
+          ],
+          "meanStepBefore": 0.001,
+          "meanStepAfter": 0.0003
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -577.6358
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 273.7,
+          "from": [
+            1440,
+            900
+          ],
+          "to": [
+            1123,
+            774
+          ],
+          "meanStepBefore": 41.14,
+          "meanStepAfter": 37.0537
+        },
+        {
+          "atMs": 1490.3,
+          "from": [
+            1123,
+            774
+          ],
+          "to": [
+            1440,
+            900
+          ],
+          "meanStepBefore": 0.0014,
+          "meanStepAfter": 0.0004
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1307.1971
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 274.4,
+          "from": [
+            1440,
+            900
+          ],
+          "to": [
+            1123,
+            774
+          ],
+          "meanStepBefore": 41.9596,
+          "meanStepAfter": 31.5636
+        },
+        {
+          "atMs": 1491.1,
+          "from": [
+            1123,
+            774
+          ],
+          "to": [
+            1440,
+            900
+          ],
+          "meanStepBefore": 0.0014,
+          "meanStepAfter": 0.0007
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1338.9499
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 273,
+          "from": [
+            1440,
+            900
+          ],
+          "to": [
+            1123,
+            774
+          ],
+          "meanStepBefore": 40.6773,
+          "meanStepAfter": 30.5148
+        },
+        {
+          "atMs": 1489.6,
+          "from": [
+            1123,
+            774
+          ],
+          "to": [
+            1440,
+            900
+          ],
+          "meanStepBefore": 0.0013,
+          "meanStepAfter": 0.0006
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1306.4133
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 268,
+          "from": [
+            390,
+            844
+          ],
+          "to": [
+            304,
+            726
+          ],
+          "meanStepBefore": 17.6686,
+          "meanStepAfter": 16.034
+        },
+        {
+          "atMs": 1484.6,
+          "from": [
+            304,
+            726
+          ],
+          "to": [
+            390,
+            844
+          ],
+          "meanStepBefore": 0.0009,
+          "meanStepAfter": 0.0002
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -566.6353
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 263,
+          "from": [
+            390,
+            844
+          ],
+          "to": [
+            304,
+            726
+          ],
+          "meanStepBefore": 19.4413,
+          "meanStepAfter": 14.7588
+        },
+        {
+          "atMs": 1479.5,
+          "from": [
+            304,
+            726
+          ],
+          "to": [
+            390,
+            844
+          ],
+          "meanStepBefore": 0.0009,
+          "meanStepAfter": 0.0003
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -597.6057
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 273.4,
+          "from": [
+            390,
+            844
+          ],
+          "to": [
+            304,
+            726
+          ],
+          "meanStepBefore": 17.5873,
+          "meanStepAfter": 11.7063
+        },
+        {
+          "atMs": 1490.1,
+          "from": [
+            304,
+            726
+          ],
+          "to": [
+            390,
+            844
+          ],
+          "meanStepBefore": 0.0009,
+          "meanStepAfter": 0.0002
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -565.7606
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 276.2,
+          "from": [
+            700,
+            700
+          ],
+          "to": [
+            546,
+            602
+          ],
+          "meanStepBefore": 31.6525,
+          "meanStepAfter": 28.8163
+        },
+        {
+          "atMs": 1492.8,
+          "from": [
+            546,
+            602
+          ],
+          "to": [
+            700,
+            700
+          ],
+          "meanStepBefore": 0.0012,
+          "meanStepAfter": 0.0009
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1016.7052
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 267.4,
+          "from": [
+            700,
+            700
+          ],
+          "to": [
+            546,
+            602
+          ],
+          "meanStepBefore": 32.6202,
+          "meanStepAfter": 21.7128
+        },
+        {
+          "atMs": 1484.1,
+          "from": [
+            546,
+            602
+          ],
+          "to": [
+            700,
+            700
+          ],
+          "meanStepBefore": 0.0012,
+          "meanStepAfter": 0.0009
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1042.7807
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 267.7,
+          "from": [
+            700,
+            700
+          ],
+          "to": [
+            546,
+            602
+          ],
+          "meanStepBefore": 31.6229,
+          "meanStepAfter": 20.9521
+        },
+        {
+          "atMs": 1484.4,
+          "from": [
+            546,
+            602
+          ],
+          "to": [
+            700,
+            700
+          ],
+          "meanStepBefore": 0.0012,
+          "meanStepAfter": 0.0008
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1016.438
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 268.4,
+          "from": [
+            844,
+            390
+          ],
+          "to": [
+            658,
+            335
+          ],
+          "meanStepBefore": 17.66,
+          "meanStepAfter": 17.2907
+        },
+        {
+          "atMs": 1484.9,
+          "from": [
+            658,
+            335
+          ],
+          "to": [
+            844,
+            390
+          ],
+          "meanStepBefore": 0.0009,
+          "meanStepAfter": 0.0002
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -568.2336
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 275.7,
+          "from": [
+            844,
+            390
+          ],
+          "to": [
+            658,
+            335
+          ],
+          "meanStepBefore": 17.5189,
+          "meanStepAfter": 14.6437
+        },
+        {
+          "atMs": 1492.7,
+          "from": [
+            658,
+            335
+          ],
+          "to": [
+            844,
+            390
+          ],
+          "meanStepBefore": 0.0008,
+          "meanStepAfter": 0.0002
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -566.0372
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 268.2,
+          "from": [
+            844,
+            390
+          ],
+          "to": [
+            658,
+            335
+          ],
+          "meanStepBefore": 18.0053,
+          "meanStepAfter": 14.6998
+        },
+        {
+          "atMs": 1484.9,
+          "from": [
+            658,
+            335
+          ],
+          "to": [
+            844,
+            390
+          ],
+          "meanStepBefore": 0.0009,
+          "meanStepAfter": 0.0002
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -568.1737
+    }
+  ]
+}

@@ -1,0 +1,1902 @@
+{
+  "what": "touch and mouse parity, and whether a cancelled or capture-lost gesture leaves the page stuck",
+  "note": "the Target never takes pointer capture, so lostpointercapture cannot strand its gesture; ours does not either on the source-exact path. Both are checked by behaviour rather than by reading the implementation.",
+  "rows": [
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -539.9933,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3001.9
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -539.994,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3023.9
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -539.9963,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3018.3
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 1012.1717,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2951.7
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 1001.1899,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2951.2
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 1000.2144,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2953
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -841.1972,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2893.4
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -808.9225,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2901.7
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -839.6796,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2916.9
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -1187.3474,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3743.9
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -1170.5191,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3735.4
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -1133.6738,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3743.2
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9961,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3027
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9961,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3020.6
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9955,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3026.5
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 433.3652,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2967.8
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 432.5963,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2968.5
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 433.4271,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2950.5
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -350.5329,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2912.5
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -364.649,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2892.8
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -350.0192,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2929.8
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -507.6225,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3740.3
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -508.2655,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3735.2
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -507.7837,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3735.5
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -419.9934,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3000.7
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -419.9944,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3016.9
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -419.9945,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3006.2
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 786.1239,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2959.4
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 777.1981,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2964.2
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 786.8672,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2951.1
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -661.7138,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2885
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -653.7894,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2890.9
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -653.0832,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2894.4
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -911.264,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3734.2
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -911.4045,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3734.9
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -923.4904,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3735.2
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9952,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3009.1
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9954,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3026.6
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9959,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3034.4
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 438.535,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2964.2
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 434.8358,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2950.3
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 434.1559,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2952.5
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -346.1174,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2918.1
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -363.9902,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2885.3
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -349.8474,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2902.3
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -507.8652,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3735.2
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -513.9605,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3736.9
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -508.4279,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3743
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -539.9808,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3024
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -539.9797,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3024
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -539.9806,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3009
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 1000.2032,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2950.8
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 1000.0657,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2950.8
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 1000.6184,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2955.5
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -842.1129,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2884
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -841.186,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2892.4
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -809.7125,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2898.5
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -1187.7664,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3733.4
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -1187.7672,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3739.1
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -1187.7656,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3734.6
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.994,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3033.2
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9932,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3026.5
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9933,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3031.6
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 433.3637,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2950.7
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 432.4198,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2956.9
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 433.3633,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2962.1
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -363.727,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2898
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -363.4028,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2914.5
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -364.1848,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2907.8
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -507.6203,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3734.3
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -507.5402,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3739.9
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -507.7002,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3738.1
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -419.9942,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3027.9
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -419.9927,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3029
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -419.9938,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3025.9
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 777.8365,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2952.4
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 777.7301,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2950.2
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 778.7029,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2956.3
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -654.1454,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2886.5
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -654.2641,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2885
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -654.1451,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2892.4
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -911.1188,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3730.5
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -923.8256,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3740.5
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -923.8256,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3730.2
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9904,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3033.7
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9896,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3014.7
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9892,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3023.4
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 438.6,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2956.3
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 433.9645,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2956
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 433.1812,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2963.5
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -364.5133,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2884.5
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -364.4467,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2892.8
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -370.4113,
+      "cameToRestByEndOfRun": true,
+      "runMs": 2885.5
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -507.6169,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3740.8
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -514.6967,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3734
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -514.6965,
+      "cameToRestByEndOfRun": true,
+      "runMs": 3737.9
+    }
+  ]
+}

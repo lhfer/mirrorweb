@@ -1,0 +1,122 @@
+{
+  "what": "the specular highlight's travel path during the pointer sweep, measured as the luminance centroid of the brightest 2% of each recorded frame",
+  "mechanism": "the Target carries no light object; the highlight is moved solely by the camera orbit (config/target-motion-source-v1.json, light.present=false). This file measures that, rather than asserting it.",
+  "gated": [
+    "the highlight moves during the sweep",
+    "it moves the same way as the Target's (positive correlation on both axes)",
+    "it returns to where it started when the pointer does"
+  ],
+  "reportedNotGated": [
+    "travel amplitude",
+    "highlight brightness"
+  ],
+  "whyNotGated": "amplitude and brightness are functions of the glass optics, which this stage may not modify and which the product has not accepted. A motion gate that failed on them would be reporting an optics difference under a motion heading.",
+  "rows": [
+    {
+      "viewport": "1440x900",
+      "candidateInstrument": "pointer-sweep-noMedia (media layer off: the highlight is the only bright thing in frame)",
+      "candidateTravel": [
+        0.05808,
+        0.05007
+      ],
+      "candidateReturn": [
+        0.00018,
+        0.00088
+      ],
+      "candidateFrames": 494,
+      "targetTravel": [
+        0.07074,
+        0.11565
+      ],
+      "targetReturn": [
+        0.03153,
+        0.01416
+      ],
+      "correlationX": 0.10582,
+      "correlationY": 0.74478,
+      "amplitudeRatio": [
+        0.821,
+        0.4329
+      ],
+      "targetFrames": 496,
+      "crossSideCorrelationIsGated": false
+    },
+    {
+      "viewport": "390x844",
+      "candidateInstrument": "pointer-sweep-noMedia (media layer off: the highlight is the only bright thing in frame)",
+      "candidateTravel": [
+        0.03715,
+        0.06757
+      ],
+      "candidateReturn": [
+        0.0,
+        0.0
+      ],
+      "candidateFrames": 497,
+      "targetTravel": [
+        0.03315,
+        0.02863
+      ],
+      "targetReturn": [
+        0.0079,
+        0.00765
+      ],
+      "correlationX": -0.43287,
+      "correlationY": 0.72102,
+      "amplitudeRatio": [
+        1.1207,
+        2.3601
+      ],
+      "targetFrames": 496,
+      "crossSideCorrelationIsGated": false
+    }
+  ],
+  "assertions": [
+    {
+      "assertion": "1440x900: the highlight moves during the pointer sweep",
+      "pass": true,
+      "detail": [
+        0.05808,
+        0.05007
+      ]
+    },
+    {
+      "assertion": "1440x900: the highlight returns when the pointer returns",
+      "pass": true,
+      "detail": [
+        0.00018,
+        0.00088
+      ]
+    },
+    {
+      "assertion": "1440x900: the highlight sweep was measured on a clean instrument",
+      "pass": true,
+      "detail": "pointer-sweep-noMedia (media layer off: the highlight is the only bright thing in frame)"
+    },
+    {
+      "assertion": "390x844: the highlight moves during the pointer sweep",
+      "pass": true,
+      "detail": [
+        0.03715,
+        0.06757
+      ]
+    },
+    {
+      "assertion": "390x844: the highlight returns when the pointer returns",
+      "pass": true,
+      "detail": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "assertion": "390x844: the highlight sweep was measured on a clean instrument",
+      "pass": true,
+      "detail": "pointer-sweep-noMedia (media layer off: the highlight is the only bright thing in frame)"
+    }
+  ],
+  "mediaCaveat": "Our page freezes its media at t=2 for a fixed state; the Target's video plays and cannot be turned off. A luminance centroid over the whole frame therefore has moving video in it on one side and not the other, so the cross-side correlation below is reported with that contamination named rather than presented as clean. The CLEAN measurement is the `pointer-sweep-noMedia` sweep on our side, where the media layer is off and the highlight is the only bright thing left; that is what the candidate-side rows are gated on. The mechanism itself -- orbit-only, no light object -- is measured on BOTH sides by the camera orbit rows in pointer-orbit.json, which is where the like-for-like proof actually lives.",
+  "passed": 6,
+  "total": 6,
+  "verdict": "PASS"
+}

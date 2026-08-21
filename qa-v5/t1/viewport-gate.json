@@ -124,7 +124,7 @@
       "labelBoxErrorPx": 0.006,
       "labelInkOutsideCardSilhouette": 0,
       "titleCollisionsBetweenNonOverlappingCards": 0,
-      "depthSamples": 142,
+      "depthSamples": 145,
       "depthOrderWrong": 0,
       "clipMatchesTarget": true,
       "pass": true
@@ -202,7 +202,7 @@
       "labelBoxErrorPx": 0,
       "labelInkOutsideCardSilhouette": 0,
       "titleCollisionsBetweenNonOverlappingCards": 0,
-      "depthSamples": 300,
+      "depthSamples": 297,
       "depthOrderWrong": 0,
       "clipMatchesTarget": true,
       "pass": true

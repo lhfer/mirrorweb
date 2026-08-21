@@ -33,7 +33,8 @@ stated here and no further hygiene commit is created to chase it.
 | `motionForensicsCommit` | `990bcce` `v5-m0-target-motion-forensics` — the motion source contract, read out of the Target's bundle and replayed against it. No product code. |
 | `motionCodeCommit` | `655fda4` `v5-m1-source-exact-motion-code` — the source-exact motion model. Frozen files byte-identical to `7dc7cf1`. |
 | `motionCorrectionsCommit` | `e97bc17` `v5-m1-source-exact-motion-code-corrections` — the first gate run FAILED and found four engine defects, four instrument faults and two contract errors. Not one of the four mandated commit names, and named rather than folded into one of them: it is product code, and a reviewer reading the ledger should see that the code commit was corrected before any evidence was captured against it. |
-| `motionEvidenceCommit` | `v5-m1-source-exact-motion-evidence` |
+| `motionReleaseFixCommit` | `8e947b9` `v5-m1-source-exact-motion-release-and-instruments` — the release was applied out of band; three more instruments replaced. |
+| `motionEvidenceCommit` | `v5-m1-source-exact-motion-evidence` — captured at `8e947b9`. |
 | `typographyAcceptCommit` | `7dc7cf1` `v5-t1-source-exact-typography-accept` — product acceptance of T0 and T1, the typography freeze contract, and three evidence wording corrections. No product visual code. |
 | `reviewHeadAtDelivery` | the branch tip after the commits above; resolve with `git rev-parse HEAD`. A file cannot contain its own hash and no hygiene commit is created to chase one. |
 
@@ -46,7 +47,7 @@ stated here and no further hygiene commit is created to chase it.
 | Target Visual PASS | **NOT ASSERTED** |
 | T0 Render Loop Repair | **ACCEPTED** |
 | Typography | **ACCEPTED** — frozen, see the freeze contract below |
-| Motion / Pointer | **CANDIDATE** — source-exact model implemented, see below |
+| Motion / Pointer | **CANDIDATE FAILED THE ABSOLUTE GATE** — 806/870 landmarks, 64 failures, all tracing to one characterised difference. See below |
 | Optics / Media / Layout | **NOT AUTHORISED THIS ROUND**, unmodified |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
@@ -122,6 +123,30 @@ Our previous drag gain was 0.58 against the Target's 1.5, and the source-exact
 path inverted `scrollX` at the layout boundary because the legacy model
 subtracts the drag where the Target adds it. Both are gone: the model carries
 the Target's own sign from the gesture onward.
+
+### M1 result
+
+| | |
+| --- | --- |
+| Motion gate | **FAIL — 806/870 landmarks.** 64 failures, in three related families plus eleven small travel rows |
+| Contract vs Target | model replayed on the Target's own input: within the Target's own noise on **53/56**, raw and time-aligned |
+| Recovery instrument | **exact** — 0.006–0.025 world units against our engine's own scroll over 20 runs |
+| Wrap continuity | **0 visible teleports**, ours and Target, screen-space at the brief's 2 px |
+| Wheel absence | **72/72**, deltaMode 0/1/2, both sides |
+| Axis signs | **0 failures** |
+| Card / label under motion | **PASS 34/34**, worst corner delta well inside 1 px |
+| Typography regression | **PASS 4/4** — container alignment 47/47, depth 30/30, label ink 0 outside |
+| Depth carry-forward | **PASS 37/37**; `actualOverlappingCardPlaneSamples = 0` → **NOT APPLICABLE — no overlapping card planes observed** |
+| Source contract, re-run at this tip | **PASS 36/36**; `npm run v5:target-layout-source` **PASS 14/14** |
+| v1 / v2 / bare | geometry identical to `7dc7cf1` on all six route-viewport pairs; the pixel comparison is provably incapable across origins and is reported, not gated |
+| Console / page errors | **0** |
+| Build | PASS |
+
+The 64 failures are one fact three times over: the Target's scroll advances
+12.7% off its local trend on a typical frame and ours advances 1.8% — two
+independent rAF loops against our one. It surfaces as `frameStepJitterFraction`
+(ours lower in 26/26), `maxFrameVelocityStep` (7/7) and the dolly peak, whose
+magnitude source is a backward difference that jitter inflates.
 
 ## FSX-A integration hardening
 

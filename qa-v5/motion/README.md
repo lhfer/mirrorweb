@@ -90,7 +90,7 @@ Four questions, each meaningful only if the one before it held:
 | `resize-continuity.json` | A resize taken while the page is still moving, on both sides. |
 | `card-label-motion.json` | Does the type stay on its card while the page moves? |
 | `highlight-path.json` | Where the specular highlight travels as the pointer sweeps. |
-| `legacy-invariance.json` | v1, v2 and the bare route rendered by the pre-motion commit and by the candidate, byte for byte. |
+| `legacy-invariance.json` | v1, v2 and the bare route, pre-motion commit against candidate — judged on a deterministic geometry readback, because a whole-frame pixel comparison across two origins is provably incapable here. The control is in the file. |
 | `typography-regression.json` | The accepted T1 gates, re-run at this tip, and the depth carry-forward verdict. |
 | `depth-carry-forward.json` | The depth / clipping gate re-taken across the pointer orbit's four extremes and three scroll offsets. |
 | `source-contract.json` | The 36-viewport engineering contract, re-run at this tip. |
@@ -111,6 +111,26 @@ orbit and produces no velocity. A dolly-free CSS3D camera cannot do that.
 camera that paints both, and asserts that the two cameras **agree** at every
 frame rather than that they separate. The dolly is zero at rest, which is where
 the layout contract measures, so the source contract is untouched either way.
+
+## The comparison that could not be made with pixels
+
+`legacy-invariance.json` asks whether the motion work changed v1, v2 or the
+bare V3 route. It used to answer by comparing canvas bytes, and it reported
+that all three DIFFER.
+
+They do — but not because of the code. The two builds have to be served from
+two **origins**, and each origin decodes the media independently: probed live,
+the same clip read `currentTime` 2.764 on one and 2.741 on the other at the
+same point in the harness. Serving the **same commit** on two ports and running
+the same comparison gives 0/3 identical, on the bare V3 route as much as on v1
+and v2.
+
+That control now runs first, and it is in the file. When it fails — as it does
+here — the pixel rows are reported and explicitly **not** gated, and the
+verdict rests on a readback that is deterministic across origins: the projected
+slot landmarks, which are pure geometry. Those are identical on all six
+route-viewport pairs, and the control confirms the substitute instrument is
+capable where the original was not.
 
 ## The highlight, and what a pixel can settle here
 

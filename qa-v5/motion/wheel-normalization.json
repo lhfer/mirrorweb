@@ -1,0 +1,993 @@
+{
+  "what": "proof of ABSENCE: the Target registers no wheel listener, so no deltaMode produces motion, and neither does ours",
+  "targetEvidence": "the only addEventListener(\"wheel\") in the Target's bundle is inside three.js OrbitControls, which the app never mounts",
+  "toleranceWorldUnits": 1.0,
+  "rows": [
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "pass": true
+    }
+  ],
+  "passed": 72,
+  "total": 72
+}

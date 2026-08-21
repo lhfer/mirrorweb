@@ -1,0 +1,6985 @@
+{
+  "startedAt": "2026-08-21T08:42:53.630Z",
+  "targetReference": "qa-v5/t1/target-typography-contract.json (clip layer: overflow hidden, clip-path none, border-radius 0, at the full card box)",
+  "viewports": [
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "offsets": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            1000
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            49.91670832341408,
+            -49.979169270678334,
+            997.502082639013
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -49.91670832341408,
+            -49.979169270678334,
+            997.502082639013
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 53,
+          "depthDecided": 53,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -49.91670832341408,
+            49.979169270678334,
+            997.502082639013
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 53,
+          "depthDecided": 53,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            49.91670832341408,
+            49.979169270678334,
+            997.502082639013
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 83,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 59,
+          "depthDecided": 59,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            1000
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 83,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 63,
+          "depthDecided": 63,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            49.91670832341408,
+            -49.979169270678334,
+            997.502082639013
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 59,
+          "depthDecided": 59,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -49.91670832341408,
+            -49.979169270678334,
+            997.502082639013
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 60,
+          "depthDecided": 60,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -49.91670832341408,
+            49.979169270678334,
+            997.502082639013
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 83,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 65,
+          "depthDecided": 65,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            49.91670832341408,
+            49.979169270678334,
+            997.502082639013
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 57,
+          "depthDecided": 57,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            1000
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 57,
+          "depthDecided": 57,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            49.91670832341408,
+            -49.979169270678334,
+            997.502082639013
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 54,
+          "depthDecided": 54,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -49.91670832341408,
+            -49.979169270678334,
+            997.502082639013
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -49.91670832341408,
+            49.979169270678334,
+            997.502082639013
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              547,
+              410
+            ],
+            "computedSize": [
+              547.188,
+              410.391
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 52,
+          "depthDecided": 52,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            49.91670832341408,
+            49.979169270678334,
+            997.502082639013
+          ]
+        }
+      ],
+      "pointerSweepMovedCameraBy": [
+        99.83341664682816,
+        99.95833854135667
+      ]
+    },
+    {
+      "id": "1920x1080",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "offsets": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            1333.3333333333335
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            66.55561109788545,
+            -66.63889236090445,
+            1330.0027768520174
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -66.55561109788545,
+            -66.63889236090445,
+            1330.0027768520174
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -66.55561109788545,
+            66.63889236090445,
+            1330.0027768520174
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            66.55561109788545,
+            66.63889236090445,
+            1330.0027768520174
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 52,
+          "depthDecided": 52,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            1333.3333333333335
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            66.55561109788545,
+            -66.63889236090445,
+            1330.0027768520174
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 83,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 49,
+          "depthDecided": 49,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -66.55561109788545,
+            -66.63889236090445,
+            1330.0027768520174
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 83,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 50,
+          "depthDecided": 50,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -66.55561109788545,
+            66.63889236090445,
+            1330.0027768520174
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 52,
+          "depthDecided": 52,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            66.55561109788545,
+            66.63889236090445,
+            1330.0027768520174
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 48,
+          "depthDecided": 48,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            1333.3333333333335
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 83,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 48,
+          "depthDecided": 48,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            66.55561109788545,
+            -66.63889236090445,
+            1330.0027768520174
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -66.55561109788545,
+            -66.63889236090445,
+            1330.0027768520174
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 83,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 54,
+          "depthDecided": 54,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -66.55561109788545,
+            66.63889236090445,
+            1330.0027768520174
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              730,
+              547
+            ],
+            "computedSize": [
+              729.594,
+              547.188
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 49,
+          "depthDecided": 49,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            66.55561109788545,
+            66.63889236090445,
+            1330.0027768520174
+          ]
+        }
+      ],
+      "pointerSweepMovedCameraBy": [
+        133.1112221957709,
+        133.2777847218089
+      ]
+    },
+    {
+      "id": "390x844",
+      "viewport": [
+        390,
+        844
+      ],
+      "offsets": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 93,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 42,
+          "depthDecided": 42,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            586.1111111111111
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 93,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 43,
+          "depthDecided": 43,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 93,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 43,
+          "depthDecided": 43,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 94,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 42,
+          "depthDecided": 42,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 94,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 42,
+          "depthDecided": 42,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 94,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 48,
+          "depthDecided": 48,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            586.1111111111111
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 95,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 94,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 45,
+          "depthDecided": 45,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 94,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 50,
+          "depthDecided": 50,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 93,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 58,
+          "depthDecided": 58,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 94,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 55,
+          "depthDecided": 55,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            586.1111111111111
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 94,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 58,
+          "depthDecided": 58,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 94,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 55,
+          "depthDecided": 55,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 95,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 49,
+          "depthDecided": 49,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 93,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              281,
+              211
+            ],
+            "computedSize": [
+              280.797,
+              210.594
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 54,
+          "depthDecided": 54,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ]
+        }
+      ],
+      "pointerSweepMovedCameraBy": [
+        58.51347475689094,
+        58.58669286729515
+      ]
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844,
+        390
+      ],
+      "offsets": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 68,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            586.1111111111111
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 69,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 69,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 69,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 69,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 69,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 43,
+          "depthDecided": 43,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            586.1111111111111
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 68,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 43,
+          "depthDecided": 43,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 70,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 42,
+          "depthDecided": 42,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 69,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 40,
+          "depthDecided": 40,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 68,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 43,
+          "depthDecided": 43,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 70,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 42,
+          "depthDecided": 42,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            586.1111111111111
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 68,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 40,
+          "depthDecided": 40,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 69,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 45,
+          "depthDecided": 45,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 69,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 42,
+          "depthDecided": 42,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 69,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              321,
+              241
+            ],
+            "computedSize": [
+              320.719,
+              240.531
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 40,
+          "depthDecided": 40,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ]
+        }
+      ],
+      "pointerSweepMovedCameraBy": [
+        58.51347475689094,
+        58.58669286729515
+      ]
+    },
+    {
+      "id": "700x700",
+      "viewport": [
+        700,
+        700
+      ],
+      "offsets": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 90,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 102,
+          "depthDecided": 102,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            486.11111111111114
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 91,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 99,
+          "depthDecided": 99,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            24.265066546104066,
+            -24.295429506579747,
+            484.896845727298
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 91,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 99,
+          "depthDecided": 99,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -24.265066546104066,
+            -24.295429506579747,
+            484.896845727298
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 90,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 98,
+          "depthDecided": 98,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -24.265066546104066,
+            24.295429506579747,
+            484.896845727298
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 90,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 98,
+          "depthDecided": 98,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            24.265066546104066,
+            24.295429506579747,
+            484.896845727298
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 89,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 102,
+          "depthDecided": 102,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            486.11111111111114
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 89,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 102,
+          "depthDecided": 102,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            24.265066546104066,
+            -24.295429506579747,
+            484.896845727298
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 90,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 103,
+          "depthDecided": 103,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -24.265066546104066,
+            -24.295429506579747,
+            484.896845727298
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 91,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 99,
+          "depthDecided": 99,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -24.265066546104066,
+            24.295429506579747,
+            484.896845727298
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 91,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 91,
+          "depthDecided": 91,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            24.265066546104066,
+            24.295429506579747,
+            484.896845727298
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 90,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 93,
+          "depthDecided": 93,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            486.11111111111114
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 91,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 92,
+          "depthDecided": 92,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            24.265066546104066,
+            -24.295429506579747,
+            484.896845727298
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 91,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 94,
+          "depthDecided": 94,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -24.265066546104066,
+            -24.295429506579747,
+            484.896845727298
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 89,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 95,
+          "depthDecided": 95,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -24.265066546104066,
+            24.295429506579747,
+            484.896845727298
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 89,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              266,
+              200
+            ],
+            "computedSize": [
+              266,
+              199.5
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 92,
+          "depthDecided": 92,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            24.265066546104066,
+            24.295429506579747,
+            484.896845727298
+          ]
+        }
+      ],
+      "pointerSweepMovedCameraBy": [
+        48.53013309220813,
+        48.590859013159495
+      ]
+    },
+    {
+      "id": "667x375",
+      "viewport": [
+        667,
+        375
+      ],
+      "offsets": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            463.1944444444444
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            23.12114198035916,
+            -23.1500735441267,
+            462.03742300015386
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -23.12114198035916,
+            -23.1500735441267,
+            462.03742300015386
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -23.12114198035916,
+            23.1500735441267,
+            462.03742300015386
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            23.12114198035916,
+            23.1500735441267,
+            462.03742300015386
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 48,
+          "depthDecided": 48,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            463.1944444444444
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 48,
+          "depthDecided": 48,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            23.12114198035916,
+            -23.1500735441267,
+            462.03742300015386
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 48,
+          "depthDecided": 48,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -23.12114198035916,
+            -23.1500735441267,
+            462.03742300015386
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 54,
+          "depthDecided": 54,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -23.12114198035916,
+            23.1500735441267,
+            462.03742300015386
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 48,
+          "depthDecided": 48,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            23.12114198035916,
+            23.1500735441267,
+            462.03742300015386
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            463.1944444444444
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 83,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            23.12114198035916,
+            -23.1500735441267,
+            462.03742300015386
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 52,
+          "depthDecided": 52,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -23.12114198035916,
+            -23.1500735441267,
+            462.03742300015386
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -23.12114198035916,
+            23.1500735441267,
+            462.03742300015386
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 83,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              253,
+              190
+            ],
+            "computedSize": [
+              253.453,
+              190.094
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 50,
+          "depthDecided": 50,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            23.12114198035916,
+            23.1500735441267,
+            462.03742300015386
+          ]
+        }
+      ],
+      "pointerSweepMovedCameraBy": [
+        46.24228396071832,
+        46.3001470882534
+      ]
+    },
+    {
+      "id": "780x470",
+      "viewport": [
+        780,
+        470
+      ],
+      "offsets": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            541.6666666666666
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            27.038217008515957,
+            -27.07205002161743,
+            540.313628096132
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -27.038217008515957,
+            -27.07205002161743,
+            540.313628096132
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -27.038217008515957,
+            27.07205002161743,
+            540.313628096132
+          ]
+        },
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            27.038217008515957,
+            27.07205002161743,
+            540.313628096132
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            541.6666666666666
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            27.038217008515957,
+            -27.07205002161743,
+            540.313628096132
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 83,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -27.038217008515957,
+            -27.07205002161743,
+            540.313628096132
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 54,
+          "depthDecided": 54,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -27.038217008515957,
+            27.07205002161743,
+            540.313628096132
+          ]
+        },
+        {
+          "offset": [
+            313,
+            197
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 54,
+          "depthDecided": 54,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            27.038217008515957,
+            27.07205002161743,
+            540.313628096132
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            0,
+            0
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            0,
+            0
+          ],
+          "labelCamera": [
+            0,
+            0,
+            541.6666666666666
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            -1,
+            -1
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            -1
+          ],
+          "labelCamera": [
+            27.038217008515957,
+            -27.07205002161743,
+            540.313628096132
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            1,
+            -1
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            -1
+          ],
+          "labelCamera": [
+            -27.038217008515957,
+            -27.07205002161743,
+            540.313628096132
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            1,
+            1
+          ],
+          "visibleCards": 81,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 48,
+          "depthDecided": 48,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            1,
+            1
+          ],
+          "labelCamera": [
+            -27.038217008515957,
+            27.07205002161743,
+            540.313628096132
+          ]
+        },
+        {
+          "offset": [
+            -640,
+            480
+          ],
+          "pointer": [
+            -1,
+            1
+          ],
+          "visibleCards": 82,
+          "clipStructureMatchesTarget": true,
+          "clipSample": {
+            "overflow": "hidden",
+            "clipPath": "none",
+            "borderRadius": "0px",
+            "localBox": [
+              0,
+              0,
+              296,
+              222
+            ],
+            "computedSize": [
+              296.391,
+              222.297
+            ],
+            "coversCard": true
+          },
+          "titleCollisionsBetweenNonOverlappingCards": 0,
+          "collisionExamples": [],
+          "depthProbes": 51,
+          "depthDecided": 51,
+          "depthSamplesWithAnotherCardPlaneOverThem": 0,
+          "depthWrong": 0,
+          "depthWrongExamples": [],
+          "appliedPointer": [
+            -1,
+            1
+          ],
+          "labelCamera": [
+            27.038217008515957,
+            27.07205002161743,
+            540.313628096132
+          ]
+        }
+      ],
+      "pointerSweepMovedCameraBy": [
+        54.076434017031914,
+        54.14410004323486
+      ]
+    }
+  ],
+  "assertions": [
+    {
+      "assertion": "1440x900: clip layer matches the Target's (overflow hidden, no clip-path, no radius, full card box)",
+      "pass": true,
+      "detail": {
+        "overflow": "hidden",
+        "clipPath": "none",
+        "borderRadius": "0px",
+        "localBox": [
+          0,
+          0,
+          547,
+          410
+        ],
+        "computedSize": [
+          547.188,
+          410.391
+        ],
+        "coversCard": true
+      }
+    },
+    {
+      "assertion": "1440x900: no title collides with a title on a non-overlapping card",
+      "pass": true,
+      "detail": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "assertion": "1440x900: at every sampled pixel the topmost label is the nearest card's",
+      "pass": true,
+      "detail": [
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 53,
+          "decided": 53,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 53,
+          "decided": 53,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 59,
+          "decided": 59,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 63,
+          "decided": 63,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 59,
+          "decided": 59,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 60,
+          "decided": 60,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 65,
+          "decided": 65,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 57,
+          "decided": 57,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 57,
+          "decided": 57,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 54,
+          "decided": 54,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 52,
+          "decided": 52,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        }
+      ]
+    },
+    {
+      "assertion": "1440x900: the depth probe resolved a topmost label at on-screen samples",
+      "pass": true,
+      "detail": [
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 53,
+          "decided": 53
+        },
+        {
+          "probes": 53,
+          "decided": 53
+        },
+        {
+          "probes": 59,
+          "decided": 59
+        },
+        {
+          "probes": 63,
+          "decided": 63
+        },
+        {
+          "probes": 59,
+          "decided": 59
+        },
+        {
+          "probes": 60,
+          "decided": 60
+        },
+        {
+          "probes": 65,
+          "decided": 65
+        },
+        {
+          "probes": 57,
+          "decided": 57
+        },
+        {
+          "probes": 57,
+          "decided": 57
+        },
+        {
+          "probes": 54,
+          "decided": 54
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 52,
+          "decided": 52
+        }
+      ]
+    },
+    {
+      "assertion": "1440x900: the pointer sweep actually moved the camera",
+      "pass": true,
+      "detail": {
+        "spreadX": 99.83341664682816,
+        "spreadY": 99.95833854135667,
+        "appliedPointers": [
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ]
+        ],
+        "labelCameras": [
+          [
+            0,
+            0,
+            1000
+          ],
+          [
+            49.91670832341408,
+            -49.979169270678334,
+            997.502082639013
+          ],
+          [
+            -49.91670832341408,
+            -49.979169270678334,
+            997.502082639013
+          ],
+          [
+            -49.91670832341408,
+            49.979169270678334,
+            997.502082639013
+          ],
+          [
+            49.91670832341408,
+            49.979169270678334,
+            997.502082639013
+          ],
+          [
+            0,
+            0,
+            1000
+          ],
+          [
+            49.91670832341408,
+            -49.979169270678334,
+            997.502082639013
+          ],
+          [
+            -49.91670832341408,
+            -49.979169270678334,
+            997.502082639013
+          ]
+        ]
+      }
+    },
+    {
+      "assertion": "1920x1080: clip layer matches the Target's (overflow hidden, no clip-path, no radius, full card box)",
+      "pass": true,
+      "detail": {
+        "overflow": "hidden",
+        "clipPath": "none",
+        "borderRadius": "0px",
+        "localBox": [
+          0,
+          0,
+          730,
+          547
+        ],
+        "computedSize": [
+          729.594,
+          547.188
+        ],
+        "coversCard": true
+      }
+    },
+    {
+      "assertion": "1920x1080: no title collides with a title on a non-overlapping card",
+      "pass": true,
+      "detail": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "assertion": "1920x1080: at every sampled pixel the topmost label is the nearest card's",
+      "pass": true,
+      "detail": [
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 52,
+          "decided": 52,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 49,
+          "decided": 49,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 50,
+          "decided": 50,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 52,
+          "decided": 52,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 48,
+          "decided": 48,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 48,
+          "decided": 48,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 54,
+          "decided": 54,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 49,
+          "decided": 49,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        }
+      ]
+    },
+    {
+      "assertion": "1920x1080: the depth probe resolved a topmost label at on-screen samples",
+      "pass": true,
+      "detail": [
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 52,
+          "decided": 52
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 49,
+          "decided": 49
+        },
+        {
+          "probes": 50,
+          "decided": 50
+        },
+        {
+          "probes": 52,
+          "decided": 52
+        },
+        {
+          "probes": 48,
+          "decided": 48
+        },
+        {
+          "probes": 48,
+          "decided": 48
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 54,
+          "decided": 54
+        },
+        {
+          "probes": 49,
+          "decided": 49
+        }
+      ]
+    },
+    {
+      "assertion": "1920x1080: the pointer sweep actually moved the camera",
+      "pass": true,
+      "detail": {
+        "spreadX": 133.1112221957709,
+        "spreadY": 133.2777847218089,
+        "appliedPointers": [
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ]
+        ],
+        "labelCameras": [
+          [
+            0,
+            0,
+            1333.3333333333335
+          ],
+          [
+            66.55561109788545,
+            -66.63889236090445,
+            1330.0027768520174
+          ],
+          [
+            -66.55561109788545,
+            -66.63889236090445,
+            1330.0027768520174
+          ],
+          [
+            -66.55561109788545,
+            66.63889236090445,
+            1330.0027768520174
+          ],
+          [
+            66.55561109788545,
+            66.63889236090445,
+            1330.0027768520174
+          ],
+          [
+            0,
+            0,
+            1333.3333333333335
+          ],
+          [
+            66.55561109788545,
+            -66.63889236090445,
+            1330.0027768520174
+          ],
+          [
+            -66.55561109788545,
+            -66.63889236090445,
+            1330.0027768520174
+          ]
+        ]
+      }
+    },
+    {
+      "assertion": "390x844: clip layer matches the Target's (overflow hidden, no clip-path, no radius, full card box)",
+      "pass": true,
+      "detail": {
+        "overflow": "hidden",
+        "clipPath": "none",
+        "borderRadius": "0px",
+        "localBox": [
+          0,
+          0,
+          281,
+          211
+        ],
+        "computedSize": [
+          280.797,
+          210.594
+        ],
+        "coversCard": true
+      }
+    },
+    {
+      "assertion": "390x844: no title collides with a title on a non-overlapping card",
+      "pass": true,
+      "detail": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "assertion": "390x844: at every sampled pixel the topmost label is the nearest card's",
+      "pass": true,
+      "detail": [
+        {
+          "probes": 42,
+          "decided": 42,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 43,
+          "decided": 43,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 43,
+          "decided": 43,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 42,
+          "decided": 42,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 42,
+          "decided": 42,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 48,
+          "decided": 48,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 45,
+          "decided": 45,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 50,
+          "decided": 50,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 58,
+          "decided": 58,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 55,
+          "decided": 55,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 58,
+          "decided": 58,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 55,
+          "decided": 55,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 49,
+          "decided": 49,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 54,
+          "decided": 54,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        }
+      ]
+    },
+    {
+      "assertion": "390x844: the depth probe resolved a topmost label at on-screen samples",
+      "pass": true,
+      "detail": [
+        {
+          "probes": 42,
+          "decided": 42
+        },
+        {
+          "probes": 43,
+          "decided": 43
+        },
+        {
+          "probes": 43,
+          "decided": 43
+        },
+        {
+          "probes": 42,
+          "decided": 42
+        },
+        {
+          "probes": 42,
+          "decided": 42
+        },
+        {
+          "probes": 48,
+          "decided": 48
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 45,
+          "decided": 45
+        },
+        {
+          "probes": 50,
+          "decided": 50
+        },
+        {
+          "probes": 58,
+          "decided": 58
+        },
+        {
+          "probes": 55,
+          "decided": 55
+        },
+        {
+          "probes": 58,
+          "decided": 58
+        },
+        {
+          "probes": 55,
+          "decided": 55
+        },
+        {
+          "probes": 49,
+          "decided": 49
+        },
+        {
+          "probes": 54,
+          "decided": 54
+        }
+      ]
+    },
+    {
+      "assertion": "390x844: the pointer sweep actually moved the camera",
+      "pass": true,
+      "detail": {
+        "spreadX": 58.51347475689094,
+        "spreadY": 58.58669286729515,
+        "appliedPointers": [
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ]
+        ],
+        "labelCameras": [
+          [
+            0,
+            0,
+            586.1111111111111
+          ],
+          [
+            29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ],
+          [
+            -29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ],
+          [
+            -29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ],
+          [
+            29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ],
+          [
+            0,
+            0,
+            586.1111111111111
+          ],
+          [
+            29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ],
+          [
+            -29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ]
+        ]
+      }
+    },
+    {
+      "assertion": "844x390: clip layer matches the Target's (overflow hidden, no clip-path, no radius, full card box)",
+      "pass": true,
+      "detail": {
+        "overflow": "hidden",
+        "clipPath": "none",
+        "borderRadius": "0px",
+        "localBox": [
+          0,
+          0,
+          321,
+          241
+        ],
+        "computedSize": [
+          320.719,
+          240.531
+        ],
+        "coversCard": true
+      }
+    },
+    {
+      "assertion": "844x390: no title collides with a title on a non-overlapping card",
+      "pass": true,
+      "detail": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "assertion": "844x390: at every sampled pixel the topmost label is the nearest card's",
+      "pass": true,
+      "detail": [
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 43,
+          "decided": 43,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 43,
+          "decided": 43,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 42,
+          "decided": 42,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 40,
+          "decided": 40,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 43,
+          "decided": 43,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 42,
+          "decided": 42,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 40,
+          "decided": 40,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 45,
+          "decided": 45,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 42,
+          "decided": 42,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 40,
+          "decided": 40,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        }
+      ]
+    },
+    {
+      "assertion": "844x390: the depth probe resolved a topmost label at on-screen samples",
+      "pass": true,
+      "detail": [
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 43,
+          "decided": 43
+        },
+        {
+          "probes": 43,
+          "decided": 43
+        },
+        {
+          "probes": 42,
+          "decided": 42
+        },
+        {
+          "probes": 40,
+          "decided": 40
+        },
+        {
+          "probes": 43,
+          "decided": 43
+        },
+        {
+          "probes": 42,
+          "decided": 42
+        },
+        {
+          "probes": 40,
+          "decided": 40
+        },
+        {
+          "probes": 45,
+          "decided": 45
+        },
+        {
+          "probes": 42,
+          "decided": 42
+        },
+        {
+          "probes": 40,
+          "decided": 40
+        }
+      ]
+    },
+    {
+      "assertion": "844x390: the pointer sweep actually moved the camera",
+      "pass": true,
+      "detail": {
+        "spreadX": 58.51347475689094,
+        "spreadY": 58.58669286729515,
+        "appliedPointers": [
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ]
+        ],
+        "labelCameras": [
+          [
+            0,
+            0,
+            586.1111111111111
+          ],
+          [
+            29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ],
+          [
+            -29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ],
+          [
+            -29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ],
+          [
+            29.25673737844547,
+            29.293346433647574,
+            584.6470539911992
+          ],
+          [
+            0,
+            0,
+            586.1111111111111
+          ],
+          [
+            29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ],
+          [
+            -29.25673737844547,
+            -29.293346433647574,
+            584.6470539911992
+          ]
+        ]
+      }
+    },
+    {
+      "assertion": "700x700: clip layer matches the Target's (overflow hidden, no clip-path, no radius, full card box)",
+      "pass": true,
+      "detail": {
+        "overflow": "hidden",
+        "clipPath": "none",
+        "borderRadius": "0px",
+        "localBox": [
+          0,
+          0,
+          266,
+          200
+        ],
+        "computedSize": [
+          266,
+          199.5
+        ],
+        "coversCard": true
+      }
+    },
+    {
+      "assertion": "700x700: no title collides with a title on a non-overlapping card",
+      "pass": true,
+      "detail": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "assertion": "700x700: at every sampled pixel the topmost label is the nearest card's",
+      "pass": true,
+      "detail": [
+        {
+          "probes": 102,
+          "decided": 102,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 99,
+          "decided": 99,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 99,
+          "decided": 99,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 98,
+          "decided": 98,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 98,
+          "decided": 98,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 102,
+          "decided": 102,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 102,
+          "decided": 102,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 103,
+          "decided": 103,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 99,
+          "decided": 99,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 91,
+          "decided": 91,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 93,
+          "decided": 93,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 92,
+          "decided": 92,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 94,
+          "decided": 94,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 95,
+          "decided": 95,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 92,
+          "decided": 92,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        }
+      ]
+    },
+    {
+      "assertion": "700x700: the depth probe resolved a topmost label at on-screen samples",
+      "pass": true,
+      "detail": [
+        {
+          "probes": 102,
+          "decided": 102
+        },
+        {
+          "probes": 99,
+          "decided": 99
+        },
+        {
+          "probes": 99,
+          "decided": 99
+        },
+        {
+          "probes": 98,
+          "decided": 98
+        },
+        {
+          "probes": 98,
+          "decided": 98
+        },
+        {
+          "probes": 102,
+          "decided": 102
+        },
+        {
+          "probes": 102,
+          "decided": 102
+        },
+        {
+          "probes": 103,
+          "decided": 103
+        },
+        {
+          "probes": 99,
+          "decided": 99
+        },
+        {
+          "probes": 91,
+          "decided": 91
+        },
+        {
+          "probes": 93,
+          "decided": 93
+        },
+        {
+          "probes": 92,
+          "decided": 92
+        },
+        {
+          "probes": 94,
+          "decided": 94
+        },
+        {
+          "probes": 95,
+          "decided": 95
+        },
+        {
+          "probes": 92,
+          "decided": 92
+        }
+      ]
+    },
+    {
+      "assertion": "700x700: the pointer sweep actually moved the camera",
+      "pass": true,
+      "detail": {
+        "spreadX": 48.53013309220813,
+        "spreadY": 48.590859013159495,
+        "appliedPointers": [
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ]
+        ],
+        "labelCameras": [
+          [
+            0,
+            0,
+            486.11111111111114
+          ],
+          [
+            24.265066546104066,
+            -24.295429506579747,
+            484.896845727298
+          ],
+          [
+            -24.265066546104066,
+            -24.295429506579747,
+            484.896845727298
+          ],
+          [
+            -24.265066546104066,
+            24.295429506579747,
+            484.896845727298
+          ],
+          [
+            24.265066546104066,
+            24.295429506579747,
+            484.896845727298
+          ],
+          [
+            0,
+            0,
+            486.11111111111114
+          ],
+          [
+            24.265066546104066,
+            -24.295429506579747,
+            484.896845727298
+          ],
+          [
+            -24.265066546104066,
+            -24.295429506579747,
+            484.896845727298
+          ]
+        ]
+      }
+    },
+    {
+      "assertion": "667x375: clip layer matches the Target's (overflow hidden, no clip-path, no radius, full card box)",
+      "pass": true,
+      "detail": {
+        "overflow": "hidden",
+        "clipPath": "none",
+        "borderRadius": "0px",
+        "localBox": [
+          0,
+          0,
+          253,
+          190
+        ],
+        "computedSize": [
+          253.453,
+          190.094
+        ],
+        "coversCard": true
+      }
+    },
+    {
+      "assertion": "667x375: no title collides with a title on a non-overlapping card",
+      "pass": true,
+      "detail": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "assertion": "667x375: at every sampled pixel the topmost label is the nearest card's",
+      "pass": true,
+      "detail": [
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 48,
+          "decided": 48,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 48,
+          "decided": 48,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 48,
+          "decided": 48,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 54,
+          "decided": 54,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 48,
+          "decided": 48,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 52,
+          "decided": 52,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 50,
+          "decided": 50,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        }
+      ]
+    },
+    {
+      "assertion": "667x375: the depth probe resolved a topmost label at on-screen samples",
+      "pass": true,
+      "detail": [
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 48,
+          "decided": 48
+        },
+        {
+          "probes": 48,
+          "decided": 48
+        },
+        {
+          "probes": 48,
+          "decided": 48
+        },
+        {
+          "probes": 54,
+          "decided": 54
+        },
+        {
+          "probes": 48,
+          "decided": 48
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 52,
+          "decided": 52
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 50,
+          "decided": 50
+        }
+      ]
+    },
+    {
+      "assertion": "667x375: the pointer sweep actually moved the camera",
+      "pass": true,
+      "detail": {
+        "spreadX": 46.24228396071832,
+        "spreadY": 46.3001470882534,
+        "appliedPointers": [
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ]
+        ],
+        "labelCameras": [
+          [
+            0,
+            0,
+            463.1944444444444
+          ],
+          [
+            23.12114198035916,
+            -23.1500735441267,
+            462.03742300015386
+          ],
+          [
+            -23.12114198035916,
+            -23.1500735441267,
+            462.03742300015386
+          ],
+          [
+            -23.12114198035916,
+            23.1500735441267,
+            462.03742300015386
+          ],
+          [
+            23.12114198035916,
+            23.1500735441267,
+            462.03742300015386
+          ],
+          [
+            0,
+            0,
+            463.1944444444444
+          ],
+          [
+            23.12114198035916,
+            -23.1500735441267,
+            462.03742300015386
+          ],
+          [
+            -23.12114198035916,
+            -23.1500735441267,
+            462.03742300015386
+          ]
+        ]
+      }
+    },
+    {
+      "assertion": "780x470: clip layer matches the Target's (overflow hidden, no clip-path, no radius, full card box)",
+      "pass": true,
+      "detail": {
+        "overflow": "hidden",
+        "clipPath": "none",
+        "borderRadius": "0px",
+        "localBox": [
+          0,
+          0,
+          296,
+          222
+        ],
+        "computedSize": [
+          296.391,
+          222.297
+        ],
+        "coversCard": true
+      }
+    },
+    {
+      "assertion": "780x470: no title collides with a title on a non-overlapping card",
+      "pass": true,
+      "detail": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "assertion": "780x470: at every sampled pixel the topmost label is the nearest card's",
+      "pass": true,
+      "detail": [
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 54,
+          "decided": 54,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 54,
+          "decided": 54,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 48,
+          "decided": 48,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        },
+        {
+          "probes": 51,
+          "decided": 51,
+          "wrong": 0,
+          "samplesWithAnotherCardPlaneOverThem": 0
+        }
+      ]
+    },
+    {
+      "assertion": "780x470: the depth probe resolved a topmost label at on-screen samples",
+      "pass": true,
+      "detail": [
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 54,
+          "decided": 54
+        },
+        {
+          "probes": 54,
+          "decided": 54
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        },
+        {
+          "probes": 48,
+          "decided": 48
+        },
+        {
+          "probes": 51,
+          "decided": 51
+        }
+      ]
+    },
+    {
+      "assertion": "780x470: the pointer sweep actually moved the camera",
+      "pass": true,
+      "detail": {
+        "spreadX": 54.076434017031914,
+        "spreadY": 54.14410004323486,
+        "appliedPointers": [
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ]
+        ],
+        "labelCameras": [
+          [
+            0,
+            0,
+            541.6666666666666
+          ],
+          [
+            27.038217008515957,
+            -27.07205002161743,
+            540.313628096132
+          ],
+          [
+            -27.038217008515957,
+            -27.07205002161743,
+            540.313628096132
+          ],
+          [
+            -27.038217008515957,
+            27.07205002161743,
+            540.313628096132
+          ],
+          [
+            27.038217008515957,
+            27.07205002161743,
+            540.313628096132
+          ],
+          [
+            0,
+            0,
+            541.6666666666666
+          ],
+          [
+            27.038217008515957,
+            -27.07205002161743,
+            540.313628096132
+          ],
+          [
+            -27.038217008515957,
+            -27.07205002161743,
+            540.313628096132
+          ]
+        ]
+      }
+    },
+    {
+      "assertion": "no console errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "assertion": "no page errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "pointers": [
+    [
+      0,
+      0
+    ],
+    [
+      -1,
+      -1
+    ],
+    [
+      1,
+      -1
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      -1,
+      1
+    ]
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "actualOverlappingCardPlaneSamples": 0,
+  "pointerSweep": [
+    [
+      0,
+      0
+    ],
+    [
+      -1,
+      -1
+    ],
+    [
+      1,
+      -1
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      -1,
+      1
+    ]
+  ],
+  "scope": "PROVEN: the clip STRUCTURE matches the Target's, and within every sampled card interior the topmost label is that card's own. NOT PROVEN: real occlusion ordering. actualOverlappingCardPlaneSamples = 0 -- no two card planes were observed overlapping on screen in any tested configuration, so the rear-card-text-over-front-card case was never exercised. Carried forward to the motion stage, where the pointer orbit and scroll offsets move the planes. Pointer positions swept: [[0,0],[-1,-1],[1,-1],[1,1],[-1,1]].",
+  "passed": 37,
+  "total": 37,
+  "verdict": "PASS"
+}
