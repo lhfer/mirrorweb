@@ -10,6 +10,7 @@ this file is the decision.
 | | |
 | --- | --- |
 | V1 Render Culling Absolute Gate | **PASS** |
+| Product acceptance | **ACCEPTED / FROZEN** (O2 round brief) — accepted review tip `5159cf8` |
 | Render culling behaviour baseline | `b625f90` — the V1 code commit every capture was taken at |
 | Evidence | `04cff37` |
 | SourceExact WebGL Render Culling | **FROZEN** |

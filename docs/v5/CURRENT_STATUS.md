@@ -2,7 +2,7 @@
 
 Single canonical entry point. Every delivery updates this file.
 
-Last updated: 2026-08-21 (V1 render culling frozen; O1 first optics candidate FAILED its absolute gate — attribution corrected to System B by the floor experiment)
+Last updated: 2026-08-21 (O2 round open: product accepted V1 and the O0 diagnosis, confirmed O1 System A FAILED — experimental lane only — and authorised System B behind a deterministic shared-media harness)
 
 | | |
 | --- | --- |
@@ -52,8 +52,10 @@ stated here and no further hygiene commit is created to chase it.
 | Typography | **ACCEPTED** — frozen, see the freeze contract below |
 | Motion / Pointer / Touch | **ACCEPTED — FROZEN**, see [`MOTION_FREEZE_CONTRACT.md`](MOTION_FREEZE_CONTRACT.md). M0–M3 results below are history |
 | V0 CSS3D label coverage culling | **ACCEPTED — FROZEN**, see [`CULLING_FREEZE_CONTRACT.md`](CULLING_FREEZE_CONTRACT.md). The V0 section below is history |
-| V1 WebGL render culling | **GATE PASS — FROZEN**, see [`RENDER_CULLING_FREEZE_CONTRACT.md`](RENDER_CULLING_FREEZE_CONTRACT.md) |
-| Optics | **O1 System A candidate FAILED ABSOLUTE GATE** — the pre-registered white-lever condition fired; attribution corrected to System B. See the O0/O1 section |
+| V1 WebGL render culling | **ACCEPTED — FROZEN** (behaviour baseline `b625f90`, accepted review tip `5159cf8`), see [`RENDER_CULLING_FREEZE_CONTRACT.md`](RENDER_CULLING_FREEZE_CONTRACT.md) |
+| Optics — O0 diagnosis | **ACCEPTED** as the current optics source baseline |
+| Optics — O1 System A | **FAILED ABSOLUTE GATE**; commit `e01fb30` remains an EXPERIMENTAL LANE only — not an accepted baseline, not frozen. See the O0/O1 section and the wording correction below |
+| Optics — O2 System B | authorised: Environment / White Studio Reflection / Fresnel-capped LERP, behind a deterministic shared-media harness. In progress |
 | Media / Layout | unmodified, frozen |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
@@ -272,8 +274,15 @@ saturation) was selected and its failure conditions pre-registered in
 [`o1-selected-system.json`](../../qa-v5/optics/o1-selected-system.json)
 BEFORE any candidate code.
 
-The candidate ported the Target's dispersion law verbatim (commit
-`v5-o1-first-optics-candidate-code`). Every touched metric moved in the
+The candidate implemented a screen-space ANALOGUE of the Target's
+dispersion (commit `v5-o1-first-optics-candidate-code`) — product wording
+correction: the 5 spectral samples and per-channel-normalised tent
+weights are source-read, but the implementation scales an EXISTING
+screen-space refraction offset per sample rather than recomputing
+`refract()` for each Target IOR sample. Do not describe it as "verbatim
+Target dispersion"; earlier commit messages and the sealed O1 evidence
+README predate this correction (the sealed tree is not edited because its
+MANIFEST seals file hashes). Every touched metric moved in the
 pre-registered direction on desktop AND mobile (edge chroma 63.1 → 59.6
 desktop rest, fringe R-B down in all 4 states, bright/dark cohorts both
 falling 4/4, media-only bit-identical to pre-O1, every frozen suite PASS)
@@ -300,10 +309,11 @@ band statistics swing with its per-load media shuffle by 20–50× the
 deltas under judgment, so O2's gate must lean on within-page controls and
 source reads, not cross-page absolutes.
 
-The dispersion-law port itself is source-exact, visibly reduces the
-synthetic cyan/magenta fringe lines, and regresses nothing; it stays in
-the tree as committed candidate code. The round stops here per the brief:
-a failed O1 does not authorise O2.
+The screen-space dispersion analogue visibly reduces the synthetic
+cyan/magenta fringe lines and regresses nothing; it stays in the tree as
+an EXPERIMENTAL LANE only (product decision). It re-enters the product
+path only if the O2 A+B lane wins the pre-registered interaction gate —
+never retroactively from the failed O1 result.
 
 ## FSX-A integration hardening
 
