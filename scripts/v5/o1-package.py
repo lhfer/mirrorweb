@@ -207,8 +207,9 @@ roi/        edge-compare-*: [target|before|candidate] crops of the SAME
             card edge, 2x nearest. metric-overlay-*: the measured card
             AABBs (green) and edge bands (amber) with the lane's numbers.
 floor/      the dispersionSpread=0 build, desktop rest: the decisive
-            attribution experiment (dispersion owns
-            {gate['floorExperiment']['edgeChromaGapOwnedByDispersionPct']}% of the desktop edge-chroma gap).
+            attribution experiment (the whole dispersion mechanism is worth
+            {gate['floorExperiment']['samePageLeverEffect']['edgeChromaPoints']} edge-chroma points on our page --
+            {min(gate['floorExperiment']['shareOfTargetGap']['sharePctPerDraw'].values())}-{max(gate['floorExperiment']['shareOfTargetGap']['sharePctPerDraw'].values())}% of the Target gap across observed draws).
 mediaonly/  frozen-media media-only pair, O1 vs pre-O1: 0 differing pixels
             (PNG, lossless, because the claim is bit-exactness).
 data/       copies of the public qa-v5/optics JSONs.
