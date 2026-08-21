@@ -99,7 +99,13 @@ export const V4_OPTICS_CONFIG = {
     refractionDistance: 300,
     maxRefractionUv: 0.125,
     blurLod: 2.35,
+    // O1 System A: no longer read by the shader (superseded by
+    // dispersionSpread); kept so stored params keep their shape.
     dispersionUv: 0.0065,
+    // O1 System A: relative spread of the refraction displacement per unit
+    // spectral offset -- see LiquidGlassMaterialV4. Chosen against the
+    // Target's measured edge-band statistics, not against Before.
+    dispersionSpread: 0.3,
     reflectionStrength: 1.15,
     roughnessCenter: 0.16,
     roughnessRim: 0.055,

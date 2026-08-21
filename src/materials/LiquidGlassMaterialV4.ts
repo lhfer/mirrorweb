@@ -41,7 +41,16 @@ export function createLiquidGlassParamsV4() {
     refractionDistance: uniform(defaults.refractionDistance),
     maxRefractionUv: uniform(defaults.maxRefractionUv),
     blurLod: uniform(defaults.blurLod),
+    // O1 System A: superseded by the Target-law spectral dispersion below.
+    // Kept so QA surfaces and stored params keep their shape; no longer read
+    // by the shader.
     dispersionUv: uniform(defaults.dispersionUv),
+    // O1 System A: relative spread of the refraction displacement per unit
+    // spectral offset -- the screen-space analogue of the Target's
+    // eta_i = 1/(ior + dispersion*offset_i) spread. A sample at spectral
+    // position o in [-0.5, +0.5] refracts with displacement scaled by
+    // (1 + dispersionSpread * o * zone).
+    dispersionSpread: uniform(defaults.dispersionSpread),
     reflectionStrength: uniform(defaults.reflectionStrength),
     roughnessCenter: uniform(defaults.roughnessCenter),
     roughnessRim: uniform(defaults.roughnessRim),
@@ -192,22 +201,55 @@ export function createLiquidGlassMaterialV4(
     .mul(pow(blurZone, 1.6))
     .mul(mix(0.4, 1, thicknessNorm));
 
-  const fallbackDirection = vec2(normalView.x, normalView.y.negate())
-    .add(vec2(1e-5, 0))
-    .normalize();
-  const dispersionDirection = refractionOffset.length().greaterThan(1e-5)
-    .select(refractionOffset.normalize(), fallbackDirection);
-  const dispersionDelta = dispersionDirection
-    .mul(params.dispersionUv)
-    .mul(dispersionZone)
-    .mul(params.sceneUvScale);
-  const uvR = clamp(refractedUv.add(dispersionDelta), vec2(0.001), vec2(0.999));
-  const uvB = clamp(refractedUv.sub(dispersionDelta), vec2(0.001), vec2(0.999));
+  // O1 System A -- the Target's dispersion LAW, ported to our sampling
+  // architecture. The Target accumulates N=5 refraction samples whose IOR is
+  // spread across the spectrum (eta_i = 1/(ior + dispersion*offset_i)) and
+  // weights each sample's RGB by tent functions centred at 0 / 0.5 / 1 with
+  // half-width 0.5, normalised per channel (byte-anchored in
+  // qa-v5/optics/o0-source-diagnosis.json). Two properties follow, and both
+  // are what the previous fixed R/B tap split lacked:
+  //   - the spectral spread SCALES WITH the local displacement, so flat
+  //     centres carry no fringe and the fringe grows with the lens, and
+  //   - each channel is a NORMALISED BLEND of adjacent spectral samples, so
+  //     the fringe is energy-conserving and bounded by the scene's own
+  //     colours instead of a manufactured pure cyan/magenta line.
+  // Screen-space analogue: sample_i displaces by
+  // refractionOffset * (1 + dispersionSpread * offset_i * zone).
+  const DISPERSION_SAMPLES = 5; // the Target's own count (low tier caps at 3)
+  const spectral = (() => {
+    const n = DISPERSION_SAMPLES;
+    const tent = (x: number, c: number) => Math.max(0, 1 - Math.abs(x - c) / 0.5);
+    const rows: Array<{ offset: number; weight: [number, number, number] }> = [];
+    const sums: [number, number, number] = [0, 0, 0];
+    for (let i = 0; i < n; i += 1) {
+      const s = i / (n - 1);
+      const w: [number, number, number] = [tent(s, 0), tent(s, 0.5), tent(s, 1)];
+      sums[0] += w[0]; sums[1] += w[1]; sums[2] += w[2];
+      rows.push({ offset: s - 0.5, weight: w });
+    }
+    return rows.map(({ offset, weight }) => ({
+      offset,
+      weight: [weight[0] / sums[0], weight[1] / sums[1], weight[2] / sums[2]] as
+        [number, number, number],
+    }));
+  })();
 
-  const sampleR = sceneColor.sample(uvR).level(blurLod);
-  const sampleG = sceneColor.sample(refractedUv).level(blurLod);
-  const sampleB = sceneColor.sample(uvB).level(blurLod);
-  const refractedColor = vec3(sampleR.r, sampleG.g, sampleB.b);
+  // Built as a pure expression tree: this block runs at material BUILD time,
+  // outside any Fn scope, where VarNode assignments do not emit.
+  const spectralSamples = spectral.map(({ offset }) => {
+    const scale = float(1).add(
+      params.dispersionSpread.mul(offset).mul(dispersionZone));
+    const sampleUv = clamp(
+      screenUV.add(refractionOffset.mul(scale))
+        .sub(vec2(0.5)).mul(params.sceneUvScale).add(vec2(0.5)),
+      vec2(0.001), vec2(0.999));
+    return sceneColor.sample(sampleUv).level(blurLod);
+  });
+  const refractedColor = spectralSamples
+    .map((s, i) => s.rgb.mul(vec3(...spectral[i].weight)))
+    .reduce((a, b) => a.add(b));
+  const spectralEnds = [spectralSamples[0],
+                        spectralSamples[spectralSamples.length - 1]];
 
   const adaptRadius = params.adaptivityRadiusUv.mul(params.sceneUvScale);
   const sampleLeft = sceneColor.sample(clamp(refractedUv.sub(vec2(adaptRadius, 0)), vec2(0.001), vec2(0.999))).level(float(0));
@@ -270,10 +312,12 @@ export function createLiquidGlassMaterialV4(
   );
   const reflectionDebugBody = vec3(0);
   const fresnelDebug = vec3(fresnel);
+  // The spread between the spectral end samples, on the R and B channels --
+  // the same "how far apart do the fringes sit" view the old tap split had.
   const dispersionDebug = vec3(
-    abs(sampleR.r.sub(sampleG.r)).mul(5),
+    abs(spectralEnds[0].r.sub(spectralEnds[1].r)).mul(5),
     0,
-    abs(sampleB.b.sub(sampleG.b)).mul(5),
+    abs(spectralEnds[0].b.sub(spectralEnds[1].b)).mul(5),
   );
   const adaptivityDebug = vec3(localLuma, localContrast, localChroma);
 
