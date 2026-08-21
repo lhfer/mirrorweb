@@ -77,10 +77,62 @@ it is the clock the springs integrate on — and is no longer asked a question i
 cannot answer.
 
 With that fixed, and the comparison made against the engine's own published
-state rather than a recovery of it, **the engine reproduces the frozen motion
-contract to floating-point identity**: worst final error {evc_worst:.2e} of
-travel across every run, against a gate of {evc_thr:.3f} world units. No motion
-code was changed to achieve that.
+state rather than a recovery of it, **{evc_exact} of {evc_rows} runs come out
+exact to floating point** — a final error of 0.00e+00, not a small one. No
+motion code was changed to achieve that; the M1 gap was the reader.
+
+The remaining {evc_rest} runs are all at the release instant, and they are the
+instrument's floor rather than the engine's error:
+
+- {evc_race} are a proven sub-frame race. A pointerup dispatched between two of
+  our sample callbacks may or may not have been preceded by the PAGE's own
+  frame callback pushing another point into the gesture history — and if it
+  was, `up()` measured its velocity over a longer history. We cannot see the
+  page's callback from outside. Both readings are replayed; the default is
+  exact on 176 runs and the alternative is wrong on 44, which is what makes the
+  default the right reading rather than the chosen one. These runs are
+  classified by proof: either the alternative reading brings them inside the
+  gate, or the engine's own recorded release velocity lies strictly BETWEEN the
+  two readings, which means the instrument cannot resolve them.
+- **{evc_fail} still fail the absolute gate** and are reported as failures.
+  Their alternate-ordering readings land within 0.09% and 0.9% of the engine's
+  own release velocity, so the mechanism is the same race, but they are not
+  formally bracketed and are not classified as if they were.
+
+So the absolute gate of `final target error <= max(4 x worst recovery error,
+0.1 world units)` = {evc_thr:.4f} is **not met**: {evc_fail} of {evc_rows} runs
+are outside it. The M1 error it replaces was PERSISTENT — every repeat of every
+sequence at every viewport, identical to four decimals. This one is not: it is
+run-specific, its mechanism is identified, and it is bounded.
+
+## Which failures are ours, and which are the contract's
+
+A candidate-vs-Target failure cannot by itself say whether our engine misses
+the contract or the contract misses the Target. Those need opposite responses,
+so they are separated by measurement.
+
+`contract-vs-target.json` replays the FROZEN CONTRACT on the Target's own
+recorded input and compares the result with what the Target actually did, on
+the same landmarks against the same sealed thresholds. Result: the contract
+reproduces the Target in {cvt_ok} of {cvt_total} comparisons and misses in
+{cvt_fail}. Every landmark it misses is one no faithful implementation of that
+contract can pass.
+
+`dolly-attribution.json` does the same for the camera dolly, which is read from
+the camera matrix and cannot be replayed. Three numbers per run: what the
+Target did, what the frozen law predicts on the Target's own input, and what
+the magnitude spring produces when fed the Target's OWN observed scroll — the
+signal that actually carries the jitter. **M1 attributed the 17
+`cameraDistanceOverPerspectivePeak` failures to jitter inflating a backward
+difference. That is refuted here**: feeding the spring the real jittered signal
+moves the dolly peak by {dolly_jitter}, while the Target's dolly differs from
+the frozen law by {dolly_resid}. Our own engine reproduces the law at
+{dolly_ours}. The residual changes SIGN with the gesture — the Target dollies
+more than the law during a fling and less during a drag — and the bundle shows
+why: the magnitude MotionValue has two writers, the gesture handler and the
+spring change handler, and which one runs last in a frame decides the value.
+That is a Source Baseline this round accepted and is forbidden to re-fit, so it
+is recorded for product review and not acted on.
 
 ## What is left, and what it is
 
@@ -91,6 +143,30 @@ That difference lives in `raw-scheduler-metrics.json` and is covered by
 single-frame numbers and nothing else — not final position, travel, decay,
 pointer orbit, touch behaviour, wrap continuity, or the filtered camera-dolly
 envelope, all of which are gated normally and listed by name in that file.
+
+## The 149 remaining landmark failures, sorted
+
+`failure-classification.json` puts every one of them in a category, by
+measurement rather than by argument:
+
+| category | rows |
+| --- | --- |
+{classification_table}
+
+`SOURCE_BASELINE_RESIDUAL` is not category one wearing a different name. It is
+decided by a measurement that never looks at our page: the contract replayed on
+the Target's own input. Three of these rows are systematic-sign summaries where
+no individual cell exceeds its threshold but every cell leans the same way —
+and the frozen contract leans the SAME way, by 5.6, 5.6 and 2.8 ms against our
+5.2, 9.9 and 6.5. The part that is not inherited is reported on each row rather
+than folded into the attribution.
+
+**Nothing is left in "the candidate owns it".** That is a strong claim and it
+rests on two things a reviewer should check independently: that
+`engine-vs-contract-v2.json` really compares the engine's own published state
+(it does — 175 of 180 runs at exactly 0.00e+00), and that `contract-vs-target`
+really replays on the Target's own recorded input (it does — the replay takes
+the Target's events and nothing of ours).
 
 ## The baseline was sealed before the candidate existed
 
@@ -141,7 +217,7 @@ git-ignored.
 
 def main() -> int:
     args = {a[2:].split("=", 1)[0]: a.split("=", 1)[1] for a in sys.argv[1:]}
-    d = Path(args["dir"])
+    d = Path(args["dir"]).resolve()
     gate = json.loads((d / "gate-summary.json").read_text())
     evc = json.loads((d / "engine-vs-contract-v2.json").read_text())
     raw = json.loads((d / "raw-scheduler-metrics.json").read_text())["rows"]
@@ -188,10 +264,37 @@ def main() -> int:
     filelist = "\n".join(f"- `{e['path'].split('/')[-1]}` — {e['bytes']:,} bytes"
                          for e in entries)
 
+    cvt_path = d / "contract-vs-target.json"
+    cvt = json.loads(cvt_path.read_text()) if cvt_path.exists() else {}
+    dolly_path = d / "dolly-attribution.json"
+    dolly = json.loads(dolly_path.read_text()) if dolly_path.exists() else {}
+    dres = dolly.get("result", {})
+
+    def pct(x, base=1.0):
+        return "no measurable amount" if x is None else f"{abs(x - base) * 100:.1f}%"
+
+    cls_path = d / "failure-classification.json"
+    cls = json.loads(cls_path.read_text()) if cls_path.exists() else {}
+    cls_table = "\n".join(
+        f"| `{k}` | {v} |"
+        for k, v in sorted(cls.get("landmarkFailures", {}).get("byCategory", {}).items(),
+                           key=lambda kv: -kv[1])) or "| (not yet computed) | |"
+
     (d / "README.md").write_text(README.format(
+        classification_table=cls_table,
         misattributed=misattr_s,
-        evc_worst=evc["worstFinalErrFraction"],
+        evc_rows=evc["rowsTotal"],
+        evc_exact=evc.get("rowsExactToFloatingPoint"),
+        evc_race=evc.get("rowsSubFrameRace"),
+        evc_fail=evc["rowsFailed"],
+        evc_rest=evc["rowsTotal"] - (evc.get("rowsExactToFloatingPoint") or 0),
         evc_thr=evc["threshold"],
+        cvt_ok=cvt.get("contractReproducesTargetIn"),
+        cvt_total=cvt.get("comparisons"),
+        cvt_fail=(cvt.get("comparisons", 0) - (cvt.get("contractReproducesTargetIn") or 0)),
+        dolly_jitter=pct(dres.get("medianJitterEffect_BvsC")),
+        dolly_resid=pct(dres.get("medianResidual_AvsB")),
+        dolly_ours=str(dolly.get("ourEngineAgainstTheContract", {}).get("medianObservedOverContract")),
         jitter_para=jitter_para,
         baseline_sha=base_sha,
         filelist=filelist))
@@ -202,7 +305,7 @@ def main() -> int:
                 "sha256": sha256_file(p)} for p in files]
 
     pkg = args.get("package")
-    pkg_path = Path(pkg) if pkg else None
+    pkg_path = Path(pkg).resolve() if pkg else None
     manifest = {
         "stage": "motion-closure",
         "repository": "lhfer/mirrorweb",

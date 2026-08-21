@@ -2,10 +2,9 @@
   "stage": "motion",
   "repository": "lhfer/mirrorweb",
   "branch": "rebuild/liquid-glass-v5-source-exact",
-  "head": "8e947b9",
   "codeCommit": "8e947b9",
-  "evidenceCommit": "this commit",
-  "headSemantics": "`head` is the commit every trace, recording and gate here was captured at: 8e947b9. The evidence commit carrying these files is necessarily later and a file cannot contain its own hash.",
+  "evidenceCommit": "788e6a7",
+  "headSemantics": "`capturedAtHead` is the commit every trace and gate here was captured at: 8e947b9. `evidenceCommit` 788e6a7 is the commit that carried these files; d8447de then removed the recordings from this tree. A file cannot contain its own hash, which is why the evidence commit is named here after the fact rather than inside itself. `evidenceCommit: \"this commit\"` was a placeholder and is replaced.",
   "route": "/?qa=1&composition=sourceExact (motion traces, recordings, typography, depth) and /?qa=1&composition=sourceExact&foundation=layout&annotate=0 (source contract)",
   "captureTimestampUtc": "2026-08-21T11:03:56Z",
   "fixedCaptureConditions": {
@@ -15,9 +14,13 @@
     "motion": "NOT paused - every trace and recording is driven by real pointer, touch and wheel events",
     "frameRate": "~120 Hz, median inter-frame interval 8.30 ms on both sides"
   },
-  "gateVerdict": null,
-  "privateReviewPackage": null,
-  "supersedes": null,
+  "privateReviewPackage": {
+    "path": "qa-v5/private/motion-review.zip",
+    "bytes": 184599887,
+    "gitIgnored": true,
+    "containsTargetPixels": true,
+    "note": "this field previously read null while the package existed."
+  },
   "targetPixelPolicy": "This directory contains LOCAL pixels and Target-derived NUMBERS only. Target pixels and Target/local overlays live in qa-v5/private/, which is git-ignored.",
   "files": [
     {
@@ -120,5 +123,12 @@
   "verdictSource": "qa-v5/motion/gate-summary.json",
   "landmarkComparisons": 870,
   "landmarkFailures": 64,
-  "recordings": "in qa-v5/private/motion-review.zip, not in this tree"
+  "recordings": "in qa-v5/private/motion-review.zip, not in this tree",
+  "verdictNote": "one field, not two. This file previously carried `gateVerdict: null` beside `verdict: \"FAIL\"` -- two fields for one fact, one of them empty. The empty one is gone; `verdict` is read out of gate-summary.json and is the only source of truth here.",
+  "capturedAtHead": "8e947b9",
+  "recordingsRemovalCommit": "d8447de",
+  "supersededBy": {
+    "path": "qa-v5/motion-closure",
+    "note": "the M2 round. Nothing in THIS directory was rewritten: the FAIL stands, every result file is byte-identical, and only this manifest's metadata was repaired. M2 found that a large share of the failures counted here came from the instruments rather than the engine; see qa-v5/motion-closure/README.md."
+  }
 }

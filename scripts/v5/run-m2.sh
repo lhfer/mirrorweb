@@ -189,8 +189,14 @@ stage_frozen() {
   start_server
   say "STAGE frozen -- re-verifying the accepted contracts at this tip"
   say "  source contract (36 viewports, engine against model against Target DOM)"
+  # The 36 viewports the source contract is defined on. Named here rather than
+  # defaulted, because the dump's own default is an EMPTY list -- it exits 0
+  # having captured nothing, and the comparison downstream then divides by zero.
+  local vps
+  vps=$(python3 scripts/v5/m2-contract-viewports.py)
+  [ -n "$vps" ] || die "could not resolve the 36 source-contract viewports"
   node scripts/v5/fsx-engine-dump.mjs '--origin=http://127.0.0.1:5281' \
-    "--out=$ART/m2-fsx" > "$LOGS/fsx-engine.log" 2>&1 \
+    "--vps=$vps" "--out=$ART/m2-fsx" > "$LOGS/fsx-engine.log" 2>&1 \
     || { tail -20 "$LOGS/fsx-engine.log"; die "fsx-engine-dump"; }
   need_file "$ART/m2-fsx/engine.json"
   # The Target's own DOM, captured in the fsx round. It is a measurement of a
@@ -208,21 +214,29 @@ stage_frozen() {
   tail -3 "$LOGS/layout-source.log"
   say "  container alignment, label ink, depth"
   mkdir -p "$ART/m2-typography"
-  node scripts/v5/t1-container-alignment.mjs "--origin=$LOCAL_URL" \
+  node scripts/v5/t1-container-alignment.mjs '--origin=http://127.0.0.1:5281' \
     "--out=$ART/m2-typography/container-alignment.json" > "$LOGS/align.log" 2>&1 \
     || { tail -20 "$LOGS/align.log"; die "t1-container-alignment"; }
-  node scripts/v5/t1-depth-clipping.mjs "--origin=$LOCAL_URL" \
+  # The four pointer extremes plus centre. Without them the script runs its
+  # one-pointer default, the self-proving sweep block never executes, and the
+  # depth carry-forward count is taken at a single on-axis pose -- which is the
+  # exact fault M1 found and fixed. Named here so it cannot be defaulted away.
+  node scripts/v5/t1-depth-clipping.mjs '--origin=http://127.0.0.1:5281' \
+    '--pointers=0,0;-1,-1;1,-1;1,1;-1,1' \
     "--out=$ART/m2-typography/depth-clipping.json" \
     "--shots=$ART/m2-typography/shots" > "$LOGS/depth.log" 2>&1 \
     || { tail -20 "$LOGS/depth.log"; die "t1-depth-clipping"; }
   python3 scripts/v5/t1-label-ink.py "$ART/m2-typography/shots" \
     "$ART/m2-typography/label-ink.json" > "$LOGS/ink.log" 2>&1 \
     || { tail -20 "$LOGS/ink.log"; die "t1-label-ink"; }
+  # Repo-RELATIVE paths: the aggregator echoes its inputs into the evidence, and
+  # an absolute path is a local username in a public file. The hygiene stage
+  # fails on one; this is what keeps it from having to.
   python3 scripts/v5/m1-typography-regression.py \
-    "--alignment=$ART/m2-typography/container-alignment.json" \
-    "--ink=$ART/m2-typography/label-ink.json" \
-    "--depth=$ART/m2-typography/depth-clipping.json" \
-    "--out=$OUT/typography-regression.json" || die "typography regression"
+    "--alignment=artifacts/motion/m2-typography/container-alignment.json" \
+    "--ink=artifacts/motion/m2-typography/label-ink.json" \
+    "--depth=artifacts/motion/m2-typography/depth-clipping.json" \
+    "--out=qa-v5/motion-closure/typography-regression.json" || die "typography regression"
   need_file "$OUT/typography-regression.json"
   say "STAGE frozen COMPLETE"
 }

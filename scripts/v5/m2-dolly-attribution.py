@@ -172,6 +172,42 @@ def main() -> int:
                 "is corrected by this measurement.",
         },
         "targetObservedOverContractBySequence": seq_ratio,
+        "hypothesisForTheNextRound": {
+            "status": "NOT ACTED ON. The magnitude spring and the velocity dolly law are "
+                      "Source Baseline this round accepted and is forbidden to re-fit. "
+                      "This is recorded so the next round starts from a reading rather "
+                      "than from a fit.",
+            "whatTheBundleShows":
+                "the magnitude MotionValue `g` has TWO writers, not one. "
+                "(a) the scroll springs' change handlers: "
+                "`f.on(\"change\", e => { ...; g.set(hypot(f.getVelocity(), "
+                "p.getVelocity())) })`, and the same on `p`; and "
+                "(b) the gesture handlers themselves: `onPan: (e,t) => { "
+                "d.set(d.get()+1.5*t.delta.x); ...; g.set(hypot(t.velocity.x, "
+                "t.velocity.y)) }` and the same in `onPanEnd` with the fling term. "
+                "Source: artifacts/f27/bundles/03lo820gl57km.js, function _G.",
+            "whyItWouldProduceThisPattern":
+                "the two writers disagree by construction. The gesture velocity is the "
+                "FINGER's velocity; the scroll spring's velocity is the finger's times "
+                "the 1.5 drag gain, minus the spring's own lag. So while a finger is "
+                "down, whichever writer runs LAST in the frame decides the magnitude, "
+                "and the gesture writer gives a smaller number than the spring writer. "
+                "After release there is no gesture writer at all and only the spring "
+                "writer remains. That is exactly the observed sign pattern: the Target "
+                "dollies LESS than the frozen law during a drag and MORE during a fling. "
+                "The contract as recovered resolves the intra-frame order one way for "
+                "both phases.",
+            "whatWouldSettleIt":
+                "the intra-frame order of framer-motion's PanSession dispatch against "
+                "the spring animations' change notification, read out of the bundle's "
+                "frame scheduler rather than inferred from the residual. That is a "
+                "source read, not a fit, and it is the first thing the next round "
+                "should do.",
+            "whatWouldNotSettleIt":
+                "fitting a scale factor to close the residual. The residual is not a "
+                "scale factor -- it changes sign with the phase of the gesture -- and a "
+                "constant fitted to it would be wrong in both phases at once.",
+        },
         "patternNote":
             "The residual is not a constant scale error and it changes SIGN with the "
             "kind of gesture: on sequences whose dolly peak falls during a FLING the "

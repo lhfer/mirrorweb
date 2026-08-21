@@ -1,0 +1,113 @@
+{
+  "stage": "motion-closure",
+  "repository": "lhfer/mirrorweb",
+  "branch": "rebuild/liquid-glass-v5-source-exact",
+  "capturedAtHead": "30dcf64",
+  "capturedAtHeadMeaning": "the commit every trace, gate and recording in this directory was captured at. It is a fact this file can hold.",
+  "reviewHead": "resolve with `git rev-parse HEAD`. A file cannot contain the hash of the commit that carries it, so this is NOT stated here and no hygiene commit is created to chase one. capturedAtHead and reviewHead are separate facts and neither stands in for the other.",
+  "route": "/?qa=1&composition=sourceExact",
+  "captureTimestampUtc": "2026-08-21T13:01:45Z",
+  "fixedCaptureConditions": {
+    "quality": "high (pinned, adaptive sampler off)",
+    "mediaTimeSeconds": 2,
+    "dpr": 1,
+    "motion": "NOT paused -- every trace is driven by real pointer, touch and wheel events. No QA hook moves either page.",
+    "server": "vite preview against the built bundle, so no HMR reload can wipe a recorder mid-capture"
+  },
+  "verdict": "FAIL",
+  "verdictSource": "qa-v5/motion-closure/gate-summary.json",
+  "verdictInputs": {
+    "landmarkFailures": 149,
+    "engineVsContractFailures": 2,
+    "visibleWrapTeleportsOurSide": 0,
+    "wheelResponsesOurSide": 0,
+    "gesturesNeverAtRestOurSide": 0,
+    "consoleAndPageErrorsOurSide": 0
+  },
+  "baselineSha256": "a0a5a1f6b95b685e18453d889a9a57798fd6f73e9e47d9edc9c2a087ddf29224",
+  "productException": "qa-v5/motion-closure/product-exception-candidate.json",
+  "privateReviewPackage": {
+    "path": "qa-v5/private/motion-closure-review.zip",
+    "bytes": 44709137,
+    "sha256": "8b6487f158cbe01927fc9c2ad9087ccc19741599b6f670e8089c2700ee4c1112",
+    "gitIgnored": true,
+    "containsTargetPixels": true
+  },
+  "supersedes": {
+    "path": "qa-v5/motion",
+    "note": "the M1 round's results are NOT rewritten. Its FAIL stands, its files are untouched, and only its metadata was repaired -- one verdict field instead of two, the private package named, and the evidence commit given a hash instead of the placeholder 'this commit'."
+  },
+  "targetPixelPolicy": "This directory contains LOCAL pixels and Target-derived NUMBERS only. Target pixels and Target/local overlays live in qa-v5/private/, which is git-ignored.",
+  "files": [
+    {
+      "path": "qa-v5/motion-closure/README.md",
+      "bytes": 10231,
+      "sha256": "5d3ce62d1f922bb1ee14dbe0e5c8adad67c30f10f58c3e0ec085bc60a7cd7d23"
+    },
+    {
+      "path": "qa-v5/motion-closure/continuity-and-input.json",
+      "bytes": 109748,
+      "sha256": "109fdf82ffc83533daca53e3b0a6d2eb87024fc9c743dd055261815b68698b4f"
+    },
+    {
+      "path": "qa-v5/motion-closure/contract-vs-target.json",
+      "bytes": 606546,
+      "sha256": "b90a8ebb745a0dfb7f3218164165eecf4b36adf41affc368e91490ed244f7216"
+    },
+    {
+      "path": "qa-v5/motion-closure/dolly-attribution.json",
+      "bytes": 112168,
+      "sha256": "d2a16600077fca26f7a7bd3b1e2b93502f650058a7ea66f7d18721a2212cdabd"
+    },
+    {
+      "path": "qa-v5/motion-closure/engine-vs-contract-v2.json",
+      "bytes": 304774,
+      "sha256": "071b63ba266ab8477fe0ce57d81a0034cf62050523d2527f6b1725543e7078c7"
+    },
+    {
+      "path": "qa-v5/motion-closure/failure-classification.json",
+      "bytes": 95819,
+      "sha256": "402e55f55b8ed8989bb6362966f2e1c943b50f4649d94b757c46378fddac8896"
+    },
+    {
+      "path": "qa-v5/motion-closure/gate-summary.json",
+      "bytes": 75535,
+      "sha256": "9caf4cffec54b6672a8e91e4ec16ecaef60a88d22f79d61e6c69247c90284970"
+    },
+    {
+      "path": "qa-v5/motion-closure/product-exception-candidate.json",
+      "bytes": 51924,
+      "sha256": "cad4fbaa87e4c0e9da90666d19151a1a919b0ab9e22b8c849e4e7ea281255ead"
+    },
+    {
+      "path": "qa-v5/motion-closure/raw-scheduler-metrics.json",
+      "bytes": 172754,
+      "sha256": "edf289251c20ba0f227735c99501cde7fa4ca0c696f28cfca870e7419ef4f003"
+    },
+    {
+      "path": "qa-v5/motion-closure/scheduler-invariant-gate.json",
+      "bytes": 1293495,
+      "sha256": "6f66221b08a791ed2ef096f753c67c8ca4a1e460f35d2ddadcbd4d878a939bf7"
+    },
+    {
+      "path": "qa-v5/motion-closure/source-contract.json",
+      "bytes": 170080,
+      "sha256": "81836776feb5dd47ad0653451fadea75ed958056bf318987d8a55a735fb21738"
+    },
+    {
+      "path": "qa-v5/motion-closure/target-scheduler-invariant-baseline.json",
+      "bytes": 1037158,
+      "sha256": "a0a5a1f6b95b685e18453d889a9a57798fd6f73e9e47d9edc9c2a087ddf29224"
+    },
+    {
+      "path": "qa-v5/motion-closure/target-scheduler-invariant-baseline.sha256",
+      "bytes": 107,
+      "sha256": "b75945623e29354424fc78b793cb34c942610433ed50801bb40236fc8548058c"
+    },
+    {
+      "path": "qa-v5/motion-closure/typography-regression.json",
+      "bytes": 4848,
+      "sha256": "d27f3d3a8965308b6f1ee1fe2cf5e1176d7ae8e4398b0f00b75c3b7be990c0d8"
+    }
+  ]
+}

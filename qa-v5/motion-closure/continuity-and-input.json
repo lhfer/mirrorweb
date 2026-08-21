@@ -1,0 +1,4671 @@
+{
+  "what": "wheel absence, wrap continuity, touch parity and resize continuity, both sides",
+  "definitionsUnchangedFrom": "qa-v5/motion (M1). The definitions are imported from m1-motion-gate.py rather than restated, so a change here would have to be a change there.",
+  "wheel": [
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-deltamode",
+      "repeat": 0,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-deltamode",
+      "repeat": 1,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-deltamode",
+      "repeat": 2,
+      "wheelEvents": 18,
+      "deltaModes": [
+        0,
+        1,
+        2
+      ],
+      "trustedWheelEvents": 0,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 0,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 1,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-mouse-steps",
+      "repeat": 2,
+      "wheelEvents": 12,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 12,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 0,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 1,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "wheel-trackpad-small",
+      "repeat": 2,
+      "wheelEvents": 40,
+      "deltaModes": [
+        0
+      ],
+      "trustedWheelEvents": 40,
+      "anyDefaultPrevented": false,
+      "scrollTravel": 0.0,
+      "status": "PASS"
+    }
+  ],
+  "wrap": [
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "fast-flick",
+      "repeat": 0,
+      "framePairs": 424,
+      "cardFrameChecks": 6731,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "fast-flick",
+      "repeat": 1,
+      "framePairs": 423,
+      "cardFrameChecks": 6716,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "fast-flick",
+      "repeat": 2,
+      "framePairs": 424,
+      "cardFrameChecks": 6731,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 0,
+      "framePairs": 528,
+      "cardFrameChecks": 8845,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 1,
+      "framePairs": 528,
+      "cardFrameChecks": 8835,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 2,
+      "framePairs": 529,
+      "cardFrameChecks": 8855,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "fast-flick",
+      "repeat": 0,
+      "framePairs": 424,
+      "cardFrameChecks": 8036,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "fast-flick",
+      "repeat": 1,
+      "framePairs": 424,
+      "cardFrameChecks": 7656,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "fast-flick",
+      "repeat": 2,
+      "framePairs": 424,
+      "cardFrameChecks": 7299,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 0,
+      "framePairs": 528,
+      "cardFrameChecks": 9081,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 1,
+      "framePairs": 528,
+      "cardFrameChecks": 9432,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 2,
+      "framePairs": 528,
+      "cardFrameChecks": 9076,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "fast-flick",
+      "repeat": 0,
+      "framePairs": 424,
+      "cardFrameChecks": 14844,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "fast-flick",
+      "repeat": 1,
+      "framePairs": 424,
+      "cardFrameChecks": 14634,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "fast-flick",
+      "repeat": 2,
+      "framePairs": 424,
+      "cardFrameChecks": 13930,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 0,
+      "framePairs": 528,
+      "cardFrameChecks": 11239,
+      "worldUnitFlags": 3,
+      "worstExcessWorldUnits": 2162.137,
+      "worstAtWorldUnits": {
+        "frame": 20,
+        "code": 19,
+        "moved": 2184.698,
+        "fieldMoved": 22.561
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 1,
+      "framePairs": 528,
+      "cardFrameChecks": 17410,
+      "worldUnitFlags": 2,
+      "worstExcessWorldUnits": 2112.188,
+      "worstAtWorldUnits": {
+        "frame": 11,
+        "code": 25,
+        "moved": 2123.674,
+        "fieldMoved": 11.486
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 2,
+      "framePairs": 528,
+      "cardFrameChecks": 17776,
+      "worldUnitFlags": 4,
+      "worstExcessWorldUnits": 2149.726,
+      "worstAtWorldUnits": {
+        "frame": 30,
+        "code": 12,
+        "moved": 2179.777,
+        "fieldMoved": 30.051
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "fast-flick",
+      "repeat": 0,
+      "framePairs": 424,
+      "cardFrameChecks": 5150,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "fast-flick",
+      "repeat": 1,
+      "framePairs": 424,
+      "cardFrameChecks": 5860,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "fast-flick",
+      "repeat": 2,
+      "framePairs": 424,
+      "cardFrameChecks": 5847,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 0,
+      "framePairs": 528,
+      "cardFrameChecks": 6442,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 1,
+      "framePairs": 528,
+      "cardFrameChecks": 6437,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 2,
+      "framePairs": 528,
+      "cardFrameChecks": 6451,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "fast-flick",
+      "repeat": 0,
+      "framePairs": 424,
+      "cardFrameChecks": 34621,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "fast-flick",
+      "repeat": 1,
+      "framePairs": 425,
+      "cardFrameChecks": 35171,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "fast-flick",
+      "repeat": 2,
+      "framePairs": 424,
+      "cardFrameChecks": 34600,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 0,
+      "framePairs": 528,
+      "cardFrameChecks": 44515,
+      "worldUnitFlags": 21,
+      "worstExcessWorldUnits": 5210.312,
+      "worstAtWorldUnits": {
+        "frame": 142,
+        "code": 83,
+        "moved": 5247.213,
+        "fieldMoved": 36.9
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 1,
+      "framePairs": 528,
+      "cardFrameChecks": 44494,
+      "worldUnitFlags": 19,
+      "worstExcessWorldUnits": 5162.306,
+      "worstAtWorldUnits": {
+        "frame": 108,
+        "code": 85,
+        "moved": 5225.87,
+        "fieldMoved": 63.565
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 2,
+      "framePairs": 529,
+      "cardFrameChecks": 44246,
+      "worldUnitFlags": 6,
+      "worstExcessWorldUnits": 5205.639,
+      "worstAtWorldUnits": {
+        "frame": 141,
+        "code": 85,
+        "moved": 5245.134,
+        "fieldMoved": 39.495
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "fast-flick",
+      "repeat": 0,
+      "framePairs": 425,
+      "cardFrameChecks": 39999,
+      "worldUnitFlags": 21,
+      "worstExcessWorldUnits": 2252.245,
+      "worstAtWorldUnits": {
+        "frame": 58,
+        "code": 79,
+        "moved": 2255.22,
+        "fieldMoved": 2.975
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "fast-flick",
+      "repeat": 1,
+      "framePairs": 424,
+      "cardFrameChecks": 39550,
+      "worldUnitFlags": 20,
+      "worstExcessWorldUnits": 2248.66,
+      "worstAtWorldUnits": {
+        "frame": 50,
+        "code": 73,
+        "moved": 2253.51,
+        "fieldMoved": 4.851
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "fast-flick",
+      "repeat": 2,
+      "framePairs": 425,
+      "cardFrameChecks": 39299,
+      "worldUnitFlags": 20,
+      "worstExcessWorldUnits": 2243.347,
+      "worstAtWorldUnits": {
+        "frame": 45,
+        "code": 75,
+        "moved": 2250.962,
+        "fieldMoved": 7.615
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 0,
+      "framePairs": 528,
+      "cardFrameChecks": 49446,
+      "worldUnitFlags": 86,
+      "worstExcessWorldUnits": 2250.571,
+      "worstAtWorldUnits": {
+        "frame": 167,
+        "code": 15,
+        "moved": 2252.38,
+        "fieldMoved": 1.809
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 1,
+      "framePairs": 528,
+      "cardFrameChecks": 49821,
+      "worldUnitFlags": 87,
+      "worstExcessWorldUnits": 2255.199,
+      "worstAtWorldUnits": {
+        "frame": 175,
+        "code": 8,
+        "moved": 2256.22,
+        "fieldMoved": 1.021
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 2,
+      "framePairs": 528,
+      "cardFrameChecks": 49451,
+      "worldUnitFlags": 87,
+      "worstExcessWorldUnits": 2251.856,
+      "worstAtWorldUnits": {
+        "frame": 174,
+        "code": 16,
+        "moved": 2252.99,
+        "fieldMoved": 1.134
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "fast-flick",
+      "repeat": 0,
+      "framePairs": 424,
+      "cardFrameChecks": 38226,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "fast-flick",
+      "repeat": 1,
+      "framePairs": 424,
+      "cardFrameChecks": 38752,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "fast-flick",
+      "repeat": 2,
+      "framePairs": 424,
+      "cardFrameChecks": 38745,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 0,
+      "framePairs": 528,
+      "cardFrameChecks": 50067,
+      "worldUnitFlags": 5,
+      "worstExcessWorldUnits": 2520.777,
+      "worstAtWorldUnits": {
+        "frame": 135,
+        "code": 83,
+        "moved": 2545.417,
+        "fieldMoved": 24.639
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 1,
+      "framePairs": 528,
+      "cardFrameChecks": 49726,
+      "worldUnitFlags": 24,
+      "worstExcessWorldUnits": 2518.518,
+      "worstAtWorldUnits": {
+        "frame": 140,
+        "code": 79,
+        "moved": 2541.681,
+        "fieldMoved": 23.163
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 2,
+      "framePairs": 528,
+      "cardFrameChecks": 49693,
+      "worldUnitFlags": 25,
+      "worstExcessWorldUnits": 2521.463,
+      "worstAtWorldUnits": {
+        "frame": 139,
+        "code": 75,
+        "moved": 2542.992,
+        "fieldMoved": 21.528
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "fast-flick",
+      "repeat": 0,
+      "framePairs": 424,
+      "cardFrameChecks": 29001,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "fast-flick",
+      "repeat": 1,
+      "framePairs": 425,
+      "cardFrameChecks": 29178,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "fast-flick",
+      "repeat": 2,
+      "framePairs": 424,
+      "cardFrameChecks": 29718,
+      "worldUnitFlags": 0,
+      "worstExcessWorldUnits": 0.0,
+      "worstAtWorldUnits": null,
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 0,
+      "framePairs": 529,
+      "cardFrameChecks": 37003,
+      "worldUnitFlags": 23,
+      "worstExcessWorldUnits": 3028.487,
+      "worstAtWorldUnits": {
+        "frame": 134,
+        "code": 77,
+        "moved": 3065.382,
+        "fieldMoved": 36.895
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 1,
+      "framePairs": 528,
+      "cardFrameChecks": 36903,
+      "worldUnitFlags": 12,
+      "worstExcessWorldUnits": 3029.617,
+      "worstAtWorldUnits": {
+        "frame": 138,
+        "code": 64,
+        "moved": 3057.58,
+        "fieldMoved": 27.963
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "long-drag-multi-wrap",
+      "repeat": 2,
+      "framePairs": 528,
+      "cardFrameChecks": 36920,
+      "worldUnitFlags": 11,
+      "worstExcessWorldUnits": 3024.252,
+      "worstAtWorldUnits": {
+        "frame": 86,
+        "code": 73,
+        "moved": 3063.503,
+        "fieldMoved": 39.251
+      },
+      "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a correct recycle registers here -- it does on the Target too",
+      "screenRectsAvailable": true,
+      "wrapsThatHappenedWhileOnScreen": 0,
+      "visibleTeleports": 0,
+      "worstExcessPx": 0.0,
+      "worstAt": null
+    }
+  ],
+  "touch": [
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -539.9937,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -539.9933,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -539.9923,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 1012.1662,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 1012.3361,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 1000.211,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -841.5043,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -853.2127,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -854.4583,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -1187.774,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -1187.5631,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -1172.551,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9949,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9967,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9973,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 438.6757,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 433.6067,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 433.3657,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -364.5857,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -364.5839,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -370.419,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -507.8616,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -508.5915,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -507.7025,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -419.9942,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -419.9951,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -419.9964,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 777.8383,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 787.1164,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 777.8387,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -664.0215,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -664.5742,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -653.5534,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -922.6624,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -920.0588,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -922.3313,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9962,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.994,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9963,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 433.2469,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 433.3056,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 433.5444,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -370.1855,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -364.5179,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -364.5855,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -514.4253,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -514.0534,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -514.053,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -539.9806,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -539.9812,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -539.9811,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 1012.3158,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 999.9276,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 999.5139,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -853.3743,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -854.7995,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -841.0321,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -1170.6924,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -1170.873,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -1171.4267,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9934,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.994,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9933,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 433.3033,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 438.2556,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 438.117,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -364.5161,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -364.5158,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -364.4499,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -508.3449,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -507.6199,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -514.5139,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -419.9936,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -419.994,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -419.9938,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 777.8368,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 786.3684,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 777.8374,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -664.8531,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -654.2649,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -664.8537,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -911.1176,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -911.1192,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -923.825,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "lostpointercapture",
+      "repeat": 0,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.99,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "lostpointercapture",
+      "repeat": 1,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9906,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "lostpointercapture",
+      "repeat": 2,
+      "eventTypes": [
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": -233.9904,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "medium-drag",
+      "repeat": 0,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 432.885,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "medium-drag",
+      "repeat": 1,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 433.2996,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "medium-drag",
+      "repeat": 2,
+      "eventTypes": [
+        "pointerdown",
+        "pointermove",
+        "pointerup"
+      ],
+      "pointerTypes": [
+        "mouse"
+      ],
+      "totalX": 438.3209,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "pointercancel",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -364.3792,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "pointercancel",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -370.412,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "pointercancel",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointercancel",
+        "pointerdown",
+        "pointermove",
+        "touchcancel",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -364.5124,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "touch-drag-release",
+      "repeat": 0,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -507.6159,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "touch-drag-release",
+      "repeat": 1,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -507.5376,
+      "cameToRestByEndOfRun": true
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "sequence": "touch-drag-release",
+      "repeat": 2,
+      "eventTypes": [
+        "gotpointercapture",
+        "lostpointercapture",
+        "pointerdown",
+        "pointermove",
+        "pointerup",
+        "touchend",
+        "touchmove",
+        "touchstart"
+      ],
+      "pointerTypes": [
+        "touch"
+      ],
+      "totalX": -507.0621,
+      "cameToRestByEndOfRun": true
+    }
+  ],
+  "resize": [
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 268.1,
+          "from": [
+            1440,
+            900
+          ],
+          "to": [
+            1123,
+            774
+          ],
+          "meanStepBefore": 40.8853,
+          "meanStepAfter": 26.3775
+        },
+        {
+          "atMs": 1480.6,
+          "from": [
+            1123,
+            774
+          ],
+          "to": [
+            1440,
+            900
+          ],
+          "meanStepBefore": 0.0017,
+          "meanStepAfter": 0.001
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1274.1636
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 261.2,
+          "from": [
+            1440,
+            900
+          ],
+          "to": [
+            1123,
+            774
+          ],
+          "meanStepBefore": 42.099,
+          "meanStepAfter": 27.3093
+        },
+        {
+          "atMs": 1477.8,
+          "from": [
+            1123,
+            774
+          ],
+          "to": [
+            1440,
+            900
+          ],
+          "meanStepBefore": 0.0018,
+          "meanStepAfter": 0.001
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1262.2469
+    },
+    {
+      "side": "target",
+      "viewport": "1440x900",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 254.2,
+          "from": [
+            1440,
+            900
+          ],
+          "to": [
+            1123,
+            774
+          ],
+          "meanStepBefore": 43.0338,
+          "meanStepAfter": 30.0129
+        },
+        {
+          "atMs": 1463.1,
+          "from": [
+            1123,
+            774
+          ],
+          "to": [
+            1440,
+            900
+          ],
+          "meanStepBefore": 0.002,
+          "meanStepAfter": 0.001
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1335.4281
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 271.4,
+          "from": [
+            390,
+            844
+          ],
+          "to": [
+            304,
+            726
+          ],
+          "meanStepBefore": 18.0479,
+          "meanStepAfter": 11.8982
+        },
+        {
+          "atMs": 1487.8,
+          "from": [
+            304,
+            726
+          ],
+          "to": [
+            390,
+            844
+          ],
+          "meanStepBefore": 0.0009,
+          "meanStepAfter": 0.0004
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -550.6098
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 261.1,
+          "from": [
+            390,
+            844
+          ],
+          "to": [
+            304,
+            726
+          ],
+          "meanStepBefore": 17.8511,
+          "meanStepAfter": 11.498
+        },
+        {
+          "atMs": 1473.6,
+          "from": [
+            304,
+            726
+          ],
+          "to": [
+            390,
+            844
+          ],
+          "meanStepBefore": 0.0009,
+          "meanStepAfter": 0.0002
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -542.8654
+    },
+    {
+      "side": "target",
+      "viewport": "390x844",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 269.6,
+          "from": [
+            390,
+            844
+          ],
+          "to": [
+            304,
+            726
+          ],
+          "meanStepBefore": 18.2865,
+          "meanStepAfter": 11.9017
+        },
+        {
+          "atMs": 1477.3,
+          "from": [
+            304,
+            726
+          ],
+          "to": [
+            390,
+            844
+          ],
+          "meanStepBefore": 0.0009,
+          "meanStepAfter": 0.0003
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -555.3549
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 269.7,
+          "from": [
+            700,
+            700
+          ],
+          "to": [
+            546,
+            602
+          ],
+          "meanStepBefore": 32.7862,
+          "meanStepAfter": 22.1662
+        },
+        {
+          "atMs": 1486.3,
+          "from": [
+            546,
+            602
+          ],
+          "to": [
+            700,
+            700
+          ],
+          "meanStepBefore": 0.001,
+          "meanStepAfter": 0.0007
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -2030.4689
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 270,
+          "from": [
+            700,
+            700
+          ],
+          "to": [
+            546,
+            602
+          ],
+          "meanStepBefore": 31.2256,
+          "meanStepAfter": 21.0107
+        },
+        {
+          "atMs": 1478.4,
+          "from": [
+            546,
+            602
+          ],
+          "to": [
+            700,
+            700
+          ],
+          "meanStepBefore": 0.0013,
+          "meanStepAfter": 0.001
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1934.0462
+    },
+    {
+      "side": "target",
+      "viewport": "700x700",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 267.5,
+          "from": [
+            700,
+            700
+          ],
+          "to": [
+            546,
+            602
+          ],
+          "meanStepBefore": 32.1874,
+          "meanStepAfter": 22.68
+        },
+        {
+          "atMs": 1484.1,
+          "from": [
+            546,
+            602
+          ],
+          "to": [
+            700,
+            700
+          ],
+          "meanStepBefore": 0.0012,
+          "meanStepAfter": 0.0009
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -2190.8888
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 269.1,
+          "from": [
+            844,
+            390
+          ],
+          "to": [
+            658,
+            335
+          ],
+          "meanStepBefore": 18.0675,
+          "meanStepAfter": 11.715
+        },
+        {
+          "atMs": 1477.4,
+          "from": [
+            658,
+            335
+          ],
+          "to": [
+            844,
+            390
+          ],
+          "meanStepBefore": 0.001,
+          "meanStepAfter": 0.0004
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -493.7453
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 269.8,
+          "from": [
+            844,
+            390
+          ],
+          "to": [
+            658,
+            335
+          ],
+          "meanStepBefore": 18.0148,
+          "meanStepAfter": 11.9285
+        },
+        {
+          "atMs": 1486.4,
+          "from": [
+            658,
+            335
+          ],
+          "to": [
+            844,
+            390
+          ],
+          "meanStepBefore": 0.0009,
+          "meanStepAfter": 0.0003
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -552.919
+    },
+    {
+      "side": "target",
+      "viewport": "844x390",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 269.2,
+          "from": [
+            844,
+            390
+          ],
+          "to": [
+            658,
+            335
+          ],
+          "meanStepBefore": 18.53,
+          "meanStepAfter": 12.3099
+        },
+        {
+          "atMs": 1485.3,
+          "from": [
+            658,
+            335
+          ],
+          "to": [
+            844,
+            390
+          ],
+          "meanStepBefore": 0.001,
+          "meanStepAfter": 0.0005
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -566.4883
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 285.1,
+          "from": [
+            1440,
+            900
+          ],
+          "to": [
+            1123,
+            774
+          ],
+          "meanStepBefore": 38.318,
+          "meanStepAfter": 35.3342
+        },
+        {
+          "atMs": 1493.5,
+          "from": [
+            1123,
+            774
+          ],
+          "to": [
+            1440,
+            900
+          ],
+          "meanStepBefore": 0.0011,
+          "meanStepAfter": 0.0006
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1315.7019
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 274.9,
+          "from": [
+            1440,
+            900
+          ],
+          "to": [
+            1123,
+            774
+          ],
+          "meanStepBefore": 40.4685,
+          "meanStepAfter": 30.5241
+        },
+        {
+          "atMs": 1491.7,
+          "from": [
+            1123,
+            774
+          ],
+          "to": [
+            1440,
+            900
+          ],
+          "meanStepBefore": 0.0013,
+          "meanStepAfter": 0.0004
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1303.4172
+    },
+    {
+      "side": "ours",
+      "viewport": "1440x900",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 275.3,
+          "from": [
+            1440,
+            900
+          ],
+          "to": [
+            1123,
+            774
+          ],
+          "meanStepBefore": 42.0325,
+          "meanStepAfter": 27.9164
+        },
+        {
+          "atMs": 1483.6,
+          "from": [
+            1123,
+            774
+          ],
+          "to": [
+            1440,
+            900
+          ],
+          "meanStepBefore": 0.0014,
+          "meanStepAfter": 0.0008
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1340.71
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 268.1,
+          "from": [
+            390,
+            844
+          ],
+          "to": [
+            304,
+            726
+          ],
+          "meanStepBefore": 17.6678,
+          "meanStepAfter": 16.0606
+        },
+        {
+          "atMs": 1483.8,
+          "from": [
+            304,
+            726
+          ],
+          "to": [
+            390,
+            844
+          ],
+          "meanStepBefore": 0.0009,
+          "meanStepAfter": 0.0002
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -566.6357
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 267.2,
+          "from": [
+            390,
+            844
+          ],
+          "to": [
+            304,
+            726
+          ],
+          "meanStepBefore": 17.6563,
+          "meanStepAfter": 13.2447
+        },
+        {
+          "atMs": 1475,
+          "from": [
+            304,
+            726
+          ],
+          "to": [
+            390,
+            844
+          ],
+          "meanStepBefore": 0.001,
+          "meanStepAfter": 0.0002
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -567.7597
+    },
+    {
+      "side": "ours",
+      "viewport": "390x844",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 275.9,
+          "from": [
+            390,
+            844
+          ],
+          "to": [
+            304,
+            726
+          ],
+          "meanStepBefore": 17.6693,
+          "meanStepAfter": 13.2253
+        },
+        {
+          "atMs": 1491.5,
+          "from": [
+            304,
+            726
+          ],
+          "to": [
+            390,
+            844
+          ],
+          "meanStepBefore": 0.0009,
+          "meanStepAfter": 0.0001
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -568.0442
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 268.4,
+          "from": [
+            700,
+            700
+          ],
+          "to": [
+            546,
+            602
+          ],
+          "meanStepBefore": 31.5903,
+          "meanStepAfter": 28.8314
+        },
+        {
+          "atMs": 1485.1,
+          "from": [
+            546,
+            602
+          ],
+          "to": [
+            700,
+            700
+          ],
+          "meanStepBefore": 0.0012,
+          "meanStepAfter": 0.0008
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1016.3884
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 275.9,
+          "from": [
+            700,
+            700
+          ],
+          "to": [
+            546,
+            602
+          ],
+          "meanStepBefore": 31.644,
+          "meanStepAfter": 20.9574
+        },
+        {
+          "atMs": 1500.9,
+          "from": [
+            546,
+            602
+          ],
+          "to": [
+            700,
+            700
+          ],
+          "meanStepBefore": 0.0011,
+          "meanStepAfter": 0.0007
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1016.416
+    },
+    {
+      "side": "ours",
+      "viewport": "700x700",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 273.9,
+          "from": [
+            700,
+            700
+          ],
+          "to": [
+            546,
+            602
+          ],
+          "meanStepBefore": 31.6931,
+          "meanStepAfter": 20.9679
+        },
+        {
+          "atMs": 1490.7,
+          "from": [
+            546,
+            602
+          ],
+          "to": [
+            700,
+            700
+          ],
+          "meanStepBefore": 0.0012,
+          "meanStepAfter": 0.0009
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -1017.0575
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "repeat": 0,
+      "boundaries": [
+        {
+          "atMs": 275.2,
+          "from": [
+            844,
+            390
+          ],
+          "to": [
+            658,
+            335
+          ],
+          "meanStepBefore": 17.6676,
+          "meanStepAfter": 18.7604
+        },
+        {
+          "atMs": 1492.6,
+          "from": [
+            658,
+            335
+          ],
+          "to": [
+            844,
+            390
+          ],
+          "meanStepBefore": 0.0009,
+          "meanStepAfter": 0.0002
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -568.2171
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "repeat": 1,
+      "boundaries": [
+        {
+          "atMs": 268.1,
+          "from": [
+            844,
+            390
+          ],
+          "to": [
+            658,
+            335
+          ],
+          "meanStepBefore": 18.1566,
+          "meanStepAfter": 15.2034
+        },
+        {
+          "atMs": 1484.4,
+          "from": [
+            658,
+            335
+          ],
+          "to": [
+            844,
+            390
+          ],
+          "meanStepBefore": 0.0008,
+          "meanStepAfter": 0.0003
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -579.4664
+    },
+    {
+      "side": "ours",
+      "viewport": "844x390",
+      "repeat": 2,
+      "boundaries": [
+        {
+          "atMs": 267.9,
+          "from": [
+            844,
+            390
+          ],
+          "to": [
+            658,
+            335
+          ],
+          "meanStepBefore": 17.5992,
+          "meanStepAfter": 14.65
+        },
+        {
+          "atMs": 1484.5,
+          "from": [
+            658,
+            335
+          ],
+          "to": [
+            844,
+            390
+          ],
+          "meanStepBefore": 0.0009,
+          "meanStepAfter": 0.0002
+        }
+      ],
+      "velocityWasNonZeroAtFirstResize": true,
+      "motionContinuedAfterResize": true,
+      "gestureClosed": true,
+      "totalTravel": -566.5191
+    }
+  ],
+  "visibleWrapTeleportsOurSide": 0,
+  "visibleWrapTeleportsTargetSide": 0,
+  "consoleAndPageErrors": {
+    "target": 0,
+    "ours": 0,
+    "oursIncludingHarnessReloads": 0,
+    "targetSamples": [],
+    "ourSamples": []
+  }
+}

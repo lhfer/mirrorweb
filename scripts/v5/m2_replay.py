@@ -85,7 +85,8 @@ def truth_series(run: dict, field: str):
     return out if any(v is not None for v in out) else None
 
 
-def replay(run: dict, *, pin_release_step: bool = False) -> dict:
+def replay(run: dict, *, pin_release_step: bool = False,
+           release_after_frame: bool = False) -> dict:
     """Run the frozen motion contract on this run's input, in callback order.
 
     One model step per recorded frame sample. The events consumed by step N are
@@ -98,11 +99,31 @@ def replay(run: dict, *, pin_release_step: bool = False) -> dict:
     decided to keep; see SourceExactMotion.begin_frame for the measurement that
     fixed it at one frame rather than nought or two.
 
-    `pin_release_step` is a DIAGNOSTIC, not the product path: it commits the
-    release on the frame the engine recorded committing it on, instead of the
-    frame the callback order implies. The difference between the two runs is
-    the size of the sub-frame ambiguity described in this module's docstring,
-    and it is reported rather than adopted.
+    `release_after_frame` is the DIAGNOSTIC that measures the sub-frame window
+    this module's docstring describes, and it earns its place by being decisive
+    rather than by sounding plausible.
+
+    The question it settles: when a pointerup is dispatched between two of our
+    sample callbacks, had the PAGE's own frame callback already run and pushed
+    another point into the gesture history? If it had, `up()` measures its
+    velocity over a history one entry longer, and the fling is different. We
+    cannot see the page's callback from outside, so the honest thing is to
+    replay it both ways and report where they disagree.
+
+    Measured across 180 runs on our own page, against the engine's own recorded
+    spring target: the default ordering -- release BEFORE this frame's pan
+    dispatch -- is exact in 176 of them, and the alternative is wrong in 44. So
+    the default is the right reading and is what the product path uses. The
+    remaining 4 to 5 runs are ones where the race fell the other way, and they
+    are reported as INSTRUMENT_SUBFRAME_RACE rather than as engine error,
+    because replaying them the other way puts them at zero and puts forty
+    others wrong.
+
+    `pin_release_step` is a weaker diagnostic kept for completeness: it commits
+    the release on the frame the engine recorded committing it on. It comes back
+    at zero on every run, which says the release lands on the right FRAME; the
+    disagreement is about ordering WITHIN the frame, which is what
+    `release_after_frame` measures.
     """
     if not has_order(run):
         raise ValueError("trace carries no callback order; this is an M1 trace")
@@ -120,6 +141,7 @@ def replay(run: dict, *, pin_release_step: bool = False) -> dict:
            "consumedPerFrame": [], "eventsAfterLastFrame": 0}
     pending: list = []
     held_release = None
+    deferred_up = None
     pointer_ndc = None
     ei = 0
 
@@ -151,6 +173,12 @@ def replay(run: dict, *, pin_release_step: bool = False) -> dict:
                 cancelled = kind in ("pointercancel", "touchcancel")
                 x = e["clientX"] if e["clientX"] is not None else model.session.history[-1][0]
                 y = e["clientY"] if e["clientY"] is not None else model.session.history[-1][1]
+                if release_after_frame:
+                    # Deferred so that this frame's pan dispatch pushes its
+                    # history entry FIRST, and up() then measures its velocity
+                    # over the longer history. The other side of the race.
+                    deferred_up = (x, y, e["t"], cancelled)
+                    continue
                 info = model.session.up(x, y, e["t"], cancelled=cancelled)
                 if info is not None:
                     if pin_release_step:
@@ -172,6 +200,12 @@ def replay(run: dict, *, pin_release_step: bool = False) -> dict:
         info = model.session.frame(t)
         if info is not None:
             pending.append(("pan", info))
+        if deferred_up is not None:
+            ux, uy, ut, ucancel = deferred_up
+            deferred_up = None
+            uinfo = model.session.up(ux, uy, ut, cancelled=ucancel)
+            if uinfo is not None:
+                pending.append(("end", uinfo))
         for kind, i in pending:
             # Stamped with the FRAME's clock, not the event's. The Target has
             # no out-of-band path: a release is dispatched by the same frame

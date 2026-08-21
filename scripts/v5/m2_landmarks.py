@@ -60,6 +60,30 @@ R = _load("m2_replay", "m2_replay.py")
 # stops reading.
 MIN_LIVE_CARDS = 4
 
+
+def reseeded(run: dict) -> bool:
+    """Did the grid re-tile inside this run?
+
+    A resize re-tiles the field and re-seeds the recovery: the recovered scroll
+    is an INTEGRAL of per-frame card motion, so it has no absolute origin, and
+    across a re-tile it picks up a constant offset. Measured on our own page,
+    where the engine's own scroll is readable beside the recovery: the recovery
+    error is 0.02 to 0.03 world units on every other sequence and 15 to 36 world
+    units on the resize runs, with the median error equal to the worst -- a
+    constant offset, exactly as the mechanism predicts, not a divergence.
+
+    So a trajectory landmark taken across that boundary measures the re-seed.
+    It is reported as INSTRUMENT_UNREADABLE rather than gated, on BOTH sides,
+    and resize is judged on continuity instead -- which is a per-frame question
+    the re-seed does not touch. This is the same exclusion M0 and M1 applied for
+    the same reason; what is new is that it is now measured rather than argued.
+    """
+    fr = run.get("frames") or []
+    if len(fr) < 2:
+        return False
+    return any(fr[i]["w"] != fr[0]["w"] or fr[i]["h"] != fr[0]["h"]
+               for i in range(1, len(fr)))
+
 # "Visually stopped": world units per second below which nothing on screen is
 # moving in a way a viewer could see. Declared here, once, and used identically
 # on both sides.
@@ -101,6 +125,8 @@ def scheduler_invariant(run: dict, obs: dict, hz: float) -> dict:
     """
     live = [n for n in obs.get("liveCards", []) if n is not None]
     if live and min(live) < MIN_LIVE_CARDS:
+        return {}
+    if reseeded(run):
         return {}
     if len(obs["t"]) < 8:
         return {}

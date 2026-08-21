@@ -2,7 +2,7 @@
 
 Single canonical entry point. Every delivery updates this file.
 
-Last updated: 2026-08-20 (T0 render-loop repair, T1 source-exact typography)
+Last updated: 2026-08-21 (M2 motion closure: instrument and gate repair, failure attribution, MOTION-EXC-01 candidate)
 
 | | |
 | --- | --- |
@@ -34,7 +34,10 @@ stated here and no further hygiene commit is created to chase it.
 | `motionCodeCommit` | `655fda4` `v5-m1-source-exact-motion-code` — the source-exact motion model. Frozen files byte-identical to `7dc7cf1`. |
 | `motionCorrectionsCommit` | `e97bc17` `v5-m1-source-exact-motion-code-corrections` — the first gate run FAILED and found four engine defects, four instrument faults and two contract errors. Not one of the four mandated commit names, and named rather than folded into one of them: it is product code, and a reviewer reading the ledger should see that the code commit was corrected before any evidence was captured against it. |
 | `motionReleaseFixCommit` | `8e947b9` `v5-m1-source-exact-motion-release-and-instruments` — the release was applied out of band; three more instruments replaced. |
-| `motionEvidenceCommit` | `v5-m1-source-exact-motion-evidence` — captured at `8e947b9`. |
+| `motionEvidenceCommit` | `788e6a7` `v5-m1-source-exact-motion-evidence` — captured at `8e947b9`. `d8447de` then removed the recordings from the public tree; the oversized blobs remain in this branch's history, because removing them needs a history rewrite and this branch does not permit one. |
+| `m2InstrumentCommit` | `cff917b` `v5-m2-motion-instrument-and-gate-repair` — the ordering instrument, the direction-aware gate, and the Target-only baseline, sealed before the candidate was captured. No product code. |
+| `m2CodeCommit` | `30dcf64` `v5-m2-motion-closure-code` — scheduling readbacks, the camera comments that contradicted the code they sat above, and the `labelCamera` → `css3dTransformCamera` rename. No motion behaviour changed. |
+| `m2EvidenceCommit` | `v5-m2-motion-closure-evidence` — captured at `30dcf64`. |
 | `typographyAcceptCommit` | `7dc7cf1` `v5-t1-source-exact-typography-accept` — product acceptance of T0 and T1, the typography freeze contract, and three evidence wording corrections. No product visual code. |
 | `reviewHeadAtDelivery` | the branch tip after the commits above; resolve with `git rev-parse HEAD`. A file cannot contain its own hash and no hygiene commit is created to chase one. |
 
