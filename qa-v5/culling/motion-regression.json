@@ -1,0 +1,33 @@
+{
+ "what": "V0 motion freeze regression: the SAME engine gates the motion round sealed, re-run on a fresh capture at the V0 build. The landmark verdict against the Target is the accepted M3 state and is deliberately not re-read here.",
+ "engineVsContract": {
+  "rowsTotal": 15,
+  "rowsFailed": 0,
+  "rowsExactToFloatingPoint": 15,
+  "worstRecoveryError": 0.011357,
+  "threshold": 0.1
+ },
+ "releaseHistory": {
+  "releases": 11,
+  "exact": 11,
+  "mismatched": 0,
+  "worstVelocityError": 0.0,
+  "gesturesWithNoRecordedRelease": []
+ },
+ "cardLabelMotion": {
+  "assertions": 34,
+  "failed": 0,
+  "thresholdPx": 1,
+  "gate": "label corners against the card mid-plane projected through the CSS3D camera",
+  "rawReport": "artifacts/culling/card-label-motion.json (not a public file; the brief enumerates the public tree)"
+ },
+ "continuity": {
+  "wrapTeleportsOurSide": 0,
+  "wheelRunsOurSide": 3,
+  "wheelResponsesOurSide": 0,
+  "touchRunsOurSide": 4,
+  "touchRunsNotAtRest": 0,
+  "consoleAndPageErrorsOurSide": 0
+ },
+ "pass": true
+}

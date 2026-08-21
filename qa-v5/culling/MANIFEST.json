@@ -1,0 +1,67 @@
+{
+ "stage": "culling",
+ "repository": "lhfer/mirrorweb",
+ "branch": "rebuild/liquid-glass-v5-source-exact",
+ "capturedAtHead": "820cd92",
+ "capturedAtHeadMeaning": "the commit every capture and gate in this directory was taken at. REQUIRED input -- the tool has no current-HEAD fallback, because a default here makes the evidence commit look like the capture commit.",
+ "reviewHeadMeaning": "NOT stated here: a committed file cannot contain the hash of the commit that carries it. The private package's PACKAGE-MANIFEST.json states it as a full SHA.",
+ "route": "/?composition=sourceExact&qa",
+ "captureTimestampUtc": "2026-08-21T18:34:11Z",
+ "lanes": {
+  "target": "https://infinite-liquid-glass.shader.se/?v=2, live",
+  "before": "the accepted pre-V0 build (v5-m3-motion-product-accept), served from a worktree; lane fingerprint in the trace proves it (no labels.sync probe, no culling verdicts)",
+  "candidate": "the V0 build"
+ },
+ "files": [
+  {
+   "file": "README.md",
+   "bytes": 8896,
+   "sha256": "3b9c06fd27ec368647ee569a6e8a44549dab6ca75a002e832dcf8a014e53720d"
+  },
+  {
+   "file": "target-culling-source.json",
+   "bytes": 22493,
+   "sha256": "17b6b844594360a7590736882c20ea9d7da1a410fc6b645a23b849ac7f0ba672"
+  },
+  {
+   "file": "coverage-truth.json",
+   "bytes": 85054,
+   "sha256": "b9d5fc58bc7d30dc414a02d924315be7abf88d2bf695feaa8b37485306eb0970"
+  },
+  {
+   "file": "slot-verdicts.json",
+   "bytes": 23187,
+   "sha256": "23f1b0f7cfdfd77b8a39c1fddac191add8b9436cfb6abcd7486df1be51624c39"
+  },
+  {
+   "file": "edge-pop-in.json",
+   "bytes": 14850,
+   "sha256": "c49fca095f8756a3f7766d8bc2c13152c83e8dd3c4e633a8719a7c7505223874"
+  },
+  {
+   "file": "transform-writes.json",
+   "bytes": 70819,
+   "sha256": "d675e84648beb3540f59705a831deb9f3ee7f0b92583aaa70b346e8d82edff1d"
+  },
+  {
+   "file": "performance.json",
+   "bytes": 7108,
+   "sha256": "9ee3cb603d855f01a106fa82bad99462e0d811968c16ff9164675d939967a03c"
+  },
+  {
+   "file": "typography-regression.json",
+   "bytes": 4836,
+   "sha256": "8fad02741d668d64459556f6d3fef013d096562b982e4b5329170cae91bb398a"
+  },
+  {
+   "file": "motion-regression.json",
+   "bytes": 1026,
+   "sha256": "d7bff8bc196a9a615075fb8202913ac6d9724b36ba7735384cfe711780570817"
+  },
+  {
+   "file": "source-contract.json",
+   "bytes": 170080,
+   "sha256": "81836776feb5dd47ad0653451fadea75ed958056bf318987d8a55a735fb21738"
+  }
+ ]
+}

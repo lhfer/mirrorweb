@@ -1,0 +1,614 @@
+{
+ "what": "labels ENTERING visibility during gestures: how deep inside the strict viewport was the label on its first visible frame? 0 means it recovered inside the 64 px margin band, before reaching the viewport -- the Target's own rule pops a label deeper than 0 only when a frame's motion outruns the band, so the gate is candidate-vs-target, not an absolute no-entry line",
+ "perLane": {
+  "target": [
+   {
+    "viewport": "1440x900",
+    "state": "slow-horizontal-drag",
+    "entries": 6,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "1440x900",
+    "state": "fast-flick",
+    "entries": 9,
+    "entriesInsideStrictViewport": 8,
+    "maxStrictOverlapPx": 41.19,
+    "p95StrictOverlapPx": 32.99
+   },
+   {
+    "viewport": "1440x900",
+    "state": "reverse-flick",
+    "entries": 9,
+    "entriesInsideStrictViewport": 6,
+    "maxStrictOverlapPx": 22.15,
+    "p95StrictOverlapPx": 14.22
+   },
+   {
+    "viewport": "1440x900",
+    "state": "touch-drag-release",
+    "entries": 14,
+    "entriesInsideStrictViewport": 2,
+    "maxStrictOverlapPx": 6.41,
+    "p95StrictOverlapPx": 2.84
+   },
+   {
+    "viewport": "1440x900",
+    "state": "long-drag-multi-wrap",
+    "entries": 64,
+    "entriesInsideStrictViewport": 62,
+    "maxStrictOverlapPx": 118.49,
+    "p95StrictOverlapPx": 98.01
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "slow-horizontal-drag",
+    "entries": 5,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "fast-flick",
+    "entries": 8,
+    "entriesInsideStrictViewport": 7,
+    "maxStrictOverlapPx": 60.67,
+    "p95StrictOverlapPx": 58.19
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "reverse-flick",
+    "entries": 9,
+    "entriesInsideStrictViewport": 8,
+    "maxStrictOverlapPx": 33.76,
+    "p95StrictOverlapPx": 31.33
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "touch-drag-release",
+    "entries": 11,
+    "entriesInsideStrictViewport": 3,
+    "maxStrictOverlapPx": 19.75,
+    "p95StrictOverlapPx": 17.17
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "long-drag-multi-wrap",
+    "entries": 64,
+    "entriesInsideStrictViewport": 63,
+    "maxStrictOverlapPx": 171,
+    "p95StrictOverlapPx": 160.48
+   },
+   {
+    "viewport": "390x844",
+    "state": "slow-horizontal-drag",
+    "entries": 8,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "390x844",
+    "state": "fast-flick",
+    "entries": 12,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "390x844",
+    "state": "reverse-flick",
+    "entries": 13,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "390x844",
+    "state": "touch-drag-release",
+    "entries": 15,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "390x844",
+    "state": "long-drag-multi-wrap",
+    "entries": 51,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "slow-horizontal-drag",
+    "entries": 4,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "fast-flick",
+    "entries": 7,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "reverse-flick",
+    "entries": 6,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "touch-drag-release",
+    "entries": 10,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "long-drag-multi-wrap",
+    "entries": 63,
+    "entriesInsideStrictViewport": 59,
+    "maxStrictOverlapPx": 44.19,
+    "p95StrictOverlapPx": 35.07
+   },
+   {
+    "viewport": "700x700",
+    "state": "slow-horizontal-drag",
+    "entries": 36,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "700x700",
+    "state": "fast-flick",
+    "entries": 54,
+    "entriesInsideStrictViewport": 6,
+    "maxStrictOverlapPx": 11.63,
+    "p95StrictOverlapPx": 3.22
+   },
+   {
+    "viewport": "700x700",
+    "state": "reverse-flick",
+    "entries": 58,
+    "entriesInsideStrictViewport": 2,
+    "maxStrictOverlapPx": 13.03,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "700x700",
+    "state": "touch-drag-release",
+    "entries": 61,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "700x700",
+    "state": "long-drag-multi-wrap",
+    "entries": 230,
+    "entriesInsideStrictViewport": 70,
+    "maxStrictOverlapPx": 29.31,
+    "p95StrictOverlapPx": 14.96
+   }
+  ],
+  "before": [
+   {
+    "viewport": "1440x900",
+    "state": "slow-horizontal-drag",
+    "entries": 16,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "1440x900",
+    "state": "fast-flick",
+    "entries": 27,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "1440x900",
+    "state": "reverse-flick",
+    "entries": 23,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "1440x900",
+    "state": "touch-drag-release",
+    "entries": 22,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "1440x900",
+    "state": "long-drag-multi-wrap",
+    "entries": 161,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "slow-horizontal-drag",
+    "entries": 14,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "fast-flick",
+    "entries": 25,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "reverse-flick",
+    "entries": 22,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "touch-drag-release",
+    "entries": 20,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "long-drag-multi-wrap",
+    "entries": 163,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "390x844",
+    "state": "slow-horizontal-drag",
+    "entries": 3,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "390x844",
+    "state": "fast-flick",
+    "entries": 5,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "390x844",
+    "state": "reverse-flick",
+    "entries": 5,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "390x844",
+    "state": "touch-drag-release",
+    "entries": 4,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "390x844",
+    "state": "long-drag-multi-wrap",
+    "entries": 19,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "slow-horizontal-drag",
+    "entries": 10,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "fast-flick",
+    "entries": 17,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "reverse-flick",
+    "entries": 15,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "touch-drag-release",
+    "entries": 12,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "long-drag-multi-wrap",
+    "entries": 129,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "700x700",
+    "state": "slow-horizontal-drag",
+    "entries": 31,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "700x700",
+    "state": "fast-flick",
+    "entries": 51,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "700x700",
+    "state": "reverse-flick",
+    "entries": 43,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "700x700",
+    "state": "touch-drag-release",
+    "entries": 39,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "700x700",
+    "state": "long-drag-multi-wrap",
+    "entries": 196,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   }
+  ],
+  "candidate": [
+   {
+    "viewport": "1440x900",
+    "state": "slow-horizontal-drag",
+    "entries": 6,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "1440x900",
+    "state": "fast-flick",
+    "entries": 11,
+    "entriesInsideStrictViewport": 9,
+    "maxStrictOverlapPx": 48.09,
+    "p95StrictOverlapPx": 45.32
+   },
+   {
+    "viewport": "1440x900",
+    "state": "reverse-flick",
+    "entries": 9,
+    "entriesInsideStrictViewport": 7,
+    "maxStrictOverlapPx": 18.7,
+    "p95StrictOverlapPx": 10.98
+   },
+   {
+    "viewport": "1440x900",
+    "state": "touch-drag-release",
+    "entries": 12,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "1440x900",
+    "state": "long-drag-multi-wrap",
+    "entries": 64,
+    "entriesInsideStrictViewport": 62,
+    "maxStrictOverlapPx": 112.96,
+    "p95StrictOverlapPx": 97.38
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "slow-horizontal-drag",
+    "entries": 5,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "fast-flick",
+    "entries": 9,
+    "entriesInsideStrictViewport": 7,
+    "maxStrictOverlapPx": 56.82,
+    "p95StrictOverlapPx": 56.4
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "reverse-flick",
+    "entries": 8,
+    "entriesInsideStrictViewport": 7,
+    "maxStrictOverlapPx": 37.36,
+    "p95StrictOverlapPx": 35.65
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "touch-drag-release",
+    "entries": 11,
+    "entriesInsideStrictViewport": 3,
+    "maxStrictOverlapPx": 9.4,
+    "p95StrictOverlapPx": 5.77
+   },
+   {
+    "viewport": "1920x1080",
+    "state": "long-drag-multi-wrap",
+    "entries": 64,
+    "entriesInsideStrictViewport": 62,
+    "maxStrictOverlapPx": 171.72,
+    "p95StrictOverlapPx": 152.75
+   },
+   {
+    "viewport": "390x844",
+    "state": "slow-horizontal-drag",
+    "entries": 8,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "390x844",
+    "state": "fast-flick",
+    "entries": 14,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "390x844",
+    "state": "reverse-flick",
+    "entries": 11,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "390x844",
+    "state": "touch-drag-release",
+    "entries": 15,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "390x844",
+    "state": "long-drag-multi-wrap",
+    "entries": 50,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "slow-horizontal-drag",
+    "entries": 4,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "fast-flick",
+    "entries": 7,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "reverse-flick",
+    "entries": 6,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "touch-drag-release",
+    "entries": 9,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "844x390",
+    "state": "long-drag-multi-wrap",
+    "entries": 63,
+    "entriesInsideStrictViewport": 61,
+    "maxStrictOverlapPx": 39.57,
+    "p95StrictOverlapPx": 34.86
+   },
+   {
+    "viewport": "700x700",
+    "state": "slow-horizontal-drag",
+    "entries": 36,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "700x700",
+    "state": "fast-flick",
+    "entries": 60,
+    "entriesInsideStrictViewport": 11,
+    "maxStrictOverlapPx": 19.02,
+    "p95StrictOverlapPx": 12.92
+   },
+   {
+    "viewport": "700x700",
+    "state": "reverse-flick",
+    "entries": 49,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "700x700",
+    "state": "touch-drag-release",
+    "entries": 59,
+    "entriesInsideStrictViewport": 0,
+    "maxStrictOverlapPx": 0.0,
+    "p95StrictOverlapPx": 0.0
+   },
+   {
+    "viewport": "700x700",
+    "state": "long-drag-multi-wrap",
+    "entries": 230,
+    "entriesInsideStrictViewport": 57,
+    "maxStrictOverlapPx": 28.12,
+    "p95StrictOverlapPx": 16.48
+   }
+  ]
+ },
+ "candidateMaxStrictOverlapPx": 171.72,
+ "targetMaxStrictOverlapPx": 171,
+ "pass": true
+}

@@ -157,6 +157,15 @@ export async function runSequence(page, cdp, name, w, h) {
     case "long-drag-multi-wrap":
       await mouseDrag(page, [Math.round(w * 0.9), cy], -Math.round(w * 0.1), 0, 40, 14);
       return { tailMs: 3400 };
+    case "orientation-flip":
+      // V0 culling round. NOT in SEQUENCES, so no motion trace picks it up:
+      // a full orientation flip and back, for the culling review's
+      // orientation clip and the stale-label state. Additive only; nothing
+      // above changed.
+      await page.setViewportSize({ width: h, height: w });
+      await sleep(1600);
+      await page.setViewportSize({ width: w, height: h });
+      return { tailMs: 1800 };
     default:
       throw new Error(`unknown sequence ${name}`);
   }

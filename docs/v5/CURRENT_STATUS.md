@@ -51,6 +51,7 @@ stated here and no further hygiene commit is created to chase it.
 | T0 Render Loop Repair | **ACCEPTED** |
 | Typography | **ACCEPTED** — frozen, see the freeze contract below |
 | Motion / Pointer / Touch | **ACCEPTED — FROZEN**, see [`MOTION_FREEZE_CONTRACT.md`](MOTION_FREEZE_CONTRACT.md). M0–M3 results below are history |
+| V0 CSS3D label coverage culling | **READY FOR CSS3D CULLING PRODUCT REVIEW** — absolute gate PASS, see the V0 section |
 | Optics / Media / Layout | **NOT AUTHORISED THIS ROUND**, unmodified |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
@@ -221,6 +222,37 @@ Two results that are worth carrying forward on their own:
 
 Evidence: [`qa-v5/motion-final/`](../../qa-v5/motion-final/).
 
+## V0 — source-exact CSS3D label coverage culling
+
+**READY FOR CSS3D CULLING PRODUCT REVIEW.** The Target keeps ~16 labels alive
+at 1440x900 where our page kept 81 — its only test was a JS backface
+dot-product. V0 read the Target's culling out of its bundle byte by byte
+(30 anchored sites, live bundle byte-identical) and implemented it in
+[`SourceExactLabelCulling.ts`](../../src/ui/SourceExactLabelCulling.ts):
+a dedicated dolly-free coverage camera (`Py.position.set(d,h,f)` against the
+render camera's `(d,h,f+p)` in one source statement), the four projected card
+corners, the NDC z skip, the 1 px² minimum area, the exact 64 px margin.
+Visibility / culling only; every frozen system untouched.
+
+| | |
+| --- | --- |
+| Target rule source verification | **PASS** — 20,131 Target frames replayed slot-for-slot; 0 beyond boundary; 363 wrap-seam rows, every one with the flip demonstrated under ±1e-3 perturbation |
+| Candidate rule consistency | **PASS** — 20,372 frames, 0 mismatches; snapshots bit-exact to 9.1e-13 px |
+| Settled slot identity vs Target | **40/40 states identical, by ILG code** (incl. resize and orientation flip) |
+| Lost / intruding / stale labels | 0 / 0 / 0 — stale-rect check worst delta 0.0135 px over 2,456 drawn labels |
+| Edge pop-in | candidate 171.7 px vs Target's own 171.0 px worst entry overlap — comparable, PASS |
+| DOM pressure | transform writes p95/frame 120 → 36 (Target 36); sustained-input p95 100 → 17 |
+| Performance | labels.sync 0.3 ms p95, frame time unchanged (GPU-bound), heap bounded, quality untouched |
+| Depth | **NOT APPLICABLE on screen, measured**: 0 front-facing overlaps inside the strict viewport; 30 pairs live only in the 64 px margin band |
+| Motion freeze smoke | PASS — engine vs contract 15/15 exact, release history 11/11, wrap teleports 0; card/label corner delta 34/34 |
+| Regressions | source contract 36/36, layout 14/14, typography 4/4, tsc + build PASS, console/page errors 0 |
+
+Observed in source and deliberately NOT applied: the Target drives its WebGL
+glass-mesh `visible` from the same verdict. Outside V0's label mandate;
+flagged for a product decision. Evidence:
+[`qa-v5/culling/README.md`](../../qa-v5/culling/README.md); private package
+`qa-v5/private/culling-review.zip`.
+
 ## FSX-A integration hardening
 
 | | |
@@ -242,9 +274,10 @@ See [`FSX_ACCEPTANCE.md`](FSX_ACCEPTANCE.md).
 
 **Accepted by product**
 - `62f5772` F0/F1 Foundation baseline · `b524dc5` NL-03 media focus
-- M3 motion source reconciliation: `b8cbbd2` writer-order forensics · `4df03f2` writer-order code (motion behaviour baseline) · `8f906f1` evidence · `b99e5ce` hygiene (accepted review tip)
+- M3 motion source reconciliation: `b8cbbd2` writer-order forensics · `4df03f2` writer-order code (motion behaviour baseline) · `8f906f1` evidence · `b99e5ce` hygiene (accepted review tip) · `17fcaca` acceptance record (docs)
 
 **Candidate, not accepted**
+- V0 label coverage culling: `820cd92` code · the evidence commit at this tip
 - `dd6d7bf` / `4ca597f` F2 · `b5cff63` F2 audit · `730beb7` F3 diagnosis
 - `f56f55e` / `ba4ba32` F2.5 · this delivery's three F2.6 commits
 

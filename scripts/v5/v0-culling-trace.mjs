@@ -80,7 +80,7 @@ function installRecorder() {
   };
   window.__V0 = M;
 
-  M.discover = () => {
+  const findLabels = () => {
     const found = [];
     // Our pages: every label element carries data-ilg and data-slot.
     const ours = document.querySelectorAll("#labels [data-ilg]");
@@ -108,36 +108,43 @@ function installRecorder() {
         }
       }
     }
+    return found;
+  };
+
+  /**
+   * (Re)bind the label pool: elements, style caches, mutation observers.
+   *
+   * Re-run whenever a tracked element is DETACHED: a Target resize that
+   * changes cols x rows REMOUNTS its label children (the pool arrays are
+   * truncated or grown and React replaces the elements), and an instrument
+   * holding the old references would keep reading a detached node's frozen
+   * style forever -- which is exactly what the first capture of this round
+   * did, and why its orientation runs disagreed with the rule by hundreds of
+   * px. Pool versions are recorded per frame so the reader always maps a
+   * frame onto the codes that were actually mounted.
+   */
+  M.bindPool = () => {
+    const found = findLabels();
+    if (M.observer) M.observer.disconnect();
+    // Pool GROWTH appends new children without detaching any tracked element
+    // (React keys the survivors), so the isConnected test alone never fires
+    // on grow-back after a shrink -- the first capture of this round proved
+    // that by under-reporting the Target's pool for the rest of every
+    // orientation run. A childList observer on the label container marks the
+    // pool dirty on ANY add/remove.
+    if (M.poolObserver) M.poolObserver.disconnect();
+    M.poolDirty = false;
+    const container = found.length ? found[0].el.parentElement : null;
+    if (container) {
+      M.poolObserver = new MutationObserver(() => { M.poolDirty = true; });
+      M.poolObserver.observe(container, { childList: true });
+    }
     M.els = found.map((f) => f.el);
     M.pool = found.map((f) => f.code);
     M.prev = found.map((f) => ({
       t: f.el.style.transform, v: f.el.style.visibility,
       w: f.el.style.width, h: f.el.style.height,
     }));
-
-    // CSS3D camera, both spellings (see the motion-round recorder).
-    let cameraEl = null, perspEl = null;
-    for (const d of document.querySelectorAll("div")) {
-      if (cameraEl === null && d.style.transform && d.style.transform.includes("perspective(")) {
-        cameraEl = d; perspEl = d.parentElement;
-      }
-      if (perspEl === null && getComputedStyle(d).perspective !== "none") {
-        perspEl = d;
-        const kid = d.querySelector(":scope > div");
-        if (kid) cameraEl = kid;
-      }
-      if (cameraEl && perspEl) break;
-    }
-    M.cameraEl = cameraEl; M.perspEl = perspEl;
-    M.hasTruth = typeof window.__ILG_QA__ !== "undefined"
-      && typeof window.__ILG_QA__.getMotionTruth === "function";
-
-    // One observer per label. Records land as a microtask after the frame's
-    // writes, so a batch is attributed to the sample that FOLLOWS the frame
-    // that wrote it -- the same one-frame convention on every lane. A write
-    // that leaves the property value unchanged is not counted; neither side
-    // performs any (both guard or cache), and what is being counted is DOM
-    // style CHANGE pressure.
     const byEl = new Map(M.els.map((el, n) => [el, n]));
     M.observer = new MutationObserver((records) => {
       const touched = new Set();
@@ -156,7 +163,39 @@ function installRecorder() {
       }
     });
     for (const el of M.els) M.observer.observe(el, { attributes: true, attributeFilter: ["style"] });
+    const key = M.pool.join(",");
+    if (!M.pools.length || M.pools[M.pools.length - 1].join(",") !== key) {
+      M.pools.push(M.pool.slice());
+    }
+    M.pv = M.pools.length - 1;
+  };
 
+  M.discover = () => {
+    M.pools = [];
+    M.bindPool();
+
+    // CSS3D camera, both spellings (see the motion-round recorder).
+    let cameraEl = null, perspEl = null;
+    for (const d of document.querySelectorAll("div")) {
+      if (cameraEl === null && d.style.transform && d.style.transform.includes("perspective(")) {
+        cameraEl = d; perspEl = d.parentElement;
+      }
+      if (perspEl === null && getComputedStyle(d).perspective !== "none") {
+        perspEl = d;
+        const kid = d.querySelector(":scope > div");
+        if (kid) cameraEl = kid;
+      }
+      if (cameraEl && perspEl) break;
+    }
+    M.cameraEl = cameraEl; M.perspEl = perspEl;
+    M.hasTruth = typeof window.__ILG_QA__ !== "undefined"
+      && typeof window.__ILG_QA__.getMotionTruth === "function";
+
+    // Note on the write counters: mutation records land as a microtask after
+    // the frame's writes, so a batch is attributed to the sample that FOLLOWS
+    // the frame that wrote it -- the same one-frame convention on every lane.
+    // A write that leaves the property value unchanged does not mutate and is
+    // not counted; what is measured is style CHANGE pressure.
     const mid = document.elementFromPoint(Math.round(innerWidth / 2), Math.round(innerHeight / 2));
     return {
       pool: M.pool.length, codes: M.pool.slice(),
@@ -164,6 +203,18 @@ function installRecorder() {
       visible: M.els.filter((el) => el.style.visibility !== "hidden").length,
       domNodes: document.querySelectorAll("*").length,
       topElementAtCentre: mid ? `${mid.tagName}.${String(mid.className).slice(0, 90)}` : null,
+      // Lane fingerprint. A wrong URL or a stale server on a reused port must
+      // be visible in the artifact itself, not discovered from an implausible
+      // number downstream: the Candidate build carries the labels.sync probe
+      // and publishes culling verdicts; the Before build has neither; the
+      // Target has no QA surface at all.
+      qaHasLabelSyncProbe: typeof window.__ILG_QA__?.setLabelSyncProbe === "function",
+      qaPublishesCullingVerdicts: (() => {
+        try {
+          const t = window.__ILG_QA__?.getLabelTruth?.();
+          return !!t && Array.isArray(t.slots) && t.slots.some((s) => "culling" in s);
+        } catch { return false; }
+      })(),
     };
   };
 
@@ -189,6 +240,15 @@ function installRecorder() {
     if (!M.armed) return;
     const ord = ++M.ord;
     const t = +((rafTime ?? performance.now()) - M.t0).toFixed(3);
+    // A remounted pool (the Target re-grids on resize and React replaces the
+    // label elements) leaves the tracked references detached. Rebind and mark
+    // the frame, so the reader can both map codes correctly and treat the
+    // rebind frame as a transition.
+    let rebound = false;
+    if (M.poolDirty || M.els.some((el) => !el.isConnected)) {
+      M.bindPool();
+      rebound = true;
+    }
     const truth = truthOf();
     const labels = [];
     for (const el of M.els) {
@@ -204,7 +264,7 @@ function installRecorder() {
     }
     const w = M.writes;
     M.frames.push({
-      t, ord, w: innerWidth, h: innerHeight,
+      t, ord, w: innerWidth, h: innerHeight, pv: M.pv, rd: rebound || undefined,
       camera: M.cameraEl ? M.cameraEl.style.transform : null,
       perspective: M.perspEl
         ? (M.perspEl.style.perspective || getComputedStyle(M.perspEl).perspective) : null,
@@ -321,11 +381,11 @@ for (const vp of opts.vps) {
       const snapshot = snapshotAtEnd
         ? await page.evaluate(() => window.__V0.snapshot()) : null;
       const data = await page.evaluate(() => ({
-        pool: window.__V0.pool, frames: window.__V0.frames,
+        pool: window.__V0.pools[0], pools: window.__V0.pools, frames: window.__V0.frames,
       }));
       trace.runs.push({
         viewport: vp, state, found, frameCount: frames,
-        pool: data.pool, frames: data.frames,
+        pool: data.pool, pools: data.pools, frames: data.frames,
         snapshot, errors,
       });
       process.stdout.write(`  ${opts.lane} ${vp} ${state}: pool ${found.pool}, `

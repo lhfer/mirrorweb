@@ -1,0 +1,372 @@
+{
+ "what": "Before vs Candidate label cost under sustained real input. The Before build predates the labels.sync QA probe and was NOT patched to carry it -- its sync cost is bounded by its frame time; every other column is the same instrument on both lanes.",
+ "scenarios": {
+  "drag-10s": {
+   "before": {
+    "frames": 1348,
+    "visibleLabels": {
+     "p50": 83,
+     "p95": 84,
+     "max": 84
+    },
+    "transformWritesPerFrame": {
+     "p50": 100,
+     "p95": 100,
+     "max": 100
+    },
+    "visibilityWritesPerFrame": {
+     "p50": 0,
+     "p95": 1,
+     "max": 1
+    },
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 8.8,
+     "p99": 9.3
+    },
+    "longTasks": 0,
+    "longTaskMs": 0,
+    "domNodes": 4142,
+    "heapStartMB": 15.1,
+    "heapEndMB": 30.2,
+    "heapDeltaMB": 15.19,
+    "labelSyncCpuMs": null,
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   },
+   "candidate": {
+    "frames": 1475,
+    "visibleLabels": {
+     "p50": 16,
+     "p95": 17,
+     "max": 17
+    },
+    "transformWritesPerFrame": {
+     "p50": 16,
+     "p95": 17,
+     "max": 17
+    },
+    "visibilityWritesPerFrame": {
+     "p50": 0,
+     "p95": 1,
+     "max": 2
+    },
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 8.9,
+     "p99": 9.3
+    },
+    "longTasks": 0,
+    "longTaskMs": 0,
+    "domNodes": 4133,
+    "heapStartMB": 48.7,
+    "heapEndMB": 20.6,
+    "heapDeltaMB": -28.11,
+    "labelSyncCpuMs": {
+     "p50": 0.2,
+     "p95": 0.3,
+     "p99": 0.3,
+     "samples": 1475
+    },
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   }
+  },
+  "flick-10s": {
+   "before": {
+    "frames": 1395,
+    "visibleLabels": {
+     "p50": 84,
+     "p95": 89,
+     "max": 89
+    },
+    "transformWritesPerFrame": {
+     "p50": 100,
+     "p95": 100,
+     "max": 100
+    },
+    "visibilityWritesPerFrame": {
+     "p50": 0,
+     "p95": 2,
+     "max": 3
+    },
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 9.3,
+     "p99": 9.4
+    },
+    "longTasks": 0,
+    "longTaskMs": 0,
+    "domNodes": 4142,
+    "heapStartMB": 11.3,
+    "heapEndMB": 26.3,
+    "heapDeltaMB": 15.0,
+    "labelSyncCpuMs": null,
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   },
+   "candidate": {
+    "frames": 1394,
+    "visibleLabels": {
+     "p50": 16,
+     "p95": 17,
+     "max": 17
+    },
+    "transformWritesPerFrame": {
+     "p50": 16,
+     "p95": 17,
+     "max": 17
+    },
+    "visibilityWritesPerFrame": {
+     "p50": 0,
+     "p95": 1,
+     "max": 2
+    },
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 9.2,
+     "p99": 9.3
+    },
+    "longTasks": 0,
+    "longTaskMs": 0,
+    "domNodes": 4133,
+    "heapStartMB": 29.4,
+    "heapEndMB": 35.1,
+    "heapDeltaMB": 5.75,
+    "labelSyncCpuMs": {
+     "p50": 0.2,
+     "p95": 0.3,
+     "p99": 0.3,
+     "samples": 1394
+    },
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   }
+  },
+  "touch-wrap-20s": {
+   "before": {
+    "frames": 2646,
+    "visibleLabels": {
+     "p50": 94,
+     "p95": 95,
+     "max": 95
+    },
+    "transformWritesPerFrame": {
+     "p50": 96,
+     "p95": 96,
+     "max": 96
+    },
+    "visibilityWritesPerFrame": {
+     "p50": 0,
+     "p95": 0,
+     "max": 2
+    },
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 9,
+     "p99": 9.3
+    },
+    "longTasks": 0,
+    "longTaskMs": 0,
+    "domNodes": 4142,
+    "heapStartMB": 15.7,
+    "heapEndMB": 11.7,
+    "heapDeltaMB": -4.0,
+    "labelSyncCpuMs": null,
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   },
+   "candidate": {
+    "frames": 2647,
+    "visibleLabels": {
+     "p50": 18,
+     "p95": 20,
+     "max": 21
+    },
+    "transformWritesPerFrame": {
+     "p50": 18,
+     "p95": 20,
+     "max": 21
+    },
+    "visibilityWritesPerFrame": {
+     "p50": 0,
+     "p95": 1,
+     "max": 4
+    },
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 9.2,
+     "p99": 9.3
+    },
+    "longTasks": 0,
+    "longTaskMs": 0,
+    "domNodes": 4133,
+    "heapStartMB": 18.0,
+    "heapEndMB": 36.4,
+    "heapDeltaMB": 18.37,
+    "labelSyncCpuMs": {
+     "p50": 0.2,
+     "p95": 0.3,
+     "p99": 0.3,
+     "samples": 2647
+    },
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   }
+  },
+  "landscape-20s": {
+   "before": {
+    "frames": 2577,
+    "visibleLabels": {
+     "p50": 70,
+     "p95": 93,
+     "max": 93
+    },
+    "transformWritesPerFrame": {
+     "p50": 80,
+     "p95": 80,
+     "max": 96
+    },
+    "visibilityWritesPerFrame": {
+     "p50": 0,
+     "p95": 1,
+     "max": 27
+    },
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 9.1,
+     "p99": 9.3
+    },
+    "longTasks": 0,
+    "longTaskMs": 0,
+    "domNodes": 4142,
+    "heapStartMB": 19.0,
+    "heapEndMB": 22.4,
+    "heapDeltaMB": 3.37,
+    "labelSyncCpuMs": null,
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   },
+   "candidate": {
+    "frames": 2571,
+    "visibleLabels": {
+     "p50": 17,
+     "p95": 18,
+     "max": 18
+    },
+    "transformWritesPerFrame": {
+     "p50": 17,
+     "p95": 18,
+     "max": 18
+    },
+    "visibilityWritesPerFrame": {
+     "p50": 0,
+     "p95": 1,
+     "max": 23
+    },
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 9.2,
+     "p99": 9.3
+    },
+    "longTasks": 0,
+    "longTaskMs": 0,
+    "domNodes": 4133,
+    "heapStartMB": 28.2,
+    "heapEndMB": 26.9,
+    "heapDeltaMB": -1.32,
+    "labelSyncCpuMs": {
+     "p50": 0.2,
+     "p95": 0.3,
+     "p99": 0.4,
+     "samples": 2571
+    },
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   }
+  }
+ },
+ "checks": [
+  {
+   "scenario": "drag-10s",
+   "visibleBefore": 84,
+   "visibleCandidate": 17,
+   "visibleReduced": true,
+   "writesBefore": 100,
+   "writesCandidate": 17,
+   "writesReduced": true,
+   "qualityUnchangedAcrossLanes": true,
+   "candidateHeapDeltaMB": -28.11,
+   "heapBounded": true
+  },
+  {
+   "scenario": "flick-10s",
+   "visibleBefore": 89,
+   "visibleCandidate": 17,
+   "visibleReduced": true,
+   "writesBefore": 100,
+   "writesCandidate": 17,
+   "writesReduced": true,
+   "qualityUnchangedAcrossLanes": true,
+   "candidateHeapDeltaMB": 5.75,
+   "heapBounded": true
+  },
+  {
+   "scenario": "touch-wrap-20s",
+   "visibleBefore": 95,
+   "visibleCandidate": 20,
+   "visibleReduced": true,
+   "writesBefore": 96,
+   "writesCandidate": 20,
+   "writesReduced": true,
+   "qualityUnchangedAcrossLanes": true,
+   "candidateHeapDeltaMB": 18.37,
+   "heapBounded": true
+  },
+  {
+   "scenario": "landscape-20s",
+   "visibleBefore": 93,
+   "visibleCandidate": 18,
+   "visibleReduced": true,
+   "writesBefore": 80,
+   "writesCandidate": 18,
+   "writesReduced": true,
+   "qualityUnchangedAcrossLanes": true,
+   "candidateHeapDeltaMB": -1.32,
+   "heapBounded": true
+  }
+ ],
+ "pass": true
+}
