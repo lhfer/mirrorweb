@@ -52,6 +52,7 @@ stated here and no further hygiene commit is created to chase it.
 | Typography | **ACCEPTED** — frozen, see the freeze contract below |
 | Motion / Pointer / Touch | **ACCEPTED — FROZEN**, see [`MOTION_FREEZE_CONTRACT.md`](MOTION_FREEZE_CONTRACT.md). M0–M3 results below are history |
 | V0 CSS3D label coverage culling | **ACCEPTED — FROZEN**, see [`CULLING_FREEZE_CONTRACT.md`](CULLING_FREEZE_CONTRACT.md). The V0 section below is history |
+| V1 WebGL render culling | **GATE PASS — FROZEN**, see [`RENDER_CULLING_FREEZE_CONTRACT.md`](RENDER_CULLING_FREEZE_CONTRACT.md) |
 | Optics / Media / Layout | **NOT AUTHORISED THIS ROUND**, unmodified |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
@@ -280,6 +281,7 @@ See [`FSX_ACCEPTANCE.md`](FSX_ACCEPTANCE.md).
 - V0 label coverage culling: `820cd92` code (culling behaviour baseline) · `7f9e0ef` evidence · `b4a4450` package hygiene (accepted review tip)
 
 **Candidate, not accepted**
+- V1 render culling: `cba2e72` forensics · `b625f90` code (render culling behaviour baseline) · `04cff37` evidence · the accept record at this tip
 - `dd6d7bf` / `4ca597f` F2 · `b5cff63` F2 audit · `730beb7` F3 diagnosis
 - `f56f55e` / `ba4ba32` F2.5 · this delivery's three F2.6 commits
 
