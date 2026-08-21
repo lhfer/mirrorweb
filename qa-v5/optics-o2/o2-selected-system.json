@@ -1,0 +1,95 @@
+{
+ "selectedSystem": "SYSTEM B — WHITE STUDIO REFLECTION / FRESNEL-CAPPED LERP",
+ "writtenBeforeCandidateCode": true,
+ "sourceTarget": {
+  "formula": "finalColor = mix(refractedMedia * tint, envReflection, min(saturate(fresnel * envIntensity), envMaxMix)) + weakWhiteRim",
+  "contract": "qa-v5/optics-o2/target-system-b-source.json (14 byte-anchored sites, live bundle byte-identical)",
+  "parameters": {
+   "fresnelF0": 0.045, "fresnelExponent": 5, "envIntensity": 1.93,
+   "envMaxMix": 0.27, "envRotationY": -2, "envRotationX": 0,
+   "rimIntensity": 0.11, "tint": "white"
+  }
+ },
+ "environment": {
+  "content": "public/hdri/studio_small_03_1k.hdr — BYTE-IDENTICAL to the Target's served file (SHA 29267a4a…), obtained from the drei-assets@456060a distribution of Poly Haven's CC0 studio_small_03, never from the Target. Provenance: public/hdri/PROVENANCE.md.",
+  "contentIsNotATunable": "same bytes as the source material; the env content carries zero adjustable surface",
+  "loaderParametersMatchSource": "HDRLoader/RGBE HalfFloat, LinearSRGB, Linear filters, no mips, flipY true, EquirectangularReflectionMapping, sampled at level 0 via equirectUV of the rotated world reflection vector",
+  "deviationFromTargetSourceEnvironment": "none (byte-identical)"
+ },
+ "systemBIncludes": [
+  "environment content (the pinned CC0 asset above)",
+  "environment sampling direction (world reflect of the view direction about the bevel-region normal, rotated -2 rad about Y, 0 about X)",
+  "Schlick fresnel (F0 0.045, exponent 5) on the body",
+  "capped LERP of the env sample into the body colour (cap 0.27, explicit uniform)",
+  "disabling the separate reflection shell in Beauty (kept as a QA control only)",
+  "the minimal white rim the source has (additive, 0.11)"
+ ],
+ "systemBDoesNotInclude": [
+  "refraction changes", "geometry changes", "dispersion changes",
+  "own-media sampling conversion", "tone-mapping conversion",
+  "scene-colour pipeline changes", "thickness changes"
+ ],
+ "implementationDeclarations": {
+  "fresnelNormal": "our analytic bevel-territory normal is the geometry's baked shoulder/rim vertex normal (normalView) — the closest structure our frozen geometry offers to the Target's analytic bevel normal; declared, not tuned",
+  "rimAnalogue": "the Target's rim is smoothstep over its rounded-rect SDF x 0.11; our geometry has no such SDF — the rim is driven by the strongLensRim zone attribute x rimIntensity(0.11), additive white. Declared BEFORE code; the one structural analogue in System B.",
+  "envSampleClamped": "the HDR sample is clamped to a finite ceiling before the LERP so a hot texel cannot inject Inf/NaN; ceiling 16.0 (highlights cap far above the visible range, the guard changes no visible pixel)",
+  "shellDefault": "shellMode defaults to 'off' on the sourceExact route when System B is active; QA setShellMode restores it as the shell-only control",
+  "interiorMixBoundLaw": "at facing=1 Schlick is exactly F0, so the source law itself LERPs the interior by min(F0*envIntensity, envMaxMix) = min(0.045*1.93, 0.27) = 0.0868 — the interior is EXPECTED to move by up to ~9% mix toward the env; the declared tolerance below derives from this law, not from taste",
+  "acesDeviationPreRegistered": "the Target shows the env LERP through NO tone mapping (material toneMapped:false); our body is toneMapped under frozen ACES exposure 1.05. Env whites will compress slightly on our page relative to the Target's. This deviation is KNOWN and DIRECTIONAL (our whites read marginally darker); it must NOT be compensated by raising envIntensity or any other parameter — post-capture parameter edits are forbidden."
+ },
+ "laneMapping": {
+  "statement": "§四's two bases are implemented as ONE commit with a runtime dispersion-law switch, so capturedAtHead stays a real commit for both lanes",
+  "bOnly": "dispersionLaw=v1-taps (the 5159cf8 tap law restored VERBATIM) + the System B patch",
+  "aPlusB": "dispersionLaw=o1-spectral (the e01fb30 spectral law, untouched) + the SAME System B code — byte-identical trivially, same build",
+  "equivalenceProofsBlocking": [
+   "dispersionLaw=v1-taps with System B neutralised (envMixScale=0, rimScale=0, shell energy-controlled) must be PIXEL-IDENTICAL to a worktree build of 5159cf8 under the deterministic frozen media",
+   "dispersionLaw=o1-spectral with System B neutralised must be PIXEL-IDENTICAL to a worktree build of 62d3ac4 (the e01fb30 lineage tip; optics-identical to e01fb30) under the same media"
+  ],
+  "ifBOnlyWins": "the product default becomes v1-taps; the o1-spectral path remains URL-param-only (the §一.5 experimental lane)",
+  "ifAPlusBWins": "recorded explicitly as accepted ONLY through this interaction gate, never retroactively from the failed O1"
+ },
+ "qaOnlyLevers": {
+  "envMixScale": "multiplier on the LERP factor, product value 1.0 — floor instrument (envMix=0) only",
+  "rimScale": "multiplier on the rim term, product value 1.0 — floor instrument (rim=0) only",
+  "policy": "measurement controls, pre-registered here; never varied in any scored product state; product values fixed at 1.0 before any capture"
+ },
+ "floorStates": {
+  "before / shell-only": "envMixScale=0, rimScale=0, shellMode=energy-controlled — proven ≡ the V1-accepted look by the blocking equivalence gate",
+  "envMix=0": "envMixScale=0, rimScale=1, shell off",
+  "rim=0 / integrated-LERP-only": "envMixScale=1, rimScale=0, shell off (one state, both §六 names)",
+  "full System B": "envMixScale=1, rimScale=1, shell off — the candidate"
+ },
+ "captureProtocol": {
+  "media": "the shared-media harness (qa-v5/optics-o2/shared-media-harness.json), every lane frozen at media time 4.0",
+  "viewports": ["1440x900", "390x844", "844x390"],
+  "settings": "setAdaptiveQuality(false), deviceScaleFactor 1, quality high, scroll 0",
+  "lanes": "Target (routed) + before/B-only/A+B/floors all from ONE origin (the candidate build) via QA state — no cross-origin decode variance inside local comparisons",
+  "pointerStates": ["rest", "pointer-left (nx=-0.99)", "pointer-corner-br", "pointer-right (nx=+0.99)"]
+ },
+ "expectedVisualChange": {
+  "statement": "the bevel band LERPs toward the white studio reflection instead of adding a thin specular line over saturated media: dark-media edges brighten toward the Target's wide soft white band, bright-media edge fringes desaturate, edge chroma becomes luminance-independent, the frame reads as white studio glass",
+  "anchors": "same-media Target-vs-before measurements at 62498e5 (artifacts/optics-o2/harness/anchor-stats*.json): bw-split darkSideEdgeLuma 48.1(T) vs 28.5(before); dark/bright luma ratio 0.248 vs 0.161; brightSideEdgeChroma 1.41 vs 26.05; grayscale-step edgeChroma 3.33 vs 11.22; saturated-scenario edge chroma T lower by 9.7-15.0 points; whiteReflectionRatio T higher on every scored asset"
+ },
+ "failureConditions": [
+  "F1 WRONG LEVER: the System B lever (full B minus envMix=0, same page, same media) moves bw-split darkSideEdgeLuma by less than +6.0 OR bw-split whiteReflectionRatio by less than +0.008 — the mechanism does not reach the white band; stop, do not tune",
+  "F2 GRAYSCALE RINGING: candidate edge chroma on grayscale-step or bw-split exceeds Before (11.22 / 9.73) by more than +1.0 — System B added colour to achromatic media",
+  "F3 LUMINANCE DEPENDENCE UNMOVED: bw-split brightSideEdgeChroma does not fall below 20 (Before 26.05, Target 1.41) OR the dark/bright edge-luma ratio does not rise by at least +0.025 from Before's 0.161 toward the Target's 0.248",
+  "F4 EDGE CHROMA FLOOR: mean edge-chroma drop vs Before across {rgb-bars, cool-blue, warm-skin} is less than 8.0 points — the candidate must beat DOUBLE the entire 4.09-point O1 dispersion lever",
+  "F5 INTERIOR VIOLATION: on any scored asset, interiorSaturationMean or interiorLuminanceMean changes by more than 12% relative vs Before (the law bound is 8.68% mix at facing=1 plus curvature headroom) — global desaturation or brightness compensation",
+  "F6 PLATFORM DIVERGENCE: the sign of any primary movement (saturated edge-chroma drop, bw-split white lever, ringing change) differs on 390x844 or 844x390 vs desktop",
+  "F7 MEDIA-ONLY MOVED: media-only differs from pre-O2 by a single pixel (frozen deterministic media, same lane)",
+  "F8 LANE INTEGRITY: either blocking equivalence proof in laneMapping fails by a single pixel",
+  "F9 FROZEN REGRESSION: any §八 suite fails at the candidate build",
+  "F10 GUTTER INVASION: gutterInkRatio on bw-split or rgb-bars rises by more than 0.01 vs Before",
+  "F11 POINTER PATH UNSTABLE: across pointer left/rest/right (same media), the candidate's highlight centroid nx is not monotonic in the same direction as the Target's, or an adjacent-state jump exceeds 0.4 card widths",
+  "F12 NOT VISIBLY OBVIOUS: the same-media full-frame side-by-side does not read as an unmistakable step toward white studio glass WITHOUT zooming — judged on the recorded frames and stated plainly either way"
+ ],
+ "bOnlyVsAPlusBRule": {
+  "verbatimFromBrief": "Retain A only if A+B: improves fringe width / fringe chroma versus B-only; does not reduce white reflection ratio; does not worsen Bright/Dark sign stability; does not worsen Mobile; does not alter Media-only; does not create colour ringing on grayscale media. Otherwise choose B-only and remove O1 System A from the accepted product path.",
+  "operationalisation": "fringe = fringeRB and fringeWidthPxMean on {rgb-bars, cool-blue, warm-skin}; white = whiteReflectionRatio on {bw-split, grayscale-step}; bright/dark = F3's two measurands; mobile = the same metrics at 390x844/844x390; media-only = pixel diff; ringing = F2's measurands. 'Improves' and 'worsens' are strict inequalities on same-media same-page numbers; ties go to B-only."
+ },
+ "postCaptureEditPolicy": "no parameter, threshold or state may change after the scored candidate is captured; every number above is sealed at the commit that carries this file",
+ "observedNotGated": {
+  "hfChecker": "on hf-checker the TARGET is far more chromatic than us (69.4 vs 24.6 edge chroma): its dispersion samples its own SHARP media while ours samples the blurred scene-colour target — a frozen-architecture difference (blur/scene pipeline), not a System B measurand. Recorded so nobody tunes System B against it."
+ }
+}

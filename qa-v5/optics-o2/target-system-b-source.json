@@ -1,0 +1,172 @@
+{
+ "what": "O2 System B source contract: every byte anchor the System B implementation must match. Six sites re-verified from the accepted O0 diagnosis; the environment pipeline anchored fresh this round.",
+ "bundle": {
+  "file": "artifacts/f27/bundles/03lo820gl57km.js",
+  "sha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+  "bytes": 2008349
+ },
+ "liveBundle": {
+  "sha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+  "matchesCapturedBundle": true
+ },
+ "sitesTotal": 14,
+ "sites": [
+  {
+   "id": "bevelNormal",
+   "byteOffset": 1974924,
+   "occurrences": 1,
+   "byteExact": true,
+   "reusedFrom": "qa-v5/optics/o0-source-diagnosis.json",
+   "verbatim": "g=d.mul((0,dB.min)(p,n.bevelMaxSlope).div((0,dB.max)(p,(0,dB.float)(1e-4)))),m=e.div(l(e)).toVar(),A=(0,dB.normalize)((0,dB.vec3)(m.sub(g),(0,dB.float)(1))).mul(dB.faceDirection).toVar()",
+   "whatItSettles": "The shading normal = sphere term (p/|sphere z|) minus the numeric thickness gradient, slope-clamped at bevelMaxSlope 1.74. One surface, one normal -- no internal fold, no return path, no second refraction event."
+  },
+  {
+   "id": "envReflection",
+   "byteOffset": 1976103,
+   "occurrences": 1,
+   "byteExact": true,
+   "reusedFrom": "qa-v5/optics/o0-source-diagnosis.json",
+   "verbatim": "D=(0,dB.texture)(t,(0,dB.equirectUV)(P)).rgb",
+   "whatItSettles": "Reflection: mirror the view ray at the world-space normal, rotate by envRotation (-2 rad about Y) then envRotationX (0), sample the equirect environment AT LEVEL 0 -- no roughness, no blur, no PMREM. The env preset is 'studio': /hdri/studio_small_03_1k.hdr on the Target's own origin -- the white-studio reflection is a real HDR studio, not a colour."
+  },
+  {
+   "id": "fresnelMix",
+   "byteOffset": 1976148,
+   "occurrences": 1,
+   "byteExact": true,
+   "reusedFrom": "qa-v5/optics/o0-source-diagnosis.json",
+   "verbatim": "B=n.fresnelF0.add((0,dB.float)(1).sub(n.fresnelF0).mul((0,dB.pow)((0,dB.saturate)((0,dB.float)(1).sub((0,dB.dot)(A,E))),5)))",
+   "whatItSettles": "Schlick fresnel, F0 = 0.045, exponent 5, against the BEVEL normal -- so the fresnel rises exactly where the bevel turns the normal, i.e. the white ring lives on the bevel band."
+  },
+  {
+   "id": "outputMix",
+   "byteOffset": 1976472,
+   "occurrences": 1,
+   "byteExact": true,
+   "reusedFrom": "qa-v5/optics/o0-source-diagnosis.json",
+   "verbatim": "return(0,dB.mix)(_.mul(n.tint),D,(0,dB.min)((0,dB.saturate)(B.mul(n.envIntensity)),n.envMaxMix)).add(N.mul(k))",
+   "whatItSettles": "The final colour: mix(refractedMedia * tint(#fff), envReflection, min(saturate(fresnel * envIntensity 1.93), envMaxMix 0.27)) + rim. The env can replace AT MOST 27% of the media colour -- the white reflection is a capped LERP, not additive energy, so it DE-saturates the rim band toward the studio white instead of adding chroma."
+  },
+  {
+   "id": "rimLight",
+   "byteOffset": 1976273,
+   "occurrences": 1,
+   "byteExact": true,
+   "reusedFrom": "qa-v5/optics/o0-source-diagnosis.json",
+   "verbatim": "k=(0,dB.smoothstep)(n.rimWidth.negate(),(0,dB.float)(0),r).mul(n.rimIntensity)",
+   "whatItSettles": "Rim: smoothstep over the last rimWidth (10 x cardScale) px of the SDF, intensity 0.11, colour WHITE top and bottom (rimColor = rimColorTop = #ffffff) -- an additive white line, no hue."
+  },
+  {
+   "id": "materialNotToneMapped",
+   "byteOffset": 1976793,
+   "occurrences": 1,
+   "byteExact": true,
+   "reusedFrom": "qa-v5/optics/o0-source-diagnosis.json",
+   "verbatim": "m=new ek.MeshBasicNodeMaterial({transparent:!0,alphaTest:.001,depthWrite:!0,depthTest:!0,side:eF.FrontSide,toneMapped:!1})",
+   "whatItSettles": "toneMapped: FALSE. The card's colour -- media, reflection and rim -- reaches the framebuffer without any tone-mapping curve. Combined with the app never setting renderer.toneMapping (no such write exists in the app module; the three.js default is NoToneMapping), the Target output transform is: sRGB encode only. No ACES, no exposure, no contrast curve, no saturation stage anywhere in the chain."
+  },
+  {
+   "id": "settingsBH",
+   "byteOffset": 1303608,
+   "occurrences": 1,
+   "byteExact": true,
+   "reusedFrom": "qa-v5/optics/o0-source-diagnosis.json",
+   "verbatim": "bH={cornerRadius:.163,bevelWidth:.192,bevelPower:3.9,bevelMaxSlope:1.74,thickness:155,ior:2.3,roughness:0,refractStrength:.7,dispersion:.32,dispersionSamples:5,fresnelF0:.045,envIntensity:1.93,envMaxMix:.27,envPreset:\"studio\",envRotation:-2,envRotationX:0,rimWidth:10,rimIntensity:.11,rimColor:\"#ffffff\",rimColorTop:\"#ffffff\",tint:\"#ffffff\"}",
+   "whatItSettles": "The complete shipped optics parameter set. Note roughness: 0 exists as a setting but NO roughness uniform is created and no blur path exists in the material -- it is dead."
+  },
+  {
+   "id": "presetMapStudio",
+   "byteOffset": 1303491,
+   "occurrences": 1,
+   "byteExact": true,
+   "verbatim": "studio:\"/hdri/studio_small_03_1k.hdr\"",
+   "whatItSettles": "the shipped env preset resolves to the SITE-RELATIVE /hdri/studio_small_03_1k.hdr (every other, unused preset resolves to the drei-assets CDN pin). The served file is byte-identical to drei-assets@456060a's copy of Poly Haven's CC0 studio_small_03 (SHA 29267a4a..., verified against both distributions)."
+  },
+  {
+   "id": "hdrLoaderParams",
+   "byteOffset": 431167,
+   "occurrences": 1,
+   "byteExact": true,
+   "verbatim": "colorSpace:iR.LinearSRGBColorSpace,minFilter:iR.LinearFilter,magFilter:iR.LinearFilter,generateMipmaps:!1,flipY:!0",
+   "whatItSettles": "HDRLoader output texture parameters: HalfFloat data (loader type), LinearSRGB, Linear min/mag, NO mipmaps, flipY true. Sampling is therefore implicit level 0."
+  },
+  {
+   "id": "hdrLoaderClass",
+   "byteOffset": 427980,
+   "occurrences": 1,
+   "byteExact": true,
+   "verbatim": "class iM extends iR.DataTextureLoader{constructor(e){super(e),this.type=iR.HalfFloatType}",
+   "whatItSettles": "the loader is three's HDRLoader (RGBE), type HalfFloatType."
+  },
+  {
+   "id": "equirectMappingAssign",
+   "byteOffset": 1972694,
+   "occurrences": 1,
+   "byteExact": true,
+   "verbatim": "(0,eB.useLayoutEffect)(()=>{h.mapping=eF.EquirectangularReflectionMapping},[h])",
+   "whatItSettles": "the ONLY post-load processing: equirect mapping assignment. No PMREM, no scene.environment -- the raw texture goes into the material factory."
+  },
+  {
+   "id": "reflectVectorWorld",
+   "byteOffset": 1975730,
+   "occurrences": 1,
+   "byteExact": true,
+   "verbatim": "T=f(A).toVar(),x=f(E).toVar(),C=(0,dB.normalize)(x.negate().sub(T.mul((0,dB.dot)(x.negate(),T).mul(2)))).toVar()",
+   "whatItSettles": "the reflection vector: world-space bevel normal T=f(A) and world-space view direction x=f(E); C = reflect(-x, T) = -x - 2*dot(-x,T)*T. f is the view->world rotation; A is the analytic bevel normal (site bevelNormal), NOT a geometry normal."
+  },
+  {
+   "id": "envRotationMath",
+   "byteOffset": 1975843,
+   "occurrences": 1,
+   "byteExact": true,
+   "verbatim": "I=(0,dB.cos)(n.envRotation),w=(0,dB.sin)(n.envRotation),R=(0,dB.vec3)(C.x.mul(I).sub(C.z.mul(w)),C.y,C.x.mul(w).add(C.z.mul(I))),M=(0,dB.cos)(n.envRotationX),L=(0,dB.sin)(n.envRotationX),P=(0,dB.vec3)(R.x,R.y.mul(M).sub(R.z.mul(L)),R.y.mul(L).add(R.z.mul(M)))",
+   "whatItSettles": "the env sampling direction: the reflection vector rotated by envRotation (-2 rad) about Y, then envRotationX (0) about X, then equirectUV."
+  },
+  {
+   "id": "settingsRotationSlice",
+   "byteOffset": 1303815,
+   "occurrences": 1,
+   "byteExact": true,
+   "verbatim": "envPreset:\"studio\",envRotation:-2,envRotationX:0,rimWidth:10,rimIntensity:.11",
+   "whatItSettles": "the shipped env/rim settings slice inside bH."
+  }
+ ],
+ "questions": {
+  "sourceFormula": {
+   "statement": "finalColor = mix(refractedMedia * tint, envReflection, min(saturate(fresnel * envIntensity), envMaxMix)) + whiteRim * rimStrength",
+   "bundleIdentifiers": "outputMix site: mix(_.mul(n.tint), D, min(saturate(B.mul(n.envIntensity)), n.envMaxMix)).add(N.mul(k)) -- _ = refracted own-media sum, D = env sample, B = Schlick fresnel, N = rimColor (white), k = rim smoothstep * rimIntensity",
+   "confidence": "SOURCE_READ"
+  },
+  "fresnelLaw": {
+   "statement": "Schlick: B = F0 + (1 - F0) * pow(saturate(1 - dot(N, V)), 5) with F0 = 0.045, exponent literal 5; N is the analytic bevel normal, V the view direction (fresnelMix site).",
+   "confidence": "SOURCE_READ"
+  },
+  "sourceParameters": {
+   "fresnelF0": 0.045,
+   "fresnelExponent": 5,
+   "envIntensity": 1.93,
+   "envMaxMix": 0.27,
+   "envRotationY": -2,
+   "envRotationX": 0,
+   "rimWidth": 10,
+   "rimIntensity": 0.11,
+   "tint": "#ffffff (all-white)",
+   "confidence": "SOURCE_READ (settingsBH verbatim)"
+  },
+  "environmentPipeline": {
+   "asset": "/hdri/studio_small_03_1k.hdr, byte-identical to drei-assets@456060a / Poly Haven CC0 studio_small_03 (SHA 29267a4a...)",
+   "loader": "three HDRLoader, HalfFloatType, LinearSRGBColorSpace, Linear filters, generateMipmaps false, flipY true",
+   "processing": "EquirectangularReflectionMapping assignment ONLY -- no PMREM, no scene.environment, no blur; sampled at implicit level 0 through equirectUV(P)",
+   "confidence": "SOURCE_READ"
+  },
+  "whereReflectionLives": {
+   "statement": "inside the ONE body material's colorNode, as a capped LERP toward the env sample -- there is NO separate reflection shell, no PBR material, no additive white pass (V1 mapping: single mesh, single material carries every optical term).",
+   "confidence": "SOURCE_READ (V1 target-render-culling-source.json singleMaterialAllOptics + this file's outputMix)"
+  },
+  "toneMappingContext": {
+   "statement": "the material is toneMapped:false and the renderer never sets a tone mapping (o0 site materialNotToneMapped) -- the env LERP output reaches the screen without ACES. OUR body is toneMapped under ACES exposure 1.05 and tone mapping is FROZEN this round; the deviation is pre-registered in o2-selected-system.json.",
+   "confidence": "SOURCE_READ"
+  }
+ },
+ "pass": true
+}
