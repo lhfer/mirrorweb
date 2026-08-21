@@ -28,6 +28,31 @@ matrices — every card's world position is a function of the scroll, so the
 per-frame change in arc coordinate is the per-frame change in scroll. Cards the
 page has culled are excluded: their matrices are stale rather than stationary.
 
+## How to reproduce a trace
+
+The Target side is one run per output directory:
+
+```
+node scripts/v5/m0-motion-trace.mjs --out=artifacts/motion/target --repeat=3
+node scripts/v5/m0-motion-trace.mjs --out=artifacts/motion/target-wheel --seqs=wheel-deltamode --repeat=3
+```
+
+Our side is captured **one viewport per process**:
+
+```
+for vp in 1440x900 390x844 844x390 700x700; do
+  NODE_OPTIONS=--max-old-space-size=6144 node scripts/v5/m0-motion-trace.mjs \
+    "--url=http://127.0.0.1:5280/?qa=1&composition=sourceExact" \
+    --out=artifacts/motion/local-$vp --vps=$vp --repeat=3
+done
+```
+
+Not for tidiness: the harness holds every frame of every run in memory until it
+writes, and our page carries roughly twice the Target's live card count, so all
+four viewports in one process exhausts Node's heap near the end of the last one.
+The shards are merged by the gate through `--localExtra`, and the split changes
+nothing a run measures — each viewport is captured exactly as it would be alone.
+
 ## Thresholds
 
 Derived from the Target against **itself**, before any candidate number was
@@ -36,6 +61,17 @@ pointwise spread of those runs is the repeatability. Every threshold is
 `max(2 × that spread, an explicit floor)`, and the floors are declared once in
 [`m1-motion-gate.py`](../../scripts/v5/m1-motion-gate.py) rather than per
 sequence.
+
+No threshold in this round was changed after a candidate number was seen. The
+floors are in the script's history, and the repeatability half is computed from
+the Target trace alone — it cannot move in response to our page because our page
+is not one of its inputs.
+
+Every failure mode reaches the verdict. The landmark comparisons, the axis
+signs, the wheel rows, the wrap teleports, the gestures that never came to rest
+and the console and page errors are folded into a single `verdict` in
+`gate-summary.json`; a row that is recorded but cannot change the verdict is not
+a gate, and three of those rows previously sat outside it.
 
 ## The chain
 
@@ -53,27 +89,45 @@ Four questions, each meaningful only if the one before it held:
 | `wrap-continuity.json` | Does any visible card teleport when the infinite grid recycles? |
 | `resize-continuity.json` | A resize taken while the page is still moving, on both sides. |
 | `card-label-motion.json` | Does the type stay on its card while the page moves? |
+| `highlight-path.json` | Where the specular highlight travels as the pointer sweeps. |
 | `legacy-invariance.json` | v1, v2 and the bare route rendered by the pre-motion commit and by the candidate, byte for byte. |
-| `typography-regression.json` | The accepted T1 gates, re-run at this tip. |
+| `typography-regression.json` | The accepted T1 gates, re-run at this tip, and the depth carry-forward verdict. |
+| `depth-carry-forward.json` | The depth / clipping gate re-taken across the pointer orbit's four extremes and three scroll offsets. |
 | `source-contract.json` | The 36-viewport engineering contract, re-run at this tip. |
 | `input-trajectories.json` | What was actually dispatched, on both sides, and by what means. |
 | `gate-summary.json` | Every landmark comparison, and every failure. |
 
-## Two cameras, on purpose
+## One camera, not two
 
-The Target dollies its render camera with the smoothed velocity magnitude and
-keeps a **second camera without the dolly** for the CSS3D transform, the
-projection and the culling. So under fast motion its glass dollies and its
-labels do not — they separate, deliberately.
+An earlier reading had the Target keeping a dolly-free second camera for the
+CSS3D layer, so that glass and labels separated under fast motion by design.
+Its own recorded CSS3D camera matrix refutes it: solve the camera position out
+of the inverse matrix and its distance from the origin is exactly 1000.000 at
+rest, 1158.13 during a fast flick, 1223.01 during a long drag — and exactly
+1000.000 through an entire pointer sweep, which moves the camera all over the
+orbit and produces no velocity. A dolly-free CSS3D camera cannot do that.
 
-`card-label-motion.json` therefore gates the label against the card plane
-projected through the **label** camera, which is the invariant the Target
-actually maintains. Gating against the dollied glass silhouette would fail a
-faithful reproduction *for being faithful*. The separation itself is recorded
-beside the verdict, as contract behaviour.
+`card-label-motion.json` now gates the label against the card plane through the
+camera that paints both, and asserts that the two cameras **agree** at every
+frame rather than that they separate. The dolly is zero at rest, which is where
+the layout contract measures, so the source contract is untouched either way.
 
-Both cameras are identical at rest, which is where the layout contract measures,
-so the source contract is untouched.
+## The highlight, and what a pixel can settle here
+
+The Target has no light object: the forensics established that by absence, and
+the highlight is moved solely by the camera orbit. That mechanism is measured
+on **both** sides, like for like, by the orbit rows in `pointer-orbit.json` --
+the camera angles are recovered from each page's own CSS3D matrix.
+
+`highlight-path.json` measures the highlight itself, from the recorded pixels.
+Its candidate rows are gated on a sweep taken with the media layer **off**,
+where the highlight is the only bright thing in frame. The cross-side
+correlation is reported and deliberately **not** gated: our page freezes its
+media for a fixed state and the Target's video cannot be turned off, so a
+whole-frame luminance centroid has moving video in it on one side and not the
+other. How far the highlight travels and how bright it is are functions of the
+glass optics, which this stage may not touch and which the product has not
+accepted -- gating them here would fail motion for an optics difference.
 
 ## Depth carry-forward from T1
 

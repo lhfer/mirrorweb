@@ -172,9 +172,21 @@ function installRecorder() {
     return m ? `${m[1]}px` : null;
   };
 
-  const sample = () => {
+  const sample = (rafTime) => {
     if (!M.armed) return;
-    const t = +(performance.now() - M.t0).toFixed(3);
+    // The rAF timestamp, not performance.now() at callback entry.
+    //
+    // Both pages integrate on the frame's rAF timestamp -- a spring solved in
+    // closed form reads its clock straight off it. Stamping the sample with the
+    // wall clock at the moment this callback happens to run instead puts the
+    // scheduling jitter between the frame and this callback into the sample
+    // TIME while the position it records belongs to the frame. Measured, that
+    // jitter is +-5 ms against an 8.3 ms frame, so any per-frame derivative --
+    // velocity, and worse, the jerk taken from it -- is divided by the wrong
+    // dt. Recomputing our worst jerk on the same positions with a uniform frame
+    // period cut it by 2.8x. rAF hands every callback in a frame the SAME
+    // timestamp, which is the number the page itself integrated with.
+    const t = +((rafTime ?? performance.now()) - M.t0).toFixed(3);
     const pos = [];
     for (const c of M.cards) {
       // Both sides stop updating the transform of a card they have culled and
@@ -184,10 +196,22 @@ function installRecorder() {
       if (c.el.style.visibility === "hidden") { pos.push([c.code, null, null, null]); continue; }
       const s = c.el.style.transform;
       const v = s ? tail4(s) : null;
-      pos.push(v ? [c.code, +v[0].toFixed(4), +v[1].toFixed(4), +v[2].toFixed(4)] : [c.code, null, null, null]);
+      // The BROWSER's own projected screen box, so "was this card on screen"
+      // and "did it move more than 2 px on screen" are answered by the same
+      // engine that painted it, on both sides, with no projection convention
+      // to re-derive from a transform string. The product brief's wrap claim
+      // is in pixels; world units cannot answer it.
+      const r = c.el.getBoundingClientRect();
+      pos.push(v
+        ? [c.code, +v[0].toFixed(4), +v[1].toFixed(4), +v[2].toFixed(4),
+           +r.left.toFixed(2), +r.top.toFixed(2), +r.width.toFixed(2), +r.height.toFixed(2)]
+        : [c.code, null, null, null]);
     }
     M.frames.push({
       t,
+      // performance.now() alongside, so the difference between the two clocks
+      // is measurable rather than assumed away.
+      wall: +(performance.now() - M.t0).toFixed(3),
       w: window.innerWidth, h: window.innerHeight,
       camera: M.cameraEl ? M.cameraEl.style.transform || null : null,
       // The Target never calls preventDefault on a wheel event, and neither
@@ -204,6 +228,8 @@ function installRecorder() {
 
   M.start = () => {
     M.armed = true; M.frames.length = 0; M.events.length = 0;
+    // t0 on the rAF clock too: both are performance.now()-based, but the
+    // origin has to be the same one the samples are measured against.
     M.t0 = performance.now();
     requestAnimationFrame(sample);
   };

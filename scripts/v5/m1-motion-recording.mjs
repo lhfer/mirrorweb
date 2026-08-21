@@ -9,10 +9,13 @@
  * timestamps let three recordings of the same gesture be aligned afterwards
  * instead of assumed to line up.
  *
- * Nothing here calls a QA hook. Every frame in every recording is the result of
- * a mouse or touch event dispatched through the automation protocol -- a
+ * No QA hook produces MOTION here. Every frame in every recording moved because
+ * of a mouse or touch event dispatched through the automation protocol -- a
  * recording assembled by stepping an offset would show the renderer working and
- * say nothing about the motion model, which is the thing under review.
+ * say nothing about the motion model, which is the thing under review. Hooks
+ * set the fixed state before a gesture starts and nothing else: the media
+ * freeze on our own page, and the media layer for the one sequence that says
+ * so in its name.
  *
  * Usage:
  *   m1-motion-recording.mjs --out=<dir> --label=<name> [--url=<origin>]
@@ -85,6 +88,25 @@ async function drive(page, cdp, seq, w, h) {
     await sleep(900);
     return;
   }
+  if (seq === "pointer-sweep-noMedia") {
+    // The same sweep with the media layer off, on our side only. The highlight
+    // travel path is measured from luminance, and the Target's video is
+    // playing while ours is frozen -- so a like-for-like centroid comparison is
+    // contaminated by video content on one side and not the other. With the
+    // media off the highlight is the only bright thing left, which makes the
+    // path unambiguous on the side where it can be made unambiguous. The
+    // Target-side comparison is still taken, with its caveat stated.
+    await page.evaluate(() => window.__ILG_QA__.setRenderLayers({ glass: true, media: false, labels: true }));
+    const pad2 = 8;
+    for (const [x, y] of [[cx, cy], [pad2, pad2], [w - pad2, pad2], [w - pad2, h - pad2],
+                          [pad2, h - pad2], [cx, cy]]) {
+      await page.mouse.move(x, y, { steps: 16 });
+      await sleep(560);
+    }
+    await sleep(900);
+    await page.evaluate(() => window.__ILG_QA__.setRenderLayers({ glass: true, media: true, labels: true }));
+    return;
+  }
   if (seq === "wheel") {
     await page.mouse.move(cx, cy);
     for (let i = 0; i < 10; i += 1) { await page.mouse.wheel(0, 120); await sleep(70); }
@@ -98,7 +120,11 @@ const browser = await chromium.launch({ channel: "chrome", headless: true,
   args: ["--enable-unsafe-webgpu", "--enable-webgpu-developer-features"] });
 
 const index = { label: opts.label, url: opts.url, startedAt: new Date().toISOString(),
-                driver: "real mouse / touch / wheel events over CDP; no QA hook",
+                driver: "every frame moved because of a real mouse, touch or wheel event "
+                      + "dispatched over CDP. QA hooks set the FIXED STATE before a gesture "
+                      + "starts and nothing else: the media freeze on our own page, and the "
+                      + "media layer for the sequence that says so in its name. No hook "
+                      + "produces motion in any recording.",
                 capture: "CDP Page.startScreencast, non-blocking, browser-timestamped",
                 recordings: [] };
 

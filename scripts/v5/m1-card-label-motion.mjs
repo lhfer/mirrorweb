@@ -7,14 +7,20 @@
  * and if they read it at different points in the frame the text slides off the
  * card under a flick.
  *
- * Measured against the UN-DOLLIED card plane, deliberately. The Target keeps a
- * second camera without the velocity dolly and uses it for the CSS3D layer, so
- * during fast motion its glass dollies and its labels do not: they separate on
- * purpose. Measuring the label against the DOLLIED glass silhouette would
- * therefore fail a faithful reproduction for being faithful. The invariant the
- * Target actually maintains is label-to-card-plane through the label camera,
- * and that is what is gated here. The separation itself is recorded beside it,
- * as contract behaviour rather than as an error.
+ * CORRECTED. This harness was built on the reading that the Target keeps a
+ * dolly-free second camera for the CSS3D layer, so that glass and labels
+ * separate under fast motion by design -- and it therefore gated the label
+ * against an UN-dollied card plane and asserted that the two cameras DO
+ * separate. The Target's own recorded CSS3D camera matrix says otherwise: its
+ * distance from the origin is exactly 1000.000 at rest, 1158.13 during a fast
+ * flick and 1223.01 during a long drag, and exactly 1000.000 through an entire
+ * pointer sweep, which moves the camera but produces no velocity. Its CSS3D
+ * camera carries the dolly.
+ *
+ * So there is no separation to allow for. The label is gated against the card
+ * plane through the same camera that paints both, and the assertion that the
+ * cameras separate is inverted: they must now agree at every frame, and the
+ * peak gap is reported so a regression to two cameras cannot pass quietly.
  *
  * Every run is driven by real pointer input. No QA hook moves the page.
  *
@@ -90,10 +96,12 @@ const browser = await chromium.launch({ channel: "chrome", headless: true,
   args: ["--enable-unsafe-webgpu", "--enable-webgpu-developer-features"] });
 
 const report = { startedAt: new Date().toISOString(), origin: opts.origin,
-  gate: "label corners against the card mid-plane projected through the LABEL camera",
-  gateWhy: "the Target dollies its render camera and not its CSS3D camera, so glass and "
-         + "labels separate under fast motion by design. The invariant it maintains is "
-         + "label-to-card-plane; that is what is gated. The separation is reported.",
+  gate: "label corners against the card mid-plane projected through the CSS3D camera",
+  gateWhy: "the Target's CSS3D camera carries the velocity dolly -- its recorded distance from "
+         + "the origin goes 1000.000 at rest, 1158.13 on a flick, 1223.01 on a long drag, and "
+         + "exactly 1000.000 through a pointer sweep. There is no glass/label separation to "
+         + "allow for, and an earlier version of this file gated on the assumption that there "
+         + "was. The two cameras must now agree at every frame.",
   thresholdPx: 1.0, viewports: [], assertions: [], consoleErrors: [], pageErrors: [] };
 const A = (n, ok, d) => report.assertions.push({ assertion: n, pass: !!ok, detail: d ?? null });
 
@@ -158,10 +166,13 @@ for (const vp of opts.vps) {
     A(`${vp} ${r.kind}: every visible label was compared against a card`,
       r.comparedPerFrameMin > 0, { comparedPerFrameMin: r.comparedPerFrameMin });
   }
-  A(`${vp}: the render camera dollies and the label camera does not`,
-    runs.some((r) => r.cameraSeparationPeakZ > 0.5),
+  A(`${vp}: the CSS3D camera carries the dolly -- the two cameras never separate`,
+    runs.every((r) => r.cameraSeparationPeakZ < 1e-6),
     runs.map((r) => ({ kind: r.kind, dollyPeakZ: r.dollyPeakZ,
                        cameraSeparationPeakZ: r.cameraSeparationPeakZ })));
+  A(`${vp}: the dolly actually engaged, so the row above was exercised`,
+    runs.some((r) => r.dollyPeakZ > 1.0),
+    runs.map((r) => ({ kind: r.kind, dollyPeakZ: r.dollyPeakZ })));
   await ctx.close();
 }
 await browser.close();

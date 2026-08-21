@@ -56,7 +56,8 @@
         1
       ],
       "usesSameEventStreamAsDrag": true,
-      "note": "A separate window listener from the pan gesture, but the same pointermove events, so touch drives it too."
+      "note": "A separate window listener from the pan gesture, but the same pointermove events, so touch drives it too.",
+      "retargetClock": "The pointer spring's retarget is stamped with the FRAME's clock, not the event's: the passive effect records the target on the event and the solve is rebuilt on the frame loop, where driver.now() is that frame's timestamp. Stamping it with the event time, or worse with the previous frame's, starts the pointer spring on a different clock from the scroll spring."
     }
   },
   "drag": {
@@ -89,7 +90,9 @@
       "restSpeed": 0.01,
       "dampingRatio": 1.3093073414159542,
       "regime": "overdamped",
-      "appliesTo": "the scalar hypot(velocityX, velocityY) that drives the camera dolly"
+      "appliesTo": "the scalar hypot(velocityX, velocityY) that drives the camera dolly",
+      "source": "hypot of the two scroll MotionValues' getVelocity(), NOT the springs' analytic velocity. getVelocity() in the bundle is (current - prevFrameValue) / min(updatedAt - prevUpdatedAt, 30) * 1000, and returns 0 outright once more than 30 ms have passed since the value last changed. The two agree mid-run and diverge exactly where the dolly is most visible: at a direction change, and in the last stretch before the spring rests, where the analytic velocity decays smoothly and this one drops to zero.",
+      "sourceEvidence": "artifacts/f27/bundles/03lo820gl57km.js: g.set(_O(f.getVelocity(), p.getVelocity())) inside the scroll springs' on(\"change\") handlers, where f and p are the two useSpring outputs; getVelocity() at the MotionValue class."
     },
     "pointer": {
       "stiffness": 80,
@@ -127,8 +130,9 @@
       "appliedTo": "the render camera's z only, added after the orbit",
       "note": "Zero at rest, so it changes nothing the layout contract measures."
     },
-    "css3dCameraExcludesDolly": true,
-    "css3dCameraNote": "The Target keeps a SECOND camera at the orbit position WITHOUT the dolly, and uses it for the CSS3D transform, the projection and the culling. So during fast motion the glass dollies and the labels do not: the two separate on purpose. A reproduction that dollies the label camera as well would be wrong."
+    "css3dCameraExcludesDolly": false,
+    "css3dCameraNote": "CORRECTED. An earlier reading had the Target keeping a dolly-free second camera for the CSS3D transform, so glass and labels would separate under fast motion. Its own recorded CSS3D camera matrix refutes that: the camera's distance from the origin is exactly 1000.000 at rest, rises to 1158.13 during a fast flick and 1223.01 during a long drag, and stays at exactly 1000.000 through an entire pointer sweep -- which moves the camera but produces no velocity, hence no dolly. A dolly-free CSS3D camera cannot do that. The dolly-free camera in the bundle drives projection and culling, not the transform. Measured at 1440x900 on artifacts/motion/target.",
+    "dollyFreeCameraUsedFor": "projection and .project() culling only, not the CSS3D transform"
   },
   "light": {
     "pointerDrivenLight": false,
@@ -164,5 +168,37 @@
     "a camera translation driven by the pointer",
     "a light position driven by the pointer or by velocity",
     "pointer capture on the drag surface"
-  ]
+  ],
+  "renderDelay": {
+    "frames": 1,
+    "what": "What the Target PAINTS on a frame is what its model produced on the PREVIOUS frame.",
+    "mechanism": "The Target runs TWO frame loops. framer-motion has its own (mz/mH), started lazily by the first schedule() call, which does not happen until the first gesture. The renderer that consumes the motion values is react-three-fiber's loop, whose single useFrame both READS the scroll motion values and WRITES the CSS3D matrix3d strings. What reaches the screen is therefore one frame behind what framer-motion computed.",
+    "sourceEvidence": [
+      "artifacts/f27/bundles/03lo820gl57km.js: the scheduler's schedule(callback, keepAlive, immediate) puts a callback in the nextFrame set unless immediate is true AND that step is already processing.",
+      "PanSession.handlePointerMove calls mH.update(this.updatePoint, !0) -- keepAlive, not immediate.",
+      "useSpring's passiveEffect records the new target and calls mH.postRender(u); u rebuilds the animation, and play() stamps startTime = driver.now(), which inside the frame loop is that frame's timestamp."
+    ],
+    "measured": {
+      "how": "the model replayed on the Target's own recorded input, compared with the Target's own recovered trajectory, at 0, 1 and 2 frames of output delay; 120 non-wheel runs at four viewports",
+      "medianRawPeakErrorFractionOfTravel": {
+        "0": 0.03364,
+        "1": 0.0076,
+        "2": 0.02158
+      },
+      "medianBestFitTimeShiftMs": {
+        "0": 10.5,
+        "1": 2.0,
+        "2": -6.0
+      },
+      "note": "one frame wins on every sequence and two frames overshoots on every sequence; the systematic +10.5 ms lead that M0 had aligned away is what this removes"
+    },
+    "consequence": "A reproduction that paints the model's CURRENT frame responds one frame sooner than the Target at every viewport and on every sequence. It is small -- 7.75 ms at the 120 Hz these pages run at -- and perfectly systematic, which is why a threshold floor written for 60 Hz let it pass.",
+    "mechanismConfidence": "The two-loop structure and the read-and-write-in-one-useFrame are read from the bundle and are certain. WHICH loop's callback runs first in a given browser frame is NOT a readable property of a bundle, and the replay fit cannot separate an output delay from an input delay or a start-time delay. So the SIZE and SIGN of the delay are measured; the attribution to callback order is the best available reading and is stated as such, not as source-read fact.",
+    "notTheMechanism": [
+      "It is NOT lazy start-time assignment. vP.play() stamps startTime = driver.now() eagerly at construction; inside the frame loop that is the current frame's timestamp.",
+      "It is NOT the intra-framer chain, which costs zero extra frames: handlePointerMove schedules updatePoint on update/nextFrame (frame N); the app's onPan is re-scheduled with immediate=true while update is already processing, so it runs in the SAME step; useSpring's passiveEffect schedules the rebuild on postRender, which still runs in frame N; the driver's first tick lands on frame N+1 with one frame of elapsed time. Our twin does exactly this."
+    ],
+    "framesIsNotFitted": "A frame count is an integer, and the bracket 0/1/2 was evaluated end to end: 3.36% / 0.76% / 2.16% median raw peak error and +10.5 / +2.0 / -6.0 ms median time shift. One wins on every sequence and two overshoots on every sequence. There is no continuum here to tune along.",
+    "residualAfterTheFix": "+2.0 ms median, still positive in 79% of runs. That is a quarter of a frame and it is NOT claimed to be finished -- it is reported as a remaining signed-systematic lead."
+  }
 }

@@ -54,20 +54,25 @@ def replay(run: dict) -> dict:
     The springs tick to the current frame time before any retarget, exactly as
     the library does -- its animation runs in the frame's update step and the
     retarget is scheduled at that same frame's postRender, so a new solve always
-    starts from the value the animation just produced. With that in place there
-    is no ordering knob left to choose: whether the pan is applied before or
-    after this frame's sample changes nothing, because the sample is taken from
-    a spring that has already been advanced to now.
+    starts from the value the animation just produced.
+
+    The sample taken for each frame is the model's PREVIOUS frame, because the
+    Target's renderer consumes framer-motion's values from a frame callback
+    that runs before framer-motion's own. See SourceExactMotion.begin_frame.
     """
     model = SM.SourceExactMotion()
     events = sorted(run["events"], key=lambda e: e["t"])
     frames = run["frames"]
     out_t, out_x, out_y, out_mag, out_px = [], [], [], [], []
     pending: list[dict] = []
+    pointer_ndc: tuple[float, float] | None = None
     ei = 0
 
     for sample in frames:
         t = sample["t"]
+        # What the Target's renderer paints on this frame is what its model
+        # produced on the PREVIOUS one -- snapshot first, then tick.
+        published = model.begin_frame()
         # Every input event since the previous frame, in order.
         while ei < len(events) and events[ei]["t"] <= t:
             e = events[ei]; ei += 1
@@ -80,8 +85,12 @@ def replay(run: dict) -> dict:
                     continue
                 model.session.move(e["clientX"], e["clientY"])
                 if kind == "pointermove":
-                    model.set_pointer(e["clientX"] / sample["w"] * 2 - 1,
-                                      e["clientY"] / sample["h"] * 2 - 1, e["t"])
+                    # Recorded, not committed: the pointer retarget is stamped
+                    # with the FRAME's clock, below, exactly as the scroll one
+                    # is. The Target's passive effect records the target on the
+                    # event and rebuilds the solve on the frame loop.
+                    pointer_ndc = (e["clientX"] / sample["w"] * 2 - 1,
+                                   e["clientY"] / sample["h"] * 2 - 1)
             elif kind in ("pointerup", "touchend", "pointercancel", "touchcancel"):
                 cancelled = kind in ("pointercancel", "touchcancel")
                 x = e["clientX"] if e["clientX"] is not None else model.session.history[-1][0]
@@ -91,6 +100,8 @@ def replay(run: dict) -> dict:
                     pending.append(("end", info, e["t"]))
             # wheel: the Target has no handler, so the model has none either.
 
+        if pointer_ndc is not None:
+            model.set_pointer(pointer_ndc[0], pointer_ndc[1], t)
         info = model.session.frame(t)
         if info is not None:
             pending.append(("pan", info, t))
@@ -98,10 +109,10 @@ def replay(run: dict) -> dict:
             (model.on_pan if kind == "pan" else model.on_pan_end)(i, at)
         pending = []
 
-        state = model.advance(t)
+        model.advance(t)
 
-        out_t.append(t); out_x.append(state["scrollX"]); out_y.append(state["scrollY"])
-        out_mag.append(state["magnitude"]); out_px.append(state["pointerX"])
+        out_t.append(t); out_x.append(published["scrollX"]); out_y.append(published["scrollY"])
+        out_mag.append(published["magnitude"]); out_px.append(published["pointerX"])
 
     return {"t": out_t, "scrollX": out_x, "scrollY": out_y,
             "magnitude": out_mag, "pointerX": out_px}
@@ -195,16 +206,39 @@ def decay_stats(t, v, release_t):
                 return round(t[i] - release_t, 2)
         return None
 
-    # Largest single-frame jerk after release: an abrupt stop shows up here.
+    # Largest single-frame jerk after release. This is a SHAPE comparison --
+    # how our ramp differs from the Target's -- and it is compared like every
+    # other landmark, against the Target's own repeatability.
     jerk = 0.0
     for i in range(i0 + 2, len(t) - 1):
         dv = abs(vel(i) - vel(i - 1))
         jerk = max(jerk, dv)
+
+    # The ABRUPT STOP test proper, which the jerk comparison above is not.
+    #
+    # "No abrupt stop" is a claim about our own curve, not about whether our
+    # jerk equals the Target's: a page whose jerk is SMALLER than the Target's
+    # is not stopping abruptly, yet a matching test fails it. This measures the
+    # largest single-frame FRACTIONAL drop in speed after release, which is
+    # scale-free, and it is one-sided -- smaller is never worse. The Target's
+    # own value is what calibrates it.
+    drop = 0.0
+    drop_at = None
+    for i in range(i0 + 2, len(t) - 1):
+        prev, cur = abs(vel(i - 1)), abs(vel(i))
+        if prev < 50.0:            # too slow for a fractional drop to mean anything
+            continue
+        f = (prev - cur) / prev
+        if f > drop:
+            drop, drop_at = f, round(t[i] - release_t, 2)
+
     return {"releaseVelocity": round(v0, 3),
             "timeTo50PctMs": time_to(0.5), "timeTo10PctMs": time_to(0.1),
             "timeToVisualStopMs": time_to_still(2.0),
             "travelAfterRelease": round(final - v[i0], 3),
-            "maxFrameVelocityStep": round(jerk, 3)}
+            "maxFrameVelocityStep": round(jerk, 3),
+            "maxSingleFrameSpeedDropFraction": round(drop, 5),
+            "maxSingleFrameSpeedDropAtMs": drop_at}
 
 
 def resize_continuity(run, obs):

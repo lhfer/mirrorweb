@@ -55,9 +55,18 @@ FLOORS = {
     "followRatio": 0.05,
     "releaseVelocity": 60.0,
     "decayMs": 60.0,
-    "latencyMs": 34.0,          # two frames at 60 Hz
+    # CORRECTED. These two were written as "two frames at 60 Hz". Both pages
+    # actually run at ~120 Hz -- the median inter-frame interval is 8.30 ms on
+    # both sides, over 72,902 Target intervals and 19,654 of ours -- so 34.0 was
+    # FOUR frames, and a perfectly systematic one-frame difference passed all
+    # forty latency rows. 16.6 ms is two frames at the rate the pages run.
+    #
+    # This is a correction of a factual error about the frame rate, made in the
+    # direction that makes the gate HARDER: it converts passing rows into
+    # failing ones and relieves nothing.
+    "latencyMs": 16.6,
     "orbitRad": 0.002,
-    "settleMs": 34.0,           # two frames at 60 Hz
+    "settleMs": 16.6,           # two frames at the 120 Hz these pages run at
     "zeroMotionWorldUnits": 1.0,
 }
 
@@ -74,8 +83,26 @@ def group(trace):
     return out
 
 
+# Below this many live cards the scroll recovery is a median over almost
+# nothing and the curve it produces is noise. It is not a threshold on a
+# result -- it is the point at which the INSTRUMENT stops reading. The Target's
+# own resize runs at 700x700 drop to 0 and 1 live cards, and every landmark
+# taken from them is manufactured.
+MIN_LIVE_CARDS = 4
+
+
 def landmarks(run, obs):
     """Input-normalised numbers, so two event streams can be compared."""
+    live = [n for n in obs.get("liveCards", []) if n is not None]
+    if live and min(live) < MIN_LIVE_CARDS:
+        # Reported as unreadable rather than gated. Silently gating a curve
+        # recovered from one card is how a number with no content acquires a
+        # verdict.
+        return {"instrumentUnreadable": True,
+                "liveCardsMin": min(live),
+                "why": f"the scroll recovery fell to {min(live)} live cards, below "
+                       f"{MIN_LIVE_CARDS}; every landmark from this run would be a median "
+                       f"over almost nothing"}
     span = MT.drag_span(run)
     rel = MC.release_time(run)
     total_x = obs["scrollX"][-1] - obs["scrollX"][0]
@@ -123,10 +150,38 @@ def landmarks(run, obs):
         out["orbitPitchMax"] = round(max(p[2] for p in pt), 6)
     # Amplitude is not dynamics. Two pages can orbit to the same extremes and
     # get there at completely different speeds, so the smoothing constant is
-    # its own landmark.
-    settle = MT.pointer_settle_63(run)
-    if settle is not None:
-        out["pointerSettle63Ms"] = settle
+    # its own landmark -- but a SETTLE TIME is only defined for a STEP, and the
+    # only sequence that steps the pointer is the sweep, whose mouse moves all
+    # land inside one frame followed by half a second of stillness. On a drag
+    # the pointer travels as a continuous ramp: the burst detector finds a
+    # "step" that is really the whole drag, and the number it returns is not a
+    # time constant. It came back as 0.70 ms on one sequence and 297 ms on
+    # another, for one and the same spring.
+    #
+    # Restricting it would drop coverage, so it does not go alone: the row
+    # below replaces it with a measurement that IS defined on every stimulus.
+    if run["sequence"] == "pointer-sweep":
+        settle = MT.pointer_settle_63(run)
+        if settle is not None:
+            out["pointerSettle63Ms"] = settle
+
+    # The pointer spring's dynamics, on ANY stimulus.
+    #
+    # Drive the contract's pointer spring with this side's own recorded
+    # pointermove stream and compare the predicted camera yaw against the yaw
+    # recovered from this side's own CSS3D camera. It asks the same question a
+    # settle time asks -- is the smoothing this fast? -- without needing the
+    # input to be a step, so a drag, a flick and a sweep all answer it. A page
+    # whose pointer spring is faster or slower than the contract's shows up
+    # here as a larger residual, whatever the input did.
+    if pt and len(pt) > 8:
+        pred = MC.replay(run)
+        gain = MC.SM.CAMERA["orbit"]["pointerGain"]
+        model_yaw = MC.resample(pred["t"], [-gain * v for v in pred["pointerX"]],
+                                [p[0] for p in pt])
+        errs = [abs(a - b) for a, b in zip(model_yaw, [p[1] for p in pt])]
+        if errs:
+            out["pointerModelResidualRad"] = round(max(errs), 6)
     return out
 
 
@@ -142,19 +197,30 @@ LANDMARK_UNIT = {
     "orbitYawMin": "orbitRad", "orbitYawMax": "orbitRad",
     "orbitPitchMin": "orbitRad", "orbitPitchMax": "orbitRad",
     "pointerSettle63Ms": "settleMs",
+    "pointerModelResidualRad": "orbitRad",
 }
 
 
 def wrap_continuity(run, obs):
-    """Does a card ever jump on screen when the grid wraps?
+    """Does a card ever jump ON SCREEN, in pixels, when the grid wraps?
 
-    Wrapping is supposed to be invisible: a card that leaves one edge reappears
-    at the other, and the page hides it while it is out of view. A wrap is a
-    defect only if a card that is LIVE in both frames moves by far more than the
-    field moved -- that is a visible teleport rather than a recycle.
+    The product brief's claim is "no >2px wrap discontinuity" -- a SCREEN
+    claim. The first version of this check answered a different question: it
+    took every card that was not `visibility:hidden` in both frames and
+    measured its movement in WORLD units. A card can be un-hidden and still be
+    nowhere near the viewport, and a recycle moves such a card by a full wrap
+    period, so the check flagged correct recycles. It flagged them on the
+    TARGET too -- fourteen times -- and an instrument that fires on the page
+    that is correct by definition is not measuring what it says it is.
 
-    Both sides are measured from the same recorded matrices, so this asks the
-    same question of the Target as of us.
+    This version asks the brief's question with the browser's own answer. Every
+    card's `getBoundingClientRect()` is recorded per frame on both sides, so
+    "was it on screen" is a rect-viewport intersection and "how far did it
+    move" is in pixels. A card is judged only if it was on screen in BOTH
+    frames; the allowance is the field's own median screen step plus 2 px.
+
+    The world-unit count is still reported beside it, so the change is visible
+    rather than a quiet substitution.
     """
     frames = run["frames"]
     if len(frames) < 3:
@@ -185,9 +251,52 @@ def wrap_continuity(run, obs):
                     worst, worst_at = d - field, {"frame": k, "code": c,
                                                   "moved": round(d, 3),
                                                   "fieldMoved": round(field, 3)}
+    # --- the screen-pixel measure the brief actually asks for ---------------
+    px_checked = px_jumps = 0
+    px_worst, px_worst_at = 0.0, None
+    have_rects = False
+    for k in range(1, len(frames)):
+        fa, fb = frames[k - 1], frames[k]
+        if fb["w"] != fa["w"] or fb["h"] != fa["h"]:
+            continue
+        w, h = fb["w"], fb["h"]
+
+        def on_screen(c):
+            # [code, x, y, z, left, top, width, height]
+            if len(c) < 8 or c[4] is None:
+                return None
+            left, top, cw, ch = c[4], c[5], c[6], c[7]
+            if left + cw <= 0 or top + ch <= 0 or left >= w or top >= h:
+                return None
+            return (left + cw / 2.0, top + ch / 2.0)
+
+        a = {c[0]: p for c in fa["cards"] if (p := on_screen(c)) is not None}
+        b = {c[0]: p for c in fb["cards"] if (p := on_screen(c)) is not None}
+        shared = a.keys() & b.keys()
+        if len(shared) < 4:
+            continue
+        have_rects = True
+        moves = sorted(math.dist(a[c], b[c]) for c in shared)
+        field = moves[len(moves) // 2]
+        for c in shared:
+            d = math.dist(a[c], b[c])
+            px_checked += 1
+            if d - field > 2.0:
+                px_jumps += 1
+                if d - field > px_worst:
+                    px_worst, px_worst_at = d - field, {"frame": k, "code": c,
+                                                        "movedPx": round(d, 3),
+                                                        "fieldMovedPx": round(field, 3)}
+
     return {"framePairs": len(frames) - 1, "cardFrameChecks": checked,
-            "visibleTeleports": jumps, "worstExcessWorldUnits": round(worst, 3),
-            "worstAt": worst_at}
+            "worldUnitFlags": jumps, "worstExcessWorldUnits": round(worst, 3),
+            "worstAtWorldUnits": worst_at,
+            "worldUnitNote": "reported, NOT gated: an un-hidden card can be far off screen, so a "
+                             "correct recycle registers here -- it does on the Target too",
+            "screenRectsAvailable": have_rects,
+            "onScreenCardFrameChecks": px_checked,
+            "visibleTeleports": px_jumps,
+            "worstExcessPx": round(px_worst, 3), "worstAt": px_worst_at}
 
 
 def spread_of(values):
@@ -223,13 +332,24 @@ if __name__ == "__main__":
     extra_l = [json.loads(Path(p).read_text()) for p in args.get("localExtra", "").split(",") if p]
     for e in extra_t:
         target["runs"].extend(e["runs"])
+        target.setdefault("errors", []).extend(e.get("errors", []))
     for e in extra_l:
         local["runs"].extend(e["runs"])
+        local.setdefault("errors", []).extend(e.get("errors", []))
 
     T, L = analyse(target), analyse(local)
 
     # ---- 1. Target repeatability, and the thresholds it produces -----------
     thresholds, repeat_rows = {}, []
+    unreadable = []
+    for side, data in (("target", T), ("ours", L)):
+        for key, rows in sorted(data.items()):
+            for r in rows:
+                if r["marks"].get("instrumentUnreadable"):
+                    unreadable.append({"side": side, "viewport": key[0], "sequence": key[1],
+                                       "repeat": r["run"].get("repeat"),
+                                       "liveCardsMin": r["marks"]["liveCardsMin"],
+                                       "why": r["marks"]["why"]})
     for key, rows in sorted(T.items()):
         marks = {}
         for name in LANDMARK_UNIT:
@@ -300,6 +420,44 @@ if __name__ == "__main__":
             compare_rows.append(row)
             if not ok:
                 failures.append(row)
+
+    # ---- direction and axis signs ----------------------------------------
+    #
+    # A magnitude threshold can be met by a page that moves the right distance
+    # the wrong way at a small enough scale, and a follow ratio hides the sign
+    # entirely when both sides are negative. Stated on its own row.
+    sign_rows = []
+    for key, rows in sorted(L.items()):
+        if key[1] in TRAJECTORY_EXCLUDED or key[1] in WHEEL_SEQUENCES:
+            continue
+        trows = T.get(key)
+        if not trows:
+            continue
+        row = {"viewport": key[0], "sequence": key[1]}
+        ok = True
+        for axis, mark in (("X", "totalX"), ("Y", "totalY")):
+            ours = mean_of([r["marks"].get(mark) for r in rows])
+            theirs = mean_of([r["marks"].get(mark) for r in trows])
+            if ours is None or theirs is None:
+                continue
+            floor = FLOORS["travelWorldUnits"]
+            row[f"target{axis}"] = round(theirs, 4)
+            row[f"ours{axis}"] = round(ours, 4)
+            if abs(theirs) < floor and abs(ours) < floor:
+                row[f"sign{axis}"] = "BOTH BELOW FLOOR -- no direction to compare"
+                continue
+            same = (ours > 0) == (theirs > 0)
+            row[f"sign{axis}"] = "same" if same else "OPPOSITE"
+            ok = ok and same
+        # Which INPUT axis drove which OUTPUT axis: a page that swapped them
+        # would still pass every per-axis magnitude row.
+        span = MT.drag_span(rows[0]["run"])
+        if span and (abs(span[0]) > 4 or abs(span[1]) > 4):
+            row["dragSpanPx"] = [round(span[0], 2), round(span[1], 2)]
+        row["pass"] = ok
+        sign_rows.append(row)
+        if not ok:
+            failures.append({**row, "landmark": "axisSign"})
 
     # ---- wheel: proof of absence, on both sides ---------------------------
     wheel_rows = []
@@ -405,17 +563,34 @@ if __name__ == "__main__":
         "rows": [r for r in compare_rows
                  if r.get("landmark") in ("totalX", "totalY", "followRatioX", "followRatioY",
                                           "latencyMs")],
+        "axisSigns": {
+            "what": "which way each axis moved, and whether the input axes drove the output "
+                    "axes the same way on both sides",
+            "why": "a magnitude threshold can be met by a page that moves the right distance "
+                   "the wrong way, and a follow ratio hides the sign when both sides are "
+                   "negative",
+            "rows": sign_rows,
+        },
     })
 
     w("flick-decay.json", {
         "what": "release velocity and the decay curve after it",
         "note": "the Target has no decay law of its own: the release is a single jump of "
-                "velocity * 0.1 on the spring's target, and the spring carries the rest. "
-                "maxFrameVelocityStep is the abrupt-stop check.",
+                "velocity * 0.1 on the spring's target, and the spring carries the rest.",
+        "abruptStop": "maxFrameVelocityStep is a SHAPE comparison -- how our post-release ramp "
+                      "differs from the Target's -- judged against the Target's own repeatability "
+                      "like every other landmark. It is NOT the abrupt-stop test, and it used to "
+                      "be labelled as one: a page whose jerk is SMALLER than the Target's is not "
+                      "stopping abruptly, yet a matching test fails it, and ours is smaller in "
+                      "most pairs. maxSingleFrameSpeedDropFraction is the abrupt-stop test proper "
+                      "-- the largest single-frame fractional loss of speed after release, "
+                      "scale-free and one-sided, with the Target's own value beside it. Both are "
+                      "gated; neither replaces the other.",
         "rows": [r for r in compare_rows
                  if r.get("landmark") in ("releaseVelocity", "timeTo50PctMs", "timeTo10PctMs",
                                           "timeToVisualStopMs", "travelAfterRelease",
-                                          "maxFrameVelocityStep")],
+                                          "maxFrameVelocityStep",
+                                          "maxSingleFrameSpeedDropFraction")],
     })
 
     w("wheel-normalization.json", {
@@ -435,7 +610,12 @@ if __name__ == "__main__":
         "law": "yaw = -0.05 * pointerX, pitch = 0.05 * pointerY, radius = perspective",
         "rows": [r for r in compare_rows
                  if str(r.get("landmark", "")).startswith("orbit")
-                 or r.get("landmark") == "pointerSettle63Ms"],
+                 or r.get("landmark") in ("pointerSettle63Ms", "pointerModelResidualRad")],
+        "orbitRecovery": "the orbit angles are recovered from the camera's POSITION with the "
+                         "velocity dolly solved out, not from its forward axis. The dolly is added "
+                         "to the camera's world z and the camera then looks at the origin, so with "
+                         "an off-centre pointer AND a moving page the forward axis is tilted by the "
+                         "dolly. On a sweep, where nothing moves, both readings agree exactly.",
         "smoothing": "pointerSettle63Ms is the step response of the pointer spring, read "
                      "from the camera yaw on both sides: the sweep's mouse moves all land "
                      "inside one frame, so each corner is a step, and the number is the "
@@ -454,11 +634,20 @@ if __name__ == "__main__":
     })
 
     w("wrap-continuity.json", {
-        "what": "does any visible card teleport when the infinite grid recycles?",
-        "rule": "a card live in two consecutive frames must not move by more than "
-                "max(4x, +40) the field's own median step",
+        "what": "does any card that is ON SCREEN in two consecutive frames jump by more than "
+                "2 px beyond what the whole field moved?",
+        "rule": "screen-space, from each card's own getBoundingClientRect(), judged only while "
+                "the card's rect intersects the viewport in BOTH frames; allowance is the "
+                "field's median screen step + 2.0 px, which is the product brief's number",
+        "supersedes": "the world-unit version, which flagged correct recycles -- fourteen of them "
+                      "on the TARGET, which is correct by definition. Its count is still reported "
+                      "per row as worldUnitFlags so the substitution is visible.",
         "rows": wrap_rows,
         "visibleTeleports": sum(r["visibleTeleports"] for r in wrap_rows),
+        "visibleTeleportsTarget": sum(r["visibleTeleports"] for r in wrap_rows
+                                      if r["side"] == "target"),
+        "visibleTeleportsOurs": sum(r["visibleTeleports"] for r in wrap_rows
+                                    if r["side"] == "ours"),
     })
 
     w("touch-runtime.json", {
@@ -475,17 +664,53 @@ if __name__ == "__main__":
         "rows": resize_rows,
     })
 
-    verdict = "PASS" if not failures else "FAIL"
+    # Everything that can fail, folded into ONE verdict. A row that is recorded
+    # but cannot change the verdict is not a gate -- the wheel rows, the wrap
+    # teleports and the stuck-gesture rows all used to sit outside it.
+    wheel_fail = [r for r in wheel_rows if r["side"] == "ours" and not r["pass"]]
+    teleports = sum(r["visibleTeleports"] for r in wrap_rows if r["side"] == "ours")
+    teleports_target = sum(r["visibleTeleports"] for r in wrap_rows if r["side"] == "target")
+    stuck = [r for r in touch_rows
+             if r["side"] == "ours" and r["cameToRestByEndOfRun"] is False]
+    sign_fail = [r for r in sign_rows if not r["pass"]]
+    page_errors = {"target": target.get("errors", []), "ours": local.get("errors", [])}
+    # A reload the recorder survived is a harness event, not a page defect; it
+    # is reported either way rather than filtered out silently.
+    our_real_errors = [e for e in page_errors["ours"] if "recorder was gone" not in e]
+
+    verdict = "PASS" if not (failures or wheel_fail or teleports or stuck
+                             or sign_fail or our_real_errors) else "FAIL"
     summary = {
         "verdict": verdict,
+        "verdictInputs": ["landmark comparisons", "axis signs", "wheel absence (our side)",
+                          "visible wrap teleports (our side)",
+                          "gestures that never came to rest (our side)",
+                          "console and page errors (our side)"],
         "landmarkComparisons": len([r for r in compare_rows if "pass" in r]),
         "landmarkFailures": failures,
         "notMeasurableOnBothSides": [r for r in compare_rows if r.get("status")],
-        "wheel": {"passed": sum(1 for r in wheel_rows if r["pass"]), "total": len(wheel_rows)},
+        "instrumentUnreadableRuns": unreadable,
+        "axisSigns": {"total": len(sign_rows), "failures": sign_fail},
+        "wheel": {"passed": sum(1 for r in wheel_rows if r["pass"]), "total": len(wheel_rows),
+                  "ourFailures": wheel_fail},
         "visibleTeleports": sum(r["visibleTeleports"] for r in wrap_rows),
+        "visibleTeleportsOurSide": teleports,
+        "visibleTeleportsTargetSide": teleports_target,
+        "wrapNote": "screen-space, >2 px beyond the field's own step, judged only while a card is "
+                    "on screen in both frames. The Target's own count is reported beside ours: a "
+                    "check that fires on the Target is measuring the wrong thing, and this one "
+                    "replaced a check that did.",
         "runsThatDidNotComeToRest": [
             {k: r[k] for k in ("side", "viewport", "sequence", "repeat")}
             for r in touch_rows if r["cameToRestByEndOfRun"] is False],
+        "consoleAndPageErrors": {
+            "target": page_errors["target"],
+            "ours": page_errors["ours"],
+            "oursExcludingHarnessReloads": our_real_errors,
+            "note": "captured live for every run on both sides; a 'recorder was gone' line is "
+                    "the harness re-installing itself after a dev-server reload, which is a "
+                    "harness event and is reported rather than dropped.",
+        },
         "engineVsContractWorstFinalErrFraction": round(
             max((r["finalErrFraction"] for r in engine_rows), default=0.0), 6),
     }
@@ -494,6 +719,9 @@ if __name__ == "__main__":
     print(f"motion gate {verdict}  landmarks {passed}/{summary['landmarkComparisons']}  "
           f"wheel {summary['wheel']['passed']}/{summary['wheel']['total']}  "
           f"engine-vs-contract worst final {summary['engineVsContractWorstFinalErrFraction']:.5f}")
+    if wheel_fail or teleports or stuck or sign_fail or our_real_errors:
+        print(f"  wheel failures {len(wheel_fail)}  teleports {teleports}  "
+              f"stuck {len(stuck)}  sign {len(sign_fail)}  errors {len(our_real_errors)}")
     for f in failures[:25]:
         print(f"  FAIL {f['viewport']:9} {f['sequence']:22} {f['landmark']:20} "
               f"target={f['target']} ours={f['ours']} delta={f['delta']} thr={f['threshold']}")

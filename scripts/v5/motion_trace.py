@@ -125,28 +125,61 @@ def trajectory(run: dict) -> dict:
             "perCardSpread": spread, "frame": f}
 
 
+def camera_matrix(sample: dict) -> list[float] | None:
+    s = sample.get("camera")
+    if not s or "matrix3d(" not in s:
+        return None
+    k = s.index("matrix3d(")
+    m = [float(v) for v in s[k + 9:s.index(")", k)].split(",")]
+    return m if len(m) == 16 else None
+
+
+def camera_position(sample: dict) -> tuple[float, float, float] | None:
+    """The camera's own world position, out of the CSS3D inverse matrix.
+
+    The element carries `matrix3d(camera.matrixWorldInverse)` with the y row
+    negated. Undo the negation, then the camera position is `-R^T t`.
+    """
+    m = camera_matrix(sample)
+    if m is None:
+        return None
+    r = [[m[0], m[4], m[8]], [-m[1], -m[5], -m[9]], [m[2], m[6], m[10]]]
+    t = [m[12], -m[13], m[14]]
+    return (-(r[0][0] * t[0] + r[1][0] * t[1] + r[2][0] * t[2]),
+            -(r[0][1] * t[0] + r[1][1] * t[1] + r[2][1] * t[2]),
+            -(r[0][2] * t[0] + r[1][2] * t[1] + r[2][2] * t[2]))
+
+
 def pointer_track(run: dict) -> list[tuple[float, float, float]]:
     """The applied pointer, recovered from the CSS3D camera transform.
 
-    The camera element carries `matrix3d(camera.matrixWorldInverse)` with the y
-    row negated. Its rotation part is the transpose of the camera's own basis,
-    so the camera's world direction -- and with it the orbit angles -- comes
-    straight out of the string. This is the SMOOTHED pointer, after the spring.
+    Recovered from the camera's POSITION, with the velocity dolly removed --
+    not from its forward axis. The dolly is added to the camera's world z and
+    the camera then looks at the origin, so whenever the pointer is off-centre
+    AND the page is moving, the forward axis is tilted by the dolly and a yaw
+    read off it is not the pointer. That is most of the drag sequences. The
+    orbit itself has a known radius, so the dolly can simply be solved out:
+
+        |p - (0, 0, dz)| = P   ->   dz = p.z - sqrt(P^2 - p.x^2 - p.y^2)
+
+    and the orbit angles come from what is left. On a pointer sweep, where the
+    page never moves and dz is zero, the two readings agree exactly; on a
+    flick they differ, and the difference is the dolly.
     """
+    frame = frame_for(*run["viewport"])
+    persp = frame["perspective"]
     out = []
     for sample in run["frames"]:
-        s = sample.get("camera")
-        if not s or "matrix3d(" not in s:
+        pos = camera_position(sample)
+        if pos is None:
             continue
-        k = s.index("matrix3d(")
-        m = [float(v) for v in s[k + 9:s.index(")", k)].split(",")]
-        if len(m) != 16:
+        px, py, pz = pos
+        under = persp * persp - px * px - py * py
+        if under <= 0:
             continue
-        # matrixWorldInverse columns 0..2 (with the y row negated by CSS3D):
-        # basis row 2 of the inverse is the camera's forward axis in world space.
-        fwd_x, fwd_y, fwd_z = m[2], -m[6], m[10]
-        pitch = math.asin(max(-1.0, min(1.0, fwd_y)))
-        yaw = math.atan2(fwd_x, fwd_z)
+        oz = math.sqrt(under)
+        pitch = math.asin(max(-1.0, min(1.0, py / persp)))
+        yaw = math.atan2(px, oz)
         out.append((sample["t"], yaw, pitch))
     return out
 

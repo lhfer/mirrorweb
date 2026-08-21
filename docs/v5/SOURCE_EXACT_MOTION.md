@@ -81,23 +81,42 @@ is invisible in the constants and obvious in the hand.
 pushed**, so it lags by one dispatch. The fling multiplies it, so the lag is
 visible in where a flick lands.
 
-## The two cameras
+## The camera that turned out to be one camera
 
-The Target builds its camera pose once and uses it twice. The render camera
-gets the velocity dolly on z; a second camera at the same orbit position
-**without** the dolly does the CSS3D transform, the projection and the culling.
+This was read wrong, and the Target's own recording caught it.
 
-So during fast motion the Target's glass dollies and its labels do not: the two
-separate, on purpose. A reproduction that dollied the label camera as well
-would be wrong, and a gate that measured label rects against the dollied glass
-silhouette would fail a faithful reproduction *for being faithful*. The
-invariant the Target maintains is label-to-card-plane through the label camera,
-and that is what
-[`m1-card-label-motion.mjs`](../../scripts/v5/m1-card-label-motion.mjs) gates —
-with the separation itself recorded beside it as contract behaviour.
+The reading was: the render camera gets the velocity dolly on z, and a second
+camera at the same orbit position **without** the dolly does the CSS3D
+transform, so under fast motion the glass dollies and the labels do not — they
+separate, on purpose. A whole gate was built on it: measure the label against
+the *un-dollied* card plane, and assert that the two cameras separate.
 
-Both cameras are identical at rest, which is where the layout contract measures,
-so the source contract is untouched.
+The Target's own CSS3D camera matrix refutes it. Solve the camera's world
+position out of the recorded inverse matrix and take its distance from the
+origin, at 1440×900:
+
+| sequence | camera distance from origin |
+| --- | --- |
+| at rest | exactly 1000.000 |
+| pointer sweep, whole run | exactly 1000.000 |
+| fast flick | 1000.000 → **1158.13** |
+| long drag across wraps | 1000.000 → **1223.01** |
+
+A dolly-free CSS3D camera cannot do that. And the pointer sweep is the control:
+it moves the camera all over the orbit and never moves the page, so it produces
+no velocity and no dolly — and the distance never leaves 1000.000. What varies
+is velocity, not pointer.
+
+So the Target's CSS3D camera carries the dolly, and there is no separation to
+allow for. The dolly-free camera in the bundle drives projection and culling,
+not the transform. Ours now carries it too, the gate in
+[`m1-card-label-motion.mjs`](../../scripts/v5/m1-card-label-motion.mjs)
+measures the label against the card plane through the camera that paints both,
+and the assertion is inverted: the two cameras must **agree** at every frame,
+with the peak gap reported so a regression to two cameras cannot pass quietly.
+
+The dolly is zero at rest, which is where the layout contract measures, so the
+source contract is untouched either way.
 
 ## How the model was checked
 
@@ -124,6 +143,99 @@ Thresholds come from the Target's spread against **itself**: the same trajectory
 is run three times and the pointwise spread of those runs is what the model
 residual is judged against. The repeatability is computed and written before any
 model residual is looked at.
+
+## The frame the Target is behind
+
+The single largest correction this stage. A first implementation painted the
+model's *current* frame; the Target paints its model's *previous* one.
+
+In the bundle, framer-motion runs its own frame loop, and that loop is started
+lazily — by the first `schedule()` call, which does not happen until the first
+gesture arrives. The renderer that consumes the motion values was registered
+when the canvas mounted, long before. Two `requestAnimationFrame` callbacks,
+consumer first: what reaches the screen is always one frame old.
+
+It was not found by reading, though. It was found by measuring, and the reading
+came after. The gate's own `latencyMs` row showed our page starting to move
+**7.75 ms sooner than the Target**, as a mean over forty viewport-sequence
+pairs, negative in every single one, while the Target's own repeatability on
+that landmark is 0.1–1.4 ms. Both pages run at ~120 Hz, so 7.75 ms is one
+frame — and the floor for that row was written as "two frames at 60 Hz", which
+is four frames at the rate the pages actually run. A perfectly systematic
+one-frame difference sailed through forty rows.
+
+The M0 acceptance had the same blind spot from the other side: it accepted the
+model on the **time-aligned** peak error, and the shift it aligned away was
++10.5 ms — positive for every one of the ten sequences. A number that is
+systematic in sign across every sequence is not phase noise.
+
+Replaying the model against the Target's own recorded trajectory, 120 non-wheel
+runs at four viewports, at zero, one and two frames of output delay:
+
+| output delay | median raw peak error, as a fraction of travel | median best-fit time shift |
+| --- | --- | --- |
+| 0 frames | 3.36% | +10.5 ms |
+| **1 frame** | **0.76%** | **+2.0 ms** |
+| 2 frames | 2.16% | −6.0 ms |
+
+One frame wins on every sequence; two frames overshoots on every sequence. It is
+one structural change with a discrete answer, not a fitted constant — there was
+nothing to tune.
+
+Recorded in the contract as `renderDelay`, implemented as
+`SourceExactMotion.beginFrame()` in both twins: the pose applied on a frame is
+the snapshot taken before that frame's input was processed. A QA jump
+(`setScroll`, `jumpPointer`) re-snapshots immediately, because a fixed state is
+not a frame of motion and a paused page never takes the next one.
+
+## Two things a bundle read cannot settle
+
+**How fast the pointer smoothing is.** The orbit amplitude and the smoothing
+constant are different facts, and the amplitude row passes for a page that
+reaches the same extremes at a completely different speed. The Target's sweep
+moves the mouse to a corner in a burst of moves that all land inside one frame
+and then holds for half a second, so to the page each corner is close to a
+*step*. The settle time is read off the camera yaw — the same instrument on
+both sides, since the Target exposes nothing — as the time to cover 63.2% of it.
+The Target's own answer is 183.8 ms, repeatable to a few ms across four
+viewports.
+
+That is *not* the analytic step response, and an earlier draft of this file said
+it was. For stiffness 80, damping 18, mass 0.8 the ideal step from rest reaches
+63.2% at **234.7 ms**; 180.1 ms is the 50% time, which is the number that got
+mislabelled. The measured 183.8 ms is shorter than the ideal because the sweep
+is not an instantaneous step — the sixteen sub-moves take time and the spring is
+already chasing during them. The landmark compares two pages under the *same*
+stimulus; it is not a check against an ideal, and it should not be read as one.
+
+The landmark is also confined to the sweep. On a drag the pointer travels as a
+continuous ramp, the burst detector finds a "step" that is really the whole
+drag, and the number it returns is not a time constant — one and the same spring
+came back as 0.70 ms on one sequence and 297 ms on another. Restricting it would
+have dropped coverage, so it did not go alone: `pointerModelResidualRad` drives
+the contract's pointer spring with each side's own recorded pointermove stream
+and compares the predicted yaw against the yaw recovered from that side's own
+camera. It asks the same question without needing a step, so every drag, flick
+and sweep answers it.
+
+The orbit angles behind both are recovered from the camera's **position** with
+the dolly solved out, not from its forward axis. The dolly is added to the
+camera's world z and the camera then looks at the origin, so with an off-centre
+pointer and a moving page the forward axis is tilted by the dolly — which is
+most of the drag sequences. On a sweep, where nothing moves, the two readings
+agree exactly.
+
+**Where the highlight goes.** The Target has no light object, so the highlight
+moves only because the camera orbits against a fixed environment — that is a
+scene-graph fact from the bundle, and the orbit itself is measured on both sides
+from the CSS3D camera matrix. The highlight *pixels* are measured too, but the
+honest version is narrower than it looks: our page freezes its media for a fixed
+state and the Target's video cannot be turned off, so a whole-frame luminance
+centroid has moving video in it on one side only. The candidate rows are gated
+on a sweep taken with the media layer off, where the highlight is the only bright
+thing in frame; the cross-side correlation is reported and not gated, and how far
+the highlight travels and how bright it is are left to the optics stage, which
+has not run.
 
 ## Resize
 

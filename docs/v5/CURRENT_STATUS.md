@@ -31,9 +31,9 @@ stated here and no further hygiene commit is created to chase it.
 | `typographyEvidenceCommit` | `39ff3de` `v5-t1-source-exact-typography-evidence` |
 | `sourceContractRerunCommit` | `v5-t1-source-contract-tip-rerun` — the 36-viewport engineering contract re-run at `39ff3de` so the Typography gate's Source Contract row reads a verdict out of a file instead of asserting one. Evidence only; no product code. |
 | `motionForensicsCommit` | `990bcce` `v5-m0-target-motion-forensics` — the motion source contract, read out of the Target's bundle and replayed against it. No product code. |
-| `motionCodeCommit` | `v5-m1-source-exact-motion-code` |
+| `motionCodeCommit` | `655fda4` `v5-m1-source-exact-motion-code` — the source-exact motion model. Frozen files byte-identical to `7dc7cf1`. |
 | `motionEvidenceCommit` | `v5-m1-source-exact-motion-evidence` |
-| `typographyAcceptCommit` | `v5-t1-source-exact-typography-accept` — product acceptance of T0 and T1, the typography freeze contract, and three evidence wording corrections. No product visual code. |
+| `typographyAcceptCommit` | `7dc7cf1` `v5-t1-source-exact-typography-accept` — product acceptance of T0 and T1, the typography freeze contract, and three evidence wording corrections. No product visual code. |
 | `reviewHeadAtDelivery` | the branch tip after the commits above; resolve with `git rev-parse HEAD`. A file cannot contain its own hash and no hygiene commit is created to chase one. |
 
 ### Status

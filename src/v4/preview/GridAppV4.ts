@@ -480,8 +480,15 @@ export class GridAppV4 {
         ? [handle.camera.position.x, handle.camera.position.y, handle.camera.position.z]
         : null,
       labelCamera: label ? [label.position.x, label.position.y, label.position.z] : null,
+      // Kept as a readback: the Target's CSS3D camera carries the dolly, so
+      // this must be false at every moment. It is the thing that would go
+      // wrong silently if the label camera were ever un-dollied again.
       camerasSeparated: !!(handle && label)
         && Math.abs(handle.camera.position.z - label.position.z) > 1e-9,
+      cameraDistance: handle
+        ? Math.hypot(handle.camera.position.x, handle.camera.position.y,
+                     handle.camera.position.z)
+        : null,
       gridX: this.gridX(),
       gridY: this.gridY(),
       renderStamp: this.renderStamp,
@@ -1125,8 +1132,17 @@ export class GridAppV4 {
       const dz = sourceExactDolly(this.motion.magnitude, sourceExactMaxZoomZ(frame.perspective));
       handle.camera.position.set(ox, oy, oz + dz);
       handle.camera.lookAt(0, 0, 0);
+      // The CSS3D camera carries the dolly TOO. An earlier reading had the
+      // Target keeping a dolly-free camera for the type layer, so glass and
+      // labels would separate under fast motion. Its own recorded CSS3D camera
+      // matrix says otherwise: the camera's distance from the origin rises
+      // from exactly 1000 at rest to 1158 on a flick and 1223 on a long drag,
+      // and stays at exactly 1000 through a pointer sweep -- which moves the
+      // camera but produces no velocity. A dolly-free CSS3D camera cannot do
+      // that. The dolly-free camera in the bundle drives projection and
+      // culling, not the transform.
       const label = this.labelCameraFor(handle.camera);
-      label.position.set(ox, oy, oz);
+      label.position.set(ox, oy, oz + dz);
       label.lookAt(0, 0, 0);
       label.updateMatrixWorld();
       if (this.pointerLight) {

@@ -95,7 +95,13 @@ export class MotionController {
   setPointer(x: number, y: number) {
     this.pointerTargetX = clamp(x, -1, 1);
     this.pointerTargetY = clamp(y, -1, 1);
-    if (this.se) this.se.setPointer(this.pointerTargetX, this.pointerTargetY, this.nowMs);
+    // Source-exact: record only. The retarget is COMMITTED on the frame, with
+    // that frame's clock, in stepSourceExact -- which is what the Target does:
+    // its passive effect records the target and schedules the rebuild on the
+    // frame loop, where the new solve is stamped with the frame's own
+    // timestamp. Stamping it here would use `this.nowMs`, which is the
+    // PREVIOUS frame's time, so the pointer spring would start a frame before
+    // the scroll spring and settle sooner than the Target's.
   }
 
   /**
@@ -115,6 +121,7 @@ export class MotionController {
     if (this.se) {
       this.se.pointerX.reset(this.pointerTargetX);
       this.se.pointerY.reset(this.pointerTargetY);
+      this.se.beginFrame();
       // The Target's source-exact pose carries no tilt, no camera translation
       // and no light travel; only the orbit reads the pointer.
       return;
@@ -172,6 +179,10 @@ export class MotionController {
     this.se.scrollY.reset(y);
     this.se.magnitude.reset(0);
     this.magnitude = 0;
+    // A jump is a fixed state, not a frame of motion: the one-frame render
+    // delay would otherwise hold the page at the OLD offset for a capture that
+    // never steps again.
+    this.se.beginFrame();
   }
 
   /**
@@ -233,17 +244,26 @@ export class MotionController {
    */
   private stepSourceExact(nowMs: number) {
     const se = this.se!;
+    // What the Target PAINTS this frame is what its model produced LAST frame:
+    // its renderer and framer-motion's loop are two different frame callbacks
+    // and the renderer's runs first. Snapshot before this frame's input, then
+    // tick -- so the pose applied below is one frame behind the model, as the
+    // Target's is. See SourceExactMotion.beginFrame for the measurement.
+    se.beginFrame();
+    // Commit the pointer target on THIS frame's clock, beside the scroll path.
+    se.setPointer(this.pointerTargetX, this.pointerTargetY, nowMs);
     const info: PanInfo | null = se.session.frame(nowMs);
     if (info) se.onPan(info, nowMs);
     se.advance(nowMs);
-    this.scrollX = se.scrollX.value;
-    this.scrollY = se.scrollY.value;
-    this.velocityX = se.scrollX.velocity;
-    this.velocityY = se.scrollY.velocity;
-    this.magnitude = se.magnitude.value;
+    const p = se.published;
+    this.scrollX = p.scrollX;
+    this.scrollY = p.scrollY;
+    this.velocityX = p.velocityX;
+    this.velocityY = p.velocityY;
+    this.magnitude = p.magnitude;
     this.dragging = se.session.active;
-    this.pointerX = se.pointerX.value;
-    this.pointerY = se.pointerY.value;
+    this.pointerX = p.pointerX;
+    this.pointerY = p.pointerY;
     // The Target tilts nothing, translates nothing and moves no light. Held at
     // zero rather than left stale, so a readback cannot report a pose the
     // source-exact path never applies.

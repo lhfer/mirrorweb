@@ -195,7 +195,9 @@ if __name__ == "__main__":
               "wheel-normalization.json", "pointer-orbit.json", "touch-runtime.json",
               "wrap-continuity.json", "typography-regression.json", "source-contract.json",
               "engine-vs-contract.json", "resize-continuity.json", "gate-summary.json",
-              "card-label-motion.json", "release-decay.png"]:
+              "card-label-motion.json", "highlight-path.json", "legacy-invariance.json",
+              "depth-carry-forward.json",
+              "release-decay.png"]:
         p = PUB / n
         if p.exists():
             shutil.copy2(p, PRIV / n)
