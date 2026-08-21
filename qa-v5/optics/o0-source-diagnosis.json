@@ -1,0 +1,375 @@
+{
+ "what": "O0 optics source diagnosis: the Target's complete glass shader byte-anchored (sites), plus runtime ROI statistics on both pages (runtime). Media differs between the pages, so runtime numbers are distribution statistics, never pixel matches.",
+ "bundle": {
+  "path": "artifacts/f27/bundles/03lo820gl57km.js",
+  "sha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+  "bytes": 2008349
+ },
+ "liveBundle": null,
+ "sites": [
+  {
+   "id": "glassGeometryIsPlane",
+   "byteOffset": 1973254,
+   "occurrences": 1,
+   "verbatim": "new eF.PlaneGeometry(1,1,16,12)",
+   "whatItSettles": "The Target's glass has NO volume: one unit plane, 16x12 segments. There is no front/side/back structure, no sidewall, no back dish -- everything else is shading.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "domePositionNode",
+   "byteOffset": 1976923,
+   "occurrences": 1,
+   "verbatim": "m.positionNode=(0,dB.vec3)(dB.positionLocal.xy,u(dB.positionLocal.xy.mul(n.planeSize)))",
+   "whatItSettles": "The plane is bulged onto a sphere section: z = sqrt(max(R^2-|p|^2,1)) - R with R = the LAYOUT sphere radius (uniform, written per frame). The card's curvature IS the grid sphere's curvature.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "roundedRectSdf",
+   "byteOffset": 1973982,
+   "occurrences": 1,
+   "verbatim": "let t=(0,dB.min)(n.cornerRadius,(0,dB.min)(o.x,o.y)),r=(0,dB.abs)(e).sub(o).add(t);return(0,dB.length)((0,dB.max)(r,(0,dB.vec2)(0))).add((0,dB.min)((0,dB.max)(r.x,r.y),(0,dB.float)(0))).sub(t)",
+   "whatItSettles": "The card outline is a rounded-rectangle SDF in plane-pixel space; cornerRadius is settings.cornerRadius (0.163) x planeWidth, capped at the half extent.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "alphaCutout",
+   "byteOffset": 1976706,
+   "occurrences": 1,
+   "verbatim": "return(0,dB.float)(1).sub((0,dB.smoothstep)(t.negate(),t,e)).mul(dB.materialOpacity)",
+   "whatItSettles": "opacityNode: an fwidth-antialiased cutout of the SDF. The glass NEVER paints outside the rounded rect -- zero gutter invasion is structural, not tuned.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "bevelThicknessLaw",
+   "byteOffset": 1974197,
+   "occurrences": 1,
+   "verbatim": "let t=(0,dB.clamp)((0,dB.float)(1).add(e.div((0,dB.max)(n.bevelWidth,(0,dB.float)(.001)))),0,1),r=(0,dB.max)(n.bevelPower,(0,dB.float)(1));return(0,dB.pow)((0,dB.max)((0,dB.float)(1).sub((0,dB.pow)(t,r)),(0,dB.float)(0)),(0,dB.float)(1).div(r)).mul(n.thickness)",
+   "whatItSettles": "Thickness profile: a superellipse of the SDF -- t = clamp(1 + sdf/bevelWidth, 0, 1); thickness x (1 - t^p)^(1/p) with p = bevelPower. Values: bevelWidth 0.192 x planeWidth, bevelPower 3.9, thickness 155 x cardScale. Flat centre, all the action in the bevel band.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "bevelNormal",
+   "byteOffset": 1974924,
+   "occurrences": 1,
+   "verbatim": "g=d.mul((0,dB.min)(p,n.bevelMaxSlope).div((0,dB.max)(p,(0,dB.float)(1e-4)))),m=e.div(l(e)).toVar(),A=(0,dB.normalize)((0,dB.vec3)(m.sub(g),(0,dB.float)(1))).mul(dB.faceDirection).toVar()",
+   "whatItSettles": "The shading normal = sphere term (p/|sphere z|) minus the numeric thickness gradient, slope-clamped at bevelMaxSlope 1.74. One surface, one normal -- no internal fold, no return path, no second refraction event.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "refractionLaw",
+   "byteOffset": 1975355,
+   "occurrences": 1,
+   "verbatim": "let t=(0,dB.float)(1).div((0,dB.max)(n.ior.add(n.dispersion.mul(e.offset)),(0,dB.float)(1.0001))),r=(0,dB.refract)(E.negate(),A,t),i=n.thickness.div((0,dB.max)((0,dB.abs)(r.z),(0,dB.float)(.05))),a=S.add(r.xy.mul(i).mul(n.refractStrength).div(n.planeSize))",
+   "whatItSettles": "Refraction: eta = 1/(ior + dispersion*offset); refract the view ray at the bevel normal; travel = thickness/|r.z| (a slab-depth model); UV shift = r.xy * travel * refractStrength / planeSize. ior 2.3, refractStrength 0.7. The displacement DIVERGES toward the rim as r.z -> 0 (clamped at .05) -- that is the Target's edge compression: media squeezed by the bevel normal, inside the card's own texture.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "refractionSamplesOwnMedia",
+   "byteOffset": 1975612,
+   "occurrences": 1,
+   "verbatim": "o=(0,dB.clamp)(a,0,1).mul(n.coverScale).add(n.coverOffset);_=_.add(s.sample(o).rgb.mul((0,dB.vec3)(...e.weight)))",
+   "whatItSettles": "The refracted sample is CLAMPED to the card's own media rect (cover fit) -- no scene-colour, no neighbour bleed, and at the rim the media clamps to its border pixels rather than escaping.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "dispersionWeights",
+   "byteOffset": 1959836,
+   "occurrences": 1,
+   "verbatim": "function L2(e,t){return Math.max(0,1-Math.abs(e-t)/.5)}",
+   "whatItSettles": "Spectral weights: per sample at spectral position n in [0,1], RGB weights are tent functions centred at 0 / 0.5 / 1 with half-width 0.5, normalised so each channel sums to 1 across samples. 5 samples (dispersionSamples), dispersion 0.32 spread on the IOR. The fringe is an IOR spread inside the card's own media -- NOT a screen-space RGB shift.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "envReflection",
+   "byteOffset": 1976103,
+   "occurrences": 1,
+   "verbatim": "D=(0,dB.texture)(t,(0,dB.equirectUV)(P)).rgb",
+   "whatItSettles": "Reflection: mirror the view ray at the world-space normal, rotate by envRotation (-2 rad about Y) then envRotationX (0), sample the equirect environment AT LEVEL 0 -- no roughness, no blur, no PMREM. The env preset is 'studio': /hdri/studio_small_03_1k.hdr on the Target's own origin -- the white-studio reflection is a real HDR studio, not a colour.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "fresnelMix",
+   "byteOffset": 1976148,
+   "occurrences": 1,
+   "verbatim": "B=n.fresnelF0.add((0,dB.float)(1).sub(n.fresnelF0).mul((0,dB.pow)((0,dB.saturate)((0,dB.float)(1).sub((0,dB.dot)(A,E))),5)))",
+   "whatItSettles": "Schlick fresnel, F0 = 0.045, exponent 5, against the BEVEL normal -- so the fresnel rises exactly where the bevel turns the normal, i.e. the white ring lives on the bevel band.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "outputMix",
+   "byteOffset": 1976472,
+   "occurrences": 1,
+   "verbatim": "return(0,dB.mix)(_.mul(n.tint),D,(0,dB.min)((0,dB.saturate)(B.mul(n.envIntensity)),n.envMaxMix)).add(N.mul(k))",
+   "whatItSettles": "The final colour: mix(refractedMedia * tint(#fff), envReflection, min(saturate(fresnel * envIntensity 1.93), envMaxMix 0.27)) + rim. The env can replace AT MOST 27% of the media colour -- the white reflection is a capped LERP, not additive energy, so it DE-saturates the rim band toward the studio white instead of adding chroma.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "rimLight",
+   "byteOffset": 1976273,
+   "occurrences": 1,
+   "verbatim": "k=(0,dB.smoothstep)(n.rimWidth.negate(),(0,dB.float)(0),r).mul(n.rimIntensity)",
+   "whatItSettles": "Rim: smoothstep over the last rimWidth (10 x cardScale) px of the SDF, intensity 0.11, colour WHITE top and bottom (rimColor = rimColorTop = #ffffff) -- an additive white line, no hue.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "materialNotToneMapped",
+   "byteOffset": 1976793,
+   "occurrences": 1,
+   "verbatim": "m=new ek.MeshBasicNodeMaterial({transparent:!0,alphaTest:.001,depthWrite:!0,depthTest:!0,side:eF.FrontSide,toneMapped:!1})",
+   "whatItSettles": "toneMapped: FALSE. The card's colour -- media, reflection and rim -- reaches the framebuffer without any tone-mapping curve. Combined with the app never setting renderer.toneMapping (no such write exists in the app module; the three.js default is NoToneMapping), the Target output transform is: sRGB encode only. No ACES, no exposure, no contrast curve, no saturation stage anywhere in the chain.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "settingsBH",
+   "byteOffset": 1303608,
+   "occurrences": 1,
+   "verbatim": "bH={cornerRadius:.163,bevelWidth:.192,bevelPower:3.9,bevelMaxSlope:1.74,thickness:155,ior:2.3,roughness:0,refractStrength:.7,dispersion:.32,dispersionSamples:5,fresnelF0:.045,envIntensity:1.93,envMaxMix:.27,envPreset:\"studio\",envRotation:-2,envRotationX:0,rimWidth:10,rimIntensity:.11,rimColor:\"#ffffff\",rimColorTop:\"#ffffff\",tint:\"#ffffff\"}",
+   "whatItSettles": "The complete shipped optics parameter set. Note roughness: 0 exists as a setting but NO roughness uniform is created and no blur path exists in the material -- it is dead.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "backgroundGradient",
+   "byteOffset": 1304606,
+   "occurrences": 1,
+   "verbatim": "e=(0,dB.mix)((0,dB.color)(\"#0a1c3d\"),(0,dB.color)(\"#000000\"),dB.screenUV.x.sub(dB.screenUV.y).add(1).mul(.5))",
+   "whatItSettles": "The page behind the cards: a screen-space navy (#0a1c3d) to black diagonal gradient as the scene backgroundNode.",
+   "confidence": "SOURCE_READ"
+  },
+  {
+   "id": "videoColorSpace",
+   "byteOffset": 1970483,
+   "occurrences": 1,
+   "verbatim": "e.colorSpace=eF.SRGBColorSpace,e.wrapS=eF.ClampToEdgeWrapping",
+   "whatItSettles": "Media textures are sRGB, clamped to edge -- the refracted sample clamp lands on repeated border pixels, which is what the edge compression squeezes against.",
+   "confidence": "SOURCE_READ"
+  }
+ ],
+ "questions": {
+  "glassGeometry": "A domed unit plane -- no volume, no front/side/back split.",
+  "sceneColorSampling": "None. Refraction displaces UV within the card's own media texture, cover-fitted and clamped.",
+  "refractionDisplacementLaw": "refract(-E, bevelNormal, 1/(ior+dispersion*o)); travel = thickness/max(|r.z|,.05); uvShift = r.xy*travel*refractStrength/planeSize. Diverges toward the rim: media compression at the bevel.",
+  "thicknessIor": "thickness 155*cardScale over a superellipse bevel (width .192*planeW, power 3.9); ior 2.3.",
+  "dispersionChannelOffsets": "5 IOR samples spread by 0.32, tent RGB weights centred 0/.5/1 width .5, channel-normalised. In-media, not screen-space.",
+  "reflectionEnvironmentContribution": "equirect studio_small_03_1k.hdr, level 0, rotated -2 rad Y; mixed in by min(saturate(fresnel*1.93), 0.27).",
+  "roughnessBlur": "NONE in the shipped shader. The roughness setting is dead.",
+  "fresnelRimLaw": "Schlick F0 .045 pow 5 on the bevel normal; additive white rim smoothstep over the outer 10*cardScale px, intensity .11.",
+  "toneMapping": "None -- material toneMapped:false, renderer left at the NoToneMapping default. sRGB encode only.",
+  "outputColorSpace": "Renderer default sRGB; video textures sRGB.",
+  "saturationContrastPath": "None exists. tint is #ffffff. Any saturation difference against our candidate comes from OUR pipeline (ACES film curve + exposure 1.05), not from a Target boost.",
+  "whiteStudioReflectionSource": "/hdri/studio_small_03_1k.hdr on the Target origin (downloadable), preset 'studio'.",
+  "edgeCompressionMagnification": "The 1/|r.z| divergence at the bevel, clamped at .05, refractStrength .7 -- compression INTO the card's own media, clamped to its border.",
+  "gutterInvasion": "Structurally zero: the SDF alpha cutout ends the card at its rounded rect; rim light lives INSIDE the SDF (smoothstep of negative band).",
+  "internalFoldReturnPath": "None -- one refraction event on one surface.",
+  "brightDarkHighTextureBehaviour": "Not decidable from source alone -- runtime ROI measurement (o0 runtime half / O1 gate)."
+ },
+ "sitesTotal": 17,
+ "sitesFailed": 0,
+ "pass": true,
+ "runtime": {
+  "1440x900/rest": {
+   "target": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 35.91,
+    "edgeChromaP95": 93.0,
+    "fringeRB": 34.98,
+    "whiteReflectionRatio": 0.2035,
+    "edgeLuminanceMean": 111.75,
+    "interiorSaturationMean": 0.5338,
+    "interiorLuminanceMean": 108.75,
+    "gutterInkRatio": 0.6261073033526235,
+    "fringeWidthPxMean": 7.61
+   },
+   "candidate-beauty": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 63.13,
+    "edgeChromaP95": 175.0,
+    "fringeRB": 59.46,
+    "whiteReflectionRatio": 0.1438,
+    "edgeLuminanceMean": 120.9,
+    "interiorSaturationMean": 0.4932,
+    "interiorLuminanceMean": 154.49,
+    "gutterInkRatio": 0.6120114124987877,
+    "fringeWidthPxMean": 13.64
+   },
+   "candidate-media-only": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 51.16,
+    "edgeChromaP95": 127.0,
+    "fringeRB": 46.82,
+    "whiteReflectionRatio": 0.1392,
+    "edgeLuminanceMean": 108.92,
+    "interiorSaturationMean": 0.4984,
+    "interiorLuminanceMean": 148.56,
+    "gutterInkRatio": 0.4939946978759174,
+    "fringeWidthPxMean": 11.14
+   }
+  },
+  "1440x900/pointer-corner-br": {
+   "target": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 37.96,
+    "edgeChromaP95": 91.0,
+    "fringeRB": 36.79,
+    "whiteReflectionRatio": 0.1871,
+    "edgeLuminanceMean": 112.54,
+    "interiorSaturationMean": 0.5446,
+    "interiorLuminanceMean": 107.5,
+    "gutterInkRatio": 0.6172616192574406,
+    "fringeWidthPxMean": 9.79
+   },
+   "candidate-beauty": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 53.24,
+    "edgeChromaP95": 149.0,
+    "fringeRB": 48.52,
+    "whiteReflectionRatio": 0.1466,
+    "edgeLuminanceMean": 109.16,
+    "interiorSaturationMean": 0.4662,
+    "interiorLuminanceMean": 156.05,
+    "gutterInkRatio": 0.6540644028388628,
+    "fringeWidthPxMean": 12.86
+   },
+   "candidate-media-only": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 54.91,
+    "edgeChromaP95": 132.0,
+    "fringeRB": 51.42,
+    "whiteReflectionRatio": 0.1502,
+    "edgeLuminanceMean": 114.29,
+    "interiorSaturationMean": 0.4966,
+    "interiorLuminanceMean": 151.26,
+    "gutterInkRatio": 0.7013381352280764,
+    "fringeWidthPxMean": 11.18
+   }
+  },
+  "390x844/rest": {
+   "target": {
+    "cardsAnalysed": 2,
+    "edgeChromaMean": 37.58,
+    "edgeChromaP95": 98.0,
+    "fringeRB": 36.85,
+    "whiteReflectionRatio": 0.172,
+    "edgeLuminanceMean": 110.93,
+    "interiorSaturationMean": 0.2855,
+    "interiorLuminanceMean": 130.94,
+    "gutterInkRatio": 0.42031624490304104,
+    "fringeWidthPxMean": 12.85
+   },
+   "candidate-beauty": {
+    "cardsAnalysed": 2,
+    "edgeChromaMean": 42.1,
+    "edgeChromaP95": 126.0,
+    "fringeRB": 23.34,
+    "whiteReflectionRatio": 0.285,
+    "edgeLuminanceMean": 117.26,
+    "interiorSaturationMean": 0.427,
+    "interiorLuminanceMean": 139.79,
+    "gutterInkRatio": 0.7111152613066891,
+    "fringeWidthPxMean": 19.75
+   },
+   "candidate-media-only": {
+    "cardsAnalysed": 2,
+    "edgeChromaMean": 40.35,
+    "edgeChromaP95": 145.0,
+    "fringeRB": 26.69,
+    "whiteReflectionRatio": 0.3208,
+    "edgeLuminanceMean": 116.05,
+    "interiorSaturationMean": 0.4212,
+    "interiorLuminanceMean": 146.75,
+    "gutterInkRatio": 0.46473371307622874,
+    "fringeWidthPxMean": 16.55
+   }
+  },
+  "390x844/pointer-corner-br": {
+   "target": {
+    "cardsAnalysed": 2,
+    "edgeChromaMean": 38.84,
+    "edgeChromaP95": 100.0,
+    "fringeRB": 38.03,
+    "whiteReflectionRatio": 0.1767,
+    "edgeLuminanceMean": 108.08,
+    "interiorSaturationMean": 0.3032,
+    "interiorLuminanceMean": 127.42,
+    "gutterInkRatio": 0.32907841211951183,
+    "fringeWidthPxMean": 12.5
+   },
+   "candidate-beauty": {
+    "cardsAnalysed": 2,
+    "edgeChromaMean": 49.85,
+    "edgeChromaP95": 132.0,
+    "fringeRB": 26.83,
+    "whiteReflectionRatio": 0.3603,
+    "edgeLuminanceMean": 135.39,
+    "interiorSaturationMean": 0.3889,
+    "interiorLuminanceMean": 156.74,
+    "gutterInkRatio": 0.6720905222798896,
+    "fringeWidthPxMean": 15.94
+   },
+   "candidate-media-only": {
+    "cardsAnalysed": 2,
+    "edgeChromaMean": 49.85,
+    "edgeChromaP95": 130.0,
+    "fringeRB": 22.42,
+    "whiteReflectionRatio": 0.3943,
+    "edgeLuminanceMean": 140.13,
+    "interiorSaturationMean": 0.4486,
+    "interiorLuminanceMean": 144.66,
+    "gutterInkRatio": 0.7115849191876685,
+    "fringeWidthPxMean": 15.19
+   }
+  }
+ },
+ "candidateInteriorShiftVsOwnMediaOnly": {
+  "1440x900/rest": {
+   "beautyOverMediaOnlySaturation": 0.99,
+   "beautyOverMediaOnlyLuminance": 1.04
+  },
+  "1440x900/pointer-corner-br": {
+   "beautyOverMediaOnlySaturation": 0.939,
+   "beautyOverMediaOnlyLuminance": 1.032
+  },
+  "390x844/rest": {
+   "beautyOverMediaOnlySaturation": 1.014,
+   "beautyOverMediaOnlyLuminance": 0.953
+  },
+  "390x844/pointer-corner-br": {
+   "beautyOverMediaOnlySaturation": 0.867,
+   "beautyOverMediaOnlyLuminance": 1.084
+  }
+ },
+ "runtimeMethod": {
+  "cardRects": "projected AABBs from the SAME layout/culling twin on both lanes (proven slot-identical in V0), front-facing fully-on-screen cards only",
+  "edgeBand": "outer 15% ring of the AABB",
+  "interior": "middle 55% of the AABB",
+  "chroma": "max(RGB)-min(RGB); fringeRB = mean |R-B| (the cyan/magenta axis); white = min(RGB) > 180",
+  "gutter": "non-card pixels between analysed cards; ink = luma > 80 over the navy-black gradient",
+  "confidence": "RUNTIME_MEASURED"
+ },
+ "systemGapRanking": {
+  "method": "measured runtime gaps (edge band statistics, media-independent by construction) attributed to the four candidate systems via the byte-anchored source differences",
+  "ranking": [
+   {
+    "system": "A. Edge Energy / Dispersion / Saturation",
+    "measuredGap": "desktop edge chroma 35.91 (Target) vs 63.13 (candidate), fringe R-B axis 34.98 vs 59.46, white reflection ratio 0.204 vs 0.144 -- the candidate's edges carry ~76% more chroma and ~30% less white than the Target's",
+    "sourceCause": "the Target's dispersion is an IN-MEDIA IOR spread -- 5 spectral samples, eta_i = 1/(ior + dispersion*offset_i), tent RGB weights normalised per channel (energy-conserving, chroma bounded by the media's own colours). The candidate's is a screen-space R/B tap split (dispersionUv 0.0065 both directions), which manufactures pure cyan/magenta lines at every luminance edge regardless of media content",
+    "verdict": "LARGEST measured, directly on the brief's named metrics (fringe chroma, rim saturation, white reflection ratio)"
+   },
+   {
+    "system": "B. Environment / White Studio Reflection",
+    "measuredGap": "white ratio deficit is real but co-caused by A: the chroma fringes COVER the white band. Both pages source a white studio (theirs studio_small_03_1k.hdr, fresnel-capped LERP <= 0.27)",
+    "verdict": "second; re-measure after A"
+   },
+   {
+    "system": "C. Refraction / Edge Compression",
+    "measuredGap": "fringe width and compression not separable from A's chroma at this round's instruments",
+    "verdict": "third"
+   },
+   {
+    "system": "D. Thickness / Internal Fold",
+    "measuredGap": "no direct measurement; the Target has NO internal fold (single refraction event, source-read)",
+    "verdict": "fourth"
+   }
+  ],
+  "caveat": "interior-saturation numbers compare DIFFERENT media sets (the Target shuffles its clips per load) and are indicative only; edge-band numbers are glass-dominated and carry the decision. Mobile flips fringeRB because the candidate's gutter spill (0.71 vs 0.42 ink ratio) floods the band -- recorded, not chased this round."
+ }
+}

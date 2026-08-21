@@ -1,0 +1,25 @@
+{
+ "selectedSystem": "A. Edge Energy / Dispersion / Saturation",
+ "whyLargestVisibleGap": "The only gap measured directly on the brief's named metrics, and the largest: desktop edge chroma 63.13 vs the Target's 35.91 (+76%), fringe R-B axis 59.46 vs 34.98 (+70%), white reflection ratio 0.144 vs the Target's 0.204 (-30%). The source difference explains the numbers: the Target disperses INSIDE the card's own media with 5 IOR-spread samples and per-channel-normalised tent weights (energy-conserving), while the candidate splits R and B by a fixed screen-space offset, manufacturing pure cyan/magenta lines at every luminance edge and covering the white reflection band.",
+ "frozenParameters": [
+  "renderer tone mapping and exposure (global: moving them would change media-only, which must stay identical to pre-O1)",
+  "refractionDistance, maxRefractionUv, sceneUvScale, overscan (system C)",
+  "reflectionStrength, roughness*, env/shell parameters, shell blending (system B)",
+  "geometry, thickness profile, zone geometry (system D)",
+  "layout, typography, motion, label culling, render culling, media fit, camera, card size",
+  "blurLod (shared with C's blur; untouched)"
+ ],
+ "allowedParameters": [
+  "dispersionUv and the dispersion zone coefficients",
+  "the dispersion SAMPLING LAW inside LiquidGlassMaterialV4: replacing the fixed R/B tap split with the Target's spectral form (N samples along the refraction offset, per-sample eta scale, tent RGB weights normalised per channel)",
+  "the sample count within the existing quality-level shaderSamples budget"
+ ],
+ "expectedVisualChange": "Edge chroma and the R-B fringe axis move DOWN toward the Target's band statistics; the white reflection ratio moves UP as the fringes stop covering the shell's white; fringe width narrows and becomes media-coloured instead of synthetic cyan/magenta; interior and media-only pixels do not move.",
+ "failureConditions": [
+  "edge chroma falls BELOW the Target's (overcorrection is a failure, not a win)",
+  "white reflection ratio does not move (wrong root cause -> System B next)",
+  "any mobile metric regresses while desktop improves",
+  "media-only differs from pre-O1 by a single pixel",
+  "any frozen regression (label culling, render culling, motion, typography, contract, build) fails"
+ ]
+}
