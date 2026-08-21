@@ -1,0 +1,1626 @@
+{
+ "what": "the intra-frame execution order of the magnitude MotionValue's two writers in the Target, read out of the Target's own bundle",
+ "bundle": {
+  "path": "artifacts/f27/bundles/03lo820gl57km.js",
+  "sha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+  "bytes": 2008349
+ },
+ "theTwoWriters": {
+  "A_gesture": {
+   "call": "g.set(Math.hypot(t.velocity.x, t.velocity.y))",
+   "wherePlaced": "the application's onPan and onPanEnd handlers",
+   "whatItMeasures": "the FINGER's velocity, straight out of PanSession's 100 ms history window",
+   "byteOffsets": [
+    1377531,
+    1377765
+   ]
+  },
+  "B_scrollMotionValue": {
+   "call": "g.set(Math.hypot(f.getVelocity(), p.getVelocity()))",
+   "wherePlaced": "the two scroll springs' own change handlers",
+   "whatItMeasures": "the SPRING's one-frame backward difference -- the finger's velocity times the 1.5 drag gain, minus the spring's own lag",
+   "byteOffsets": [
+    1376998
+   ]
+  },
+  "whyTheyDisagree": "by construction, and by a factor near the drag gain while a finger is down. They are not two estimates of one quantity; they are two different quantities written to one value."
+ },
+ "schedulerStep": {
+  "steps": [
+   "setup",
+   "read",
+   "resolveKeyframes",
+   "preUpdate",
+   "update",
+   "preRender",
+   "render",
+   "postRender"
+  ],
+  "panSessionDispatch": "update (keepAlive, re-runs every frame while the gesture is alive)",
+  "applicationOnPan": "update, immediate=true -- appended to the LIVE update set, so after every spring tick in it",
+  "applicationOnPanEnd": "postRender, scheduled from the pointerup listener in the input-dispatch phase, so first in that frame's postRender set",
+  "springTick": "update (keepAlive)",
+  "springRetarget": "postRender",
+  "magnitudeSpringConsumesTargetAt": "postRender, from `g`'s value as it stands at that moment"
+ },
+ "immediateAndKeepAlive": {
+  "signature": "schedule(callback, keepAlive=false, immediate=false)",
+  "panSessionUpdatePoint": {
+   "keepAlive": true,
+   "immediate": false
+  },
+  "applicationOnPanViaSy": {
+   "keepAlive": false,
+   "immediate": true
+  },
+  "springDriverStart": {
+   "keepAlive": true,
+   "immediate": false
+  },
+  "whyImmediateDecidesIt": "immediate=true while the step is being processed adds to the Set currently being iterated, and Set.forEach visits entries added during iteration. So onPan runs AFTER everything already queued in the update step, no matter where updatePoint itself sits in that set. The order does not depend on registration order, which is what makes it deterministic."
+ },
+ "writerRegistrationOrder": [
+  "PanSession.updatePoint  (update, on the first pointermove)",
+  "scrollX spring tick     (update, when d.set() first starts it)",
+  "scrollY spring tick     (update)",
+  "magnitude spring tick   (update, when g.set() first starts it)",
+  "application onPan       (update, appended live, every frame)"
+ ],
+ "writerExecutionOrder": {
+  "dragFrame": [
+   "update: PanSession.updatePoint -> pushes history, dispatches onPan via Sy",
+   "update: scrollX tick -> f change -> WRITER B writes g",
+   "update: scrollY tick -> p change -> WRITER B writes g",
+   "update: magnitude tick -> m advances on LAST frame's solve",
+   "update: onPan -> d.set, h.set, WRITER A writes g   <-- LAST",
+   "postRender: scroll retarget, then magnitude retarget to g = WRITER A"
+  ],
+  "releaseFrame": [
+   "input dispatch: pointerup -> PanSession.end() cancels updatePoint,",
+   "                onPanEnd scheduled onto postRender  <-- FIRST in that set",
+   "update: scrollX/scrollY ticks -> WRITER B writes g",
+   "update: magnitude tick",
+   "postRender: onPanEnd -> d.set(+fling), WRITER A writes g   <-- LAST",
+   "postRender: magnitude retarget to g = WRITER A"
+  ],
+  "postReleaseFrame": [
+   "update: scrollX/scrollY ticks -> WRITER B writes g",
+   "update: magnitude tick",
+   "postRender: magnitude retarget to g = WRITER B (there is no gesture writer left)"
+  ]
+ },
+ "conclusion": {
+  "order": "gestureLastWhileActive",
+  "statement": "The gesture writer is the last writer on every frame that carries a pan dispatch and on the release frame. The scroll writer stands alone on every frame that carries neither -- which is every frame after the release.",
+  "isThisAChoice": "No. It follows from two lines of the bundle: `Sy` scheduling onPan with immediate=true, and the pan feature scheduling onPanEnd straight onto postRender. Neither depends on registration order, machine speed or refresh rate.",
+  "confidence": "SOURCE_READ"
+ },
+ "inferredRows": [
+  {
+   "claim": "Chrome dispatches pointer input before the rAF callback block of the same frame, so onPanEnd's postRender entry is queued before any retarget scheduled during that frame's update step.",
+   "confidence": "INFERRED",
+   "whyNotSourceRead": "it is a property of the browser, not of the bundle, so it cannot be read out of the bundle.",
+   "whatWouldFalsifyIt": "a release frame on which the magnitude retargeted to the scroll writer's value. The measured column below is the check: if this were wrong the release-phase sequences would not close, and they do."
+  }
+ ],
+ "sourceRead": {
+  "sites": [
+   {
+    "id": "frameStepList",
+    "recordedByteOffset": 1242977,
+    "foundAtByteOffset": 1242977,
+    "matches": true,
+    "verbatim": "mQ=[\"setup\",\"read\",\"resolveKeyframes\",\"preUpdate\",\"update\",\"preRender\",\"render\",\"postRender\"]",
+    "whatItSettles": "The frame's eight steps, in the order they are processed.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "frameLoop",
+    "recordedByteOffset": 1243826,
+    "foundAtByteOffset": 1243826,
+    "matches": true,
+    "verbatim": "o.process(n),l.process(n),u.process(n),c.process(n),d.process(n),h.process(n),f.process(n),p.process(n)",
+    "whatItSettles": "One rAF callback runs all eight steps in that order. `update` is the fifth, `postRender` the eighth: everything scheduled onto postRender during update runs later in the SAME frame.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "stepScheduler",
+    "recordedByteOffset": 1243334,
+    "foundAtByteOffset": 1243334,
+    "matches": true,
+    "verbatim": "schedule:(e,n=!1,s=!1)=>{let o=s&&i?t:r;return n&&a.add(e),o.add(e),e}",
+    "whatItSettles": "schedule(callback, keepAlive, immediate). With immediate set AND the step already processing, the callback is added to `t` -- the Set being iterated RIGHT NOW -- so it runs later in this same step. Otherwise it is added to `r`, next time round.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "stepProcess",
+    "recordedByteOffset": 1243441,
+    "foundAtByteOffset": 1243441,
+    "matches": true,
+    "verbatim": "process:e=>{if(s=e,i){n=!0;return}i=!0;let a=t;t=r,r=a,t.forEach(o),t.clear(),i=!1,n&&(n=!1,l.process(e))}",
+    "whatItSettles": "The two Sets are swapped and the pending one is iterated. Set.forEach visits entries added during iteration, which is what makes `immediate` an append rather than a defer. Insertion order is execution order.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "keepAliveWrapper",
+    "recordedByteOffset": 1243278,
+    "foundAtByteOffset": 1243278,
+    "matches": true,
+    "verbatim": "function o(t){a.has(t)&&(l.schedule(t),e()),t(s)}",
+    "whatItSettles": "A keepAlive callback re-schedules itself BEFORE it runs, so keepAlive callbacks keep their relative order frame after frame.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "panHandlePointerMove",
+    "recordedByteOffset": 1321444,
+    "foundAtByteOffset": 1321444,
+    "matches": true,
+    "verbatim": "this.handlePointerMove=(e,t)=>{this.lastMoveEvent=e,this.lastRawMoveEventInfo=t,this.lastMoveEventInfo=So(t,this.transformPagePoint),mH.update(this.updatePoint,!0)}",
+    "whatItSettles": "PanSession's pointermove listener records the point and schedules updatePoint on the `update` step with keepAlive -- so the dispatch re-runs every frame while the gesture is alive, not only on frames that carried a move.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "panUpdatePointDispatch",
+    "recordedByteOffset": 1321273,
+    "foundAtByteOffset": 1321273,
+    "matches": true,
+    "verbatim": "this.history.push({...a,timestamp:s});let{onStart:o,onMove:l}=this.handlers;i||(o&&o(this.lastMoveEvent,r),this.startEvent=this.lastMoveEvent),l&&l(this.lastMoveEvent,r)",
+    "whatItSettles": "updatePoint pushes the point into history with the FRAME's timestamp and then calls the onMove handler.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "Sy",
+    "recordedByteOffset": 1332746,
+    "foundAtByteOffset": 1332746,
+    "matches": true,
+    "verbatim": "let Sy=e=>(t,r)=>{e&&mH.update(()=>e(t,r),!1,!0)}",
+    "whatItSettles": "THE DECIDING LINE. Every pan handler is wrapped in this. It schedules the application's callback onto `update` with immediate=true, and updatePoint is itself running inside the update step -- so the application's onPan is APPENDED TO THE LIVE UPDATE SET and runs after every callback already queued in it, including all three spring ticks.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "panFeatureHandlers",
+    "recordedByteOffset": 1371814,
+    "foundAtByteOffset": 1371814,
+    "matches": true,
+    "verbatim": "createPanHandlers(){let{onPanSessionStart:e,onPanStart:t,onPan:r,onPanEnd:i}=this.node.getProps();return{onSessionStart:Sy(e),onStart:Sy(t),onMove:Sy(r),onEnd:(e,t)=>{delete this.session,i&&mH.postRender(()=>i(e,t))}}}",
+    "whatItSettles": "onPan goes through Sy. onPanEnd does NOT: it is scheduled straight onto `postRender` from inside the pointerup listener, which runs in the input-dispatch phase -- so it is the FIRST entry in that frame's postRender set, ahead of any spring retarget queued during update.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "driver",
+    "recordedByteOffset": 1257250,
+    "foundAtByteOffset": 1257250,
+    "matches": true,
+    "verbatim": "let va=e=>{let t=({timestamp:t})=>e(t);return{start:(e=!0)=>mH.update(t,e),stop:()=>mV(t),now:()=>mj.isProcessing?mj.timestamp:mq.now()}}",
+    "whatItSettles": "The default animation driver ticks on the `update` step with keepAlive. Both scroll springs and the magnitude spring tick there.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "animationPlay",
+    "recordedByteOffset": 1263626,
+    "foundAtByteOffset": 1263626,
+    "matches": true,
+    "verbatim": "play(){if(this.isStopped)return;let{driver:e=va,startTime:t}=this.options;this.driver||(this.driver=e(e=>this.tick(e)))",
+    "whatItSettles": "and nothing overrides that default for these springs: `driver` is not among the options useSpring passes.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "springAttach",
+    "recordedByteOffset": 1374882,
+    "foundAtByteOffset": 1374882,
+    "matches": true,
+    "verbatim": "e.attach((e,t)=>{s=e,i=e=>{var r,i;return t((r=e,(i=o)?r+i:r))},mH.postRender(u)},l)",
+    "whatItSettles": "useSpring attaches a passive effect to its OUTPUT value. Setting the output records the new target and schedules the RETARGET on postRender -- after every writer in that frame's update step has had its say.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "springSourceBridge",
+    "recordedByteOffset": 1374967,
+    "foundAtByteOffset": 1374967,
+    "matches": true,
+    "verbatim": "An(t)){let i=!0===r.skipInitialAnimation,n=t.on(\"change\",t=>{var r,n,a,s;i?(i=!1,e.jump((r=t,(n=o)?r+n:r),!1)):e.set((a=t,(s=o)?a+s:a))})",
+    "whatItSettles": "and the source is bridged to the output through a plain change subscription, which fires SYNCHRONOUSLY inside the source's own set().",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "attachOnly",
+    "recordedByteOffset": 1245366,
+    "foundAtByteOffset": 1245366,
+    "matches": true,
+    "verbatim": "attach(e,t){this.passiveEffect=e,this.stopPassiveEffect=t}",
+    "whatItSettles": "The only way a MotionValue acquires a passive effect.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "motionValueSet",
+    "recordedByteOffset": 1245424,
+    "foundAtByteOffset": 1245424,
+    "matches": true,
+    "verbatim": "set(e){this.passiveEffect?this.passiveEffect(e,this.updateAndNotify):this.updateAndNotify(e)}",
+    "whatItSettles": "A value with no passive effect updates and notifies immediately.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "getVelocity",
+    "recordedByteOffset": 1246070,
+    "foundAtByteOffset": 1246070,
+    "matches": true,
+    "verbatim": "getVelocity(){let e=mq.now();if(!this.canTrackVelocity||void 0===this.prevFrameValue||e-this.updatedAt>30)return 0;let t=Math.min(this.updatedAt-this.prevUpdatedAt,30);return mU(parseFloat(this.current)-parseFloat(this.prevFrameValue),t)}",
+    "whatItSettles": "The scroll writer's number: a ONE-FRAME BACKWARD DIFFERENCE of the spring's output, capped at 30 ms and zeroed once the value is stale. Not the spring's analytic velocity.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "appSprings",
+    "recordedByteOffset": 1376866,
+    "foundAtByteOffset": 1376866,
+    "matches": true,
+    "verbatim": "u=l.spring,c=l.magnitudeSpring,d=_D(0),h=_D(0),f=_F(d,u),p=_F(h,u),g=_D(0),m=_F(g,c)",
+    "whatItSettles": "The application's five values: scroll targets d,h; scroll springs f,p; magnitude source g; magnitude spring m. d, h and g are plain MotionValues -- no passive effect, so a set() on them notifies at once.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "appScrollWriter",
+    "recordedByteOffset": 1376998,
+    "foundAtByteOffset": 1376998,
+    "matches": true,
+    "verbatim": "t=()=>{let e=f.on(\"change\",e=>{bK.set(e);let t=f.getVelocity(),r=p.getVelocity();bY.set(t),bJ.set(r),g.set(_O(t,r))})",
+    "whatItSettles": "WRITER B. Runs inside the scroll spring's own tick, in the update step.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "appGestureWriterPan",
+    "recordedByteOffset": 1377531,
+    "foundAtByteOffset": 1377531,
+    "matches": true,
+    "verbatim": "i=(e,t)=>{d.set(d.get()+1.5*t.delta.x),h.set(h.get()+1.5*t.delta.y),bY.set(t.velocity.x),bJ.set(t.velocity.y),g.set(_O(t.velocity.x,t.velocity.y))}",
+    "whatItSettles": "WRITER A, drag half. The FINGER's velocity, not the spring's.",
+    "confidence": "SOURCE_READ"
+   },
+   {
+    "id": "appGestureWriterPanEnd",
+    "recordedByteOffset": 1377765,
+    "foundAtByteOffset": 1377765,
+    "matches": true,
+    "verbatim": "n=(e,t)=>{d.set(d.get()+t.velocity.x*l.fling),h.set(h.get()+t.velocity.y*l.fling),bY.set(t.velocity.x),bJ.set(t.velocity.y),g.set(_O(t.velocity.x,t.velocity.y))}",
+    "whatItSettles": "WRITER A, release half.",
+    "confidence": "SOURCE_READ"
+   }
+  ],
+  "allSitesMatch": true,
+  "mismatched": []
+ },
+ "measured": {
+  "rows": [
+   {
+    "viewport": "1440x900",
+    "sequence": "slow-horizontal-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.02591,
+    "contractPeakGestureLast": 0.026366,
+    "contractPeakScrollLast": 0.032671,
+    "ratioGestureLast": 0.9827,
+    "ratioScrollLast": 0.7931
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "slow-horizontal-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.02649,
+    "contractPeakGestureLast": 0.026752,
+    "contractPeakScrollLast": 0.032832,
+    "ratioGestureLast": 0.9902,
+    "ratioScrollLast": 0.8068
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "slow-horizontal-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.02624,
+    "contractPeakGestureLast": 0.026209,
+    "contractPeakScrollLast": 0.032673,
+    "ratioGestureLast": 1.0012,
+    "ratioScrollLast": 0.8031
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "slow-vertical-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.02638,
+    "contractPeakGestureLast": 0.026573,
+    "contractPeakScrollLast": 0.032816,
+    "ratioGestureLast": 0.9927,
+    "ratioScrollLast": 0.8039
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "slow-vertical-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.02599,
+    "contractPeakGestureLast": 0.026323,
+    "contractPeakScrollLast": 0.03268,
+    "ratioGestureLast": 0.9873,
+    "ratioScrollLast": 0.7953
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "slow-vertical-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.0262,
+    "contractPeakGestureLast": 0.02605,
+    "contractPeakScrollLast": 0.032672,
+    "ratioGestureLast": 1.0058,
+    "ratioScrollLast": 0.8019
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "diagonal-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.02624,
+    "contractPeakGestureLast": 0.02614,
+    "contractPeakScrollLast": 0.032343,
+    "ratioGestureLast": 1.0039,
+    "ratioScrollLast": 0.8113
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "diagonal-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.02632,
+    "contractPeakGestureLast": 0.026189,
+    "contractPeakScrollLast": 0.032352,
+    "ratioGestureLast": 1.005,
+    "ratioScrollLast": 0.8136
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "diagonal-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.0261,
+    "contractPeakGestureLast": 0.026471,
+    "contractPeakScrollLast": 0.03253,
+    "ratioGestureLast": 0.986,
+    "ratioScrollLast": 0.8023
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "medium-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.07458,
+    "contractPeakGestureLast": 0.074552,
+    "contractPeakScrollLast": 0.077804,
+    "ratioGestureLast": 1.0004,
+    "ratioScrollLast": 0.9586
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "medium-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.07408,
+    "contractPeakGestureLast": 0.074918,
+    "contractPeakScrollLast": 0.078637,
+    "ratioGestureLast": 0.9888,
+    "ratioScrollLast": 0.942
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "medium-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.07308,
+    "contractPeakGestureLast": 0.073965,
+    "contractPeakScrollLast": 0.077835,
+    "ratioGestureLast": 0.988,
+    "ratioScrollLast": 0.9389
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "fast-flick",
+    "repeat": 0,
+    "targetObservedPeak": 0.15196,
+    "contractPeakGestureLast": 0.154898,
+    "contractPeakScrollLast": 0.130695,
+    "ratioGestureLast": 0.981,
+    "ratioScrollLast": 1.1627
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "fast-flick",
+    "repeat": 1,
+    "targetObservedPeak": 0.15869,
+    "contractPeakGestureLast": 0.158937,
+    "contractPeakScrollLast": 0.134519,
+    "ratioGestureLast": 0.9984,
+    "ratioScrollLast": 1.1797
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "fast-flick",
+    "repeat": 2,
+    "targetObservedPeak": 0.15384,
+    "contractPeakGestureLast": 0.156641,
+    "contractPeakScrollLast": 0.133315,
+    "ratioGestureLast": 0.9821,
+    "ratioScrollLast": 1.154
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "reverse-flick",
+    "repeat": 0,
+    "targetObservedPeak": 0.11062,
+    "contractPeakGestureLast": 0.112693,
+    "contractPeakScrollLast": 0.092314,
+    "ratioGestureLast": 0.9816,
+    "ratioScrollLast": 1.1983
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "reverse-flick",
+    "repeat": 1,
+    "targetObservedPeak": 0.11107,
+    "contractPeakGestureLast": 0.112123,
+    "contractPeakScrollLast": 0.092017,
+    "ratioGestureLast": 0.9906,
+    "ratioScrollLast": 1.207
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "reverse-flick",
+    "repeat": 2,
+    "targetObservedPeak": 0.11074,
+    "contractPeakGestureLast": 0.112043,
+    "contractPeakScrollLast": 0.092263,
+    "ratioGestureLast": 0.9884,
+    "ratioScrollLast": 1.2003
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "touch-drag-release",
+    "repeat": 0,
+    "targetObservedPeak": 0.10198,
+    "contractPeakGestureLast": 0.105,
+    "contractPeakScrollLast": 0.106777,
+    "ratioGestureLast": 0.9712,
+    "ratioScrollLast": 0.9551
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "touch-drag-release",
+    "repeat": 1,
+    "targetObservedPeak": 0.10235,
+    "contractPeakGestureLast": 0.104654,
+    "contractPeakScrollLast": 0.106817,
+    "ratioGestureLast": 0.978,
+    "ratioScrollLast": 0.9582
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "touch-drag-release",
+    "repeat": 2,
+    "targetObservedPeak": 0.10067,
+    "contractPeakGestureLast": 0.103841,
+    "contractPeakScrollLast": 0.10541,
+    "ratioGestureLast": 0.9695,
+    "ratioScrollLast": 0.955
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "pointercancel",
+    "repeat": 0,
+    "targetObservedPeak": 0.07125,
+    "contractPeakGestureLast": 0.073391,
+    "contractPeakScrollLast": 0.072373,
+    "ratioGestureLast": 0.9708,
+    "ratioScrollLast": 0.9845
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "pointercancel",
+    "repeat": 1,
+    "targetObservedPeak": 0.07351,
+    "contractPeakGestureLast": 0.075679,
+    "contractPeakScrollLast": 0.074163,
+    "ratioGestureLast": 0.9713,
+    "ratioScrollLast": 0.9912
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "pointercancel",
+    "repeat": 2,
+    "targetObservedPeak": 0.07309,
+    "contractPeakGestureLast": 0.07556,
+    "contractPeakScrollLast": 0.074257,
+    "ratioGestureLast": 0.9673,
+    "ratioScrollLast": 0.9843
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "lostpointercapture",
+    "repeat": 0,
+    "targetObservedPeak": 0.07016,
+    "contractPeakGestureLast": 0.072214,
+    "contractPeakScrollLast": 0.053397,
+    "ratioGestureLast": 0.9716,
+    "ratioScrollLast": 1.3139
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "lostpointercapture",
+    "repeat": 1,
+    "targetObservedPeak": 0.0656,
+    "contractPeakGestureLast": 0.067396,
+    "contractPeakScrollLast": 0.052717,
+    "ratioGestureLast": 0.9734,
+    "ratioScrollLast": 1.2444
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "lostpointercapture",
+    "repeat": 2,
+    "targetObservedPeak": 0.07021,
+    "contractPeakGestureLast": 0.070971,
+    "contractPeakScrollLast": 0.053119,
+    "ratioGestureLast": 0.9893,
+    "ratioScrollLast": 1.3218
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "long-drag-multi-wrap",
+    "repeat": 0,
+    "targetObservedPeak": 0.22208,
+    "contractPeakGestureLast": 0.221946,
+    "contractPeakScrollLast": 0.247386,
+    "ratioGestureLast": 1.0006,
+    "ratioScrollLast": 0.8977
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "long-drag-multi-wrap",
+    "repeat": 1,
+    "targetObservedPeak": 0.22027,
+    "contractPeakGestureLast": 0.221209,
+    "contractPeakScrollLast": 0.247433,
+    "ratioGestureLast": 0.9958,
+    "ratioScrollLast": 0.8902
+   },
+   {
+    "viewport": "1440x900",
+    "sequence": "long-drag-multi-wrap",
+    "repeat": 2,
+    "targetObservedPeak": 0.22016,
+    "contractPeakGestureLast": 0.221375,
+    "contractPeakScrollLast": 0.247433,
+    "ratioGestureLast": 0.9945,
+    "ratioScrollLast": 0.8898
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "slow-horizontal-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.019547,
+    "contractPeakGestureLast": 0.019659,
+    "contractPeakScrollLast": 0.024289,
+    "ratioGestureLast": 0.9943,
+    "ratioScrollLast": 0.8048
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "slow-horizontal-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.019336,
+    "contractPeakGestureLast": 0.01951,
+    "contractPeakScrollLast": 0.024189,
+    "ratioGestureLast": 0.9911,
+    "ratioScrollLast": 0.7994
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "slow-horizontal-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.019527,
+    "contractPeakGestureLast": 0.01956,
+    "contractPeakScrollLast": 0.0242,
+    "ratioGestureLast": 0.9983,
+    "ratioScrollLast": 0.8069
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "slow-vertical-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.01953,
+    "contractPeakGestureLast": 0.019468,
+    "contractPeakScrollLast": 0.024169,
+    "ratioGestureLast": 1.0032,
+    "ratioScrollLast": 0.8081
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "slow-vertical-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.019181,
+    "contractPeakGestureLast": 0.01954,
+    "contractPeakScrollLast": 0.02419,
+    "ratioGestureLast": 0.9816,
+    "ratioScrollLast": 0.7929
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "slow-vertical-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.019554,
+    "contractPeakGestureLast": 0.019636,
+    "contractPeakScrollLast": 0.024308,
+    "ratioGestureLast": 0.9958,
+    "ratioScrollLast": 0.8044
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "diagonal-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.019042,
+    "contractPeakGestureLast": 0.019398,
+    "contractPeakScrollLast": 0.023964,
+    "ratioGestureLast": 0.9817,
+    "ratioScrollLast": 0.7946
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "diagonal-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.019027,
+    "contractPeakGestureLast": 0.019448,
+    "contractPeakScrollLast": 0.024064,
+    "ratioGestureLast": 0.9783,
+    "ratioScrollLast": 0.7907
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "diagonal-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.018918,
+    "contractPeakGestureLast": 0.019448,
+    "contractPeakScrollLast": 0.024065,
+    "ratioGestureLast": 0.9727,
+    "ratioScrollLast": 0.7861
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "medium-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.055506,
+    "contractPeakGestureLast": 0.055533,
+    "contractPeakScrollLast": 0.058172,
+    "ratioGestureLast": 0.9995,
+    "ratioScrollLast": 0.9542
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "medium-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.05475,
+    "contractPeakGestureLast": 0.055152,
+    "contractPeakScrollLast": 0.058097,
+    "ratioGestureLast": 0.9927,
+    "ratioScrollLast": 0.9424
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "medium-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.054631,
+    "contractPeakGestureLast": 0.056133,
+    "contractPeakScrollLast": 0.058802,
+    "ratioGestureLast": 0.9732,
+    "ratioScrollLast": 0.9291
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "fast-flick",
+    "repeat": 0,
+    "targetObservedPeak": 0.117221,
+    "contractPeakGestureLast": 0.120046,
+    "contractPeakScrollLast": 0.099592,
+    "ratioGestureLast": 0.9765,
+    "ratioScrollLast": 1.177
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "fast-flick",
+    "repeat": 1,
+    "targetObservedPeak": 0.118974,
+    "contractPeakGestureLast": 0.119532,
+    "contractPeakScrollLast": 0.099609,
+    "ratioGestureLast": 0.9953,
+    "ratioScrollLast": 1.1944
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "fast-flick",
+    "repeat": 2,
+    "targetObservedPeak": 0.117371,
+    "contractPeakGestureLast": 0.119374,
+    "contractPeakScrollLast": 0.099627,
+    "ratioGestureLast": 0.9832,
+    "ratioScrollLast": 1.1781
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "reverse-flick",
+    "repeat": 0,
+    "targetObservedPeak": 0.08598,
+    "contractPeakGestureLast": 0.084836,
+    "contractPeakScrollLast": 0.069023,
+    "ratioGestureLast": 1.0135,
+    "ratioScrollLast": 1.2457
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "reverse-flick",
+    "repeat": 1,
+    "targetObservedPeak": 0.08244,
+    "contractPeakGestureLast": 0.084555,
+    "contractPeakScrollLast": 0.069098,
+    "ratioGestureLast": 0.975,
+    "ratioScrollLast": 1.1931
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "reverse-flick",
+    "repeat": 2,
+    "targetObservedPeak": 0.082812,
+    "contractPeakGestureLast": 0.084857,
+    "contractPeakScrollLast": 0.069088,
+    "ratioGestureLast": 0.9759,
+    "ratioScrollLast": 1.1986
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "touch-drag-release",
+    "repeat": 0,
+    "targetObservedPeak": 0.076008,
+    "contractPeakGestureLast": 0.079216,
+    "contractPeakScrollLast": 0.080591,
+    "ratioGestureLast": 0.9595,
+    "ratioScrollLast": 0.9431
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "touch-drag-release",
+    "repeat": 1,
+    "targetObservedPeak": 0.076424,
+    "contractPeakGestureLast": 0.078836,
+    "contractPeakScrollLast": 0.080567,
+    "ratioGestureLast": 0.9694,
+    "ratioScrollLast": 0.9486
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "touch-drag-release",
+    "repeat": 2,
+    "targetObservedPeak": 0.075999,
+    "contractPeakGestureLast": 0.077528,
+    "contractPeakScrollLast": 0.079549,
+    "ratioGestureLast": 0.9803,
+    "ratioScrollLast": 0.9554
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "pointercancel",
+    "repeat": 0,
+    "targetObservedPeak": 0.054356,
+    "contractPeakGestureLast": 0.056783,
+    "contractPeakScrollLast": 0.055425,
+    "ratioGestureLast": 0.9573,
+    "ratioScrollLast": 0.9807
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "pointercancel",
+    "repeat": 1,
+    "targetObservedPeak": 0.054205,
+    "contractPeakGestureLast": 0.056213,
+    "contractPeakScrollLast": 0.055332,
+    "ratioGestureLast": 0.9643,
+    "ratioScrollLast": 0.9796
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "pointercancel",
+    "repeat": 2,
+    "targetObservedPeak": 0.054668,
+    "contractPeakGestureLast": 0.05664,
+    "contractPeakScrollLast": 0.055427,
+    "ratioGestureLast": 0.9652,
+    "ratioScrollLast": 0.9863
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "lostpointercapture",
+    "repeat": 0,
+    "targetObservedPeak": 0.049962,
+    "contractPeakGestureLast": 0.051246,
+    "contractPeakScrollLast": 0.039444,
+    "ratioGestureLast": 0.9749,
+    "ratioScrollLast": 1.2667
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "lostpointercapture",
+    "repeat": 1,
+    "targetObservedPeak": 0.052024,
+    "contractPeakGestureLast": 0.052973,
+    "contractPeakScrollLast": 0.039672,
+    "ratioGestureLast": 0.9821,
+    "ratioScrollLast": 1.3113
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "lostpointercapture",
+    "repeat": 2,
+    "targetObservedPeak": 0.049018,
+    "contractPeakGestureLast": 0.051059,
+    "contractPeakScrollLast": 0.039122,
+    "ratioGestureLast": 0.96,
+    "ratioScrollLast": 1.253
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "long-drag-multi-wrap",
+    "repeat": 0,
+    "targetObservedPeak": 0.122091,
+    "contractPeakGestureLast": 0.124181,
+    "contractPeakScrollLast": 0.148266,
+    "ratioGestureLast": 0.9832,
+    "ratioScrollLast": 0.8235
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "long-drag-multi-wrap",
+    "repeat": 1,
+    "targetObservedPeak": 0.121718,
+    "contractPeakGestureLast": 0.123864,
+    "contractPeakScrollLast": 0.148223,
+    "ratioGestureLast": 0.9827,
+    "ratioScrollLast": 0.8212
+   },
+   {
+    "viewport": "390x844",
+    "sequence": "long-drag-multi-wrap",
+    "repeat": 2,
+    "targetObservedPeak": 0.123024,
+    "contractPeakGestureLast": 0.125185,
+    "contractPeakScrollLast": 0.14906,
+    "ratioGestureLast": 0.9827,
+    "ratioScrollLast": 0.8253
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "slow-horizontal-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.019471,
+    "contractPeakGestureLast": 0.019508,
+    "contractPeakScrollLast": 0.023979,
+    "ratioGestureLast": 0.9981,
+    "ratioScrollLast": 0.812
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "slow-horizontal-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.019424,
+    "contractPeakGestureLast": 0.019625,
+    "contractPeakScrollLast": 0.024309,
+    "ratioGestureLast": 0.9898,
+    "ratioScrollLast": 0.799
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "slow-horizontal-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.019351,
+    "contractPeakGestureLast": 0.019671,
+    "contractPeakScrollLast": 0.024311,
+    "ratioGestureLast": 0.9837,
+    "ratioScrollLast": 0.796
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "slow-vertical-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.019493,
+    "contractPeakGestureLast": 0.0197,
+    "contractPeakScrollLast": 0.024308,
+    "ratioGestureLast": 0.9895,
+    "ratioScrollLast": 0.8019
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "slow-vertical-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.019218,
+    "contractPeakGestureLast": 0.019359,
+    "contractPeakScrollLast": 0.024191,
+    "ratioGestureLast": 0.9927,
+    "ratioScrollLast": 0.7944
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "slow-vertical-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.019288,
+    "contractPeakGestureLast": 0.019751,
+    "contractPeakScrollLast": 0.024325,
+    "ratioGestureLast": 0.9766,
+    "ratioScrollLast": 0.7929
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "diagonal-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.019397,
+    "contractPeakGestureLast": 0.019156,
+    "contractPeakScrollLast": 0.02368,
+    "ratioGestureLast": 1.0126,
+    "ratioScrollLast": 0.8191
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "diagonal-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.019188,
+    "contractPeakGestureLast": 0.019398,
+    "contractPeakScrollLast": 0.02407,
+    "ratioGestureLast": 0.9891,
+    "ratioScrollLast": 0.7972
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "diagonal-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.019117,
+    "contractPeakGestureLast": 0.019285,
+    "contractPeakScrollLast": 0.023957,
+    "ratioGestureLast": 0.9913,
+    "ratioScrollLast": 0.798
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "medium-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.054459,
+    "contractPeakGestureLast": 0.055299,
+    "contractPeakScrollLast": 0.058152,
+    "ratioGestureLast": 0.9848,
+    "ratioScrollLast": 0.9365
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "medium-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.054981,
+    "contractPeakGestureLast": 0.055375,
+    "contractPeakScrollLast": 0.058176,
+    "ratioGestureLast": 0.9929,
+    "ratioScrollLast": 0.9451
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "medium-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.054483,
+    "contractPeakGestureLast": 0.055924,
+    "contractPeakScrollLast": 0.058282,
+    "ratioGestureLast": 0.9742,
+    "ratioScrollLast": 0.9348
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "fast-flick",
+    "repeat": 0,
+    "targetObservedPeak": 0.118648,
+    "contractPeakGestureLast": 0.121651,
+    "contractPeakScrollLast": 0.101766,
+    "ratioGestureLast": 0.9753,
+    "ratioScrollLast": 1.1659
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "fast-flick",
+    "repeat": 1,
+    "targetObservedPeak": 0.116573,
+    "contractPeakGestureLast": 0.119171,
+    "contractPeakScrollLast": 0.09957,
+    "ratioGestureLast": 0.9782,
+    "ratioScrollLast": 1.1708
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "fast-flick",
+    "repeat": 2,
+    "targetObservedPeak": 0.117404,
+    "contractPeakGestureLast": 0.11966,
+    "contractPeakScrollLast": 0.099643,
+    "ratioGestureLast": 0.9811,
+    "ratioScrollLast": 1.1782
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "reverse-flick",
+    "repeat": 0,
+    "targetObservedPeak": 0.083794,
+    "contractPeakGestureLast": 0.087444,
+    "contractPeakScrollLast": 0.07123,
+    "ratioGestureLast": 0.9583,
+    "ratioScrollLast": 1.1764
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "reverse-flick",
+    "repeat": 1,
+    "targetObservedPeak": 0.08569,
+    "contractPeakGestureLast": 0.0846,
+    "contractPeakScrollLast": 0.069016,
+    "ratioGestureLast": 1.0129,
+    "ratioScrollLast": 1.2416
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "reverse-flick",
+    "repeat": 2,
+    "targetObservedPeak": 0.085649,
+    "contractPeakGestureLast": 0.085232,
+    "contractPeakScrollLast": 0.069017,
+    "ratioGestureLast": 1.0049,
+    "ratioScrollLast": 1.241
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "touch-drag-release",
+    "repeat": 0,
+    "targetObservedPeak": 0.076875,
+    "contractPeakGestureLast": 0.077611,
+    "contractPeakScrollLast": 0.079416,
+    "ratioGestureLast": 0.9905,
+    "ratioScrollLast": 0.968
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "touch-drag-release",
+    "repeat": 1,
+    "targetObservedPeak": 0.076721,
+    "contractPeakGestureLast": 0.077937,
+    "contractPeakScrollLast": 0.079544,
+    "ratioGestureLast": 0.9844,
+    "ratioScrollLast": 0.9645
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "touch-drag-release",
+    "repeat": 2,
+    "targetObservedPeak": 0.077179,
+    "contractPeakGestureLast": 0.077202,
+    "contractPeakScrollLast": 0.079516,
+    "ratioGestureLast": 0.9997,
+    "ratioScrollLast": 0.9706
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "pointercancel",
+    "repeat": 0,
+    "targetObservedPeak": 0.054501,
+    "contractPeakGestureLast": 0.055518,
+    "contractPeakScrollLast": 0.054619,
+    "ratioGestureLast": 0.9817,
+    "ratioScrollLast": 0.9979
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "pointercancel",
+    "repeat": 1,
+    "targetObservedPeak": 0.05356,
+    "contractPeakGestureLast": 0.055481,
+    "contractPeakScrollLast": 0.054537,
+    "ratioGestureLast": 0.9654,
+    "ratioScrollLast": 0.9821
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "pointercancel",
+    "repeat": 2,
+    "targetObservedPeak": 0.053753,
+    "contractPeakGestureLast": 0.05563,
+    "contractPeakScrollLast": 0.054539,
+    "ratioGestureLast": 0.9663,
+    "ratioScrollLast": 0.9856
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "lostpointercapture",
+    "repeat": 0,
+    "targetObservedPeak": 0.051784,
+    "contractPeakGestureLast": 0.053871,
+    "contractPeakScrollLast": 0.039672,
+    "ratioGestureLast": 0.9613,
+    "ratioScrollLast": 1.3053
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "lostpointercapture",
+    "repeat": 1,
+    "targetObservedPeak": 0.050937,
+    "contractPeakGestureLast": 0.051385,
+    "contractPeakScrollLast": 0.03943,
+    "ratioGestureLast": 0.9913,
+    "ratioScrollLast": 1.2918
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "lostpointercapture",
+    "repeat": 2,
+    "targetObservedPeak": 0.049844,
+    "contractPeakGestureLast": 0.050417,
+    "contractPeakScrollLast": 0.039303,
+    "ratioGestureLast": 0.9886,
+    "ratioScrollLast": 1.2682
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "resize-during-motion",
+    "repeat": 0,
+    "targetObservedPeak": 0.106577,
+    "contractPeakGestureLast": 0.114577,
+    "contractPeakScrollLast": 0.094644,
+    "ratioGestureLast": 0.9302,
+    "ratioScrollLast": 1.1261
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "long-drag-multi-wrap",
+    "repeat": 0,
+    "targetObservedPeak": 0.220617,
+    "contractPeakGestureLast": 0.222594,
+    "contractPeakScrollLast": 0.247552,
+    "ratioGestureLast": 0.9911,
+    "ratioScrollLast": 0.8912
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "long-drag-multi-wrap",
+    "repeat": 1,
+    "targetObservedPeak": 0.219364,
+    "contractPeakGestureLast": 0.22183,
+    "contractPeakScrollLast": 0.246911,
+    "ratioGestureLast": 0.9889,
+    "ratioScrollLast": 0.8884
+   },
+   {
+    "viewport": "844x390",
+    "sequence": "long-drag-multi-wrap",
+    "repeat": 2,
+    "targetObservedPeak": 0.219791,
+    "contractPeakGestureLast": 0.221254,
+    "contractPeakScrollLast": 0.246892,
+    "ratioGestureLast": 0.9934,
+    "ratioScrollLast": 0.8902
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "slow-horizontal-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.041557,
+    "contractPeakGestureLast": 0.041935,
+    "contractPeakScrollLast": 0.051793,
+    "ratioGestureLast": 0.991,
+    "ratioScrollLast": 0.8024
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "slow-horizontal-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.0414,
+    "contractPeakGestureLast": 0.041921,
+    "contractPeakScrollLast": 0.052023,
+    "ratioGestureLast": 0.9876,
+    "ratioScrollLast": 0.7958
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "slow-horizontal-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.041696,
+    "contractPeakGestureLast": 0.041771,
+    "contractPeakScrollLast": 0.051947,
+    "ratioGestureLast": 0.9982,
+    "ratioScrollLast": 0.8027
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "slow-vertical-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.042245,
+    "contractPeakGestureLast": 0.042518,
+    "contractPeakScrollLast": 0.052193,
+    "ratioGestureLast": 0.9936,
+    "ratioScrollLast": 0.8094
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "slow-vertical-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.041712,
+    "contractPeakGestureLast": 0.041782,
+    "contractPeakScrollLast": 0.051978,
+    "ratioGestureLast": 0.9983,
+    "ratioScrollLast": 0.8025
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "slow-vertical-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.041271,
+    "contractPeakGestureLast": 0.042028,
+    "contractPeakScrollLast": 0.051986,
+    "ratioGestureLast": 0.982,
+    "ratioScrollLast": 0.7939
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "diagonal-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.04119,
+    "contractPeakGestureLast": 0.042087,
+    "contractPeakScrollLast": 0.051719,
+    "ratioGestureLast": 0.9787,
+    "ratioScrollLast": 0.7964
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "diagonal-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.040884,
+    "contractPeakGestureLast": 0.041493,
+    "contractPeakScrollLast": 0.051474,
+    "ratioGestureLast": 0.9853,
+    "ratioScrollLast": 0.7943
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "diagonal-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.04055,
+    "contractPeakGestureLast": 0.041589,
+    "contractPeakScrollLast": 0.051454,
+    "ratioGestureLast": 0.975,
+    "ratioScrollLast": 0.7881
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "medium-drag",
+    "repeat": 0,
+    "targetObservedPeak": 0.114079,
+    "contractPeakGestureLast": 0.117554,
+    "contractPeakScrollLast": 0.121588,
+    "ratioGestureLast": 0.9704,
+    "ratioScrollLast": 0.9382
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "medium-drag",
+    "repeat": 1,
+    "targetObservedPeak": 0.115115,
+    "contractPeakGestureLast": 0.117709,
+    "contractPeakScrollLast": 0.121531,
+    "ratioGestureLast": 0.978,
+    "ratioScrollLast": 0.9472
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "medium-drag",
+    "repeat": 2,
+    "targetObservedPeak": 0.113712,
+    "contractPeakGestureLast": 0.115886,
+    "contractPeakScrollLast": 0.120348,
+    "ratioGestureLast": 0.9812,
+    "ratioScrollLast": 0.9449
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "fast-flick",
+    "repeat": 0,
+    "targetObservedPeak": 0.216115,
+    "contractPeakGestureLast": 0.219587,
+    "contractPeakScrollLast": 0.193507,
+    "ratioGestureLast": 0.9842,
+    "ratioScrollLast": 1.1168
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "fast-flick",
+    "repeat": 1,
+    "targetObservedPeak": 0.216774,
+    "contractPeakGestureLast": 0.217422,
+    "contractPeakScrollLast": 0.190008,
+    "ratioGestureLast": 0.997,
+    "ratioScrollLast": 1.1409
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "fast-flick",
+    "repeat": 2,
+    "targetObservedPeak": 0.216035,
+    "contractPeakGestureLast": 0.216428,
+    "contractPeakScrollLast": 0.189812,
+    "ratioGestureLast": 0.9982,
+    "ratioScrollLast": 1.1382
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "reverse-flick",
+    "repeat": 0,
+    "targetObservedPeak": 0.16435,
+    "contractPeakGestureLast": 0.167717,
+    "contractPeakScrollLast": 0.140229,
+    "ratioGestureLast": 0.9799,
+    "ratioScrollLast": 1.172
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "reverse-flick",
+    "repeat": 1,
+    "targetObservedPeak": 0.167735,
+    "contractPeakGestureLast": 0.169656,
+    "contractPeakScrollLast": 0.143803,
+    "ratioGestureLast": 0.9887,
+    "ratioScrollLast": 1.1664
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "reverse-flick",
+    "repeat": 2,
+    "targetObservedPeak": 0.166217,
+    "contractPeakGestureLast": 0.170756,
+    "contractPeakScrollLast": 0.144072,
+    "ratioGestureLast": 0.9734,
+    "ratioScrollLast": 1.1537
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "touch-drag-release",
+    "repeat": 0,
+    "targetObservedPeak": 0.154296,
+    "contractPeakGestureLast": 0.155613,
+    "contractPeakScrollLast": 0.158482,
+    "ratioGestureLast": 0.9915,
+    "ratioScrollLast": 0.9736
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "touch-drag-release",
+    "repeat": 1,
+    "targetObservedPeak": 0.153703,
+    "contractPeakGestureLast": 0.155557,
+    "contractPeakScrollLast": 0.158538,
+    "ratioGestureLast": 0.9881,
+    "ratioScrollLast": 0.9695
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "touch-drag-release",
+    "repeat": 2,
+    "targetObservedPeak": 0.153903,
+    "contractPeakGestureLast": 0.156968,
+    "contractPeakScrollLast": 0.160049,
+    "ratioGestureLast": 0.9805,
+    "ratioScrollLast": 0.9616
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "pointercancel",
+    "repeat": 0,
+    "targetObservedPeak": 0.113882,
+    "contractPeakGestureLast": 0.115575,
+    "contractPeakScrollLast": 0.113433,
+    "ratioGestureLast": 0.9854,
+    "ratioScrollLast": 1.004
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "pointercancel",
+    "repeat": 1,
+    "targetObservedPeak": 0.115023,
+    "contractPeakGestureLast": 0.117733,
+    "contractPeakScrollLast": 0.115129,
+    "ratioGestureLast": 0.977,
+    "ratioScrollLast": 0.9991
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "pointercancel",
+    "repeat": 2,
+    "targetObservedPeak": 0.112182,
+    "contractPeakGestureLast": 0.115652,
+    "contractPeakScrollLast": 0.113322,
+    "ratioGestureLast": 0.97,
+    "ratioScrollLast": 0.9899
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "lostpointercapture",
+    "repeat": 0,
+    "targetObservedPeak": 0.108541,
+    "contractPeakGestureLast": 0.111703,
+    "contractPeakScrollLast": 0.083735,
+    "ratioGestureLast": 0.9717,
+    "ratioScrollLast": 1.2962
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "lostpointercapture",
+    "repeat": 1,
+    "targetObservedPeak": 0.099685,
+    "contractPeakGestureLast": 0.100449,
+    "contractPeakScrollLast": 0.082627,
+    "ratioGestureLast": 0.9924,
+    "ratioScrollLast": 1.2065
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "lostpointercapture",
+    "repeat": 2,
+    "targetObservedPeak": 0.100524,
+    "contractPeakGestureLast": 0.103062,
+    "contractPeakScrollLast": 0.082685,
+    "ratioGestureLast": 0.9754,
+    "ratioScrollLast": 1.2158
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "resize-during-motion",
+    "repeat": 0,
+    "targetObservedPeak": 0.201498,
+    "contractPeakGestureLast": 0.212975,
+    "contractPeakScrollLast": 0.185834,
+    "ratioGestureLast": 0.9461,
+    "ratioScrollLast": 1.0843
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "resize-during-motion",
+    "repeat": 1,
+    "targetObservedPeak": 0.197572,
+    "contractPeakGestureLast": 0.209181,
+    "contractPeakScrollLast": 0.182288,
+    "ratioGestureLast": 0.9445,
+    "ratioScrollLast": 1.0838
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "resize-during-motion",
+    "repeat": 2,
+    "targetObservedPeak": 0.200433,
+    "contractPeakGestureLast": 0.209992,
+    "contractPeakScrollLast": 0.182351,
+    "ratioGestureLast": 0.9545,
+    "ratioScrollLast": 1.0992
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "long-drag-multi-wrap",
+    "repeat": 0,
+    "targetObservedPeak": 0.219468,
+    "contractPeakGestureLast": 0.221439,
+    "contractPeakScrollLast": 0.247494,
+    "ratioGestureLast": 0.9911,
+    "ratioScrollLast": 0.8868
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "long-drag-multi-wrap",
+    "repeat": 1,
+    "targetObservedPeak": 0.221135,
+    "contractPeakGestureLast": 0.221565,
+    "contractPeakScrollLast": 0.247431,
+    "ratioGestureLast": 0.9981,
+    "ratioScrollLast": 0.8937
+   },
+   {
+    "viewport": "700x700",
+    "sequence": "long-drag-multi-wrap",
+    "repeat": 2,
+    "targetObservedPeak": 0.221439,
+    "contractPeakGestureLast": 0.222779,
+    "contractPeakScrollLast": 0.248027,
+    "ratioGestureLast": 0.994,
+    "ratioScrollLast": 0.8928
+   }
+  ],
+  "scrollLastAlways": {
+   "signedMedianRatio": 0.955,
+   "medianAbsoluteResidual": 0.1768,
+   "worstAbsoluteResidual": 0.3218,
+   "runs": 124
+  },
+  "gestureLastWhileActive": {
+   "signedMedianRatio": 0.9843,
+   "medianAbsoluteResidual": 0.0157,
+   "worstAbsoluteResidual": 0.0698,
+   "runs": 124
+  },
+  "bySequence": {
+   "diagonal-drag": {
+    "scrollLastAlways": 0.7968,
+    "gestureLastWhileActive": 0.9856,
+    "runs": 12
+   },
+   "fast-flick": {
+    "scrollLastAlways": 1.1683,
+    "gestureLastWhileActive": 0.9827,
+    "runs": 12
+   },
+   "long-drag-multi-wrap": {
+    "scrollLastAlways": 0.89,
+    "gestureLastWhileActive": 0.9922,
+    "runs": 12
+   },
+   "lostpointercapture": {
+    "scrollLastAlways": 1.28,
+    "gestureLastWhileActive": 0.9751,
+    "runs": 12
+   },
+   "medium-drag": {
+    "scrollLastAlways": 0.9422,
+    "gestureLastWhileActive": 0.9864,
+    "runs": 12
+   },
+   "pointercancel": {
+    "scrollLastAlways": 0.9859,
+    "gestureLastWhileActive": 0.9687,
+    "runs": 12
+   },
+   "resize-during-motion": {
+    "scrollLastAlways": 1.0917,
+    "gestureLastWhileActive": 0.9453,
+    "runs": 4
+   },
+   "reverse-flick": {
+    "scrollLastAlways": 1.1985,
+    "gestureLastWhileActive": 0.985,
+    "runs": 12
+   },
+   "slow-horizontal-drag": {
+    "scrollLastAlways": 0.8025,
+    "gestureLastWhileActive": 0.991,
+    "runs": 12
+   },
+   "slow-vertical-drag": {
+    "scrollLastAlways": 0.8019,
+    "gestureLastWhileActive": 0.9927,
+    "runs": 12
+   },
+   "touch-drag-release": {
+    "scrollLastAlways": 0.9599,
+    "gestureLastWhileActive": 0.9804,
+    "runs": 12
+   }
+  }
+ },
+ "measuredReading": {
+  "whatWasReplayed": "the frozen contract, driven by the TARGET's own recorded input, once per writer order, compared against the Target's own observed camera dolly. No constant was changed between the two runs.",
+  "scrollLastAlways": {
+   "signedMedianRatio": 0.955,
+   "medianAbsoluteResidual": 0.1768,
+   "worstAbsoluteResidual": 0.3218,
+   "runs": 124
+  },
+  "gestureLastWhileActive": {
+   "signedMedianRatio": 0.9843,
+   "medianAbsoluteResidual": 0.0157,
+   "worstAbsoluteResidual": 0.0698,
+   "runs": 124
+  },
+  "orderThatReproducesTheTarget": "gestureLastWhileActive",
+  "note": "the two orders differ ONLY in which of the two writers the magnitude spring retargets to. Everything else -- drag gain, fling, all three springs, the dolly law, the publication delay -- is identical between them."
+ },
+ "whatThisDoesNotCover": [
+  "The scroll path. onPanEnd running at postRender also means its `d.set(+fling)` schedules the SCROLL retarget into the NEXT frame's postRender, one frame later than a drag frame does. That is a real source-read asymmetry, it is recorded here, and it is NOT implemented this round: the product re-authorised the release history window and the magnitude writer order, and this is neither.",
+  "MotionValue.updateAndNotify advances prevFrameValue and updatedAt even when the value is unchanged, and only skips the notify; the transcription returns early instead. The two differ only where a spring emits the same float twice, which is the last frame or two before rest. Recorded, not changed."
+ ]
+}

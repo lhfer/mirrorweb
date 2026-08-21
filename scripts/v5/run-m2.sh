@@ -250,7 +250,11 @@ stage_frozen() {
 stage_evidence() {
   say "STAGE evidence"
   # The commit the TRACES were captured at, not the tip when this runs.
-  local cap="${M2_CAPTURED_AT:-$(git rev-parse --short HEAD)}"
+  # REQUIRED. There is no current-HEAD fallback: the capture head and the
+  # commit that carries the evidence are different facts and a default makes
+  # the wrong one look right.
+  : "${M2_CAPTURED_AT:?M2_CAPTURED_AT is required -- the commit the behaviour was captured at}"
+  local cap="$M2_CAPTURED_AT"
   python3 scripts/v5/m2-evidence.py "--dir=$OUT" "--capturedAt=$cap" \
     || die "m2-evidence.py"
   need_file "$OUT/MANIFEST.json"

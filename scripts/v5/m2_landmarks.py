@@ -117,7 +117,8 @@ def _dolly_envelope(run):
     return ts, vs
 
 
-def scheduler_invariant(run: dict, obs: dict, hz: float) -> dict:
+def scheduler_invariant(run: dict, obs: dict, hz: float,
+                        dolly: tuple | None = None) -> dict:
     """Landmarks a difference in frame scheduling cannot move.
 
     Returns {} when the recovery is too thin to read; the caller reports that
@@ -215,7 +216,11 @@ def scheduler_invariant(run: dict, obs: dict, hz: float) -> dict:
             out["pointerSettle63Ms"] = settle
 
     # ---- the dolly, on a filtered envelope -------------------------------
-    dt_, dv = _dolly_envelope(run)
+    # `dolly` lets a caller substitute a PREDICTED envelope for the observed
+    # one, so the contract's own dolly can be read with the same reader as the
+    # Target's. Default None keeps the observed camera matrices, which is what
+    # every existing caller gets.
+    dt_, dv = dolly if dolly is not None else _dolly_envelope(run)
     if len(dt_) > 8:
         gt, gv = R.uniform(dt_, dv, hz)
         # Three-frame running median: one frame's spike cannot produce it.

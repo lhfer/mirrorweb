@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the private visual review package: MP4 clips, comparisons, curves.
+"""Build the private M3 visual review package: MP4 clips, comparisons, curves.
 
 WHY MP4 AND NOT GIF
 -------------------
@@ -11,22 +11,29 @@ sensible CRF carries the motion at a fraction of the size.
 
 WHAT IS IN THE PACKAGE
 ----------------------
-Six clips, in three lanes each:
-  target      the Target itself
-  before      our page built at the M1 tip
-  candidate   our page at this round's head
-plus, per clip, a timestamp-aligned Target-vs-Candidate side-by-side, a uniform
-60 Hz comparison, and the release / dolly curves.
+Five clips, in three lanes each:
+  target        the Target itself
+  m2Control     our page as the M2 round left it -- scroll writer last
+  m3Candidate   our page with the writer order recovered from the bundle
+plus, per clip, a timestamp-aligned Target-against-Candidate side-by-side on
+one uniform 60 Hz grid, the release speed curve, the dolly envelope curve, and
+a dolly DIFFERENCE curve with both peaks annotated.
 
-The `before` lane is worth stating plainly: no motion behaviour changed this
-round. The product code that changed was readbacks, comments and one rename.
-So `before` and `candidate` are expected to be indistinguishable, and the lane
-is in the package as the CONTROL that says so -- if they differ, the claim that
-this round changed no behaviour is wrong.
+The `m2Control` lane is the point of the package. One thing changed this round
+-- which of the magnitude MotionValue's two writers the spring retargets to --
+and the control lane is what makes that difference visible rather than
+asserted. If the two candidate lanes were indistinguishable, the round changed
+nothing.
+
+`reviewHead` is REQUIRED and must be a real SHA. Build this package AFTER the
+evidence commit: it is git-ignored, so it can carry the hash of the commit it
+reviews, and the public manifest -- which cannot contain its own hash -- says
+so rather than printing an instruction where a number belongs.
 
 Usage:
-  m2-package.py --rec=<recordings dir> --closure=<qa-v5/motion-closure>
-                --out=<zip> [--traces=<artifacts/motion>]
+  m3-package.py --rec=<recordings dir> --closure=<qa-v5/motion-final>
+                --out=<zip> --capturedAt=<sha> --reviewHead=<sha>
+                [--traces=<artifacts/motion>]
 """
 from __future__ import annotations
 
@@ -40,9 +47,11 @@ import zipfile
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
-HARD_CAP_BYTES = 100 * 1024 * 1024
-TARGET_CAP_BYTES = 80 * 1024 * 1024
-LANES = ("target", "before", "candidate")
+HARD_CAP_BYTES = 60 * 1024 * 1024
+TARGET_CAP_BYTES = 55 * 1024 * 1024
+LANES = ("target", "m2Control", "m3Candidate")
+CANDIDATE = "m3Candidate"
+CONTROL = "m2Control"
 FPS = 60
 HEIGHT = 720
 CRF = "26"
@@ -182,7 +191,7 @@ def main() -> int:
             return 1
         idx[lane] = {(r["viewport"], r["sequence"]): r for r in json.loads(p.read_text())["recordings"]}
 
-    clips = sorted(set(idx["candidate"]) & set(idx["target"]))
+    clips = sorted(set(idx[CANDIDATE]) & set(idx["target"]))
     print(f"{len(clips)} clips x {len(LANES)} lanes")
 
     produced: list[Path] = []
@@ -201,11 +210,16 @@ def main() -> int:
             produced.append(mp4)
         # timestamp-aligned Target against Candidate, on one uniform 60 Hz grid
         a = staged.get(("target", vp, seq))
-        b = staged.get(("candidate", vp, seq))
+        b = staged.get((CANDIDATE, vp, seq))
+        c = staged.get((CONTROL, vp, seq))
         if a and b:
-            sbs = work / "compare" / f"{vp}-{seq}-target-vs-candidate-60hz.mp4"
+            sbs = work / "compare" / f"{vp}-{seq}-target-vs-m3candidate-60hz.mp4"
             encode(a["dir"], sbs, FPS, HEIGHT, extra_in=b["dir"])
             produced.append(sbs)
+        if c and b:
+            sbs2 = work / "compare" / f"{vp}-{seq}-m2control-vs-m3candidate-60hz.mp4"
+            encode(c["dir"], sbs2, FPS, HEIGHT, extra_in=b["dir"])
+            produced.append(sbs2)
         print(f"  {vp} {seq}: encoded")
 
     # ---- curves, from the traces rather than from the pixels ---------------
@@ -220,22 +234,29 @@ def main() -> int:
         return m
     MT = _load("motion_trace", "motion_trace.py")
     MC = _load("m0_motion_contract", "m0-motion-contract.py")
-    R = _load("m2_replay", "m2_replay.py")
+    R = _load("m3_replay", "m3_replay.py")
 
     curve_pairs = []
     for vp, seq in clips:
         t_runs = l_runs = None
         tp = traces / f"m2-target-{vp}" / "trace.json"
-        lp = traces / f"m2-local-{vp}" / "trace.json"
+        cp = traces / f"m2-local-{vp}" / "trace.json"
+        lp = traces / f"m3-local-{vp}" / "trace.json"
         if not (tp.exists() and lp.exists()):
             continue
         t_runs = [r for r in json.loads(tp.read_text())["runs"] if r["sequence"] == seq]
         l_runs = [r for r in json.loads(lp.read_text())["runs"] if r["sequence"] == seq]
+        c_runs = ([r for r in json.loads(cp.read_text())["runs"] if r["sequence"] == seq]
+                  if cp.exists() else [])
         if not t_runs or not l_runs:
             continue
         tr, lr = t_runs[0], l_runs[0]
+        lanes = [(tr, "Target", (255, 176, 78))]
+        if c_runs:
+            lanes.append((c_runs[0], "M2 control (scroll last)", (150, 150, 160)))
+        lanes.append((lr, "M3 candidate (gesture last)", (108, 196, 255)))
         series_speed, series_dolly = [], []
-        for run_, name, col in ((tr, "Target", (255, 176, 78)), (lr, "Candidate", (108, 196, 255))):
+        for run_, name, col in lanes:
             o = MT.trajectory(run_)
             gt, gx = R.uniform(o["t"], o["scrollX"], 60.0)
             _, gy = R.uniform(o["t"], o["scrollY"], 60.0)
@@ -258,6 +279,22 @@ def main() -> int:
         plot(series_dolly, f"{vp}  {seq}   camera dolly envelope, uniform 60 Hz",
              "distance / perspective - 1", p2)
         produced += [p1, p2]
+        # The difference against the Target, both candidates on one axis, with
+        # the peak of each in the title. This is where the round is visible:
+        # the control's difference has a peak and the candidate's should not.
+        if len(series_dolly) >= 2:
+            base = series_dolly[0]
+            diffs, peaks = [], []
+            for name, gt, gv, col in series_dolly[1:]:
+                n = min(len(base[1]), len(gt))
+                dv = [gv[i] - base[2][i] for i in range(n)]
+                diffs.append((f"{name} - Target", gt[:n], dv, col))
+                peaks.append(f"{name}: peak {max(dv, key=abs):+.4f}")
+            p3 = work / "curves" / f"{vp}-{seq}-dolly-difference.png"
+            plot(diffs, f"{vp}  {seq}   dolly difference against the Target   "
+                        + "   ".join(peaks),
+                 "candidate - target", p3)
+            produced.append(p3)
         rel = MC.release_time(lr)
         curve_pairs.append((vp, seq, rel))
 
@@ -277,7 +314,7 @@ def main() -> int:
     pairs = 0
     for vp, seq, rel in curve_pairs:
         a = staged.get(("target", vp, seq))
-        b = staged.get(("candidate", vp, seq))
+        b = staged.get((CANDIDATE, vp, seq))
         if not (a and b) or rel is None:
             continue
         for off in OFFSETS:
@@ -296,7 +333,7 @@ def main() -> int:
             d = ImageDraw.Draw(sheet)
             d.text((6, 7), f"TARGET   {vp} {seq}  release{off:+.0f} ms",
                    font=font, fill=(255, 176, 78))
-            d.text((ia.width + 12, 7), f"CANDIDATE   release{off:+.0f} ms",
+            d.text((ia.width + 12, 7), f"M3 CANDIDATE   release{off:+.0f} ms",
                    font=font, fill=(108, 196, 255))
             p = work / "aligned-pairs" / f"{vp}-{seq}-rel{int(off):+05d}ms.jpg"
             p.parent.mkdir(parents=True, exist_ok=True)
@@ -334,22 +371,30 @@ def main() -> int:
         # fallback is gone: a caller that does not say where the behaviour was
         # captured gets an error, not a plausible number.
         "capturedAtHead": args["capturedAt"],
-        "reviewHead": "resolve with `git rev-parse HEAD`; a file cannot contain the hash "
-                      "of the commit that carries it. capturedAtHead and reviewHead are "
-                      "separate facts.",
+        # REQUIRED, and a real SHA. This package is git-ignored, so it CAN
+        # carry the hash of the commit it reviews -- unlike the public
+        # manifest, which cannot contain its own. M2 wrote an instruction here
+        # where a number belongs; that is fixed by building this after the
+        # evidence commit and passing the hash in.
+        "reviewHead": args["reviewHead"],
+        "capturedAtHeadMeaning": "the commit the recorded behaviour was built at",
+        "reviewHeadMeaning": "the branch tip this package reviews",
         "containsTargetPixels": True,
         "whyPrivate": "the target/ lane and every side-by-side and aligned pair contain "
                       "Target pixels. Nothing in this package is committed.",
         "lanes": {
             "target": "the Target itself",
-            "before": "our page built at the M1 tip d8447de",
-            "candidate": "our page at capturedAtHead",
+            "m2Control": "our page as the M2 round left it -- the scroll writer last",
+            "m3Candidate": "our page with the writer order recovered from the "
+                           "Target's own frame scheduler -- the gesture writer last "
+                           "on every frame that carries a pan dispatch",
         },
-        "beforeLaneIsAControl":
-            "no motion behaviour changed this round -- the product code that changed was "
-            "readbacks, comments and one rename. `before` and `candidate` are therefore "
-            "expected to be indistinguishable, and the lane is here as the control that "
-            "says so. If they differ, the claim is wrong.",
+        "controlLaneIsThePoint":
+            "exactly one thing changed this round: which of the magnitude MotionValue's "
+            "two writers the magnitude spring retargets to. The m2Control lane is our "
+            "page as the previous round left it, so the difference is visible rather "
+            "than asserted. The two candidate lanes SHOULD differ, most visibly in the "
+            "camera dolly during a drag and just after a release.",
         "alignment": "every clip is resampled onto ONE uniform 60 Hz timeline by its own "
                      "browser frame timestamps before being encoded, so frame k of the "
                      "Target and frame k of the candidate are the same instant of the "

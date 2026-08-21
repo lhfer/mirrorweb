@@ -186,6 +186,24 @@ class PanSession:
     active: bool = False
     _origin: tuple[float, float] = (0.0, 0.0)
     _pending: tuple[float, float] | None = None
+    # QA readback, mirroring PanSession.lastVelocityWindow in the TS twin.
+    # Written by _velocity_of_history and read by nothing in the model.
+    last_velocity_window: dict | None = None
+    # REPLAY-ONLY, and zero on the product path.
+    #
+    # The library's window test is a strict `newest.t - oldest.t > 100`. A
+    # history point exactly one window old therefore falls on one side or the
+    # other according to the last bit of a double, and the last bit depends on
+    # the TIME ORIGIN: 7048.6 - 6948.6 comes out at 99.99999999999909 and
+    # 142.3 - 42.3 at 100.00000000000001, and those two land on opposite sides
+    # of the comparison. Replaying our own traces there is nothing to decide --
+    # the recorder carries the raw rAF timestamps the engine itself stamped
+    # its history with. The Target's traces predate that and carry the shifted,
+    # rounded clock, so a run that sits on the boundary can only be BRACKETED:
+    # replayed with epsilon just either side, and reported as unreadable if the
+    # Target's own number falls between the two answers. Never used to pick
+    # whichever reading fits better.
+    window_epsilon: float = 0.0
 
     def down(self, x: float, y: float, t: float) -> None:
         self.active = True
@@ -249,25 +267,42 @@ class PanSession:
     def _velocity_of_history(self) -> tuple[float, float]:
         hist = self.history
         if len(hist) < 2:
+            self._record_window(len(hist), None, None, 0.0, (0.0, 0.0), False)
             return (0.0, 0.0)
         newest = hist[-1]
         i = len(hist) - 1
         oldest = None
         while i >= 0:
             oldest = hist[i]
-            if newest[2] - oldest[2] > self.window_ms:
+            if newest[2] - oldest[2] > self.window_ms + self.window_epsilon:
                 break
             i -= 1
         if oldest is None:
+            self._record_window(len(hist), newest, None, 0.0, (0.0, 0.0), False)
             return (0.0, 0.0)
+        clamped = False
         if oldest is hist[0] and len(hist) > 2 and newest[2] - oldest[2] > 2 * self.window_ms:
             oldest = hist[1]
+            clamped = True
         dt = (newest[2] - oldest[2]) / 1000.0
         if dt == 0:
+            self._record_window(len(hist), newest, oldest, 0.0, (0.0, 0.0), clamped)
             return (0.0, 0.0)
         vx = (newest[0] - oldest[0]) / dt
         vy = (newest[1] - oldest[1]) / dt
-        return (0.0 if math.isinf(vx) else vx, 0.0 if math.isinf(vy) else vy)
+        v = (0.0 if math.isinf(vx) else vx, 0.0 if math.isinf(vy) else vy)
+        self._record_window(len(hist), newest, oldest, dt * 1000.0, v, clamped)
+        return v
+
+    def _record_window(self, count, newest, oldest, dt_ms, velocity, clamped) -> None:
+        self.last_velocity_window = {
+            "historyCount": count,
+            "newest": list(newest) if newest else None,
+            "oldest": list(oldest) if oldest else None,
+            "dtMs": dt_ms,
+            "velocity": [velocity[0], velocity[1]],
+            "clampedToSecondPoint": clamped,
+        }
 
 
 # --------------------------------------------------------------------------
@@ -321,6 +356,13 @@ class SourceExactMotion:
     target_x: float = 0.0
     target_y: float = 0.0
     target_mag: float = 0.0
+    # Which of the magnitude MotionValue's two writers writes LAST in a frame.
+    # "gestureLastWhileActive" is the order recovered from the bundle's frame
+    # scheduler; see qa-v5/motion-final/magnitude-writer-order-source.json.
+    # "scrollLastAlways" is the pre-M3 behaviour, kept as the control.
+    magnitude_writer_order: str = "scrollLastAlways"
+    gesture_mag: float = 0.0
+    gesture_wrote_this_frame: bool = False
     session: PanSession = field(default_factory=PanSession)
     mv_x: MotionValueVelocity = field(default_factory=MotionValueVelocity)
     mv_y: MotionValueVelocity = field(default_factory=MotionValueVelocity)
@@ -355,14 +397,28 @@ class SourceExactMotion:
     def on_pan(self, info: dict, now_ms: float) -> None:
         self.target_x += DRAG["gain"] * info["delta"][0]
         self.target_y += DRAG["gain"] * info["delta"][1]
-        self.target_mag = math.hypot(*info["velocity"])
+        self.write_magnitude_from_gesture(math.hypot(*info["velocity"]), now_ms)
         self._retarget(now_ms)
 
     def on_pan_end(self, info: dict, now_ms: float) -> None:
         self.target_x += info["velocity"][0] * DRAG["fling"]
         self.target_y += info["velocity"][1] * DRAG["fling"]
-        self.target_mag = math.hypot(*info["velocity"])
+        self.write_magnitude_from_gesture(math.hypot(*info["velocity"]), now_ms)
         self._retarget(now_ms)
+
+    def write_magnitude_from_gesture(self, magnitude: float, now_ms: float) -> None:
+        """Writer A: `g.set(hypot(t.velocity.x, t.velocity.y))` in onPan/onPanEnd."""
+        self.gesture_mag = magnitude
+        self.gesture_wrote_this_frame = True
+        self.target_mag = magnitude
+        self.magnitude.set_target(magnitude, now_ms)
+
+    def write_magnitude_from_scroll_motion_value(self, magnitude: float,
+                                                 now_ms: float) -> None:
+        """Writer B: `g.set(hypot(f.getVelocity(), p.getVelocity()))` in the
+        scroll MotionValues' own change handlers."""
+        self.target_mag = magnitude
+        self.magnitude.set_target(magnitude, now_ms)
 
     def set_pointer(self, ndc_x: float, ndc_y: float, now_ms: float) -> None:
         self.pointer_x.set_target(max(-1.0, min(1.0, ndc_x)), now_ms)
@@ -382,8 +438,21 @@ class SourceExactMotion:
         # analytic velocity.
         self.mv_x.update(sx, now_ms)
         self.mv_y.update(sy, now_ms)
-        self.target_mag = math.hypot(self.mv_x.velocity(now_ms), self.mv_y.velocity(now_ms))
-        self.magnitude.set_target(self.target_mag, now_ms)
+        self.write_magnitude_from_scroll_motion_value(
+            math.hypot(self.mv_x.velocity(now_ms), self.mv_y.velocity(now_ms)), now_ms)
+        # The two writers land in the SAME frame step, and the retarget the
+        # magnitude spring actually sees is whichever wrote last. framer-motion
+        # dispatches onPan with `frame.update(cb, false, true)` -- appended to
+        # the LIVE update set -- so the gesture writer runs after every spring
+        # tick on any frame the pan session dispatched, and onPanEnd is
+        # scheduled straight onto postRender ahead of the spring's own
+        # retarget. On frames with no gesture dispatch the scroll writer is the
+        # only writer and stands.
+        if self.magnitude_writer_order == "gestureLastWhileActive" \
+                and self.gesture_wrote_this_frame:
+            self.magnitude.set_target(self.gesture_mag, now_ms)
+            self.target_mag = self.gesture_mag
+        self.gesture_wrote_this_frame = False
         mag = self.magnitude.advance(now_ms)
         px = self.pointer_x.advance(now_ms)
         py = self.pointer_y.advance(now_ms)

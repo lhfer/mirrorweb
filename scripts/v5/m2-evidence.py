@@ -310,13 +310,14 @@ def main() -> int:
         "stage": "motion-closure",
         "repository": "lhfer/mirrorweb",
         "branch": git("rev-parse", "--abbrev-ref", "HEAD"),
-        # NOT `git rev-parse HEAD`. That returns whatever the tip is when this
-        # script RUNS, which is the evidence commit -- a later commit than the
-        # one the traces were captured at. Recording the wrong hash here is
-        # precisely the metadata defect this round repaired in the M1 manifest,
-        # so it is passed in explicitly and defaults to nothing rather than to
-        # a number that looks right.
-        "capturedAtHead": args.get("capturedAt") or git("rev-parse", "--short", "HEAD"),
+        # REQUIRED, with NO fallback. `git rev-parse HEAD` returns whatever the
+        # tip is when this script RUNS, which is the evidence commit -- a later
+        # commit than the one the traces were captured at. Recording the wrong
+        # hash here is exactly the metadata defect the M2 round set out to
+        # repair and then reintroduced through its own sealing tool. The
+        # fallback is gone: a caller that does not say where the behaviour was
+        # captured gets an error, not a plausible number.
+        "capturedAtHead": args["capturedAt"],
         "capturedAtHeadMeaning":
             "the commit every trace, gate and recording in this directory was captured "
             "at. It is a fact this file can hold.",
