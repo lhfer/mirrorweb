@@ -1,0 +1,57 @@
+{
+ "stage": "render-culling",
+ "repository": "lhfer/mirrorweb",
+ "branch": "rebuild/liquid-glass-v5-source-exact",
+ "capturedAtHead": "b625f90",
+ "capturedAtHeadMeaning": "the commit every capture and gate in this directory was taken at. REQUIRED input -- no current-HEAD fallback.",
+ "reviewHeadMeaning": "NOT stated here: a committed file cannot contain the hash of the commit that carries it.",
+ "route": "/?composition=sourceExact&qa",
+ "captureTimestampUtc": "2026-08-21T20:41:37Z",
+ "files": [
+  {
+   "file": "README.md",
+   "bytes": 4613,
+   "sha256": "0b5ab6951f28d71e72078ed8b16b6926d559fd462566d3ff4e98ab4ec46dc793"
+  },
+  {
+   "file": "target-render-culling-source.json",
+   "bytes": 14028,
+   "sha256": "8fe412edc22ea39e2db204937ad66e61aafcf01534f4731374d1b7784b6853a7"
+  },
+  {
+   "file": "render-culling-truth.json",
+   "bytes": 25221,
+   "sha256": "a981f8279a1e34ccaac20ffa0dc159cceb446c9fd9289e2f08a69141b66027ea"
+  },
+  {
+   "file": "pixel-invariance.json",
+   "bytes": 5184,
+   "sha256": "a76f1645c8e5a3a97d57d7d39ecb75d46e288b91cc7145cfa1b0d36c9c4e30ca"
+  },
+  {
+   "file": "performance.json",
+   "bytes": 9149,
+   "sha256": "68853442db93ed5a7d03be7f44c52e1ca59ff2ac49398f77911734f2415dfc9a"
+  },
+  {
+   "file": "label-culling-regression.json",
+   "bytes": 519,
+   "sha256": "403c658d45395ef819743c1096ef75cc7e2caa10050db9c68e4fbc851d7b30d7"
+  },
+  {
+   "file": "source-contract.json",
+   "bytes": 170080,
+   "sha256": "81836776feb5dd47ad0653451fadea75ed958056bf318987d8a55a735fb21738"
+  },
+  {
+   "file": "typography-regression.json",
+   "bytes": 5082,
+   "sha256": "e135aa1553f1185d26ae11b99d0bc91e30ab21b34e1adf669e616ebd042eff3c"
+  },
+  {
+   "file": "motion-regression.json",
+   "bytes": 1026,
+   "sha256": "e57388d02ce8a8d9abfccbd691257940bb38d9c25346eb35c07054a1d36ca0f1"
+  }
+ ]
+}

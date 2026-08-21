@@ -1,0 +1,495 @@
+{
+ "what": "V1 A/B on one build: coverage culling ON vs OFF. OFF is the accepted pre-V1 behaviour (proven byte-identical by the pixel gate); ON is the candidate.",
+ "gpuFrameTime": "not instrumentable at this build: the renderer is created without timestamp tracking",
+ "scenarios": {
+  "drag-10s": {
+   "off": {
+    "frames": 1475,
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 8.9,
+     "p99": 9.3
+    },
+    "glassVisible": {
+     "p50": 100,
+     "p95": 100,
+     "max": 100
+    },
+    "finalDrawCalls": {
+     "p50": 37,
+     "p95": 39,
+     "max": 39
+    },
+    "finalTriangles": {
+     "p50": 400897,
+     "p95": 423169,
+     "max": 423169
+    },
+    "sceneColorDrawCalls": {
+     "p50": 55,
+     "p95": 56
+    },
+    "labelSyncCpuMs": {
+     "p50": 0.19999992847442627,
+     "p95": 0.30000007152557373,
+     "p99": 0.3999999761581421
+    },
+    "longTasks": 0,
+    "domNodes": 4133,
+    "heapStartMB": 20.76,
+    "heapEndMB": 20.71,
+    "heapDeltaMB": -0.05,
+    "videosAdvancing": 3,
+    "videoCount": 3,
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   },
+   "on": {
+    "frames": 1349,
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 9.1,
+     "p99": 9.2
+    },
+    "glassVisible": {
+     "p50": 17,
+     "p95": 17,
+     "max": 17
+    },
+    "finalDrawCalls": {
+     "p50": 35,
+     "p95": 35,
+     "max": 35
+    },
+    "finalTriangles": {
+     "p50": 378625,
+     "p95": 378625,
+     "max": 378625
+    },
+    "sceneColorDrawCalls": {
+     "p50": 55,
+     "p95": 56
+    },
+    "labelSyncCpuMs": {
+     "p50": 0.20000004768371582,
+     "p95": 0.30000007152557373,
+     "p99": 0.40000009536743164
+    },
+    "longTasks": 0,
+    "domNodes": 4133,
+    "heapStartMB": 43.54,
+    "heapEndMB": 34.51,
+    "heapDeltaMB": -9.03,
+    "videosAdvancing": 3,
+    "videoCount": 3,
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   }
+  },
+  "flick-10s": {
+   "off": {
+    "frames": 1392,
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 9,
+     "p99": 9.3
+    },
+    "glassVisible": {
+     "p50": 100,
+     "p95": 100,
+     "max": 100
+    },
+    "finalDrawCalls": {
+     "p50": 37,
+     "p95": 41,
+     "max": 43
+    },
+    "finalTriangles": {
+     "p50": 400897,
+     "p95": 445441,
+     "max": 467713
+    },
+    "sceneColorDrawCalls": {
+     "p50": 57,
+     "p95": 66
+    },
+    "labelSyncCpuMs": {
+     "p50": 0.20000004768371582,
+     "p95": 0.30000007152557373,
+     "p99": 0.40000009536743164
+    },
+    "longTasks": 0,
+    "domNodes": 4133,
+    "heapStartMB": 25.45,
+    "heapEndMB": 46.23,
+    "heapDeltaMB": 20.78,
+    "videosAdvancing": 3,
+    "videoCount": 3,
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   },
+   "on": {
+    "frames": 1393,
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 9.1,
+     "p99": 9.2
+    },
+    "glassVisible": {
+     "p50": 17,
+     "p95": 17,
+     "max": 17
+    },
+    "finalDrawCalls": {
+     "p50": 35,
+     "p95": 35,
+     "max": 35
+    },
+    "finalTriangles": {
+     "p50": 378625,
+     "p95": 378625,
+     "max": 378625
+    },
+    "sceneColorDrawCalls": {
+     "p50": 57,
+     "p95": 66
+    },
+    "labelSyncCpuMs": {
+     "p50": 0.20000004768371582,
+     "p95": 0.30000007152557373,
+     "p99": 0.5
+    },
+    "longTasks": 0,
+    "domNodes": 4133,
+    "heapStartMB": 28.57,
+    "heapEndMB": 30.25,
+    "heapDeltaMB": 1.68,
+    "videosAdvancing": 3,
+    "videoCount": 3,
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   }
+  },
+  "touch-wrap-20s": {
+   "off": {
+    "frames": 2643,
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 8.9,
+     "p99": 9.3
+    },
+    "glassVisible": {
+     "p50": 96,
+     "p95": 96,
+     "max": 96
+    },
+    "finalDrawCalls": {
+     "p50": 37,
+     "p95": 43,
+     "max": 43
+    },
+    "finalTriangles": {
+     "p50": 400897,
+     "p95": 467713,
+     "max": 467713
+    },
+    "sceneColorDrawCalls": {
+     "p50": 44,
+     "p95": 48
+    },
+    "labelSyncCpuMs": {
+     "p50": 0.20000004768371582,
+     "p95": 0.30000007152557373,
+     "p99": 0.30000007152557373
+    },
+    "longTasks": 0,
+    "domNodes": 4133,
+    "heapStartMB": 27.84,
+    "heapEndMB": 26.71,
+    "heapDeltaMB": -1.13,
+    "videosAdvancing": 3,
+    "videoCount": 3,
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   },
+   "on": {
+    "frames": 2645,
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 9,
+     "p99": 9.2
+    },
+    "glassVisible": {
+     "p50": 18,
+     "p95": 19,
+     "max": 21
+    },
+    "finalDrawCalls": {
+     "p50": 33,
+     "p95": 37,
+     "max": 39
+    },
+    "finalTriangles": {
+     "p50": 356353,
+     "p95": 400897,
+     "max": 423169
+    },
+    "sceneColorDrawCalls": {
+     "p50": 44,
+     "p95": 47
+    },
+    "labelSyncCpuMs": {
+     "p50": 0.20000004768371582,
+     "p95": 0.30000007152557373,
+     "p99": 0.6000000238418579
+    },
+    "longTasks": 0,
+    "domNodes": 4133,
+    "heapStartMB": 22.6,
+    "heapEndMB": 24.06,
+    "heapDeltaMB": 1.46,
+    "videosAdvancing": 3,
+    "videoCount": 3,
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   }
+  },
+  "landscape-20s": {
+   "off": {
+    "frames": 2576,
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 9.2,
+     "p99": 9.3
+    },
+    "glassVisible": {
+     "p50": 80,
+     "p95": 96,
+     "max": 96
+    },
+    "finalDrawCalls": {
+     "p50": 37,
+     "p95": 39,
+     "max": 39
+    },
+    "finalTriangles": {
+     "p50": 400897,
+     "p95": 423169,
+     "max": 423169
+    },
+    "sceneColorDrawCalls": {
+     "p50": 38,
+     "p95": 43
+    },
+    "labelSyncCpuMs": {
+     "p50": 0.19999992847442627,
+     "p95": 0.30000007152557373,
+     "p99": 0.3999999761581421
+    },
+    "longTasks": 0,
+    "domNodes": 4133,
+    "heapStartMB": 30.05,
+    "heapEndMB": 31.52,
+    "heapDeltaMB": 1.47,
+    "videosAdvancing": 3,
+    "videoCount": 3,
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   },
+   "on": {
+    "frames": 2574,
+    "frameTimeMs": {
+     "p50": 8.3,
+     "p95": 8.9,
+     "p99": 9.2
+    },
+    "glassVisible": {
+     "p50": 17,
+     "p95": 18,
+     "max": 18
+    },
+    "finalDrawCalls": {
+     "p50": 35,
+     "p95": 37,
+     "max": 37
+    },
+    "finalTriangles": {
+     "p50": 378625,
+     "p95": 400897,
+     "max": 400897
+    },
+    "sceneColorDrawCalls": {
+     "p50": 38,
+     "p95": 43
+    },
+    "labelSyncCpuMs": {
+     "p50": 0.19999992847442627,
+     "p95": 0.30000007152557373,
+     "p99": 0.3999999761581421
+    },
+    "longTasks": 0,
+    "domNodes": 4133,
+    "heapStartMB": 29.49,
+    "heapEndMB": 39.26,
+    "heapDeltaMB": 9.77,
+    "videosAdvancing": 3,
+    "videoCount": 3,
+    "adaptiveQuality": {
+     "level": "high",
+     "appliedLevel": "high",
+     "changeCount": 0
+    },
+    "errors": 0
+   }
+  }
+ },
+ "checks": [
+  {
+   "scenario": "drag-10s",
+   "finalDrawCallsP95": {
+    "off": 39,
+    "on": 35,
+    "reduced": true
+   },
+   "finalTrianglesP95": {
+    "off": 423169,
+    "on": 378625,
+    "reducedPct": 10.5
+   },
+   "sceneColorUnchanged": true,
+   "glassVisibleP95": {
+    "off": 100,
+    "on": 17
+   },
+   "videosPlayingBothLanes": [
+    3,
+    3
+   ],
+   "videosPlayingOk": true,
+   "adaptiveUnchanged": true,
+   "heapBounded": true,
+   "errorsZero": true
+  },
+  {
+   "scenario": "flick-10s",
+   "finalDrawCallsP95": {
+    "off": 41,
+    "on": 35,
+    "reduced": true
+   },
+   "finalTrianglesP95": {
+    "off": 445441,
+    "on": 378625,
+    "reducedPct": 15.0
+   },
+   "sceneColorUnchanged": true,
+   "glassVisibleP95": {
+    "off": 100,
+    "on": 17
+   },
+   "videosPlayingBothLanes": [
+    3,
+    3
+   ],
+   "videosPlayingOk": true,
+   "adaptiveUnchanged": true,
+   "heapBounded": true,
+   "errorsZero": true
+  },
+  {
+   "scenario": "touch-wrap-20s",
+   "finalDrawCallsP95": {
+    "off": 43,
+    "on": 37,
+    "reduced": true
+   },
+   "finalTrianglesP95": {
+    "off": 467713,
+    "on": 400897,
+    "reducedPct": 14.3
+   },
+   "sceneColorUnchanged": true,
+   "glassVisibleP95": {
+    "off": 96,
+    "on": 19
+   },
+   "videosPlayingBothLanes": [
+    3,
+    3
+   ],
+   "videosPlayingOk": true,
+   "adaptiveUnchanged": true,
+   "heapBounded": true,
+   "errorsZero": true
+  },
+  {
+   "scenario": "landscape-20s",
+   "finalDrawCallsP95": {
+    "off": 39,
+    "on": 37,
+    "reduced": true
+   },
+   "finalTrianglesP95": {
+    "off": 423169,
+    "on": 400897,
+    "reducedPct": 5.3
+   },
+   "sceneColorUnchanged": true,
+   "glassVisibleP95": {
+    "off": 96,
+    "on": 18
+   },
+   "videosPlayingBothLanes": [
+    3,
+    3
+   ],
+   "videosPlayingOk": true,
+   "adaptiveUnchanged": true,
+   "heapBounded": true,
+   "errorsZero": true
+  }
+ ],
+ "heapCycles": [
+  {
+   "cycle": 1,
+   "heapStartMB": 16.35,
+   "heapEndMB": 34.32,
+   "deltaMB": 17.97
+  },
+  {
+   "cycle": 2,
+   "heapStartMB": 33.25,
+   "heapEndMB": 38.67,
+   "deltaMB": 5.42
+  }
+ ],
+ "pass": true
+}

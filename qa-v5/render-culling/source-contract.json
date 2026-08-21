@@ -1,0 +1,6806 @@
+{
+  "gate": "source-exact engineering contract",
+  "contract": "config/target-layout-source-v2.json",
+  "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+  "layoutVersion": "target-layout-source-v2",
+  "isEngineeringGateOnly": "Passing this gate does NOT assert a Target visual result. It asserts that the engine, the model and the Target's own DOM agree about geometry.",
+  "tolerances": {
+    "perspectivePx": 0.01,
+    "sphereRadiusWorld": 0.01,
+    "planeSizeWorld": 0.01,
+    "cellWorld": 0.01,
+    "slotWorldPositionModel": 0.1,
+    "slotWorldPositionTarget": 0.1,
+    "orientationDeg": 0.05,
+    "projectedCornerPx": 0.5
+  },
+  "viewports": 36,
+  "passed": 36,
+  "verdict": "PASS",
+  "worstSlotWorldVsModel": 0.0,
+  "worstOrientationDegVsModel": 1.21e-06,
+  "worstProjectedCornerPx": 0.0,
+  "worstWorldDeltaToTargetDom": 0.005366,
+  "viewportsWithTargetDom": 1,
+  "results": [
+    {
+      "id": "667x375",
+      "viewport": [
+        667,
+        375
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "700x700",
+      "viewport": [
+        700,
+        700
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 12,
+      "activeSlotCount": 120,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "MEASURED",
+        "codeBearingCards": 34,
+        "matched": 34,
+        "worstWorldDeltaToEngine": 0.005366,
+        "note": "Culled Target cards keep a STALE transform and empty text, so only code-bearing cards carry a current pose and only they can be compared. This is a property of the Target, not an unmeasured item."
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 12, model 12"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 120, model 120"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "120 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "480 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        },
+        {
+          "check": "every visible Target card matched by an engine slot (world)",
+          "value": 0.005366,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "34 of 34 code-bearing Target cards"
+        }
+      ]
+    },
+    {
+      "id": "780x470",
+      "viewport": [
+        780,
+        470
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "1440x1080",
+      "viewport": [
+        1440,
+        1080
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "700x400",
+      "viewport": [
+        700,
+        400
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "760x470",
+      "viewport": [
+        760,
+        470
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 1.21e-06,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "800x425",
+      "viewport": [
+        800,
+        425
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 8,
+      "activeSlotCount": 80,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 1.21e-06,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 80, model 80"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "80 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "320 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "844x390",
+      "viewport": [
+        844,
+        390
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 8,
+      "activeSlotCount": 80,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 80, model 80"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "80 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "320 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "900x899",
+      "viewport": [
+        900,
+        899
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 12,
+      "activeSlotCount": 120,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 12, model 12"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 120, model 120"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "120 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "480 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "960x500",
+      "viewport": [
+        960,
+        500
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 8,
+      "activeSlotCount": 80,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 80, model 80"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "80 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "320 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "960x720",
+      "viewport": [
+        960,
+        720
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "1440x900",
+      "viewport": [
+        1440,
+        900
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "740x430",
+      "viewport": [
+        740,
+        430
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "900x420",
+      "viewport": [
+        900,
+        420
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 8,
+      "activeSlotCount": 80,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 1.21e-06,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 80, model 80"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "80 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "320 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "926x428",
+      "viewport": [
+        926,
+        428
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 8,
+      "activeSlotCount": 80,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 80, model 80"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "80 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "320 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "980x600",
+      "viewport": [
+        980,
+        600
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 1.21e-06,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "1000x700",
+      "viewport": [
+        1000,
+        700
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 1.21e-06,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "1100x720",
+      "viewport": [
+        1100,
+        720
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 0.0,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 0.0,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "1280x800",
+      "viewport": [
+        1280,
+        800
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "1366x768",
+      "viewport": [
+        1366,
+        768
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "1920x1080",
+      "viewport": [
+        1920,
+        1080
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "390x844",
+      "viewport": [
+        390,
+        844
+      ],
+      "verdict": "PASS",
+      "cols": 8,
+      "rows": 12,
+      "activeSlotCount": 96,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 12, model 12"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 96, model 96"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "96 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "384 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "360x800",
+      "viewport": [
+        360,
+        800
+      ],
+      "verdict": "PASS",
+      "cols": 8,
+      "rows": 12,
+      "activeSlotCount": 96,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 12, model 12"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 96, model 96"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "96 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "384 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "500x900",
+      "viewport": [
+        500,
+        900
+      ],
+      "verdict": "PASS",
+      "cols": 8,
+      "rows": 12,
+      "activeSlotCount": 96,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 12, model 12"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 96, model 96"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "96 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "384 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "390x700",
+      "viewport": [
+        390,
+        700
+      ],
+      "verdict": "PASS",
+      "cols": 8,
+      "rows": 12,
+      "activeSlotCount": 96,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 1.21e-06,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 12, model 12"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 96, model 96"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "96 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "384 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "414x896",
+      "viewport": [
+        414,
+        896
+      ],
+      "verdict": "PASS",
+      "cols": 8,
+      "rows": 12,
+      "activeSlotCount": 96,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 12, model 12"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 96, model 96"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "96 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "384 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "430x932",
+      "viewport": [
+        430,
+        932
+      ],
+      "verdict": "PASS",
+      "cols": 8,
+      "rows": 12,
+      "activeSlotCount": 96,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 12, model 12"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 96, model 96"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "96 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "384 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "375x812",
+      "viewport": [
+        375,
+        812
+      ],
+      "verdict": "PASS",
+      "cols": 8,
+      "rows": 12,
+      "activeSlotCount": 96,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 12, model 12"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 96, model 96"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "96 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "384 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "393x852",
+      "viewport": [
+        393,
+        852
+      ],
+      "verdict": "PASS",
+      "cols": 8,
+      "rows": 12,
+      "activeSlotCount": 96,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 12, model 12"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 96, model 96"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "96 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "384 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "428x926",
+      "viewport": [
+        428,
+        926
+      ],
+      "verdict": "PASS",
+      "cols": 8,
+      "rows": 12,
+      "activeSlotCount": 96,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 12, model 12"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 96, model 96"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "96 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "384 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "700x900",
+      "viewport": [
+        700,
+        900
+      ],
+      "verdict": "PASS",
+      "cols": 8,
+      "rows": 10,
+      "activeSlotCount": 80,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 80, model 80"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "80 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "320 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "320x900",
+      "viewport": [
+        320,
+        900
+      ],
+      "verdict": "PASS",
+      "cols": 8,
+      "rows": 14,
+      "activeSlotCount": 112,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 14, model 14"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 112, model 112"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "112 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "448 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "1440x700",
+      "viewport": [
+        1440,
+        700
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 8,
+      "activeSlotCount": 80,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 8, model 8"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 80, model 80"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "80 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "320 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "1024x768",
+      "viewport": [
+        1024,
+        768
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "1152x864",
+      "viewport": [
+        1152,
+        864
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 1.21e-06,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    },
+    {
+      "id": "1536x864",
+      "viewport": [
+        1536,
+        864
+      ],
+      "verdict": "PASS",
+      "cols": 10,
+      "rows": 10,
+      "activeSlotCount": 100,
+      "worstSlotWorldVsModel": 0.0,
+      "worstOrientationDegVsModel": 8.5e-07,
+      "worstProjectedCornerPx": 0.0,
+      "targetDom": {
+        "status": "NOT_AVAILABLE",
+        "reason": "no Target DOM capture at this viewport"
+      },
+      "checks": [
+        {
+          "check": "perspective (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "sphereRadius (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeWidth (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "planeHeight (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellW (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cellH (engine vs model)",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "cols exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "rows exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 10, model 10"
+        },
+        {
+          "check": "card aspect is 4/3",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "active slot count exact",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "engine 100, model 100"
+        },
+        {
+          "check": "initial scroll is zero",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": "[0, 0]"
+        },
+        {
+          "check": "ILG code is slotIndex + 1",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "inactive slots hidden",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera on axis",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera distance == perspective",
+          "value": 0.0,
+          "limit": 0.01,
+          "unit": "px",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "camera fov == 2*atan(h/2/perspective)",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "one world unit is one CSS pixel at z=0",
+          "value": 0.0,
+          "limit": 1e-06,
+          "unit": "px/world",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "near/far from contract",
+          "value": true,
+          "limit": true,
+          "unit": "bool",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "every active slot world position (engine vs model)",
+          "value": 0.0,
+          "limit": 0.1,
+          "unit": "world",
+          "pass": true,
+          "detail": "100 slots"
+        },
+        {
+          "check": "every active slot orientation (engine vs model)",
+          "value": 1e-06,
+          "limit": 0.05,
+          "unit": "deg",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "check": "projected card corners (engine vs model)",
+          "value": 0.0,
+          "limit": 0.5,
+          "unit": "px",
+          "pass": true,
+          "detail": "400 corners on or near screen, 0 past the horizon and covered by the world-position check instead"
+        }
+      ]
+    }
+  ]
+}

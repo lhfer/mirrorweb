@@ -1,0 +1,252 @@
+{
+ "what": "V1 pixel invariance: culling ON vs OFF must be IDENTICAL (no tolerance); V0-accepted baseline vs candidate reported with magnitudes, expectation identity",
+ "abComparisons": 15,
+ "abPass": true,
+ "ab": [
+  {
+   "viewport": "1440x900",
+   "state": "rest",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 1296000
+  },
+  {
+   "viewport": "1440x900",
+   "state": "pointer-corner-br",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 1296000
+  },
+  {
+   "viewport": "1440x900",
+   "state": "pointer-corner-tl",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 1296000
+  },
+  {
+   "viewport": "1920x1080",
+   "state": "rest",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 2073600
+  },
+  {
+   "viewport": "1920x1080",
+   "state": "pointer-corner-br",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 2073600
+  },
+  {
+   "viewport": "1920x1080",
+   "state": "pointer-corner-tl",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 2073600
+  },
+  {
+   "viewport": "390x844",
+   "state": "rest",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "viewport": "390x844",
+   "state": "pointer-corner-br",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "viewport": "390x844",
+   "state": "pointer-corner-tl",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "viewport": "844x390",
+   "state": "rest",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "viewport": "844x390",
+   "state": "pointer-corner-br",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "viewport": "844x390",
+   "state": "pointer-corner-tl",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "viewport": "700x700",
+   "state": "rest",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 490000
+  },
+  {
+   "viewport": "700x700",
+   "state": "pointer-corner-br",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 490000
+  },
+  {
+   "viewport": "700x700",
+   "state": "pointer-corner-tl",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 490000
+  }
+ ],
+ "baselineComparisons": 15,
+ "baselinePass": true,
+ "baseline": [
+  {
+   "viewport": "1440x900",
+   "state": "rest",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 1296000
+  },
+  {
+   "viewport": "1440x900",
+   "state": "pointer-corner-br",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 1296000
+  },
+  {
+   "viewport": "1440x900",
+   "state": "pointer-corner-tl",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 1296000
+  },
+  {
+   "viewport": "1920x1080",
+   "state": "rest",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 2073600
+  },
+  {
+   "viewport": "1920x1080",
+   "state": "pointer-corner-br",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 2073600
+  },
+  {
+   "viewport": "1920x1080",
+   "state": "pointer-corner-tl",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 2073600
+  },
+  {
+   "viewport": "390x844",
+   "state": "rest",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "viewport": "390x844",
+   "state": "pointer-corner-br",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "viewport": "390x844",
+   "state": "pointer-corner-tl",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "viewport": "844x390",
+   "state": "rest",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "viewport": "844x390",
+   "state": "pointer-corner-br",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "viewport": "844x390",
+   "state": "pointer-corner-tl",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "viewport": "700x700",
+   "state": "rest",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 490000
+  },
+  {
+   "viewport": "700x700",
+   "state": "pointer-corner-br",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 490000
+  },
+  {
+   "viewport": "700x700",
+   "state": "pointer-corner-tl",
+   "comparable": true,
+   "differingPixels": 0,
+   "maxChannelDelta": 0,
+   "totalPixels": 490000
+  }
+ ],
+ "pass": true
+}
