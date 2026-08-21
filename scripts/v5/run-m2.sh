@@ -249,7 +249,10 @@ stage_frozen() {
 
 stage_evidence() {
   say "STAGE evidence"
-  python3 scripts/v5/m2-evidence.py "--dir=$OUT" || die "m2-evidence.py"
+  # The commit the TRACES were captured at, not the tip when this runs.
+  local cap="${M2_CAPTURED_AT:-$(git rev-parse --short HEAD)}"
+  python3 scripts/v5/m2-evidence.py "--dir=$OUT" "--capturedAt=$cap" \
+    || die "m2-evidence.py"
   need_file "$OUT/MANIFEST.json"
   need_file "$OUT/README.md"
   say "STAGE evidence COMPLETE"

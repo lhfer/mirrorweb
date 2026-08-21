@@ -326,7 +326,13 @@ def main() -> int:
                 "sha256": sha256_file(p)} for p in files]
     manifest = {
         "package": out_zip.name,
-        "capturedAtHead": git("rev-parse", "--short", "HEAD"),
+        # NOT `git rev-parse HEAD`. That returns whatever the tip is when this
+        # script RUNS, which is the evidence commit -- a later commit than the
+        # one the traces were captured at. Recording the wrong hash here is
+        # precisely the metadata defect this round repaired in the M1 manifest,
+        # so it is passed in explicitly and defaults to nothing rather than to
+        # a number that looks right.
+        "capturedAtHead": args.get("capturedAt") or git("rev-parse", "--short", "HEAD"),
         "reviewHead": "resolve with `git rev-parse HEAD`; a file cannot contain the hash "
                       "of the commit that carries it. capturedAtHead and reviewHead are "
                       "separate facts.",

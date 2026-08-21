@@ -2,11 +2,11 @@
   "stage": "motion-closure",
   "repository": "lhfer/mirrorweb",
   "branch": "rebuild/liquid-glass-v5-source-exact",
-  "capturedAtHead": "631b974",
+  "capturedAtHead": "30dcf64",
   "capturedAtHeadMeaning": "the commit every trace, gate and recording in this directory was captured at. It is a fact this file can hold.",
   "reviewHead": "resolve with `git rev-parse HEAD`. A file cannot contain the hash of the commit that carries it, so this is NOT stated here and no hygiene commit is created to chase one. capturedAtHead and reviewHead are separate facts and neither stands in for the other.",
   "route": "/?qa=1&composition=sourceExact",
-  "captureTimestampUtc": "2026-08-21T13:05:11Z",
+  "captureTimestampUtc": "2026-08-21T13:06:43Z",
   "fixedCaptureConditions": {
     "quality": "high (pinned, adaptive sampler off)",
     "mediaTimeSeconds": 2,
@@ -28,8 +28,8 @@
   "productException": "qa-v5/motion-closure/product-exception-candidate.json",
   "privateReviewPackage": {
     "path": "qa-v5/private/motion-closure-review.zip",
-    "bytes": 44710971,
-    "sha256": "19663c219395f13d12b64bd9d037a99156a9479f2063b78857e7d24c68183e6f",
+    "bytes": 44710975,
+    "sha256": "73968a12508381daffa1261a4f0e9985a0f692fa6da52aaa8fbb0d0eec2e8b9b",
     "gitIgnored": true,
     "containsTargetPixels": true
   },

@@ -310,7 +310,13 @@ def main() -> int:
         "stage": "motion-closure",
         "repository": "lhfer/mirrorweb",
         "branch": git("rev-parse", "--abbrev-ref", "HEAD"),
-        "capturedAtHead": git("rev-parse", "--short", "HEAD"),
+        # NOT `git rev-parse HEAD`. That returns whatever the tip is when this
+        # script RUNS, which is the evidence commit -- a later commit than the
+        # one the traces were captured at. Recording the wrong hash here is
+        # precisely the metadata defect this round repaired in the M1 manifest,
+        # so it is passed in explicitly and defaults to nothing rather than to
+        # a number that looks right.
+        "capturedAtHead": args.get("capturedAt") or git("rev-parse", "--short", "HEAD"),
         "capturedAtHeadMeaning":
             "the commit every trace, gate and recording in this directory was captured "
             "at. It is a fact this file can hold.",
