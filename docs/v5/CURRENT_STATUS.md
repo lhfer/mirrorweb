@@ -2,7 +2,7 @@
 
 Single canonical entry point. Every delivery updates this file.
 
-Last updated: 2026-08-21 (**O2 System B ACCEPTED** by product review — mechanism frozen, reflection support field deliberately left open; **O3 Target analytic bevel reflection support FAILED its absolute gate** — the frozen base alone already paints a wider band than the Target's whole band, so the shipped default stays the O2 control)
+Last updated: 2026-08-22 (**O3 reviewed**: source forensics, transcription, instruments and the frozen-body-floor finding **ACCEPTED**; the candidate **REJECTED** as shipped default. **O4 opened** on the one objective the finding leaves: attribute and reduce the frozen body floor)
 
 | | |
 | --- | --- |
@@ -56,7 +56,8 @@ stated here and no further hygiene commit is created to chase it.
 | Optics — O0 diagnosis | **ACCEPTED** as the current optics source baseline |
 | Optics — O1 System A | **FAILED ABSOLUTE GATE**; commit `e01fb30` remains an EXPERIMENTAL LANE only — not an accepted baseline, not frozen. See the O0/O1 section and the wording correction below |
 | Optics — O2 System B | **ACCEPTED** — behaviour baseline `e913aa6`, accepted review tip `fd12b97`; selected lane **A+B** (System A retained ONLY through the pre-registered O2 interaction gate, never from the failed O1 result). Mechanism frozen, reflection SUPPORT FIELD deliberately not frozen — see [`O2_OPTICS_FREEZE_CONTRACT.md`](O2_OPTICS_FREEZE_CONTRACT.md) |
-| Optics — O3 Target analytic bevel reflection support | **FAILED ABSOLUTE GATE** — the Target's own field, transcribed exactly, moves every measurand toward the Target but cannot clear it: with System B fully off the frozen base already paints 9.7 px against the Target's 3.3 px total. Shipped default stays `reflectionSupport=geometry` |
+| Optics — O3 Target analytic bevel reflection support | **REVIEWED**: candidate **REJECTED** (gate FAILED 11/20); source forensics, `TargetBevelFieldV4` transcription (ENGINEERING PASS), corrected instruments, the `target-sdf` diagnostic lane and the frozen-body-floor finding all **ACCEPTED**. See [`O3_PRODUCT_REVIEW.md`](O3_PRODUCT_REVIEW.md) |
+| Optics — O4 frozen body floor | **IN PROGRESS** — the only objective is to attribute and reduce the System-B-OFF body floor (9.7 / 6.0 / 6.0 px against the Target's 3.3 / 1.5 / 2.0). Exactly one body subsystem may be selected, by a rule sealed before candidate code |
 | Media / Layout | unmodified, frozen |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
@@ -438,6 +439,22 @@ The sealed default-flip rule's negative branch executed: the shipped
 default stays `reflectionSupport=geometry`. Every O2 parameter, and the
 O2 acceptance, are untouched.
 
+Product review then **accepted** the source forensics, the
+`TargetBevelFieldV4` transcription (engineering pass), the corrected
+instruments, the `target-sdf` diagnostic lane and the frozen-body-floor
+finding, and **rejected** the candidate as shipped default, the default
+flip, and any further rim / fresnel / env tuning. O3 is neither "no
+progress" nor product accepted: the candidate failed its own gate and
+the knowledge the round produced was accepted. See
+[`O3_PRODUCT_REVIEW.md`](O3_PRODUCT_REVIEW.md).
+
+## O4 — frozen body floor attribution
+
+The one objective the O3 finding leaves: attribute and reduce the
+System-B-OFF body floor. Scoped to the body path only; exactly one
+subsystem may be selected, by a rule sealed before its candidate code
+exists. In progress.
+
 ## FSX-A integration hardening
 
 | | |
@@ -467,6 +484,7 @@ See [`FSX_ACCEPTANCE.md`](FSX_ACCEPTANCE.md).
 
 **Candidate, not accepted**
 - O0/O1 optics: `03676b1` O0 source diagnosis + pre-registered system selection · `e01fb30` O1 candidate code (the Target's dispersion law, System A only) · the O1 evidence commit — **O1 FAILED ABSOLUTE GATE**; attribution corrected to System B. System A ships only through the O2 interaction gate; that verdict is not overturned
+- O4 optics: frozen body floor attribution — in progress
 - O3 optics: Target analytic bevel reflection support — `b4dbb16` O2 product-accept record · `b7fe128` source contract + sealed pre-registration (before candidate code) · `669046e` candidate code (the Target's field, two swapped inputs) · the O3 evidence commit — **O3 FAILED ABSOLUTE GATE**, 11/20 items. The mechanism is correct and the transcription is exact; the frozen base is what binds. Shipped default stays `reflectionSupport=geometry`
 - `dd6d7bf` / `4ca597f` F2 · `b5cff63` F2 audit · `730beb7` F3 diagnosis
 - `f56f55e` / `ba4ba32` F2.5 · this delivery's three F2.6 commits
