@@ -1,0 +1,533 @@
+{
+ "what": "O3 \u00a7\u516b Target repeatability baseline: how far the Target moves against itself under the deterministic shared-media harness, and the thresholds derived from it.",
+ "capturedBeforeCandidateCode": true,
+ "target": "https://infinite-liquid-glass.shader.se/?v=2",
+ "repeats": 3,
+ "freeze": 4,
+ "spreadDefinition": "max - min across the independent repeats, per metric per media per viewport. Each repeat is a separate page load in a fresh browser context.",
+ "thresholdLaw": {
+  "bandWidthThreshold": "max(2 x Target spread of the bw-split reflection band width, 1.5 px)",
+  "darkLumaThreshold": "max(2 x Target spread of the bw-split dark-side edge luma, 10 luma levels)",
+  "whiteRatioThreshold": "max(2 x the WORST Target spread of whiteReflectionRatio across the six scored media, 0.02)",
+  "note": "no threshold may be recomputed, loosened or tightened after an O3 candidate is captured."
+ },
+ "byteIdenticalAcrossRepeats": {
+  "bw-split@1440x900": true,
+  "grayscale-step@1440x900": true,
+  "dark-highlight@1440x900": true,
+  "bright-lowsat@1440x900": true,
+  "cool-blue@1440x900": true,
+  "rgb-bars@1440x900": true,
+  "bw-split@390x844": true,
+  "bw-split@844x390": true
+ },
+ "repeatabilityFinding": "Every scored capture is BYTE-IDENTICAL across the three independent page loads, so the measured spread is exactly 0 on every metric and all three thresholds bind at their \u00a7\u516b floors. That is a property of the deterministic shared-media harness, not of the Target: routed frozen renditions plus a condition-driven mount wait remove the decode-order and mount-timing variance the raw Target page has. The floors therefore carry the whole tolerance, which is the conservative direction -- a 0-spread threshold would have been 0 px.",
+ "whiteRatioSpreadPerAsset": {
+  "bright-lowsat@1440x900": 0.0,
+  "bw-split@1440x900": 0.0,
+  "cool-blue@1440x900": 0.0,
+  "dark-highlight@1440x900": 0.0,
+  "grayscale-step@1440x900": 0.0,
+  "rgb-bars@1440x900": 0.0
+ },
+ "thresholds": {
+  "bandWidthThreshold": {
+   "spread": 0.0,
+   "twoSpread": 0.0,
+   "floor": 1.5,
+   "threshold": 1.5,
+   "bound": "floor"
+  },
+  "darkLumaThreshold": {
+   "spread": 0.0,
+   "twoSpread": 0.0,
+   "floor": 10.0,
+   "threshold": 10.0,
+   "bound": "floor"
+  },
+  "whiteRatioThreshold": {
+   "spread": 0.0,
+   "twoSpread": 0.0,
+   "floor": 0.02,
+   "threshold": 0.02,
+   "bound": "floor"
+  },
+  "bandWidthThreshold@390x844": {
+   "spread": 0.0,
+   "twoSpread": 0.0,
+   "floor": 1.5,
+   "threshold": 1.5,
+   "bound": "floor"
+  },
+  "darkLumaThreshold@390x844": {
+   "spread": 0.0,
+   "twoSpread": 0.0,
+   "floor": 10.0,
+   "threshold": 10.0,
+   "bound": "floor"
+  },
+  "bandWidthThreshold@844x390": {
+   "spread": 0.0,
+   "twoSpread": 0.0,
+   "floor": 1.5,
+   "threshold": 1.5,
+   "bound": "floor"
+  },
+  "darkLumaThreshold@844x390": {
+   "spread": 0.0,
+   "twoSpread": 0.0,
+   "floor": 10.0,
+   "threshold": 10.0,
+   "bound": "floor"
+  }
+ },
+ "series": {
+  "bright-lowsat@1440x900": {
+   "runs": [
+    1,
+    2,
+    3
+   ],
+   "perRun": {
+    "cardsAnalysed": [
+     3,
+     3,
+     3
+    ],
+    "edgeChromaMean": [
+     8.3,
+     8.3,
+     8.3
+    ],
+    "edgeLuminanceMean": [
+     171.7,
+     171.7,
+     171.7
+    ],
+    "metricBasis": [
+     "full-cards",
+     "full-cards",
+     "full-cards"
+    ],
+    "whiteReflectionRatio": [
+     0.7647,
+     0.7647,
+     0.7647
+    ]
+   },
+   "spread": {
+    "cardsAnalysed": 0,
+    "edgeChromaMean": 0.0,
+    "edgeLuminanceMean": 0.0,
+    "metricBasis": null,
+    "whiteReflectionRatio": 0.0
+   },
+   "mean": {
+    "cardsAnalysed": 3.0,
+    "edgeChromaMean": 8.3,
+    "edgeLuminanceMean": 171.7,
+    "metricBasis": null,
+    "whiteReflectionRatio": 0.7647
+   }
+  },
+  "bw-split@1440x900": {
+   "runs": [
+    1,
+    2,
+    3
+   ],
+   "perRun": {
+    "brightSideEdgeLuma": [
+     193.7,
+     193.7,
+     193.7
+    ],
+    "cardsAnalysed": [
+     3,
+     3,
+     3
+    ],
+    "darkOverBrightLumaRatio": [
+     0.2484,
+     0.2484,
+     0.2484
+    ],
+    "darkSideEdgeLuma": [
+     48.1,
+     48.1,
+     48.1
+    ],
+    "edgeChromaMean": [
+     3.58,
+     3.58,
+     3.58
+    ],
+    "edgeLuminanceMean": [
+     109.15,
+     109.15,
+     109.15
+    ],
+    "metricBasis": [
+     "full-cards",
+     "full-cards",
+     "full-cards"
+    ],
+    "reflectionBandPx": [
+     3.3,
+     3.3,
+     3.3
+    ],
+    "whiteReflectionRatio": [
+     0.4188,
+     0.4188,
+     0.4188
+    ]
+   },
+   "spread": {
+    "brightSideEdgeLuma": 0.0,
+    "cardsAnalysed": 0,
+    "darkOverBrightLumaRatio": 0.0,
+    "darkSideEdgeLuma": 0.0,
+    "edgeChromaMean": 0.0,
+    "edgeLuminanceMean": 0.0,
+    "metricBasis": null,
+    "reflectionBandPx": 0.0,
+    "whiteReflectionRatio": 0.0
+   },
+   "mean": {
+    "brightSideEdgeLuma": 193.7,
+    "cardsAnalysed": 3.0,
+    "darkOverBrightLumaRatio": 0.2484,
+    "darkSideEdgeLuma": 48.1,
+    "edgeChromaMean": 3.58,
+    "edgeLuminanceMean": 109.15,
+    "metricBasis": null,
+    "reflectionBandPx": 3.3,
+    "whiteReflectionRatio": 0.4188
+   }
+  },
+  "bw-split@390x844": {
+   "runs": [
+    1,
+    2,
+    3
+   ],
+   "perRun": {
+    "brightSideEdgeLuma": [
+     184.2,
+     184.2,
+     184.2
+    ],
+    "cardsAnalysed": [
+     2,
+     2,
+     2
+    ],
+    "darkOverBrightLumaRatio": [
+     0.2871,
+     0.2871,
+     0.2871
+    ],
+    "darkSideEdgeLuma": [
+     52.9,
+     52.9,
+     52.9
+    ],
+    "edgeChromaMean": [
+     3.53,
+     3.53,
+     3.53
+    ],
+    "edgeLuminanceMean": [
+     107.06,
+     107.06,
+     107.06
+    ],
+    "metricBasis": [
+     "full-cards",
+     "full-cards",
+     "full-cards"
+    ],
+    "reflectionBandPx": [
+     1.5,
+     1.5,
+     1.5
+    ],
+    "whiteReflectionRatio": [
+     0.3791,
+     0.3791,
+     0.3791
+    ]
+   },
+   "spread": {
+    "brightSideEdgeLuma": 0.0,
+    "cardsAnalysed": 0,
+    "darkOverBrightLumaRatio": 0.0,
+    "darkSideEdgeLuma": 0.0,
+    "edgeChromaMean": 0.0,
+    "edgeLuminanceMean": 0.0,
+    "metricBasis": null,
+    "reflectionBandPx": 0.0,
+    "whiteReflectionRatio": 0.0
+   },
+   "mean": {
+    "brightSideEdgeLuma": 184.2,
+    "cardsAnalysed": 2.0,
+    "darkOverBrightLumaRatio": 0.2871,
+    "darkSideEdgeLuma": 52.9,
+    "edgeChromaMean": 3.53,
+    "edgeLuminanceMean": 107.06,
+    "metricBasis": null,
+    "reflectionBandPx": 1.5,
+    "whiteReflectionRatio": 0.3791
+   }
+  },
+  "bw-split@844x390": {
+   "runs": [
+    1,
+    2,
+    3
+   ],
+   "perRun": {
+    "brightSideEdgeLuma": [
+     194.0,
+     194.0,
+     194.0
+    ],
+    "cardsAnalysed": [
+     1,
+     1,
+     1
+    ],
+    "darkOverBrightLumaRatio": [
+     0.4126,
+     0.4126,
+     0.4126
+    ],
+    "darkSideEdgeLuma": [
+     80.1,
+     80.1,
+     80.1
+    ],
+    "metricBasis": [
+     "side-bands-basis",
+     "side-bands-basis",
+     "side-bands-basis"
+    ],
+    "reflectionBandPx": [
+     2.0,
+     2.0,
+     2.0
+    ]
+   },
+   "spread": {
+    "brightSideEdgeLuma": 0.0,
+    "cardsAnalysed": 0,
+    "darkOverBrightLumaRatio": 0.0,
+    "darkSideEdgeLuma": 0.0,
+    "metricBasis": null,
+    "reflectionBandPx": 0.0
+   },
+   "mean": {
+    "brightSideEdgeLuma": 194.0,
+    "cardsAnalysed": 1.0,
+    "darkOverBrightLumaRatio": 0.4126,
+    "darkSideEdgeLuma": 80.1,
+    "metricBasis": null,
+    "reflectionBandPx": 2.0
+   }
+  },
+  "cool-blue@1440x900": {
+   "runs": [
+    1,
+    2,
+    3
+   ],
+   "perRun": {
+    "cardsAnalysed": [
+     3,
+     3,
+     3
+    ],
+    "edgeChromaMean": [
+     100.12,
+     100.12,
+     100.12
+    ],
+    "edgeLuminanceMean": [
+     86.46,
+     86.46,
+     86.46
+    ],
+    "metricBasis": [
+     "full-cards",
+     "full-cards",
+     "full-cards"
+    ],
+    "whiteReflectionRatio": [
+     0.0306,
+     0.0306,
+     0.0306
+    ]
+   },
+   "spread": {
+    "cardsAnalysed": 0,
+    "edgeChromaMean": 0.0,
+    "edgeLuminanceMean": 0.0,
+    "metricBasis": null,
+    "whiteReflectionRatio": 0.0
+   },
+   "mean": {
+    "cardsAnalysed": 3.0,
+    "edgeChromaMean": 100.12,
+    "edgeLuminanceMean": 86.46,
+    "metricBasis": null,
+    "whiteReflectionRatio": 0.0306
+   }
+  },
+  "dark-highlight@1440x900": {
+   "runs": [
+    1,
+    2,
+    3
+   ],
+   "perRun": {
+    "cardsAnalysed": [
+     3,
+     3,
+     3
+    ],
+    "edgeChromaMean": [
+     9.72,
+     9.72,
+     9.72
+    ],
+    "edgeLuminanceMean": [
+     35.94,
+     35.94,
+     35.94
+    ],
+    "metricBasis": [
+     "full-cards",
+     "full-cards",
+     "full-cards"
+    ],
+    "whiteReflectionRatio": [
+     0.0291,
+     0.0291,
+     0.0291
+    ]
+   },
+   "spread": {
+    "cardsAnalysed": 0,
+    "edgeChromaMean": 0.0,
+    "edgeLuminanceMean": 0.0,
+    "metricBasis": null,
+    "whiteReflectionRatio": 0.0
+   },
+   "mean": {
+    "cardsAnalysed": 3.0,
+    "edgeChromaMean": 9.72,
+    "edgeLuminanceMean": 35.94,
+    "metricBasis": null,
+    "whiteReflectionRatio": 0.0291
+   }
+  },
+  "grayscale-step@1440x900": {
+   "runs": [
+    1,
+    2,
+    3
+   ],
+   "perRun": {
+    "cardsAnalysed": [
+     3,
+     3,
+     3
+    ],
+    "edgeChromaMean": [
+     3.33,
+     3.33,
+     3.33
+    ],
+    "edgeLuminanceMean": [
+     118.68,
+     118.68,
+     118.68
+    ],
+    "metricBasis": [
+     "full-cards",
+     "full-cards",
+     "full-cards"
+    ],
+    "whiteReflectionRatio": [
+     0.4144,
+     0.4144,
+     0.4144
+    ]
+   },
+   "spread": {
+    "cardsAnalysed": 0,
+    "edgeChromaMean": 0.0,
+    "edgeLuminanceMean": 0.0,
+    "metricBasis": null,
+    "whiteReflectionRatio": 0.0
+   },
+   "mean": {
+    "cardsAnalysed": 3.0,
+    "edgeChromaMean": 3.33,
+    "edgeLuminanceMean": 118.68,
+    "metricBasis": null,
+    "whiteReflectionRatio": 0.4144
+   }
+  },
+  "rgb-bars@1440x900": {
+   "runs": [
+    1,
+    2,
+    3
+   ],
+   "perRun": {
+    "cardsAnalysed": [
+     3,
+     3,
+     3
+    ],
+    "edgeChromaMean": [
+     96.25,
+     96.25,
+     96.25
+    ],
+    "edgeLuminanceMean": [
+     114.31,
+     114.31,
+     114.31
+    ],
+    "metricBasis": [
+     "full-cards",
+     "full-cards",
+     "full-cards"
+    ],
+    "whiteReflectionRatio": [
+     0.3081,
+     0.3081,
+     0.3081
+    ]
+   },
+   "spread": {
+    "cardsAnalysed": 0,
+    "edgeChromaMean": 0.0,
+    "edgeLuminanceMean": 0.0,
+    "metricBasis": null,
+    "whiteReflectionRatio": 0.0
+   },
+   "mean": {
+    "cardsAnalysed": 3.0,
+    "edgeChromaMean": 96.25,
+    "edgeLuminanceMean": 114.31,
+    "metricBasis": null,
+    "whiteReflectionRatio": 0.3081
+   }
+  }
+ }
+}

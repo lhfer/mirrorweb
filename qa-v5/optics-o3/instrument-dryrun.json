@@ -1,0 +1,315 @@
+{
+ "what": "O3 corrected-instrument dry run on the EXISTING O2 captures. Validation only -- no O3 candidate exists and nothing here can tune anything.",
+ "measureDir": "artifacts/optics-o2/measure",
+ "capturedAtHead": "e913aa6",
+ "inkIntersectionStates": [
+  "pl",
+  "rest",
+  "pr",
+  "pbr"
+ ],
+ "pathStates": [
+  "pl",
+  "rest",
+  "pr"
+ ],
+ "F11": {
+  "target": {
+   "statesUsedForInk": [
+    "pbr",
+    "pl",
+    "pr",
+    "rest"
+   ],
+   "cardSpaceDims": [
+    403,
+    274
+   ],
+   "excludedInkPixels": 3073,
+   "glassPixelsPerState": {
+    "pl": 3158,
+    "rest": 2997,
+    "pr": 3126,
+    "pbr": 6550
+   },
+   "centroids": {
+    "pl": {
+     "nx": 0.5156,
+     "ny": 0.646,
+     "pixels": 3158
+    },
+    "rest": {
+     "nx": 0.4885,
+     "ny": 0.6329,
+     "pixels": 2997
+    },
+    "pr": {
+     "nx": 0.5009,
+     "ny": 0.6514,
+     "pixels": 3126
+    },
+    "pbr": {
+     "nx": 0.3688,
+     "ny": 0.6907,
+     "pixels": 6550
+    }
+   },
+   "path": [
+    0.5156,
+    0.4885,
+    0.5009
+   ]
+  },
+  "b-only": {
+   "statesUsedForInk": [
+    "pbr",
+    "pl",
+    "pr",
+    "rest"
+   ],
+   "cardSpaceDims": [
+    403,
+    274
+   ],
+   "excludedInkPixels": 3289,
+   "glassPixelsPerState": {
+    "pl": 3676,
+    "rest": 3075,
+    "pr": 2944,
+    "pbr": 9258
+   },
+   "centroids": {
+    "pl": {
+     "nx": 0.4869,
+     "ny": 0.5998,
+     "pixels": 3676
+    },
+    "rest": {
+     "nx": 0.4626,
+     "ny": 0.6426,
+     "pixels": 3075
+    },
+    "pr": {
+     "nx": 0.5067,
+     "ny": 0.6827,
+     "pixels": 2944
+    },
+    "pbr": {
+     "nx": 0.2562,
+     "ny": 0.6329,
+     "pixels": 9258
+    }
+   },
+   "path": [
+    0.4869,
+    0.4626,
+    0.5067
+   ]
+  },
+  "a-plus-b": {
+   "statesUsedForInk": [
+    "pbr",
+    "pl",
+    "pr",
+    "rest"
+   ],
+   "cardSpaceDims": [
+    403,
+    274
+   ],
+   "excludedInkPixels": 3289,
+   "glassPixelsPerState": {
+    "pl": 3681,
+    "rest": 3076,
+    "pr": 2945,
+    "pbr": 9255
+   },
+   "centroids": {
+    "pl": {
+     "nx": 0.4879,
+     "ny": 0.5989,
+     "pixels": 3681
+    },
+    "rest": {
+     "nx": 0.4624,
+     "ny": 0.6425,
+     "pixels": 3076
+    },
+    "pr": {
+     "nx": 0.5066,
+     "ny": 0.6826,
+     "pixels": 2945
+    },
+    "pbr": {
+     "nx": 0.2562,
+     "ny": 0.633,
+     "pixels": 9255
+    }
+   },
+   "path": [
+    0.4879,
+    0.4624,
+    0.5066
+   ]
+  }
+ },
+ "F11Verdicts": {
+  "b-only": {
+   "targetNxPath": [
+    0.5156,
+    0.4885,
+    0.5009
+   ],
+   "candidateNxPath": [
+    0.4869,
+    0.4626,
+    0.5067
+   ],
+   "adjacentJumps": [
+    0.0243,
+    0.0441
+   ],
+   "targetDirection": -1,
+   "targetRange": 0.0271,
+   "candidateRange": 0.0441,
+   "branch": "flat-reference",
+   "branchChosenBy": "target path range 0.0271 < 0.05",
+   "fired": false,
+   "reasons": []
+  },
+  "a-plus-b": {
+   "targetNxPath": [
+    0.5156,
+    0.4885,
+    0.5009
+   ],
+   "candidateNxPath": [
+    0.4879,
+    0.4624,
+    0.5066
+   ],
+   "adjacentJumps": [
+    0.0255,
+    0.0442
+   ],
+   "targetDirection": -1,
+   "targetRange": 0.0271,
+   "candidateRange": 0.0442,
+   "branch": "flat-reference",
+   "branchChosenBy": "target path range 0.0271 < 0.05",
+   "fired": false,
+   "reasons": []
+  }
+ },
+ "F11Measurable": true,
+ "F10PolygonMask": {
+  "bw-split": {
+   "before": {
+    "gutterInkRatio": 0.04062,
+    "cardsMasked": 16,
+    "gutterPixels": 16890,
+    "dilationPx": 8
+   },
+   "b-only": {
+    "gutterInkRatio": 0.04624,
+    "cardsMasked": 16,
+    "gutterPixels": 16890,
+    "dilationPx": 8
+   },
+   "a-plus-b": {
+    "gutterInkRatio": 0.04636,
+    "cardsMasked": 16,
+    "gutterPixels": 16890,
+    "dilationPx": 8
+   }
+  },
+  "rgb-bars": {
+   "before": {
+    "gutterInkRatio": 0.0444,
+    "cardsMasked": 16,
+    "gutterPixels": 16890,
+    "dilationPx": 8
+   },
+   "b-only": {
+    "gutterInkRatio": 0.04997,
+    "cardsMasked": 16,
+    "gutterPixels": 16890,
+    "dilationPx": 8
+   },
+   "a-plus-b": {
+    "gutterInkRatio": 0.0495,
+    "cardsMasked": 16,
+    "gutterPixels": 16890,
+    "dilationPx": 8
+   }
+  }
+ },
+ "F5BaselineBranch": {
+  "bw-split": {
+   "coding": "absolute",
+   "fired": false
+  },
+  "grayscale-step": {
+   "coding": "absolute",
+   "fired": false
+  },
+  "rgb-bars": {
+   "coding": "relative",
+   "fired": false
+  },
+  "cool-blue": {
+   "coding": "relative",
+   "fired": false
+  }
+ },
+ "F5Detail": {
+  "bw-split": {
+   "coding": "absolute",
+   "codingChosenBy": "baseline interior saturation 0.0000 <= 0.01",
+   "baselineSaturation": 0.0,
+   "ceiling": [
+    0.02,
+    2.0
+   ],
+   "absSaturationDelta": 0.0035,
+   "absChromaDelta": 0.02,
+   "relLuminanceChange": 0.0111,
+   "absLuminanceDelta": -1.36,
+   "fired": false
+  },
+  "grayscale-step": {
+   "coding": "absolute",
+   "codingChosenBy": "baseline interior saturation 0.0000 <= 0.01",
+   "baselineSaturation": 0.0,
+   "ceiling": [
+    0.02,
+    2.0
+   ],
+   "absSaturationDelta": 0.0021,
+   "absChromaDelta": 0.14,
+   "relLuminanceChange": 0.0314,
+   "absLuminanceDelta": -4.51,
+   "fired": false
+  },
+  "rgb-bars": {
+   "coding": "relative",
+   "codingChosenBy": "baseline interior saturation 0.7644 > 0.01",
+   "baselineSaturation": 0.7644,
+   "ceiling": 0.12,
+   "relSaturationChange": 0.0147,
+   "relLuminanceChange": 0.0187,
+   "absLuminanceDelta": -2.1,
+   "fired": false
+  },
+  "cool-blue": {
+   "coding": "relative",
+   "codingChosenBy": "baseline interior saturation 0.7114 > 0.01",
+   "baselineSaturation": 0.7114,
+   "ceiling": 0.12,
+   "relSaturationChange": 0.0261,
+   "relLuminanceChange": 0.0484,
+   "absLuminanceDelta": -5.15,
+   "fired": false
+  }
+ }
+}

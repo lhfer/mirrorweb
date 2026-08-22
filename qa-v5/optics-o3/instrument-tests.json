@@ -1,0 +1,188 @@
+{
+ "what": "O3 instrument unit tests -- the corrected F5 / F10 / F11 codings must genuinely FAIL on bad input",
+ "total": 36,
+ "failed": 0,
+ "pass": true,
+ "tests": [
+  {
+   "test": "F11 monotonic same-direction path passes",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "test": "F11 NON-MONOTONIC path fires",
+   "pass": true,
+   "detail": "['candidate path not monotonic in the target direction']"
+  },
+  {
+   "test": "F11 reversed-direction path fires",
+   "pass": true,
+   "detail": "['candidate direction 1.0 != target direction -1.0', 'candidate path not monotonic in the target direction']"
+  },
+  {
+   "test": "F11 over-large adjacent jump fires",
+   "pass": true,
+   "detail": "['adjacent jump 0.6800 > 0.4']"
+  },
+  {
+   "test": "F11 unmeasurable candidate state fires",
+   "pass": true,
+   "detail": "['candidate path unmeasurable']"
+  },
+  {
+   "test": "F11 stationary target + large candidate swing fires",
+   "pass": true,
+   "detail": "['target reflection centroid is effectively stationary (range 0.0000) but the candidate swings 0.3400 > 0.1000']"
+  },
+  {
+   "test": "F11 flat branch is chosen from the TARGET range",
+   "pass": true,
+   "detail": "target path range 0.0271 < 0.05"
+  },
+  {
+   "test": "F11 the ALREADY-ACCEPTED O2 candidate passes the corrected coding",
+   "pass": true,
+   "detail": "targetRange=0.0271 candidateRange=0.0442 []"
+  },
+  {
+   "test": "F11 flat branch still fires on a swing the target does not have",
+   "pass": true,
+   "detail": "['target reflection centroid is effectively stationary (range 0.0271) but the candidate swings 0.6000 > 0.1000']"
+  },
+  {
+   "test": "F11 flat branch still catches a pop",
+   "pass": true,
+   "detail": "['adjacent jump 0.4500 > 0.4', 'target reflection centroid is effectively stationary (range 0.0271) but the candidate swings 0.4500 > 0.1000']"
+  },
+  {
+   "test": "F11 branch depends only on the target path",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "F11 same branch, opposite verdicts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "F11 flat-then-move stays monotonic and passes",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "test": "F11 record echoes the judged path",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "F11 mask excludes the static ink band",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "F11 mask keeps the moving highlight",
+   "pass": true,
+   "detail": "{'pl': 200, 'rest': 200, 'pr': 200}"
+  },
+  {
+   "test": "F11 mask centroid sits in the highlight band, not the label band",
+   "pass": true,
+   "detail": "[0.3708, 0.3708, 0.3708]"
+  },
+  {
+   "test": "F11 synthetic left-to-right sweep passes",
+   "pass": true,
+   "detail": "(0.1625, 0.4958, 0.8292)"
+  },
+  {
+   "test": "F11 card-space intersection still excludes ink when the card SHIFTS",
+   "pass": true,
+   "detail": "excluded px=1176"
+  },
+  {
+   "test": "F11 shifted-card mover survives and stays out of the label band",
+   "pass": true,
+   "detail": "{'pl': (0.1625, 0.3708, 200), 'rest': (0.4958, 0.3708, 200), 'pr': (0.8292, 0.3708, 200)}"
+  },
+  {
+   "test": "F11 shared-screen-rect comparison would have LEAKED the ink (this is why card space is used)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "F11 empty glass mask fires (no pass by default)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "F5 zero baseline selects the ABSOLUTE coding",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "F5 accepted-O2-scale absolute gain does not fire",
+   "pass": true,
+   "detail": "{'coding': 'absolute', 'codingChosenBy': 'baseline interior saturation 0.0000 <= 0.01', 'baselineSaturation': 0.0, 'ceiling': [0.02, 2.0], 'absSaturationDelta': 0.0104, 'absChromaDelta': 0.14, 'relLuminanceChange': 0.03, 'absLuminanceDelta': 3.0, 'fired': False}"
+  },
+  {
+   "test": "F5 large absolute interior gain FIRES on a zero baseline",
+   "pass": true,
+   "detail": "{'coding': 'absolute', 'codingChosenBy': 'baseline interior saturation 0.0000 <= 0.01', 'baselineSaturation': 0.0, 'ceiling': [0.02, 2.0], 'absSaturationDelta': 0.05, 'absChromaDelta': 9.0, 'relLuminanceChange': 0.0, 'absLuminanceDelta': 0.0, 'fired': True}"
+  },
+  {
+   "test": "F5 healthy baseline selects the RELATIVE coding",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "F5 25% relative desaturation FIRES",
+   "pass": true,
+   "detail": "{'coding': 'relative', 'codingChosenBy': 'baseline interior saturation 0.4000 > 0.01', 'baselineSaturation': 0.4, 'ceiling': 0.12, 'relSaturationChange': 0.25, 'relLuminanceChange': 0.0, 'absLuminanceDelta': 0.0, 'fired': True}"
+  },
+  {
+   "test": "F5 30% interior brightening FIRES on luminance",
+   "pass": true,
+   "detail": "{'coding': 'relative', 'codingChosenBy': 'baseline interior saturation 0.4000 > 0.01', 'baselineSaturation': 0.4, 'ceiling': 0.12, 'relSaturationChange': 0.0, 'relLuminanceChange': 0.3, 'absLuminanceDelta': 30.0, 'fired': True}"
+  },
+  {
+   "test": "F5 coding depends only on the baseline",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "F5 absolute coding still fires on a huge candidate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "F10 clean frame has zero gutter ink",
+   "pass": true,
+   "detail": "{'gutterInkRatio': 0.0, 'cardsMasked': 2, 'gutterPixels': 9392}"
+  },
+  {
+   "test": "F10 ink INSIDE a card is not gutter",
+   "pass": true,
+   "detail": "{'gutterInkRatio': 0.0, 'cardsMasked': 2, 'gutterPixels': 9392}"
+  },
+  {
+   "test": "F10 ink BETWEEN cards is counted",
+   "pass": true,
+   "detail": "{'gutterInkRatio': 0.01704, 'cardsMasked': 2, 'gutterPixels': 9392}"
+  },
+  {
+   "test": "F10 partially-visible neighbour card is masked, not counted as gutter",
+   "pass": true,
+   "detail": "masked={'gutterInkRatio': 0.0, 'cardsMasked': 3, 'gutterPixels': 9104} unmasked={'gutterInkRatio': 0.02555, 'cardsMasked': 2, 'gutterPixels': 9392}"
+  },
+  {
+   "test": "F10 masks the polygon, not the bounding box",
+   "pass": true,
+   "detail": "{'gutterInkRatio': 0.00135, 'cardsMasked': 1, 'gutterPixels': 11894}"
+  },
+  {
+   "test": "F10 dilation law scales with the card width",
+   "pass": true,
+   "detail": "1440x900->8 390x844->4"
+  }
+ ]
+}
