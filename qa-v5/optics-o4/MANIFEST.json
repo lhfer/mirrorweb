@@ -1,0 +1,103 @@
+{
+ "tree": "qa-v5/optics-o4",
+ "what": "O4 frozen body floor attribution -- public evidence. Numbers, source anchors and verdicts only; Target pixels and video live in the private package.",
+ "generatedAt": "2026-08-22T09:54:03+00:00",
+ "capturedAtHead": "df467ed4ae44b0318731fb51db31ff708f9e7a1e",
+ "reviewHeadNote": "absent from the public tree: a committed file cannot carry its own commit hash. The private package carries both heads.",
+ "finalState": "O4 SELECTED BODY CANDIDATE FAILED ABSOLUTE GATE",
+ "absoluteGate": "FAIL",
+ "shippedDefault": "current",
+ "containsTargetPixels": false,
+ "files": [
+  {
+   "file": "README.md",
+   "bytes": 7762,
+   "sha256": "b3ec77058a70a65123a8993aba141313e848dbf0bea69babe5297dd400e79e24"
+  },
+  {
+   "file": "body-code-audit.json",
+   "bytes": 30723,
+   "sha256": "f50d3d8b0fa3e9e60f7a0d1d170a9ba9f3c26a022889c075e9e8bdb711576efe"
+  },
+  {
+   "file": "body-floor-attribution.json",
+   "bytes": 31684,
+   "sha256": "5810ebdd9d439f8d45801b096bfebb9682ec943379444469b304edf29250b392"
+  },
+  {
+   "file": "body-floor-factorial.json",
+   "bytes": 213434,
+   "sha256": "26d1315653a00897969c65b429513f4ea41628fcc69b197e9551dad5a7420dfb"
+  },
+  {
+   "file": "body-floor-gate.json",
+   "bytes": 20134,
+   "sha256": "6a3c0d92f4f54792336daa8e60b27b2dfc50b5e9cd1cdff573599cdfac91ab7d"
+  },
+  {
+   "file": "bright-dark.json",
+   "bytes": 5634,
+   "sha256": "3059bbbc0f548915b85b690acec79902487229256f66241516989c4e303b538f"
+  },
+  {
+   "file": "checker-control.json",
+   "bytes": 2067,
+   "sha256": "2b0fb65c1885fbec5cdea2eec6e68df527bd8971668579e93a7367844a44aaa6"
+  },
+  {
+   "file": "gate-coding.json",
+   "bytes": 5169,
+   "sha256": "5355848243099012f0a0ed6a7ecf76dfd9ef78703d0366a9f8b6c7c70455ba47"
+  },
+  {
+   "file": "grayscale-ringing.json",
+   "bytes": 1684,
+   "sha256": "6daecf7bb58465066e444625b6a9b6eccbd8a2329977b19fdf5cf4eb048b957a"
+  },
+  {
+   "file": "instrument-contract.json",
+   "bytes": 6942,
+   "sha256": "9d8a9f2a9ebef05892d823bebdf63a902dd38d35ba6d7f1f3223ab4ad7fff154"
+  },
+  {
+   "file": "instrument-tests.json",
+   "bytes": 5915,
+   "sha256": "d4dfdda729f13820a31601665344cefa4d7562019303da5a61c0eabe4c20fe2c"
+  },
+  {
+   "file": "mobile-consistency.json",
+   "bytes": 9900,
+   "sha256": "2360f7ce5f70a97553259852cf1fd4215f1517684e9d222eaba75bdbf040a801"
+  },
+  {
+   "file": "o3-product-review-decision.json",
+   "bytes": 696,
+   "sha256": "f5878d17936c354d67e0c99b07f859e5831a2ce3e9425911323df9dd3eb9af69"
+  },
+  {
+   "file": "o4-selected-subsystem.json",
+   "bytes": 3787,
+   "sha256": "80b3014e74b0ae1676cdc64785c7d3f11f6c7cdafe993ec35d16b1019dd8df6a"
+  },
+  {
+   "file": "regressions.json",
+   "bytes": 50437,
+   "sha256": "6916f0d39206063d766e84b56a5a98449a689881acf80bbb97e3c93b7a888bc1"
+  },
+  {
+   "file": "support-retest.json",
+   "bytes": 965,
+   "sha256": "3788a0a69823f1c6616aa91e9e9b36e90eb503afc83abc43a0d59cbab3f26794"
+  },
+  {
+   "file": "target-body-source.json",
+   "bytes": 14774,
+   "sha256": "2d7c2ef116caf8ea671c4f32a7f69705d4873393fd9e15dd606bfbea15a22fb6"
+  },
+  {
+   "file": "temporal-continuity.json",
+   "bytes": 4086,
+   "sha256": "12ef8fe9464800e19269546ded6c2d64a15e4db75ecaf616a1875449d6a53bee"
+  }
+ ]
+}

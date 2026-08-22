@@ -1,0 +1,178 @@
+{
+ "what": "bright and dark media in the SHIPPED state -- the body candidate must not crush dark content or blow bright content.",
+ "assets": {
+  "dark-highlight": {
+   "control": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 9.91,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 9.64,
+    "whiteReflectionRatio": 0.023,
+    "edgeLuminanceMean": 53.81,
+    "interiorSaturationMean": 0.3757,
+    "interiorLuminanceMean": 21.4,
+    "gutterInkRatio": 0.1426036985548479,
+    "fringeWidthPxMean": 0.0,
+    "darkSideEdgeLuma": 101.9,
+    "brightSideEdgeLuma": 70.3,
+    "darkOverBrightLumaRatio": 1.4491,
+    "darkSideEdgeChroma": 8.25,
+    "brightSideEdgeChroma": 9.09,
+    "sideChromaGap": 0.84,
+    "interiorChromaMean": 9.25,
+    "bandWidthPx": 16.7,
+    "bandEnergy": 2102.97
+   },
+   "candidate": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 10.4,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 10.11,
+    "whiteReflectionRatio": 0.0227,
+    "edgeLuminanceMean": 46.44,
+    "interiorSaturationMean": 0.3757,
+    "interiorLuminanceMean": 21.4,
+    "gutterInkRatio": 0.12282176457275872,
+    "fringeWidthPxMean": 0.0,
+    "darkSideEdgeLuma": 89.9,
+    "brightSideEdgeLuma": 57.1,
+    "darkOverBrightLumaRatio": 1.5759,
+    "darkSideEdgeChroma": 9.17,
+    "brightSideEdgeChroma": 10.08,
+    "sideChromaGap": 0.91,
+    "interiorChromaMean": 9.25,
+    "bandWidthPx": 14.3,
+    "bandEnergy": 1675.19
+   }
+  },
+  "bright-lowsat": {
+   "control": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 8.44,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 8.14,
+    "whiteReflectionRatio": 0.7924,
+    "edgeLuminanceMean": 175.53,
+    "interiorSaturationMean": 0.0475,
+    "interiorLuminanceMean": 203.79,
+    "gutterInkRatio": 0.780131583201319,
+    "fringeWidthPxMean": 0.0,
+    "darkSideEdgeLuma": 182.5,
+    "brightSideEdgeLuma": 177.8,
+    "darkOverBrightLumaRatio": 1.0263,
+    "darkSideEdgeChroma": 5.63,
+    "brightSideEdgeChroma": 7.12,
+    "sideChromaGap": 1.49,
+    "interiorChromaMean": 10.0,
+    "bandWidthPx": 146.7,
+    "bandEnergy": 3375.06
+   },
+   "candidate": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 8.27,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 8.01,
+    "whiteReflectionRatio": 0.7928,
+    "edgeLuminanceMean": 175.39,
+    "interiorSaturationMean": 0.0475,
+    "interiorLuminanceMean": 203.79,
+    "gutterInkRatio": 0.7778361514338366,
+    "fringeWidthPxMean": 0.0,
+    "darkSideEdgeLuma": 181.5,
+    "brightSideEdgeLuma": 176.9,
+    "darkOverBrightLumaRatio": 1.0263,
+    "darkSideEdgeChroma": 5.63,
+    "brightSideEdgeChroma": 6.99,
+    "sideChromaGap": 1.36,
+    "interiorChromaMean": 10.0,
+    "bandWidthPx": 146.0,
+    "bandEnergy": 3315.43
+   }
+  }
+ },
+ "interiorVerdict": [
+  {
+   "asset": "bw-split",
+   "coding": "absolute",
+   "codingChosenBy": "baseline interior saturation 0.00350 < 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+   "baselineSaturation": 0.0035,
+   "relLuminanceChange": 0.0,
+   "absSaturationDelta": 0.0,
+   "absChromaDelta": 0.0,
+   "fired": false,
+   "reasons": []
+  },
+  {
+   "asset": "grayscale-step",
+   "coding": "absolute",
+   "codingChosenBy": "baseline interior saturation 0.00230 < 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+   "baselineSaturation": 0.0023,
+   "relLuminanceChange": 0.0,
+   "absSaturationDelta": 0.0,
+   "absChromaDelta": 0.0,
+   "fired": false,
+   "reasons": []
+  },
+  {
+   "asset": "rgb-bars",
+   "coding": "relative",
+   "codingChosenBy": "baseline interior saturation 0.82060 >= 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+   "baselineSaturation": 0.8206,
+   "relLuminanceChange": 0.0,
+   "relSaturationChange": 0.0,
+   "fired": false,
+   "reasons": []
+  },
+  {
+   "asset": "hf-checker",
+   "coding": "absolute",
+   "codingChosenBy": "baseline interior saturation 0.01120 < 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+   "baselineSaturation": 0.0112,
+   "relLuminanceChange": 0.0,
+   "absSaturationDelta": 0.0,
+   "absChromaDelta": 0.0,
+   "fired": false,
+   "reasons": []
+  },
+  {
+   "asset": "cool-blue",
+   "coding": "relative",
+   "codingChosenBy": "baseline interior saturation 0.76960 >= 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+   "baselineSaturation": 0.7696,
+   "relLuminanceChange": 0.0,
+   "relSaturationChange": 0.0,
+   "fired": false,
+   "reasons": []
+  },
+  {
+   "asset": "warm-skin",
+   "coding": "relative",
+   "codingChosenBy": "baseline interior saturation 0.26160 >= 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+   "baselineSaturation": 0.2616,
+   "relLuminanceChange": 0.0,
+   "relSaturationChange": 0.0,
+   "fired": false,
+   "reasons": []
+  },
+  {
+   "asset": "dark-highlight",
+   "coding": "relative",
+   "codingChosenBy": "baseline interior saturation 0.37570 >= 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+   "baselineSaturation": 0.3757,
+   "relLuminanceChange": 0.0,
+   "relSaturationChange": 0.0,
+   "fired": false,
+   "reasons": []
+  },
+  {
+   "asset": "bright-lowsat",
+   "coding": "relative",
+   "codingChosenBy": "baseline interior saturation 0.04750 >= 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+   "baselineSaturation": 0.0475,
+   "relLuminanceChange": 0.0,
+   "relSaturationChange": 0.0,
+   "fired": false,
+   "reasons": []
+  }
+ ]
+}

@@ -1,0 +1,708 @@
+{
+ "what": "O4 \u00a7\u4e5d absolute gate. Thresholds from gate-coding.json, sealed at 66684dd0a48a before any gate pixel existed; instruments from o4_instruments.py, sealed earlier.",
+ "codingSealedAtHead": "66684dd0a48a035baa8136faddfc90c591b924bc",
+ "thresholdsChangedAfterCapture": false,
+ "scoringStates": {
+  "itemsOneToThree": "System B OFF -- \u00a7\u4e5d's primary gate state",
+  "itemsFourToNine": "System B ON (shell off) -- the SHIPPED state, because these are product-quality statements about what a user sees. Both states were captured and both are in the manifest."
+ },
+ "consoleAndPageErrors": 0,
+ "itemsPassed": 8,
+ "itemsFailed": 4,
+ "itemsPending": 0,
+ "failedItems": [
+  2,
+  3,
+  5,
+  9
+ ],
+ "pendingItems": [],
+ "absoluteGate": "FAIL",
+ "shippedDefault": "current",
+ "defaultFlip": "not executed -- this brief registers no automatic flip and its final states do not include one; the product review owns that decision and reads this file.",
+ "finalState": "O4 SELECTED BODY CANDIDATE FAILED ABSOLUTE GATE",
+ "items": [
+  {
+   "n": 1,
+   "item": "body floor reduced by >= 40%",
+   "result": "PASS",
+   "threshold": 0.4,
+   "viewports": [
+    {
+     "vp": "1440x900",
+     "metricBasis": "fully-visible cards",
+     "targetBandPx": 3.3,
+     "controlBandPx": 9.7,
+     "candidateBandPx": 1.7,
+     "reductionFraction": 0.8247,
+     "item1Pass": true,
+     "distanceToTargetPx": 1.6,
+     "controlDistanceToTargetPx": 6.4,
+     "item2Pass": false,
+     "item2Side": "under Target",
+     "controlDarkLuma": 27.9,
+     "candidateDarkLuma": 5.5,
+     "targetDarkLumaFullRender": 48.1,
+     "item3Pass": false,
+     "controlBandEnergy": 775.87,
+     "candidateBandEnergy": 210.42
+    },
+    {
+     "vp": "390x844",
+     "metricBasis": "fully-visible cards",
+     "targetBandPx": 1.5,
+     "controlBandPx": 6.0,
+     "candidateBandPx": 0.0,
+     "reductionFraction": 1.0,
+     "item1Pass": true,
+     "distanceToTargetPx": 1.5,
+     "controlDistanceToTargetPx": 4.5,
+     "item2Pass": true,
+     "item2Side": "under Target",
+     "controlDarkLuma": 31.5,
+     "candidateDarkLuma": 7.6,
+     "targetDarkLumaFullRender": 48.1,
+     "item3Pass": false,
+     "controlBandEnergy": 468.49,
+     "candidateBandEnergy": 88.36
+    },
+    {
+     "vp": "844x390",
+     "metricBasis": "no fully-visible card -- widest drawn",
+     "targetBandPx": 2.0,
+     "controlBandPx": 6.0,
+     "candidateBandPx": 0.0,
+     "reductionFraction": 1.0,
+     "item1Pass": true,
+     "distanceToTargetPx": 2.0,
+     "controlDistanceToTargetPx": 4.0,
+     "item2Pass": false,
+     "item2Side": "under Target",
+     "controlDarkLuma": 25.5,
+     "candidateDarkLuma": 1.0,
+     "targetDarkLumaFullRender": 48.1,
+     "item3Pass": false,
+     "controlBandEnergy": 378.62,
+     "candidateBandEnergy": 0.0
+    }
+   ],
+   "shippedStateDiagnostic": {
+    "what": "DIAGNOSTIC, not a scored item. The same measurands in the SHIPPED state (System B ON, shell off).",
+    "rows": [
+     {
+      "vp": "1440x900",
+      "targetBandPx": 3.3,
+      "controlShippedBandPx": 15.3,
+      "candidateShippedBandPx": 13.0,
+      "controlBodyFloorPx": 9.7,
+      "candidateBodyFloorPx": 1.7,
+      "systemBAddsToControlPx": 5.6,
+      "systemBAddsToCandidatePx": 11.3,
+      "controlShippedDarkLuma": 95.1,
+      "candidateShippedDarkLuma": 82.9
+     },
+     {
+      "vp": "390x844",
+      "targetBandPx": 1.5,
+      "controlShippedBandPx": 8.0,
+      "candidateShippedBandPx": 7.0,
+      "controlBodyFloorPx": 6.0,
+      "candidateBodyFloorPx": 0.0,
+      "systemBAddsToControlPx": 2.0,
+      "systemBAddsToCandidatePx": 7.0,
+      "controlShippedDarkLuma": 79.8,
+      "candidateShippedDarkLuma": 66.4
+     },
+     {
+      "vp": "844x390",
+      "targetBandPx": 2.0,
+      "controlShippedBandPx": 8.0,
+      "candidateShippedBandPx": 7.0,
+      "controlBodyFloorPx": 6.0,
+      "candidateBodyFloorPx": 0.0,
+      "systemBAddsToControlPx": 2.0,
+      "systemBAddsToCandidatePx": 7.0,
+      "controlShippedDarkLuma": 94.4,
+      "candidateShippedDarkLuma": 81.8
+     }
+    ],
+    "reading": "removing the local adaptive body shaping takes the body floor below the Target's whole band, but the shipped band barely moves, because with the body dark the O2 reflection support paints the band on its own. O3 showed the support field is not the binding constraint given this body; O4 shows the body is not the binding constraint given this support. Both are constraints, and neither round was permitted to change the other."
+   }
+  },
+  {
+   "n": 2,
+   "item": "candidate enters the Target window (two-sided)",
+   "result": "FAIL",
+   "thresholdPx": 1.5,
+   "note": "this is a two-sided window. Undershooting the Target is as much a miss as overshooting it, and is scored as one.",
+   "reading": "the candidate UNDERSHOOTS at every viewport: removing the adaptive shaping leaves LESS light at the dark-side edge than the Target has. The comparison \u00a7\u4e5d mandates is asymmetric and that is recorded, not argued around -- our System-B-OFF floor against the Target's full render, which includes the Target's own rim and environment. See shippedStateDiagnostic on item 1.",
+   "viewports": [
+    {
+     "vp": "1440x900",
+     "targetBandPx": 3.3,
+     "candidateBandPx": 1.7,
+     "distanceToTargetPx": 1.6,
+     "item2Pass": false,
+     "item2Side": "under Target"
+    },
+    {
+     "vp": "390x844",
+     "targetBandPx": 1.5,
+     "candidateBandPx": 0.0,
+     "distanceToTargetPx": 1.5,
+     "item2Pass": true,
+     "item2Side": "under Target"
+    },
+    {
+     "vp": "844x390",
+     "targetBandPx": 2.0,
+     "candidateBandPx": 0.0,
+     "distanceToTargetPx": 2.0,
+     "item2Pass": false,
+     "item2Side": "under Target"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "item": "dark-side body luma moves toward the Target",
+   "result": "FAIL",
+   "basisNote": "48.1 is the Target's full render; the Target has no System-B-off mode to capture, so this item is scored as DIRECTION only, exactly as \u00a7\u4e5d.3 words it.",
+   "reading": "the candidate moves AWAY from 48.1 because it removes light the Target replaces with its own reflection. In the shipped state the same measurand moves TOWARD the Target on every viewport (95.1 -> 82.9 desktop); that is the diagnostic on item 1, and it does not change this item's scored result.",
+   "viewports": [
+    {
+     "vp": "1440x900",
+     "controlDarkLuma": 27.9,
+     "candidateDarkLuma": 5.5,
+     "targetDarkLumaFullRender": 48.1,
+     "item3Pass": false
+    },
+    {
+     "vp": "390x844",
+     "controlDarkLuma": 31.5,
+     "candidateDarkLuma": 7.6,
+     "targetDarkLumaFullRender": 48.1,
+     "item3Pass": false
+    },
+    {
+     "vp": "844x390",
+     "controlDarkLuma": 25.5,
+     "candidateDarkLuma": 1.0,
+     "targetDarkLumaFullRender": 48.1,
+     "item3Pass": false
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "item": "grayscale does not add colour",
+   "result": "PASS",
+   "threshold": 0.5,
+   "scoredInState": "sysBOn",
+   "edgeChroma": {
+    "control": 3.6,
+    "candidate": 3.75
+   },
+   "interiorChroma": {
+    "control": 0.15,
+    "candidate": 0.15
+   }
+  },
+  {
+   "n": 5,
+   "item": "no increase in broad coloured rim",
+   "result": "FAIL",
+   "threshold": 0.5,
+   "scoredInState": "sysBOn",
+   "assets": [
+    {
+     "asset": "rgb-bars",
+     "fringeRB": {
+      "control": 79.37,
+      "candidate": 80.5,
+      "pass": false
+     },
+     "fringeWidthPxMean": {
+      "control": 9.11,
+      "candidate": 9.21,
+      "pass": true
+     },
+     "pass": false
+    },
+    {
+     "asset": "cool-blue",
+     "fringeRB": {
+      "control": 92.3,
+      "candidate": 94.36,
+      "pass": false
+     },
+     "fringeWidthPxMean": {
+      "control": 19.54,
+      "candidate": 19.75,
+      "pass": true
+     },
+     "pass": false
+    },
+    {
+     "asset": "warm-skin",
+     "fringeRB": {
+      "control": 43.31,
+      "candidate": 42.09,
+      "pass": true
+     },
+     "fringeWidthPxMean": {
+      "control": 17.75,
+      "candidate": 14.64,
+      "pass": true
+     },
+     "pass": true
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "item": "HF checker preserves or improves local high-frequency structure",
+   "result": "PASS",
+   "threshold": 0.98,
+   "scoredInState": "sysBOn",
+   "hfEnergy": {
+    "control": 183.3412,
+    "candidate": 183.3412,
+    "mediaOnlyReference": null
+   },
+   "ratio": 1.0,
+   "reading": "the two lanes are bit-identical in the card INTERIOR, which is why the ratio is exactly 1.0. That is by design rather than by accident: every adaptive term is gated on blurZone and curvature, both of which are zero on the clear centre face, so the subsystem the candidate removes never acted there. The media-only reference is null because media-only frames were captured for bw-split and rgb-bars only."
+  },
+  {
+   "n": 7,
+   "item": "interior media within sealed tolerance",
+   "result": "PASS",
+   "scoredInState": "sysBOn",
+   "assets": [
+    {
+     "asset": "bw-split",
+     "coding": "absolute",
+     "codingChosenBy": "baseline interior saturation 0.00350 < 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+     "baselineSaturation": 0.0035,
+     "relLuminanceChange": 0.0,
+     "absSaturationDelta": 0.0,
+     "absChromaDelta": 0.0,
+     "fired": false,
+     "reasons": []
+    },
+    {
+     "asset": "grayscale-step",
+     "coding": "absolute",
+     "codingChosenBy": "baseline interior saturation 0.00230 < 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+     "baselineSaturation": 0.0023,
+     "relLuminanceChange": 0.0,
+     "absSaturationDelta": 0.0,
+     "absChromaDelta": 0.0,
+     "fired": false,
+     "reasons": []
+    },
+    {
+     "asset": "rgb-bars",
+     "coding": "relative",
+     "codingChosenBy": "baseline interior saturation 0.82060 >= 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+     "baselineSaturation": 0.8206,
+     "relLuminanceChange": 0.0,
+     "relSaturationChange": 0.0,
+     "fired": false,
+     "reasons": []
+    },
+    {
+     "asset": "hf-checker",
+     "coding": "absolute",
+     "codingChosenBy": "baseline interior saturation 0.01120 < 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+     "baselineSaturation": 0.0112,
+     "relLuminanceChange": 0.0,
+     "absSaturationDelta": 0.0,
+     "absChromaDelta": 0.0,
+     "fired": false,
+     "reasons": []
+    },
+    {
+     "asset": "cool-blue",
+     "coding": "relative",
+     "codingChosenBy": "baseline interior saturation 0.76960 >= 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+     "baselineSaturation": 0.7696,
+     "relLuminanceChange": 0.0,
+     "relSaturationChange": 0.0,
+     "fired": false,
+     "reasons": []
+    },
+    {
+     "asset": "warm-skin",
+     "coding": "relative",
+     "codingChosenBy": "baseline interior saturation 0.26160 >= 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+     "baselineSaturation": 0.2616,
+     "relLuminanceChange": 0.0,
+     "relSaturationChange": 0.0,
+     "fired": false,
+     "reasons": []
+    },
+    {
+     "asset": "dark-highlight",
+     "coding": "relative",
+     "codingChosenBy": "baseline interior saturation 0.37570 >= 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+     "baselineSaturation": 0.3757,
+     "relLuminanceChange": 0.0,
+     "relSaturationChange": 0.0,
+     "fired": false,
+     "reasons": []
+    },
+    {
+     "asset": "bright-lowsat",
+     "coding": "relative",
+     "codingChosenBy": "baseline interior saturation 0.04750 >= 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)",
+     "baselineSaturation": 0.0475,
+     "relLuminanceChange": 0.0,
+     "relSaturationChange": 0.0,
+     "fired": false,
+     "reasons": []
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "item": "media-only exact zero",
+   "result": "PASS",
+   "pairs": [
+    {
+     "asset": "bw-split",
+     "vp": "1440x900",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "asset": "rgb-bars",
+     "vp": "1440x900",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "asset": "bw-split",
+     "vp": "390x844",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "asset": "bw-split",
+     "vp": "844x390",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "item": "true gutter unchanged",
+   "result": "FAIL",
+   "scoredInState": "sysBOn",
+   "why": "a body-colour change cannot legitimately alter a pixel the glass does not cover, so the correct threshold is zero, not a tolerance.",
+   "rows": [
+    {
+     "asset": "bw-split",
+     "silhouettePixels": 942074,
+     "control": {
+      "gutterInkRatio": 0.003331,
+      "gutterPixels": 353926
+     },
+     "candidate": {
+      "gutterInkRatio": 0.003331,
+      "gutterPixels": 353926
+     },
+     "differingPixelsOutsideSilhouette": 25,
+     "maxChannelDeltaOutsideSilhouette": 2,
+     "differingWithin1pxOfSilhouette": 25,
+     "differingBeyond1pxOfSilhouette": 0
+    },
+    {
+     "asset": "rgb-bars",
+     "silhouettePixels": 1229838,
+     "control": {
+      "gutterInkRatio": 0.012409,
+      "gutterPixels": 66162
+     },
+     "candidate": {
+      "gutterInkRatio": 0.012409,
+      "gutterPixels": 66162
+     },
+     "differingPixelsOutsideSilhouette": 58,
+     "maxChannelDeltaOutsideSilhouette": 5,
+     "differingWithin1pxOfSilhouette": 58,
+     "differingBeyond1pxOfSilhouette": 0
+    }
+   ],
+   "reading": "every differing pixel lies within ONE pixel of the true silhouette, at a maximum of 2 and 5 levels. They are the antialiased boundary of a silhouette derived from the control lane, not light in the gutter -- beyond 1 px the two lanes are identical. The sealed threshold is exactly zero and the item stands as scored; this records what the number is made of."
+  },
+  {
+   "n": 10,
+   "item": "no temporal pop",
+   "result": "PASS",
+   "sequences": [
+    {
+     "lane": "control",
+     "viewport": "1440x900",
+     "sequence": "pointer-sweep",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o4/recordings/control/1440x900-pointer-sweep-bw-split",
+     "frames": 510,
+     "minCount": 588010,
+     "maxCount": 592509,
+     "meanCount": 590892,
+     "maxAdjacentRelJump": 0.0016,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "candidate",
+     "viewport": "1440x900",
+     "sequence": "pointer-sweep",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o4/recordings/candidate/1440x900-pointer-sweep-bw-split",
+     "frames": 511,
+     "minCount": 587788,
+     "maxCount": 592281,
+     "meanCount": 590627,
+     "maxAdjacentRelJump": 0.0016,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "control",
+     "viewport": "1440x900",
+     "sequence": "slow-horizontal-drag",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o4/recordings/control/1440x900-slow-horizontal-drag-bw-split",
+     "frames": 351,
+     "minCount": 582469,
+     "maxCount": 592233,
+     "meanCount": 584843,
+     "maxAdjacentRelJump": 0.0034,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "candidate",
+     "viewport": "1440x900",
+     "sequence": "slow-horizontal-drag",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o4/recordings/candidate/1440x900-slow-horizontal-drag-bw-split",
+     "frames": 352,
+     "minCount": 582263,
+     "maxCount": 592252,
+     "meanCount": 584728,
+     "maxAdjacentRelJump": 0.0032,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "control",
+     "viewport": "1440x900",
+     "sequence": "fast-flick",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o4/recordings/control/1440x900-fast-flick-bw-split",
+     "frames": 344,
+     "minCount": 585658,
+     "maxCount": 601691,
+     "meanCount": 588498,
+     "maxAdjacentRelJump": 0.0157,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "candidate",
+     "viewport": "1440x900",
+     "sequence": "fast-flick",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o4/recordings/candidate/1440x900-fast-flick-bw-split",
+     "frames": 345,
+     "minCount": 585821,
+     "maxCount": 601438,
+     "meanCount": 588278,
+     "maxAdjacentRelJump": 0.0221,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "control",
+     "viewport": "390x844",
+     "sequence": "touch-drag-release",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o4/recordings/control/390x844-touch-drag-release-bw-split",
+     "frames": 377,
+     "minCount": 147608,
+     "maxCount": 155414,
+     "meanCount": 149170,
+     "maxAdjacentRelJump": 0.0188,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "candidate",
+     "viewport": "390x844",
+     "sequence": "touch-drag-release",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o4/recordings/candidate/390x844-touch-drag-release-bw-split",
+     "frames": 365,
+     "minCount": 147465,
+     "maxCount": 155086,
+     "meanCount": 152875,
+     "maxAdjacentRelJump": 0.0221,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "control",
+     "viewport": "1440x900",
+     "sequence": "pointer-sweep",
+     "asset": "grayscale-step",
+     "dir": "artifacts/optics-o4/recordings/control/1440x900-pointer-sweep-grayscale-step",
+     "frames": 511,
+     "minCount": 552070,
+     "maxCount": 559078,
+     "meanCount": 555957,
+     "maxAdjacentRelJump": 0.0018,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "candidate",
+     "viewport": "1440x900",
+     "sequence": "pointer-sweep",
+     "asset": "grayscale-step",
+     "dir": "artifacts/optics-o4/recordings/candidate/1440x900-pointer-sweep-grayscale-step",
+     "frames": 512,
+     "minCount": 558972,
+     "maxCount": 566814,
+     "meanCount": 563766,
+     "maxAdjacentRelJump": 0.0021,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    }
+   ],
+   "reason": null
+  },
+  {
+   "n": 11,
+   "item": "control lane exact zero vs the accepted baseline",
+   "result": "PASS",
+   "cases": [
+    {
+     "asset": "bw-split",
+     "vp": "1440x900",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "asset": "rgb-bars",
+     "vp": "1440x900",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "asset": "grayscale-step",
+     "vp": "1440x900",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "asset": "bw-split",
+     "vp": "390x844",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "asset": "bw-split",
+     "vp": "844x390",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "item": "all frozen suites PASS",
+   "result": "PASS",
+   "suites": [
+    {
+     "name": "V1 Render Culling Gate",
+     "pass": true
+    },
+    {
+     "name": "V0 Label Culling Gate",
+     "pass": true
+    },
+    {
+     "name": "Source Contract",
+     "pass": true
+    },
+    {
+     "name": "Layout Source",
+     "pass": true
+    },
+    {
+     "name": "Typography",
+     "pass": true
+    },
+    {
+     "name": "Motion Freeze Smoke",
+     "pass": true
+    },
+    {
+     "name": "Release History Smoke",
+     "pass": true
+    },
+    {
+     "name": "Card / Label Motion",
+     "pass": true
+    },
+    {
+     "name": "Wrap = 0",
+     "pass": true
+    },
+    {
+     "name": "Touch / Pointer Cancel",
+     "pass": true
+    },
+    {
+     "name": "Console / Page Errors = 0",
+     "pass": true
+    },
+    {
+     "name": "O2 Shared-media Harness",
+     "pass": true
+    },
+    {
+     "name": "O2 Media-only Controls",
+     "pass": true
+    },
+    {
+     "name": "A+B Dispersion Selection",
+     "pass": true
+    },
+    {
+     "name": "TypeScript",
+     "pass": true
+    },
+    {
+     "name": "Vite Build",
+     "pass": true
+    }
+   ],
+   "reason": null
+  }
+ ]
+}

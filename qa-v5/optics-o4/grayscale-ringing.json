@@ -1,0 +1,64 @@
+{
+ "what": "\u00a7\u4e5d.4 -- grayscale media is achromatic through the media-only path, so any chroma here is shader-introduced.",
+ "verdict": {
+  "n": 4,
+  "item": "grayscale does not add colour",
+  "result": "PASS",
+  "threshold": 0.5,
+  "scoredInState": "sysBOn",
+  "edgeChroma": {
+   "control": 3.6,
+   "candidate": 3.75
+  },
+  "interiorChroma": {
+   "control": 0.15,
+   "candidate": 0.15
+  }
+ },
+ "assets": {
+  "grayscale-step": {
+   "control": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 3.6,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 3.59,
+    "whiteReflectionRatio": 0.4183,
+    "edgeLuminanceMean": 126.45,
+    "interiorSaturationMean": 0.0023,
+    "interiorLuminanceMean": 131.54,
+    "gutterInkRatio": 0.49086676796741135,
+    "fringeWidthPxMean": 0.0,
+    "darkSideEdgeLuma": 117.8,
+    "brightSideEdgeLuma": 173.0,
+    "darkOverBrightLumaRatio": 0.6809,
+    "darkSideEdgeChroma": 4.8,
+    "brightSideEdgeChroma": 3.44,
+    "sideChromaGap": 1.36,
+    "interiorChromaMean": 0.15,
+    "bandWidthPx": 146.7,
+    "bandEnergy": 2326.33
+   },
+   "candidate": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 3.75,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 3.73,
+    "whiteReflectionRatio": 0.4184,
+    "edgeLuminanceMean": 123.82,
+    "interiorSaturationMean": 0.0023,
+    "interiorLuminanceMean": 131.54,
+    "gutterInkRatio": 0.48396026639940515,
+    "fringeWidthPxMean": 0.0,
+    "darkSideEdgeLuma": 109.8,
+    "brightSideEdgeLuma": 170.9,
+    "darkOverBrightLumaRatio": 0.6426,
+    "darkSideEdgeChroma": 5.16,
+    "brightSideEdgeChroma": 3.68,
+    "sideChromaGap": 1.48,
+    "interiorChromaMean": 0.15,
+    "bandWidthPx": 146.0,
+    "bandEnergy": 2032.61
+   }
+  }
+ }
+}

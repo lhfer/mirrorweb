@@ -2,7 +2,7 @@
 
 Single canonical entry point. Every delivery updates this file.
 
-Last updated: 2026-08-22 (**O3 reviewed**: source forensics, transcription, instruments and the frozen-body-floor finding **ACCEPTED**; the candidate **REJECTED** as shipped default. **O4 opened** on the one objective the finding leaves: attribute and reduce the frozen body floor)
+Last updated: 2026-08-22 (**O3 reviewed** — knowledge accepted, candidate rejected. **O4 attributed the frozen body floor** to local adaptive body shaping and **FAILED its absolute gate**: removing it takes the body floor *below* the Target's whole band while the shipped band barely moves. Both the support field and the body are constraints; neither round was permitted to change the other)
 
 | | |
 | --- | --- |
@@ -57,7 +57,8 @@ stated here and no further hygiene commit is created to chase it.
 | Optics — O1 System A | **FAILED ABSOLUTE GATE**; commit `e01fb30` remains an EXPERIMENTAL LANE only — not an accepted baseline, not frozen. See the O0/O1 section and the wording correction below |
 | Optics — O2 System B | **ACCEPTED** — behaviour baseline `e913aa6`, accepted review tip `fd12b97`; selected lane **A+B** (System A retained ONLY through the pre-registered O2 interaction gate, never from the failed O1 result). Mechanism frozen, reflection SUPPORT FIELD deliberately not frozen — see [`O2_OPTICS_FREEZE_CONTRACT.md`](O2_OPTICS_FREEZE_CONTRACT.md) |
 | Optics — O3 Target analytic bevel reflection support | **REVIEWED**: candidate **REJECTED** (gate FAILED 11/20); source forensics, `TargetBevelFieldV4` transcription (ENGINEERING PASS), corrected instruments, the `target-sdf` diagnostic lane and the frozen-body-floor finding all **ACCEPTED**. See [`O3_PRODUCT_REVIEW.md`](O3_PRODUCT_REVIEW.md) |
-| Optics — O4 frozen body floor | **IN PROGRESS** — the only objective is to attribute and reduce the System-B-OFF body floor (9.7 / 6.0 / 6.0 px against the Target's 3.3 / 1.5 / 2.0). Exactly one body subsystem may be selected, by a rule sealed before candidate code |
+| Optics — O4 frozen body floor | **SELECTED CANDIDATE FAILED ABSOLUTE GATE** (7/12). Attribution is accepted: local adaptive body shaping explains 141% of the desktop excess. Removing it drops the floor 9.7 → 1.7 px — *below* the Target's 3.3 — while the shipped band moves only 15.3 → 13.0. Shipped default stays `bodyFloorMode=current`. See [`qa-v5/optics-o4/`](../../qa-v5/optics-o4/README.md) |
+| Optics — O4A body-path audit | **AFFECTED** — the shipped Beauty refraction path consumes a ZERO normal: the geometry normal is unpacked once, inside the `normals` debug branch, and every other branch aliases a zero-initialised private. Explains GATE-005. Not repaired (O4 selected a different subsystem) |
 | Media / Layout | unmodified, frozen |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
@@ -448,12 +449,57 @@ progress" nor product accepted: the candidate failed its own gate and
 the knowledge the round produced was accepted. See
 [`O3_PRODUCT_REVIEW.md`](O3_PRODUCT_REVIEW.md).
 
-## O4 — frozen body floor attribution
+## O4 — frozen body floor attribution: candidate FAILED, attribution accepted
 
-The one objective the O3 finding leaves: attribute and reduce the
-System-B-OFF body floor. Scoped to the body path only; exactly one
-subsystem may be selected, by a rule sealed before its candidate code
-exists. In progress.
+**O4A found a live defect.** The shipped Beauty refraction path consumes a
+**zero normal**. The geometry normal is unpacked exactly once in the
+generated WGSL, inside the `normals` debug branch; every other branch —
+Beauty included — aliases a zero-initialised `var<private>`. Two debug
+views reading it in different branches of one program disagree: `normals`
+varies, `fresnel` is exactly constant. This is the same TSL codegen hazard
+O2 root-caused for System B, and it explains GATE-005 — the
+refraction-offset view was reporting a real zero, because
+`projectedNormalOffset` is identically zero. **Recorded, not repaired**:
+§三 forbade fixing during the audit, and the factorial then selected a
+different subsystem. It remains an open, precisely-located defect.
+
+**The attribution.** A 2^5 factorial over refraction displacement, blur,
+adaptive shaping, dispersion and output transform, replicated at both
+states of the normal repair — 260 desktop captures over four media, plus
+OFAT and pairwise at both mobile viewports. Exactly one factor is eligible
+under the rule sealed beforehand: **local adaptive body shaping**
+(`contrastShaped`, `adaptiveEdgeLift`, `adaptiveInternalShadow`), which
+explains 141% of the desktop excess with an interaction ratio of 0.13 and
+is the largest contributor on all four media.
+
+**The candidate failed 4 of 12 gate items**, and the reason is worth more
+than the verdict:
+
+| Viewport | control floor | candidate floor | control shipped | candidate shipped | Target |
+| --- | --- | --- | --- | --- | --- |
+| 1440x900 | 9.7 px | **1.7 px** | 15.3 px | 13.0 px | 3.3 px |
+| 390x844 | 6.0 px | **0.0 px** | 8.0 px | 7.0 px | 1.5 px |
+| 844x390 | 6.0 px | **0.0 px** | 8.0 px | 7.0 px | 2.0 px |
+
+Removing the body shaping takes the floor to essentially nothing — past
+the Target, which is why the two-sided window item fails — and the shipped
+band still barely moves, because with the body dark the O2 reflection
+support paints the band on its own.
+
+**O3 showed the support field is not the binding constraint given this
+body. O4 shows the body is not the binding constraint given this support.**
+Both are constraints. Neither round was permitted to change the other, so
+neither could pass alone. That is the finding a combined decision now has
+in hand.
+
+The §十 support re-test was **not run**: it is authorised only after the
+body candidate passes its own gate, and running it anyway would be the
+search for a passing combination that §七 and §八 exist to prevent.
+
+The control lane is **exactly zero** differing pixels against an e913aa6
+build at System B OFF, and the all-off diagnostic program is
+byte-identical to the pre-O4 program at every quality level. Shipped
+default stays `bodyFloorMode=current`.
 
 ## FSX-A integration hardening
 
@@ -484,7 +530,7 @@ See [`FSX_ACCEPTANCE.md`](FSX_ACCEPTANCE.md).
 
 **Candidate, not accepted**
 - O0/O1 optics: `03676b1` O0 source diagnosis + pre-registered system selection · `e01fb30` O1 candidate code (the Target's dispersion law, System A only) · the O1 evidence commit — **O1 FAILED ABSOLUTE GATE**; attribution corrected to System B. System A ships only through the O2 interaction gate; that verdict is not overturned
-- O4 optics: frozen body floor attribution — in progress
+- O4 optics: frozen body floor — `968e7dd` O3 product review + O4 open · `a1ad929` O4A audit + Target body source + sealed instruments · `3894369` factorial + attribution + selection · `66684dd` selected candidate code · `df467ed` gate coding addendum · the O4 evidence commit — **candidate FAILED ABSOLUTE GATE** (7/12); attribution and the O4A zero-normal finding accepted. Shipped default `bodyFloorMode=current`
 - O3 optics: Target analytic bevel reflection support — `b4dbb16` O2 product-accept record · `b7fe128` source contract + sealed pre-registration (before candidate code) · `669046e` candidate code (the Target's field, two swapped inputs) · the O3 evidence commit — **O3 FAILED ABSOLUTE GATE**, 11/20 items. The mechanism is correct and the transcription is exact; the frozen base is what binds. Shipped default stays `reflectionSupport=geometry`
 - `dd6d7bf` / `4ca597f` F2 · `b5cff63` F2 audit · `730beb7` F3 diagnosis
 - `f56f55e` / `ba4ba32` F2.5 · this delivery's three F2.6 commits

@@ -1,0 +1,22 @@
+{
+ "what": "the O3 product review decision this round opened from. Prose in docs/v5/O3_PRODUCT_REVIEW.md.",
+ "reviewHead": "eba0aa0ccffc650768436f86018ab46152f5c475",
+ "accepted": [
+  "O3 source forensics",
+  "TargetBevelFieldV4 transcription (engineering pass)",
+  "the corrected instruments",
+  "the target-sdf diagnostic lane",
+  "the frozen-body-floor finding"
+ ],
+ "rejected": [
+  "the O3 candidate as shipped default",
+  "the default flip to target-sdf",
+  "further rim / fresnel / env tuning"
+ ],
+ "shippedDefault": {
+  "reflectionSupport": "geometry",
+  "dispersionLaw": "o1-spectral"
+ },
+ "targetVisualPass": "NOT ASSERTED",
+ "o4Objective": "attribute and reduce the frozen body floor"
+}

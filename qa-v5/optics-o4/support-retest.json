@@ -1,0 +1,11 @@
+{
+ "what": "\u00a7\u5341 -- the reflection-support diagnostic re-test.",
+ "authorised": false,
+ "reason": "\u00a7\u5341 authorises the re-test ONLY after the selected body candidate passes its own gate. It did not: the O4 absolute gate is FAIL. Running it anyway would be exactly the search-for-a-combination-that-passes that \u00a7\u4e03 and \u00a7\u516b exist to prevent, so it was not run and no re-test pixels were captured.",
+ "whatWouldHaveBeenReported": [
+  "whether the O3 Target field clears the absolute band gate on the candidate body",
+  "whether its chroma trade-off remains",
+  "whether the geometry-normal + Target-SDF-rim hybrid is worth a future product review"
+ ],
+ "relatedEvidenceAlreadyInHand": "body-floor-gate.json item 1 carries a shipped-state diagnostic showing how much of the shipped band is body and how much is the O2 reflection support. That is the measured part of the same question, obtained without running an unauthorised lane."
+}

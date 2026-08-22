@@ -1,0 +1,63 @@
+{
+ "what": "\u00a7\u4e5d.6 -- local high-frequency structure on hf-checker.",
+ "verdict": {
+  "n": 6,
+  "item": "HF checker preserves or improves local high-frequency structure",
+  "result": "PASS",
+  "threshold": 0.98,
+  "scoredInState": "sysBOn",
+  "hfEnergy": {
+   "control": 183.3412,
+   "candidate": 183.3412,
+   "mediaOnlyReference": null
+  },
+  "ratio": 1.0,
+  "reading": "the two lanes are bit-identical in the card INTERIOR, which is why the ratio is exactly 1.0. That is by design rather than by accident: every adaptive term is gated on blurZone and curvature, both of which are zero on the clear centre face, so the subsystem the candidate removes never acted there. The media-only reference is null because media-only frames were captured for bw-split and rgb-bars only."
+ },
+ "assets": {
+  "hf-checker": {
+   "control": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 4.27,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 4.25,
+    "whiteReflectionRatio": 0.5157,
+    "edgeLuminanceMean": 144.59,
+    "interiorSaturationMean": 0.0112,
+    "interiorLuminanceMean": 136.67,
+    "gutterInkRatio": 0.5979680579354046,
+    "fringeWidthPxMean": 0.0,
+    "darkSideEdgeLuma": 165.8,
+    "brightSideEdgeLuma": 154.6,
+    "darkOverBrightLumaRatio": 1.0726,
+    "darkSideEdgeChroma": 5.37,
+    "brightSideEdgeChroma": 5.09,
+    "sideChromaGap": 0.28,
+    "interiorChromaMean": 0.14,
+    "bandWidthPx": 146.7,
+    "bandEnergy": 3176.79
+   },
+   "candidate": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 4.34,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 4.32,
+    "whiteReflectionRatio": 0.5162,
+    "edgeLuminanceMean": 143.31,
+    "interiorSaturationMean": 0.0112,
+    "interiorLuminanceMean": 136.67,
+    "gutterInkRatio": 0.5955352235621222,
+    "fringeWidthPxMean": 0.0,
+    "darkSideEdgeLuma": 163.1,
+    "brightSideEdgeLuma": 151.7,
+    "darkOverBrightLumaRatio": 1.0748,
+    "darkSideEdgeChroma": 5.54,
+    "brightSideEdgeChroma": 5.27,
+    "sideChromaGap": 0.27,
+    "interiorChromaMean": 0.14,
+    "bandWidthPx": 146.0,
+    "bandEnergy": 3054.32
+   }
+  }
+ }
+}
