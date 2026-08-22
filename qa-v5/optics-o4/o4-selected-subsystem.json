@@ -1,0 +1,107 @@
+{
+ "what": "O4 \u00a7\u4e03 subsystem selection. The rule was operationalised in instrument-contract.json before the factorial ran; this file applies it and does not restate it.",
+ "ruleSource": "qa-v5/optics-o4/instrument-contract.json selectionRule",
+ "desktopExcessPx": 6.4,
+ "minExplainedPx": 2.56,
+ "verdicts": {
+  "A": {
+   "factor": "A",
+   "explainedFraction": 0.026,
+   "interactionRatio": 1.2234,
+   "largestOnMediaFraction": 0.0,
+   "eligible": false,
+   "reasons": [
+    "explains 2.6% of the 6.4 px excess, below the 40% rule",
+    "interaction magnitude is 1.22x its main effect, above the 0.5 rule -- dominated by an unmodelled interaction",
+    "largest contributor on 0/4 media, below the 75% rule",
+    "main effect is not sign-stable across viewports"
+   ],
+   "subsystemLetter": "D",
+   "subsystem": "TARGET OWN-MEDIA / PER-IOR REFRACTION"
+  },
+  "B": {
+   "factor": "B",
+   "explainedFraction": 0.0354,
+   "interactionRatio": 2.6353,
+   "largestOnMediaFraction": 0.0,
+   "eligible": false,
+   "reasons": [
+    "explains 3.5% of the 6.4 px excess, below the 40% rule",
+    "interaction magnitude is 2.64x its main effect, above the 0.5 rule -- dominated by an unmodelled interaction",
+    "largest contributor on 0/4 media, below the 75% rule",
+    "main effect is not sign-stable across viewports"
+   ],
+   "subsystemLetter": "B",
+   "subsystem": "RESTORE TARGET LEVEL-0 / NO-BLUR SAMPLING"
+  },
+  "C": {
+   "factor": "C",
+   "explainedFraction": 1.4138,
+   "interactionRatio": 0.1292,
+   "largestOnMediaFraction": 0.75,
+   "eligible": true,
+   "reasons": [],
+   "subsystemLetter": "A",
+   "subsystem": "REMOVE LOCAL ADAPTIVE BODY SHAPING"
+  },
+  "D": {
+   "factor": "D",
+   "explainedFraction": 0.0292,
+   "interactionRatio": 3.3373,
+   "largestOnMediaFraction": 0.0,
+   "eligible": false,
+   "reasons": [
+    "explains 2.9% of the 6.4 px excess, below the 40% rule",
+    "interaction magnitude is 3.34x its main effect, above the 0.5 rule -- dominated by an unmodelled interaction",
+    "largest contributor on 0/4 media, below the 75% rule",
+    "main effect is not sign-stable across viewports",
+    "\u00a7\u4e03 lists no product candidate for this factor, so it cannot be selected however large it is"
+   ],
+   "subsystemLetter": null,
+   "subsystem": "dispersion -- \u00a7\u4e03 lists NO product candidate for it"
+  },
+  "E": {
+   "factor": "E",
+   "explainedFraction": -0.0742,
+   "interactionRatio": 1.3999,
+   "largestOnMediaFraction": 0.0,
+   "eligible": false,
+   "reasons": [
+    "explains -7.4% of the 6.4 px excess, below the 40% rule",
+    "interaction magnitude is 1.40x its main effect, above the 0.5 rule -- dominated by an unmodelled interaction",
+    "largest contributor on 0/4 media, below the 75% rule",
+    "main effect changes sign across media"
+   ],
+   "subsystemLetter": "C",
+   "subsystem": "RESTORE TARGET BODY OUTPUT TRANSFORM"
+  },
+  "N": {
+   "factor": "N",
+   "explainedFraction": 0.0854,
+   "interactionRatio": 1.8801,
+   "largestOnMediaFraction": 0.25,
+   "eligible": false,
+   "reasons": [
+    "explains 8.5% of the 6.4 px excess, below the 40% rule",
+    "interaction magnitude is 1.88x its main effect, above the 0.5 rule -- dominated by an unmodelled interaction",
+    "largest contributor on 1/4 media, below the 75% rule",
+    "main effect changes sign across media"
+   ],
+   "subsystemLetter": "E",
+   "subsystem": "SOURCE-EXACT REFRACTION NORMAL REPAIR"
+  }
+ },
+ "eligibleFactors": [
+  "C"
+ ],
+ "selected": {
+  "factor": "C",
+  "subsystemLetter": "A",
+  "subsystem": "REMOVE LOCAL ADAPTIVE BODY SHAPING",
+  "shapleyPx": 9.0483,
+  "explainedFraction": 1.4138,
+  "interactionRatio": 0.1292
+ },
+ "outcome": "SELECTED",
+ "notCombined": "exactly one subsystem is selected; \u00a7\u4e03 forbids combining candidates to pass."
+}

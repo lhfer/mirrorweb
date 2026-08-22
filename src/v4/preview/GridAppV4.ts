@@ -33,9 +33,14 @@ import {
   createPointerKeyLightV4,
   updatePointerKeyLightV4,
 } from "../../materials/LiquidGlassMaterialV4";
-import { V4_DEBUG_MODES, V4_OPTICS_CONFIG, type V4DebugMode, type V4DispersionLaw, type V4ReflectionSupport, type V4ShellMode } from "../OpticsConfigV4";
+import {
+  V4_DEBUG_MODES, V4_OPTICS_CONFIG,
+  type V4BodyDiag, type V4DebugMode, type V4DispersionLaw,
+  type V4ReflectionSupport, type V4ShellMode,
+} from "../OpticsConfigV4";
 import { createStripLightEnvironmentV4 } from "../StripLightEnvironmentV4";
 import { InfiniteGlassGridV4 } from "./InfiniteGlassGridV4";
+import { NoToneMapping } from "three/webgpu";
 import { SceneColorPipelineV4 } from "./SceneColorPipelineV4";
 import { freezeMediaTime, readMediaState, type FreezeReport, type MediaSnapshot } from "../../debug/MediaFreeze";
 import { MEDIA_FIT_MODES, type MediaFitMode } from "../../content/MediaFit";
@@ -67,6 +72,8 @@ export type GridAppV4Options = {
   dispersionLaw?: V4DispersionLaw;
   /** O3 reflection-support lane (?reflectionSupport=); default from OpticsConfigV4. */
   reflectionSupport?: V4ReflectionSupport;
+  /** O4 body-floor diagnostic factors (?bodyDiag=ABCDEN); default all off. */
+  bodyDiag?: V4BodyDiag;
 };
 
 /**
@@ -253,6 +260,11 @@ export class GridAppV4 {
     }
 
     this.pipeline = new SceneColorPipelineV4(this.quality.level, this.options.overscan);
+    if (this.options.bodyDiag?.linearOutput) {
+      // O4 factor E. See SceneColorPipelineV4.glassToneMapping for why this
+      // is a pass setting here and a material flag in the Target.
+      this.pipeline.glassToneMapping = NoToneMapping;
+    }
     this.applyPipelineSize();
     this.grid.build(
       this.quality.level,
@@ -265,6 +277,7 @@ export class GridAppV4 {
         envTexture: this.envHdr ?? null,
         dispersionLaw: this.options.dispersionLaw,
         reflectionSupport: this.options.reflectionSupport,
+        bodyDiag: this.options.bodyDiag,
       },
     );
     if (this.frame) this.grid.setFrame(this.frame);

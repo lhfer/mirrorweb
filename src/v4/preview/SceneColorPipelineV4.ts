@@ -23,6 +23,25 @@ import type { InfiniteGlassGridV4 } from "./InfiniteGlassGridV4";
  * last column of pixels along the edge.
  */
 export class SceneColorPipelineV4 {
+  /**
+   * O4 factor E -- the transform the GLASS pass renders through.
+   *
+   * The Target disables tone mapping on the card MATERIAL
+   * (`toneMapped:!1`, bundle byte 1976900). That mechanism does not exist
+   * in our stack: three's WebGPU node renderer never reads
+   * `Material.toneMapped` -- the string does not appear anywhere in
+   * three.webgpu.js -- and applies the transform at the renderer's output
+   * stage instead. So the faithful place to neutralise it here is the pass
+   * itself, and the glass pass is the right scope: the media is already
+   * written to the scene-colour target with NoToneMapping, and the final
+   * pass draws the glass alone (media visible = false, labels are CSS3D).
+   * Setting this therefore changes the body's output transform and nothing
+   * the media or the UI sees. The reflection shell, when enabled, shares
+   * the pass -- recorded rather than hidden.
+   */
+  glassToneMapping: typeof ACESFilmicToneMapping | typeof NoToneMapping =
+    ACESFilmicToneMapping;
+
   readonly sceneColor: SceneColorTargetV4;
   private readonly overscanCamera = new PerspectiveCamera();
   private overscan: number;
@@ -118,7 +137,7 @@ export class SceneColorPipelineV4 {
       info.reset();
     }
 
-    renderer.toneMapping = ACESFilmicToneMapping;
+    renderer.toneMapping = this.glassToneMapping;
     grid.setGlassVisible(true);
     grid.setMediaVisible(false);
     renderer.render(scene, camera);

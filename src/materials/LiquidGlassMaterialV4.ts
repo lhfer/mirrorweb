@@ -41,6 +41,9 @@ import {
   type V4DispersionLaw,
   type V4ReflectionSupport,
   type V4ShellMode,
+  V4_BODY_DIAG_OFF,
+  bodyDiagCode,
+  type V4BodyDiag,
 } from "../v4/OpticsConfigV4";
 import {
   applyTargetBevelFrameV4,
@@ -105,6 +108,8 @@ export type LiquidGlassMaterialV4Handle = {
   getShellMode: () => V4ShellMode;
   getDispersionLaw: () => V4DispersionLaw;
   getReflectionSupport: () => V4ReflectionSupport;
+  /** O4 diagnostic factor code, e.g. "000000" for the shipped body. */
+  getBodyDiag: () => string;
   /**
    * O3: the Target's per-frame bevel uniform writes. A no-op on the GPU in
    * the geometry lane, where nothing references them.
@@ -144,6 +149,13 @@ export type LiquidGlassMaterialV4Options = {
    * geometry lane must emit the O2 shader byte for byte.
    */
   reflectionSupport?: V4ReflectionSupport;
+  /**
+   * O4 body-floor diagnostic factors. Every flag is a BUILD-TIME branch;
+   * with all of them false this material builds the identical node graph
+   * it built before the flags existed, so the control lane keeps its
+   * exact-zero proof against the accepted O2 body.
+   */
+  bodyDiag?: V4BodyDiag;
 };
 
 export function createLiquidGlassMaterialV4(
@@ -157,6 +169,7 @@ export function createLiquidGlassMaterialV4(
     options.dispersionLaw ?? V4_OPTICS_CONFIG.material.dispersionLaw;
   const reflectionSupport: V4ReflectionSupport =
     options.reflectionSupport ?? V4_OPTICS_CONFIG.material.reflectionSupport;
+  const diag: V4BodyDiag = options.bodyDiag ?? V4_BODY_DIAG_OFF;
   // Created unconditionally so the handle's shape does not depend on the
   // lane; only the target-sdf branch REFERENCES them, and an unreferenced
   // uniform is not emitted into the program.
@@ -210,11 +223,21 @@ export function createLiquidGlassMaterialV4(
     0,
     1,
   );
-  const facing = clamp(normalView.dot(positionViewDirection), 0, 1);
+  // O4 factor N. The O4A audit proved that in every branch except the
+  // `normals` debug view -- the Beauty path included -- `normalView`
+  // aliases a var<private> that is never unpacked there, so the body
+  // refracts against a ZERO normal. The repair is the same defence O2 used
+  // for System B: give this consumer its OWN varying, which three unpacks
+  // wherever it is referenced. With the flag off the node is literally the
+  // same `normalView` object as before, so the graph is unchanged.
+  const bodyNormalView = diag.repairRefractionNormal
+    ? varying(normalViewGeometry, "v_o4BodyNormalView").normalize()
+    : normalView;
+  const facing = clamp(bodyNormalView.dot(positionViewDirection), 0, 1);
   const fresnel = pow(float(1).sub(facing), params.fresnelPower);
 
   const incident = positionViewDirection.negate();
-  const refracted = incident.refract(normalView, float(1).div(params.ior));
+  const refracted = incident.refract(bodyNormalView, float(1).div(params.ior));
   const opticalTravel = params.refractionDistance
     .mul(refractionZone)
     .mul(mix(0.35, 1, thicknessNorm))
@@ -233,7 +256,7 @@ export function createLiquidGlassMaterialV4(
   // what can put a depth-dependent gradient across the shoulder. Its old
   // curvature floor of 0.06 suppressed it five-fold exactly where the shoulder
   // is gentlest, which is most of the band.
-  const projectedNormalOffset = vec2(normalView.x, normalView.y.negate())
+  const projectedNormalOffset = vec2(bodyNormalView.x, bodyNormalView.y.negate())
     .mul(params.maxRefractionUv)
     .mul(refractionZone)
     .mul(mix(0.3, 0.55, curvature))
@@ -256,17 +279,25 @@ export function createLiquidGlassMaterialV4(
     vec2(params.maxRefractionUv.negate()),
     vec2(params.maxRefractionUv),
   );
+  // O4 factor A. Neutralised, the body samples the scene at the fragment's
+  // own screen position: no Snell exit projection, no projected-normal
+  // term, no radial push.
+  const effectiveOffset = diag.noRefractionOffset ? vec2(0) : refractionOffset;
   // Screen space -> scene-color target space. With sceneUvScale = 1 this is the
   // identity and the optics bench is bit-for-bit unchanged.
   const sceneSamplePoint = screenUV
-    .add(refractionOffset)
+    .add(effectiveOffset)
     .sub(vec2(0.5))
     .mul(params.sceneUvScale)
     .add(vec2(0.5));
   const refractedUv = clamp(sceneSamplePoint, vec2(0.001), vec2(0.999));
-  const blurLod = params.blurLod
+  const blurLodCurrent = params.blurLod
     .mul(pow(blurZone, 1.6))
     .mul(mix(0.4, 1, thicknessNorm));
+  // O4 factor B. Neutralised, every body sample is taken at mip level 0 --
+  // the Target has no mip chain to sample at all (its media VideoTexture
+  // generates none), so level 0 is the Target's own condition.
+  const blurLod = diag.noBlur ? float(0) : blurLodCurrent;
 
   // O1 System A -- the Target's dispersion LAW, ported to our sampling
   // architecture. The Target accumulates N=5 refraction samples whose IOR is
@@ -290,8 +321,13 @@ export function createLiquidGlassMaterialV4(
   // subclasses (a Join vs a reduced Add tree) with one vec3 meaning.
   let refractedColor: any;
   let dispersionDebug: any;
-  if (dispersionLaw === "v1-taps") {
-    const fallbackDirection = vec2(normalView.x, normalView.y.negate())
+  if (diag.noDispersion) {
+    // O4 factor D. One sample at the body's own uv, full weight. Not a
+    // narrower spread -- no spectral spread at all.
+    refractedColor = sceneColor.sample(refractedUv).level(blurLod).rgb;
+    dispersionDebug = vec3(0);
+  } else if (dispersionLaw === "v1-taps") {
+    const fallbackDirection = vec2(bodyNormalView.x, bodyNormalView.y.negate())
       .add(vec2(1e-5, 0))
       .normalize();
     const dispersionDirection = refractionOffset.length().greaterThan(1e-5)
@@ -393,9 +429,15 @@ export function createLiquidGlassMaterialV4(
     .mul(blurZone)
     .mul(clamp(localLuma, 0, 1))
     .mul(mix(0.06, 0.2, curvature));
-  const beauty = contrastShaped
-    .add(vec3(adaptiveEdgeLift))
-    .sub(vec3(adaptiveInternalShadow));
+  // O4 factor C. Neutralised, the body colour IS the refracted colour --
+  // no contrast gain, no edge lift, no internal shadow. The Target's body
+  // chain contains none of the three (qa-v5/optics-o4/target-body-source
+  // .json, completeness span 1975111..1976472).
+  const beauty = diag.noAdaptiveShaping
+    ? refractedColor
+    : contrastShaped
+        .add(vec3(adaptiveEdgeLift))
+        .sub(vec3(adaptiveInternalShadow));
 
   // O2 System B -- the Target's white studio reflection as a fresnel-capped
   // LERP inside the body colour (source contract:
@@ -555,7 +597,11 @@ export function createLiquidGlassMaterialV4(
   bodyMaterial.colorNode = bodyColorNode;
   bodyMaterial.transparent = false;
   bodyMaterial.depthWrite = true;
-  bodyMaterial.toneMapped = true;
+  // O4 factor E. The Target's card material carries toneMapped:!1 (bundle
+  // byte 1976900) -- a MATERIAL-level flag, not a renderer tone-mapping
+  // change. Only this material is touched: the media materials and the
+  // renderer keep their settings, so the media-only path stays exact.
+  bodyMaterial.toneMapped = !diag.linearOutput;
 
   const shellEnabled = debugCode.equal(V4_DEBUG_CODE.beauty)
     .or(debugCode.equal(V4_DEBUG_CODE.reflection))
@@ -615,6 +661,7 @@ export function createLiquidGlassMaterialV4(
     getShellMode: () => shellMode,
     getDispersionLaw: () => dispersionLaw,
     getReflectionSupport: () => reflectionSupport,
+    getBodyDiag: () => bodyDiagCode(diag),
     setLayoutFrame: (frame) => applyTargetBevelFrameV4(bevelUniforms, frame),
     dispose: () => {
       bodyMaterial.dispose();

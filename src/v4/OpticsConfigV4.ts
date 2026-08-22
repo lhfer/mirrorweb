@@ -56,6 +56,49 @@ export type V4DispersionLaw = (typeof V4_DISPERSION_LAWS)[number];
 // page load with ?reflectionSupport=.
 export const V4_REFLECTION_SUPPORTS = ["geometry", "target-sdf"] as const;
 export type V4ReflectionSupport = (typeof V4_REFLECTION_SUPPORTS)[number];
+
+// O4 body-floor diagnostic factors. Each neutralises ONE subsystem of the
+// System-B-OFF body so its contribution to the frozen body floor can be
+// measured; `repairRefractionNormal` instead repairs the codegen fault the
+// O4A audit found (qa-v5/optics-o4/body-code-audit.json).
+//
+// Every one is a BUILD-TIME branch taken in TypeScript before the node
+// graph exists, never a uniform tested inside the shader. A uniform would
+// put all lanes in one program, change the control program, and forfeit
+// the control's exact-zero proof against the accepted O2 body. With every
+// flag false the material builds the identical graph it built before this
+// type existed -- the same node objects, not equivalent ones.
+export const V4_BODY_DIAG_ORDER = [
+  "noRefractionOffset",     // A -- identity / no screen-space displacement
+  "noBlur",                 // B -- level-0 sampling, no mip blur
+  "noAdaptiveShaping",      // C -- raw refracted colour
+  "noDispersion",           // D -- one sample, no spectral spread
+  "linearOutput",           // E -- body material toneMapped = false
+  "repairRefractionNormal", // N -- feed the body a real geometry normal
+] as const;
+
+export type V4BodyDiagFactor = (typeof V4_BODY_DIAG_ORDER)[number];
+export type V4BodyDiag = Record<V4BodyDiagFactor, boolean>;
+
+export const V4_BODY_DIAG_OFF: V4BodyDiag = Object.freeze(
+  Object.fromEntries(V4_BODY_DIAG_ORDER.map((k) => [k, false])),
+) as V4BodyDiag;
+
+/** "010010" -> the flags in V4_BODY_DIAG_ORDER. Anything else is all-off. */
+export function parseBodyDiag(value: string | null | undefined): V4BodyDiag {
+  if (!value || !/^[01]{6}$/.test(value)) return { ...V4_BODY_DIAG_OFF };
+  return Object.fromEntries(
+    V4_BODY_DIAG_ORDER.map((k, i) => [k, value[i] === "1"]),
+  ) as V4BodyDiag;
+}
+
+export function bodyDiagCode(diag: V4BodyDiag): string {
+  return V4_BODY_DIAG_ORDER.map((k) => (diag[k] ? "1" : "0")).join("");
+}
+
+export function isBodyDiagOff(diag: V4BodyDiag): boolean {
+  return V4_BODY_DIAG_ORDER.every((k) => !diag[k]);
+}
 export type V4ShellMode = (typeof V4_SHELL_MODES)[number];
 
 export type V4GeometryConfig = {

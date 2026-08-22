@@ -426,6 +426,7 @@ export class InfiniteGlassGridV4 {
     return {
       dispersionLaw: this.handle?.getDispersionLaw() ?? null,
       reflectionSupport: this.handle?.getReflectionSupport() ?? null,
+      bodyDiag: this.handle?.getBodyDiag() ?? null,
       envMixScale: this.params.envMixScale.value,
       rimScale: this.params.rimScale.value,
       shellMode: this.handle?.getShellMode() ?? null,

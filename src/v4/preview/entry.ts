@@ -1,6 +1,10 @@
 import type { QualityLevel } from "../../config";
 import type { MediaFitMode } from "../../content/MediaFit";
-import { V4_DEBUG_MODES, V4_REFLECTION_SUPPORTS, V4_SHELL_MODES, type V4DebugMode, type V4DispersionLaw, type V4ReflectionSupport, type V4ShellMode } from "../OpticsConfigV4";
+import {
+  V4_DEBUG_MODES, V4_REFLECTION_SUPPORTS, V4_SHELL_MODES, parseBodyDiag,
+  type V4DebugMode, type V4DispersionLaw, type V4ReflectionSupport,
+  type V4ShellMode,
+} from "../OpticsConfigV4";
 import { GridAppV4, type GridAppV4Options } from "./GridAppV4";
 
 export type GridQaV4 = {
@@ -99,6 +103,7 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
     shellMode: query.has("shell") ? parseV4ShellMode(query.get("shell")) : undefined,
     dispersionLaw: parseDispersionLaw(query.get("dispersionLaw")),
     reflectionSupport: parseReflectionSupport(query.get("reflectionSupport")),
+    bodyDiag: parseBodyDiag(query.get("bodyDiag")),
     ...(Number.isFinite(overscanQuery) && overscanQuery >= 1 ? { overscan: overscanQuery } : {}),
     ...options,
   });
