@@ -1,0 +1,64 @@
+{
+ "tree": "qa-v5/optics-o3",
+ "what": "O3 Target analytic bevel reflection support \u2014 public evidence. Numbers, source anchors and verdicts only; Target pixels and video live in the private package.",
+ "generatedAt": "2026-08-22T06:35:59+00:00",
+ "capturedAtHead": "669046eb16d21fbcc73543b33b2500e2d425c871",
+ "reviewHeadNote": "deliberately absent from the public tree: a committed file cannot carry its own commit hash. The private package carries both heads.",
+ "finalState": "O3 ANALYTIC BEVEL REFLECTION FAILED ABSOLUTE GATE",
+ "absoluteGate": "FAIL",
+ "shippedDefault": "geometry",
+ "containsTargetPixels": false,
+ "unlistedFiles": [],
+ "files": [
+  {
+   "file": "README.md",
+   "bytes": 10776,
+   "sha256": "61ad8bda3d9b92dacd1f00f1f9bae3f95445b017451fadd1899da585a77e263b"
+  },
+  {
+   "file": "o3-preregistration.json",
+   "bytes": 21320,
+   "sha256": "df94eb074e290c1a6c187869b3e86e93ea9eb6350d1f7e1e1385e2c1c1179963"
+  },
+  {
+   "file": "target-bevel-reflection-source.json",
+   "bytes": 27018,
+   "sha256": "2be55774d3498d0798d6ca2ab3bfb63dfe25191730e3853e392415863df1b942"
+  },
+  {
+   "file": "bevel-source-live.json",
+   "bytes": 27018,
+   "sha256": "2be55774d3498d0798d6ca2ab3bfb63dfe25191730e3853e392415863df1b942"
+  },
+  {
+   "file": "target-repeatability.json",
+   "bytes": 10260,
+   "sha256": "e1267055e2d23d1edf7652db1cf199ea1f31ca8f66b72a83b1a815821b8112d2"
+  },
+  {
+   "file": "instrument-tests.json",
+   "bytes": 6135,
+   "sha256": "297851edee47b6d4ca576d55bee8ec60cc1632764bd66b73c8d80efebbaa3b74"
+  },
+  {
+   "file": "instrument-dryrun.json",
+   "bytes": 5492,
+   "sha256": "e29e82bcd86b8e56f30cf986f01ce49234b1ce732f9c75f6c0a95e28bbc9304c"
+  },
+  {
+   "file": "o3-absolute-gate.json",
+   "bytes": 134001,
+   "sha256": "8e2f4ea03ea31f67dd02eecb7dc73d361e693d38fcb01c7cb3a8f5d314122b2c"
+  },
+  {
+   "file": "judgement-20.json",
+   "bytes": 1594,
+   "sha256": "e41f16f81171fa07700903c12745c7852a82ec86e7f27b62c7c3fe97f2a6b43d"
+  },
+  {
+   "file": "regressions.json",
+   "bytes": 50431,
+   "sha256": "48d7d22427c91dd4e280a5dfc359d2fb6da18188008285d23f10e5fa04875b74"
+  }
+ ]
+}

@@ -1,0 +1,4934 @@
+{
+ "what": "O3 absolute gate, all twenty \u00a7\u4e5d items scored against the thresholds sealed at b4dbb1629a69 before any candidate pixel was captured.",
+ "sealedAtHead": "b4dbb1629a697ff79fdc4a76b07d3f3ff6246b31",
+ "thresholdsChangedAfterCapture": false,
+ "instrumentsModule": "scripts/v5/o3_instruments.py -- the same module the unit tests certify and the dry run exercised on the O2 captures before sealing.",
+ "itemsPassed": 11,
+ "itemsFailed": 9,
+ "itemsPending": 0,
+ "failedItems": [
+  3,
+  4,
+  5,
+  8,
+  9,
+  10,
+  11,
+  13,
+  20
+ ],
+ "pendingItems": [],
+ "absoluteGate": "FAIL",
+ "defaultFlip": {
+  "rule": {
+   "rule": "The shipped default V4_OPTICS_CONFIG.material.reflectionSupport stays 'geometry' in the code commit. It flips to 'target-sdf' in the EVIDENCE commit if and only if ALL twenty absolute-gate items PASS. If any item fails, the default stays 'geometry' and the final state is 'O3 ANALYTIC BEVEL REFLECTION FAILED ABSOLUTE GATE'.",
+   "noPartialFlip": "there is no per-viewport, per-asset or per-metric flip, and no 'flip with a caveat'.",
+   "precedent": "the same shape as the O2 dispersionLaw selection: the rule is written before the pixels and its execution is a recorded fact, not a judgement call."
+  },
+  "executed": "geometry",
+  "shippedDefault": "geometry",
+  "reason": "items [3, 4, 5, 8, 9, 10, 11, 13, 20] did not pass, so the sealed rule's negative branch applies and the shipped default stays the O2 control"
+ },
+ "finalState": "O3 ANALYTIC BEVEL REFLECTION FAILED ABSOLUTE GATE",
+ "items": [
+  {
+   "n": 1,
+   "item": "O2 control pixel-identical to e913aa6",
+   "pass": "differingPixels == 0 on every scored viewport",
+   "threshold": 0,
+   "result": "PASS",
+   "cases": [
+    {
+     "asset": "bw-split",
+     "vp": "1440x900",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "asset": "rgb-bars",
+     "vp": "1440x900",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "asset": "grayscale-step",
+     "vp": "1440x900",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "asset": "bw-split",
+     "vp": "390x844",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "asset": "bw-split",
+     "vp": "844x390",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    }
+   ],
+   "note": "the baseline build has no reflectionSupport key in its optics state -- the parameter is inert there, which is what makes the identical query legitimate on both sides."
+  },
+  {
+   "n": 2,
+   "item": "Analytic source contract PASS",
+   "pass": "pass == true, sitesFailed == 0, live bundle matches",
+   "threshold": null,
+   "result": "PASS",
+   "siteCount": 29,
+   "sitesFailed": 0,
+   "bundleSha256": null,
+   "liveBundle": {
+    "sha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+    "bytes": 2008349,
+    "matchesCapturedBundle": true
+   },
+   "recordsIn": "qa-v5/optics-o3/bevel-source-live.json"
+  },
+  {
+   "n": 3,
+   "item": "bw-split reflection band width vs Target",
+   "pass": "|candidate - target| <= 1.5",
+   "threshold": 1.5,
+   "result": "FAIL",
+   "targetPx": 3.3,
+   "candidatePx": 8.7,
+   "deltaPx": 5.4,
+   "controlPx": 15.3,
+   "perCard": {
+    "target": [
+     3,
+     4,
+     3
+    ],
+    "control": [
+     12,
+     20,
+     14
+    ],
+    "candidate": [
+     5,
+     16,
+     5
+    ]
+   }
+  },
+  {
+   "n": 4,
+   "item": "candidate band materially narrower than O2's 15.3 px",
+   "pass": "candidate <= 0.5 x control AND (control - candidate) >= 4.0 px",
+   "threshold": {
+    "ratio": 0.5,
+    "absolutePx": 4.0
+   },
+   "result": "FAIL",
+   "controlPx": 15.3,
+   "candidatePx": 8.7,
+   "ratioCeilingPx": 7.65,
+   "ratioConditionMet": false,
+   "absoluteDropPx": 6.6,
+   "absoluteConditionMet": true
+  },
+  {
+   "n": 5,
+   "item": "bw-split dark-side edge luma vs Target",
+   "pass": "|candidate - target| <= 10.0",
+   "threshold": 10.0,
+   "result": "FAIL",
+   "targetLuma": 48.1,
+   "candidateLuma": 77.6,
+   "controlLuma": 95.1,
+   "delta": 29.5
+  },
+  {
+   "n": 6,
+   "item": "white reflection ratio vs Target",
+   "pass": "|candidate - target| <= 0.02",
+   "threshold": 0.02,
+   "result": "PASS",
+   "target": 0.4188,
+   "candidate": 0.4314,
+   "control": 0.4364,
+   "delta": 0.0126
+  },
+  {
+   "n": 7,
+   "item": "dark / bright ratio closer to Target",
+   "pass": "|candidate - target| < |control - target|",
+   "threshold": null,
+   "result": "PASS",
+   "target": 0.2484,
+   "control": 0.5006,
+   "candidate": 0.4388,
+   "candidateDistance": 0.1904,
+   "controlDistance": 0.2522
+  },
+  {
+   "n": 8,
+   "item": "grayscale edge chroma not worse than O2",
+   "pass": "candidate <= control + 0.5",
+   "threshold": 0.5,
+   "result": "FAIL",
+   "control": 3.56,
+   "candidate": 4.16,
+   "ceiling": 4.06,
+   "target": 3.33,
+   "attributionBwSplit": {
+    "env0rim0": {
+     "control": {
+      "edgeChromaMean": 3.53,
+      "edgeLuminanceMean": 105.87,
+      "whiteReflectionRatio": 0.4138
+     },
+     "candidate": {
+      "edgeChromaMean": 3.53,
+      "edgeLuminanceMean": 105.87,
+      "whiteReflectionRatio": 0.4138
+     }
+    },
+    "env0rim1": {
+     "control": {
+      "edgeChromaMean": 3.04,
+      "edgeLuminanceMean": 115.67,
+      "whiteReflectionRatio": 0.415
+     },
+     "candidate": {
+      "edgeChromaMean": 3.48,
+      "edgeLuminanceMean": 107.4,
+      "whiteReflectionRatio": 0.4141
+     }
+    },
+    "env1rim0": {
+     "control": {
+      "edgeChromaMean": 4.2,
+      "edgeLuminanceMean": 111.78,
+      "whiteReflectionRatio": 0.4347
+     },
+     "candidate": {
+      "edgeChromaMean": 4.42,
+      "edgeLuminanceMean": 111.79,
+      "whiteReflectionRatio": 0.4311
+     }
+    },
+    "full": {
+     "control": {
+      "edgeChromaMean": 3.68,
+      "edgeLuminanceMean": 121.31,
+      "whiteReflectionRatio": 0.4364
+     },
+     "candidate": {
+      "edgeChromaMean": 4.33,
+      "edgeLuminanceMean": 113.22,
+      "whiteReflectionRatio": 0.4314
+     }
+    },
+    "target": {
+     "edgeChromaMean": 3.58,
+     "edgeLuminanceMean": 109.15,
+     "whiteReflectionRatio": 0.4188
+    }
+   },
+   "attributionReading": "DIAGNOSTIC, not a re-score. With System B off the lanes are identical (env0rim0). At rim-only the CONTROL reads LOWER chroma than the candidate -- its over-wide white rim covers the edge band with neutral white and so dilutes the mean. At env-only the candidate reads higher: the analytic normal tilts to the source's 60 deg slope clamp and swings the reflection vector further into a coloured studio HDR than our gentler geometry shoulder did. So the rise is partly a real chroma increase from the environment sample and partly the REMOVAL of a white rim that had been masking the frozen base's own colour -- corroborated by fringeWidthPxMean falling on every saturated asset in item 10."
+  },
+  {
+   "n": 9,
+   "item": "saturated edge chroma not worse than O2 A+B",
+   "pass": "candidate <= control + 0.5 on EVERY saturated asset",
+   "threshold": 0.5,
+   "result": "FAIL",
+   "assets": [
+    {
+     "asset": "rgb-bars",
+     "control": 90.7,
+     "candidate": 94.3,
+     "ceiling": 91.2,
+     "pass": false
+    },
+    {
+     "asset": "cool-blue",
+     "control": 89.65,
+     "candidate": 94.92,
+     "ceiling": 90.15,
+     "pass": false
+    },
+    {
+     "asset": "warm-skin",
+     "control": 42.24,
+     "candidate": 44.42,
+     "ceiling": 42.74,
+     "pass": false
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "item": "no new coloured rim on RGB / cool / warm",
+   "pass": "fringeRB <= control fringeRB + 0.5 AND fringeWidthPxMean <= control + 0.5 on each of rgb-bars, cool-blue, warm-skin",
+   "threshold": null,
+   "result": "FAIL",
+   "assets": [
+    {
+     "asset": "rgb-bars",
+     "fringeRB": {
+      "control": 76.16,
+      "candidate": 79.06,
+      "pass": false
+     },
+     "fringeWidthPxMean": {
+      "control": 9.11,
+      "candidate": 9.04,
+      "pass": true
+     },
+     "pass": false
+    },
+    {
+     "asset": "cool-blue",
+     "fringeRB": {
+      "control": 89.65,
+      "candidate": 94.92,
+      "pass": false
+     },
+     "fringeWidthPxMean": {
+      "control": 19.54,
+      "candidate": 17.82,
+      "pass": true
+     },
+     "pass": false
+    },
+    {
+     "asset": "warm-skin",
+     "fringeRB": {
+      "control": 42.22,
+      "candidate": 44.39,
+      "pass": false
+     },
+     "fringeWidthPxMean": {
+      "control": 17.75,
+      "candidate": 11.14,
+      "pass": true
+     },
+     "pass": false
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "item": "interior media not globally brightened or desaturated",
+   "pass": "fired == false on every asset",
+   "threshold": null,
+   "result": "FAIL",
+   "assets": [
+    {
+     "asset": "bw-split",
+     "coding": "absolute",
+     "codingChosenBy": "baseline interior saturation 0.0035 <= 0.01",
+     "baselineSaturation": 0.0035,
+     "ceiling": [
+      0.02,
+      2.0
+     ],
+     "absSaturationDelta": 0.0017,
+     "absChromaDelta": 0.04,
+     "relLuminanceChange": 0.0006,
+     "absLuminanceDelta": 0.07,
+     "fired": false
+    },
+    {
+     "asset": "grayscale-step",
+     "coding": "absolute",
+     "codingChosenBy": "baseline interior saturation 0.0021 <= 0.01",
+     "baselineSaturation": 0.0021,
+     "ceiling": [
+      0.02,
+      2.0
+     ],
+     "absSaturationDelta": -0.0002,
+     "absChromaDelta": 0.01,
+     "relLuminanceChange": 0.0006,
+     "absLuminanceDelta": 0.09,
+     "fired": false
+    },
+    {
+     "asset": "rgb-bars",
+     "coding": "relative",
+     "codingChosenBy": "baseline interior saturation 0.7756 > 0.01",
+     "baselineSaturation": 0.7756,
+     "ceiling": 0.12,
+     "relSaturationChange": 0.0006,
+     "relLuminanceChange": 0.001,
+     "absLuminanceDelta": 0.11,
+     "fired": false
+    },
+    {
+     "asset": "hf-checker",
+     "coding": "relative",
+     "codingChosenBy": "baseline interior saturation 0.0104 > 0.01",
+     "baselineSaturation": 0.0104,
+     "ceiling": 0.12,
+     "relSaturationChange": 0.3365,
+     "relLuminanceChange": 0.0008,
+     "absLuminanceDelta": 0.11,
+     "fired": true
+    },
+    {
+     "asset": "dark-highlight",
+     "coding": "relative",
+     "codingChosenBy": "baseline interior saturation 0.3565 > 0.01",
+     "baselineSaturation": 0.3565,
+     "ceiling": 0.12,
+     "relSaturationChange": 0.0062,
+     "relLuminanceChange": 0.0075,
+     "absLuminanceDelta": 0.25,
+     "fired": false
+    },
+    {
+     "asset": "bright-lowsat",
+     "coding": "relative",
+     "codingChosenBy": "baseline interior saturation 0.0445 > 0.01",
+     "baselineSaturation": 0.0445,
+     "ceiling": 0.12,
+     "relSaturationChange": 0.0,
+     "relLuminanceChange": 0.0001,
+     "absLuminanceDelta": 0.02,
+     "fired": false
+    },
+    {
+     "asset": "warm-skin",
+     "coding": "relative",
+     "codingChosenBy": "baseline interior saturation 0.2482 > 0.01",
+     "baselineSaturation": 0.2482,
+     "ceiling": 0.12,
+     "relSaturationChange": 0.0008,
+     "relLuminanceChange": 0.0002,
+     "absLuminanceDelta": 0.03,
+     "fired": false
+    },
+    {
+     "asset": "cool-blue",
+     "coding": "relative",
+     "codingChosenBy": "baseline interior saturation 0.7300 > 0.01",
+     "baselineSaturation": 0.73,
+     "ceiling": 0.12,
+     "relSaturationChange": 0.0026,
+     "relLuminanceChange": 0.0016,
+     "absLuminanceDelta": 0.16,
+     "fired": false
+    }
+   ],
+   "codingNote": "the branch is chosen by the CONTROL render's interior saturation alone -- see o3-instrument-tests.py, 'F5 coding depends only on the baseline'.",
+   "nearFloorCoding": [
+    {
+     "asset": "hf-checker",
+     "coding": "relative",
+     "codingChosenBy": "baseline interior saturation 0.0104 > 0.01",
+     "baselineSaturation": 0.0104,
+     "ceiling": 0.12,
+     "relSaturationChange": 0.3365,
+     "relLuminanceChange": 0.0008,
+     "absLuminanceDelta": 0.11,
+     "fired": true
+    }
+   ],
+   "nearFloorReading": "DIAGNOSTIC, not a re-score. hf-checker has baseline interior saturation 0.0104 -- just above the 0.01 floor, so the sealed rule took the RELATIVE branch, and an absolute saturation change of 0.0035 scored as 33.7%. Under the absolute branch the same change would have been inside the 0.02 ceiling. The branch was fixed by the baseline before any candidate pixel existed and is not revisited here."
+  },
+  {
+   "n": 12,
+   "item": "media-only bit-identical",
+   "pass": "differingPixels == 0 exactly -- no FMA envelope applies, the glass shader is not in the rendered path",
+   "threshold": null,
+   "result": "PASS",
+   "pairs": [
+    {
+     "asset": "bw-split",
+     "vp": "1440x900",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "asset": "rgb-bars",
+     "vp": "1440x900",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "asset": "bw-split",
+     "vp": "390x844",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "asset": "bw-split",
+     "vp": "844x390",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "item": "gutter invasion not increased",
+   "pass": "candidate <= control + 0.006 on bw-split and rgb-bars",
+   "threshold": 0.006,
+   "result": "FAIL",
+   "rows": [
+    {
+     "asset": "bw-split",
+     "vp": "1440x900",
+     "dilationPx": 8,
+     "cardsMasked": 16,
+     "control": 0.04636,
+     "candidate": 0.06673,
+     "delta": 0.02037,
+     "ceiling": 0.05236,
+     "pass": false
+    },
+    {
+     "asset": "rgb-bars",
+     "vp": "1440x900",
+     "dilationPx": 8,
+     "cardsMasked": 16,
+     "control": 0.0495,
+     "candidate": 0.07336,
+     "delta": 0.02386,
+     "ceiling": 0.0555,
+     "pass": false
+    },
+    {
+     "asset": "bw-split",
+     "vp": "390x844",
+     "dilationPx": 4,
+     "cardsMasked": 17,
+     "control": 0.01213,
+     "candidate": 0.01637,
+     "delta": 0.00424,
+     "ceiling": 0.01813,
+     "pass": true
+    },
+    {
+     "asset": "rgb-bars",
+     "vp": "390x844",
+     "dilationPx": 4,
+     "cardsMasked": 17,
+     "control": 0.01395,
+     "candidate": 0.01819,
+     "delta": 0.00424,
+     "ceiling": 0.01995,
+     "pass": true
+    }
+   ],
+   "silhouetteDiagnostic": [
+    {
+     "asset": "bw-split",
+     "vp": "1440x900",
+     "pixelsOutsideTrueGlassSilhouette": 350139,
+     "inkRatioControl": 0.115531,
+     "inkRatioCandidate": 0.115531,
+     "maxAbsChannelDiffOutsideSilhouette": 0.0
+    },
+    {
+     "asset": "rgb-bars",
+     "vp": "1440x900",
+     "pixelsOutsideTrueGlassSilhouette": 97401,
+     "inkRatioControl": 0.329155,
+     "inkRatioCandidate": 0.329155,
+     "maxAbsChannelDiffOutsideSilhouette": 0.0
+    }
+   ],
+   "silhouetteReading": "DIAGNOSTIC, not a re-score. Outside the TRUE glass silhouette -- every pixel the glass layer touches, taken from the media-only captures -- the two lanes are bit-identical (max channel difference 0.0). The candidate puts no light into real gutter. The whole measured delta lies between the flat layout quad F10 masks and the larger silhouette the bulged lens actually projects, which is where the candidate concentrates its narrower rim. The sealed instrument and threshold are unchanged and the item stands as scored; this records what the number is made of."
+  },
+  {
+   "n": 14,
+   "item": "pointer reflection path, glass-only metric",
+   "pass": "fired == false, and the published record carries exactly the path the verdict was computed from",
+   "threshold": null,
+   "result": "PASS",
+   "verdict": {
+    "targetNxPath": [
+     0.3503,
+     0.2488,
+     0.2921
+    ],
+    "candidateNxPath": [
+     0.5277,
+     0.3743,
+     0.2712
+    ],
+    "adjacentJumps": [
+     0.1534,
+     0.1031
+    ],
+    "targetDirection": -1,
+    "targetRange": 0.1015,
+    "candidateRange": 0.2565,
+    "branch": "tracking-reference",
+    "branchChosenBy": "target path range 0.1015 >= 0.05",
+    "fired": false,
+    "reasons": []
+   },
+   "controlNxPath": [
+    0.4788,
+    0.3269,
+    0.2709
+   ],
+   "detail": {
+    "target": {
+     "centroids": {
+      "pl": {
+       "nx": 0.3503,
+       "ny": 0.6624,
+       "pixels": 1391
+      },
+      "rest": {
+       "nx": 0.2488,
+       "ny": 0.7436,
+       "pixels": 443
+      },
+      "pr": {
+       "nx": 0.2921,
+       "ny": 0.7688,
+       "pixels": 1007
+      }
+     },
+     "cardSpaceDims": [
+      403,
+      549
+     ],
+     "excludedInkPixels": 93294
+    },
+    "candidate": {
+     "centroids": {
+      "pl": {
+       "nx": 0.5277,
+       "ny": 0.6729,
+       "pixels": 2777
+      },
+      "rest": {
+       "nx": 0.3743,
+       "ny": 0.6811,
+       "pixels": 967
+      },
+      "pr": {
+       "nx": 0.2712,
+       "ny": 0.7663,
+       "pixels": 1088
+      }
+     },
+     "cardSpaceDims": [
+      403,
+      549
+     ],
+     "excludedInkPixels": 107534
+    },
+    "control": {
+     "centroids": {
+      "pl": {
+       "nx": 0.4788,
+       "ny": 0.6282,
+       "pixels": 3363
+      },
+      "rest": {
+       "nx": 0.3269,
+       "ny": 0.6426,
+       "pixels": 1274
+      },
+      "pr": {
+       "nx": 0.2709,
+       "ny": 0.7689,
+       "pixels": 1184
+      }
+     },
+     "cardSpaceDims": [
+      403,
+      549
+     ],
+     "excludedInkPixels": 107404
+    }
+   },
+   "note": "this record carries exactly the path the verdict was computed from; the instrument returned the verdict block verbatim."
+  },
+  {
+   "n": 15,
+   "item": "desktop / portrait / landscape same direction",
+   "pass": "SAME SIGN on every viewport (the \u00a7\u4e5d.15 requirement, literally)",
+   "threshold": null,
+   "result": "PASS",
+   "viewports": [
+    {
+     "vp": "1440x900",
+     "metricBasis": "fully-visible cards",
+     "bandDelta": -6.6,
+     "darkLumaDelta": -17.5,
+     "bandSign": -1,
+     "darkLumaSign": -1,
+     "diagnosticVsTarget": {
+      "bandAbsDelta": 5.4,
+      "darkLumaAbsDelta": 29.5
+     }
+    },
+    {
+     "vp": "390x844",
+     "metricBasis": "fully-visible cards",
+     "bandDelta": -5.0,
+     "darkLumaDelta": -8.4,
+     "bandSign": -1,
+     "darkLumaSign": -1,
+     "diagnosticVsTarget": {
+      "bandAbsDelta": 1.5,
+      "darkLumaAbsDelta": 18.6
+     }
+    },
+    {
+     "vp": "844x390",
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "bandDelta": -5.0,
+     "darkLumaDelta": -0.4,
+     "bandSign": -1,
+     "darkLumaSign": -1,
+     "diagnosticVsTarget": {
+      "bandAbsDelta": 1.0,
+      "darkLumaAbsDelta": 7.8
+     }
+    }
+   ],
+   "note": "the per-viewport distance to Target is reported as a DIAGNOSTIC, per the sealed item; the pass condition is sign agreement."
+  },
+  {
+   "n": 16,
+   "item": "no rim / reflection pop during drag, flick, touch",
+   "pass": "no adjacent-frame relative change > 40%, and no frame at zero while both neighbours are non-zero (a rim break)",
+   "threshold": null,
+   "result": "PASS",
+   "sequences": [
+    {
+     "lane": "target",
+     "viewport": "1440x900",
+     "sequence": "pointer-sweep",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o3/recordings/target/1440x900-pointer-sweep-bw-split",
+     "frames": 513,
+     "minCount": 531718,
+     "maxCount": 538123,
+     "meanCount": 534074,
+     "maxAdjacentRelJump": 0.0008,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "control",
+     "viewport": "1440x900",
+     "sequence": "pointer-sweep",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o3/recordings/control/1440x900-pointer-sweep-bw-split",
+     "frames": 512,
+     "minCount": 588023,
+     "maxCount": 592524,
+     "meanCount": 590889,
+     "maxAdjacentRelJump": 0.0017,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "candidate",
+     "viewport": "1440x900",
+     "sequence": "pointer-sweep",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o3/recordings/candidate/1440x900-pointer-sweep-bw-split",
+     "frames": 512,
+     "minCount": 588769,
+     "maxCount": 593983,
+     "meanCount": 591399,
+     "maxAdjacentRelJump": 0.0008,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "target",
+     "viewport": "1440x900",
+     "sequence": "slow-horizontal-drag",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o3/recordings/target/1440x900-slow-horizontal-drag-bw-split",
+     "frames": 354,
+     "minCount": 525668,
+     "maxCount": 537426,
+     "meanCount": 531954,
+     "maxAdjacentRelJump": 0.0054,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "control",
+     "viewport": "1440x900",
+     "sequence": "slow-horizontal-drag",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o3/recordings/control/1440x900-slow-horizontal-drag-bw-split",
+     "frames": 352,
+     "minCount": 582462,
+     "maxCount": 592120,
+     "meanCount": 584901,
+     "maxAdjacentRelJump": 0.0025,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "candidate",
+     "viewport": "1440x900",
+     "sequence": "slow-horizontal-drag",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o3/recordings/candidate/1440x900-slow-horizontal-drag-bw-split",
+     "frames": 351,
+     "minCount": 586994,
+     "maxCount": 592986,
+     "meanCount": 588646,
+     "maxAdjacentRelJump": 0.003,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "target",
+     "viewport": "1440x900",
+     "sequence": "fast-flick",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o3/recordings/target/1440x900-fast-flick-bw-split",
+     "frames": 348,
+     "minCount": 524210,
+     "maxCount": 546701,
+     "meanCount": 534914,
+     "maxAdjacentRelJump": 0.0205,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "control",
+     "viewport": "1440x900",
+     "sequence": "fast-flick",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o3/recordings/control/1440x900-fast-flick-bw-split",
+     "frames": 345,
+     "minCount": 585730,
+     "maxCount": 601650,
+     "meanCount": 588464,
+     "maxAdjacentRelJump": 0.022,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "candidate",
+     "viewport": "1440x900",
+     "sequence": "fast-flick",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o3/recordings/candidate/1440x900-fast-flick-bw-split",
+     "frames": 345,
+     "minCount": 588254,
+     "maxCount": 605222,
+     "meanCount": 592347,
+     "maxAdjacentRelJump": 0.0186,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "target",
+     "viewport": "390x844",
+     "sequence": "touch-drag-release",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o3/recordings/target/390x844-touch-drag-release-bw-split",
+     "frames": 371,
+     "minCount": 128250,
+     "maxCount": 138852,
+     "meanCount": 136463,
+     "maxAdjacentRelJump": 0.0172,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "control",
+     "viewport": "390x844",
+     "sequence": "touch-drag-release",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o3/recordings/control/390x844-touch-drag-release-bw-split",
+     "frames": 378,
+     "minCount": 147547,
+     "maxCount": 155568,
+     "meanCount": 149175,
+     "maxAdjacentRelJump": 0.0118,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "candidate",
+     "viewport": "390x844",
+     "sequence": "touch-drag-release",
+     "asset": "bw-split",
+     "dir": "artifacts/optics-o3/recordings/candidate/390x844-touch-drag-release-bw-split",
+     "frames": 366,
+     "minCount": 149414,
+     "maxCount": 155988,
+     "meanCount": 154195,
+     "maxAdjacentRelJump": 0.0127,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "target",
+     "viewport": "1440x900",
+     "sequence": "pointer-sweep",
+     "asset": "grayscale-step",
+     "dir": "artifacts/optics-o3/recordings/target/1440x900-pointer-sweep-grayscale-step",
+     "frames": 514,
+     "minCount": 199179,
+     "maxCount": 218184,
+     "meanCount": 210357,
+     "maxAdjacentRelJump": 0.0088,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "control",
+     "viewport": "1440x900",
+     "sequence": "pointer-sweep",
+     "asset": "grayscale-step",
+     "dir": "artifacts/optics-o3/recordings/control/1440x900-pointer-sweep-grayscale-step",
+     "frames": 512,
+     "minCount": 552077,
+     "maxCount": 558982,
+     "meanCount": 555957,
+     "maxAdjacentRelJump": 0.002,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    },
+    {
+     "lane": "candidate",
+     "viewport": "1440x900",
+     "sequence": "pointer-sweep",
+     "asset": "grayscale-step",
+     "dir": "artifacts/optics-o3/recordings/candidate/1440x900-pointer-sweep-grayscale-step",
+     "frames": 511,
+     "minCount": 512241,
+     "maxCount": 525790,
+     "meanCount": 516795,
+     "maxAdjacentRelJump": 0.0025,
+     "fired": false,
+     "reasons": [],
+     "reasonCount": 0
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "item": "v_o2NormalView control regression",
+   "pass": "gate 1 exact zero AND the control program still declares v_o2NormalView",
+   "threshold": null,
+   "result": "PASS",
+   "gate1Zero": true,
+   "controlDeclaresO2Varying": true
+  },
+  {
+   "n": 18,
+   "item": "compiled shader proof",
+   "pass": "control consumes v_o2NormalView in the beauty branch; candidate consumes the analytic bevel normal in the beauty branch; neither leaks into the other",
+   "threshold": null,
+   "result": "PASS",
+   "checks": {
+    "geometryLaneDeclaresO2Varying": true,
+    "geometryLaneHasNoO3Field": true,
+    "candidateLaneDeclaresO3Varying": true,
+    "candidateLaneHasNoO2Varying": true,
+    "candidateLaneCarriesBevelConstants": true,
+    "lanesDifferAsExpected": true,
+    "geometryLaneEqualsPreO3Program": null
+   },
+   "dumps": [
+    {
+     "label": "candidate-build-geometry-lane",
+     "backend": "webgpu",
+     "reflectionSupport": "geometry",
+     "dispersionLaw": "o1-spectral",
+     "fragmentSha256": "3149754fb3137105cc4b3022d4f98683dea1922881a980048fdec81e4a72a5f0",
+     "vertexSha256": "f934fb928a91d6f655faf3317a7a42c6645f592818cd7912919119eaf6dd8ba6",
+     "fragmentBytes": 28304,
+     "declaresO2Varying": true,
+     "declaresO3Varying": false,
+     "declaresO3RimDebugVarying": false,
+     "declaresO3NormalDebugVarying": false,
+     "mentionsBevelMaxSlope": false,
+     "mentionsBevelPower": false
+    },
+    {
+     "label": "candidate-build-target-sdf-lane",
+     "backend": "webgpu",
+     "reflectionSupport": "target-sdf",
+     "dispersionLaw": "o1-spectral",
+     "fragmentSha256": "e991e86fef59eab6cf5d413cd63b36a5941f0340ff333100a1b88dca166e15f6",
+     "vertexSha256": "fdc943bfdbb465ea5e1426a430f351ce8016d6468f11558b2f9db3e738535f48",
+     "fragmentBytes": 37414,
+     "declaresO2Varying": false,
+     "declaresO3Varying": true,
+     "declaresO3RimDebugVarying": true,
+     "declaresO3NormalDebugVarying": true,
+     "mentionsBevelMaxSlope": true,
+     "mentionsBevelPower": true
+    },
+    {
+     "label": "pre-o3-build-o2-program",
+     "shaderReadbackUnavailable": true
+    }
+   ],
+   "gate1Note": "the pre-O3 build predates getGlassShaderSource, so its program could not be dumped for a hash comparison. Gate 1 is the PIXEL proof against that build; this file proves what the candidate build's two lanes consume."
+  },
+  {
+   "n": 19,
+   "item": "all frozen suites PASS",
+   "pass": "every suite PASS",
+   "threshold": null,
+   "result": "PASS",
+   "suites": [
+    {
+     "name": "V1 Render Culling Gate",
+     "pass": true,
+     "detail": {
+      "framesChecked": 20161,
+      "slotMismatches": 0,
+      "shellGlassMismatches": 0,
+      "mediaPassLeaks": 0,
+      "errors": 0
+     }
+    },
+    {
+     "name": "V0 Label Culling Gate",
+     "pass": true,
+     "detail": {
+      "framesChecked": 20277,
+      "beyondBoundary": 0,
+      "identity": "40/40",
+      "errors": {
+       "target": 0,
+       "before": 0,
+       "candidate": 0,
+       "pass": true
+      }
+     }
+    },
+    {
+     "name": "Source Contract",
+     "pass": true,
+     "detail": {
+      "verdict": "PASS",
+      "passed": 36,
+      "viewports": 36
+     }
+    },
+    {
+     "name": "Layout Source",
+     "pass": true,
+     "detail": {
+      "tail": [
+       "v5:target-layout-source PASS  14/14"
+      ]
+     }
+    },
+    {
+     "name": "Typography",
+     "pass": true,
+     "detail": {
+      "verdict": "PASS",
+      "passed": 4
+     }
+    },
+    {
+     "name": "Motion Freeze Smoke",
+     "pass": true,
+     "detail": {
+      "engineVsContract": {
+       "rowsTotal": 15,
+       "rowsFailed": 0,
+       "rowsExactToFloatingPoint": 15,
+       "worstRecoveryError": 0.00885,
+       "threshold": 0.1
+      }
+     }
+    },
+    {
+     "name": "Release History Smoke",
+     "pass": true,
+     "detail": {
+      "releases": 11,
+      "exact": 11,
+      "mismatched": 0,
+      "worstVelocityError": 0.0
+     }
+    },
+    {
+     "name": "Card / Label Motion",
+     "pass": true,
+     "detail": {
+      "passed": 34,
+      "total": 34,
+      "verdict": "PASS"
+     }
+    },
+    {
+     "name": "Wrap = 0",
+     "pass": true,
+     "detail": {
+      "visibleWrapTeleportsOurSide": 0,
+      "visibleWrapTeleportsTargetSide": 0
+     }
+    },
+    {
+     "name": "Touch / Pointer Cancel",
+     "pass": true,
+     "detail": {
+      "touchRunsOurSide": 4,
+      "touchRunsNotAtRest": 0,
+      "wheelResponsesOurSide": 0
+     }
+    },
+    {
+     "name": "Console / Page Errors = 0",
+     "pass": true,
+     "detail": {
+      "motion": {
+       "target": 0,
+       "ours": 0,
+       "oursIncludingHarnessReloads": 0,
+       "targetSamples": [],
+       "ourSamples": []
+      },
+      "labelGate": {
+       "target": 0,
+       "before": 0,
+       "candidate": 0,
+       "pass": true
+      },
+      "renderGate": 0
+     }
+    },
+    {
+     "name": "O2 Shared-media Harness",
+     "pass": true,
+     "detail": {
+      "assets": [
+       {
+        "asset": "grayscale-step",
+        "viewport": "1440x900",
+        "mobileEmulation": false,
+        "sha256": "41fc734c82f2990bcb7fdff8c394f81830487127d3bb544cec9a623372fe1fcf",
+        "elementaryStreamSha256": "a547680cd0b7b42bf153e0c958aa41d5685b9fe3ef45662e43156d970d489091",
+        "elementaryStreamIdenticalMp4VsHls": true,
+        "dimensions": "1200x900",
+        "durationS": 8,
+        "frozenMediaTime": 4,
+        "targetRequestUrlIntercepted": [
+         "https://stream.mux.com/dRQc0202Rpk6WnvqSZFnETJvNIVi14HbkVHxWmKdeG7sI.m3u8",
+         "https://stream.mux.com/K1vWSoscB4tOmAKwKXLo7g1dNtfWRsFiNYS02tcEvUsc.m3u8"
+        ],
+        "targetRequestsIntercepted": 76,
+        "targetResponseSha": [
+         {
+          "file": "grayscale-step/media.m3u8 (served form)",
+          "count": 19,
+          "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+         },
+         {
+          "file": "grayscale-step/hls/init.mp4",
+          "count": 19,
+          "sha256": "71f12124f5a1e0158dbca7e264f75dd0e078cd5f017821b36835739391d20944"
+         },
+         {
+          "file": "grayscale-step/hls/seg0.m4s",
+          "count": 19,
+          "sha256": "30ce0753e31aaa36e28990514d875d0545fcad5a56f40169852c0d1d5df56002"
+         },
+         {
+          "file": "grayscale-step/hls/seg1.m4s",
+          "count": 19,
+          "sha256": "77f116c9181f6f07486f12c7d8653f94301e4b1b7b9fcd2a441e1e82565c62a3"
+         }
+        ],
+        "localResponseSha": "41fc734c82f2990bcb7fdff8c394f81830487127d3bb544cec9a623372fe1fcf",
+        "targetCoverScaleOffset": {
+         "scaleX": 1.0,
+         "scaleY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "localCoverScaleOffset": [
+         {
+          "clip": 0,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 1,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 2,
+          "law": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "readback": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         }
+        ],
+        "renderedEdgeVerification": {
+         "sourceEdgeNx": 0.5,
+         "target": {
+          "card": 55,
+          "expectedNx": 0.5,
+          "measuredNx": 0.4991,
+          "pass": true
+         },
+         "local": {
+          "card": 55,
+          "clip": 0,
+          "expectedNx": 0.5,
+          "measuredNx": 0.4991,
+          "pass": true
+         },
+         "toleranceNx": 0.045,
+         "note": "measured through the glass at card centre band, where the dome refraction is near zero on both pages"
+        },
+        "decodedFrameProof": {
+         "target": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "left",
+            "expected": [
+             64,
+             64,
+             64
+            ],
+            "got": [
+             64,
+             64,
+             64
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           },
+           {
+            "landmark": "right",
+            "expected": [
+             192,
+             192,
+             192
+            ],
+            "got": [
+             192,
+             192,
+             192
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           }
+          ]
+         },
+         "local": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "left",
+            "expected": [
+             64,
+             64,
+             64
+            ],
+            "got": [
+             64,
+             64,
+             64
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           },
+           {
+            "landmark": "right",
+            "expected": [
+             192,
+             192,
+             192
+            ],
+            "got": [
+             192,
+             192,
+             192
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           }
+          ]
+         },
+         "fullFrameHashEqual": true,
+         "targetHash": "896ffbc5",
+         "localHash": "896ffbc5"
+        },
+        "checks": {
+         "targetAllVideosOurRendition": true,
+         "targetFrozen": true,
+         "localFrozen": true,
+         "targetLandmarks": true,
+         "localLandmarks": true,
+         "decodedFrameHashesEqual": true,
+         "localFitLawMatchesReadback": true,
+         "localSourceDimsAreAsset": true,
+         "renderedEdge": true
+        },
+        "pass": true
+       },
+       {
+        "asset": "bw-split",
+        "viewport": "1440x900",
+        "mobileEmulation": false,
+        "sha256": "8eac915f3605fa9e1fe71719c8477be42d945428c0121ea8d7fc3d40c104e5c3",
+        "elementaryStreamSha256": "4574db400bb0b878479ad2c3b041e1a915e67109e55db50d0f369a94d07286ae",
+        "elementaryStreamIdenticalMp4VsHls": true,
+        "dimensions": "1200x900",
+        "durationS": 8,
+        "frozenMediaTime": 4,
+        "targetRequestUrlIntercepted": [
+         "https://stream.mux.com/sFSxFQmzcKGQ8csHrIDBlvBEGxDoZ1IxDvb3QAciEvY.m3u8",
+         "https://stream.mux.com/Yhir8UDUrYPAQGN5iSjPQNgue02DFBW00vD5g2F9ga01Gc.m3u8"
+        ],
+        "targetRequestsIntercepted": 76,
+        "targetResponseSha": [
+         {
+          "file": "bw-split/media.m3u8 (served form)",
+          "count": 19,
+          "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+         },
+         {
+          "file": "bw-split/hls/init.mp4",
+          "count": 19,
+          "sha256": "0befbbe7089fcf6677a1f84a18c72ebb0fbb7b18490064f79a17d97ee1693ef4"
+         },
+         {
+          "file": "bw-split/hls/seg0.m4s",
+          "count": 19,
+          "sha256": "d0a5a1f8d13af5c1715e14b8629a09d0816b814809760a0445a7417743e031c5"
+         },
+         {
+          "file": "bw-split/hls/seg1.m4s",
+          "count": 19,
+          "sha256": "a619a73d90fda65c92cd0cdd35b0b94ac46073ef98e8ee0f9075e51aa6ffac32"
+         }
+        ],
+        "localResponseSha": "8eac915f3605fa9e1fe71719c8477be42d945428c0121ea8d7fc3d40c104e5c3",
+        "targetCoverScaleOffset": {
+         "scaleX": 1.0,
+         "scaleY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "localCoverScaleOffset": [
+         {
+          "clip": 0,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 1,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 2,
+          "law": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "readback": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         }
+        ],
+        "renderedEdgeVerification": {
+         "sourceEdgeNx": 0.5,
+         "target": {
+          "card": 55,
+          "expectedNx": 0.5,
+          "measuredNx": 0.4991,
+          "pass": true
+         },
+         "local": {
+          "card": 55,
+          "clip": 0,
+          "expectedNx": 0.5,
+          "measuredNx": 0.4991,
+          "pass": true
+         },
+         "toleranceNx": 0.045,
+         "note": "measured through the glass at card centre band, where the dome refraction is near zero on both pages"
+        },
+        "decodedFrameProof": {
+         "target": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "left",
+            "expected": [
+             0,
+             0,
+             0
+            ],
+            "got": [
+             0,
+             0,
+             0
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           },
+           {
+            "landmark": "right",
+            "expected": [
+             255,
+             255,
+             255
+            ],
+            "got": [
+             255,
+             255,
+             255
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           }
+          ]
+         },
+         "local": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "left",
+            "expected": [
+             0,
+             0,
+             0
+            ],
+            "got": [
+             0,
+             0,
+             0
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           },
+           {
+            "landmark": "right",
+            "expected": [
+             255,
+             255,
+             255
+            ],
+            "got": [
+             255,
+             255,
+             255
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           }
+          ]
+         },
+         "fullFrameHashEqual": true,
+         "targetHash": "de6e6545",
+         "localHash": "de6e6545"
+        },
+        "checks": {
+         "targetAllVideosOurRendition": true,
+         "targetFrozen": true,
+         "localFrozen": true,
+         "targetLandmarks": true,
+         "localLandmarks": true,
+         "decodedFrameHashesEqual": true,
+         "localFitLawMatchesReadback": true,
+         "localSourceDimsAreAsset": true,
+         "renderedEdge": true
+        },
+        "pass": true
+       },
+       {
+        "asset": "rgb-bars",
+        "viewport": "1440x900",
+        "mobileEmulation": false,
+        "sha256": "46fc379b1b72eadec4ae0600927efb262814a66f5ef8a9244785c46d60c1389a",
+        "elementaryStreamSha256": "e42b6d974d73a3d4d683fb40aa4805f693edf3cc6f802f04474a1c396c1f2641",
+        "elementaryStreamIdenticalMp4VsHls": true,
+        "dimensions": "1200x900",
+        "durationS": 8,
+        "frozenMediaTime": 4,
+        "targetRequestUrlIntercepted": [
+         "https://stream.mux.com/sr5tcJQBZWP00IcHxTM29KVn1tpagnwATNw6LALqPmNo.m3u8",
+         "https://stream.mux.com/SqmDcr700VRNWzZvew8jKGLKNayH472UU7kl02gAq6148.m3u8"
+        ],
+        "targetRequestsIntercepted": 76,
+        "targetResponseSha": [
+         {
+          "file": "rgb-bars/media.m3u8 (served form)",
+          "count": 19,
+          "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+         },
+         {
+          "file": "rgb-bars/hls/init.mp4",
+          "count": 19,
+          "sha256": "877d4ee492856ac0771612a9f33d9cd028134650614e0a4c6e0b9b7d07bf9b73"
+         },
+         {
+          "file": "rgb-bars/hls/seg0.m4s",
+          "count": 19,
+          "sha256": "73fc0d6c7124c843a8cd560b8dddedbd68e8c5b6295af7470da0522d568aec12"
+         },
+         {
+          "file": "rgb-bars/hls/seg1.m4s",
+          "count": 19,
+          "sha256": "04576c4bba5007b433abac653464efe6092b5c5b0c47ec8a58f16b714b25d9aa"
+         }
+        ],
+        "localResponseSha": "46fc379b1b72eadec4ae0600927efb262814a66f5ef8a9244785c46d60c1389a",
+        "targetCoverScaleOffset": {
+         "scaleX": 1.0,
+         "scaleY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "localCoverScaleOffset": [
+         {
+          "clip": 0,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 1,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 2,
+          "law": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "readback": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         }
+        ],
+        "renderedEdgeVerification": null,
+        "decodedFrameProof": {
+         "target": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "r",
+            "expected": [
+             220,
+             0,
+             0
+            ],
+            "got": [
+             220,
+             0,
+             0
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           },
+           {
+            "landmark": "g",
+            "expected": [
+             0,
+             220,
+             0
+            ],
+            "got": [
+             0,
+             220,
+             1
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           },
+           {
+            "landmark": "b",
+            "expected": [
+             0,
+             0,
+             220
+            ],
+            "got": [
+             0,
+             0,
+             221
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           },
+           {
+            "landmark": "w",
+            "expected": [
+             220,
+             220,
+             220
+            ],
+            "got": [
+             220,
+             220,
+             220
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           }
+          ]
+         },
+         "local": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "r",
+            "expected": [
+             220,
+             0,
+             0
+            ],
+            "got": [
+             220,
+             0,
+             0
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           },
+           {
+            "landmark": "g",
+            "expected": [
+             0,
+             220,
+             0
+            ],
+            "got": [
+             0,
+             220,
+             1
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           },
+           {
+            "landmark": "b",
+            "expected": [
+             0,
+             0,
+             220
+            ],
+            "got": [
+             0,
+             0,
+             221
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           },
+           {
+            "landmark": "w",
+            "expected": [
+             220,
+             220,
+             220
+            ],
+            "got": [
+             220,
+             220,
+             220
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           }
+          ]
+         },
+         "fullFrameHashEqual": true,
+         "targetHash": "233385e5",
+         "localHash": "233385e5"
+        },
+        "checks": {
+         "targetAllVideosOurRendition": true,
+         "targetFrozen": true,
+         "localFrozen": true,
+         "targetLandmarks": true,
+         "localLandmarks": true,
+         "decodedFrameHashesEqual": true,
+         "localFitLawMatchesReadback": true,
+         "localSourceDimsAreAsset": true,
+         "renderedEdge": true
+        },
+        "pass": true
+       },
+       {
+        "asset": "rgb-bars",
+        "viewport": "390x844",
+        "mobileEmulation": true,
+        "sha256": "46fc379b1b72eadec4ae0600927efb262814a66f5ef8a9244785c46d60c1389a",
+        "elementaryStreamSha256": "e42b6d974d73a3d4d683fb40aa4805f693edf3cc6f802f04474a1c396c1f2641",
+        "elementaryStreamIdenticalMp4VsHls": true,
+        "dimensions": "1200x900",
+        "durationS": 8,
+        "frozenMediaTime": 4,
+        "targetRequestUrlIntercepted": [
+         "https://stream.mux.com/Y2wyYBsXzu4HwxmCuDU00wcjTKYKoCLfOK73ABab3LpY.m3u8",
+         "https://stream.mux.com/W2E02Ix66PEIAJcojVS7l1Qx01uWGHR00PAY2BlKpyYSEc.m3u8"
+        ],
+        "targetRequestsIntercepted": 32,
+        "targetResponseSha": [
+         {
+          "file": "rgb-bars/media.m3u8 (served form)",
+          "count": 8,
+          "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+         },
+         {
+          "file": "rgb-bars/hls/init.mp4",
+          "count": 8,
+          "sha256": "877d4ee492856ac0771612a9f33d9cd028134650614e0a4c6e0b9b7d07bf9b73"
+         },
+         {
+          "file": "rgb-bars/hls/seg0.m4s",
+          "count": 8,
+          "sha256": "73fc0d6c7124c843a8cd560b8dddedbd68e8c5b6295af7470da0522d568aec12"
+         },
+         {
+          "file": "rgb-bars/hls/seg1.m4s",
+          "count": 8,
+          "sha256": "04576c4bba5007b433abac653464efe6092b5c5b0c47ec8a58f16b714b25d9aa"
+         }
+        ],
+        "localResponseSha": "46fc379b1b72eadec4ae0600927efb262814a66f5ef8a9244785c46d60c1389a",
+        "targetCoverScaleOffset": {
+         "scaleX": 1.0,
+         "scaleY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "localCoverScaleOffset": [
+         {
+          "clip": 0,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 1,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 2,
+          "law": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "readback": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         }
+        ],
+        "renderedEdgeVerification": null,
+        "decodedFrameProof": {
+         "target": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "r",
+            "expected": [
+             220,
+             0,
+             0
+            ],
+            "got": [
+             220,
+             0,
+             0
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           },
+           {
+            "landmark": "g",
+            "expected": [
+             0,
+             220,
+             0
+            ],
+            "got": [
+             0,
+             220,
+             1
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           },
+           {
+            "landmark": "b",
+            "expected": [
+             0,
+             0,
+             220
+            ],
+            "got": [
+             0,
+             0,
+             221
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           },
+           {
+            "landmark": "w",
+            "expected": [
+             220,
+             220,
+             220
+            ],
+            "got": [
+             220,
+             220,
+             220
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           }
+          ]
+         },
+         "local": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "r",
+            "expected": [
+             220,
+             0,
+             0
+            ],
+            "got": [
+             220,
+             0,
+             0
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           },
+           {
+            "landmark": "g",
+            "expected": [
+             0,
+             220,
+             0
+            ],
+            "got": [
+             0,
+             220,
+             1
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           },
+           {
+            "landmark": "b",
+            "expected": [
+             0,
+             0,
+             220
+            ],
+            "got": [
+             0,
+             0,
+             221
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           },
+           {
+            "landmark": "w",
+            "expected": [
+             220,
+             220,
+             220
+            ],
+            "got": [
+             220,
+             220,
+             220
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           }
+          ]
+         },
+         "fullFrameHashEqual": true,
+         "targetHash": "233385e5",
+         "localHash": "233385e5"
+        },
+        "checks": {
+         "targetAllVideosOurRendition": true,
+         "targetFrozen": true,
+         "localFrozen": true,
+         "targetLandmarks": true,
+         "localLandmarks": true,
+         "decodedFrameHashesEqual": true,
+         "localFitLawMatchesReadback": true,
+         "localSourceDimsAreAsset": true,
+         "renderedEdge": true
+        },
+        "pass": true
+       },
+       {
+        "asset": "hf-checker",
+        "viewport": "1440x900",
+        "mobileEmulation": false,
+        "sha256": "044f0fa77e943d208c6c94600467080790632b2b5f6602778acafeb0a6366ac7",
+        "elementaryStreamSha256": "4182ad9f300efc8e3b9e040c1e7bfba3644d5dad9140936a78fa9efe6e6612fc",
+        "elementaryStreamIdenticalMp4VsHls": true,
+        "dimensions": "1200x900",
+        "durationS": 8,
+        "frozenMediaTime": 4,
+        "targetRequestUrlIntercepted": [
+         "https://stream.mux.com/8oWIbkfWIAWVGpd5mg5Meq7LxmJMChthdjv2YIeHH2Q.m3u8",
+         "https://stream.mux.com/Yhir8UDUrYPAQGN5iSjPQNgue02DFBW00vD5g2F9ga01Gc.m3u8"
+        ],
+        "targetRequestsIntercepted": 76,
+        "targetResponseSha": [
+         {
+          "file": "hf-checker/media.m3u8 (served form)",
+          "count": 19,
+          "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+         },
+         {
+          "file": "hf-checker/hls/init.mp4",
+          "count": 19,
+          "sha256": "9472bb5899cf75087aa258a38377e33f448eaae1363fab748c954a33144aab98"
+         },
+         {
+          "file": "hf-checker/hls/seg0.m4s",
+          "count": 19,
+          "sha256": "63db73d1383fbed3630dcc8ae56d643c0455f065f3247a1d74cc0203ea46645e"
+         },
+         {
+          "file": "hf-checker/hls/seg1.m4s",
+          "count": 19,
+          "sha256": "bc961d724f49d52cd0e8b0fea00cbb0d61477ac570ef8a7603e20ab6d7b3948d"
+         }
+        ],
+        "localResponseSha": "044f0fa77e943d208c6c94600467080790632b2b5f6602778acafeb0a6366ac7",
+        "targetCoverScaleOffset": {
+         "scaleX": 1.0,
+         "scaleY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "localCoverScaleOffset": [
+         {
+          "clip": 0,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 1,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 2,
+          "law": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "readback": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         }
+        ],
+        "renderedEdgeVerification": null,
+        "decodedFrameProof": {
+         "target": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "mean",
+            "expected": [
+             127,
+             127,
+             127
+            ],
+            "got": [
+             128,
+             128,
+             128
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           }
+          ]
+         },
+         "local": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "mean",
+            "expected": [
+             127,
+             127,
+             127
+            ],
+            "got": [
+             128,
+             128,
+             128
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           }
+          ]
+         },
+         "fullFrameHashEqual": true,
+         "targetHash": "5e451f45",
+         "localHash": "5e451f45"
+        },
+        "checks": {
+         "targetAllVideosOurRendition": true,
+         "targetFrozen": true,
+         "localFrozen": true,
+         "targetLandmarks": true,
+         "localLandmarks": true,
+         "decodedFrameHashesEqual": true,
+         "localFitLawMatchesReadback": true,
+         "localSourceDimsAreAsset": true,
+         "renderedEdge": true
+        },
+        "pass": true
+       },
+       {
+        "asset": "dark-highlight",
+        "viewport": "1440x900",
+        "mobileEmulation": false,
+        "sha256": "e20d77c79ef2c40177eb1b18a353a6f2f882878afa5a45fc0f6007f54c3dd4f0",
+        "elementaryStreamSha256": "e842389120331d37ecb04eb190609e6402ccd1ca77b0cb25b16e5027dbf5055e",
+        "elementaryStreamIdenticalMp4VsHls": true,
+        "dimensions": "1200x900",
+        "durationS": 8,
+        "frozenMediaTime": 4,
+        "targetRequestUrlIntercepted": [
+         "https://stream.mux.com/Ohb3WcOspOgsZVc2Cwg9kZHe3wXWhUk00tmU58517dAg.m3u8",
+         "https://stream.mux.com/K1vWSoscB4tOmAKwKXLo7g1dNtfWRsFiNYS02tcEvUsc.m3u8"
+        ],
+        "targetRequestsIntercepted": 76,
+        "targetResponseSha": [
+         {
+          "file": "dark-highlight/media.m3u8 (served form)",
+          "count": 19,
+          "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+         },
+         {
+          "file": "dark-highlight/hls/init.mp4",
+          "count": 19,
+          "sha256": "860c71abcb25bd586d638f2911b219a7489983b199a0200e53e7e478b75b86df"
+         },
+         {
+          "file": "dark-highlight/hls/seg0.m4s",
+          "count": 19,
+          "sha256": "4400ff82654b3a46fa8e7d6ccf49a31922e1eb91fcdcd597b879fdec33f97477"
+         },
+         {
+          "file": "dark-highlight/hls/seg1.m4s",
+          "count": 19,
+          "sha256": "da346d9b65c738043c7c1609a1fd7f82b8be5f1ba5f9393ab17a72222068cbd3"
+         }
+        ],
+        "localResponseSha": "e20d77c79ef2c40177eb1b18a353a6f2f882878afa5a45fc0f6007f54c3dd4f0",
+        "targetCoverScaleOffset": {
+         "scaleX": 1.0,
+         "scaleY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "localCoverScaleOffset": [
+         {
+          "clip": 0,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 1,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 2,
+          "law": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "readback": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         }
+        ],
+        "renderedEdgeVerification": null,
+        "decodedFrameProof": {
+         "target": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "dark",
+            "expected": [
+             43,
+             43,
+             53
+            ],
+            "got": [
+             41,
+             40,
+             49
+            ],
+            "maxChannelDelta": 4,
+            "pass": true
+           },
+           {
+            "landmark": "highlight",
+            "expected": [
+             255,
+             255,
+             255
+            ],
+            "got": [
+             255,
+             255,
+             255
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           }
+          ]
+         },
+         "local": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "dark",
+            "expected": [
+             43,
+             43,
+             53
+            ],
+            "got": [
+             41,
+             40,
+             49
+            ],
+            "maxChannelDelta": 4,
+            "pass": true
+           },
+           {
+            "landmark": "highlight",
+            "expected": [
+             255,
+             255,
+             255
+            ],
+            "got": [
+             255,
+             255,
+             255
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           }
+          ]
+         },
+         "fullFrameHashEqual": true,
+         "targetHash": "bb70d897",
+         "localHash": "bb70d897"
+        },
+        "checks": {
+         "targetAllVideosOurRendition": true,
+         "targetFrozen": true,
+         "localFrozen": true,
+         "targetLandmarks": true,
+         "localLandmarks": true,
+         "decodedFrameHashesEqual": true,
+         "localFitLawMatchesReadback": true,
+         "localSourceDimsAreAsset": true,
+         "renderedEdge": true
+        },
+        "pass": true
+       },
+       {
+        "asset": "bright-lowsat",
+        "viewport": "1440x900",
+        "mobileEmulation": false,
+        "sha256": "4076ffa0f4fd7649371ccf4ceb6a05f5f89471da1ad72bb2e723f7ba3cdc74b2",
+        "elementaryStreamSha256": "b91768d5ee101c28a2984f47075462f8cc0196c44947a6d20289e935dd2c76fa",
+        "elementaryStreamIdenticalMp4VsHls": true,
+        "dimensions": "1200x900",
+        "durationS": 8,
+        "frozenMediaTime": 4,
+        "targetRequestUrlIntercepted": [
+         "https://stream.mux.com/W2E02Ix66PEIAJcojVS7l1Qx01uWGHR00PAY2BlKpyYSEc.m3u8",
+         "https://stream.mux.com/SqmDcr700VRNWzZvew8jKGLKNayH472UU7kl02gAq6148.m3u8"
+        ],
+        "targetRequestsIntercepted": 76,
+        "targetResponseSha": [
+         {
+          "file": "bright-lowsat/media.m3u8 (served form)",
+          "count": 19,
+          "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+         },
+         {
+          "file": "bright-lowsat/hls/init.mp4",
+          "count": 19,
+          "sha256": "347886d079fa3cd203f43a7bfcf4630dbff433fbe7ee5edc73dd351d8e54241e"
+         },
+         {
+          "file": "bright-lowsat/hls/seg0.m4s",
+          "count": 19,
+          "sha256": "81a9bb25a392446ad6291e4a6d102fec16e0ef902dc6c3b01a5bcfde8c628056"
+         },
+         {
+          "file": "bright-lowsat/hls/seg1.m4s",
+          "count": 19,
+          "sha256": "35dde1de31be623391e65e174ef53a7583a15df1af79c315b11c1d4f2ec9e590"
+         }
+        ],
+        "localResponseSha": "4076ffa0f4fd7649371ccf4ceb6a05f5f89471da1ad72bb2e723f7ba3cdc74b2",
+        "targetCoverScaleOffset": {
+         "scaleX": 1.0,
+         "scaleY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "localCoverScaleOffset": [
+         {
+          "clip": 0,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 1,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 2,
+          "law": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "readback": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         }
+        ],
+        "renderedEdgeVerification": null,
+        "decodedFrameProof": {
+         "target": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "mid",
+            "expected": [
+             207,
+             189,
+             181
+            ],
+            "got": [
+             206,
+             188,
+             180
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           }
+          ]
+         },
+         "local": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "mid",
+            "expected": [
+             207,
+             189,
+             181
+            ],
+            "got": [
+             206,
+             188,
+             180
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           }
+          ]
+         },
+         "fullFrameHashEqual": true,
+         "targetHash": "436053bd",
+         "localHash": "436053bd"
+        },
+        "checks": {
+         "targetAllVideosOurRendition": true,
+         "targetFrozen": true,
+         "localFrozen": true,
+         "targetLandmarks": true,
+         "localLandmarks": true,
+         "decodedFrameHashesEqual": true,
+         "localFitLawMatchesReadback": true,
+         "localSourceDimsAreAsset": true,
+         "renderedEdge": true
+        },
+        "pass": true
+       },
+       {
+        "asset": "warm-skin",
+        "viewport": "1440x900",
+        "mobileEmulation": false,
+        "sha256": "c5fd4c7d52b12a450bfd369b38166ee523e58efca0dbb9ca4361d0a178229365",
+        "elementaryStreamSha256": "50d0821052cda94e136a6dd1dc1b3f0f85eeea57958fa987fb08de1db93d3b52",
+        "elementaryStreamIdenticalMp4VsHls": true,
+        "dimensions": "1200x900",
+        "durationS": 8,
+        "frozenMediaTime": 4,
+        "targetRequestUrlIntercepted": [
+         "https://stream.mux.com/Y2wyYBsXzu4HwxmCuDU00wcjTKYKoCLfOK73ABab3LpY.m3u8",
+         "https://stream.mux.com/W2E02Ix66PEIAJcojVS7l1Qx01uWGHR00PAY2BlKpyYSEc.m3u8"
+        ],
+        "targetRequestsIntercepted": 76,
+        "targetResponseSha": [
+         {
+          "file": "warm-skin/media.m3u8 (served form)",
+          "count": 19,
+          "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+         },
+         {
+          "file": "warm-skin/hls/init.mp4",
+          "count": 19,
+          "sha256": "be059a880b2667c46b660fde492dcde684e2ce7b8cf2716f5c76c51ff45336d2"
+         },
+         {
+          "file": "warm-skin/hls/seg0.m4s",
+          "count": 19,
+          "sha256": "24e4b1999da5f83e612d00cae0d824ebf26657a142fdb72b8fc4eaa8451585f6"
+         },
+         {
+          "file": "warm-skin/hls/seg1.m4s",
+          "count": 19,
+          "sha256": "d109733d142121d4eaeccfe73a5e3152fcdb9363535059dfbaa892c854774be4"
+         }
+        ],
+        "localResponseSha": "c5fd4c7d52b12a450bfd369b38166ee523e58efca0dbb9ca4361d0a178229365",
+        "targetCoverScaleOffset": {
+         "scaleX": 1.0,
+         "scaleY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "localCoverScaleOffset": [
+         {
+          "clip": 0,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 1,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 2,
+          "law": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "readback": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         }
+        ],
+        "renderedEdgeVerification": null,
+        "decodedFrameProof": {
+         "target": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "mid",
+            "expected": [
+             210,
+             160,
+             128
+            ],
+            "got": [
+             210,
+             160,
+             127
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           }
+          ]
+         },
+         "local": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "mid",
+            "expected": [
+             210,
+             160,
+             128
+            ],
+            "got": [
+             210,
+             160,
+             127
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           }
+          ]
+         },
+         "fullFrameHashEqual": true,
+         "targetHash": "17210aa5",
+         "localHash": "17210aa5"
+        },
+        "checks": {
+         "targetAllVideosOurRendition": true,
+         "targetFrozen": true,
+         "localFrozen": true,
+         "targetLandmarks": true,
+         "localLandmarks": true,
+         "decodedFrameHashesEqual": true,
+         "localFitLawMatchesReadback": true,
+         "localSourceDimsAreAsset": true,
+         "renderedEdge": true
+        },
+        "pass": true
+       },
+       {
+        "asset": "cool-blue",
+        "viewport": "1440x900",
+        "mobileEmulation": false,
+        "sha256": "6b3fdab8b663d492cf92543c6f7900d9adfda5aa6236be200c2d21153c805b9f",
+        "elementaryStreamSha256": "4f4b46248847eac9fd49d1d56fd5877948ac805d15f7b84a9cb3ddba491fdd62",
+        "elementaryStreamIdenticalMp4VsHls": true,
+        "dimensions": "1200x900",
+        "durationS": 8,
+        "frozenMediaTime": 4,
+        "targetRequestUrlIntercepted": [
+         "https://stream.mux.com/SqmDcr700VRNWzZvew8jKGLKNayH472UU7kl02gAq6148.m3u8",
+         "https://stream.mux.com/3008Q00vG00WGS5IhJHhRkubiv00N7nbe00m9IDXrVD6Z01wI.m3u8"
+        ],
+        "targetRequestsIntercepted": 76,
+        "targetResponseSha": [
+         {
+          "file": "cool-blue/media.m3u8 (served form)",
+          "count": 19,
+          "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+         },
+         {
+          "file": "cool-blue/hls/init.mp4",
+          "count": 19,
+          "sha256": "0547e963cba12cb933c16a24adb2f6b6623d001070959c2ad8718f3955543ce8"
+         },
+         {
+          "file": "cool-blue/hls/seg0.m4s",
+          "count": 19,
+          "sha256": "0dea8f1a7a9596135d5eafeb25d46ab179fe4d910bb4cebffd0709786076cdd2"
+         },
+         {
+          "file": "cool-blue/hls/seg1.m4s",
+          "count": 19,
+          "sha256": "772955b4e76883f498b016bfc7381765c7211c846230c0594edfc90bb0a14eb4"
+         }
+        ],
+        "localResponseSha": "6b3fdab8b663d492cf92543c6f7900d9adfda5aa6236be200c2d21153c805b9f",
+        "targetCoverScaleOffset": {
+         "scaleX": 1.0,
+         "scaleY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "localCoverScaleOffset": [
+         {
+          "clip": 0,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 1,
+          "law": {
+           "repeatX": 1.0,
+           "repeatY": 1.0,
+           "offsetX": 0.0,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 1,
+           "repeatY": 1,
+           "offsetX": 0,
+           "offsetY": 0
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         },
+         {
+          "clip": 2,
+          "law": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "readback": {
+           "repeatX": 0.943396,
+           "repeatY": 0.943396,
+           "offsetX": 0.028302,
+           "offsetY": 0.030566
+          },
+          "sourceDims": "1200x900",
+          "match": true
+         }
+        ],
+        "renderedEdgeVerification": null,
+        "decodedFrameProof": {
+         "target": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "mid",
+            "expected": [
+             50,
+             90,
+             160
+            ],
+            "got": [
+             50,
+             89,
+             160
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           }
+          ]
+         },
+         "local": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "mid",
+            "expected": [
+             50,
+             90,
+             160
+            ],
+            "got": [
+             50,
+             89,
+             160
+            ],
+            "maxChannelDelta": 1,
+            "pass": true
+           }
+          ]
+         },
+         "fullFrameHashEqual": true,
+         "targetHash": "1adb345",
+         "localHash": "1adb345"
+        },
+        "checks": {
+         "targetAllVideosOurRendition": true,
+         "targetFrozen": true,
+         "localFrozen": true,
+         "targetLandmarks": true,
+         "localLandmarks": true,
+         "decodedFrameHashesEqual": true,
+         "localFitLawMatchesReadback": true,
+         "localSourceDimsAreAsset": true,
+         "renderedEdge": true
+        },
+        "pass": true
+       },
+       {
+        "asset": "cover-control",
+        "viewport": "1440x900",
+        "mobileEmulation": false,
+        "sha256": "234f113c77b90f54fe5c2ffaf32489fd32049670358a89463eb9f4b898a7eca0",
+        "elementaryStreamSha256": "89da6d6b348612630f21c7b826d0aeaabe8a31a155dfeadbd6debeabe0476f1f",
+        "elementaryStreamIdenticalMp4VsHls": true,
+        "dimensions": "1600x900",
+        "durationS": 8,
+        "frozenMediaTime": 4,
+        "targetRequestUrlIntercepted": [
+         "https://stream.mux.com/K1vWSoscB4tOmAKwKXLo7g1dNtfWRsFiNYS02tcEvUsc.m3u8",
+         "https://stream.mux.com/b6NK9RZb59brkSX7trHXlFGqS2YCi4XTjAATtFuihbM.m3u8"
+        ],
+        "targetRequestsIntercepted": 76,
+        "targetResponseSha": [
+         {
+          "file": "cover-control/media.m3u8 (served form)",
+          "count": 19,
+          "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+         },
+         {
+          "file": "cover-control/hls/init.mp4",
+          "count": 19,
+          "sha256": "540c9b53e89e4cac8f0f4b2c69d0bb0f9101a85c7df46249ac42412f72608d45"
+         },
+         {
+          "file": "cover-control/hls/seg0.m4s",
+          "count": 19,
+          "sha256": "097148fe75979607a40341ab5f55f1fa9991d7f9ef9f19cb7e9fc60ee73e0b9b"
+         },
+         {
+          "file": "cover-control/hls/seg1.m4s",
+          "count": 19,
+          "sha256": "f34e5c54f553c7cc6d3254cb47fa1a3d28a98d48bb15b29ad26af18d01866f0f"
+         }
+        ],
+        "localResponseSha": "234f113c77b90f54fe5c2ffaf32489fd32049670358a89463eb9f4b898a7eca0",
+        "targetCoverScaleOffset": {
+         "scaleX": 0.75,
+         "scaleY": 1.0,
+         "offsetX": 0.125,
+         "offsetY": 0.0
+        },
+        "localCoverScaleOffset": [
+         {
+          "clip": 0,
+          "law": {
+           "repeatX": 0.75,
+           "repeatY": 1.0,
+           "offsetX": 0.125,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 0.75,
+           "repeatY": 1,
+           "offsetX": 0.125,
+           "offsetY": 0
+          },
+          "sourceDims": "1600x900",
+          "match": true
+         },
+         {
+          "clip": 1,
+          "law": {
+           "repeatX": 0.75,
+           "repeatY": 1.0,
+           "offsetX": 0.125,
+           "offsetY": 0.0
+          },
+          "readback": {
+           "repeatX": 0.75,
+           "repeatY": 1,
+           "offsetX": 0.125,
+           "offsetY": 0
+          },
+          "sourceDims": "1600x900",
+          "match": true
+         },
+         {
+          "clip": 2,
+          "law": {
+           "repeatX": 0.707547,
+           "repeatY": 0.943396,
+           "offsetX": 0.146226,
+           "offsetY": 0.030566
+          },
+          "readback": {
+           "repeatX": 0.707547,
+           "repeatY": 0.943396,
+           "offsetX": 0.146226,
+           "offsetY": 0.030566
+          },
+          "sourceDims": "1600x900",
+          "match": true
+         }
+        ],
+        "renderedEdgeVerification": {
+         "sourceEdgeNx": 0.375,
+         "target": {
+          "card": 55,
+          "expectedNx": 0.3333,
+          "measuredNx": 0.3388,
+          "pass": true
+         },
+         "local": {
+          "card": 55,
+          "clip": 0,
+          "expectedNx": 0.3333,
+          "measuredNx": 0.337,
+          "pass": true
+         },
+         "toleranceNx": 0.045,
+         "note": "measured through the glass at card centre band, where the dome refraction is near zero on both pages"
+        },
+        "decodedFrameProof": {
+         "target": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "left",
+            "expected": [
+             40,
+             40,
+             40
+            ],
+            "got": [
+             40,
+             40,
+             40
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           },
+           {
+            "landmark": "right",
+            "expected": [
+             215,
+             215,
+             215
+            ],
+            "got": [
+             215,
+             215,
+             215
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           }
+          ]
+         },
+         "local": {
+          "pass": true,
+          "tolerance": 12,
+          "rows": [
+           {
+            "landmark": "left",
+            "expected": [
+             40,
+             40,
+             40
+            ],
+            "got": [
+             40,
+             40,
+             40
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           },
+           {
+            "landmark": "right",
+            "expected": [
+             215,
+             215,
+             215
+            ],
+            "got": [
+             215,
+             215,
+             215
+            ],
+            "maxChannelDelta": 0,
+            "pass": true
+           }
+          ]
+         },
+         "fullFrameHashEqual": true,
+         "targetHash": "2eb81c45",
+         "localHash": "2eb81c45"
+        },
+        "checks": {
+         "targetAllVideosOurRendition": true,
+         "targetFrozen": true,
+         "localFrozen": true,
+         "targetLandmarks": true,
+         "localLandmarks": true,
+         "decodedFrameHashesEqual": true,
+         "localFitLawMatchesReadback": true,
+         "localSourceDimsAreAsset": true,
+         "renderedEdge": true
+        },
+        "pass": true
+       }
+      ],
+      "note": null
+     }
+    },
+    {
+     "name": "O2 Media-only Controls",
+     "pass": true,
+     "detail": {
+      "pairs": [
+       {
+        "asset": "bw-split",
+        "vp": "1440x900",
+        "differingPixels": 0,
+        "maxChannelDelta": 0
+       },
+       {
+        "asset": "rgb-bars",
+        "vp": "1440x900",
+        "differingPixels": 0,
+        "maxChannelDelta": 0
+       },
+       {
+        "asset": "bw-split",
+        "vp": "390x844",
+        "differingPixels": 0,
+        "maxChannelDelta": 0
+       },
+       {
+        "asset": "bw-split",
+        "vp": "844x390",
+        "differingPixels": 0,
+        "maxChannelDelta": 0
+       }
+      ]
+     }
+    },
+    {
+     "name": "A+B Dispersion Selection",
+     "pass": true,
+     "detail": {
+      "winner": "A+B",
+      "dispersionLawsObservedThisRound": [
+       "o1-spectral"
+      ],
+      "note": "the O2 selection is frozen product; O3 re-asserts it rather than re-deciding it."
+     }
+    },
+    {
+     "name": "TypeScript",
+     "pass": true,
+     "detail": {}
+    },
+    {
+     "name": "Vite Build",
+     "pass": true,
+     "detail": {}
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "item": "full frame no longer reads as a wide white plastic frame",
+   "pass": "stated plainly in the evidence, with the frames named; 'the numbers moved' is not a pass",
+   "threshold": null,
+   "result": "FAIL",
+   "judgement": "FAIL -- stated plainly. The candidate is a clear improvement on the O2 control: the broad milky ramp the control sweeps inward across the black half is largely gone, the black media reads black much closer to the edge, and the top band is visibly thinner. But against the Target's same-media frame it does not clear the registered standard. The Target's edge is a razor-thin bright lip -- a crisp specular line with black immediately inside it (see 'Field Notes' and 'Glass House' in the Target frame). The candidate's left edge is still a soft white band of order fifteen to twenty pixels (see 'Night Index' and 'Glass House' in the candidate frame), and the outer rollover still carries a fat rounded shoulder, so the corners still read as thick plastic. Judged without zooming, on the three full frames named above.",
+   "framesJudged": [
+    "artifacts/optics-o3/measure/target-rest-bw-split-1440x900.png",
+    "artifacts/optics-o3/measure/control-full-bw-split-1440x900.png",
+    "artifacts/optics-o3/measure/candidate-full-bw-split-1440x900.png"
+   ],
+   "judgedAt": "100%, full frame, no ROI crop",
+   "registeredFailureText": "the candidate full frame still reads as a wide white plastic frame around the card, or its corners still read as thick plastic, when compared with the Target's same-media frame without zooming",
+   "measuredContext": {
+    "targetBandPx": {
+     "cardsAnalysed": 1,
+     "edgeChromaMean": 2.88,
+     "edgeChromaP95": 17.0,
+     "fringeRB": 2.88,
+     "whiteReflectionRatio": 0.5035,
+     "edgeLuminanceMean": 123.22,
+     "interiorSaturationMean": 0.0,
+     "interiorLuminanceMean": 128.26,
+     "gutterInkRatio": 0.0,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 86.2,
+     "brightSideEdgeLuma": 196.6,
+     "darkOverBrightLumaRatio": 0.4383,
+     "darkSideEdgeChroma": 8.04,
+     "brightSideEdgeChroma": 1.19,
+     "sideChromaGap": 6.85,
+     "interior": {
+      "interiorSaturationMean": 0.0,
+      "interiorLuminanceMean": 128.26,
+      "interiorChromaMean": 0.0
+     },
+     "reflectionBand": {
+      "meanPx": 2.0,
+      "meanNormToCardWidth": 0.0062,
+      "perCard": [
+       2
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "file": "target-rest-bw-split-844x390.png"
+    },
+    "controlBandPx": 15.3,
+    "candidateBandPx": 8.7,
+    "frozenBaseBandPx": 9.7
+   },
+   "note": "a judged item; this script records the operator's reading from qa-v5/optics-o3/judgement-20.json and does not decide it."
+  }
+ ],
+ "measurands": {
+  "1440x900": {
+   "target": {
+    "bw-split": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 3.58,
+     "edgeChromaP95": 21.0,
+     "fringeRB": 3.57,
+     "whiteReflectionRatio": 0.4188,
+     "edgeLuminanceMean": 109.15,
+     "interiorSaturationMean": 0.0074,
+     "interiorLuminanceMean": 120.24,
+     "gutterInkRatio": 0.43341631373056155,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 48.1,
+     "brightSideEdgeLuma": 193.7,
+     "darkOverBrightLumaRatio": 0.2484,
+     "darkSideEdgeChroma": 6.58,
+     "brightSideEdgeChroma": 1.41,
+     "sideChromaGap": 5.17,
+     "interior": {
+      "interiorSaturationMean": 0.0074,
+      "interiorLuminanceMean": 120.24,
+      "interiorChromaMean": 0.55
+     },
+     "reflectionBand": {
+      "meanPx": 3.3,
+      "meanNormToCardWidth": 0.0062,
+      "perCard": [
+       3,
+       4,
+       3
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "target-rest-bw-split-1440x900.png"
+    },
+    "grayscale-step": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 3.33,
+     "edgeChromaP95": 20.0,
+     "fringeRB": 3.32,
+     "whiteReflectionRatio": 0.4144,
+     "edgeLuminanceMean": 118.68,
+     "interiorSaturationMean": 0.0025,
+     "interiorLuminanceMean": 136.34,
+     "gutterInkRatio": 0.44770214348065046,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 83.0,
+     "brightSideEdgeLuma": 171.8,
+     "darkOverBrightLumaRatio": 0.4831,
+     "darkSideEdgeChroma": 6.08,
+     "brightSideEdgeChroma": 1.47,
+     "sideChromaGap": 4.6,
+     "interior": {
+      "interiorSaturationMean": 0.0025,
+      "interiorLuminanceMean": 136.34,
+      "interiorChromaMean": 0.4
+     },
+     "reflectionBand": {
+      "meanPx": 13.3,
+      "meanNormToCardWidth": 0.0248,
+      "perCard": [
+       6,
+       27,
+       7
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "target-rest-grayscale-step-1440x900.png"
+    },
+    "rgb-bars": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 96.25,
+     "edgeChromaP95": 227.0,
+     "fringeRB": 80.8,
+     "whiteReflectionRatio": 0.3081,
+     "edgeLuminanceMean": 114.31,
+     "interiorSaturationMean": 0.7808,
+     "interiorLuminanceMean": 108.28,
+     "gutterInkRatio": 0.43557838414535577,
+     "fringeWidthPxMean": 9.43,
+     "darkSideEdgeLuma": 80.1,
+     "brightSideEdgeLuma": 183.6,
+     "darkOverBrightLumaRatio": 0.4362,
+     "darkSideEdgeChroma": 146.17,
+     "brightSideEdgeChroma": 1.37,
+     "sideChromaGap": 144.79,
+     "interior": {
+      "interiorSaturationMean": 0.7808,
+      "interiorLuminanceMean": 108.28,
+      "interiorChromaMean": 166.7
+     },
+     "reflectionBand": {
+      "meanPx": 5.7,
+      "meanNormToCardWidth": 0.0105,
+      "perCard": [
+       5,
+       6,
+       6
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "target-rest-rgb-bars-1440x900.png"
+    },
+    "hf-checker": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 69.36,
+     "edgeChromaP95": 194.0,
+     "fringeRB": 55.53,
+     "whiteReflectionRatio": 0.2102,
+     "edgeLuminanceMean": 139.61,
+     "interiorSaturationMean": 0.4087,
+     "interiorLuminanceMean": 147.99,
+     "gutterInkRatio": 0.6509448449775306,
+     "fringeWidthPxMean": 14.93,
+     "darkSideEdgeLuma": 157.3,
+     "brightSideEdgeLuma": 150.4,
+     "darkOverBrightLumaRatio": 1.0463,
+     "darkSideEdgeChroma": 65.83,
+     "brightSideEdgeChroma": 79.78,
+     "sideChromaGap": 13.96,
+     "interior": {
+      "interiorSaturationMean": 0.4087,
+      "interiorLuminanceMean": 147.99,
+      "interiorChromaMean": 77.26
+     },
+     "reflectionBand": {
+      "meanPx": 209.3,
+      "meanNormToCardWidth": 0.3884,
+      "perCard": [
+       202,
+       212,
+       214
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "target-rest-hf-checker-1440x900.png"
+    },
+    "dark-highlight": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 9.72,
+     "edgeChromaP95": 21.0,
+     "fringeRB": 9.43,
+     "whiteReflectionRatio": 0.0291,
+     "edgeLuminanceMean": 35.94,
+     "interiorSaturationMean": 0.3633,
+     "interiorLuminanceMean": 31.2,
+     "gutterInkRatio": 0.06363357149785005,
+     "fringeWidthPxMean": 0.32,
+     "darkSideEdgeLuma": 58.1,
+     "brightSideEdgeLuma": 28.6,
+     "darkOverBrightLumaRatio": 2.032,
+     "darkSideEdgeChroma": 11.2,
+     "brightSideEdgeChroma": 8.79,
+     "sideChromaGap": 2.41,
+     "interior": {
+      "interiorSaturationMean": 0.3633,
+      "interiorLuminanceMean": 31.2,
+      "interiorChromaMean": 8.68
+     },
+     "reflectionBand": {
+      "meanPx": 4.3,
+      "meanNormToCardWidth": 0.008,
+      "perCard": [
+       4,
+       4,
+       5
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "target-rest-dark-highlight-1440x900.png"
+    },
+    "bright-lowsat": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 8.3,
+     "edgeChromaP95": 20.0,
+     "fringeRB": 8.15,
+     "whiteReflectionRatio": 0.7647,
+     "edgeLuminanceMean": 171.7,
+     "interiorSaturationMean": 0.0469,
+     "interiorLuminanceMean": 203.6,
+     "gutterInkRatio": 0.7816874656493485,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 181.7,
+     "brightSideEdgeLuma": 174.7,
+     "darkOverBrightLumaRatio": 1.04,
+     "darkSideEdgeChroma": 8.2,
+     "brightSideEdgeChroma": 7.04,
+     "sideChromaGap": 1.16,
+     "interior": {
+      "interiorSaturationMean": 0.0469,
+      "interiorLuminanceMean": 203.6,
+      "interiorChromaMean": 9.77
+     },
+     "reflectionBand": {
+      "meanPx": 209.7,
+      "meanNormToCardWidth": 0.389,
+      "perCard": [
+       202,
+       213,
+       214
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "target-rest-bright-lowsat-1440x900.png"
+    },
+    "warm-skin": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 45.08,
+     "edgeChromaP95": 62.0,
+     "fringeRB": 45.06,
+     "whiteReflectionRatio": 0.0564,
+     "edgeLuminanceMean": 155.65,
+     "interiorSaturationMean": 0.2586,
+     "interiorLuminanceMean": 186.84,
+     "gutterInkRatio": 0.781473279234425,
+     "fringeWidthPxMean": 16.61,
+     "darkSideEdgeLuma": 162.7,
+     "brightSideEdgeLuma": 158.1,
+     "darkOverBrightLumaRatio": 1.029,
+     "darkSideEdgeChroma": 42.4,
+     "brightSideEdgeChroma": 49.18,
+     "sideChromaGap": 6.78,
+     "interior": {
+      "interiorSaturationMean": 0.2586,
+      "interiorLuminanceMean": 186.84,
+      "interiorChromaMean": 54.07
+     },
+     "reflectionBand": {
+      "meanPx": 209.3,
+      "meanNormToCardWidth": 0.3884,
+      "perCard": [
+       202,
+       212,
+       214
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "target-rest-warm-skin-1440x900.png"
+    },
+    "cool-blue": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 100.12,
+     "edgeChromaP95": 140.0,
+     "fringeRB": 100.12,
+     "whiteReflectionRatio": 0.0306,
+     "edgeLuminanceMean": 86.46,
+     "interiorSaturationMean": 0.7457,
+     "interiorLuminanceMean": 97.19,
+     "gutterInkRatio": 0.6864957486017265,
+     "fringeWidthPxMean": 20.68,
+     "darkSideEdgeLuma": 101.6,
+     "brightSideEdgeLuma": 82.9,
+     "darkOverBrightLumaRatio": 1.2251,
+     "darkSideEdgeChroma": 89.86,
+     "brightSideEdgeChroma": 106.69,
+     "sideChromaGap": 16.84,
+     "interior": {
+      "interiorSaturationMean": 0.7457,
+      "interiorLuminanceMean": 97.19,
+      "interiorChromaMean": 129.15
+     },
+     "reflectionBand": {
+      "meanPx": 209.0,
+      "meanNormToCardWidth": 0.3877,
+      "perCard": [
+       201,
+       212,
+       214
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "target-rest-cool-blue-1440x900.png"
+    }
+   },
+   "control": {
+    "bw-split": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 3.68,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 3.67,
+     "whiteReflectionRatio": 0.4364,
+     "edgeLuminanceMean": 121.31,
+     "interiorSaturationMean": 0.0035,
+     "interiorLuminanceMean": 121.4,
+     "gutterInkRatio": 0.4775750864828166,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 95.1,
+     "brightSideEdgeLuma": 190.0,
+     "darkOverBrightLumaRatio": 0.5006,
+     "darkSideEdgeChroma": 5.2,
+     "brightSideEdgeChroma": 3.22,
+     "sideChromaGap": 1.98,
+     "interior": {
+      "interiorSaturationMean": 0.0035,
+      "interiorLuminanceMean": 121.4,
+      "interiorChromaMean": 0.02
+     },
+     "reflectionBand": {
+      "meanPx": 15.3,
+      "meanNormToCardWidth": 0.0285,
+      "perCard": [
+       12,
+       20,
+       14
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "control-full-bw-split-1440x900.png"
+    },
+    "grayscale-step": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 3.56,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 3.55,
+     "whiteReflectionRatio": 0.4341,
+     "edgeLuminanceMean": 129.97,
+     "interiorSaturationMean": 0.0021,
+     "interiorLuminanceMean": 139.04,
+     "gutterInkRatio": 0.5211155475089716,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 117.8,
+     "brightSideEdgeLuma": 173.0,
+     "darkOverBrightLumaRatio": 0.6809,
+     "darkSideEdgeChroma": 4.8,
+     "brightSideEdgeChroma": 3.44,
+     "sideChromaGap": 1.36,
+     "interior": {
+      "interiorSaturationMean": 0.0021,
+      "interiorLuminanceMean": 139.04,
+      "interiorChromaMean": 0.14
+     },
+     "reflectionBand": {
+      "meanPx": 146.7,
+      "meanNormToCardWidth": 0.271,
+      "perCard": [
+       11,
+       212,
+       217
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "control-full-grayscale-step-1440x900.png"
+    },
+    "rgb-bars": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 90.7,
+     "edgeChromaP95": 230.0,
+     "fringeRB": 76.16,
+     "whiteReflectionRatio": 0.3101,
+     "edgeLuminanceMean": 124.79,
+     "interiorSaturationMean": 0.7756,
+     "interiorLuminanceMean": 110.5,
+     "gutterInkRatio": 0.4871286088390288,
+     "fringeWidthPxMean": 9.11,
+     "darkSideEdgeLuma": 114.9,
+     "brightSideEdgeLuma": 182.1,
+     "darkOverBrightLumaRatio": 0.6308,
+     "darkSideEdgeChroma": 105.42,
+     "brightSideEdgeChroma": 4.61,
+     "sideChromaGap": 100.81,
+     "interior": {
+      "interiorSaturationMean": 0.7756,
+      "interiorLuminanceMean": 110.5,
+      "interiorChromaMean": 167.54
+     },
+     "reflectionBand": {
+      "meanPx": 20.0,
+      "meanNormToCardWidth": 0.0371,
+      "perCard": [
+       11,
+       27,
+       22
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "control-full-rgb-bars-1440x900.png"
+    },
+    "hf-checker": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 4.25,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 4.23,
+     "whiteReflectionRatio": 0.5241,
+     "edgeLuminanceMean": 146.7,
+     "interiorSaturationMean": 0.0104,
+     "interiorLuminanceMean": 142.96,
+     "gutterInkRatio": 0.6124559503410818,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 165.8,
+     "brightSideEdgeLuma": 154.6,
+     "darkOverBrightLumaRatio": 1.0726,
+     "darkSideEdgeChroma": 5.37,
+     "brightSideEdgeChroma": 5.09,
+     "sideChromaGap": 0.28,
+     "interior": {
+      "interiorSaturationMean": 0.0104,
+      "interiorLuminanceMean": 142.96,
+      "interiorChromaMean": 0.14
+     },
+     "reflectionBand": {
+      "meanPx": 146.7,
+      "meanNormToCardWidth": 0.271,
+      "perCard": [
+       11,
+       212,
+       217
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "control-full-hf-checker-1440x900.png"
+    },
+    "dark-highlight": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 9.66,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 9.4,
+     "whiteReflectionRatio": 0.0378,
+     "edgeLuminanceMean": 58.39,
+     "interiorSaturationMean": 0.3565,
+     "interiorLuminanceMean": 33.49,
+     "gutterInkRatio": 0.1882254049335618,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 102.0,
+     "brightSideEdgeLuma": 70.4,
+     "darkOverBrightLumaRatio": 1.4488,
+     "darkSideEdgeChroma": 8.25,
+     "brightSideEdgeChroma": 9.09,
+     "sideChromaGap": 0.84,
+     "interior": {
+      "interiorSaturationMean": 0.3565,
+      "interiorLuminanceMean": 33.49,
+      "interiorChromaMean": 8.64
+     },
+     "reflectionBand": {
+      "meanPx": 16.7,
+      "meanNormToCardWidth": 0.0309,
+      "perCard": [
+       11,
+       22,
+       17
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "control-full-dark-highlight-1440x900.png"
+    },
+    "bright-lowsat": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 8.28,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 7.99,
+     "whiteReflectionRatio": 0.7924,
+     "edgeLuminanceMean": 176.47,
+     "interiorSaturationMean": 0.0445,
+     "interiorLuminanceMean": 206.46,
+     "gutterInkRatio": 0.780131583201319,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 182.5,
+     "brightSideEdgeLuma": 177.8,
+     "darkOverBrightLumaRatio": 1.0263,
+     "darkSideEdgeChroma": 5.63,
+     "brightSideEdgeChroma": 7.12,
+     "sideChromaGap": 1.49,
+     "interior": {
+      "interiorSaturationMean": 0.0445,
+      "interiorLuminanceMean": 206.46,
+      "interiorChromaMean": 9.38
+     },
+     "reflectionBand": {
+      "meanPx": 146.7,
+      "meanNormToCardWidth": 0.271,
+      "perCard": [
+       11,
+       212,
+       217
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "control-full-bright-lowsat-1440x900.png"
+    },
+    "warm-skin": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 42.24,
+     "edgeChromaP95": 59.0,
+     "fringeRB": 42.22,
+     "whiteReflectionRatio": 0.0783,
+     "edgeLuminanceMean": 162.3,
+     "interiorSaturationMean": 0.2482,
+     "interiorLuminanceMean": 190.28,
+     "gutterInkRatio": 0.7796506740810191,
+     "fringeWidthPxMean": 17.75,
+     "darkSideEdgeLuma": 169.9,
+     "brightSideEdgeLuma": 163.2,
+     "darkOverBrightLumaRatio": 1.0414,
+     "darkSideEdgeChroma": 32.29,
+     "brightSideEdgeChroma": 41.8,
+     "sideChromaGap": 9.51,
+     "interior": {
+      "interiorSaturationMean": 0.2482,
+      "interiorLuminanceMean": 190.28,
+      "interiorChromaMean": 52.49
+     },
+     "reflectionBand": {
+      "meanPx": 146.7,
+      "meanNormToCardWidth": 0.271,
+      "perCard": [
+       11,
+       212,
+       217
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "control-full-warm-skin-1440x900.png"
+    },
+    "cool-blue": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 89.65,
+     "edgeChromaP95": 140.0,
+     "fringeRB": 89.65,
+     "whiteReflectionRatio": 0.0392,
+     "edgeLuminanceMean": 102.7,
+     "interiorSaturationMean": 0.73,
+     "interiorLuminanceMean": 101.27,
+     "gutterInkRatio": 0.7583168989040121,
+     "fringeWidthPxMean": 19.54,
+     "darkSideEdgeLuma": 130.2,
+     "brightSideEdgeLuma": 109.1,
+     "darkOverBrightLumaRatio": 1.1933,
+     "darkSideEdgeChroma": 62.6,
+     "brightSideEdgeChroma": 81.85,
+     "sideChromaGap": 19.25,
+     "interior": {
+      "interiorSaturationMean": 0.73,
+      "interiorLuminanceMean": 101.27,
+      "interiorChromaMean": 128.87
+     },
+     "reflectionBand": {
+      "meanPx": 146.7,
+      "meanNormToCardWidth": 0.271,
+      "perCard": [
+       11,
+       212,
+       217
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "control-full-cool-blue-1440x900.png"
+    }
+   },
+   "candidate": {
+    "bw-split": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 4.33,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 4.31,
+     "whiteReflectionRatio": 0.4314,
+     "edgeLuminanceMean": 113.22,
+     "interiorSaturationMean": 0.0052,
+     "interiorLuminanceMean": 121.47,
+     "gutterInkRatio": 0.46240422230125117,
+     "fringeWidthPxMean": 0.21,
+     "darkSideEdgeLuma": 77.6,
+     "brightSideEdgeLuma": 177.0,
+     "darkOverBrightLumaRatio": 0.4388,
+     "darkSideEdgeChroma": 7.58,
+     "brightSideEdgeChroma": 3.53,
+     "sideChromaGap": 4.05,
+     "interior": {
+      "interiorSaturationMean": 0.0052,
+      "interiorLuminanceMean": 121.47,
+      "interiorChromaMean": 0.06
+     },
+     "reflectionBand": {
+      "meanPx": 8.7,
+      "meanNormToCardWidth": 0.0161,
+      "perCard": [
+       5,
+       16,
+       5
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "candidate-full-bw-split-1440x900.png"
+    },
+    "grayscale-step": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 4.16,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 4.14,
+     "whiteReflectionRatio": 0.43,
+     "edgeLuminanceMean": 122.03,
+     "interiorSaturationMean": 0.0019,
+     "interiorLuminanceMean": 139.13,
+     "gutterInkRatio": 0.4994827196016941,
+     "fringeWidthPxMean": 0.11,
+     "darkSideEdgeLuma": 100.7,
+     "brightSideEdgeLuma": 158.7,
+     "darkOverBrightLumaRatio": 0.635,
+     "darkSideEdgeChroma": 6.76,
+     "brightSideEdgeChroma": 3.8,
+     "sideChromaGap": 2.96,
+     "interior": {
+      "interiorSaturationMean": 0.0019,
+      "interiorLuminanceMean": 139.13,
+      "interiorChromaMean": 0.15
+     },
+     "reflectionBand": {
+      "meanPx": 73.7,
+      "meanNormToCardWidth": 0.1379,
+      "perCard": [
+       3,
+       213,
+       5
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "candidate-full-grayscale-step-1440x900.png"
+    },
+    "rgb-bars": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 94.3,
+     "edgeChromaP95": 230.0,
+     "fringeRB": 79.06,
+     "whiteReflectionRatio": 0.3049,
+     "edgeLuminanceMean": 116.05,
+     "interiorSaturationMean": 0.7751,
+     "interiorLuminanceMean": 110.61,
+     "gutterInkRatio": 0.4715576605993987,
+     "fringeWidthPxMean": 9.04,
+     "darkSideEdgeLuma": 96.1,
+     "brightSideEdgeLuma": 168.3,
+     "darkOverBrightLumaRatio": 0.5712,
+     "darkSideEdgeChroma": 112.43,
+     "brightSideEdgeChroma": 5.69,
+     "sideChromaGap": 106.74,
+     "interior": {
+      "interiorSaturationMean": 0.7751,
+      "interiorLuminanceMean": 110.61,
+      "interiorChromaMean": 167.44
+     },
+     "reflectionBand": {
+      "meanPx": 13.0,
+      "meanNormToCardWidth": 0.0243,
+      "perCard": [
+       3,
+       31,
+       5
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "candidate-full-rgb-bars-1440x900.png"
+    },
+    "hf-checker": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 4.61,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 4.59,
+     "whiteReflectionRatio": 0.4999,
+     "edgeLuminanceMean": 139.65,
+     "interiorSaturationMean": 0.0139,
+     "interiorLuminanceMean": 143.07,
+     "gutterInkRatio": 0.6065920920759109,
+     "fringeWidthPxMean": 0.07,
+     "darkSideEdgeLuma": 149.8,
+     "brightSideEdgeLuma": 139.8,
+     "darkOverBrightLumaRatio": 1.0716,
+     "darkSideEdgeChroma": 6.35,
+     "brightSideEdgeChroma": 5.88,
+     "sideChromaGap": 0.47,
+     "interior": {
+      "interiorSaturationMean": 0.0139,
+      "interiorLuminanceMean": 143.07,
+      "interiorChromaMean": 0.18
+     },
+     "reflectionBand": {
+      "meanPx": 73.7,
+      "meanNormToCardWidth": 0.1379,
+      "perCard": [
+       3,
+       213,
+       5
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "candidate-full-hf-checker-1440x900.png"
+    },
+    "dark-highlight": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 10.52,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 10.27,
+     "whiteReflectionRatio": 0.0339,
+     "edgeLuminanceMean": 47.2,
+     "interiorSaturationMean": 0.3543,
+     "interiorLuminanceMean": 33.74,
+     "gutterInkRatio": 0.1605509036241958,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 83.8,
+     "brightSideEdgeLuma": 48.5,
+     "darkOverBrightLumaRatio": 1.728,
+     "darkSideEdgeChroma": 10.13,
+     "brightSideEdgeChroma": 9.99,
+     "sideChromaGap": 0.13,
+     "interior": {
+      "interiorSaturationMean": 0.3543,
+      "interiorLuminanceMean": 33.74,
+      "interiorChromaMean": 8.64
+     },
+     "reflectionBand": {
+      "meanPx": 12.7,
+      "meanNormToCardWidth": 0.0236,
+      "perCard": [
+       3,
+       30,
+       5
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "candidate-full-dark-highlight-1440x900.png"
+    },
+    "bright-lowsat": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 8.75,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 8.45,
+     "whiteReflectionRatio": 0.7882,
+     "edgeLuminanceMean": 170.28,
+     "interiorSaturationMean": 0.0445,
+     "interiorLuminanceMean": 206.48,
+     "gutterInkRatio": 0.7731240503055188,
+     "fringeWidthPxMean": 0.32,
+     "darkSideEdgeLuma": 168.8,
+     "brightSideEdgeLuma": 164.0,
+     "darkOverBrightLumaRatio": 1.029,
+     "darkSideEdgeChroma": 6.89,
+     "brightSideEdgeChroma": 7.94,
+     "sideChromaGap": 1.05,
+     "interior": {
+      "interiorSaturationMean": 0.0445,
+      "interiorLuminanceMean": 206.48,
+      "interiorChromaMean": 9.39
+     },
+     "reflectionBand": {
+      "meanPx": 73.7,
+      "meanNormToCardWidth": 0.1379,
+      "perCard": [
+       3,
+       213,
+       5
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "candidate-full-bright-lowsat-1440x900.png"
+    },
+    "warm-skin": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 44.42,
+     "edgeChromaP95": 64.0,
+     "fringeRB": 44.39,
+     "whiteReflectionRatio": 0.0717,
+     "edgeLuminanceMean": 155.3,
+     "interiorSaturationMean": 0.248,
+     "interiorLuminanceMean": 190.31,
+     "gutterInkRatio": 0.7729341114092658,
+     "fringeWidthPxMean": 11.14,
+     "darkSideEdgeLuma": 155.1,
+     "brightSideEdgeLuma": 148.0,
+     "darkOverBrightLumaRatio": 1.0478,
+     "darkSideEdgeChroma": 34.59,
+     "brightSideEdgeChroma": 45.99,
+     "sideChromaGap": 11.4,
+     "interior": {
+      "interiorSaturationMean": 0.248,
+      "interiorLuminanceMean": 190.31,
+      "interiorChromaMean": 52.46
+     },
+     "reflectionBand": {
+      "meanPx": 73.7,
+      "meanNormToCardWidth": 0.1379,
+      "perCard": [
+       3,
+       213,
+       5
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "candidate-full-warm-skin-1440x900.png"
+    },
+    "cool-blue": {
+     "cardsAnalysed": 3,
+     "edgeChromaMean": 94.92,
+     "edgeChromaP95": 141.0,
+     "fringeRB": 94.92,
+     "whiteReflectionRatio": 0.0356,
+     "edgeLuminanceMean": 93.04,
+     "interiorSaturationMean": 0.7281,
+     "interiorLuminanceMean": 101.43,
+     "gutterInkRatio": 0.7584138889786946,
+     "fringeWidthPxMean": 17.82,
+     "darkSideEdgeLuma": 113.1,
+     "brightSideEdgeLuma": 89.7,
+     "darkOverBrightLumaRatio": 1.2603,
+     "darkSideEdgeChroma": 68.58,
+     "brightSideEdgeChroma": 90.5,
+     "sideChromaGap": 21.92,
+     "interior": {
+      "interiorSaturationMean": 0.7281,
+      "interiorLuminanceMean": 101.43,
+      "interiorChromaMean": 128.57
+     },
+     "reflectionBand": {
+      "meanPx": 73.7,
+      "meanNormToCardWidth": 0.1379,
+      "perCard": [
+       3,
+       213,
+       5
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "candidate-full-cool-blue-1440x900.png"
+    }
+   }
+  },
+  "390x844": {
+   "target": {
+    "bw-split": {
+     "cardsAnalysed": 2,
+     "edgeChromaMean": 3.53,
+     "edgeChromaP95": 21.0,
+     "fringeRB": 3.51,
+     "whiteReflectionRatio": 0.3791,
+     "edgeLuminanceMean": 107.06,
+     "interiorSaturationMean": 0.033,
+     "interiorLuminanceMean": 112.13,
+     "gutterInkRatio": 0.47016528153889253,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 52.9,
+     "brightSideEdgeLuma": 184.2,
+     "darkOverBrightLumaRatio": 0.2871,
+     "darkSideEdgeChroma": 8.7,
+     "brightSideEdgeChroma": 1.79,
+     "sideChromaGap": 6.92,
+     "interior": {
+      "interiorSaturationMean": 0.033,
+      "interiorLuminanceMean": 112.13,
+      "interiorChromaMean": 0.41
+     },
+     "reflectionBand": {
+      "meanPx": 1.5,
+      "meanNormToCardWidth": 0.0054,
+      "perCard": [
+       2,
+       1
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "target-rest-bw-split-390x844.png"
+    },
+    "rgb-bars": {
+     "cardsAnalysed": 2,
+     "edgeChromaMean": 93.39,
+     "edgeChromaP95": 227.0,
+     "fringeRB": 77.93,
+     "whiteReflectionRatio": 0.2658,
+     "edgeLuminanceMean": 111.96,
+     "interiorSaturationMean": 0.7633,
+     "interiorLuminanceMean": 102.32,
+     "gutterInkRatio": 0.4914402216204439,
+     "fringeWidthPxMean": 12.75,
+     "darkSideEdgeLuma": 81.3,
+     "brightSideEdgeLuma": 174.7,
+     "darkOverBrightLumaRatio": 0.4654,
+     "darkSideEdgeChroma": 126.42,
+     "brightSideEdgeChroma": 2.36,
+     "sideChromaGap": 124.06,
+     "interior": {
+      "interiorSaturationMean": 0.7633,
+      "interiorLuminanceMean": 102.32,
+      "interiorChromaMean": 152.71
+     },
+     "reflectionBand": {
+      "meanPx": 2.5,
+      "meanNormToCardWidth": 0.0089,
+      "perCard": [
+       3,
+       2
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "target-rest-rgb-bars-390x844.png"
+    },
+    "cool-blue": {
+     "cardsAnalysed": 2,
+     "edgeChromaMean": 96.53,
+     "edgeChromaP95": 139.0,
+     "fringeRB": 96.53,
+     "whiteReflectionRatio": 0.0276,
+     "edgeLuminanceMean": 85.61,
+     "interiorSaturationMean": 0.7211,
+     "interiorLuminanceMean": 92.19,
+     "gutterInkRatio": 0.7349736981355246,
+     "fringeWidthPxMean": 29.9,
+     "darkSideEdgeLuma": 98.4,
+     "brightSideEdgeLuma": 81.3,
+     "darkOverBrightLumaRatio": 1.2099,
+     "darkSideEdgeChroma": 78.76,
+     "brightSideEdgeChroma": 99.36,
+     "sideChromaGap": 20.6,
+     "interior": {
+      "interiorSaturationMean": 0.7211,
+      "interiorLuminanceMean": 92.19,
+      "interiorChromaMean": 117.8
+     },
+     "reflectionBand": {
+      "meanPx": 107.5,
+      "meanNormToCardWidth": 0.3853,
+      "perCard": [
+       110,
+       105
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "target-rest-cool-blue-390x844.png"
+    }
+   },
+   "control": {
+    "bw-split": {
+     "cardsAnalysed": 2,
+     "edgeChromaMean": 3.74,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 3.74,
+     "whiteReflectionRatio": 0.432,
+     "edgeLuminanceMean": 127.68,
+     "interiorSaturationMean": 0.0422,
+     "interiorLuminanceMean": 126.0,
+     "gutterInkRatio": 0.5076726740747658,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 79.9,
+     "brightSideEdgeLuma": 197.7,
+     "darkOverBrightLumaRatio": 0.4039,
+     "darkSideEdgeChroma": 5.75,
+     "brightSideEdgeChroma": 2.07,
+     "sideChromaGap": 3.67,
+     "interior": {
+      "interiorSaturationMean": 0.0422,
+      "interiorLuminanceMean": 126.0,
+      "interiorChromaMean": 0.38
+     },
+     "reflectionBand": {
+      "meanPx": 8.0,
+      "meanNormToCardWidth": 0.0287,
+      "perCard": [
+       7,
+       9
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "control-full-bw-split-390x844.png"
+    },
+    "grayscale-step": {
+     "cardsAnalysed": 2,
+     "edgeChromaMean": 3.49,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 3.48,
+     "whiteReflectionRatio": 0.4209,
+     "edgeLuminanceMean": 135.86,
+     "interiorSaturationMean": 0.0035,
+     "interiorLuminanceMean": 142.79,
+     "gutterInkRatio": 0.5606499206275096,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 106.7,
+     "brightSideEdgeLuma": 179.6,
+     "darkOverBrightLumaRatio": 0.594,
+     "darkSideEdgeChroma": 4.93,
+     "brightSideEdgeChroma": 2.15,
+     "sideChromaGap": 2.78,
+     "interior": {
+      "interiorSaturationMean": 0.0035,
+      "interiorLuminanceMean": 142.79,
+      "interiorChromaMean": 0.3
+     },
+     "reflectionBand": {
+      "meanPx": 109.0,
+      "meanNormToCardWidth": 0.3906,
+      "perCard": [
+       111,
+       107
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "control-full-grayscale-step-390x844.png"
+    },
+    "rgb-bars": {
+     "cardsAnalysed": 2,
+     "edgeChromaMean": 89.03,
+     "edgeChromaP95": 230.0,
+     "fringeRB": 74.72,
+     "whiteReflectionRatio": 0.2871,
+     "edgeLuminanceMean": 131.32,
+     "interiorSaturationMean": 0.7479,
+     "interiorLuminanceMean": 116.05,
+     "gutterInkRatio": 0.5326827901764871,
+     "fringeWidthPxMean": 15.05,
+     "darkSideEdgeLuma": 104.2,
+     "brightSideEdgeLuma": 189.3,
+     "darkOverBrightLumaRatio": 0.5504,
+     "darkSideEdgeChroma": 122.0,
+     "brightSideEdgeChroma": 2.29,
+     "sideChromaGap": 119.71,
+     "interior": {
+      "interiorSaturationMean": 0.7479,
+      "interiorLuminanceMean": 116.05,
+      "interiorChromaMean": 161.54
+     },
+     "reflectionBand": {
+      "meanPx": 11.0,
+      "meanNormToCardWidth": 0.0394,
+      "perCard": [
+       11,
+       11
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "control-full-rgb-bars-390x844.png"
+    },
+    "warm-skin": {
+     "cardsAnalysed": 2,
+     "edgeChromaMean": 41.54,
+     "edgeChromaP95": 60.0,
+     "fringeRB": 41.53,
+     "whiteReflectionRatio": 0.0956,
+     "edgeLuminanceMean": 167.95,
+     "interiorSaturationMean": 0.2382,
+     "interiorLuminanceMean": 192.25,
+     "gutterInkRatio": 0.8389983502972578,
+     "fringeWidthPxMean": 27.6,
+     "darkSideEdgeLuma": 168.6,
+     "brightSideEdgeLuma": 169.2,
+     "darkOverBrightLumaRatio": 0.9965,
+     "darkSideEdgeChroma": 36.73,
+     "brightSideEdgeChroma": 41.84,
+     "sideChromaGap": 5.12,
+     "interior": {
+      "interiorSaturationMean": 0.2382,
+      "interiorLuminanceMean": 192.25,
+      "interiorChromaMean": 50.48
+     },
+     "reflectionBand": {
+      "meanPx": 109.0,
+      "meanNormToCardWidth": 0.3906,
+      "perCard": [
+       111,
+       107
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "control-full-warm-skin-390x844.png"
+    },
+    "cool-blue": {
+     "cardsAnalysed": 2,
+     "edgeChromaMean": 87.89,
+     "edgeChromaP95": 141.0,
+     "fringeRB": 87.89,
+     "whiteReflectionRatio": 0.034,
+     "edgeLuminanceMean": 108.1,
+     "interiorSaturationMean": 0.6955,
+     "interiorLuminanceMean": 106.76,
+     "gutterInkRatio": 0.8014131415942977,
+     "fringeWidthPxMean": 31.55,
+     "darkSideEdgeLuma": 121.3,
+     "brightSideEdgeLuma": 112.2,
+     "darkOverBrightLumaRatio": 1.0808,
+     "darkSideEdgeChroma": 72.06,
+     "brightSideEdgeChroma": 84.07,
+     "sideChromaGap": 12.02,
+     "interior": {
+      "interiorSaturationMean": 0.6955,
+      "interiorLuminanceMean": 106.76,
+      "interiorChromaMean": 123.6
+     },
+     "reflectionBand": {
+      "meanPx": 109.0,
+      "meanNormToCardWidth": 0.3906,
+      "perCard": [
+       111,
+       107
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "control-full-cool-blue-390x844.png"
+    }
+   },
+   "candidate": {
+    "bw-split": {
+     "cardsAnalysed": 2,
+     "edgeChromaMean": 4.11,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 4.1,
+     "whiteReflectionRatio": 0.4281,
+     "edgeLuminanceMean": 120.45,
+     "interiorSaturationMean": 0.0285,
+     "interiorLuminanceMean": 126.19,
+     "gutterInkRatio": 0.49139353192019175,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 71.5,
+     "brightSideEdgeLuma": 188.1,
+     "darkOverBrightLumaRatio": 0.3801,
+     "darkSideEdgeChroma": 7.19,
+     "brightSideEdgeChroma": 2.57,
+     "sideChromaGap": 4.62,
+     "interior": {
+      "interiorSaturationMean": 0.0285,
+      "interiorLuminanceMean": 126.19,
+      "interiorChromaMean": 0.38
+     },
+     "reflectionBand": {
+      "meanPx": 3.0,
+      "meanNormToCardWidth": 0.0108,
+      "perCard": [
+       3,
+       3
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "candidate-full-bw-split-390x844.png"
+    },
+    "grayscale-step": {
+     "cardsAnalysed": 2,
+     "edgeChromaMean": 3.79,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 3.77,
+     "whiteReflectionRatio": 0.4129,
+     "edgeLuminanceMean": 128.62,
+     "interiorSaturationMean": 0.0034,
+     "interiorLuminanceMean": 142.87,
+     "gutterInkRatio": 0.5402932113175833,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 96.7,
+     "brightSideEdgeLuma": 166.8,
+     "darkOverBrightLumaRatio": 0.58,
+     "darkSideEdgeChroma": 6.08,
+     "brightSideEdgeChroma": 2.53,
+     "sideChromaGap": 3.55,
+     "interior": {
+      "interiorSaturationMean": 0.0034,
+      "interiorLuminanceMean": 142.87,
+      "interiorChromaMean": 0.31
+     },
+     "reflectionBand": {
+      "meanPx": 109.0,
+      "meanNormToCardWidth": 0.3906,
+      "perCard": [
+       111,
+       107
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "candidate-full-grayscale-step-390x844.png"
+    },
+    "rgb-bars": {
+     "cardsAnalysed": 2,
+     "edgeChromaMean": 93.48,
+     "edgeChromaP95": 230.0,
+     "fringeRB": 78.12,
+     "whiteReflectionRatio": 0.285,
+     "edgeLuminanceMean": 123.22,
+     "interiorSaturationMean": 0.7472,
+     "interiorLuminanceMean": 116.07,
+     "gutterInkRatio": 0.5134933233728639,
+     "fringeWidthPxMean": 11.8,
+     "darkSideEdgeLuma": 92.5,
+     "brightSideEdgeLuma": 178.2,
+     "darkOverBrightLumaRatio": 0.5193,
+     "darkSideEdgeChroma": 120.32,
+     "brightSideEdgeChroma": 2.79,
+     "sideChromaGap": 117.52,
+     "interior": {
+      "interiorSaturationMean": 0.7472,
+      "interiorLuminanceMean": 116.07,
+      "interiorChromaMean": 161.37
+     },
+     "reflectionBand": {
+      "meanPx": 5.0,
+      "meanNormToCardWidth": 0.0179,
+      "perCard": [
+       6,
+       4
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "candidate-full-rgb-bars-390x844.png"
+    },
+    "warm-skin": {
+     "cardsAnalysed": 2,
+     "edgeChromaMean": 44.43,
+     "edgeChromaP95": 65.0,
+     "fringeRB": 44.41,
+     "whiteReflectionRatio": 0.0727,
+     "edgeLuminanceMean": 161.88,
+     "interiorSaturationMean": 0.2383,
+     "interiorLuminanceMean": 192.23,
+     "gutterInkRatio": 0.830578641018458,
+     "fringeWidthPxMean": 24.35,
+     "darkSideEdgeLuma": 157.0,
+     "brightSideEdgeLuma": 154.9,
+     "darkOverBrightLumaRatio": 1.0136,
+     "darkSideEdgeChroma": 37.43,
+     "brightSideEdgeChroma": 48.11,
+     "sideChromaGap": 10.68,
+     "interior": {
+      "interiorSaturationMean": 0.2383,
+      "interiorLuminanceMean": 192.23,
+      "interiorChromaMean": 50.5
+     },
+     "reflectionBand": {
+      "meanPx": 109.0,
+      "meanNormToCardWidth": 0.3906,
+      "perCard": [
+       111,
+       107
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "candidate-full-warm-skin-390x844.png"
+    },
+    "cool-blue": {
+     "cardsAnalysed": 2,
+     "edgeChromaMean": 94.2,
+     "edgeChromaP95": 141.0,
+     "fringeRB": 94.2,
+     "whiteReflectionRatio": 0.037,
+     "edgeLuminanceMean": 98.43,
+     "interiorSaturationMean": 0.696,
+     "interiorLuminanceMean": 106.72,
+     "gutterInkRatio": 0.7989074610141003,
+     "fringeWidthPxMean": 28.6,
+     "darkSideEdgeLuma": 110.3,
+     "brightSideEdgeLuma": 91.6,
+     "darkOverBrightLumaRatio": 1.2036,
+     "darkSideEdgeChroma": 72.57,
+     "brightSideEdgeChroma": 94.48,
+     "sideChromaGap": 21.91,
+     "interior": {
+      "interiorSaturationMean": 0.696,
+      "interiorLuminanceMean": 106.72,
+      "interiorChromaMean": 123.63
+     },
+     "reflectionBand": {
+      "meanPx": 109.0,
+      "meanNormToCardWidth": 0.3906,
+      "perCard": [
+       111,
+       107
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "fully-visible cards",
+     "file": "candidate-full-cool-blue-390x844.png"
+    }
+   }
+  },
+  "844x390": {
+   "target": {
+    "bw-split": {
+     "cardsAnalysed": 1,
+     "edgeChromaMean": 2.88,
+     "edgeChromaP95": 17.0,
+     "fringeRB": 2.88,
+     "whiteReflectionRatio": 0.5035,
+     "edgeLuminanceMean": 123.22,
+     "interiorSaturationMean": 0.0,
+     "interiorLuminanceMean": 128.26,
+     "gutterInkRatio": 0.0,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 86.2,
+     "brightSideEdgeLuma": 196.6,
+     "darkOverBrightLumaRatio": 0.4383,
+     "darkSideEdgeChroma": 8.04,
+     "brightSideEdgeChroma": 1.19,
+     "sideChromaGap": 6.85,
+     "interior": {
+      "interiorSaturationMean": 0.0,
+      "interiorLuminanceMean": 128.26,
+      "interiorChromaMean": 0.0
+     },
+     "reflectionBand": {
+      "meanPx": 2.0,
+      "meanNormToCardWidth": 0.0062,
+      "perCard": [
+       2
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "file": "target-rest-bw-split-844x390.png"
+    },
+    "rgb-bars": {
+     "cardsAnalysed": 1,
+     "edgeChromaMean": 103.95,
+     "edgeChromaP95": 227.0,
+     "fringeRB": 87.07,
+     "whiteReflectionRatio": 0.3656,
+     "edgeLuminanceMean": 128.47,
+     "interiorSaturationMean": 0.7514,
+     "interiorLuminanceMean": 111.83,
+     "gutterInkRatio": 0.0,
+     "fringeWidthPxMean": 6.7,
+     "darkSideEdgeLuma": 109.9,
+     "brightSideEdgeLuma": 186.2,
+     "darkOverBrightLumaRatio": 0.5903,
+     "darkSideEdgeChroma": 106.66,
+     "brightSideEdgeChroma": 1.16,
+     "sideChromaGap": 105.5,
+     "interior": {
+      "interiorSaturationMean": 0.7514,
+      "interiorLuminanceMean": 111.83,
+      "interiorChromaMean": 160.84
+     },
+     "reflectionBand": {
+      "meanPx": 3.0,
+      "meanNormToCardWidth": 0.0093,
+      "perCard": [
+       3
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "file": "target-rest-rgb-bars-844x390.png"
+    },
+    "cool-blue": {
+     "cardsAnalysed": 1,
+     "edgeChromaMean": 110.25,
+     "edgeChromaP95": 141.0,
+     "fringeRB": 110.25,
+     "whiteReflectionRatio": 0.0424,
+     "edgeLuminanceMean": 98.09,
+     "interiorSaturationMean": 0.7057,
+     "interiorLuminanceMean": 105.11,
+     "gutterInkRatio": 0.0,
+     "fringeWidthPxMean": 22.5,
+     "darkSideEdgeLuma": 124.8,
+     "brightSideEdgeLuma": 85.8,
+     "darkOverBrightLumaRatio": 1.4534,
+     "darkSideEdgeChroma": 66.82,
+     "brightSideEdgeChroma": 107.23,
+     "sideChromaGap": 40.42,
+     "interior": {
+      "interiorSaturationMean": 0.7057,
+      "interiorLuminanceMean": 105.11,
+      "interiorChromaMean": 124.69
+     },
+     "reflectionBand": {
+      "meanPx": 125.0,
+      "meanNormToCardWidth": 0.387,
+      "perCard": [
+       125
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "file": "target-rest-cool-blue-844x390.png"
+    }
+   },
+   "control": {
+    "bw-split": {
+     "cardsAnalysed": 1,
+     "edgeChromaMean": 2.74,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 2.72,
+     "whiteReflectionRatio": 0.4796,
+     "edgeLuminanceMean": 129.76,
+     "interiorSaturationMean": 0.0,
+     "interiorLuminanceMean": 133.96,
+     "gutterInkRatio": 0.0,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 94.4,
+     "brightSideEdgeLuma": 194.3,
+     "darkOverBrightLumaRatio": 0.4861,
+     "darkSideEdgeChroma": 6.27,
+     "brightSideEdgeChroma": 3.15,
+     "sideChromaGap": 3.12,
+     "interior": {
+      "interiorSaturationMean": 0.0,
+      "interiorLuminanceMean": 133.96,
+      "interiorChromaMean": 0.0
+     },
+     "reflectionBand": {
+      "meanPx": 8.0,
+      "meanNormToCardWidth": 0.0248,
+      "perCard": [
+       8
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "file": "control-full-bw-split-844x390.png"
+    },
+    "grayscale-step": {
+     "cardsAnalysed": 1,
+     "edgeChromaMean": 2.51,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 2.5,
+     "whiteReflectionRatio": 0.4825,
+     "edgeLuminanceMean": 139.28,
+     "interiorSaturationMean": 0.0001,
+     "interiorLuminanceMean": 148.48,
+     "gutterInkRatio": 0.0,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 117.8,
+     "brightSideEdgeLuma": 176.8,
+     "darkOverBrightLumaRatio": 0.6661,
+     "darkSideEdgeChroma": 5.34,
+     "brightSideEdgeChroma": 2.91,
+     "sideChromaGap": 2.43,
+     "interior": {
+      "interiorSaturationMean": 0.0001,
+      "interiorLuminanceMean": 148.48,
+      "interiorChromaMean": 0.0
+     },
+     "reflectionBand": {
+      "meanPx": 127.0,
+      "meanNormToCardWidth": 0.3932,
+      "perCard": [
+       127
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "file": "control-full-grayscale-step-844x390.png"
+    },
+    "rgb-bars": {
+     "cardsAnalysed": 1,
+     "edgeChromaMean": 98.53,
+     "edgeChromaP95": 230.0,
+     "fringeRB": 82.44,
+     "whiteReflectionRatio": 0.3451,
+     "edgeLuminanceMean": 133.38,
+     "interiorSaturationMean": 0.7227,
+     "interiorLuminanceMean": 117.86,
+     "gutterInkRatio": 0.0,
+     "fringeWidthPxMean": 12.9,
+     "darkSideEdgeLuma": 115.6,
+     "brightSideEdgeLuma": 186.1,
+     "darkOverBrightLumaRatio": 0.6211,
+     "darkSideEdgeChroma": 108.64,
+     "brightSideEdgeChroma": 3.04,
+     "sideChromaGap": 105.6,
+     "interior": {
+      "interiorSaturationMean": 0.7227,
+      "interiorLuminanceMean": 117.86,
+      "interiorChromaMean": 156.14
+     },
+     "reflectionBand": {
+      "meanPx": 13.0,
+      "meanNormToCardWidth": 0.0402,
+      "perCard": [
+       13
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "file": "control-full-rgb-bars-844x390.png"
+    },
+    "warm-skin": {
+     "cardsAnalysed": 1,
+     "edgeChromaMean": 45.21,
+     "edgeChromaP95": 59.0,
+     "fringeRB": 45.18,
+     "whiteReflectionRatio": 0.1158,
+     "edgeLuminanceMean": 175.34,
+     "interiorSaturationMean": 0.2295,
+     "interiorLuminanceMean": 195.21,
+     "gutterInkRatio": 0.0,
+     "fringeWidthPxMean": 24.2,
+     "darkSideEdgeLuma": 172.7,
+     "brightSideEdgeLuma": 167.6,
+     "darkOverBrightLumaRatio": 1.0301,
+     "darkSideEdgeChroma": 32.92,
+     "brightSideEdgeChroma": 41.57,
+     "sideChromaGap": 8.65,
+     "interior": {
+      "interiorSaturationMean": 0.2295,
+      "interiorLuminanceMean": 195.21,
+      "interiorChromaMean": 48.83
+     },
+     "reflectionBand": {
+      "meanPx": 127.0,
+      "meanNormToCardWidth": 0.3932,
+      "perCard": [
+       127
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "file": "control-full-warm-skin-844x390.png"
+    },
+    "cool-blue": {
+     "cardsAnalysed": 1,
+     "edgeChromaMean": 100.25,
+     "edgeChromaP95": 141.0,
+     "fringeRB": 100.25,
+     "whiteReflectionRatio": 0.0457,
+     "edgeLuminanceMean": 108.57,
+     "interiorSaturationMean": 0.6733,
+     "interiorLuminanceMean": 112.3,
+     "gutterInkRatio": 0.0,
+     "fringeWidthPxMean": 27.2,
+     "darkSideEdgeLuma": 131.7,
+     "brightSideEdgeLuma": 112.4,
+     "darkOverBrightLumaRatio": 1.172,
+     "darkSideEdgeChroma": 64.29,
+     "brightSideEdgeChroma": 83.67,
+     "sideChromaGap": 19.39,
+     "interior": {
+      "interiorSaturationMean": 0.6733,
+      "interiorLuminanceMean": 112.3,
+      "interiorChromaMean": 121.21
+     },
+     "reflectionBand": {
+      "meanPx": 127.0,
+      "meanNormToCardWidth": 0.3932,
+      "perCard": [
+       127
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "file": "control-full-cool-blue-844x390.png"
+    }
+   },
+   "candidate": {
+    "bw-split": {
+     "cardsAnalysed": 1,
+     "edgeChromaMean": 3.3,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 3.27,
+     "whiteReflectionRatio": 0.4801,
+     "edgeLuminanceMean": 124.36,
+     "interiorSaturationMean": 0.0,
+     "interiorLuminanceMean": 133.96,
+     "gutterInkRatio": 0.0,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 94.0,
+     "brightSideEdgeLuma": 180.2,
+     "darkOverBrightLumaRatio": 0.5218,
+     "darkSideEdgeChroma": 7.78,
+     "brightSideEdgeChroma": 4.13,
+     "sideChromaGap": 3.65,
+     "interior": {
+      "interiorSaturationMean": 0.0,
+      "interiorLuminanceMean": 133.96,
+      "interiorChromaMean": 0.0
+     },
+     "reflectionBand": {
+      "meanPx": 3.0,
+      "meanNormToCardWidth": 0.0093,
+      "perCard": [
+       3
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "file": "candidate-full-bw-split-844x390.png"
+    },
+    "grayscale-step": {
+     "cardsAnalysed": 1,
+     "edgeChromaMean": 2.99,
+     "edgeChromaP95": 18.0,
+     "fringeRB": 2.97,
+     "whiteReflectionRatio": 0.4806,
+     "edgeLuminanceMean": 133.77,
+     "interiorSaturationMean": 0.0002,
+     "interiorLuminanceMean": 148.49,
+     "gutterInkRatio": 0.0,
+     "fringeWidthPxMean": 0.0,
+     "darkSideEdgeLuma": 113.0,
+     "brightSideEdgeLuma": 160.6,
+     "darkOverBrightLumaRatio": 0.7038,
+     "darkSideEdgeChroma": 6.68,
+     "brightSideEdgeChroma": 3.81,
+     "sideChromaGap": 2.87,
+     "interior": {
+      "interiorSaturationMean": 0.0002,
+      "interiorLuminanceMean": 148.49,
+      "interiorChromaMean": 0.02
+     },
+     "reflectionBand": {
+      "meanPx": 3.0,
+      "meanNormToCardWidth": 0.0093,
+      "perCard": [
+       3
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "file": "candidate-full-grayscale-step-844x390.png"
+    },
+    "rgb-bars": {
+     "cardsAnalysed": 1,
+     "edgeChromaMean": 100.48,
+     "edgeChromaP95": 230.0,
+     "fringeRB": 83.71,
+     "whiteReflectionRatio": 0.3409,
+     "edgeLuminanceMean": 127.33,
+     "interiorSaturationMean": 0.7226,
+     "interiorLuminanceMean": 117.86,
+     "gutterInkRatio": 0.0,
+     "fringeWidthPxMean": 4.7,
+     "darkSideEdgeLuma": 108.5,
+     "brightSideEdgeLuma": 170.9,
+     "darkOverBrightLumaRatio": 0.6349,
+     "darkSideEdgeChroma": 94.46,
+     "brightSideEdgeChroma": 4.01,
+     "sideChromaGap": 90.45,
+     "interior": {
+      "interiorSaturationMean": 0.7226,
+      "interiorLuminanceMean": 117.86,
+      "interiorChromaMean": 156.14
+     },
+     "reflectionBand": {
+      "meanPx": 2.0,
+      "meanNormToCardWidth": 0.0062,
+      "perCard": [
+       2
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "file": "candidate-full-rgb-bars-844x390.png"
+    },
+    "warm-skin": {
+     "cardsAnalysed": 1,
+     "edgeChromaMean": 46.69,
+     "edgeChromaP95": 62.0,
+     "fringeRB": 46.64,
+     "whiteReflectionRatio": 0.0815,
+     "edgeLuminanceMean": 170.32,
+     "interiorSaturationMean": 0.2294,
+     "interiorLuminanceMean": 195.21,
+     "gutterInkRatio": 0.0,
+     "fringeWidthPxMean": 15.5,
+     "darkSideEdgeLuma": 158.1,
+     "brightSideEdgeLuma": 150.5,
+     "darkOverBrightLumaRatio": 1.0509,
+     "darkSideEdgeChroma": 29.62,
+     "brightSideEdgeChroma": 46.7,
+     "sideChromaGap": 17.08,
+     "interior": {
+      "interiorSaturationMean": 0.2294,
+      "interiorLuminanceMean": 195.21,
+      "interiorChromaMean": 48.82
+     },
+     "reflectionBand": {
+      "meanPx": 2.0,
+      "meanNormToCardWidth": 0.0062,
+      "perCard": [
+       2
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "file": "candidate-full-warm-skin-844x390.png"
+    },
+    "cool-blue": {
+     "cardsAnalysed": 1,
+     "edgeChromaMean": 104.04,
+     "edgeChromaP95": 141.0,
+     "fringeRB": 104.04,
+     "whiteReflectionRatio": 0.0473,
+     "edgeLuminanceMean": 101.76,
+     "interiorSaturationMean": 0.6733,
+     "interiorLuminanceMean": 112.31,
+     "gutterInkRatio": 0.0,
+     "fringeWidthPxMean": 19.1,
+     "darkSideEdgeLuma": 123.9,
+     "brightSideEdgeLuma": 90.8,
+     "darkOverBrightLumaRatio": 1.3636,
+     "darkSideEdgeChroma": 57.02,
+     "brightSideEdgeChroma": 92.45,
+     "sideChromaGap": 35.43,
+     "interior": {
+      "interiorSaturationMean": 0.6733,
+      "interiorLuminanceMean": 112.31,
+      "interiorChromaMean": 121.2
+     },
+     "reflectionBand": {
+      "meanPx": 2.0,
+      "meanNormToCardWidth": 0.0062,
+      "perCard": [
+       2
+      ],
+      "threshold": 60.0
+     },
+     "metricBasis": "no fully-visible card -- widest drawn card",
+     "file": "candidate-full-cool-blue-844x390.png"
+    }
+   }
+  }
+ },
+ "decomposition": {
+  "1440x900": {
+   "lanesIdenticalWithSystemBOff": true,
+   "frozenBaseBandPx": 9.7,
+   "controlFullBandPx": 15.3,
+   "candidateFullBandPx": 8.7,
+   "targetBandPx": 3.3,
+   "reading": "the frozen base -- refraction, dispersion, adaptive contrast, with System B entirely off -- already paints this band before any reflection exists. No change to the reflection support can take the candidate below it."
+  },
+  "390x844": {
+   "lanesIdenticalWithSystemBOff": true,
+   "frozenBaseBandPx": 6.0,
+   "controlFullBandPx": 8.0,
+   "candidateFullBandPx": 3.0,
+   "targetBandPx": 1.5,
+   "reading": "the frozen base -- refraction, dispersion, adaptive contrast, with System B entirely off -- already paints this band before any reflection exists. No change to the reflection support can take the candidate below it."
+  },
+  "844x390": {
+   "lanesIdenticalWithSystemBOff": true,
+   "frozenBaseBandPx": 6.0,
+   "controlFullBandPx": 8.0,
+   "candidateFullBandPx": 3.0,
+   "targetBandPx": 2.0,
+   "reading": "the frozen base -- refraction, dispersion, adaptive contrast, with System B entirely off -- already paints this band before any reflection exists. No change to the reflection support can take the candidate below it."
+  }
+ }
+}

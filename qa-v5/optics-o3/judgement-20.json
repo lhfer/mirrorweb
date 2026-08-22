@@ -1,0 +1,13 @@
+{
+ "what": "§九.20 is a JUDGED item, not a computed one. This file is the operator's recorded reading, made against the registered failure text on the named full frames at 100%. The verdict script reads it; no script decides it.",
+ "item": 20,
+ "registeredFailureText": "the candidate full frame still reads as a wide white plastic frame around the card, or its corners still read as thick plastic, when compared with the Target's same-media frame without zooming",
+ "framesJudged": [
+  "artifacts/optics-o3/measure/target-rest-bw-split-1440x900.png",
+  "artifacts/optics-o3/measure/control-full-bw-split-1440x900.png",
+  "artifacts/optics-o3/measure/candidate-full-bw-split-1440x900.png"
+ ],
+ "judgedAt": "100%, full frame, no ROI crop",
+ "judgement": "FAIL -- stated plainly. The candidate is a clear improvement on the O2 control: the broad milky ramp the control sweeps inward across the black half is largely gone, the black media reads black much closer to the edge, and the top band is visibly thinner. But against the Target's same-media frame it does not clear the registered standard. The Target's edge is a razor-thin bright lip -- a crisp specular line with black immediately inside it (see 'Field Notes' and 'Glass House' in the Target frame). The candidate's left edge is still a soft white band of order fifteen to twenty pixels (see 'Night Index' and 'Glass House' in the candidate frame), and the outer rollover still carries a fat rounded shoulder, so the corners still read as thick plastic. Judged without zooming, on the three full frames named above.",
+ "fired": true
+}

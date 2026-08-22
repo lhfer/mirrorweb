@@ -2,7 +2,7 @@
 
 Single canonical entry point. Every delivery updates this file.
 
-Last updated: 2026-08-21 (**O2 System B ACCEPTED** by product review — mechanism frozen, reflection support field deliberately left open; O3 Target analytic bevel reflection support opened)
+Last updated: 2026-08-21 (**O2 System B ACCEPTED** by product review — mechanism frozen, reflection support field deliberately left open; **O3 Target analytic bevel reflection support FAILED its absolute gate** — the frozen base alone already paints a wider band than the Target's whole band, so the shipped default stays the O2 control)
 
 | | |
 | --- | --- |
@@ -56,7 +56,7 @@ stated here and no further hygiene commit is created to chase it.
 | Optics — O0 diagnosis | **ACCEPTED** as the current optics source baseline |
 | Optics — O1 System A | **FAILED ABSOLUTE GATE**; commit `e01fb30` remains an EXPERIMENTAL LANE only — not an accepted baseline, not frozen. See the O0/O1 section and the wording correction below |
 | Optics — O2 System B | **ACCEPTED** — behaviour baseline `e913aa6`, accepted review tip `fd12b97`; selected lane **A+B** (System A retained ONLY through the pre-registered O2 interaction gate, never from the failed O1 result). Mechanism frozen, reflection SUPPORT FIELD deliberately not frozen — see [`O2_OPTICS_FREEZE_CONTRACT.md`](O2_OPTICS_FREEZE_CONTRACT.md) |
-| Optics — O3 Target analytic bevel reflection support | **IN PROGRESS** — the only authorised change is the support field (analytic bevel normal + Target SDF rim); every accepted O2 parameter is frozen |
+| Optics — O3 Target analytic bevel reflection support | **FAILED ABSOLUTE GATE** — the Target's own field, transcribed exactly, moves every measurand toward the Target but cannot clear it: with System B fully off the frozen base already paints 9.7 px against the Target's 3.3 px total. Shipped default stays `reflectionSupport=geometry` |
 | Media / Layout | unmodified, frozen |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
@@ -385,6 +385,59 @@ the support field — the geometry normal and the `strongLensRim` mask — is
 NOT frozen. Every accepted parameter above is. O1's own verdict stays
 FAILED; System A is in the product only through the O2 interaction gate.
 
+## O3 — Target analytic bevel reflection support: FAILED ABSOLUTE GATE
+
+O3 transcribed the Target's own support field from the byte-anchored
+source contract (29 sites, 0 failed) into
+[`TargetBevelFieldV4.ts`](../../src/materials/TargetBevelFieldV4.ts) and
+swapped exactly two inputs to the frozen System B block: the analytic
+bevel normal for `v_o2NormalView`, and the rounded-rect SDF rim
+(`smoothstep(-rimWidth, 0, sdf) × 0.11`, 8.3 px) for the `strongLensRim`
+attribute (≈31.7 px). Two lanes, one build, one page, selected by
+`?reflectionSupport`; no parameter tuned, no threshold moved.
+
+**11 of 20 items passed, 9 failed, none pending.** Full record in
+[`qa-v5/optics-o3/`](../../qa-v5/optics-o3/README.md).
+
+The candidate moves every measurand toward the Target — band width
+15.3 → 8.7 px, dark-side luma 95.1 → 77.6, dark/bright ratio
+0.5006 → 0.4388 — and passes the two items scored on that movement (6, 7),
+plus the same-direction item (15), the pop item (16, worst adjacent-frame
+change 2.1% against a 40% ceiling), every structural item (1, 2, 12, 17,
+18: the control lane is still bit-for-bit the e913aa6 program) and all
+sixteen frozen suites (19).
+
+It fails because the support field is not the binding constraint. Captured
+at the registered floor states, with `envMixScale=0, rimScale=0` the two
+lanes are **identical** and the frozen refraction / dispersion /
+adaptive-contrast composition alone paints:
+
+| Viewport | Frozen base, System B off | O3 candidate | Target |
+| --- | --- | --- | --- |
+| 1440x900 | **9.7 px** | 8.7 px | 3.3 px |
+| 390x844 | **6.0 px** | 3.0 px | 1.5 px |
+| 844x390 | **6.0 px** | 3.0 px | 2.0 px |
+
+At every viewport the base alone exceeds the Target's entire band. No
+change to the reflection support — the Target's own included — can go
+below a floor that exists with the reflection switched off. The residual
+lives in `adaptiveEdgeLift` / `contrastShaped` and the refraction edge
+treatment, which O3 was forbidden to touch. That boundary is the round's
+result.
+
+Two failures need reading rather than tallying. Item 13 (gutter) scores
++0.020 against a 0.006 ceiling, but outside the **true** glass silhouette
+the two lanes are bit-identical — the delta lives entirely between the
+flat layout quad the instrument masks and the larger silhouette the
+bulged lens projects. Items 8–10 (edge chroma) rise partly because the
+analytic normal samples more chromatic HDR at its 60° slope clamp, and
+partly because removing O2's over-wide white rim stops it diluting the
+chroma mean — `fringeWidthPxMean` falls on every saturated asset.
+
+The sealed default-flip rule's negative branch executed: the shipped
+default stays `reflectionSupport=geometry`. Every O2 parameter, and the
+O2 acceptance, are untouched.
+
 ## FSX-A integration hardening
 
 | | |
@@ -414,7 +467,7 @@ See [`FSX_ACCEPTANCE.md`](FSX_ACCEPTANCE.md).
 
 **Candidate, not accepted**
 - O0/O1 optics: `03676b1` O0 source diagnosis + pre-registered system selection · `e01fb30` O1 candidate code (the Target's dispersion law, System A only) · the O1 evidence commit — **O1 FAILED ABSOLUTE GATE**; attribution corrected to System B. System A ships only through the O2 interaction gate; that verdict is not overturned
-- O3 optics: Target analytic bevel reflection support — in progress
+- O3 optics: Target analytic bevel reflection support — `b4dbb16` O2 product-accept record · `b7fe128` source contract + sealed pre-registration (before candidate code) · `669046e` candidate code (the Target's field, two swapped inputs) · the O3 evidence commit — **O3 FAILED ABSOLUTE GATE**, 11/20 items. The mechanism is correct and the transcription is exact; the frozen base is what binds. Shipped default stays `reflectionSupport=geometry`
 - `dd6d7bf` / `4ca597f` F2 · `b5cff63` F2 audit · `730beb7` F3 diagnosis
 - `f56f55e` / `ba4ba32` F2.5 · this delivery's three F2.6 commits
 

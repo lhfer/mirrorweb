@@ -1,0 +1,2123 @@
+{
+ "what": "every frozen suite in \u00a7\u5341\u4e00, re-run at the O3 build. O3 changed the glass material's reflection SUPPORT and the shipped default is still the O2 control lane; these suites exercise that default.",
+ "suiteCount": 16,
+ "suitesPassed": 16,
+ "suitesFailed": [],
+ "pass": true,
+ "suites": [
+  {
+   "name": "V1 Render Culling Gate",
+   "pass": true,
+   "detail": {
+    "framesChecked": 20161,
+    "slotMismatches": 0,
+    "shellGlassMismatches": 0,
+    "mediaPassLeaks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "name": "V0 Label Culling Gate",
+   "pass": true,
+   "detail": {
+    "framesChecked": 20277,
+    "beyondBoundary": 0,
+    "identity": "40/40",
+    "errors": {
+     "target": 0,
+     "before": 0,
+     "candidate": 0,
+     "pass": true
+    }
+   }
+  },
+  {
+   "name": "Source Contract",
+   "pass": true,
+   "detail": {
+    "verdict": "PASS",
+    "passed": 36,
+    "viewports": 36
+   }
+  },
+  {
+   "name": "Layout Source",
+   "pass": true,
+   "detail": {
+    "tail": [
+     "v5:target-layout-source PASS  14/14"
+    ]
+   }
+  },
+  {
+   "name": "Typography",
+   "pass": true,
+   "detail": {
+    "verdict": "PASS",
+    "passed": 4
+   }
+  },
+  {
+   "name": "Motion Freeze Smoke",
+   "pass": true,
+   "detail": {
+    "engineVsContract": {
+     "rowsTotal": 15,
+     "rowsFailed": 0,
+     "rowsExactToFloatingPoint": 15,
+     "worstRecoveryError": 0.00885,
+     "threshold": 0.1
+    }
+   }
+  },
+  {
+   "name": "Release History Smoke",
+   "pass": true,
+   "detail": {
+    "releases": 11,
+    "exact": 11,
+    "mismatched": 0,
+    "worstVelocityError": 0.0
+   }
+  },
+  {
+   "name": "Card / Label Motion",
+   "pass": true,
+   "detail": {
+    "passed": 34,
+    "total": 34,
+    "verdict": "PASS"
+   }
+  },
+  {
+   "name": "Wrap = 0",
+   "pass": true,
+   "detail": {
+    "visibleWrapTeleportsOurSide": 0,
+    "visibleWrapTeleportsTargetSide": 0
+   }
+  },
+  {
+   "name": "Touch / Pointer Cancel",
+   "pass": true,
+   "detail": {
+    "touchRunsOurSide": 4,
+    "touchRunsNotAtRest": 0,
+    "wheelResponsesOurSide": 0
+   }
+  },
+  {
+   "name": "Console / Page Errors = 0",
+   "pass": true,
+   "detail": {
+    "motion": {
+     "target": 0,
+     "ours": 0,
+     "oursIncludingHarnessReloads": 0,
+     "targetSamples": [],
+     "ourSamples": []
+    },
+    "labelGate": {
+     "target": 0,
+     "before": 0,
+     "candidate": 0,
+     "pass": true
+    },
+    "renderGate": 0
+   }
+  },
+  {
+   "name": "O2 Shared-media Harness",
+   "pass": true,
+   "detail": {
+    "assets": [
+     {
+      "asset": "grayscale-step",
+      "viewport": "1440x900",
+      "mobileEmulation": false,
+      "sha256": "41fc734c82f2990bcb7fdff8c394f81830487127d3bb544cec9a623372fe1fcf",
+      "elementaryStreamSha256": "a547680cd0b7b42bf153e0c958aa41d5685b9fe3ef45662e43156d970d489091",
+      "elementaryStreamIdenticalMp4VsHls": true,
+      "dimensions": "1200x900",
+      "durationS": 8,
+      "frozenMediaTime": 4,
+      "targetRequestUrlIntercepted": [
+       "https://stream.mux.com/dRQc0202Rpk6WnvqSZFnETJvNIVi14HbkVHxWmKdeG7sI.m3u8",
+       "https://stream.mux.com/K1vWSoscB4tOmAKwKXLo7g1dNtfWRsFiNYS02tcEvUsc.m3u8"
+      ],
+      "targetRequestsIntercepted": 76,
+      "targetResponseSha": [
+       {
+        "file": "grayscale-step/media.m3u8 (served form)",
+        "count": 19,
+        "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+       },
+       {
+        "file": "grayscale-step/hls/init.mp4",
+        "count": 19,
+        "sha256": "71f12124f5a1e0158dbca7e264f75dd0e078cd5f017821b36835739391d20944"
+       },
+       {
+        "file": "grayscale-step/hls/seg0.m4s",
+        "count": 19,
+        "sha256": "30ce0753e31aaa36e28990514d875d0545fcad5a56f40169852c0d1d5df56002"
+       },
+       {
+        "file": "grayscale-step/hls/seg1.m4s",
+        "count": 19,
+        "sha256": "77f116c9181f6f07486f12c7d8653f94301e4b1b7b9fcd2a441e1e82565c62a3"
+       }
+      ],
+      "localResponseSha": "41fc734c82f2990bcb7fdff8c394f81830487127d3bb544cec9a623372fe1fcf",
+      "targetCoverScaleOffset": {
+       "scaleX": 1.0,
+       "scaleY": 1.0,
+       "offsetX": 0.0,
+       "offsetY": 0.0
+      },
+      "localCoverScaleOffset": [
+       {
+        "clip": 0,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 1,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 2,
+        "law": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "readback": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       }
+      ],
+      "renderedEdgeVerification": {
+       "sourceEdgeNx": 0.5,
+       "target": {
+        "card": 55,
+        "expectedNx": 0.5,
+        "measuredNx": 0.4991,
+        "pass": true
+       },
+       "local": {
+        "card": 55,
+        "clip": 0,
+        "expectedNx": 0.5,
+        "measuredNx": 0.4991,
+        "pass": true
+       },
+       "toleranceNx": 0.045,
+       "note": "measured through the glass at card centre band, where the dome refraction is near zero on both pages"
+      },
+      "decodedFrameProof": {
+       "target": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "left",
+          "expected": [
+           64,
+           64,
+           64
+          ],
+          "got": [
+           64,
+           64,
+           64
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         },
+         {
+          "landmark": "right",
+          "expected": [
+           192,
+           192,
+           192
+          ],
+          "got": [
+           192,
+           192,
+           192
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         }
+        ]
+       },
+       "local": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "left",
+          "expected": [
+           64,
+           64,
+           64
+          ],
+          "got": [
+           64,
+           64,
+           64
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         },
+         {
+          "landmark": "right",
+          "expected": [
+           192,
+           192,
+           192
+          ],
+          "got": [
+           192,
+           192,
+           192
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         }
+        ]
+       },
+       "fullFrameHashEqual": true,
+       "targetHash": "896ffbc5",
+       "localHash": "896ffbc5"
+      },
+      "checks": {
+       "targetAllVideosOurRendition": true,
+       "targetFrozen": true,
+       "localFrozen": true,
+       "targetLandmarks": true,
+       "localLandmarks": true,
+       "decodedFrameHashesEqual": true,
+       "localFitLawMatchesReadback": true,
+       "localSourceDimsAreAsset": true,
+       "renderedEdge": true
+      },
+      "pass": true
+     },
+     {
+      "asset": "bw-split",
+      "viewport": "1440x900",
+      "mobileEmulation": false,
+      "sha256": "8eac915f3605fa9e1fe71719c8477be42d945428c0121ea8d7fc3d40c104e5c3",
+      "elementaryStreamSha256": "4574db400bb0b878479ad2c3b041e1a915e67109e55db50d0f369a94d07286ae",
+      "elementaryStreamIdenticalMp4VsHls": true,
+      "dimensions": "1200x900",
+      "durationS": 8,
+      "frozenMediaTime": 4,
+      "targetRequestUrlIntercepted": [
+       "https://stream.mux.com/sFSxFQmzcKGQ8csHrIDBlvBEGxDoZ1IxDvb3QAciEvY.m3u8",
+       "https://stream.mux.com/Yhir8UDUrYPAQGN5iSjPQNgue02DFBW00vD5g2F9ga01Gc.m3u8"
+      ],
+      "targetRequestsIntercepted": 76,
+      "targetResponseSha": [
+       {
+        "file": "bw-split/media.m3u8 (served form)",
+        "count": 19,
+        "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+       },
+       {
+        "file": "bw-split/hls/init.mp4",
+        "count": 19,
+        "sha256": "0befbbe7089fcf6677a1f84a18c72ebb0fbb7b18490064f79a17d97ee1693ef4"
+       },
+       {
+        "file": "bw-split/hls/seg0.m4s",
+        "count": 19,
+        "sha256": "d0a5a1f8d13af5c1715e14b8629a09d0816b814809760a0445a7417743e031c5"
+       },
+       {
+        "file": "bw-split/hls/seg1.m4s",
+        "count": 19,
+        "sha256": "a619a73d90fda65c92cd0cdd35b0b94ac46073ef98e8ee0f9075e51aa6ffac32"
+       }
+      ],
+      "localResponseSha": "8eac915f3605fa9e1fe71719c8477be42d945428c0121ea8d7fc3d40c104e5c3",
+      "targetCoverScaleOffset": {
+       "scaleX": 1.0,
+       "scaleY": 1.0,
+       "offsetX": 0.0,
+       "offsetY": 0.0
+      },
+      "localCoverScaleOffset": [
+       {
+        "clip": 0,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 1,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 2,
+        "law": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "readback": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       }
+      ],
+      "renderedEdgeVerification": {
+       "sourceEdgeNx": 0.5,
+       "target": {
+        "card": 55,
+        "expectedNx": 0.5,
+        "measuredNx": 0.4991,
+        "pass": true
+       },
+       "local": {
+        "card": 55,
+        "clip": 0,
+        "expectedNx": 0.5,
+        "measuredNx": 0.4991,
+        "pass": true
+       },
+       "toleranceNx": 0.045,
+       "note": "measured through the glass at card centre band, where the dome refraction is near zero on both pages"
+      },
+      "decodedFrameProof": {
+       "target": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "left",
+          "expected": [
+           0,
+           0,
+           0
+          ],
+          "got": [
+           0,
+           0,
+           0
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         },
+         {
+          "landmark": "right",
+          "expected": [
+           255,
+           255,
+           255
+          ],
+          "got": [
+           255,
+           255,
+           255
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         }
+        ]
+       },
+       "local": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "left",
+          "expected": [
+           0,
+           0,
+           0
+          ],
+          "got": [
+           0,
+           0,
+           0
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         },
+         {
+          "landmark": "right",
+          "expected": [
+           255,
+           255,
+           255
+          ],
+          "got": [
+           255,
+           255,
+           255
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         }
+        ]
+       },
+       "fullFrameHashEqual": true,
+       "targetHash": "de6e6545",
+       "localHash": "de6e6545"
+      },
+      "checks": {
+       "targetAllVideosOurRendition": true,
+       "targetFrozen": true,
+       "localFrozen": true,
+       "targetLandmarks": true,
+       "localLandmarks": true,
+       "decodedFrameHashesEqual": true,
+       "localFitLawMatchesReadback": true,
+       "localSourceDimsAreAsset": true,
+       "renderedEdge": true
+      },
+      "pass": true
+     },
+     {
+      "asset": "rgb-bars",
+      "viewport": "1440x900",
+      "mobileEmulation": false,
+      "sha256": "46fc379b1b72eadec4ae0600927efb262814a66f5ef8a9244785c46d60c1389a",
+      "elementaryStreamSha256": "e42b6d974d73a3d4d683fb40aa4805f693edf3cc6f802f04474a1c396c1f2641",
+      "elementaryStreamIdenticalMp4VsHls": true,
+      "dimensions": "1200x900",
+      "durationS": 8,
+      "frozenMediaTime": 4,
+      "targetRequestUrlIntercepted": [
+       "https://stream.mux.com/sr5tcJQBZWP00IcHxTM29KVn1tpagnwATNw6LALqPmNo.m3u8",
+       "https://stream.mux.com/SqmDcr700VRNWzZvew8jKGLKNayH472UU7kl02gAq6148.m3u8"
+      ],
+      "targetRequestsIntercepted": 76,
+      "targetResponseSha": [
+       {
+        "file": "rgb-bars/media.m3u8 (served form)",
+        "count": 19,
+        "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+       },
+       {
+        "file": "rgb-bars/hls/init.mp4",
+        "count": 19,
+        "sha256": "877d4ee492856ac0771612a9f33d9cd028134650614e0a4c6e0b9b7d07bf9b73"
+       },
+       {
+        "file": "rgb-bars/hls/seg0.m4s",
+        "count": 19,
+        "sha256": "73fc0d6c7124c843a8cd560b8dddedbd68e8c5b6295af7470da0522d568aec12"
+       },
+       {
+        "file": "rgb-bars/hls/seg1.m4s",
+        "count": 19,
+        "sha256": "04576c4bba5007b433abac653464efe6092b5c5b0c47ec8a58f16b714b25d9aa"
+       }
+      ],
+      "localResponseSha": "46fc379b1b72eadec4ae0600927efb262814a66f5ef8a9244785c46d60c1389a",
+      "targetCoverScaleOffset": {
+       "scaleX": 1.0,
+       "scaleY": 1.0,
+       "offsetX": 0.0,
+       "offsetY": 0.0
+      },
+      "localCoverScaleOffset": [
+       {
+        "clip": 0,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 1,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 2,
+        "law": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "readback": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       }
+      ],
+      "renderedEdgeVerification": null,
+      "decodedFrameProof": {
+       "target": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "r",
+          "expected": [
+           220,
+           0,
+           0
+          ],
+          "got": [
+           220,
+           0,
+           0
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         },
+         {
+          "landmark": "g",
+          "expected": [
+           0,
+           220,
+           0
+          ],
+          "got": [
+           0,
+           220,
+           1
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         },
+         {
+          "landmark": "b",
+          "expected": [
+           0,
+           0,
+           220
+          ],
+          "got": [
+           0,
+           0,
+           221
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         },
+         {
+          "landmark": "w",
+          "expected": [
+           220,
+           220,
+           220
+          ],
+          "got": [
+           220,
+           220,
+           220
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         }
+        ]
+       },
+       "local": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "r",
+          "expected": [
+           220,
+           0,
+           0
+          ],
+          "got": [
+           220,
+           0,
+           0
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         },
+         {
+          "landmark": "g",
+          "expected": [
+           0,
+           220,
+           0
+          ],
+          "got": [
+           0,
+           220,
+           1
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         },
+         {
+          "landmark": "b",
+          "expected": [
+           0,
+           0,
+           220
+          ],
+          "got": [
+           0,
+           0,
+           221
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         },
+         {
+          "landmark": "w",
+          "expected": [
+           220,
+           220,
+           220
+          ],
+          "got": [
+           220,
+           220,
+           220
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         }
+        ]
+       },
+       "fullFrameHashEqual": true,
+       "targetHash": "233385e5",
+       "localHash": "233385e5"
+      },
+      "checks": {
+       "targetAllVideosOurRendition": true,
+       "targetFrozen": true,
+       "localFrozen": true,
+       "targetLandmarks": true,
+       "localLandmarks": true,
+       "decodedFrameHashesEqual": true,
+       "localFitLawMatchesReadback": true,
+       "localSourceDimsAreAsset": true,
+       "renderedEdge": true
+      },
+      "pass": true
+     },
+     {
+      "asset": "rgb-bars",
+      "viewport": "390x844",
+      "mobileEmulation": true,
+      "sha256": "46fc379b1b72eadec4ae0600927efb262814a66f5ef8a9244785c46d60c1389a",
+      "elementaryStreamSha256": "e42b6d974d73a3d4d683fb40aa4805f693edf3cc6f802f04474a1c396c1f2641",
+      "elementaryStreamIdenticalMp4VsHls": true,
+      "dimensions": "1200x900",
+      "durationS": 8,
+      "frozenMediaTime": 4,
+      "targetRequestUrlIntercepted": [
+       "https://stream.mux.com/Y2wyYBsXzu4HwxmCuDU00wcjTKYKoCLfOK73ABab3LpY.m3u8",
+       "https://stream.mux.com/W2E02Ix66PEIAJcojVS7l1Qx01uWGHR00PAY2BlKpyYSEc.m3u8"
+      ],
+      "targetRequestsIntercepted": 32,
+      "targetResponseSha": [
+       {
+        "file": "rgb-bars/media.m3u8 (served form)",
+        "count": 8,
+        "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+       },
+       {
+        "file": "rgb-bars/hls/init.mp4",
+        "count": 8,
+        "sha256": "877d4ee492856ac0771612a9f33d9cd028134650614e0a4c6e0b9b7d07bf9b73"
+       },
+       {
+        "file": "rgb-bars/hls/seg0.m4s",
+        "count": 8,
+        "sha256": "73fc0d6c7124c843a8cd560b8dddedbd68e8c5b6295af7470da0522d568aec12"
+       },
+       {
+        "file": "rgb-bars/hls/seg1.m4s",
+        "count": 8,
+        "sha256": "04576c4bba5007b433abac653464efe6092b5c5b0c47ec8a58f16b714b25d9aa"
+       }
+      ],
+      "localResponseSha": "46fc379b1b72eadec4ae0600927efb262814a66f5ef8a9244785c46d60c1389a",
+      "targetCoverScaleOffset": {
+       "scaleX": 1.0,
+       "scaleY": 1.0,
+       "offsetX": 0.0,
+       "offsetY": 0.0
+      },
+      "localCoverScaleOffset": [
+       {
+        "clip": 0,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 1,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 2,
+        "law": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "readback": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       }
+      ],
+      "renderedEdgeVerification": null,
+      "decodedFrameProof": {
+       "target": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "r",
+          "expected": [
+           220,
+           0,
+           0
+          ],
+          "got": [
+           220,
+           0,
+           0
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         },
+         {
+          "landmark": "g",
+          "expected": [
+           0,
+           220,
+           0
+          ],
+          "got": [
+           0,
+           220,
+           1
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         },
+         {
+          "landmark": "b",
+          "expected": [
+           0,
+           0,
+           220
+          ],
+          "got": [
+           0,
+           0,
+           221
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         },
+         {
+          "landmark": "w",
+          "expected": [
+           220,
+           220,
+           220
+          ],
+          "got": [
+           220,
+           220,
+           220
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         }
+        ]
+       },
+       "local": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "r",
+          "expected": [
+           220,
+           0,
+           0
+          ],
+          "got": [
+           220,
+           0,
+           0
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         },
+         {
+          "landmark": "g",
+          "expected": [
+           0,
+           220,
+           0
+          ],
+          "got": [
+           0,
+           220,
+           1
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         },
+         {
+          "landmark": "b",
+          "expected": [
+           0,
+           0,
+           220
+          ],
+          "got": [
+           0,
+           0,
+           221
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         },
+         {
+          "landmark": "w",
+          "expected": [
+           220,
+           220,
+           220
+          ],
+          "got": [
+           220,
+           220,
+           220
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         }
+        ]
+       },
+       "fullFrameHashEqual": true,
+       "targetHash": "233385e5",
+       "localHash": "233385e5"
+      },
+      "checks": {
+       "targetAllVideosOurRendition": true,
+       "targetFrozen": true,
+       "localFrozen": true,
+       "targetLandmarks": true,
+       "localLandmarks": true,
+       "decodedFrameHashesEqual": true,
+       "localFitLawMatchesReadback": true,
+       "localSourceDimsAreAsset": true,
+       "renderedEdge": true
+      },
+      "pass": true
+     },
+     {
+      "asset": "hf-checker",
+      "viewport": "1440x900",
+      "mobileEmulation": false,
+      "sha256": "044f0fa77e943d208c6c94600467080790632b2b5f6602778acafeb0a6366ac7",
+      "elementaryStreamSha256": "4182ad9f300efc8e3b9e040c1e7bfba3644d5dad9140936a78fa9efe6e6612fc",
+      "elementaryStreamIdenticalMp4VsHls": true,
+      "dimensions": "1200x900",
+      "durationS": 8,
+      "frozenMediaTime": 4,
+      "targetRequestUrlIntercepted": [
+       "https://stream.mux.com/8oWIbkfWIAWVGpd5mg5Meq7LxmJMChthdjv2YIeHH2Q.m3u8",
+       "https://stream.mux.com/Yhir8UDUrYPAQGN5iSjPQNgue02DFBW00vD5g2F9ga01Gc.m3u8"
+      ],
+      "targetRequestsIntercepted": 76,
+      "targetResponseSha": [
+       {
+        "file": "hf-checker/media.m3u8 (served form)",
+        "count": 19,
+        "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+       },
+       {
+        "file": "hf-checker/hls/init.mp4",
+        "count": 19,
+        "sha256": "9472bb5899cf75087aa258a38377e33f448eaae1363fab748c954a33144aab98"
+       },
+       {
+        "file": "hf-checker/hls/seg0.m4s",
+        "count": 19,
+        "sha256": "63db73d1383fbed3630dcc8ae56d643c0455f065f3247a1d74cc0203ea46645e"
+       },
+       {
+        "file": "hf-checker/hls/seg1.m4s",
+        "count": 19,
+        "sha256": "bc961d724f49d52cd0e8b0fea00cbb0d61477ac570ef8a7603e20ab6d7b3948d"
+       }
+      ],
+      "localResponseSha": "044f0fa77e943d208c6c94600467080790632b2b5f6602778acafeb0a6366ac7",
+      "targetCoverScaleOffset": {
+       "scaleX": 1.0,
+       "scaleY": 1.0,
+       "offsetX": 0.0,
+       "offsetY": 0.0
+      },
+      "localCoverScaleOffset": [
+       {
+        "clip": 0,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 1,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 2,
+        "law": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "readback": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       }
+      ],
+      "renderedEdgeVerification": null,
+      "decodedFrameProof": {
+       "target": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "mean",
+          "expected": [
+           127,
+           127,
+           127
+          ],
+          "got": [
+           128,
+           128,
+           128
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         }
+        ]
+       },
+       "local": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "mean",
+          "expected": [
+           127,
+           127,
+           127
+          ],
+          "got": [
+           128,
+           128,
+           128
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         }
+        ]
+       },
+       "fullFrameHashEqual": true,
+       "targetHash": "5e451f45",
+       "localHash": "5e451f45"
+      },
+      "checks": {
+       "targetAllVideosOurRendition": true,
+       "targetFrozen": true,
+       "localFrozen": true,
+       "targetLandmarks": true,
+       "localLandmarks": true,
+       "decodedFrameHashesEqual": true,
+       "localFitLawMatchesReadback": true,
+       "localSourceDimsAreAsset": true,
+       "renderedEdge": true
+      },
+      "pass": true
+     },
+     {
+      "asset": "dark-highlight",
+      "viewport": "1440x900",
+      "mobileEmulation": false,
+      "sha256": "e20d77c79ef2c40177eb1b18a353a6f2f882878afa5a45fc0f6007f54c3dd4f0",
+      "elementaryStreamSha256": "e842389120331d37ecb04eb190609e6402ccd1ca77b0cb25b16e5027dbf5055e",
+      "elementaryStreamIdenticalMp4VsHls": true,
+      "dimensions": "1200x900",
+      "durationS": 8,
+      "frozenMediaTime": 4,
+      "targetRequestUrlIntercepted": [
+       "https://stream.mux.com/Ohb3WcOspOgsZVc2Cwg9kZHe3wXWhUk00tmU58517dAg.m3u8",
+       "https://stream.mux.com/K1vWSoscB4tOmAKwKXLo7g1dNtfWRsFiNYS02tcEvUsc.m3u8"
+      ],
+      "targetRequestsIntercepted": 76,
+      "targetResponseSha": [
+       {
+        "file": "dark-highlight/media.m3u8 (served form)",
+        "count": 19,
+        "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+       },
+       {
+        "file": "dark-highlight/hls/init.mp4",
+        "count": 19,
+        "sha256": "860c71abcb25bd586d638f2911b219a7489983b199a0200e53e7e478b75b86df"
+       },
+       {
+        "file": "dark-highlight/hls/seg0.m4s",
+        "count": 19,
+        "sha256": "4400ff82654b3a46fa8e7d6ccf49a31922e1eb91fcdcd597b879fdec33f97477"
+       },
+       {
+        "file": "dark-highlight/hls/seg1.m4s",
+        "count": 19,
+        "sha256": "da346d9b65c738043c7c1609a1fd7f82b8be5f1ba5f9393ab17a72222068cbd3"
+       }
+      ],
+      "localResponseSha": "e20d77c79ef2c40177eb1b18a353a6f2f882878afa5a45fc0f6007f54c3dd4f0",
+      "targetCoverScaleOffset": {
+       "scaleX": 1.0,
+       "scaleY": 1.0,
+       "offsetX": 0.0,
+       "offsetY": 0.0
+      },
+      "localCoverScaleOffset": [
+       {
+        "clip": 0,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 1,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 2,
+        "law": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "readback": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       }
+      ],
+      "renderedEdgeVerification": null,
+      "decodedFrameProof": {
+       "target": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "dark",
+          "expected": [
+           43,
+           43,
+           53
+          ],
+          "got": [
+           41,
+           40,
+           49
+          ],
+          "maxChannelDelta": 4,
+          "pass": true
+         },
+         {
+          "landmark": "highlight",
+          "expected": [
+           255,
+           255,
+           255
+          ],
+          "got": [
+           255,
+           255,
+           255
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         }
+        ]
+       },
+       "local": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "dark",
+          "expected": [
+           43,
+           43,
+           53
+          ],
+          "got": [
+           41,
+           40,
+           49
+          ],
+          "maxChannelDelta": 4,
+          "pass": true
+         },
+         {
+          "landmark": "highlight",
+          "expected": [
+           255,
+           255,
+           255
+          ],
+          "got": [
+           255,
+           255,
+           255
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         }
+        ]
+       },
+       "fullFrameHashEqual": true,
+       "targetHash": "bb70d897",
+       "localHash": "bb70d897"
+      },
+      "checks": {
+       "targetAllVideosOurRendition": true,
+       "targetFrozen": true,
+       "localFrozen": true,
+       "targetLandmarks": true,
+       "localLandmarks": true,
+       "decodedFrameHashesEqual": true,
+       "localFitLawMatchesReadback": true,
+       "localSourceDimsAreAsset": true,
+       "renderedEdge": true
+      },
+      "pass": true
+     },
+     {
+      "asset": "bright-lowsat",
+      "viewport": "1440x900",
+      "mobileEmulation": false,
+      "sha256": "4076ffa0f4fd7649371ccf4ceb6a05f5f89471da1ad72bb2e723f7ba3cdc74b2",
+      "elementaryStreamSha256": "b91768d5ee101c28a2984f47075462f8cc0196c44947a6d20289e935dd2c76fa",
+      "elementaryStreamIdenticalMp4VsHls": true,
+      "dimensions": "1200x900",
+      "durationS": 8,
+      "frozenMediaTime": 4,
+      "targetRequestUrlIntercepted": [
+       "https://stream.mux.com/W2E02Ix66PEIAJcojVS7l1Qx01uWGHR00PAY2BlKpyYSEc.m3u8",
+       "https://stream.mux.com/SqmDcr700VRNWzZvew8jKGLKNayH472UU7kl02gAq6148.m3u8"
+      ],
+      "targetRequestsIntercepted": 76,
+      "targetResponseSha": [
+       {
+        "file": "bright-lowsat/media.m3u8 (served form)",
+        "count": 19,
+        "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+       },
+       {
+        "file": "bright-lowsat/hls/init.mp4",
+        "count": 19,
+        "sha256": "347886d079fa3cd203f43a7bfcf4630dbff433fbe7ee5edc73dd351d8e54241e"
+       },
+       {
+        "file": "bright-lowsat/hls/seg0.m4s",
+        "count": 19,
+        "sha256": "81a9bb25a392446ad6291e4a6d102fec16e0ef902dc6c3b01a5bcfde8c628056"
+       },
+       {
+        "file": "bright-lowsat/hls/seg1.m4s",
+        "count": 19,
+        "sha256": "35dde1de31be623391e65e174ef53a7583a15df1af79c315b11c1d4f2ec9e590"
+       }
+      ],
+      "localResponseSha": "4076ffa0f4fd7649371ccf4ceb6a05f5f89471da1ad72bb2e723f7ba3cdc74b2",
+      "targetCoverScaleOffset": {
+       "scaleX": 1.0,
+       "scaleY": 1.0,
+       "offsetX": 0.0,
+       "offsetY": 0.0
+      },
+      "localCoverScaleOffset": [
+       {
+        "clip": 0,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 1,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 2,
+        "law": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "readback": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       }
+      ],
+      "renderedEdgeVerification": null,
+      "decodedFrameProof": {
+       "target": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "mid",
+          "expected": [
+           207,
+           189,
+           181
+          ],
+          "got": [
+           206,
+           188,
+           180
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         }
+        ]
+       },
+       "local": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "mid",
+          "expected": [
+           207,
+           189,
+           181
+          ],
+          "got": [
+           206,
+           188,
+           180
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         }
+        ]
+       },
+       "fullFrameHashEqual": true,
+       "targetHash": "436053bd",
+       "localHash": "436053bd"
+      },
+      "checks": {
+       "targetAllVideosOurRendition": true,
+       "targetFrozen": true,
+       "localFrozen": true,
+       "targetLandmarks": true,
+       "localLandmarks": true,
+       "decodedFrameHashesEqual": true,
+       "localFitLawMatchesReadback": true,
+       "localSourceDimsAreAsset": true,
+       "renderedEdge": true
+      },
+      "pass": true
+     },
+     {
+      "asset": "warm-skin",
+      "viewport": "1440x900",
+      "mobileEmulation": false,
+      "sha256": "c5fd4c7d52b12a450bfd369b38166ee523e58efca0dbb9ca4361d0a178229365",
+      "elementaryStreamSha256": "50d0821052cda94e136a6dd1dc1b3f0f85eeea57958fa987fb08de1db93d3b52",
+      "elementaryStreamIdenticalMp4VsHls": true,
+      "dimensions": "1200x900",
+      "durationS": 8,
+      "frozenMediaTime": 4,
+      "targetRequestUrlIntercepted": [
+       "https://stream.mux.com/Y2wyYBsXzu4HwxmCuDU00wcjTKYKoCLfOK73ABab3LpY.m3u8",
+       "https://stream.mux.com/W2E02Ix66PEIAJcojVS7l1Qx01uWGHR00PAY2BlKpyYSEc.m3u8"
+      ],
+      "targetRequestsIntercepted": 76,
+      "targetResponseSha": [
+       {
+        "file": "warm-skin/media.m3u8 (served form)",
+        "count": 19,
+        "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+       },
+       {
+        "file": "warm-skin/hls/init.mp4",
+        "count": 19,
+        "sha256": "be059a880b2667c46b660fde492dcde684e2ce7b8cf2716f5c76c51ff45336d2"
+       },
+       {
+        "file": "warm-skin/hls/seg0.m4s",
+        "count": 19,
+        "sha256": "24e4b1999da5f83e612d00cae0d824ebf26657a142fdb72b8fc4eaa8451585f6"
+       },
+       {
+        "file": "warm-skin/hls/seg1.m4s",
+        "count": 19,
+        "sha256": "d109733d142121d4eaeccfe73a5e3152fcdb9363535059dfbaa892c854774be4"
+       }
+      ],
+      "localResponseSha": "c5fd4c7d52b12a450bfd369b38166ee523e58efca0dbb9ca4361d0a178229365",
+      "targetCoverScaleOffset": {
+       "scaleX": 1.0,
+       "scaleY": 1.0,
+       "offsetX": 0.0,
+       "offsetY": 0.0
+      },
+      "localCoverScaleOffset": [
+       {
+        "clip": 0,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 1,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 2,
+        "law": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "readback": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       }
+      ],
+      "renderedEdgeVerification": null,
+      "decodedFrameProof": {
+       "target": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "mid",
+          "expected": [
+           210,
+           160,
+           128
+          ],
+          "got": [
+           210,
+           160,
+           127
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         }
+        ]
+       },
+       "local": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "mid",
+          "expected": [
+           210,
+           160,
+           128
+          ],
+          "got": [
+           210,
+           160,
+           127
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         }
+        ]
+       },
+       "fullFrameHashEqual": true,
+       "targetHash": "17210aa5",
+       "localHash": "17210aa5"
+      },
+      "checks": {
+       "targetAllVideosOurRendition": true,
+       "targetFrozen": true,
+       "localFrozen": true,
+       "targetLandmarks": true,
+       "localLandmarks": true,
+       "decodedFrameHashesEqual": true,
+       "localFitLawMatchesReadback": true,
+       "localSourceDimsAreAsset": true,
+       "renderedEdge": true
+      },
+      "pass": true
+     },
+     {
+      "asset": "cool-blue",
+      "viewport": "1440x900",
+      "mobileEmulation": false,
+      "sha256": "6b3fdab8b663d492cf92543c6f7900d9adfda5aa6236be200c2d21153c805b9f",
+      "elementaryStreamSha256": "4f4b46248847eac9fd49d1d56fd5877948ac805d15f7b84a9cb3ddba491fdd62",
+      "elementaryStreamIdenticalMp4VsHls": true,
+      "dimensions": "1200x900",
+      "durationS": 8,
+      "frozenMediaTime": 4,
+      "targetRequestUrlIntercepted": [
+       "https://stream.mux.com/SqmDcr700VRNWzZvew8jKGLKNayH472UU7kl02gAq6148.m3u8",
+       "https://stream.mux.com/3008Q00vG00WGS5IhJHhRkubiv00N7nbe00m9IDXrVD6Z01wI.m3u8"
+      ],
+      "targetRequestsIntercepted": 76,
+      "targetResponseSha": [
+       {
+        "file": "cool-blue/media.m3u8 (served form)",
+        "count": 19,
+        "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+       },
+       {
+        "file": "cool-blue/hls/init.mp4",
+        "count": 19,
+        "sha256": "0547e963cba12cb933c16a24adb2f6b6623d001070959c2ad8718f3955543ce8"
+       },
+       {
+        "file": "cool-blue/hls/seg0.m4s",
+        "count": 19,
+        "sha256": "0dea8f1a7a9596135d5eafeb25d46ab179fe4d910bb4cebffd0709786076cdd2"
+       },
+       {
+        "file": "cool-blue/hls/seg1.m4s",
+        "count": 19,
+        "sha256": "772955b4e76883f498b016bfc7381765c7211c846230c0594edfc90bb0a14eb4"
+       }
+      ],
+      "localResponseSha": "6b3fdab8b663d492cf92543c6f7900d9adfda5aa6236be200c2d21153c805b9f",
+      "targetCoverScaleOffset": {
+       "scaleX": 1.0,
+       "scaleY": 1.0,
+       "offsetX": 0.0,
+       "offsetY": 0.0
+      },
+      "localCoverScaleOffset": [
+       {
+        "clip": 0,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 1,
+        "law": {
+         "repeatX": 1.0,
+         "repeatY": 1.0,
+         "offsetX": 0.0,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 1,
+         "repeatY": 1,
+         "offsetX": 0,
+         "offsetY": 0
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       },
+       {
+        "clip": 2,
+        "law": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "readback": {
+         "repeatX": 0.943396,
+         "repeatY": 0.943396,
+         "offsetX": 0.028302,
+         "offsetY": 0.030566
+        },
+        "sourceDims": "1200x900",
+        "match": true
+       }
+      ],
+      "renderedEdgeVerification": null,
+      "decodedFrameProof": {
+       "target": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "mid",
+          "expected": [
+           50,
+           90,
+           160
+          ],
+          "got": [
+           50,
+           89,
+           160
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         }
+        ]
+       },
+       "local": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "mid",
+          "expected": [
+           50,
+           90,
+           160
+          ],
+          "got": [
+           50,
+           89,
+           160
+          ],
+          "maxChannelDelta": 1,
+          "pass": true
+         }
+        ]
+       },
+       "fullFrameHashEqual": true,
+       "targetHash": "1adb345",
+       "localHash": "1adb345"
+      },
+      "checks": {
+       "targetAllVideosOurRendition": true,
+       "targetFrozen": true,
+       "localFrozen": true,
+       "targetLandmarks": true,
+       "localLandmarks": true,
+       "decodedFrameHashesEqual": true,
+       "localFitLawMatchesReadback": true,
+       "localSourceDimsAreAsset": true,
+       "renderedEdge": true
+      },
+      "pass": true
+     },
+     {
+      "asset": "cover-control",
+      "viewport": "1440x900",
+      "mobileEmulation": false,
+      "sha256": "234f113c77b90f54fe5c2ffaf32489fd32049670358a89463eb9f4b898a7eca0",
+      "elementaryStreamSha256": "89da6d6b348612630f21c7b826d0aeaabe8a31a155dfeadbd6debeabe0476f1f",
+      "elementaryStreamIdenticalMp4VsHls": true,
+      "dimensions": "1600x900",
+      "durationS": 8,
+      "frozenMediaTime": 4,
+      "targetRequestUrlIntercepted": [
+       "https://stream.mux.com/K1vWSoscB4tOmAKwKXLo7g1dNtfWRsFiNYS02tcEvUsc.m3u8",
+       "https://stream.mux.com/b6NK9RZb59brkSX7trHXlFGqS2YCi4XTjAATtFuihbM.m3u8"
+      ],
+      "targetRequestsIntercepted": 76,
+      "targetResponseSha": [
+       {
+        "file": "cover-control/media.m3u8 (served form)",
+        "count": 19,
+        "sha256": "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4"
+       },
+       {
+        "file": "cover-control/hls/init.mp4",
+        "count": 19,
+        "sha256": "540c9b53e89e4cac8f0f4b2c69d0bb0f9101a85c7df46249ac42412f72608d45"
+       },
+       {
+        "file": "cover-control/hls/seg0.m4s",
+        "count": 19,
+        "sha256": "097148fe75979607a40341ab5f55f1fa9991d7f9ef9f19cb7e9fc60ee73e0b9b"
+       },
+       {
+        "file": "cover-control/hls/seg1.m4s",
+        "count": 19,
+        "sha256": "f34e5c54f553c7cc6d3254cb47fa1a3d28a98d48bb15b29ad26af18d01866f0f"
+       }
+      ],
+      "localResponseSha": "234f113c77b90f54fe5c2ffaf32489fd32049670358a89463eb9f4b898a7eca0",
+      "targetCoverScaleOffset": {
+       "scaleX": 0.75,
+       "scaleY": 1.0,
+       "offsetX": 0.125,
+       "offsetY": 0.0
+      },
+      "localCoverScaleOffset": [
+       {
+        "clip": 0,
+        "law": {
+         "repeatX": 0.75,
+         "repeatY": 1.0,
+         "offsetX": 0.125,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 0.75,
+         "repeatY": 1,
+         "offsetX": 0.125,
+         "offsetY": 0
+        },
+        "sourceDims": "1600x900",
+        "match": true
+       },
+       {
+        "clip": 1,
+        "law": {
+         "repeatX": 0.75,
+         "repeatY": 1.0,
+         "offsetX": 0.125,
+         "offsetY": 0.0
+        },
+        "readback": {
+         "repeatX": 0.75,
+         "repeatY": 1,
+         "offsetX": 0.125,
+         "offsetY": 0
+        },
+        "sourceDims": "1600x900",
+        "match": true
+       },
+       {
+        "clip": 2,
+        "law": {
+         "repeatX": 0.707547,
+         "repeatY": 0.943396,
+         "offsetX": 0.146226,
+         "offsetY": 0.030566
+        },
+        "readback": {
+         "repeatX": 0.707547,
+         "repeatY": 0.943396,
+         "offsetX": 0.146226,
+         "offsetY": 0.030566
+        },
+        "sourceDims": "1600x900",
+        "match": true
+       }
+      ],
+      "renderedEdgeVerification": {
+       "sourceEdgeNx": 0.375,
+       "target": {
+        "card": 55,
+        "expectedNx": 0.3333,
+        "measuredNx": 0.3388,
+        "pass": true
+       },
+       "local": {
+        "card": 55,
+        "clip": 0,
+        "expectedNx": 0.3333,
+        "measuredNx": 0.337,
+        "pass": true
+       },
+       "toleranceNx": 0.045,
+       "note": "measured through the glass at card centre band, where the dome refraction is near zero on both pages"
+      },
+      "decodedFrameProof": {
+       "target": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "left",
+          "expected": [
+           40,
+           40,
+           40
+          ],
+          "got": [
+           40,
+           40,
+           40
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         },
+         {
+          "landmark": "right",
+          "expected": [
+           215,
+           215,
+           215
+          ],
+          "got": [
+           215,
+           215,
+           215
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         }
+        ]
+       },
+       "local": {
+        "pass": true,
+        "tolerance": 12,
+        "rows": [
+         {
+          "landmark": "left",
+          "expected": [
+           40,
+           40,
+           40
+          ],
+          "got": [
+           40,
+           40,
+           40
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         },
+         {
+          "landmark": "right",
+          "expected": [
+           215,
+           215,
+           215
+          ],
+          "got": [
+           215,
+           215,
+           215
+          ],
+          "maxChannelDelta": 0,
+          "pass": true
+         }
+        ]
+       },
+       "fullFrameHashEqual": true,
+       "targetHash": "2eb81c45",
+       "localHash": "2eb81c45"
+      },
+      "checks": {
+       "targetAllVideosOurRendition": true,
+       "targetFrozen": true,
+       "localFrozen": true,
+       "targetLandmarks": true,
+       "localLandmarks": true,
+       "decodedFrameHashesEqual": true,
+       "localFitLawMatchesReadback": true,
+       "localSourceDimsAreAsset": true,
+       "renderedEdge": true
+      },
+      "pass": true
+     }
+    ],
+    "note": null
+   }
+  },
+  {
+   "name": "O2 Media-only Controls",
+   "pass": true,
+   "detail": {
+    "pairs": [
+     {
+      "asset": "bw-split",
+      "vp": "1440x900",
+      "differingPixels": 0,
+      "maxChannelDelta": 0
+     },
+     {
+      "asset": "rgb-bars",
+      "vp": "1440x900",
+      "differingPixels": 0,
+      "maxChannelDelta": 0
+     },
+     {
+      "asset": "bw-split",
+      "vp": "390x844",
+      "differingPixels": 0,
+      "maxChannelDelta": 0
+     },
+     {
+      "asset": "bw-split",
+      "vp": "844x390",
+      "differingPixels": 0,
+      "maxChannelDelta": 0
+     }
+    ]
+   }
+  },
+  {
+   "name": "A+B Dispersion Selection",
+   "pass": true,
+   "detail": {
+    "winner": "A+B",
+    "dispersionLawsObservedThisRound": [
+     "o1-spectral"
+    ],
+    "note": "the O2 selection is frozen product; O3 re-asserts it rather than re-deciding it."
+   }
+  },
+  {
+   "name": "TypeScript",
+   "pass": true,
+   "detail": {}
+  },
+  {
+   "name": "Vite Build",
+   "pass": true,
+   "detail": {}
+  }
+ ]
+}
