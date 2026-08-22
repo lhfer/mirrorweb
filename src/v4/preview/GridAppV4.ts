@@ -36,6 +36,8 @@ import {
 import {
   V4_DEBUG_MODES, V4_OPTICS_CONFIG,
   type V4BodyDiag, type V4BodyFloorMode, type V4DebugMode, type V4DispersionLaw,
+  isTargetSourceBody,
+  type V4EnvironmentMode,
   type V4OpticalBody,
   type V5BodyViewName,
   type V4ReflectionSupport, type V4ShellMode,
@@ -82,6 +84,8 @@ export type GridAppV4Options = {
   opticalBody?: V4OpticalBody;
   /** O5 candidate debug view (?bodyView=). */
   bodyView?: V5BodyViewName;
+  /** O5R structural environment control (?environmentMode=). */
+  environmentMode?: V4EnvironmentMode;
 };
 
 /**
@@ -273,7 +277,7 @@ export class GridAppV4 {
       // is a pass setting here and a material flag in the Target.
       this.pipeline.glassToneMapping = NoToneMapping;
     }
-    if (this.options.opticalBody === "target-source"
+    if (isTargetSourceBody(this.options.opticalBody ?? "current")
         && this.options.bodyView && this.options.bodyView !== "beauty") {
       // QA ONLY, and only for the candidate's DEBUG views. A normal or an SDF
       // read through ACES is not the value the shader produced -- O4 spent a
@@ -289,7 +293,8 @@ export class GridAppV4 {
     // all. Set before build so the very first frame is already correct -- a
     // one-frame flash of a pass that should not run would show up in the
     // first-frame checks §十 asks for.
-    this.pipeline.skipSceneColorPass = this.options.opticalBody === "target-source";
+    this.pipeline.skipSceneColorPass =
+      isTargetSourceBody(this.options.opticalBody ?? "current");
     this.grid.build(
       this.quality.level,
       this.pipeline.sceneColor.texture,
@@ -305,6 +310,7 @@ export class GridAppV4 {
         bodyFloorMode: this.options.bodyFloorMode,
         opticalBody: this.options.opticalBody,
         bodyView: this.options.bodyView,
+        environmentMode: this.options.environmentMode,
       },
     );
     if (this.frame) this.grid.setFrame(this.frame);
@@ -737,6 +743,39 @@ export class GridAppV4 {
    * invariant worth gating is label-to-card-plane through the camera the label
    * layer itself uses, so this projects through exactly that one.
    */
+  /**
+   * O5R QA-only: the live matrices a CPU replay of the Target's refraction and
+   * silhouette needs.
+   *
+   * §六 and §八 require the Target side to be replayed through the LIVE layout
+   * frame, card matrix and camera. Our frozen frame reproduces the Target's L6
+   * exactly at every O5 viewport (qa-v5/optics-o5/o5-architecture.json,
+   * layoutReproducesL6), which is what makes one set of matrices valid for
+   * both -- so the replay is driven from here rather than from a second model
+   * of the layout, whose disagreements with the engine would be
+   * indistinguishable from optical differences.
+   */
+  getCardBodyTruth(): Record<string, unknown> {
+    const handle = this.renderer.handle;
+    const geometry = this.grid.getCardBodyGeometry();
+    if (!handle) return { ...geometry, camera: null };
+    this.applyPose();
+    this.grid.root.updateWorldMatrix(true, true);
+    const camera = handle.camera;
+    camera.updateMatrixWorld(true);
+    return {
+      ...geometry,
+      viewportPx: [window.innerWidth, window.innerHeight],
+      devicePixelRatio: window.devicePixelRatio,
+      camera: {
+        type: camera.type,
+        projectionMatrix: camera.projectionMatrix.toArray(),
+        matrixWorldInverse: camera.matrixWorldInverse.toArray(),
+        position: camera.position.toArray(),
+      },
+    };
+  }
+
   getCardPlaneRects(): Array<{ slotIndex: number; rectPx: number[] }> {
     const handle = this.renderer.handle;
     const frame = this.frame;

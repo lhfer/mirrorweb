@@ -33,8 +33,12 @@ import {
   createLiquidGlassParamsV4,
   type LiquidGlassMaterialV4Handle,
 } from "../../materials/LiquidGlassMaterialV4";
-import type { V4DebugMode, V4OpticalBody, V4ShellMode } from "../OpticsConfigV4";
 import {
+  isTargetSourceBody,
+  type V4DebugMode, type V4EnvironmentMode, type V4OpticalBody, type V4ShellMode,
+} from "../OpticsConfigV4";
+import {
+  TARGET_BODY_SOURCE,
   applyTargetOpticalBodyFrameV5,
   createTargetOpticalBodyMaterialV5,
   createTargetOpticalBodyUniformsV5,
@@ -121,6 +125,8 @@ export class InfiniteGlassGridV4 {
    */
   private ownMediaTextures: VideoTexture[] = [];
   private bodyView: V5BodyView = "beauty";
+  /** O5R §十: the environment as a structural choice, not a multiply. */
+  private environmentMode: V4EnvironmentMode = "source";
   /** Kept so a quality step can rebuild the candidate materials. */
   private bodyEnvTexture: Texture | null = null;
 
@@ -154,7 +160,8 @@ export class InfiniteGlassGridV4 {
     }
     this.opticalBody = materialOptions?.opticalBody ?? "current";
     this.bodyView = materialOptions?.bodyView ?? "beauty";
-    const targetSource = this.opticalBody === "target-source" && this.sourceExact;
+    this.environmentMode = materialOptions?.environmentMode ?? "source";
+    const targetSource = isTargetSourceBody(this.opticalBody) && this.sourceExact;
     this.glassGeometry.dispose();
     this.glassGeometry = createConvexGlassGeometryV4(quality);
     // The candidate lane builds NO control material: its body carries
@@ -182,7 +189,7 @@ export class InfiniteGlassGridV4 {
     this.applyMediaFits();
 
     if (this.sourceExact) {
-      if (this.opticalBody === "target-source") {
+      if (isTargetSourceBody(this.opticalBody)) {
         this.buildTargetSourcePool(materialOptions?.envTexture ?? null);
       } else {
         this.buildSourceExactPool();
@@ -350,6 +357,10 @@ export class InfiniteGlassGridV4 {
         coverOffset: fit ? [fit.offsetX, fit.offsetY] : [0, 0],
         quality: this.quality,
         view: this.bodyView,
+        // O5R §十. The clamp survives ONLY in the lane O5 sealed, so the
+        // original gate stays re-runnable against the pixels it was scored on.
+        clampEnvSample: this.opticalBody === "target-source",
+        environmentMode: this.environmentMode,
       }));
     }
     this.bodyHandles = next;
@@ -547,7 +558,7 @@ export class InfiniteGlassGridV4 {
         // a QA surface only: it appears exactly when the glass layer is
         // switched off, which is what a media-only capture asks for. In the
         // control lane it is the media BEHIND the glass and shows normally.
-        slot.media.visible = this.opticalBody === "target-source"
+        slot.media.visible = isTargetSourceBody(this.opticalBody)
           ? activeOk && this.passMedia && !this.passGlass
           : activeOk && this.passMedia;
       }
@@ -595,10 +606,16 @@ export class InfiniteGlassGridV4 {
       bodyDiag: this.handle?.getBodyDiag() ?? null,
       bodyFloorMode: this.handle?.getBodyFloorMode() ?? null,
       opticalBody: this.opticalBody,
-      opticalBodyView: this.opticalBody === "target-source" ? this.bodyView : null,
+      opticalBodyView: isTargetSourceBody(this.opticalBody) ? this.bodyView : null,
       opticalBodySamples: this.bodyHandles[0]?.samples ?? null,
       opticalBodyMaterials: this.bodyHandles.length,
       opticalBodyOwnTextures: this.ownMediaTextures.length,
+      // O5R: read off the built program, not off the requested option, so a
+      // lane that failed to rebuild reports what it is rather than what it
+      // was asked to be.
+      environmentMode: this.bodyHandles[0]?.environment.mode
+        ?? (isTargetSourceBody(this.opticalBody) ? this.environmentMode : null),
+      envSampleClamped: this.bodyHandles[0]?.environment.clamped ?? null,
       envMixScale: this.params.envMixScale.value,
       rimScale: this.params.rimScale.value,
       shellMode: this.handle?.getShellMode() ?? null,
@@ -610,6 +627,63 @@ export class InfiniteGlassGridV4 {
         envRotationX: this.params.envRotationX.value,
         rimIntensity: this.params.rimIntensity.value,
       },
+    };
+  }
+
+  /**
+   * O5R QA-only: everything a CPU replay of the Target's refraction and
+   * silhouette needs, read off the live scene.
+   *
+   * §六 and §八 both require the Target side to be replayed from the source
+   * formula through the LIVE layout frame and card matrix rather than through
+   * a re-derivation of them -- a re-derivation would be a second model, and a
+   * disagreement between it and the engine would be indistinguishable from an
+   * optical difference. Nothing here is a render input; it is only read.
+   */
+  getCardBodyGeometry(): Record<string, unknown> {
+    const frame = this.frame;
+    const slots = this.sourceExact
+      ? this.slots.slice(0, this.activeSlotCount)
+      : this.slots;
+    const S = TARGET_BODY_SOURCE;
+    return {
+      sourceExact: this.sourceExact,
+      opticalBody: this.opticalBody,
+      frame: frame
+        ? {
+            planeWidth: frame.planeWidth,
+            planeHeight: frame.planeHeight,
+            cardScale: frame.cardScale,
+            sphereRadius: frame.sphereRadius,
+          }
+        : null,
+      // The derived per-frame values, taken from the same expressions
+      // applyTargetOpticalBodyFrameV5 writes into the uniforms, so a replay
+      // cannot drift from the shader by re-deriving them differently.
+      derived: frame
+        ? {
+            cornerRadius: S.cornerRadiusRatio * frame.planeWidth,
+            bevelWidth: S.bevelWidthRatio * frame.planeWidth,
+            thickness: S.thicknessPerCardScale * frame.cardScale,
+            rimWidth: S.rimWidthPerCardScale * frame.cardScale,
+          }
+        : null,
+      source: { ...S },
+      samples: this.bodyHandles[0]?.samples ?? null,
+      cards: slots.map((slot) => {
+        const fit = this.mediaFits[slot.slotIndex % Math.max(1, this.mediaFits.length)];
+        return {
+          slotIndex: slot.slotIndex,
+          clipIndex: this.bodyHandles.length
+            ? slot.slotIndex % this.bodyHandles.length
+            : null,
+          active: slot.active !== false,
+          matrixWorld: slot.glass.matrixWorld.toArray(),
+          scale: [slot.glass.scale.x, slot.glass.scale.y, slot.glass.scale.z],
+          coverScale: fit ? [fit.repeatX, fit.repeatY] : [1, 1],
+          coverOffset: fit ? [fit.offsetX, fit.offsetY] : [0, 0],
+        };
+      }),
     };
   }
 
@@ -668,7 +742,7 @@ export class InfiniteGlassGridV4 {
       slot.active = active;
       slot.group.visible = active;
       if (!active) continue;
-      if (this.foundation || this.opticalBody === "target-source") {
+      if (this.foundation || isTargetSourceBody(this.opticalBody)) {
         // Unit plane scaled to the card -- the Target's own
         // `t.scale.set(d,h,1)`. Z stays 1 so the vertex dome, which is already
         // in card pixels, is not scaled twice.
@@ -773,7 +847,7 @@ export class InfiniteGlassGridV4 {
       slot.glass.geometry = this.glassGeometry;
       if (slot.shell) slot.shell.geometry = this.glassGeometry;
     }
-    if (this.opticalBody === "target-source") this.rebuildBodyMaterials();
+    if (isTargetSourceBody(this.opticalBody)) this.rebuildBodyMaterials();
     // Re-apply the layout frame: the scales live on the meshes, and a quality
     // step must not be able to leave them describing the previous geometry.
     if (this.sourceExact && this.frame) this.setFrame(this.frame);

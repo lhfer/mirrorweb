@@ -23,6 +23,7 @@ import {
   sin,
   smoothstep,
   sqrt,
+  step,
   texture,
   uniform,
   uv,
@@ -30,7 +31,10 @@ import {
   vec3,
   vec4,
 } from "three/tsl";
-import { V4_OPTICS_CONFIG, type V4QualityLevel } from "../v4/OpticsConfigV4";
+import {
+  V4_OPTICS_CONFIG, V5_DISPLACEMENT_GAIN,
+  type V4EnvironmentMode, type V4QualityLevel,
+} from "../v4/OpticsConfigV4";
 
 /**
  * O5 -- the Target's COMPLETE card optical body, as one material.
@@ -256,6 +260,9 @@ export const V5_BODY_VIEWS = [
   "sdf-mask",
   "analytic-normal",
   "refraction-only",
+  "uv-unrefracted",
+  "uv-refracted",
+  "refraction-displacement",
 ] as const;
 export type V5BodyView = (typeof V5_BODY_VIEWS)[number];
 
@@ -270,12 +277,33 @@ export type TargetOpticalBodyOptionsV5 = {
   coverOffset: [number, number];
   quality: V4QualityLevel;
   view?: V5BodyView;
+  /**
+   * O5R §十. `false` samples the source HDR with no ceiling, as the Target
+   * does; `true` keeps O2's clamp, which is what the SEALED O5 lane shipped.
+   *
+   * Removing the clamp is safe against non-finite samples for a reason that is
+   * structural rather than probabilistic, and it is recorded in
+   * qa-v5/optics-o5r/hdr-radiance-audit.json: three's own RGBE decode applies
+   * `Math.min(v, 65504)` per channel before `toHalfFloat`, so the sampled
+   * texture cannot hold Inf or NaN whatever the file encodes -- and the Target,
+   * loading the same asset through the same loader, is bounded identically.
+   * The asset itself decodes to 1572864 finite channels, 0 NaN, 0 Inf.
+   */
+  clampEnvSample?: boolean;
+  /**
+   * O5R §十. `"off"` omits the environment sample from the PROGRAM: no texture
+   * fetch, no Fresnel term, no mix. That is a structural floor control, unlike
+   * multiplying an already-sampled value by zero.
+   */
+  environmentMode?: V4EnvironmentMode;
 };
 
 /** A per-clip material and the two uniforms the layout writes into it. */
 export type TargetOpticalBodyHandleV5 = {
   material: MeshBasicNodeMaterial;
   coverScale: { value: Vector2 };
+  /** O5R: what this program actually did with the environment. */
+  environment: { mode: V4EnvironmentMode; clamped: boolean };
   coverOffset: { value: Vector2 };
   samples: number;
   view: V5BodyView;
@@ -296,6 +324,8 @@ export function createTargetOpticalBodyMaterialV5(
   const view: V5BodyView = options.view ?? "beauty";
   const samples = V5_BODY_SAMPLES[options.quality];
   const spectral = spectralSamplesV5(samples);
+  const clampEnv = options.clampEnvSample ?? true;
+  const envMode: V4EnvironmentMode = options.environmentMode ?? "source";
 
   const coverScale = uniform(vec2(options.coverScale[0], options.coverScale[1]));
   const coverOffset = uniform(vec2(options.coverOffset[0], options.coverOffset[1]));
@@ -303,6 +333,21 @@ export function createTargetOpticalBodyMaterialV5(
   const mediaTex = texture(options.media);
   const envTex = texture(options.environment);
   const half = u.planeSize.mul(0.5);
+
+  /**
+   * The exact inverse of the renderer's sRGB output transform.
+   *
+   * Used ONLY by the O5R measurement views, so that a value written here comes
+   * back out of the framebuffer unchanged. It is deliberately not applied to
+   * `analytic-normal` or `sdf-mask`: those two are part of the sealed O5
+   * compiled audit, whose reader decodes the sRGB transform itself, and
+   * changing their encoding now would invalidate a sealed proof.
+   */
+  const srgbToLinear = Fn(([c]: [any]) => {
+    const lo = c.div(12.92);
+    const hi = pow(max(c.add(0.055).div(1.055), float(0)), 2.4);
+    return mix(lo, hi, step(float(0.04045), c));
+  });
 
   // --- sphere and dome, bundle bytes 1973800 / 1973917 -------------------
   const sphereZ = Fn(([p]: [any]) =>
@@ -332,9 +377,18 @@ export function createTargetOpticalBodyMaterialV5(
     modelWorldMatrix.mul(vec4(d.xy.div(u.planeSize), d.z, 0)).xyz.normalize(),
   );
 
-  /** The whole body colour chain. Returns the analytic normal too, so the
-   *  normal debug view is the SAME expression the Beauty path uses. */
-  const bodyChain = () => {
+  /**
+   * The whole body colour chain. Returns the analytic normal too, so the
+   * normal debug view is the SAME expression the Beauty path uses.
+   *
+   * `wantUv` is a BUILD-TIME flag, not a shader branch. It exists so the O5R
+   * measurement views can ask for the un-refracted UV and the base-ior
+   * displacement without those expressions entering the Beauty program: the
+   * SEALED `target-source` lane has to stay pixel-identical to what the O5
+   * gate scored, and the cheapest way to guarantee that is for its program to
+   * contain nothing new at all rather than to rely on dead-code elimination.
+   */
+  const bodyChain = (wantUv = false) => {
     const p = positionLocal.xy.mul(u.planeSize).toVar();
     const sdf = sdfAt(p).toVar();
 
@@ -379,22 +433,58 @@ export function createTargetOpticalBodyMaterialV5(
     // structural rather than incidental.
     const baseUv = uv();
     let accumulated: any = vec3(0);
+    // O5R §六: the BASE-ior sample's own displacement, kept so the QA
+    // refraction views report the un-dispersed refraction rather than an
+    // arbitrary one of the five. The tent table is built from t = i/(n-1) with
+    // offset t - 0.5 and n odd, so an exact zero offset always exists.
+    let baseDisplacement: any = null;
+    let baseSampleUv: any = null;
     for (const sample of spectral) {
       const eta = float(1).div(
         max(u.ior.add(u.dispersion.mul(float(sample.offset))), float(S.etaFloor)),
       );
       const r = refract(V.negate(), N, eta);
       const travel = u.thickness.div(max(abs(r.z), float(S.travelZFloor)));
-      const displaced = baseUv.add(
-        r.xy.mul(travel).mul(u.refractStrength).div(u.planeSize),
-      );
+      const offset = r.xy.mul(travel).mul(u.refractStrength).div(u.planeSize);
+      const displaced = baseUv.add(offset);
       const sampleUv = clamp(displaced, 0, 1).mul(coverScale).add(coverOffset);
+      if (wantUv && sample.offset === 0) {
+        baseDisplacement = offset;
+        baseSampleUv = sampleUv;
+      }
       const rgb = mediaTex.sample(sampleUv).rgb.mul(
         vec3(sample.weight[0], sample.weight[1], sample.weight[2]),
       );
       accumulated = accumulated.add(rgb);
     }
     const body = accumulated.toVar();
+    // The same clamp-then-cover transform with NO refraction: where this
+    // fragment's media sample would come from if the body were flat glass.
+    const uvUnrefracted = wantUv
+      ? clamp(baseUv, 0, 1).mul(coverScale).add(coverOffset)
+      : null;
+
+    // --- white SDF rim, byte 1976273 ------------------------------------
+    // Hoisted above the environment block so that `environmentMode = "off"`
+    // can return early WITHOUT the environment ever entering the program. A
+    // floor built by multiplying a sampled value by zero is a different thing
+    // from a floor built by not sampling; §十 asks for the second.
+    const rim = smoothstep(u.rimWidth.negate(), float(0), sdf)
+      .mul(u.rimIntensity)
+      .mul(u.rimScale);
+    // rimColor and rimColorTop are both #ffffff in the shipped settings, so
+    // the Target's vertical gradient between them is inert. It is transcribed
+    // rather than folded away, because folding it away would silently discard
+    // a parameter the Target exposes.
+    const rimColor = vec3(1, 1, 1);
+
+    if (envMode === "off") {
+      return {
+        colour: body.add(rimColor.mul(rim)),
+        N, sdf, body, uvUnrefracted,
+        uvRefracted: baseSampleUv, displacement: baseDisplacement,
+      };
+    }
 
     // --- environment, byte 1975760 --------------------------------------
     const Nw = toWorld(N).toVar();
@@ -417,9 +507,18 @@ export function createTargetOpticalBodyMaterialV5(
       rotY.y.mul(cx).sub(rotY.z.mul(sx)),
       rotY.y.mul(sx).add(rotY.z.mul(cx)),
     );
-    const envColor = envTex
-      .sample(equirectUV(rotX))
-      .rgb.clamp(0, u.envSampleCeiling)
+    // O5R §十. The Target has no ceiling here. Ours came from O2 as a guard
+    // against a non-finite HDR texel, and the guard turned out to BIND: 0.99%
+    // of this asset's texels exceed 16 and the brightest exceeds it 224-fold,
+    // so every card reflecting one of them rendered a dimmer highlight than
+    // the Target's. It is removed rather than retuned -- there is no
+    // replacement clamp and no new constant -- and what makes that safe is
+    // structural, not statistical: three's RGBE decode clamps every channel at
+    // 65504 before packing the half-float, so the sampled texture cannot carry
+    // Inf or NaN, and the Target gets exactly the same bound from the same
+    // loader. See qa-v5/optics-o5r/hdr-radiance-audit.json.
+    const sampled = envTex.sample(equirectUV(rotX)).rgb;
+    const envColor = (clampEnv ? sampled.clamp(0, u.envSampleCeiling) : sampled)
       .toVar();
 
     // Schlick, exponent 5, on the LOCAL-space dot -- before toWorld().
@@ -433,18 +532,11 @@ export function createTargetOpticalBodyMaterialV5(
       u.envMaxMix,
     ).mul(u.envMixScale);
 
-    // --- white SDF rim, byte 1976273 ------------------------------------
-    const rim = smoothstep(u.rimWidth.negate(), float(0), sdf)
-      .mul(u.rimIntensity)
-      .mul(u.rimScale);
-    // rimColor and rimColorTop are both #ffffff in the shipped settings, so
-    // the Target's vertical gradient between them is inert. It is transcribed
-    // rather than folded away, because folding it away would silently discard
-    // a parameter the Target exposes.
-    const rimColor = vec3(1, 1, 1);
-
     const colour = mix(body, envColor, envMix).add(rimColor.mul(rim));
-    return { colour, N, sdf, body };
+    return {
+      colour, N, sdf, body, uvUnrefracted,
+      uvRefracted: baseSampleUv, displacement: baseDisplacement,
+    };
   };
 
   // --- alpha, byte 1976585 ------------------------------------------------
@@ -469,7 +561,8 @@ export function createTargetOpticalBodyMaterialV5(
     // here means reproducing the inertness, not compensating for it.
     toneMapped: false,
   });
-  material.name = `MirrorWeb.V5.TargetOpticalBody.${view}`;
+  material.name = `MirrorWeb.V5.TargetOpticalBody.${view}`
+    + `.env-${envMode}${clampEnv ? "-clamped" : ""}`;
 
   // The dome is applied in the VERTEX stage, which is why the plane carries
   // 16x12 segments: the curvature is resolved by tessellation, not by a
@@ -483,7 +576,9 @@ export function createTargetOpticalBodyMaterialV5(
   // is no runtime branch and no shared varying, so the O4A codegen defect
   // cannot occur here.
   material.colorNode = Fn(() => {
-    const chain = bodyChain();
+    const wantUv = view === "uv-unrefracted" || view === "uv-refracted"
+      || view === "refraction-displacement";
+    const chain = bodyChain(wantUv);
     if (view === "analytic-normal") return chain.N.mul(0.5).add(0.5);
     if (view === "sdf-mask") {
       const inside = smoothstep(float(0), float(-1), chain.sdf);
@@ -494,6 +589,25 @@ export function createTargetOpticalBodyMaterialV5(
     // package uses "media-only" for the media-PLANE capture, which is
     // a different picture answering a different question.
     if (view === "refraction-only") return chain.body;
+    // O5R §六 measurement views. Each writes a NUMBER, not a picture, so each
+    // is pushed through the inverse of the output transform: the renderer
+    // encodes linear -> sRGB on the way out, and sRGB quantisation near 0.5 is
+    // more than three times coarser than a linear one, which is exactly where
+    // a refraction displacement lives. Undoing the transform in the shader
+    // makes the stored byte the encoded value itself.
+    if (view === "uv-unrefracted") {
+      const uvu = chain.uvUnrefracted!;
+      return srgbToLinear(vec3(uvu.x, uvu.y, 0));
+    }
+    if (view === "uv-refracted") {
+      const uvr = chain.uvRefracted!;
+      return srgbToLinear(vec3(uvr.x, uvr.y, 0));
+    }
+    if (view === "refraction-displacement") {
+      const g = float(V5_DISPLACEMENT_GAIN);
+      const d = chain.displacement!;
+      return srgbToLinear(vec3(d.x.mul(g).add(0.5), d.y.mul(g).add(0.5), 0));
+    }
     return chain.colour;
   })();
 
@@ -503,6 +617,7 @@ export function createTargetOpticalBodyMaterialV5(
     material,
     coverScale: coverScale as unknown as { value: Vector2 },
     coverOffset: coverOffset as unknown as { value: Vector2 },
+    environment: { mode: envMode, clamped: clampEnv },
     samples,
     view,
   };

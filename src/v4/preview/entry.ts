@@ -2,7 +2,8 @@ import type { QualityLevel } from "../../config";
 import type { MediaFitMode } from "../../content/MediaFit";
 import {
   V4_DEBUG_MODES, V4_REFLECTION_SUPPORTS, V4_SHELL_MODES,
-  parseBodyDiag, parseBodyFloorMode, parseBodyView, parseOpticalBody,
+  parseBodyDiag, parseBodyFloorMode, parseBodyView, parseEnvironmentMode,
+  parseOpticalBody,
   type V4DebugMode, type V4DispersionLaw, type V4ReflectionSupport,
   type V4ShellMode,
 } from "../OpticsConfigV4";
@@ -51,6 +52,8 @@ export type GridQaV4 = {
   getMotionTruth: () => Record<string, unknown>;
   /** Card mid-plane screen rects in pixels, through the label camera. */
   getCardPlaneRects: () => Array<{ slotIndex: number; rectPx: number[] }>;
+  /** O5R QA-only: live card matrices + camera, for the CPU replay. */
+  getCardBodyTruth: () => Record<string, unknown>;
   getMetrics: () => Record<string, unknown>;
   getAssetState: () => Record<string, unknown>;
   getPoolState: () => Record<string, unknown>;
@@ -108,6 +111,7 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
     bodyFloorMode: parseBodyFloorMode(query.get("bodyFloorMode")),
     opticalBody: parseOpticalBody(query.get("opticalBody")),
     bodyView: parseBodyView(query.get("bodyView")),
+    environmentMode: parseEnvironmentMode(query.get("environmentMode")),
     ...(Number.isFinite(overscanQuery) && overscanQuery >= 1 ? { overscan: overscanQuery } : {}),
     ...options,
   });
@@ -145,6 +149,7 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
       getLabelTruth: () => app.getLabelTruth(),
       getMotionTruth: () => app.getMotionTruth(),
       getCardPlaneRects: () => app.getCardPlaneRects(),
+      getCardBodyTruth: () => app.getCardBodyTruth(),
       getMetrics: () => app.getMetrics(),
       getAssetState: () => app.getAssetState(),
       getPoolState: () => app.getPoolState(),

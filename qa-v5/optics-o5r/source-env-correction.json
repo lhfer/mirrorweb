@@ -1,0 +1,301 @@
+{
+ "what": "O5R \u00a7\u5341 source-environment correction: the one product-code change this round is authorised to make, and the program-level evidence of exactly what it did.",
+ "change": {
+  "removed": "O2's envSampleCeiling clamp on the environment sample, in the target-source-unclamped lane only",
+  "why": "the Target has no such clamp, and the O5 evidence proved ours BINDS: 0.91% of the asset's colour channels exceed 16 and the brightest exceeds it 224-fold, so every card reflecting one of them rendered a dimmer highlight than the Target's",
+  "whyItIsSafe": "structural rather than statistical. three's RGBE decode applies Math.min(v, 65504) per channel before packing the half-float, so the sampled texture cannot carry Inf or NaN whatever the file encodes -- and the Target, loading the same asset through the same loader, is bounded identically. Verified against the vendored loader source, not assumed.",
+  "added": "environmentMode = source | off, as BUILD-TIME structural programs. The old route to an environment floor was envMixScale = 0 multiplied onto an already-sampled HDR value, which is the shape \u00a7\u5341 rules out.",
+  "retained": "envMixScale and rimScale, untouched. The sealed O2, O3 and O4 harnesses drive them and O5's control identity records them; removing them would break \u00a7\u5341\u4e09A's re-run of the original gate.",
+  "notTouched": [
+   "ior",
+   "dispersion",
+   "dispersionSamples",
+   "refractStrength",
+   "bevelWidth",
+   "bevelPower",
+   "bevelMaxSlope",
+   "thickness",
+   "cornerRadius",
+   "fresnelF0",
+   "envIntensity",
+   "envMaxMix",
+   "envRotation",
+   "envRotationX",
+   "rimWidth",
+   "rimIntensity",
+   "the HDR asset bytes",
+   "exposure"
+  ]
+ },
+ "lanes": {
+  "current": "the accepted O2 body. Untouched, and proved untouched by the control-identity re-run.",
+  "target-source": "the SEALED O5 candidate, retained so \u00a7\u5341\u4e09A's regression re-run reads the lane it scored. Not a second tuned variant: nothing differs between it and the O5R lane except the presence of the clamp.",
+  "target-source-unclamped": "the single O5R candidate \u00a7\u5341 authorises."
+ },
+ "programs": {
+  "o5-clamped": {
+   "tag": "o5-clamped",
+   "bytes": 13691,
+   "sha256": "2f36da7a166179bb03457a36460fc73a8bdbda4daed2948e9f51e246a362672e",
+   "textureSampleCalls": 6,
+   "refractCalls": 5,
+   "bindings": 6,
+   "equirectAtan2": 1,
+   "equirectAsin": 1,
+   "envSampleClamped": true,
+   "optics": {
+    "opticalBody": "target-source",
+    "bodyView": "beauty",
+    "environmentMode": "source",
+    "envSampleClamped": true,
+    "samples": 5,
+    "envMixScale": 1,
+    "rimScale": 1
+   },
+   "errorCount": 0
+  },
+  "o5r-unclamped": {
+   "tag": "o5r-unclamped",
+   "bytes": 13607,
+   "sha256": "fe03db5200fcb4fab929616076833b6bfa15b50320e039de2f28aa8347038a51",
+   "textureSampleCalls": 6,
+   "refractCalls": 5,
+   "bindings": 6,
+   "equirectAtan2": 1,
+   "equirectAsin": 1,
+   "envSampleClamped": false,
+   "optics": {
+    "opticalBody": "target-source-unclamped",
+    "bodyView": "beauty",
+    "environmentMode": "source",
+    "envSampleClamped": false,
+    "samples": 5,
+    "envMixScale": 1,
+    "rimScale": 1
+   },
+   "errorCount": 0
+  },
+  "o5r-env-off": {
+   "tag": "o5r-env-off",
+   "bytes": 11483,
+   "sha256": "7912142e7a2e6987a182ed4d58833e4203b880bd9be5f6c64792c8ac389b8f25",
+   "textureSampleCalls": 5,
+   "refractCalls": 5,
+   "bindings": 4,
+   "equirectAtan2": 0,
+   "equirectAsin": 0,
+   "envSampleClamped": false,
+   "optics": {
+    "opticalBody": "target-source-unclamped",
+    "bodyView": "beauty",
+    "environmentMode": "off",
+    "envSampleClamped": false,
+    "samples": 5,
+    "envMixScale": 1,
+    "rimScale": 1
+   },
+   "errorCount": 0
+  },
+  "o5r-uv-unrefracted": {
+   "tag": "o5r-uv-unrefracted",
+   "bytes": 8100,
+   "sha256": "e12cb3073294109e323f2e632ead4d39ce7fbec37ddfa00a92a0ace3993116c9",
+   "textureSampleCalls": 0,
+   "refractCalls": 0,
+   "bindings": 2,
+   "equirectAtan2": 0,
+   "equirectAsin": 0,
+   "envSampleClamped": false,
+   "optics": {
+    "opticalBody": "target-source-unclamped",
+    "bodyView": "uv-unrefracted",
+    "environmentMode": "source",
+    "envSampleClamped": false,
+    "samples": 5,
+    "envMixScale": 1,
+    "rimScale": 1
+   },
+   "errorCount": 0
+  },
+  "o5r-uv-refracted": {
+   "tag": "o5r-uv-refracted",
+   "bytes": 8500,
+   "sha256": "a95b7fb422088a293146186ba41435c36d650febb3cacc89f101aad5d02b7890",
+   "textureSampleCalls": 0,
+   "refractCalls": 1,
+   "bindings": 2,
+   "equirectAtan2": 0,
+   "equirectAsin": 0,
+   "envSampleClamped": false,
+   "optics": {
+    "opticalBody": "target-source-unclamped",
+    "bodyView": "uv-refracted",
+    "environmentMode": "source",
+    "envSampleClamped": false,
+    "samples": 5,
+    "envMixScale": 1,
+    "rimScale": 1
+   },
+   "errorCount": 0
+  },
+  "o5r-displacement": {
+   "tag": "o5r-displacement",
+   "bytes": 8324,
+   "sha256": "897c4d231b6c931350702b2d73f969651fafc05ab9496338a29965ca8bde7ec9",
+   "textureSampleCalls": 0,
+   "refractCalls": 1,
+   "bindings": 2,
+   "equirectAtan2": 0,
+   "equirectAsin": 0,
+   "envSampleClamped": false,
+   "optics": {
+    "opticalBody": "target-source-unclamped",
+    "bodyView": "refraction-displacement",
+    "environmentMode": "source",
+    "envSampleClamped": false,
+    "samples": 5,
+    "envMixScale": 1,
+    "rimScale": 1
+   },
+   "errorCount": 0
+  },
+  "o5r-sdf-mask": {
+   "tag": "o5r-sdf-mask",
+   "bytes": 8050,
+   "sha256": "92c16f87a95284b6dc2632bacef95b0ac065c2b2180ccacfca1ff7cef19c44e9",
+   "textureSampleCalls": 0,
+   "refractCalls": 0,
+   "bindings": 2,
+   "equirectAtan2": 0,
+   "equirectAsin": 0,
+   "envSampleClamped": false,
+   "optics": {
+    "opticalBody": "target-source-unclamped",
+    "bodyView": "sdf-mask",
+    "environmentMode": "source",
+    "envSampleClamped": false,
+    "samples": 5,
+    "envMixScale": 1,
+    "rimScale": 1
+   },
+   "errorCount": 0
+  },
+  "control": {
+   "tag": "control",
+   "bytes": 28304,
+   "sha256": "3149754fb3137105cc4b3022d4f98683dea1922881a980048fdec81e4a72a5f0",
+   "textureSampleCalls": 21,
+   "refractCalls": 4,
+   "bindings": 6,
+   "equirectAtan2": 1,
+   "equirectAsin": 1,
+   "envSampleClamped": false,
+   "optics": {
+    "opticalBody": "current",
+    "bodyView": null,
+    "environmentMode": null,
+    "envSampleClamped": null,
+    "samples": null,
+    "envMixScale": 1,
+    "rimScale": 1
+   },
+   "errorCount": 0
+  }
+ },
+ "passed": 7,
+ "failed": 0,
+ "total": 7,
+ "pass": true,
+ "checks": [
+  {
+   "check": "the HDR asset is finite, so \u00a7\u5341 authorises the unclamp",
+   "pass": true,
+   "detail": "\u00a7\u5341 makes the code change conditional on the asset. Decoded from its own bytes: 0 NaN, 0 Inf. Had it carried either, \u00a7\u5341 says stop and report SOURCE ASSET NON-FINITE rather than invent a new clamp.",
+   "numbers": {
+    "nanChannels": 0,
+    "infChannels": 0,
+    "colourChannels": 1572864,
+    "maxRadiance": 3581.9922,
+    "verdict": "SOURCE ASSET FINITE"
+   }
+  },
+  {
+   "check": "the clamp is present in the SEALED lane and absent in the O5R lane",
+   "pass": true,
+   "detail": "Read out of the generated program, with the sealed lane as the positive control. The clamped program also carries one more scalar uniform -- envSampleCeiling -- which the O5R program does not declare at all, so the constant is gone rather than set to something large.",
+   "numbers": {
+    "clampedProgramBytes": 13691,
+    "unclampedProgramBytes": 13607,
+    "clampedHasClamp": true,
+    "unclampedHasClamp": false
+   }
+  },
+  {
+   "check": "no replacement clamp was introduced",
+   "pass": true,
+   "detail": "The O5R program is SHORTER than the sealed one. A ceiling swapped for a different ceiling, a soft knee or a tone curve would all make it longer; \u00a7\u5341 forbids all three and the byte count is the check.",
+   "numbers": {
+    "delta": -84
+   }
+  },
+  {
+   "check": "environmentMode=off omits the environment sample COMPLETELY",
+   "pass": true,
+   "detail": "\u00a7\u5341 requires a structural floor, not a multiply. The off program has one fewer texture sample -- five, exactly the five per-IOR media samples -- no equirect maths at all, and two fewer bindings, because the environment texture and its sampler are not in the program. envMixScale is RETAINED and untouched: the sealed O2, O3 and O4 harnesses drive it and O5's control identity records it.",
+   "numbers": {
+    "offSamples": 5,
+    "sourceSamples": 6,
+    "offAtan2": 0,
+    "sourceAtan2": 1,
+    "offBindings": 4,
+    "sourceBindings": 6,
+    "offProgramBytes": 11483
+   }
+  },
+  {
+   "check": "the five per-IOR refractions are unchanged by the correction",
+   "pass": true,
+   "detail": "\u00a7\u5341\u4e5d forbids touching ior, dispersion, sample count and refractStrength. The programs still contain exactly five refract() calls, in every mode.",
+   "numbers": {
+    "o5-clamped": 5,
+    "o5r-unclamped": 5,
+    "o5r-env-off": 5
+   }
+  },
+  {
+   "check": "each measurement view is a SEPARATE program, not a branch",
+   "pass": true,
+   "detail": "Four distinct program hashes, each smaller than the Beauty program. A runtime branch would produce one program containing all four, which is the shape the O4A codegen defect lives in.",
+   "numbers": {
+    "hashes": {
+     "o5r-uv-unrefracted": "e12cb3073294",
+     "o5r-uv-refracted": "a95b7fb42208",
+     "o5r-displacement": "897c4d231b6c",
+     "o5r-sdf-mask": "92c16f87a952"
+    },
+    "bytes": {
+     "o5r-uv-unrefracted": 8100,
+     "o5r-uv-refracted": 8500,
+     "o5r-displacement": 8324,
+     "o5r-sdf-mask": 8050
+    },
+    "beautyBytes": 13607
+   }
+  },
+  {
+   "check": "no console or page errors in any lane, mode or view",
+   "pass": true,
+   "detail": "Across all eight program captures.",
+   "numbers": {
+    "o5-clamped": 0,
+    "o5r-unclamped": 0,
+    "o5r-env-off": 0,
+    "o5r-uv-unrefracted": 0,
+    "o5r-uv-refracted": 0,
+    "o5r-displacement": 0,
+    "o5r-sdf-mask": 0,
+    "control": 0
+   }
+  }
+ ]
+}

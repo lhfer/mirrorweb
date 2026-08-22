@@ -39,6 +39,7 @@ import {
   V4_OPTICS_CONFIG,
   type V4DebugMode,
   type V4DispersionLaw,
+  type V4EnvironmentMode,
   type V4OpticalBody,
   type V5BodyViewName,
   type V4ReflectionSupport,
@@ -143,6 +144,11 @@ export type LiquidGlassMaterialV4Options = {
   opticalBody?: V4OpticalBody;
   /** O5 candidate debug view; ignored in the current lane. */
   bodyView?: V5BodyViewName;
+  /**
+   * O5R §十 structural environment control; ignored in the current lane,
+   * whose environment lives in a different material entirely.
+   */
+  environmentMode?: V4EnvironmentMode;
   /**
    * O2 System B: the white studio equirect. When absent the body renders
    * exactly the pre-O2 composition (legacy callers stay byte-identical).

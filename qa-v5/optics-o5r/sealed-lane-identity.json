@@ -1,0 +1,210 @@
+{
+ "what": "The SEALED O5 candidate lane (opticalBody=target-source) at the O5R head, against the frames the O5 gate was scored on.",
+ "why": "\u00a7\u5341\u4e09A re-runs the original O5 gate as a regression. That is only a regression if the lane still renders what it rendered.",
+ "structuralGuarantee": "TargetOpticalBodyV5's bodyChain takes a BUILD-TIME wantUv flag. The un-refracted UV and the base-ior displacement are constructed only for the three O5R measurement views, so the Beauty program of the clamped lane contains no expression the O5 program did not -- the identity does not depend on dead-code elimination.",
+ "comparisons": 22,
+ "exactZero": true,
+ "totalDifferingPixels": 0,
+ "maxDeltaAnywhere": 0,
+ "pass": true,
+ "rows": [
+  {
+   "asset": "bright-lowsat",
+   "vp": "1440x900",
+   "o5File": "candidate-rest-bright-lowsat-1440x900.png",
+   "o5rFile": "o5-clamped-rest-bright-lowsat-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000
+  },
+  {
+   "asset": "bright-lowsat",
+   "vp": "700x700",
+   "o5File": "candidate-rest-bright-lowsat-700x700.png",
+   "o5rFile": "o5-clamped-rest-bright-lowsat-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000
+  },
+  {
+   "asset": "bw-split",
+   "vp": "1440x900",
+   "o5File": "candidate-rest-bw-split-1440x900.png",
+   "o5rFile": "o5-clamped-rest-bw-split-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000
+  },
+  {
+   "asset": "bw-split",
+   "vp": "390x844",
+   "o5File": "candidate-rest-bw-split-390x844.png",
+   "o5rFile": "o5-clamped-rest-bw-split-390x844.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "asset": "bw-split",
+   "vp": "700x700",
+   "o5File": "candidate-rest-bw-split-700x700.png",
+   "o5rFile": "o5-clamped-rest-bw-split-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000
+  },
+  {
+   "asset": "bw-split",
+   "vp": "844x390",
+   "o5File": "candidate-rest-bw-split-844x390.png",
+   "o5rFile": "o5-clamped-rest-bw-split-844x390.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "asset": "cool-blue",
+   "vp": "1440x900",
+   "o5File": "candidate-rest-cool-blue-1440x900.png",
+   "o5rFile": "o5-clamped-rest-cool-blue-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000
+  },
+  {
+   "asset": "cool-blue",
+   "vp": "390x844",
+   "o5File": "candidate-rest-cool-blue-390x844.png",
+   "o5rFile": "o5-clamped-rest-cool-blue-390x844.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "asset": "cool-blue",
+   "vp": "700x700",
+   "o5File": "candidate-rest-cool-blue-700x700.png",
+   "o5rFile": "o5-clamped-rest-cool-blue-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000
+  },
+  {
+   "asset": "cool-blue",
+   "vp": "844x390",
+   "o5File": "candidate-rest-cool-blue-844x390.png",
+   "o5rFile": "o5-clamped-rest-cool-blue-844x390.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "asset": "dark-highlight",
+   "vp": "1440x900",
+   "o5File": "candidate-rest-dark-highlight-1440x900.png",
+   "o5rFile": "o5-clamped-rest-dark-highlight-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000
+  },
+  {
+   "asset": "dark-highlight",
+   "vp": "700x700",
+   "o5File": "candidate-rest-dark-highlight-700x700.png",
+   "o5rFile": "o5-clamped-rest-dark-highlight-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000
+  },
+  {
+   "asset": "grayscale-step",
+   "vp": "1440x900",
+   "o5File": "candidate-rest-grayscale-step-1440x900.png",
+   "o5rFile": "o5-clamped-rest-grayscale-step-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000
+  },
+  {
+   "asset": "grayscale-step",
+   "vp": "700x700",
+   "o5File": "candidate-rest-grayscale-step-700x700.png",
+   "o5rFile": "o5-clamped-rest-grayscale-step-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000
+  },
+  {
+   "asset": "hf-checker",
+   "vp": "1440x900",
+   "o5File": "candidate-rest-hf-checker-1440x900.png",
+   "o5rFile": "o5-clamped-rest-hf-checker-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000
+  },
+  {
+   "asset": "hf-checker",
+   "vp": "700x700",
+   "o5File": "candidate-rest-hf-checker-700x700.png",
+   "o5rFile": "o5-clamped-rest-hf-checker-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000
+  },
+  {
+   "asset": "rgb-bars",
+   "vp": "1440x900",
+   "o5File": "candidate-rest-rgb-bars-1440x900.png",
+   "o5rFile": "o5-clamped-rest-rgb-bars-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000
+  },
+  {
+   "asset": "rgb-bars",
+   "vp": "390x844",
+   "o5File": "candidate-rest-rgb-bars-390x844.png",
+   "o5rFile": "o5-clamped-rest-rgb-bars-390x844.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "asset": "rgb-bars",
+   "vp": "700x700",
+   "o5File": "candidate-rest-rgb-bars-700x700.png",
+   "o5rFile": "o5-clamped-rest-rgb-bars-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000
+  },
+  {
+   "asset": "rgb-bars",
+   "vp": "844x390",
+   "o5File": "candidate-rest-rgb-bars-844x390.png",
+   "o5rFile": "o5-clamped-rest-rgb-bars-844x390.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160
+  },
+  {
+   "asset": "warm-skin",
+   "vp": "1440x900",
+   "o5File": "candidate-rest-warm-skin-1440x900.png",
+   "o5rFile": "o5-clamped-rest-warm-skin-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000
+  },
+  {
+   "asset": "warm-skin",
+   "vp": "700x700",
+   "o5File": "candidate-rest-warm-skin-700x700.png",
+   "o5rFile": "o5-clamped-rest-warm-skin-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000
+  }
+ ]
+}

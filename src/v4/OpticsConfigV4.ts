@@ -100,8 +100,45 @@ export type V4BodyFloorMode = (typeof V4_BODY_FLOOR_MODES)[number];
 // two lanes must be different PROGRAMS, so the control lane emits the accepted
 // body byte for byte and keeps its exact-zero identity proof. Overridable per
 // page load with ?opticalBody=.
-export const V4_OPTICAL_BODIES = ["current", "target-source"] as const;
+//
+// O5R adds a THIRD value, and it is worth saying plainly what it is and is
+// not. "target-source-unclamped" is the O5R candidate: the same material with
+// the one non-source deviation removed -- O2's `envSampleCeiling` guard, which
+// the Target does not have and which the O5 evidence proved BINDS (0.99% of
+// the environment's texels exceed it, the brightest by 224x). "target-source"
+// is kept exactly as O5 sealed it, unchanged, because §十三A requires the
+// ORIGINAL O5 gate to be re-runnable as a regression and §九 requires
+// full-frame evidence of both candidates at one head. It is the sealed lane
+// retained for regression, NOT a second tuned variant: no constant differs
+// between them except the presence of the clamp, and no parameter search
+// produced either.
+export const V4_OPTICAL_BODIES = [
+  "current", "target-source", "target-source-unclamped",
+] as const;
 export type V4OpticalBody = (typeof V4_OPTICAL_BODIES)[number];
+
+/** Every target-source lane, clamped or not. */
+export function isTargetSourceBody(v: V4OpticalBody): boolean {
+  return v === "target-source" || v === "target-source-unclamped";
+}
+
+// O5R §十: the environment sample as a STRUCTURAL choice rather than a
+// multiply. "source" samples the studio HDR as the Target does. "off" omits
+// the environment sample from the program entirely -- no texture fetch, no
+// Fresnel mix -- which is what a floor control needs. The old route to a floor
+// was envMixScale = 0 multiplied onto an already-sampled HDR value; that is
+// exactly the shape §十 rules out, because it depends on the sampled value
+// being finite for 0 * v to be 0. `envMixScale` itself is RETAINED: the sealed
+// O2/O3/O4 harnesses drive it, and O5's control identity records it.
+export const V4_ENVIRONMENT_MODES = ["source", "off"] as const;
+export type V4EnvironmentMode = (typeof V4_ENVIRONMENT_MODES)[number];
+
+export function parseEnvironmentMode(
+  v: string | null | undefined,
+): V4EnvironmentMode {
+  return V4_ENVIRONMENT_MODES.includes(v as V4EnvironmentMode)
+    ? (v as V4EnvironmentMode) : "source";
+}
 
 export function parseOpticalBody(v: string | null | undefined): V4OpticalBody {
   return V4_OPTICAL_BODIES.includes(v as V4OpticalBody)
@@ -112,9 +149,31 @@ export function parseOpticalBody(v: string | null | undefined): V4OpticalBody {
 // O5 candidate debug views. Each is a SEPARATE PROGRAM built at material
 // construction, never a runtime branch -- see TargetOpticalBodyV5 for why that
 // distinction is load-bearing after the O4A codegen finding.
+//
+// O5R §六 adds three more, for the repaired refraction-compression
+// instrument. `uv-unrefracted` and `uv-refracted` write the card-media UV a
+// fragment would sample without and with refraction; `refraction-displacement`
+// writes the difference directly, at the BASE ior (the spectral sample whose
+// dispersion offset is 0), biased to 0.5 and scaled by
+// V5_DISPLACEMENT_GAIN. All three write through an inverse-sRGB so the byte
+// that lands in the PNG is the encoded value itself rather than its sRGB
+// transform -- otherwise the mid-tones where the displacement lives are
+// quantised more than three times as coarsely as the ends.
 export const V5_BODY_VIEW_NAMES = [
   "beauty", "sdf-mask", "analytic-normal", "refraction-only",
+  "uv-unrefracted", "uv-refracted", "refraction-displacement",
 ] as const;
+
+/**
+ * Encoding gain for `refraction-displacement`, in card-UV units.
+ *
+ * The displacement reaches roughly a tenth of the card near the bevel, so a
+ * gain of 2 puts the full range inside [0.5 - 0.25, 0.5 + 0.25] with room to
+ * spare and keeps one 8-bit code worth about 0.002 UV. Any pixel that does
+ * saturate is detectable (it reads exactly 0 or 255) and is excluded by the
+ * reader rather than silently believed.
+ */
+export const V5_DISPLACEMENT_GAIN = 2;
 export type V5BodyViewName = (typeof V5_BODY_VIEW_NAMES)[number];
 
 export function parseBodyView(v: string | null | undefined): V5BodyViewName {
