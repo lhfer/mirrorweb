@@ -107,8 +107,11 @@
  ],
  "laneStillRendersThoseFrames": {
   "source": "qa-v5/optics-o5f/sealed-lane-identity.json (o5-clamped rows)",
-  "clampedLane": null,
+  "clampedLane": {
+   "comparisons": 112,
+   "differing": 0
+  },
   "chain": "O5F captures == O5R captures (this round, exact zero) and O5R captures == O5 frames (sealed O5R round, 22/22 byte-identical)."
  },
- "pass": false
+ "pass": true
 }

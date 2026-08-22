@@ -1,0 +1,629 @@
+{
+ "what": "O5F control identity: opticalBody=current at the O5F material-cache commit against a 445037e worktree build. A schema view of material-cache-identity.json's A-section for the sealed regression aggregator; the scoring lives there.",
+ "derivedFrom": "qa-v5/optics-o5f/material-cache-identity.json",
+ "baselineCommit": "445037e11eb44ae07bca6360707e043d969b1d4b",
+ "local": "http://127.0.0.1:5293",
+ "base": "http://127.0.0.1:5294",
+ "asset": "bw-split",
+ "freeze": 4,
+ "viewports": [
+  "1440x900",
+  "1920x1080",
+  "390x844",
+  "844x390",
+  "700x700"
+ ],
+ "states": [
+  "rest",
+  "pointer-left",
+  "pointer-right",
+  "pointer-corner",
+  "slow-drag",
+  "fast-flick",
+  "touch"
+ ],
+ "comparisons": 35,
+ "allExactZero": true,
+ "allProbesMatch": true,
+ "totalDifferingPixels": 0,
+ "consoleAndPageErrors": 0,
+ "verdict": "PASS",
+ "finalStateIfFailed": "O5F MATERIAL CACHE IDENTITY FAILED",
+ "rows": [
+  {
+   "vp": "1440x900",
+   "state": "rest",
+   "localFile": "current-local-rest-1440x900.png",
+   "baseFile": "current-base-rest-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "1440x900",
+   "state": "pointer-left",
+   "localFile": "current-local-pointer-left-1440x900.png",
+   "baseFile": "current-base-pointer-left-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "1440x900",
+   "state": "pointer-right",
+   "localFile": "current-local-pointer-right-1440x900.png",
+   "baseFile": "current-base-pointer-right-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "1440x900",
+   "state": "pointer-corner",
+   "localFile": "current-local-pointer-corner-1440x900.png",
+   "baseFile": "current-base-pointer-corner-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "1440x900",
+   "state": "slow-drag",
+   "localFile": "current-local-slow-drag-1440x900.png",
+   "baseFile": "current-base-slow-drag-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "1440x900",
+   "state": "fast-flick",
+   "localFile": "current-local-fast-flick-1440x900.png",
+   "baseFile": "current-base-fast-flick-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "1440x900",
+   "state": "touch",
+   "localFile": "current-local-touch-1440x900.png",
+   "baseFile": "current-base-touch-1440x900.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "1920x1080",
+   "state": "rest",
+   "localFile": "current-local-rest-1920x1080.png",
+   "baseFile": "current-base-rest-1920x1080.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 2073600,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "1920x1080",
+   "state": "pointer-left",
+   "localFile": "current-local-pointer-left-1920x1080.png",
+   "baseFile": "current-base-pointer-left-1920x1080.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 2073600,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "1920x1080",
+   "state": "pointer-right",
+   "localFile": "current-local-pointer-right-1920x1080.png",
+   "baseFile": "current-base-pointer-right-1920x1080.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 2073600,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "1920x1080",
+   "state": "pointer-corner",
+   "localFile": "current-local-pointer-corner-1920x1080.png",
+   "baseFile": "current-base-pointer-corner-1920x1080.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 2073600,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "1920x1080",
+   "state": "slow-drag",
+   "localFile": "current-local-slow-drag-1920x1080.png",
+   "baseFile": "current-base-slow-drag-1920x1080.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 2073600,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "1920x1080",
+   "state": "fast-flick",
+   "localFile": "current-local-fast-flick-1920x1080.png",
+   "baseFile": "current-base-fast-flick-1920x1080.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 2073600,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "1920x1080",
+   "state": "touch",
+   "localFile": "current-local-touch-1920x1080.png",
+   "baseFile": "current-base-touch-1920x1080.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 2073600,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "390x844",
+   "state": "rest",
+   "localFile": "current-local-rest-390x844.png",
+   "baseFile": "current-base-rest-390x844.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "390x844",
+   "state": "pointer-left",
+   "localFile": "current-local-pointer-left-390x844.png",
+   "baseFile": "current-base-pointer-left-390x844.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "390x844",
+   "state": "pointer-right",
+   "localFile": "current-local-pointer-right-390x844.png",
+   "baseFile": "current-base-pointer-right-390x844.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "390x844",
+   "state": "pointer-corner",
+   "localFile": "current-local-pointer-corner-390x844.png",
+   "baseFile": "current-base-pointer-corner-390x844.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "390x844",
+   "state": "slow-drag",
+   "localFile": "current-local-slow-drag-390x844.png",
+   "baseFile": "current-base-slow-drag-390x844.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "390x844",
+   "state": "fast-flick",
+   "localFile": "current-local-fast-flick-390x844.png",
+   "baseFile": "current-base-fast-flick-390x844.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "390x844",
+   "state": "touch",
+   "localFile": "current-local-touch-390x844.png",
+   "baseFile": "current-base-touch-390x844.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "844x390",
+   "state": "rest",
+   "localFile": "current-local-rest-844x390.png",
+   "baseFile": "current-base-rest-844x390.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "844x390",
+   "state": "pointer-left",
+   "localFile": "current-local-pointer-left-844x390.png",
+   "baseFile": "current-base-pointer-left-844x390.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "844x390",
+   "state": "pointer-right",
+   "localFile": "current-local-pointer-right-844x390.png",
+   "baseFile": "current-base-pointer-right-844x390.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "844x390",
+   "state": "pointer-corner",
+   "localFile": "current-local-pointer-corner-844x390.png",
+   "baseFile": "current-base-pointer-corner-844x390.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "844x390",
+   "state": "slow-drag",
+   "localFile": "current-local-slow-drag-844x390.png",
+   "baseFile": "current-base-slow-drag-844x390.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "844x390",
+   "state": "fast-flick",
+   "localFile": "current-local-fast-flick-844x390.png",
+   "baseFile": "current-base-fast-flick-844x390.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "844x390",
+   "state": "touch",
+   "localFile": "current-local-touch-844x390.png",
+   "baseFile": "current-base-touch-844x390.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 329160,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "700x700",
+   "state": "rest",
+   "localFile": "current-local-rest-700x700.png",
+   "baseFile": "current-base-rest-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "700x700",
+   "state": "pointer-left",
+   "localFile": "current-local-pointer-left-700x700.png",
+   "baseFile": "current-base-pointer-left-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "700x700",
+   "state": "pointer-right",
+   "localFile": "current-local-pointer-right-700x700.png",
+   "baseFile": "current-base-pointer-right-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "700x700",
+   "state": "pointer-corner",
+   "localFile": "current-local-pointer-corner-700x700.png",
+   "baseFile": "current-base-pointer-corner-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "700x700",
+   "state": "slow-drag",
+   "localFile": "current-local-slow-drag-700x700.png",
+   "baseFile": "current-base-slow-drag-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "700x700",
+   "state": "fast-flick",
+   "localFile": "current-local-fast-flick-700x700.png",
+   "baseFile": "current-base-fast-flick-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  },
+  {
+   "vp": "700x700",
+   "state": "touch",
+   "localFile": "current-local-touch-700x700.png",
+   "baseFile": "current-base-touch-700x700.png",
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 490000,
+   "probeMismatches": {},
+   "o5fCacheTruth": {
+    "activeKey": null,
+    "cacheSize": 0,
+    "materialCreationCount": 0,
+    "cacheSwitchCount": 0
+   },
+   "identical": true
+  }
+ ]
+}

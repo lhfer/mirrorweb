@@ -88,10 +88,21 @@ async function session(lane, mode, index) {
     const vids = [...document.querySelectorAll("video")];
     const cache = qa.getBodyMaterialCacheTruth?.() ?? null;
     return {
+      // §十四 -- the device-predicate inputs of THIS context, recorded so
+      // the post-fix scorer verifies each context's sample expectation
+      // from truth instead of assuming it.
+      contextPredicate: {
+        pointerCoarse: matchMedia("(pointer: coarse)").matches,
+        hardwareConcurrency: navigator.hardwareConcurrency ?? 8,
+        deviceMemory: navigator.deviceMemory ?? 8,
+      },
       heapMB: performance.memory
         ? +(performance.memory.usedJSHeapSize / 1048576).toFixed(2) : null,
       pool: qa.getPoolState?.() ?? null,
       cache: cache && {
+        sampleLaw: cache.sampleLaw ?? null,
+        deviceTier: cache.deviceTier ?? null,
+        activeSamples: cache.activeSamples ?? null,
         activeKey: cache.activeKey, cacheSize: cache.cacheSize,
         materialCreationCount: cache.materialCreationCount,
         materialDisposalCount: cache.materialDisposalCount,

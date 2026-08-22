@@ -1,0 +1,329 @@
+{
+ "what": "\u00a7\u5341E -- what the portrait ROI edge bands contain, proven from DOM boxes, rect arithmetic and the sdf-mask program.",
+ "sealedCodings": {
+  "typographyFooterNeighbours": "intersection area == 0",
+  "antialiasRing": "masking off-silhouette pixels out of the band must move the candidate-minus-Target residual by < 10% of that residual",
+  "layoutIdentity": "the DOM boxes describe both pages: the frozen layout reproduces the Target's (source contract 36/36; typography contract 29/29)"
+ },
+ "viewports": [
+  {
+   "vp": "390x844",
+   "bands": [
+    {
+     "rect": 0,
+     "side": "left",
+     "band": [
+      54,
+      250,
+      76,
+      376
+     ],
+     "textOverlapPx": 46,
+     "footerOverlapPx": 0,
+     "otherCardOverlapPx": 0
+    },
+    {
+     "rect": 0,
+     "side": "right",
+     "band": [
+      313,
+      250,
+      335,
+      376
+     ],
+     "textOverlapPx": 1,
+     "footerOverlapPx": 0,
+     "otherCardOverlapPx": 0
+    },
+    {
+     "rect": 1,
+     "side": "left",
+     "band": [
+      56,
+      680,
+      78,
+      793
+     ],
+     "textOverlapPx": 0,
+     "footerOverlapPx": 1322,
+     "otherCardOverlapPx": 0
+    },
+    {
+     "rect": 1,
+     "side": "right",
+     "band": [
+      311,
+      680,
+      333,
+      793
+     ],
+     "textOverlapPx": 0,
+     "footerOverlapPx": 136,
+     "otherCardOverlapPx": 0
+    }
+   ],
+   "boxCounts": {
+    "textBoxes": 768,
+    "footerBoxes": 4
+   },
+   "typographyFooterNeighbourClean": false,
+   "antialiasRing": {
+    "sdfMaskFile": "o5r-unclamped-view-sdf-mask-390x844.png",
+    "rows": [
+     {
+      "rect": 0,
+      "offSilhouetteFraction": 0.1144,
+      "residualUnmasked": 0.7489,
+      "residualSilhouetteOnly": 1.0348,
+      "ringEffect": 0.2859
+     },
+     {
+      "rect": 1,
+      "offSilhouetteFraction": 0.2168,
+      "residualUnmasked": 13.832,
+      "residualSilhouetteOnly": 19.1513,
+      "ringEffect": 5.3193
+     }
+    ],
+    "worstRingEffect": 5.3193,
+    "worstResidual": 13.832,
+    "withinSealedCoding": false
+   }
+  },
+  {
+   "vp": "1440x900",
+   "bands": [
+    {
+     "rect": 0,
+     "side": "left",
+     "band": [
+      174,
+      114,
+      216,
+      360
+     ],
+     "textOverlapPx": 192,
+     "footerOverlapPx": 0,
+     "otherCardOverlapPx": 0
+    },
+    {
+     "rect": 0,
+     "side": "right",
+     "band": [
+      666,
+      114,
+      708,
+      360
+     ],
+     "textOverlapPx": 21,
+     "footerOverlapPx": 0,
+     "otherCardOverlapPx": 0
+    },
+    {
+     "rect": 1,
+     "side": "left",
+     "band": [
+      731,
+      114,
+      773,
+      360
+     ],
+     "textOverlapPx": 114,
+     "footerOverlapPx": 0,
+     "otherCardOverlapPx": 0
+    },
+    {
+     "rect": 1,
+     "side": "right",
+     "band": [
+      1223,
+      114,
+      1265,
+      360
+     ],
+     "textOverlapPx": 19,
+     "footerOverlapPx": 0,
+     "otherCardOverlapPx": 0
+    },
+    {
+     "rect": 2,
+     "side": "left",
+     "band": [
+      445,
+      539,
+      488,
+      782
+     ],
+     "textOverlapPx": 46541,
+     "footerOverlapPx": 0,
+     "otherCardOverlapPx": 0
+    },
+    {
+     "rect": 2,
+     "side": "right",
+     "band": [
+      951,
+      539,
+      994,
+      782
+     ],
+     "textOverlapPx": 2,
+     "footerOverlapPx": 0,
+     "otherCardOverlapPx": 0
+    }
+   ],
+   "boxCounts": {
+    "textBoxes": 768,
+    "footerBoxes": 4
+   },
+   "typographyFooterNeighbourClean": false,
+   "antialiasRing": {
+    "sdfMaskFile": "o5r-unclamped-view-sdf-mask-1440x900.png",
+    "rows": [
+     {
+      "rect": 0,
+      "offSilhouetteFraction": 0.2958,
+      "residualUnmasked": 0.2367,
+      "residualSilhouetteOnly": 0.7985,
+      "ringEffect": 0.5618
+     },
+     {
+      "rect": 1,
+      "offSilhouetteFraction": 0.0238,
+      "residualUnmasked": 1.1207,
+      "residualSilhouetteOnly": 1.1142,
+      "ringEffect": -0.0065
+     },
+     {
+      "rect": 2,
+      "offSilhouetteFraction": 0.1373,
+      "residualUnmasked": 0.4109,
+      "residualSilhouetteOnly": 0.9038,
+      "ringEffect": 0.4929
+     }
+    ],
+    "worstRingEffect": 0.5618,
+    "worstResidual": 1.1207,
+    "withinSealedCoding": false
+   }
+  },
+  {
+   "vp": "700x700",
+   "bands": [
+    {
+     "rect": 0,
+     "side": "left",
+     "band": [
+      216,
+      188,
+      237,
+      306
+     ],
+     "textOverlapPx": 35,
+     "footerOverlapPx": 0,
+     "otherCardOverlapPx": 0
+    },
+    {
+     "rect": 0,
+     "side": "right",
+     "band": [
+      462,
+      188,
+      483,
+      306
+     ],
+     "textOverlapPx": 1,
+     "footerOverlapPx": 0,
+     "otherCardOverlapPx": 0
+    },
+    {
+     "rect": 1,
+     "side": "left",
+     "band": [
+      84,
+      393,
+      104,
+      513
+     ],
+     "textOverlapPx": 0,
+     "footerOverlapPx": 0,
+     "otherCardOverlapPx": 0
+    },
+    {
+     "rect": 1,
+     "side": "right",
+     "band": [
+      324,
+      393,
+      344,
+      513
+     ],
+     "textOverlapPx": 128073,
+     "footerOverlapPx": 0,
+     "otherCardOverlapPx": 0
+    },
+    {
+     "rect": 2,
+     "side": "left",
+     "band": [
+      355,
+      393,
+      375,
+      513
+     ],
+     "textOverlapPx": 103738,
+     "footerOverlapPx": 0,
+     "otherCardOverlapPx": 0
+    },
+    {
+     "rect": 2,
+     "side": "right",
+     "band": [
+      595,
+      393,
+      615,
+      513
+     ],
+     "textOverlapPx": 0,
+     "footerOverlapPx": 0,
+     "otherCardOverlapPx": 0
+    }
+   ],
+   "boxCounts": {
+    "textBoxes": 768,
+    "footerBoxes": 4
+   },
+   "typographyFooterNeighbourClean": false,
+   "antialiasRing": {
+    "sdfMaskFile": "o5r-unclamped-view-sdf-mask-700x700.png",
+    "rows": [
+     {
+      "rect": 0,
+      "offSilhouetteFraction": 0.1606,
+      "residualUnmasked": 1.0847,
+      "residualSilhouetteOnly": 1.3604,
+      "ringEffect": 0.2757
+     },
+     {
+      "rect": 1,
+      "offSilhouetteFraction": 0.3379,
+      "residualUnmasked": -0.6575,
+      "residualSilhouetteOnly": 0.7769,
+      "ringEffect": 1.4344
+     },
+     {
+      "rect": 2,
+      "offSilhouetteFraction": 0.05,
+      "residualUnmasked": 0.6169,
+      "residualSilhouetteOnly": 0.701,
+      "ringEffect": 0.0841
+     }
+    ],
+    "worstRingEffect": 1.4344,
+    "worstResidual": 1.0847,
+    "withinSealedCoding": false
+   }
+  }
+ ],
+ "pass": false
+}

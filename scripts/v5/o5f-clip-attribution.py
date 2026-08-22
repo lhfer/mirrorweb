@@ -38,6 +38,12 @@ HERE = REPO / "scripts/v5"
 ROT = REPO / "artifacts/optics-o5f/clip-rotation"
 O5R_MD = REPO / "artifacts/optics-o5r/measure"
 OUT = REPO / "qa-v5/optics-o5f/clip-index-attribution.json"
+for _a in sys.argv[1:]:
+    _k, _, _v = _a.lstrip("-").partition("=")
+    if _k == "rot":
+        ROT = Path(_v)
+    elif _k == "out":
+        OUT = Path(_v)
 
 RECT_DRIFT_TOLERANCE_PX = 2
 
@@ -72,17 +78,24 @@ def card_metrics(img_path, rect):
 
 
 def occupant(shot, rect):
-    """Which slot/clip the engine says occupies `rect` in this capture."""
+    """Which slot/clip the engine says occupies `rect` in this capture.
+
+    getCardPlaneRects reports [minX, minY, width, height]; the sealed gate
+    rects are corner-format (x0, y0, x1, y1), so the engine rect is
+    converted before the IoU.
+    """
     clips = {c["slotIndex"]: c["clipIndex"]
              for c in shot["engine"]["cards"]}
-    best, best_iou = None, 0.0
+    best, best_box, best_iou = None, None, 0.0
     for r in shot["engine"]["rects"]:
-        v = iou(rect, r["rectPx"])
+        x, y, w, h = r["rectPx"]
+        box = (x, y, x + w, y + h)
+        v = iou(rect, box)
         if v > best_iou:
-            best, best_iou = r, v
+            best, best_box, best_iou = r, box, v
     if best is None or best_iou < 0.5:
         return None
-    drift = max(abs(best["rectPx"][i] - rect[i]) for i in range(4))
+    drift = max(abs(best_box[i] - rect[i]) for i in range(4))
     return {"slotIndex": best["slotIndex"],
             "clipIndex": clips.get(best["slotIndex"]),
             "iou": round(best_iou, 4), "cornerDriftPx": round(drift, 2)}

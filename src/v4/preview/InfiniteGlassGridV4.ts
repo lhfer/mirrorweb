@@ -43,6 +43,8 @@ import {
   applyTargetOpticalBodyFrameV5,
   createTargetOpticalBodyMaterialV5,
   createTargetOpticalBodyUniformsV5,
+  targetDeviceTierV5,
+  type TargetDeviceTierV5,
   type TargetOpticalBodyHandleV5,
   type TargetOpticalBodyUniformsV5,
   type V5BodyView,
@@ -163,6 +165,9 @@ export class InfiniteGlassGridV4 {
    */
   private bodyMaterialCache = new Map<string, BodyMaterialCacheEntry>();
   private activeBodyCacheKey: string | null = null;
+  // §十一 -- the Target's device tier, decided once and never re-evaluated
+  // on resize (the Target evaluates its predicate once at load).
+  private bodyDeviceTier: TargetDeviceTierV5 | null = null;
   private bodyMaterialCreationCount = 0;
   private bodyMaterialDisposalCount = 0;
   private bodyCacheSwitchCount = 0;
@@ -356,7 +361,14 @@ export class InfiniteGlassGridV4 {
     // quality for a capture's whole life, so they create only the one set
     // they use -- their cache stays finite through the same keyed map.
     if (this.bodyView === "beauty") {
-      this.ensureBodyMaterialSet(this.quality === "low" ? "high" : "low");
+      // §十一 keeps §四.2 intact: the ACTIVE set's count is the lane's law
+      // (device tier on the unclamped candidate, quality map on the sealed
+      // clamped lane); the complementary count's set is still built here so
+      // both product sets exist from initialisation and no later transition
+      // can create a material.
+      this.ensureBodyMaterialSet(
+        this.bodySamplesFor(this.quality) === 3 ? 5 : 3,
+      );
     }
 
     for (let n = 0; n < SOURCE_EXACT_POOL; n += 1) {
@@ -381,13 +393,33 @@ export class InfiniteGlassGridV4 {
   }
 
   /**
+   * O5F §十一 -- the sample count the ACTIVE quality resolves to.
+   *
+   * The unclamped candidate lane follows the Target's own law: the tier is
+   * a DEVICE property decided once at load (bundle byte 1968911), so every
+   * quality level renders the device's count -- a coarse-pointer device
+   * always compiles three samples, a desktop always five, exactly as the
+   * live probe read the Target doing
+   * (qa-v5/optics-o5f/target-mobile-tier.json). The SEALED clamped lane
+   * keeps the frozen quality map so the O5 gate's regression identity
+   * cannot move.
+   */
+  private bodySamplesFor(quality: QualityLevel): number {
+    if (this.opticalBody === "target-source-unclamped") {
+      if (!this.bodyDeviceTier) this.bodyDeviceTier = targetDeviceTierV5();
+      return this.bodyDeviceTier.samples;
+    }
+    return V5_BODY_SAMPLES[quality];
+  }
+
+  /**
    * O5F §四 -- the cache key. Every build-time input that changes the
    * generated program is in it; everything else (cover fits, layout frame,
    * QA scales) is a uniform shared by or written into every set.
    */
-  private bodyCacheKeyFor(quality: QualityLevel): string {
+  private bodyCacheKeyFor(samples: number): string {
     const clamp = this.opticalBody === "target-source";
-    return `samples=${V5_BODY_SAMPLES[quality]}|view=${this.bodyView}`
+    return `samples=${samples}|view=${this.bodyView}`
       + `|env=${this.environmentMode}|clamp=${clamp ? "clamped" : "unclamped"}`
       + `|lane=${this.opticalBody}`;
   }
@@ -405,7 +437,7 @@ export class InfiniteGlassGridV4 {
    * texture, the same geometry and the same layout uniform block; only the
    * baked spectral table differs between them.
    */
-  private buildBodyMaterialSet(quality: QualityLevel): BodyMaterialCacheEntry {
+  private buildBodyMaterialSet(samples: number): BodyMaterialCacheEntry {
     const count = Math.max(1, this.ownMediaTextures.length);
     const handles: TargetOpticalBodyHandleV5[] = [];
     for (let index = 0; index < count; index += 1) {
@@ -417,7 +449,8 @@ export class InfiniteGlassGridV4 {
           ?? this.ownMediaTextures[index]) as Texture,
         coverScale: fit ? [fit.repeatX, fit.repeatY] : [1, 1],
         coverOffset: fit ? [fit.offsetX, fit.offsetY] : [0, 0],
-        quality,
+        quality: this.quality,
+        samples,
         view: this.bodyView,
         // O5R §十. The clamp survives ONLY in the lane O5 sealed, so the
         // original gate stays re-runnable against the pixels it was scored on.
@@ -428,19 +461,19 @@ export class InfiniteGlassGridV4 {
     }
     this.bodyCacheGeneration += 1;
     return {
-      key: this.bodyCacheKeyFor(quality),
-      sampleCount: V5_BODY_SAMPLES[quality],
+      key: this.bodyCacheKeyFor(samples),
+      sampleCount: samples,
       handles,
       generation: this.bodyCacheGeneration,
     };
   }
 
-  /** Get-or-create the cached set for `quality`'s sample count. */
-  private ensureBodyMaterialSet(quality: QualityLevel): BodyMaterialCacheEntry {
-    const key = this.bodyCacheKeyFor(quality);
+  /** Get-or-create the cached set for a spectral sample count. */
+  private ensureBodyMaterialSet(samples: number): BodyMaterialCacheEntry {
+    const key = this.bodyCacheKeyFor(samples);
     let entry = this.bodyMaterialCache.get(key);
     if (!entry) {
-      entry = this.buildBodyMaterialSet(quality);
+      entry = this.buildBodyMaterialSet(samples);
       this.bodyMaterialCache.set(key, entry);
     }
     return entry;
@@ -458,7 +491,7 @@ export class InfiniteGlassGridV4 {
    */
   private activateBodyMaterials(): void {
     if (!this.bodyUniforms) return;
-    const entry = this.ensureBodyMaterialSet(this.quality);
+    const entry = this.ensureBodyMaterialSet(this.bodySamplesFor(this.quality));
     if (this.activeBodyCacheKey !== null
         && this.activeBodyCacheKey !== entry.key) {
       this.bodyCacheSwitchCount += 1;
@@ -762,6 +795,14 @@ export class InfiniteGlassGridV4 {
       })),
       activeMaterialUuids: this.bodyHandles.map((h) => h.material.uuid),
       activeSamples: this.bodyHandles[0]?.samples ?? null,
+      // §十一 -- which law resolved the active sample count, and the
+      // recorded predicate inputs when the device law applies, so every
+      // harness verifies its context's expectation from truth rather than
+      // assuming it.
+      sampleLaw: this.opticalBody === "target-source-unclamped"
+        ? "device-predicate" : "quality-map",
+      deviceTier: this.opticalBody === "target-source-unclamped"
+        ? (this.bodyDeviceTier ?? null) : null,
       materialCreationCount: this.bodyMaterialCreationCount,
       materialDisposalCount: this.bodyMaterialDisposalCount,
       cacheSwitchCount: this.bodyCacheSwitchCount,

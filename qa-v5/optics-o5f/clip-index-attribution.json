@@ -1,0 +1,1052 @@
+{
+ "what": "\u00a7\u5341A -- the portrait residual measured per clip/material index, using the sealed instruments and windows. Clips 0 and 1 are centred cover (the Target's own formula); clip 2 is the frozen product crop. Same content on every clip under the deterministic routes.",
+ "sealedCoding": {
+  "metrics": "o5_instruments.dark_side_luma / white_reflection_ratio, per single-card rect",
+  "window": "max(Target repeat spread, floor 6.0 / 0.15) -- the corrected gate's own",
+  "rectDriftTolerancePx": 2,
+  "isolated": "every clip-0/1 row inside the window AND every clip-2 row outside it, at the metric in question"
+ },
+ "notApplicable": {
+  "844x390": "no fully-visible card at rest; the sealed gate itself scored a widest-drawn-card basis there"
+ },
+ "viewports": [
+  {
+   "vp": "390x844",
+   "cellW": 293.436,
+   "targetReferenceFiles": [
+    "target-rest-bw-split-390x844-r0.png",
+    "target-rest-bw-split-390x844-r1.png",
+    "target-rest-bw-split-390x844-r2.png",
+    "target-rest-bw-split-390x844.png"
+   ],
+   "rows": [
+    {
+     "rect": 0,
+     "rectPx": [
+      54,
+      209,
+      335,
+      417
+     ],
+     "rot": 0,
+     "offsetX": 0,
+     "slotIndex": 43,
+     "clipIndex": 1,
+     "iou": 0.9936,
+     "cornerDriftPx": 0.94,
+     "candidate": {
+      "darkSideLuma": 81.56,
+      "whiteReflectionRatio": 2.5787
+     },
+     "target": {
+      "darkSideLuma": 80.82,
+      "whiteReflectionRatio": 2.58
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 0.74,
+      "whiteReflectionRatio": -0.0013
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 0,
+     "rectPx": [
+      54,
+      209,
+      335,
+      417
+     ],
+     "rot": 1,
+     "offsetX": 293.436,
+     "slotIndex": 42,
+     "clipIndex": 0,
+     "iou": 0.9936,
+     "cornerDriftPx": 0.94,
+     "candidate": {
+      "darkSideLuma": 81.56,
+      "whiteReflectionRatio": 2.5787
+     },
+     "target": {
+      "darkSideLuma": 80.82,
+      "whiteReflectionRatio": 2.58
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 0.74,
+      "whiteReflectionRatio": -0.0013
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 0,
+     "rectPx": [
+      54,
+      209,
+      335,
+      417
+     ],
+     "rot": 2,
+     "offsetX": 586.872,
+     "slotIndex": 41,
+     "clipIndex": 2,
+     "iou": 0.9936,
+     "cornerDriftPx": 0.94,
+     "candidate": {
+      "darkSideLuma": 81.56,
+      "whiteReflectionRatio": 2.5787
+     },
+     "target": {
+      "darkSideLuma": 80.82,
+      "whiteReflectionRatio": 2.58
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 0.74,
+      "whiteReflectionRatio": -0.0013
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 1,
+     "rectPx": [
+      56,
+      643,
+      333,
+      830
+     ],
+     "rot": 0,
+     "offsetX": 0,
+     "slotIndex": 59,
+     "clipIndex": 2,
+     "iou": 0.9923,
+     "cornerDriftPx": 0.71,
+     "candidate": {
+      "darkSideLuma": 35.58,
+      "whiteReflectionRatio": 5.1566
+     },
+     "target": {
+      "darkSideLuma": 21.75,
+      "whiteReflectionRatio": 7.227
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 13.83,
+      "whiteReflectionRatio": -2.0704
+     },
+     "insideWindow": {
+      "darkSideLuma": false,
+      "whiteReflectionRatio": false
+     }
+    },
+    {
+     "rect": 1,
+     "rectPx": [
+      56,
+      643,
+      333,
+      830
+     ],
+     "rot": 1,
+     "offsetX": 293.436,
+     "slotIndex": 58,
+     "clipIndex": 1,
+     "iou": 0.9923,
+     "cornerDriftPx": 0.71,
+     "candidate": {
+      "darkSideLuma": 35.58,
+      "whiteReflectionRatio": 5.1566
+     },
+     "target": {
+      "darkSideLuma": 21.75,
+      "whiteReflectionRatio": 7.227
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 13.83,
+      "whiteReflectionRatio": -2.0704
+     },
+     "insideWindow": {
+      "darkSideLuma": false,
+      "whiteReflectionRatio": false
+     }
+    },
+    {
+     "rect": 1,
+     "rectPx": [
+      56,
+      643,
+      333,
+      830
+     ],
+     "rot": 2,
+     "offsetX": 586.872,
+     "slotIndex": 57,
+     "clipIndex": 0,
+     "iou": 0.9923,
+     "cornerDriftPx": 0.71,
+     "candidate": {
+      "darkSideLuma": 35.58,
+      "whiteReflectionRatio": 5.1566
+     },
+     "target": {
+      "darkSideLuma": 21.75,
+      "whiteReflectionRatio": 7.227
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 13.83,
+      "whiteReflectionRatio": -2.0704
+     },
+     "insideWindow": {
+      "darkSideLuma": false,
+      "whiteReflectionRatio": false
+     }
+    }
+   ],
+   "skippedRows": [],
+   "byClip": {
+    "0": {
+     "rows": 2,
+     "meanResidual": {
+      "darkSideLuma": 7.285,
+      "whiteReflectionRatio": -1.0358
+     },
+     "allInsideWindow": {
+      "darkSideLuma": false,
+      "whiteReflectionRatio": false
+     }
+    },
+    "1": {
+     "rows": 2,
+     "meanResidual": {
+      "darkSideLuma": 7.285,
+      "whiteReflectionRatio": -1.0358
+     },
+     "allInsideWindow": {
+      "darkSideLuma": false,
+      "whiteReflectionRatio": false
+     }
+    },
+    "2": {
+     "rows": 2,
+     "meanResidual": {
+      "darkSideLuma": 7.285,
+      "whiteReflectionRatio": -1.0358
+     },
+     "allInsideWindow": {
+      "darkSideLuma": false,
+      "whiteReflectionRatio": false
+     }
+    }
+   },
+   "isolatedToClip2": {
+    "darkSideLuma": false,
+    "whiteReflectionRatio": false
+   }
+  },
+  {
+   "vp": "1440x900",
+   "cellW": 571.824,
+   "targetReferenceFiles": [
+    "target-rest-bw-split-1440x900-r0.png",
+    "target-rest-bw-split-1440x900-r1.png",
+    "target-rest-bw-split-1440x900-r2.png",
+    "target-rest-bw-split-1440x900.png"
+   ],
+   "rows": [
+    {
+     "rect": 0,
+     "rectPx": [
+      174,
+      33,
+      708,
+      441
+     ],
+     "rot": 0,
+     "offsetX": 0,
+     "slotIndex": 44,
+     "clipIndex": 2,
+     "iou": 0.9982,
+     "cornerDriftPx": 0.28,
+     "candidate": {
+      "darkSideLuma": 43.11,
+      "whiteReflectionRatio": 5.2293
+     },
+     "target": {
+      "darkSideLuma": 42.88,
+      "whiteReflectionRatio": 5.2202
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 0.23,
+      "whiteReflectionRatio": 0.0091
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 0,
+     "rectPx": [
+      174,
+      33,
+      708,
+      441
+     ],
+     "rot": 1,
+     "offsetX": 571.824,
+     "slotIndex": 43,
+     "clipIndex": 1,
+     "iou": 0.9982,
+     "cornerDriftPx": 0.28,
+     "candidate": {
+      "darkSideLuma": 43.11,
+      "whiteReflectionRatio": 5.2293
+     },
+     "target": {
+      "darkSideLuma": 42.88,
+      "whiteReflectionRatio": 5.2202
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 0.23,
+      "whiteReflectionRatio": 0.0091
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 0,
+     "rectPx": [
+      174,
+      33,
+      708,
+      441
+     ],
+     "rot": 2,
+     "offsetX": 1143.648,
+     "slotIndex": 42,
+     "clipIndex": 0,
+     "iou": 0.9982,
+     "cornerDriftPx": 0.28,
+     "candidate": {
+      "darkSideLuma": 43.11,
+      "whiteReflectionRatio": 5.2293
+     },
+     "target": {
+      "darkSideLuma": 42.88,
+      "whiteReflectionRatio": 5.2202
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 0.23,
+      "whiteReflectionRatio": 0.0091
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 1,
+     "rectPx": [
+      731,
+      33,
+      1265,
+      441
+     ],
+     "rot": 0,
+     "offsetX": 0,
+     "slotIndex": 45,
+     "clipIndex": 0,
+     "iou": 0.9956,
+     "cornerDriftPx": 0.91,
+     "candidate": {
+      "darkSideLuma": 66.27,
+      "whiteReflectionRatio": 2.4494
+     },
+     "target": {
+      "darkSideLuma": 65.15,
+      "whiteReflectionRatio": 2.4585
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 1.12,
+      "whiteReflectionRatio": -0.0091
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 1,
+     "rectPx": [
+      731,
+      33,
+      1265,
+      441
+     ],
+     "rot": 1,
+     "offsetX": 571.824,
+     "slotIndex": 44,
+     "clipIndex": 2,
+     "iou": 0.9956,
+     "cornerDriftPx": 0.91,
+     "candidate": {
+      "darkSideLuma": 66.27,
+      "whiteReflectionRatio": 2.4494
+     },
+     "target": {
+      "darkSideLuma": 65.15,
+      "whiteReflectionRatio": 2.4585
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 1.12,
+      "whiteReflectionRatio": -0.0091
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 1,
+     "rectPx": [
+      731,
+      33,
+      1265,
+      441
+     ],
+     "rot": 2,
+     "offsetX": 1143.648,
+     "slotIndex": 43,
+     "clipIndex": 1,
+     "iou": 0.9956,
+     "cornerDriftPx": 0.91,
+     "candidate": {
+      "darkSideLuma": 66.27,
+      "whiteReflectionRatio": 2.4494
+     },
+     "target": {
+      "darkSideLuma": 65.15,
+      "whiteReflectionRatio": 2.4585
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 1.12,
+      "whiteReflectionRatio": -0.0091
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 2,
+     "rectPx": [
+      445,
+      459,
+      994,
+      862
+     ],
+     "rot": 0,
+     "offsetX": 0,
+     "slotIndex": 54,
+     "clipIndex": 0,
+     "iou": 0.9955,
+     "cornerDriftPx": 0.99,
+     "candidate": {
+      "darkSideLuma": 36.84,
+      "whiteReflectionRatio": 5.4159
+     },
+     "target": {
+      "darkSideLuma": 36.43,
+      "whiteReflectionRatio": 5.4069
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 0.41,
+      "whiteReflectionRatio": 0.009
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 2,
+     "rectPx": [
+      445,
+      459,
+      994,
+      862
+     ],
+     "rot": 1,
+     "offsetX": 571.824,
+     "slotIndex": 53,
+     "clipIndex": 2,
+     "iou": 0.9955,
+     "cornerDriftPx": 0.99,
+     "candidate": {
+      "darkSideLuma": 36.84,
+      "whiteReflectionRatio": 5.4159
+     },
+     "target": {
+      "darkSideLuma": 36.43,
+      "whiteReflectionRatio": 5.4069
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 0.41,
+      "whiteReflectionRatio": 0.009
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 2,
+     "rectPx": [
+      445,
+      459,
+      994,
+      862
+     ],
+     "rot": 2,
+     "offsetX": 1143.648,
+     "slotIndex": 52,
+     "clipIndex": 1,
+     "iou": 0.9955,
+     "cornerDriftPx": 0.99,
+     "candidate": {
+      "darkSideLuma": 36.84,
+      "whiteReflectionRatio": 5.4159
+     },
+     "target": {
+      "darkSideLuma": 36.43,
+      "whiteReflectionRatio": 5.4069
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 0.41,
+      "whiteReflectionRatio": 0.009
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    }
+   ],
+   "skippedRows": [],
+   "byClip": {
+    "0": {
+     "rows": 3,
+     "meanResidual": {
+      "darkSideLuma": 0.5867,
+      "whiteReflectionRatio": 0.003
+     },
+     "allInsideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    "1": {
+     "rows": 3,
+     "meanResidual": {
+      "darkSideLuma": 0.5867,
+      "whiteReflectionRatio": 0.003
+     },
+     "allInsideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    "2": {
+     "rows": 3,
+     "meanResidual": {
+      "darkSideLuma": 0.5867,
+      "whiteReflectionRatio": 0.003
+     },
+     "allInsideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    }
+   },
+   "isolatedToClip2": {
+    "darkSideLuma": false,
+    "whiteReflectionRatio": false
+   }
+  },
+  {
+   "vp": "700x700",
+   "cellW": 277.97,
+   "targetReferenceFiles": [
+    "target-rest-bw-split-700x700-r0.png",
+    "target-rest-bw-split-700x700-r1.png",
+    "target-rest-bw-split-700x700-r2.png",
+    "target-rest-bw-split-700x700.png"
+   ],
+   "rows": [
+    {
+     "rect": 0,
+     "rectPx": [
+      216,
+      149,
+      483,
+      345
+     ],
+     "rot": 0,
+     "offsetX": 0,
+     "slotIndex": 54,
+     "clipIndex": 0,
+     "iou": 0.9921,
+     "cornerDriftPx": 0.67,
+     "candidate": {
+      "darkSideLuma": 80.3,
+      "whiteReflectionRatio": 2.5135
+     },
+     "target": {
+      "darkSideLuma": 79.22,
+      "whiteReflectionRatio": 2.525
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 1.08,
+      "whiteReflectionRatio": -0.0115
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 0,
+     "rectPx": [
+      216,
+      149,
+      483,
+      345
+     ],
+     "rot": 1,
+     "offsetX": 277.97,
+     "slotIndex": 53,
+     "clipIndex": 2,
+     "iou": 0.9921,
+     "cornerDriftPx": 0.67,
+     "candidate": {
+      "darkSideLuma": 80.3,
+      "whiteReflectionRatio": 2.5135
+     },
+     "target": {
+      "darkSideLuma": 79.22,
+      "whiteReflectionRatio": 2.525
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 1.08,
+      "whiteReflectionRatio": -0.0115
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 0,
+     "rectPx": [
+      216,
+      149,
+      483,
+      345
+     ],
+     "rot": 2,
+     "offsetX": 555.94,
+     "slotIndex": 52,
+     "clipIndex": 1,
+     "iou": 0.9921,
+     "cornerDriftPx": 0.67,
+     "candidate": {
+      "darkSideLuma": 80.3,
+      "whiteReflectionRatio": 2.5135
+     },
+     "target": {
+      "darkSideLuma": 79.22,
+      "whiteReflectionRatio": 2.525
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 1.08,
+      "whiteReflectionRatio": -0.0115
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 1,
+     "rectPx": [
+      84,
+      354,
+      344,
+      552
+     ],
+     "rot": 0,
+     "offsetX": 0,
+     "slotIndex": 64,
+     "clipIndex": 1,
+     "iou": 0.9924,
+     "cornerDriftPx": 0.68,
+     "candidate": {
+      "darkSideLuma": 21.97,
+      "whiteReflectionRatio": 10.268
+     },
+     "target": {
+      "darkSideLuma": 22.63,
+      "whiteReflectionRatio": 9.9027
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": -0.66,
+      "whiteReflectionRatio": 0.3653
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": false
+     }
+    },
+    {
+     "rect": 1,
+     "rectPx": [
+      84,
+      354,
+      344,
+      552
+     ],
+     "rot": 1,
+     "offsetX": 277.97,
+     "slotIndex": 63,
+     "clipIndex": 0,
+     "iou": 0.9924,
+     "cornerDriftPx": 0.68,
+     "candidate": {
+      "darkSideLuma": 21.97,
+      "whiteReflectionRatio": 10.268
+     },
+     "target": {
+      "darkSideLuma": 22.63,
+      "whiteReflectionRatio": 9.9027
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": -0.66,
+      "whiteReflectionRatio": 0.3653
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": false
+     }
+    },
+    {
+     "rect": 1,
+     "rectPx": [
+      84,
+      354,
+      344,
+      552
+     ],
+     "rot": 2,
+     "offsetX": 555.94,
+     "slotIndex": 62,
+     "clipIndex": 2,
+     "iou": 0.9924,
+     "cornerDriftPx": 0.68,
+     "candidate": {
+      "darkSideLuma": 21.97,
+      "whiteReflectionRatio": 10.268
+     },
+     "target": {
+      "darkSideLuma": 22.63,
+      "whiteReflectionRatio": 9.9027
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": -0.66,
+      "whiteReflectionRatio": 0.3653
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": false
+     }
+    },
+    {
+     "rect": 2,
+     "rectPx": [
+      355,
+      354,
+      615,
+      552
+     ],
+     "rot": 0,
+     "offsetX": 0,
+     "slotIndex": 65,
+     "clipIndex": 2,
+     "iou": 0.9915,
+     "cornerDriftPx": 0.79,
+     "candidate": {
+      "darkSideLuma": 31.38,
+      "whiteReflectionRatio": 5.126
+     },
+     "target": {
+      "darkSideLuma": 30.77,
+      "whiteReflectionRatio": 5.1771
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 0.61,
+      "whiteReflectionRatio": -0.0511
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 2,
+     "rectPx": [
+      355,
+      354,
+      615,
+      552
+     ],
+     "rot": 1,
+     "offsetX": 277.97,
+     "slotIndex": 64,
+     "clipIndex": 1,
+     "iou": 0.9915,
+     "cornerDriftPx": 0.79,
+     "candidate": {
+      "darkSideLuma": 31.38,
+      "whiteReflectionRatio": 5.126
+     },
+     "target": {
+      "darkSideLuma": 30.77,
+      "whiteReflectionRatio": 5.1771
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 0.61,
+      "whiteReflectionRatio": -0.0511
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 2,
+     "rectPx": [
+      355,
+      354,
+      615,
+      552
+     ],
+     "rot": 2,
+     "offsetX": 555.94,
+     "slotIndex": 63,
+     "clipIndex": 0,
+     "iou": 0.9915,
+     "cornerDriftPx": 0.79,
+     "candidate": {
+      "darkSideLuma": 31.38,
+      "whiteReflectionRatio": 5.126
+     },
+     "target": {
+      "darkSideLuma": 30.77,
+      "whiteReflectionRatio": 5.1771
+     },
+     "targetSpread": {
+      "darkSideLuma": 0.0,
+      "whiteReflectionRatio": 0.0
+     },
+     "residual": {
+      "darkSideLuma": 0.61,
+      "whiteReflectionRatio": -0.0511
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    }
+   ],
+   "skippedRows": [],
+   "byClip": {
+    "0": {
+     "rows": 3,
+     "meanResidual": {
+      "darkSideLuma": 0.3433,
+      "whiteReflectionRatio": 0.1009
+     },
+     "allInsideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": false
+     }
+    },
+    "1": {
+     "rows": 3,
+     "meanResidual": {
+      "darkSideLuma": 0.3433,
+      "whiteReflectionRatio": 0.1009
+     },
+     "allInsideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": false
+     }
+    },
+    "2": {
+     "rows": 3,
+     "meanResidual": {
+      "darkSideLuma": 0.3433,
+      "whiteReflectionRatio": 0.1009
+     },
+     "allInsideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": false
+     }
+    }
+   },
+   "isolatedToClip2": {
+    "darkSideLuma": false,
+    "whiteReflectionRatio": false
+   }
+  }
+ ],
+ "p0Conclusion": {
+  "vp": "390x844",
+  "byClip": {
+   "0": {
+    "rows": 2,
+    "meanResidual": {
+     "darkSideLuma": 7.285,
+     "whiteReflectionRatio": -1.0358
+    },
+    "allInsideWindow": {
+     "darkSideLuma": false,
+     "whiteReflectionRatio": false
+    }
+   },
+   "1": {
+    "rows": 2,
+    "meanResidual": {
+     "darkSideLuma": 7.285,
+     "whiteReflectionRatio": -1.0358
+    },
+    "allInsideWindow": {
+     "darkSideLuma": false,
+     "whiteReflectionRatio": false
+    }
+   },
+   "2": {
+    "rows": 2,
+    "meanResidual": {
+     "darkSideLuma": 7.285,
+     "whiteReflectionRatio": -1.0358
+    },
+    "allInsideWindow": {
+     "darkSideLuma": false,
+     "whiteReflectionRatio": false
+    }
+   }
+  },
+  "isolatedToClip2": {
+   "darkSideLuma": false,
+   "whiteReflectionRatio": false
+  }
+ }
+}

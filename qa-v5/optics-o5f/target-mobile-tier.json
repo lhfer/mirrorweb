@@ -1,0 +1,178 @@
+{
+ "what": "\u00a7\u5341B -- the Target's mobile sample tier, proven from the live runtime and the bundle, never inferred from viewport dimensions.",
+ "bundlePredicate": {
+  "file": "artifacts/f27/bundles/03lo820gl57km.js",
+  "byteOffset": 1968911,
+  "excerpt": "matchMedia(\"(pointer: coarse)\").matches,ef=navigator.hardwareConcurrency??8,ep=\"u\"<typeof navigator?8:navigator.deviceMemory??8,eh||ef<=6||ep<=4?\"low\":\"high\"),PE={dpr:\"low\"===Pb?[1,1.5]:[1,2],maxDispersionSamples:\"low\"===Pb?3:1/0",
+  "terms": {
+   "pointerCoarse": "window.matchMedia(\"(pointer: coarse)\").matches",
+   "cores": "navigator.hardwareConcurrency ?? 8, low when <= 6",
+   "memory": "navigator.deviceMemory ?? 8, low when <= 4"
+  },
+  "reading": "low = (pointer: coarse) OR cores <= 6 OR deviceMemory <= 4; maxDispersionSamples = low ? 3 : Infinity; samples = min(5, maxDispersionSamples). No viewport term exists in the predicate.",
+  "archivedBundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754"
+ },
+ "liveBundleMatchesArchive": true,
+ "captureContextRule": "mobile emulation exactly when w or h < 500 -- o5r-measure.mjs's own rule",
+ "countingConventionControl": {
+  "vp": "1440x900",
+  "why": "desktop context with a known predicted tier (high -> 5); observing exactly 5 refract calls in the Target's live program validates the count-equals-samples convention on the Target's own compiled output, not just ours.",
+  "predictedTier": "high",
+  "observedRefractCalls": 5,
+  "validated": true
+ },
+ "rows": [
+  {
+   "vp": "1440x900",
+   "mobileEmulation": false,
+   "loaded": true,
+   "predicateInputs": {
+    "pointerCoarse": false,
+    "anyPointerCoarse": false,
+    "hardwareConcurrency": 18,
+    "deviceMemory": 32,
+    "maxTouchPoints": 0,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+    "webgpu": true
+   },
+   "predictedTier": "high",
+   "predictedSamples": 5,
+   "observedRefractCalls": 5,
+   "observedSamples": 5,
+   "agreement": true,
+   "ourCandidateSamples": 5,
+   "mismatchWithOurs": false,
+   "bundles": [
+    {
+     "url": "https://infinite-liquid-glass.shader.se/_next/static/immutable/chunks/03lo820gl57km.js",
+     "bytes": 2008349,
+     "sha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754"
+    }
+   ],
+   "bodyProgram": {
+    "file": "target-body-program-1440x900.wgsl.txt",
+    "sha256": "18728f2cf225dbc31e1c1830cb3f2cd08021beb7f2a2106658972214fce7aaeb",
+    "length": 12108
+   },
+   "errorCount": 0
+  },
+  {
+   "vp": "390x844",
+   "mobileEmulation": true,
+   "loaded": true,
+   "predicateInputs": {
+    "pointerCoarse": true,
+    "anyPointerCoarse": true,
+    "hardwareConcurrency": 18,
+    "deviceMemory": 32,
+    "maxTouchPoints": 1,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+    "webgpu": true
+   },
+   "predictedTier": "low",
+   "predictedSamples": 3,
+   "observedRefractCalls": 3,
+   "observedSamples": 3,
+   "agreement": true,
+   "ourCandidateSamples": 5,
+   "mismatchWithOurs": true,
+   "bundles": [
+    {
+     "url": "https://infinite-liquid-glass.shader.se/_next/static/immutable/chunks/03lo820gl57km.js",
+     "bytes": 2008349,
+     "sha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754"
+    }
+   ],
+   "bodyProgram": {
+    "file": "target-body-program-390x844.wgsl.txt",
+    "sha256": "6192c1e41d5e11c11e6c725a2e1a7165b81f7d32126d3ddcdd01641324443c29",
+    "length": 10679
+   },
+   "errorCount": 0
+  },
+  {
+   "vp": "844x390",
+   "mobileEmulation": true,
+   "loaded": true,
+   "predicateInputs": {
+    "pointerCoarse": true,
+    "anyPointerCoarse": true,
+    "hardwareConcurrency": 18,
+    "deviceMemory": 32,
+    "maxTouchPoints": 1,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+    "webgpu": true
+   },
+   "predictedTier": "low",
+   "predictedSamples": 3,
+   "observedRefractCalls": 3,
+   "observedSamples": 3,
+   "agreement": true,
+   "ourCandidateSamples": 5,
+   "mismatchWithOurs": true,
+   "bundles": [
+    {
+     "url": "https://infinite-liquid-glass.shader.se/_next/static/immutable/chunks/03lo820gl57km.js",
+     "bytes": 2008349,
+     "sha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754"
+    }
+   ],
+   "bodyProgram": {
+    "file": "target-body-program-844x390.wgsl.txt",
+    "sha256": "6192c1e41d5e11c11e6c725a2e1a7165b81f7d32126d3ddcdd01641324443c29",
+    "length": 10679
+   },
+   "errorCount": 0
+  },
+  {
+   "vp": "700x700",
+   "mobileEmulation": false,
+   "loaded": true,
+   "predicateInputs": {
+    "pointerCoarse": false,
+    "anyPointerCoarse": false,
+    "hardwareConcurrency": 18,
+    "deviceMemory": 32,
+    "maxTouchPoints": 0,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+    "webgpu": true
+   },
+   "predictedTier": "high",
+   "predictedSamples": 5,
+   "observedRefractCalls": 5,
+   "observedSamples": 5,
+   "agreement": true,
+   "ourCandidateSamples": 5,
+   "mismatchWithOurs": false,
+   "bundles": [
+    {
+     "url": "https://infinite-liquid-glass.shader.se/_next/static/immutable/chunks/03lo820gl57km.js",
+     "bytes": 2008349,
+     "sha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754"
+    }
+   ],
+   "bodyProgram": {
+    "file": "target-body-program-700x700.wgsl.txt",
+    "sha256": "18728f2cf225dbc31e1c1830cb3f2cd08021beb7f2a2106658972214fce7aaeb",
+    "length": 12108
+   },
+   "errorCount": 0
+  }
+ ],
+ "conclusion": {
+  "p0": {
+   "vp": "390x844",
+   "targetSamplesObserved": 3,
+   "ourCandidateSamples": 5,
+   "sampleTierMismatch": true
+  },
+  "landscape": {
+   "vp": "844x390",
+   "targetSamplesObserved": 3,
+   "ourCandidateSamples": 5,
+   "sampleTierMismatch": true
+  }
+ },
+ "status": "READABLE",
+ "unreadableNote": null
+}

@@ -1,0 +1,107 @@
+{
+ "what": "\u00a7\u5341C -- the reflection chain's direction terms, summarised from the \u00a7\u4e5d decomposition, plus the rotation constants compared source to source.",
+ "faceDirection": "the analytic normal is multiplied by faceDirection in the program and the replay assumes front faces (+1); the analytic-normal term's agreement below IS the check that this assumption holds on every scored card -- a back-face would flip the normal and fail the term at both viewports.",
+ "rotations": {
+  "bundle": {
+   "envRotation": -2.0,
+   "envRotationX": 0.0,
+   "byteOffset": 1303834
+  },
+  "candidateUniforms": {
+   "envRotation": -2,
+   "envRotationX": 0
+  },
+  "match": true
+ },
+ "equirectConvention": "u = atan2(d.z, d.x)/2pi + 0.5, v = asin(clamp(d.y,-1,1))/pi + 0.5 -- three 0.185's own equirectUV, quoted in o5f_terms.py; validated against the engine at 1440x900 before 390x844 was read.",
+ "hdrOrientation": "HDRLoader texData.flipY = true; the replay samples with the same flip and validates.",
+ "terms": {
+  "analytic-normal": {
+   "tolerance": 0.05,
+   "validationWorstBinP95": 0.00788,
+   "validated": true,
+   "degenerateEngineView": false,
+   "status": "MATCHES",
+   "p0WorstBinP95": 0.00821,
+   "p0ByCard": [
+    {
+     "slotIndex": 43,
+     "clipIndex": 1,
+     "worstBinP95": 0.00821
+    },
+    {
+     "slotIndex": 59,
+     "clipIndex": 2,
+     "worstBinP95": 0.00805
+    }
+   ]
+  },
+  "reflection-vector": {
+   "tolerance": 0.05,
+   "validationWorstBinP95": 0.00452,
+   "validated": true,
+   "degenerateEngineView": false,
+   "status": "MATCHES",
+   "p0WorstBinP95": 0.00456,
+   "p0ByCard": [
+    {
+     "slotIndex": 43,
+     "clipIndex": 1,
+     "worstBinP95": 0.00416
+    },
+    {
+     "slotIndex": 59,
+     "clipIndex": 2,
+     "worstBinP95": 0.00456
+    }
+   ]
+  },
+  "equirect-uv": {
+   "tolerance": 0.02,
+   "validationWorstBinP95": 0.00199,
+   "validated": true,
+   "degenerateEngineView": false,
+   "status": "MATCHES",
+   "p0WorstBinP95": 0.00204,
+   "p0ByCard": [
+    {
+     "slotIndex": 43,
+     "clipIndex": 1,
+     "worstBinP95": 0.00197
+    },
+    {
+     "slotIndex": 59,
+     "clipIndex": 2,
+     "worstBinP95": 0.00204
+    }
+   ]
+  },
+  "raw-env-sample": {
+   "tolerance": 0.04,
+   "validationWorstBinP95": 0.00464,
+   "validated": true,
+   "degenerateEngineView": false,
+   "status": "MATCHES",
+   "p0WorstBinP95": 0.00321,
+   "p0ByCard": [
+    {
+     "slotIndex": 43,
+     "clipIndex": 1,
+     "worstBinP95": 0.00207
+    },
+    {
+     "slotIndex": 59,
+     "clipIndex": 2,
+     "worstBinP95": 0.00321
+    }
+   ]
+  }
+ },
+ "allDirectionTermsMatchAtP0": true,
+ "statuses": {
+  "analytic-normal": "MATCHES",
+  "reflection-vector": "MATCHES",
+  "equirect-uv": "MATCHES",
+  "raw-env-sample": "MATCHES"
+ }
+}

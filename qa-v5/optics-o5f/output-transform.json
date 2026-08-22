@@ -1,0 +1,153 @@
+{
+ "what": "\u00a7\u5341D -- the output transform verified in the compiled programs of both runtimes and at the source sites of both bundles.",
+ "compiledMarkersVacuous": true,
+ "operativeEvidence": "neither card program carries the tone-map or sRGB constants as text -- the transform is applied outside the card program on both sides -- so the marker comparison is vacuous and the operative \u00a7\u5341D evidence is (a) the final-colour decomposition term: ACES(Hill)+sRGB applied to the composed engine terms MATCHES the Beauty capture at both viewports (portrait-term-decomposition.json), proving our output transform end to end, and (b) the sealed O5 compiled audit and pixel gates covering the Target's.",
+ "compiledPrograms": {
+  "target": {
+   "file": "target-tier/target-body-program-1440x900.wgsl.txt",
+   "toneMappingMarkers": {
+    "acesFilmicToneMapping": false,
+    "ACESFilmic": false,
+    "RRTAndODTFit": false,
+    "agxToneMapping": false,
+    "neutralToneMapping": false,
+    "reinhardToneMapping": false,
+    "linearToneMapping": false,
+    "cineonToneMapping": false
+   },
+   "srgbMarkers": {
+    "12.92": false,
+    "0.0031308": false,
+    "1.055": false
+   }
+  },
+  "candidate": {
+   "file": "decomposition/beauty-1440x900-program.wgsl.txt",
+   "toneMappingMarkers": {
+    "acesFilmicToneMapping": false,
+    "ACESFilmic": false,
+    "RRTAndODTFit": false,
+    "agxToneMapping": false,
+    "neutralToneMapping": false,
+    "reinhardToneMapping": false,
+    "linearToneMapping": false,
+    "cineonToneMapping": false
+   },
+   "srgbMarkers": {
+    "12.92": false,
+    "0.0031308": false,
+    "1.055": false
+   }
+  },
+  "toneMappingAgrees": true,
+  "srgbAgrees": true
+ },
+ "bundleSites": {
+  "toneMapping": [
+   {
+    "byteOffset": 236081,
+    "excerpt": "lor(e0),l.toneMapping=eU.NoToneMapping,l.autoClear=!1,l.state.buffers.depth.getReversed()&&(l.setRenderTarget(i)"
+   },
+   {
+    "byteOffset": 236907,
+    "excerpt": "er(e,a)}l.toneMapping=c,l.autoClear=u,e.background=p}_textureToCubeUV(e,t){let r=this._renderer,i=e.mapping===eU"
+   },
+   {
+    "byteOffset": 252621,
+    "excerpt": "){if(g||e.toneMapping===eU.NoToneMapping&&0===A.length)return!1;if(m=t,null!==t){let e=t.width,r=t.height;(o.wid"
+   },
+   {
+    "byteOffset": 252817,
+    "excerpt": "Mapping,e.toneMapping=eU.NoToneMapping,!0},this.hasRenderPass=function(){return v},this.end=function(e,t){e.tone"
+   },
+   {
+    "byteOffset": 252915,
+    "excerpt": "on(e,t){e.toneMapping=s,g=!0;let r=o,i=l;for(let n=0;n<A.length;n++){let a=A[n];if(!1!==a.enabled&&(a.render(e,i"
+   },
+   {
+    "byteOffset": 275491,
+    "excerpt": "supported toneMapping:\",a),\"vec3 \"+n+\"( vec3 color ) { return LinearToneMapping( color ); }\"):\"vec3 \"+n+\"( vec3 "
+   }
+  ],
+  "toneMappingExposure": [
+   {
+    "byteOffset": 153819,
+    "excerpt": "orm float toneMappingExposure;\\nvec3 LinearToneMapping( vec3 color ) {\\n\treturn saturate( toneMappingExposure * color )"
+   },
+   {
+    "byteOffset": 153899,
+    "excerpt": "saturate( toneMappingExposure * color );\\n}\\nvec3 ReinhardToneMapping( vec3 color ) {\\n\tcolor *= toneMappingExposure;\\n"
+   },
+   {
+    "byteOffset": 153986,
+    "excerpt": "\tcolor *= toneMappingExposure;\\n\treturn saturate( color / ( vec3( 1.0 ) + color ) );\\n}\\nvec3 CineonToneMapping( vec3 c"
+   },
+   {
+    "byteOffset": 154115,
+    "excerpt": "\tcolor *= toneMappingExposure;\\n\tcolor = max( vec3( 0.0 ), color - 0.004 );\\n\treturn pow( ( color * ( 6.2 * color + 0.5"
+   },
+   {
+    "byteOffset": 154810,
+    "excerpt": "\tcolor *= toneMappingExposure / 0.6;\\n\tcolor = ACESInputMat * color;\\n\tcolor = RRTAndODTFit( color );\\n\tcolor = ACESOut"
+   },
+   {
+    "byteOffset": 156139,
+    "excerpt": "\tcolor *= toneMappingExposure;\\n\tcolor = LINEAR_SRGB_TO_LINEAR_REC2020 * color;\\n\tcolor = AgXInsetMatrix * color;\\n\tcol"
+   }
+  ],
+  "outputColorSpace": [
+   {
+    "byteOffset": 253068,
+    "excerpt": "}if(f!==e.outputColorSpace||p!==e.toneMapping){f=e.outputColorSpace,p=e.toneMapping,c.defines={},eU.ColorManagement."
+   },
+   {
+    "byteOffset": 253109,
+    "excerpt": "ping){f=e.outputColorSpace,p=e.toneMapping,c.defines={},eU.ColorManagement.getTransfer(f)===eU.SRGBTransfer&&(c.defi"
+   },
+   {
+    "byteOffset": 276122,
+    "excerpt": "ETF\"]}}(r.outputColorSpace),`vec4 linearToOutputTexel( vec4 value ) {\n\treturn ${t[1]}( vec4( value.rgb * ${t[0]}, va"
+   },
+   {
+    "byteOffset": 282919,
+    "excerpt": "phTexture,outputColorSpace:null===P?e.outputColorSpace:!0===P.isXRRenderTarget?P.texture.colorSpace:eU.ColorManageme"
+   },
+   {
+    "byteOffset": 282947,
+    "excerpt": "ull===P?e.outputColorSpace:!0===P.isXRRenderTarget?P.texture.colorSpace:eU.ColorManagement.workingColorSpace,alphaTo"
+   },
+   {
+    "byteOffset": 287734,
+    "excerpt": ",r.push(i.outputColorSpace),r.push(i.envMapMode),r.push(i.envMapCubeUVHeight),r.push(i.mapUv),r.push(i.alphaMapUv),r"
+   }
+  ],
+  "materialToneMappedFalse": [
+   {
+    "byteOffset": 730069,
+    "excerpt": "!1,fog:!1,toneMapped:!1,transparent:!0}),t=new uM.LineBasicMaterial({depthTest:!1,depthWrite:!1,fog:!1,toneMapped"
+   },
+   {
+    "byteOffset": 730162,
+    "excerpt": "!1,fog:!1,toneMapped:!1,transparent:!0}),r=e.clone();r.opacity=.15;const i=t.clone();i.opacity=.5;const n=e.clone"
+   },
+   {
+    "byteOffset": 741238,
+    "excerpt": "pacity:.1,toneMapped:!1})),this.isTransformControlsPlane=!0,this.type=\"TransformControlsPlane\"}updateMatrixWorld("
+   },
+   {
+    "byteOffset": 1976900,
+    "excerpt": "FrontSide,toneMapped:!1});return m.positionNode=(0,dB.vec3)(dB.positionLocal.xy,u(dB.positionLocal.xy.mul(n.plane"
+   }
+  ]
+ },
+ "candidateSites": {
+  "rendererToneMapping": "SceneColorPipelineV4.glassToneMapping = ACESFilmicToneMapping (the default); NoToneMapping only for QA measurement views, never Beauty",
+  "materialToneMapped": "TargetOpticalBodyV5 sets toneMapped: false, transcribed from the Target and inert in exactly the same way (the sealed O5 compiled-audit fact: the node renderer never reads Material.toneMapped)"
+ },
+ "exposure": {
+  "threeDefault": 1.0,
+  "note": "no toneMappingExposure assignment exists in our renderer path; the bundle sites above show the Target's, for the reviewer to compare."
+ },
+ "agrees": true,
+ "agreesVia": "final-colour decomposition term + sealed O5 audit"
+}

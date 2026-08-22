@@ -57,7 +57,9 @@ OUT = REPO / "qa-v5/optics-o5f/portrait-term-decomposition.json"
 VALIDATION_VP = "1440x900"
 P0 = "390x844"
 GRID_N = 128
-EDGE_MARGIN_PX = 2.0   # engine samples only where sdf < -margin
+EDGE_MARGIN_PX = 2.0   # engine samples only where sdf < -margin (LOCAL px)
+SCREEN_MARGIN_PX = 2.5  # and >= this many SCREEN px from the silhouette
+TEXT_MARGIN_PX = 3.0    # text boxes dilated by this much before masking
 CHAIN = ["analytic-normal", "reflection-vector", "equirect-uv",
          "raw-env-sample", "fresnel", "env-mix-factor", "white-rim",
          "body-refracted", "final-colour"]
@@ -105,9 +107,11 @@ def img_rgb(path):
 
 
 def sample_screen(img, sx, sy):
+    # floor, not round: a pixel index x covers [x, x+1) with centre x+0.5,
+    # and the per-card block hands in exact pixel centres.
     h, w = img.shape[:2]
-    xi = np.clip(np.round(sx).astype(int), 0, w - 1)
-    yi = np.clip(np.round(sy).astype(int), 0, h - 1)
+    xi = np.clip(np.floor(sx).astype(int), 0, w - 1)
+    yi = np.clip(np.floor(sy).astype(int), 0, h - 1)
     return img[yi, xi]
 
 
@@ -219,12 +223,56 @@ def main() -> int:
 
         for rect, card in per_card:
             tr = T.TermReplay(body, card, hdr, env_constants)
-            lx, ly = tr.card.grid_local(GRID_N)
+            glx, gly = tr.card.grid_local(GRID_N)
+            gsx, gsy = tr.card.local_to_screen(glx, gly)
+            # Snap every grid point to the centre of the pixel that will be
+            # read, then invert the projection, so the replay evaluates the
+            # chain at the SAME local position the engine fragment did.
+            # Without this the comparison carries a gradient x half-pixel
+            # term that grows with the card's tilt -- instrument resolution
+            # loss, not divergence.
+            vw, vh = int(tr.card.vw), int(tr.card.vh)
+            tx = np.clip(np.floor(gsx).astype(int), 0, vw - 1) + 0.5
+            ty = np.clip(np.floor(gsy).astype(int), 0, vh - 1) + 0.5
+            lx, ly = tr.screen_to_local(tx, ty, glx, gly)
             s = tr.sdf_at(lx, ly)
-            sx, sy = tr.card.local_to_screen(lx, ly)
+            sx, sy = tx, ty
             valid = ((s < -EDGE_MARGIN_PX)
                      & (sx >= rect[0] + 1) & (sx < rect[2] - 1)
                      & (sy >= rect[1] + 1) & (sy < rect[3] - 1))
+            # Screen-space silhouette margin. On a strongly tilted card the
+            # steep edges foreshorten: a fixed LOCAL margin shrinks to under
+            # a screen pixel there, and the sampled engine pixel still holds
+            # the antialiased silhouette blend against whatever is BEHIND
+            # the card -- which reads as a huge normal/env delta that is
+            # contamination, not divergence. The Jacobian's smallest
+            # singular value converts the local sdf into a worst-case screen
+            # distance to the silhouette; pixels closer than
+            # SCREEN_MARGIN_PX are excluded from every bin. No tolerance
+            # changes -- contaminated samples are excluded, never rescored.
+            step_x = tr.card.plane_w / GRID_N
+            step_y = tr.card.plane_h / GRID_N
+            # Jacobian from the SMOOTH grid projection -- the snapped pixel
+            # centres are stair-stepped and would make these gradients noise.
+            dsx_dy, dsx_dx = np.gradient(gsx, step_y, step_x)
+            dsy_dy, dsy_dx = np.gradient(gsy, step_y, step_x)
+            jE = dsx_dx ** 2 + dsy_dx ** 2
+            jG = dsx_dy ** 2 + dsy_dy ** 2
+            jF = dsx_dx * dsx_dy + dsy_dx * dsy_dy
+            lam_min = 0.5 * ((jE + jG) - np.sqrt((jE - jG) ** 2
+                                                 + 4 * jF ** 2))
+            sigma_min = np.sqrt(np.maximum(lam_min, 0.0))
+            valid &= (-s) * sigma_min >= SCREEN_MARGIN_PX
+            # §九 label exclusion. The card typography and footer are
+            # product DOM composited over the canvas; the Target carries
+            # them too, so they cancel pixel-vs-pixel -- but the CPU replay
+            # has no text, so every text box (dilated for font AA) is
+            # masked out of every bin.
+            for tb in truth.get("textBoxes", []):
+                x0, y0 = tb["x"] - TEXT_MARGIN_PX, tb["y"] - TEXT_MARGIN_PX
+                x1 = tb["x"] + tb["w"] + TEXT_MARGIN_PX
+                y1 = tb["y"] + tb["h"] + TEXT_MARGIN_PX
+                valid &= ~((sx >= x0) & (sx < x1) & (sy >= y0) & (sy < y1))
             bins = T.bin_masks(tr, lx, ly)
             bins = {k: (m & valid) for k, m in bins.items()}
             bins["all-valid"] = valid
@@ -397,6 +445,18 @@ def main() -> int:
         "validationViewport": VALIDATION_VP,
         "p0Viewport": P0,
         "gridN": GRID_N, "edgeMarginPx": EDGE_MARGIN_PX,
+        "screenMarginPx": SCREEN_MARGIN_PX,
+        "textMarginPx": TEXT_MARGIN_PX,
+        "textExclusion": "card typography and footer are product DOM over "
+                         "the canvas; present identically in the Target, "
+                         "absent from the replay, so their boxes are "
+                         "masked from every bin (§九 label exclusion).",
+        "screenMarginWhy": "a fixed local margin foreshortens to under a "
+                           "screen pixel on a steeply tilted card's edges; "
+                           "samples inside the engine's antialiased "
+                           "silhouette blend are contamination and are "
+                           "excluded via the projection Jacobian's smallest "
+                           "singular value. Tolerances are unchanged.",
         "inputIdentity": input_identity,
         "programHashes": program_hashes,
         "beautyProgramUnchangedByViews": beauty_unchanged,

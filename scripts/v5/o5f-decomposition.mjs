@@ -86,7 +86,21 @@ for (const vp of VIEWPORTS) {
     await page.screenshot({ path: path.join(opts.out, file) });
     const truth = await page.evaluate(() => {
       const qa = window.__ILG_QA__;
+      const box = (el) => {
+        const r = el.getBoundingClientRect();
+        return { x: r.x, y: r.y, w: r.width, h: r.height };
+      };
       return JSON.parse(JSON.stringify({
+        // §九 label exclusion: the card typography and the footer are
+        // PRODUCT DOM drawn over the canvas -- the Target has them too, so
+        // they cancel in pixel-vs-pixel work, but a CPU replay has no
+        // text and the scorer must mask these boxes out of every bin.
+        textBoxes: [
+          ...document.querySelectorAll(".se-rule, .se-title, .se-deck"),
+          ...document.querySelectorAll(
+            ".page-footer .experiment-link, .page-footer .cta-link, "
+            + ".page-footer .cta-arrow, .page-footer .brand-word"),
+        ].map(box),
         body: qa.getCardBodyTruth(),
         optics: {
           opticalBody: qa.getOpticsState().opticalBody,

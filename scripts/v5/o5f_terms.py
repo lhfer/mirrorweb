@@ -90,7 +90,7 @@ def reinhard(c):
 def load_hdr(path: Path):
     """The asset as float RGB rows in FILE ORDER (row 0 = first scanline)."""
     raw = Path(path).read_bytes()
-    w, h, off = H.read_header(raw)
+    w, h, off, _lines = H.read_header(raw)
     rgbe = H.read_rle(raw, off, w, h)
     rgb = H.to_float(rgbe)
     # three's RGBE decode clamps each channel at 65504 before packing the
@@ -215,6 +215,34 @@ class TermReplay:
         t = np.clip((s - (-c.S["rimWidth"])) / c.S["rimWidth"], 0.0, 1.0)
         smooth = t * t * (3 - 2 * t)
         return smooth * self.E["rimIntensity"] * self.E["rimScale"]
+
+    def screen_to_local(self, tx, ty, lx0, ly0, iters=6, eps=1e-4):
+        """Invert local_to_screen: pixel centres -> unit-plane local xy.
+
+        The engine fragment at a pixel evaluated the chain at ITS OWN
+        interpolated local position, not at the replay grid's. Comparing
+        replay(grid) against engine(nearest pixel) therefore carries a
+        gradient x half-pixel error that grows with the card's tilt --
+        which is resolution loss of the instrument, not divergence of the
+        program. Newton with a finite-difference Jacobian on the exact
+        forward map (dome included) evaluates both sides at the same
+        point; the dome is shallow and six iterations are far past
+        convergence.
+        """
+        lx = np.array(lx0, dtype=float, copy=True)
+        ly = np.array(ly0, dtype=float, copy=True)
+        for _ in range(iters):
+            sx, sy = self.card.local_to_screen(lx, ly)
+            rx, ry = tx - sx, ty - sy
+            sxx, syx = self.card.local_to_screen(lx + eps, ly)
+            sxy, syy = self.card.local_to_screen(lx, ly + eps)
+            a, c = (sxx - sx) / eps, (syx - sy) / eps
+            b, d = (sxy - sx) / eps, (syy - sy) / eps
+            det = a * d - b * c
+            det = np.where(np.abs(det) < 1e-12, 1e-12, det)
+            lx = lx + (d * rx - b * ry) / det
+            ly = ly + (-c * rx + a * ry) / det
+        return lx, ly
 
     def sdf_at(self, lx, ly):
         c = self.card

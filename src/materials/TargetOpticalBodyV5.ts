@@ -129,12 +129,60 @@ export const TARGET_BODY_SOURCE = {
  * rather than adopting the Target's device predicate. Medium takes 5 so the
  * optical behaviour is identical across the two tiers a desktop review sees;
  * low keeps the Target's own floor of 3.
+ *
+ * O5F §十一: this quality mapping is exactly the transcription mismatch the
+ * portrait forensics proved. The Target decides its tier from the DEVICE,
+ * once, at load -- so its 390x844 coarse-pointer program compiles THREE
+ * spectral samples while this mapping rendered five
+ * (qa-v5/optics-o5f/target-mobile-tier.json: live probe, counting
+ * convention validated on the desktop control). The active unclamped lane
+ * now takes its sample count from `targetDeviceTierV5()`; this map remains
+ * for the SEALED clamped lane, whose regression identity is frozen.
  */
 export const V5_BODY_SAMPLES: Readonly<Record<V4QualityLevel, number>> = {
   high: 5,
   medium: 5,
   low: 3,
 };
+
+export type TargetDeviceTierV5 = {
+  low: boolean;
+  pointerCoarse: boolean;
+  hardwareConcurrency: number;
+  deviceMemory: number;
+  samples: number;
+};
+
+/**
+ * The Target's device tier, transcribed from bundle byte 1968911:
+ *
+ *   eh = matchMedia("(pointer: coarse)").matches
+ *   ef = navigator.hardwareConcurrency ?? 8
+ *   ep = "u" < typeof navigator ? 8 : navigator.deviceMemory ?? 8
+ *   tier = eh || ef <= 6 || ep <= 4 ? "low" : "high"
+ *   maxDispersionSamples = "low" === tier ? 3 : 1/0
+ *   samples = min(5, maxDispersionSamples)
+ *
+ * The nullish defaults of 8 are the bundle's own, kept as written. Decided
+ * once per call site's lifetime (the Target evaluates it once at load);
+ * never re-evaluated on resize, because the Target does not either.
+ */
+export function targetDeviceTierV5(): TargetDeviceTierV5 {
+  const pointerCoarse =
+    typeof matchMedia === "function"
+    && matchMedia("(pointer: coarse)").matches;
+  const hardwareConcurrency = navigator.hardwareConcurrency ?? 8;
+  const deviceMemory =
+    (navigator as { deviceMemory?: number }).deviceMemory ?? 8;
+  const low = pointerCoarse || hardwareConcurrency <= 6 || deviceMemory <= 4;
+  return {
+    low,
+    pointerCoarse,
+    hardwareConcurrency,
+    deviceMemory,
+    samples: Math.min(5, low ? 3 : Infinity),
+  };
+}
 
 /** The Target's tent: max(0, 1 - |x - c| / 0.5), at bundle byte 1959836. */
 function tent(x: number, centre: number): number {
@@ -282,6 +330,13 @@ export type TargetOpticalBodyOptionsV5 = {
   coverScale: [number, number];
   coverOffset: [number, number];
   quality: V4QualityLevel;
+  /**
+   * O5F §十一. When set, the spectral sample count directly -- the active
+   * unclamped lane passes the Target's device-tier count here, decided once
+   * at load. When absent, the quality map applies (the sealed clamped
+   * lane's law, frozen for regression identity).
+   */
+  samples?: number;
   view?: V5BodyView;
   /**
    * O5R §十. `false` samples the source HDR with no ceiling, as the Target
@@ -328,7 +383,7 @@ export function createTargetOpticalBodyMaterialV5(
   const S = TARGET_BODY_SOURCE;
   const u = options.uniforms;
   const view: V5BodyView = options.view ?? "beauty";
-  const samples = V5_BODY_SAMPLES[options.quality];
+  const samples = options.samples ?? V5_BODY_SAMPLES[options.quality];
   const spectral = spectralSamplesV5(samples);
   const clampEnv = options.clampEnvSample ?? true;
   const envMode: V4EnvironmentMode = options.environmentMode ?? "source";

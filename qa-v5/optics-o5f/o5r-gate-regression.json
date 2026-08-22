@@ -109,8 +109,8 @@
  ],
  "lanesStillRenderThoseFrames": {
   "source": "qa-v5/optics-o5f/sealed-lane-identity.json",
-  "comparisons": null,
-  "exactZero": null
+  "comparisons": 312,
+  "exactZero": true
  },
  "stagedInput": "qa-v5/optics-o5r/pipeline-performance-v2.json, copied into the staged output directory because item 14 reads it from there; the re-run reads the same record the sealed run read."
 }

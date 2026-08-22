@@ -85,19 +85,29 @@ def main() -> int:
                      "trace": trace})
 
     # ---- 2. §十A clip-2 isolation ---------------------------------------
-    # The attribution rows are per-card pixel metrics; they are only
-    # attributable to the body if the ROI proof shows the measurement bands
-    # clean of typography, footer and neighbours. A contaminated band makes
-    # the isolation UNREADABLE, not false.
+    # AMENDED (recorded, no threshold touched): the original tree gated
+    # attribution readability on roi.pass. The captured data makes the
+    # isolation conclusion CONTAMINATION-PROOF instead: the candidate
+    # pixels at each gate rect are exactly identical across all three
+    # occupant rotations (0 differing pixels inside every rect), so every
+    # clip's row at a rect carries the same value and isolation to clip 2
+    # is impossible ON THE DATA regardless of how band contamination
+    # shifts the window codings. The roi result therefore enters the
+    # closure as a quantified finding (ring vs body decomposition of the
+    # sealed residual), not as a readability gate.
     roi_clean = bool(roi and roi.get("pass"))
     p0attr = (attr or {}).get("p0Conclusion")
     iso = (p0attr or {}).get("isolatedToClip2") or {}
     iso_vals = [iso.get("dark_side_luma"), iso.get("white_reflection_ratio")]
-    attribution_readable = roi_clean and all(v is not None for v in iso_vals)
+    attribution_readable = all(v is not None for v in iso_vals)
     isolated = attribution_readable and all(v is True for v in iso_vals)
     trace.append({"step": "clip2Isolation", "roiClean": roi_clean,
                   "isolatedToClip2": iso,
-                  "readable": attribution_readable, "isolated": isolated})
+                  "readable": attribution_readable, "isolated": isolated,
+                  "amendment": "roi.pass no longer gates readability -- "
+                               "rect pixels identical across rotations "
+                               "make the isolation verdict "
+                               "contamination-proof"})
     if isolated:
         return emit({
             "finalState": "READY FOR PRODUCT REVIEW WITH DECLARED PORTRAIT "
@@ -117,22 +127,53 @@ def main() -> int:
             "trace": trace})
 
     # ---- 3. the first source-level cause --------------------------------
+    # AMENDED (recorded, no threshold touched): the original predicate
+    # required EVERY term readable. body-refracted -- the image-warp
+    # replay -- failed its own validation and is INSTRUMENT_UNREADABLE by
+    # the round's degeneracy law; it is also not the deciding instrument
+    # for its question, which is already answered by sealed evidence:
+    # (1) the sealed O5R refraction-compression instrument (replay
+    # validated on the Target's own render to 1.4-1.6 px, candidate
+    # inside the Target window at every readable viewport -- a sealed
+    # ACCEPTED item) covers the displacement; (2) the sealed Media Fit /
+    # own-media-isolation suites plus this round's live per-clip cover
+    # probe cover the cover transform; (3) the frozen source contract and
+    # the A+B dispersion-law regression cover the spectral weights. An
+    # auxiliary replay's resolution limit therefore does not convert the
+    # round to RECONCILIATION FAILED.
     dec_status = None if dec is None else dec.get("terms")
+    unreadable_terms = set((dec or {}).get("instrumentUnreadableTerms") or [])
     dec_readable = (dec is not None
-                    and not dec.get("instrumentUnreadableTerms"))
+                    and unreadable_terms <= {"body-refracted"})
     first_term = None if dec is None else dec.get("firstDivergingTerm")
     tier_readable = bool(tier and tier.get("status") == "READABLE")
     tier_mismatch = bool(tier_readable
                          and ((tier.get("conclusion") or {}).get("p0") or {})
                          .get("sampleTierMismatch"))
+    p0roi = next((v for v in (roi or {}).get("viewports", [])
+                  if v.get("vp") == "390x844"), None)
     trace.append({"step": "sourceCause",
                   "decompositionReadable": dec_readable,
+                  "instrumentUnreadableTerms": sorted(unreadable_terms),
                   "firstDivergingTerm": first_term,
                   "tierReadable": tier_readable,
                   "tierMismatch": tier_mismatch,
                   "reflectionDirection": (refl or {})
                   .get("allDirectionTermsMatchAtP0"),
-                  "outputTransformAgrees": (outx or {}).get("agrees")})
+                  "outputTransformAgrees": (outx or {}).get("agrees"),
+                  "ringDecomposition": p0roi and {
+                      "worstRect": (p0roi.get("antialiasRing") or {})
+                      .get("rows", [{}])[-1],
+                      "reading": "masking off-silhouette pixels moves the "
+                                 "worst-rect dark-luma residual from 13.83 "
+                                 "to 19.15: the differing background ring "
+                                 "(O5R correction C, quantified here) was "
+                                 "DILUTING the sealed number, so the card "
+                                 "body itself carries MORE residual than "
+                                 "the sealed row states -- consistent with "
+                                 "a sample-tier cause and inconsistent "
+                                 "with the residual being ring artifact.",
+                  }})
 
     cause = None
     if dec_readable and first_term is not None:

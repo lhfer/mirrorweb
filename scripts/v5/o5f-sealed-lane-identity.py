@@ -65,6 +65,20 @@ def main() -> int:
         if f is None:
             missing.append({"key": list(k)})
             continue
+        if not str(s["file"]).endswith(".png"):
+            # body-truth records are JSON matrices, not pixels; byte
+            # equality is the right identity for them.
+            same = ((O5R / s["file"]).read_bytes()
+                    == (O5F / f["file"]).read_bytes())
+            rows.append({"kind": k[0], "lane": k[1], "asset": k[2],
+                         "vp": k[3], "state": k[4], "view": k[5],
+                         "differingPixels": 0 if same else None,
+                         "maxDelta": 0 if same else None,
+                         "byteIdentical": same, "totalPixels": None})
+            if not same:
+                missing.append({"key": list(k),
+                                "why": "body-truth bytes differ"})
+            continue
         d = diff(O5R / s["file"], O5F / f["file"])
         total_diff += d["differingPixels"] or 0
         max_delta = max(max_delta, d["maxDelta"] or 0)

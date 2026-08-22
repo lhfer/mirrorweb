@@ -82,6 +82,16 @@ const truth = async () => page.evaluate(() => {
     rendererGeometries: t.rendererGeometries,
     samples: qa.getOpticsState().opticalBodySamples,
     quality: t.quality,
+    // §十四 -- this context's device-predicate inputs plus the engine's own
+    // sample-law reading, recorded so the post-fix scorer verifies the
+    // context's expectation from truth.
+    sampleLaw: t.sampleLaw ?? null,
+    deviceTier: t.deviceTier ?? null,
+    contextPredicate: {
+      pointerCoarse: matchMedia("(pointer: coarse)").matches,
+      hardwareConcurrency: navigator.hardwareConcurrency ?? 8,
+      deviceMemory: navigator.deviceMemory ?? 8,
+    },
     heapMB: performance.memory
       ? +(performance.memory.usedJSHeapSize / 1048576).toFixed(2) : null,
   };
@@ -142,6 +152,10 @@ for (let cycle = 1; cycle <= opts.cycles; cycle += 1) {
       samples: t.samples,
       creation: t.materialCreationCount, switches: t.cacheSwitchCount,
       cacheSize: t.cacheSize, programs: t.rendererPrograms,
+      // §十四 -- per-step so the post-fix scorer verifies the sample law
+      // against the recorded predicate on every step.
+      sampleLaw: t.sampleLaw ?? null, deviceTier: t.deviceTier ?? null,
+      contextPredicate: t.contextPredicate ?? null,
       heapMB: t.heapMB };
     // The full truth travels on a sampled cadence; the scored fields above
     // travel on every step.
