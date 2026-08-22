@@ -1,0 +1,102 @@
+{
+ "what": "\u00a7\u5341\u4e09 own-media isolation.",
+ "rows": [
+  {
+   "vp": "1440x900",
+   "lane": "o5r-unclamped",
+   "sceneColorCalls": 0,
+   "finalCalls": 17,
+   "mediaMeshesVisible": null,
+   "glassMeshesVisible": null
+  },
+  {
+   "vp": "1440x900",
+   "lane": "o5-clamped",
+   "sceneColorCalls": 0,
+   "finalCalls": 17,
+   "mediaMeshesVisible": null,
+   "glassMeshesVisible": null
+  },
+  {
+   "vp": "1440x900",
+   "lane": "control",
+   "sceneColorCalls": 52,
+   "finalCalls": 17,
+   "mediaMeshesVisible": null,
+   "glassMeshesVisible": null
+  },
+  {
+   "vp": "390x844",
+   "lane": "o5r-unclamped",
+   "sceneColorCalls": 0,
+   "finalCalls": 18,
+   "mediaMeshesVisible": null,
+   "glassMeshesVisible": null
+  },
+  {
+   "vp": "390x844",
+   "lane": "o5-clamped",
+   "sceneColorCalls": 0,
+   "finalCalls": 18,
+   "mediaMeshesVisible": null,
+   "glassMeshesVisible": null
+  },
+  {
+   "vp": "390x844",
+   "lane": "control",
+   "sceneColorCalls": 43,
+   "finalCalls": 16,
+   "mediaMeshesVisible": null,
+   "glassMeshesVisible": null
+  },
+  {
+   "vp": "844x390",
+   "lane": "o5r-unclamped",
+   "sceneColorCalls": 0,
+   "finalCalls": 19,
+   "mediaMeshesVisible": null,
+   "glassMeshesVisible": null
+  },
+  {
+   "vp": "844x390",
+   "lane": "o5-clamped",
+   "sceneColorCalls": 0,
+   "finalCalls": 19,
+   "mediaMeshesVisible": null,
+   "glassMeshesVisible": null
+  },
+  {
+   "vp": "844x390",
+   "lane": "control",
+   "sceneColorCalls": 36,
+   "finalCalls": 19,
+   "mediaMeshesVisible": null,
+   "glassMeshesVisible": null
+  },
+  {
+   "vp": "700x700",
+   "lane": "o5r-unclamped",
+   "sceneColorCalls": 0,
+   "finalCalls": 35,
+   "mediaMeshesVisible": null,
+   "glassMeshesVisible": null
+  },
+  {
+   "vp": "700x700",
+   "lane": "o5-clamped",
+   "sceneColorCalls": 0,
+   "finalCalls": 35,
+   "mediaMeshesVisible": null,
+   "glassMeshesVisible": null
+  },
+  {
+   "vp": "700x700",
+   "lane": "control",
+   "sceneColorCalls": 98,
+   "finalCalls": 28,
+   "mediaMeshesVisible": null,
+   "glassMeshesVisible": null
+  }
+ ],
+ "status": "PASS"
+}

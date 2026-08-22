@@ -1,0 +1,262 @@
+{
+ "what": "\u00a7\u516b real projected silhouette.",
+ "rows": [
+  {
+   "vp": "1440x900",
+   "status": "PASS",
+   "rect": [
+    174,
+    33,
+    708,
+    441
+   ],
+   "projectedFrom": "o5r-unclamped-view-sdf-mask-1440x900.png",
+   "antialiasWidthPx": 21.259,
+   "lanes": {
+    "target": {
+     "renderedPixels": 217869,
+     "projectedPixels": 200453,
+     "intersection": 200453,
+     "iou": 0.920062,
+     "litBeyondSilhouette": 17416,
+     "litBeyondFraction": 0.086883,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 0.0
+    },
+    "control": {
+     "renderedPixels": 217820,
+     "projectedPixels": 200453,
+     "intersection": 200402,
+     "iou": 0.91982,
+     "litBeyondSilhouette": 17418,
+     "litBeyondFraction": 0.086893,
+     "unlitInsideSilhouette": 51,
+     "cornerRadiusPx": 0.0
+    },
+    "o5-clamped": {
+     "renderedPixels": 217865,
+     "projectedPixels": 200453,
+     "intersection": 200453,
+     "iou": 0.920079,
+     "litBeyondSilhouette": 17412,
+     "litBeyondFraction": 0.086863,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 0.0
+    },
+    "o5r-unclamped": {
+     "renderedPixels": 217865,
+     "projectedPixels": 200453,
+     "intersection": 200453,
+     "iou": 0.920079,
+     "litBeyondSilhouette": 17412,
+     "litBeyondFraction": 0.086863,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 0.0
+    }
+   },
+   "windows": {
+    "litBeyondFraction": 0.02,
+    "cornerRadiusPx": 1.0,
+    "iou": 0.02
+   },
+   "within": {
+    "litBeyondFraction": true,
+    "cornerRadiusPx": true,
+    "iou": true
+   }
+  },
+  {
+   "vp": "390x844",
+   "status": "FAIL",
+   "rect": [
+    54,
+    209,
+    335,
+    417
+   ],
+   "projectedFrom": "o5r-unclamped-view-sdf-mask-390x844.png",
+   "antialiasWidthPx": 6.874,
+   "lanes": {
+    "target": {
+     "renderedPixels": 58388,
+     "projectedPixels": 55274,
+     "intersection": 55274,
+     "iou": 0.946667,
+     "litBeyondSilhouette": 3114,
+     "litBeyondFraction": 0.056338,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 0.0
+    },
+    "control": {
+     "renderedPixels": 58448,
+     "projectedPixels": 55274,
+     "intersection": 55274,
+     "iou": 0.945695,
+     "litBeyondSilhouette": 3174,
+     "litBeyondFraction": 0.057423,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 0.0
+    },
+    "o5-clamped": {
+     "renderedPixels": 55802,
+     "projectedPixels": 55274,
+     "intersection": 55274,
+     "iou": 0.990538,
+     "litBeyondSilhouette": 528,
+     "litBeyondFraction": 0.009552,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 54.627
+    },
+    "o5r-unclamped": {
+     "renderedPixels": 55802,
+     "projectedPixels": 55274,
+     "intersection": 55274,
+     "iou": 0.990538,
+     "litBeyondSilhouette": 528,
+     "litBeyondFraction": 0.009552,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 54.627
+    }
+   },
+   "windows": {
+    "litBeyondFraction": 0.02,
+    "cornerRadiusPx": 1.0,
+    "iou": 0.02
+   },
+   "within": {
+    "litBeyondFraction": false,
+    "cornerRadiusPx": false,
+    "iou": false
+   }
+  },
+  {
+   "vp": "844x390",
+   "status": "PASS",
+   "rect": [
+    260,
+    0,
+    583,
+    189
+   ],
+   "projectedFrom": "o5r-unclamped-view-sdf-mask-844x390.png",
+   "antialiasWidthPx": 6.675,
+   "lanes": {
+    "target": {
+     "renderedPixels": 61042,
+     "projectedPixels": 58578,
+     "intersection": 58578,
+     "iou": 0.959634,
+     "litBeyondSilhouette": 2464,
+     "litBeyondFraction": 0.042064,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 0.0
+    },
+    "control": {
+     "renderedPixels": 61047,
+     "projectedPixels": 58578,
+     "intersection": 58578,
+     "iou": 0.959556,
+     "litBeyondSilhouette": 2469,
+     "litBeyondFraction": 0.042149,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 0.0
+    },
+    "o5-clamped": {
+     "renderedPixels": 61047,
+     "projectedPixels": 58578,
+     "intersection": 58578,
+     "iou": 0.959556,
+     "litBeyondSilhouette": 2469,
+     "litBeyondFraction": 0.042149,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 0.0
+    },
+    "o5r-unclamped": {
+     "renderedPixels": 61047,
+     "projectedPixels": 58578,
+     "intersection": 58578,
+     "iou": 0.959556,
+     "litBeyondSilhouette": 2469,
+     "litBeyondFraction": 0.042149,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 0.0
+    }
+   },
+   "windows": {
+    "litBeyondFraction": 0.02,
+    "cornerRadiusPx": 1.0,
+    "iou": 0.02
+   },
+   "within": {
+    "litBeyondFraction": true,
+    "cornerRadiusPx": true,
+    "iou": true
+   }
+  },
+  {
+   "vp": "700x700",
+   "status": "PASS",
+   "rect": [
+    216,
+    149,
+    483,
+    345
+   ],
+   "projectedFrom": "o5r-unclamped-view-sdf-mask-700x700.png",
+   "antialiasWidthPx": 7.307,
+   "lanes": {
+    "target": {
+     "renderedPixels": 52323,
+     "projectedPixels": 49066,
+     "intersection": 49066,
+     "iou": 0.937752,
+     "litBeyondSilhouette": 3257,
+     "litBeyondFraction": 0.06638,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 0.0
+    },
+    "control": {
+     "renderedPixels": 52332,
+     "projectedPixels": 49066,
+     "intersection": 49066,
+     "iou": 0.937591,
+     "litBeyondSilhouette": 3266,
+     "litBeyondFraction": 0.066563,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 0.0
+    },
+    "o5-clamped": {
+     "renderedPixels": 52326,
+     "projectedPixels": 49066,
+     "intersection": 49066,
+     "iou": 0.937698,
+     "litBeyondSilhouette": 3260,
+     "litBeyondFraction": 0.066441,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 0.0
+    },
+    "o5r-unclamped": {
+     "renderedPixels": 52326,
+     "projectedPixels": 49066,
+     "intersection": 49066,
+     "iou": 0.937698,
+     "litBeyondSilhouette": 3260,
+     "litBeyondFraction": 0.066441,
+     "unlitInsideSilhouette": 0,
+     "cornerRadiusPx": 0.0
+    }
+   },
+   "windows": {
+    "litBeyondFraction": 0.02,
+    "cornerRadiusPx": 1.0,
+    "iou": 0.02
+   },
+   "within": {
+    "litBeyondFraction": true,
+    "cornerRadiusPx": true,
+    "iou": true
+   }
+  }
+ ],
+ "status": "FAIL"
+}

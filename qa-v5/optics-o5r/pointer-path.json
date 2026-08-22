@@ -1,0 +1,304 @@
+{
+ "what": "\u00a7\u5341\u4e09 pointer path.",
+ "rows": [
+  {
+   "vp": "1440x900",
+   "status": "PASS",
+   "paths": {
+    "target": [
+     0.5156,
+     0.4885,
+     0.5009
+    ],
+    "control": [
+     0.2801,
+     0.0918,
+     0.0684
+    ],
+    "o5-clamped": [
+     0.1182,
+     0.1116,
+     0.1109
+    ],
+    "o5r-unclamped": [
+     0.1182,
+     0.1116,
+     0.1109
+    ]
+   },
+   "candidateVerdict": {
+    "targetNxPath": [
+     0.5156,
+     0.4885,
+     0.5009
+    ],
+    "candidateNxPath": [
+     0.1182,
+     0.1116,
+     0.1109
+    ],
+    "adjacentJumps": [
+     0.0066,
+     0.0007
+    ],
+    "targetDirection": -1,
+    "targetRange": 0.0271,
+    "candidateRange": 0.0073,
+    "branch": "flat-reference",
+    "branchChosenBy": "target path range 0.0271 < 0.05",
+    "fired": false,
+    "reasons": []
+   },
+   "controlVerdict": {
+    "targetNxPath": [
+     0.5156,
+     0.4885,
+     0.5009
+    ],
+    "candidateNxPath": [
+     0.2801,
+     0.0918,
+     0.0684
+    ],
+    "adjacentJumps": [
+     0.1883,
+     0.0234
+    ],
+    "targetDirection": -1,
+    "targetRange": 0.0271,
+    "candidateRange": 0.2117,
+    "branch": "flat-reference",
+    "branchChosenBy": "target path range 0.0271 < 0.05",
+    "fired": true,
+    "reasons": [
+     "target reflection centroid is effectively stationary (range 0.0271) but the candidate swings 0.2117 > 0.1000"
+    ]
+   },
+   "glassPixelsPerState": {
+    "target": {
+     "rest": 2997,
+     "pl": 3158,
+     "pr": 3126,
+     "pbr": 6550
+    },
+    "control": {
+     "rest": 741,
+     "pl": 1133,
+     "pr": 466,
+     "pbr": 5932
+    },
+    "o5-clamped": {
+     "rest": 674,
+     "pl": 599,
+     "pr": 641,
+     "pbr": 3466
+    },
+    "o5r-unclamped": {
+     "rest": 674,
+     "pl": 599,
+     "pr": 641,
+     "pbr": 3466
+    }
+   }
+  },
+  {
+   "vp": "390x844",
+   "status": "INSTRUMENT_UNREADABLE",
+   "paths": {
+    "target": [
+     0.6222,
+     0.6225,
+     0.639
+    ],
+    "control": [
+     0.132,
+     0.1232,
+     0.023
+    ],
+    "o5-clamped": [
+     null,
+     null,
+     null
+    ],
+    "o5r-unclamped": [
+     null,
+     null,
+     null
+    ]
+   },
+   "candidateVerdict": {
+    "targetNxPath": [
+     0.6222,
+     0.6225,
+     0.639
+    ],
+    "candidateNxPath": [
+     null,
+     null,
+     null
+    ],
+    "adjacentJumps": null,
+    "targetDirection": null,
+    "fired": true,
+    "reasons": [
+     "candidate path unmeasurable"
+    ]
+   },
+   "controlVerdict": {
+    "targetNxPath": [
+     0.6222,
+     0.6225,
+     0.639
+    ],
+    "candidateNxPath": [
+     0.132,
+     0.1232,
+     0.023
+    ],
+    "adjacentJumps": [
+     0.0088,
+     0.1002
+    ],
+    "targetDirection": 1,
+    "targetRange": 0.0168,
+    "candidateRange": 0.109,
+    "branch": "flat-reference",
+    "branchChosenBy": "target path range 0.0168 < 0.05",
+    "fired": true,
+    "reasons": [
+     "target reflection centroid is effectively stationary (range 0.0168) but the candidate swings 0.1090 > 0.1000"
+    ]
+   },
+   "glassPixelsPerState": {
+    "target": {
+     "rest": 535,
+     "pl": 557,
+     "pr": 472,
+     "pbr": 602
+    },
+    "control": {
+     "rest": 271,
+     "pl": 470,
+     "pr": 53,
+     "pbr": 89
+    },
+    "o5-clamped": {
+     "rest": 0,
+     "pl": 0,
+     "pr": 0,
+     "pbr": 0
+    },
+    "o5r-unclamped": {
+     "rest": 0,
+     "pl": 0,
+     "pr": 0,
+     "pbr": 0
+    }
+   },
+   "why": "pointer path 390x844: no reading from o5-clamped, o5r-unclamped"
+  },
+  {
+   "vp": "844x390",
+   "status": "INSTRUMENT_UNREADABLE",
+   "why": "no usable pointer path for the Target or the candidate at this viewport",
+   "lanesRead": []
+  },
+  {
+   "vp": "700x700",
+   "status": "INSTRUMENT_UNREADABLE",
+   "paths": {
+    "target": [
+     0.6648,
+     0.6315,
+     0.6774
+    ],
+    "control": [
+     0.1334,
+     0.1063,
+     0.0327
+    ],
+    "o5-clamped": [
+     null,
+     null,
+     null
+    ],
+    "o5r-unclamped": [
+     null,
+     null,
+     null
+    ]
+   },
+   "candidateVerdict": {
+    "targetNxPath": [
+     0.6648,
+     0.6315,
+     0.6774
+    ],
+    "candidateNxPath": [
+     null,
+     null,
+     null
+    ],
+    "adjacentJumps": null,
+    "targetDirection": null,
+    "fired": true,
+    "reasons": [
+     "candidate path unmeasurable"
+    ]
+   },
+   "controlVerdict": {
+    "targetNxPath": [
+     0.6648,
+     0.6315,
+     0.6774
+    ],
+    "candidateNxPath": [
+     0.1334,
+     0.1063,
+     0.0327
+    ],
+    "adjacentJumps": [
+     0.0271,
+     0.0736
+    ],
+    "targetDirection": 1,
+    "targetRange": 0.0459,
+    "candidateRange": 0.1007,
+    "branch": "flat-reference",
+    "branchChosenBy": "target path range 0.0459 < 0.05",
+    "fired": true,
+    "reasons": [
+     "target reflection centroid is effectively stationary (range 0.0459) but the candidate swings 0.1007 > 0.1000"
+    ]
+   },
+   "glassPixelsPerState": {
+    "target": {
+     "rest": 699,
+     "pl": 657,
+     "pr": 606,
+     "pbr": 664
+    },
+    "control": {
+     "rest": 342,
+     "pl": 513,
+     "pr": 92,
+     "pbr": 169
+    },
+    "o5-clamped": {
+     "rest": 0,
+     "pl": 0,
+     "pr": 0,
+     "pbr": 0
+    },
+    "o5r-unclamped": {
+     "rest": 0,
+     "pl": 0,
+     "pr": 0,
+     "pbr": 0
+    }
+   },
+   "why": "pointer path 700x700: no reading from o5-clamped, o5r-unclamped"
+  }
+ ],
+ "status": "PASS"
+}

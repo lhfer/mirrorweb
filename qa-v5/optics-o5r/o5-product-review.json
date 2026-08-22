@@ -1,0 +1,1719 @@
+{
+ "what": "\u00a7\u4e8c -- the O5 product review, machine-readable. The prose record is docs/v5/O5_PRODUCT_REVIEW.md; this carries the same decisions with the numbers attached and, for each of the six failures, what the repaired instrument said afterwards.",
+ "reviewedAt": "c940a3102b466476249d45f632bc9ccdcd1bcb9f",
+ "o5rHead": "726ee02e914f945374cd43fa6866f23e60377276",
+ "sealedO5Gate": {
+  "verdict": "FAIL",
+  "passed": 8,
+  "total": 14,
+  "rewritten": false,
+  "rerunIdentical": true,
+  "note": "not rewritten and not overwritten. Re-run unchanged in \u00a7\u5341\u4e09A as a regression."
+ },
+ "accepted": [
+  {
+   "claim": "the Target optical body source contract",
+   "evidence": "57 sites, 0 failed, every offset seek-verified against the live bundle in raw bytes. Absences proved over two spans, because an absence claimed in the material factory would be vacuous for a geometry claim.",
+   "numbers": {
+    "sites": 57,
+    "failed": 0,
+    "seekVerified": true
+   },
+   "source": "qa-v5/optics-o5/source-contract.json"
+  },
+  {
+   "claim": "the O5 target-source architecture, in full",
+   "evidence": "PlaneGeometry(1,1,16,12); vertex-stage sphere dome; rounded-rect SDF alpha; analytic bevel normal; own-media texture; per-IOR refract; 5/5/3 samples; per-channel normalised spectral weights; level-0 sampling; no adaptive body shaping; integrated studio reflection; white SDF rim; no separate reflection shell; no scene-colour pass; quality-step material rebuild.",
+   "numbers": {},
+   "source": "docs/v5/O5_PRODUCT_REVIEW.md"
+  },
+  {
+   "claim": "the own-media pipeline",
+   "evidence": "proved at runtime, not by a string search: the scene-colour pass draws 0 calls and the media plane is hidden, yet the cards still show media. Neighbour bleed is structurally impossible -- the refracted UV is clamped before the cover transform.",
+   "numbers": {
+    "sceneColourDrawCalls": 0
+   },
+   "source": "qa-v5/optics-o5/compiled-body-audit.json"
+  },
+  {
+   "claim": "per-IOR spectral refraction and the analytic normal",
+   "evidence": "five refract() calls at high and three at low, tracking the sample count; the analytic normal decodes to unit length on 95.0% of card pixels. The O4A zero-normal defect has no surface: the program declares no shared normal varying at all.",
+   "numbers": {
+    "unitLengthFraction": 0.95,
+    "pixels": 634495,
+    "perChannelStd": [
+     46.94,
+     46.12,
+     46.62
+    ]
+   },
+   "source": "qa-v5/optics-o5/compiled-body-audit.json"
+  },
+  {
+   "claim": "the SDF silhouette MECHANISM, as transcription",
+   "evidence": "the mechanism is accepted; the O5 measurement of it was not, and is repaired in O5R \u00a7\u516b.",
+   "numbers": {},
+   "source": "qa-v5/optics-o5r/silhouette-v2.json"
+  },
+  {
+   "claim": "the no-scene-colour architecture",
+   "evidence": "52 draw calls in the control, 0 in the candidate; ready in 305 ms against 361; CPU frame p99 1.0 ms against 1.4.",
+   "numbers": {
+    "controlDrawCalls": 52,
+    "candidateDrawCalls": 0,
+    "readyMsCandidate": 305,
+    "readyMsControl": 361,
+    "cpuP99Candidate": 1.0,
+    "cpuP99Control": 1.4
+   },
+   "source": "qa-v5/optics-o5/pipeline.json"
+  },
+  {
+   "claim": "control identity, 35 / 35",
+   "evidence": "opticalBody=current against a worktree build of 5a87751: exactly zero differing pixels across 5 viewports x 7 states, every state probe matching, 0 console errors. Re-verified in O5R after the one authorised code change.",
+   "numbers": {
+    "what": "O5 \u00a7\u516d control identity: opticalBody=current at the O5 code commit against a 5a87751 build.",
+    "baselineCommit": "5a87751d348ebc626e8193d76af33957a1bdf664",
+    "local": "http://127.0.0.1:5291",
+    "base": "http://127.0.0.1:5292",
+    "asset": "bw-split",
+    "freeze": 4,
+    "statesAreFixedNotReplayed": "the three motion states are a fixed (offset, velocity, pointer) triple, because two servers cannot be driven through a real gesture onto the same frame; temporal behaviour is gated separately in \u00a7\u4e5d.12 with real events",
+    "viewports": [
+     "1440x900",
+     "1920x1080",
+     "390x844",
+     "844x390",
+     "700x700"
+    ],
+    "states": [
+     "rest",
+     "pointer-left",
+     "pointer-right",
+     "pointer-corner",
+     "slow-drag",
+     "fast-flick",
+     "touch"
+    ],
+    "comparisons": 35,
+    "allExactZero": true,
+    "allProbesMatch": true,
+    "consoleAndPageErrors": 0,
+    "verdict": "PASS",
+    "finalStateIfFailed": "O5 CONTROL IDENTITY FAILED",
+    "rows": [
+     {
+      "vp": "1440x900",
+      "state": "rest",
+      "localFile": "local-rest-1440x900.png",
+      "baseFile": "base-rest-1440x900.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 1296000,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "1440x900",
+      "state": "pointer-left",
+      "localFile": "local-pointer-left-1440x900.png",
+      "baseFile": "base-pointer-left-1440x900.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 1296000,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "1440x900",
+      "state": "pointer-right",
+      "localFile": "local-pointer-right-1440x900.png",
+      "baseFile": "base-pointer-right-1440x900.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 1296000,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "1440x900",
+      "state": "pointer-corner",
+      "localFile": "local-pointer-corner-1440x900.png",
+      "baseFile": "base-pointer-corner-1440x900.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 1296000,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "1440x900",
+      "state": "slow-drag",
+      "localFile": "local-slow-drag-1440x900.png",
+      "baseFile": "base-slow-drag-1440x900.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 1296000,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "1440x900",
+      "state": "fast-flick",
+      "localFile": "local-fast-flick-1440x900.png",
+      "baseFile": "base-fast-flick-1440x900.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 1296000,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "1440x900",
+      "state": "touch",
+      "localFile": "local-touch-1440x900.png",
+      "baseFile": "base-touch-1440x900.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 1296000,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "1920x1080",
+      "state": "rest",
+      "localFile": "local-rest-1920x1080.png",
+      "baseFile": "base-rest-1920x1080.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 2073600,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "1920x1080",
+      "state": "pointer-left",
+      "localFile": "local-pointer-left-1920x1080.png",
+      "baseFile": "base-pointer-left-1920x1080.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 2073600,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "1920x1080",
+      "state": "pointer-right",
+      "localFile": "local-pointer-right-1920x1080.png",
+      "baseFile": "base-pointer-right-1920x1080.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 2073600,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "1920x1080",
+      "state": "pointer-corner",
+      "localFile": "local-pointer-corner-1920x1080.png",
+      "baseFile": "base-pointer-corner-1920x1080.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 2073600,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "1920x1080",
+      "state": "slow-drag",
+      "localFile": "local-slow-drag-1920x1080.png",
+      "baseFile": "base-slow-drag-1920x1080.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 2073600,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "1920x1080",
+      "state": "fast-flick",
+      "localFile": "local-fast-flick-1920x1080.png",
+      "baseFile": "base-fast-flick-1920x1080.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 2073600,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "1920x1080",
+      "state": "touch",
+      "localFile": "local-touch-1920x1080.png",
+      "baseFile": "base-touch-1920x1080.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 2073600,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "390x844",
+      "state": "rest",
+      "localFile": "local-rest-390x844.png",
+      "baseFile": "base-rest-390x844.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 329160,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "390x844",
+      "state": "pointer-left",
+      "localFile": "local-pointer-left-390x844.png",
+      "baseFile": "base-pointer-left-390x844.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 329160,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "390x844",
+      "state": "pointer-right",
+      "localFile": "local-pointer-right-390x844.png",
+      "baseFile": "base-pointer-right-390x844.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 329160,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "390x844",
+      "state": "pointer-corner",
+      "localFile": "local-pointer-corner-390x844.png",
+      "baseFile": "base-pointer-corner-390x844.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 329160,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "390x844",
+      "state": "slow-drag",
+      "localFile": "local-slow-drag-390x844.png",
+      "baseFile": "base-slow-drag-390x844.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 329160,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "390x844",
+      "state": "fast-flick",
+      "localFile": "local-fast-flick-390x844.png",
+      "baseFile": "base-fast-flick-390x844.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 329160,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "390x844",
+      "state": "touch",
+      "localFile": "local-touch-390x844.png",
+      "baseFile": "base-touch-390x844.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 329160,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "844x390",
+      "state": "rest",
+      "localFile": "local-rest-844x390.png",
+      "baseFile": "base-rest-844x390.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 329160,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "844x390",
+      "state": "pointer-left",
+      "localFile": "local-pointer-left-844x390.png",
+      "baseFile": "base-pointer-left-844x390.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 329160,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "844x390",
+      "state": "pointer-right",
+      "localFile": "local-pointer-right-844x390.png",
+      "baseFile": "base-pointer-right-844x390.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 329160,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "844x390",
+      "state": "pointer-corner",
+      "localFile": "local-pointer-corner-844x390.png",
+      "baseFile": "base-pointer-corner-844x390.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 329160,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "844x390",
+      "state": "slow-drag",
+      "localFile": "local-slow-drag-844x390.png",
+      "baseFile": "base-slow-drag-844x390.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 329160,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "844x390",
+      "state": "fast-flick",
+      "localFile": "local-fast-flick-844x390.png",
+      "baseFile": "base-fast-flick-844x390.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 329160,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "844x390",
+      "state": "touch",
+      "localFile": "local-touch-844x390.png",
+      "baseFile": "base-touch-844x390.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 329160,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "700x700",
+      "state": "rest",
+      "localFile": "local-rest-700x700.png",
+      "baseFile": "base-rest-700x700.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 490000,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "700x700",
+      "state": "pointer-left",
+      "localFile": "local-pointer-left-700x700.png",
+      "baseFile": "base-pointer-left-700x700.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 490000,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "700x700",
+      "state": "pointer-right",
+      "localFile": "local-pointer-right-700x700.png",
+      "baseFile": "base-pointer-right-700x700.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 490000,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "700x700",
+      "state": "pointer-corner",
+      "localFile": "local-pointer-corner-700x700.png",
+      "baseFile": "base-pointer-corner-700x700.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 490000,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "700x700",
+      "state": "slow-drag",
+      "localFile": "local-slow-drag-700x700.png",
+      "baseFile": "base-slow-drag-700x700.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 490000,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "700x700",
+      "state": "fast-flick",
+      "localFile": "local-fast-flick-700x700.png",
+      "baseFile": "base-fast-flick-700x700.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 490000,
+      "probeMismatches": {},
+      "identical": true
+     },
+     {
+      "vp": "700x700",
+      "state": "touch",
+      "localFile": "local-touch-700x700.png",
+      "baseFile": "base-touch-700x700.png",
+      "differingPixels": 0,
+      "maxDelta": 0,
+      "totalPixels": 490000,
+      "probeMismatches": {},
+      "identical": true
+     }
+    ]
+   },
+   "source": "qa-v5/optics-o5r/control-identity.json"
+  },
+  {
+   "claim": "compiled body audit, 15 / 15",
+   "evidence": "with a genuine positive control for the no-mip claim: 20 explicit-LOD samples in the control program, 0 in the candidate.",
+   "numbers": {
+    "controlExplicitLodSamples": 20,
+    "candidateExplicitLodSamples": 0
+   },
+   "source": "qa-v5/optics-o5/compiled-body-audit.json"
+  },
+  {
+   "claim": "the reflection-band result",
+   "evidence": "the band enters the Target's window at every viewport -- the measurement O3 and O4 both failed. Re-confirmed by the corrected gate's item 1.",
+   "numbers": {
+    "rows": [
+     {
+      "vp": "1440x900",
+      "status": "PASS",
+      "target": 3.3,
+      "control": 15.3,
+      "o5-clamped": 3.3,
+      "o5r-unclamped": 3.3,
+      "targetRuns": [
+       3.3,
+       3.3,
+       3.3
+      ],
+      "repeatability": 0.0,
+      "window": 1.5,
+      "candidateDelta": 0.0,
+      "movedTowardTarget": true
+     },
+     {
+      "vp": "390x844",
+      "status": "PASS",
+      "target": 1.5,
+      "control": 8.0,
+      "o5-clamped": 2.0,
+      "o5r-unclamped": 2.0,
+      "targetRuns": [
+       1.5,
+       1.5,
+       1.5
+      ],
+      "repeatability": 0.0,
+      "window": 1.5,
+      "candidateDelta": 0.5,
+      "movedTowardTarget": true
+     },
+     {
+      "vp": "844x390",
+      "status": "PASS",
+      "target": 2.0,
+      "control": 8.0,
+      "o5-clamped": 2.0,
+      "o5r-unclamped": 2.0,
+      "targetRuns": [
+       2.0,
+       2.0,
+       2.0
+      ],
+      "repeatability": 0.0,
+      "window": 1.5,
+      "candidateDelta": 0.0,
+      "movedTowardTarget": true
+     },
+     {
+      "vp": "700x700",
+      "status": "PASS",
+      "target": 2.0,
+      "control": 7.0,
+      "o5-clamped": 2.0,
+      "o5r-unclamped": 2.0,
+      "targetRuns": [
+       2.0,
+       2.0,
+       2.0
+      ],
+      "repeatability": 0.0,
+      "window": 1.5,
+      "candidateDelta": 0.0,
+      "movedTowardTarget": true
+     }
+    ]
+   },
+   "source": "qa-v5/optics-o5r/reflection-band.json"
+  },
+  {
+   "claim": "the HF spectral-structure result",
+   "evidence": "per-tile HF structure correlates 0.9274 with the Target against the control's 0.6886. Interior chroma on hf-checker: candidate 79.07, Target 79.77, control 0.12.",
+   "numbers": {
+    "perTileCorrelationCandidate": 0.9274,
+    "perTileCorrelationControl": 0.6886,
+    "interiorChromaCandidate": 79.07,
+    "interiorChromaTarget": 79.77,
+    "interiorChromaControl": 0.12
+   },
+   "source": "qa-v5/optics-o5/body-absolute-gate.json"
+  },
+  {
+   "claim": "the pipeline DIRECTION",
+   "evidence": "accepted as a direction only. Not accepted as a resource verdict; \u00a7\u5341\u4e8c replaces the five-minute start/end heap delta with three fifteen-minute sessions.",
+   "numbers": {},
+   "source": "qa-v5/optics-o5r/pipeline-performance-v2.json"
+  }
+ ],
+ "notYetAccepted": [
+  {
+   "item": "the shipped default flip",
+   "status": "NOT ACCEPTED",
+   "detail": "opticalBody=current remains shipped. O5R does not flip it."
+  },
+  {
+   "item": "390x844 dark-side luma",
+   "status": "OPEN",
+   "detail": "still open after the \u00a7\u5341 correction.",
+   "numbers": {
+    "target": 51.28,
+    "control": 78.94,
+    "o5Clamped": 58.46,
+    "o5rUnclamped": 58.57,
+    "window": 6.0,
+    "remainingDifference": 7.29,
+    "movedByUnclamp": 0.11
+   }
+  },
+  {
+   "item": "390x844 white reflection ratio",
+   "status": "OPEN",
+   "detail": "still open after the \u00a7\u5341 correction.",
+   "numbers": {
+    "target": 4.9035,
+    "control": 2.5755,
+    "o5Clamped": 3.8712,
+    "o5rUnclamped": 3.8676,
+    "window": 0.15,
+    "remainingDifference": 1.0359,
+    "movedByUnclamp": -0.0036
+   }
+  },
+  {
+   "item": "the O5 absolute-gate verdict as a statement about the candidate",
+   "status": "SEALED, NOT RESTATED",
+   "detail": "it stands sealed at FAIL 8/14 and is re-run unchanged as a regression. Four of its six failures are not readings of the candidate.",
+   "numbers": {
+    "sealed": 8,
+    "total": 14,
+    "rerunIdentical": true
+   }
+  },
+  {
+   "item": "Target Visual PASS",
+   "status": "NOT ASSERTED",
+   "detail": "not asserted in O5 and not asserted in O5R."
+  }
+ ],
+ "sixFailuresClassified": [
+  {
+   "o5Item": 2,
+   "name": "dark-side edge luma",
+   "kind": "REAL CANDIDATE RESIDUAL",
+   "scope": "390x844 only",
+   "detail": "inside the window at the other three viewports, and moved toward the Target from a control roughly twice as bright at every viewport. Portrait mobile is the narrowest card, so its bevel occupies the largest fraction of the card.",
+   "afterO5R": {
+    "o5rItem": 2,
+    "o5rStatus": "FAIL",
+    "o5rRowCounts": {
+     "PASS": 3,
+     "FAIL": 1
+    },
+    "instrument": "carried unchanged, so the two gates stay comparable",
+    "whatItSaysNow": "still open; the \u00a7\u5341 unclamp moved it by 0.11 of a 7.29 gap",
+    "numbers": {
+     "target": 51.28,
+     "control": 78.94,
+     "o5Clamped": 58.46,
+     "o5rUnclamped": 58.57,
+     "window": 6.0,
+     "remainingDifference": 7.29,
+     "movedByUnclamp": 0.11
+    }
+   }
+  },
+  {
+   "o5Item": 3,
+   "name": "white reflection ratio",
+   "kind": "REAL CANDIDATE RESIDUAL",
+   "scope": "390x844 only",
+   "detail": "inside the window at the other three viewports.",
+   "afterO5R": {
+    "o5rItem": 3,
+    "o5rStatus": "FAIL",
+    "o5rRowCounts": {
+     "PASS": 3,
+     "FAIL": 1
+    },
+    "instrument": "carried unchanged",
+    "whatItSaysNow": "still open; the \u00a7\u5341 unclamp moved it by -0.0036 of a 1.0359 gap",
+    "numbers": {
+     "target": 4.9035,
+     "control": 2.5755,
+     "o5Clamped": 3.8712,
+     "o5rUnclamped": 3.8676,
+     "window": 0.15,
+     "remainingDifference": 1.0359,
+     "movedByUnclamp": -0.0036
+    }
+   }
+  },
+  {
+   "o5Item": 4,
+   "name": "grayscale absolute chroma ceiling",
+   "kind": "INSTRUMENT UNREADABLE / INVALID",
+   "detail": "the coding scored p99.5 chroma against an absolute ceiling of 6.0. Candidate 18.0, control 18.0, and the TARGET 30.0 -- five times the ceiling. A test the Target fails worse than the candidate is not measuring the candidate.",
+   "afterO5R": {
+    "o5rItem": 4,
+    "o5rStatus": "FAIL",
+    "o5rRowCounts": {
+     "FAIL": 12
+    },
+    "instrument": "\u00a7\u56db -- seven Target-RELATIVE measurements, feature-local, with the window set by the Target's own repeatability",
+    "whatItSaysNow": "the repaired instrument still fails, and now says something: on coarse achromatic edges the candidate carries about twice the Target's edge chroma and the shipped body is closer; on hf-checker the candidate reproduces the Target's edge chroma that the shipped body misses by a factor of seventy. Same item, opposite readings, and both are real.",
+    "numbers": {
+     "bwSplit1440": {
+      "target": 6.9932,
+      "control": 7.4096,
+      "o5-clamped": 12.3131,
+      "o5r-unclamped": 12.2582
+     },
+     "hfChecker1440": {
+      "target": 84.6729,
+      "control": 1.2038,
+      "o5-clamped": 86.7215,
+      "o5r-unclamped": 86.7179
+     }
+    }
+   }
+  },
+  {
+   "o5Item": 7,
+   "name": "flat-card edge-compression baseline",
+   "kind": "INSTRUMENT UNREADABLE / INVALID",
+   "detail": "the analytic baseline assumed the media maps linearly across a flat card. The card is a domed plane under perspective. The sealed guard refused to answer on most cards rather than emit a confident wrong number.",
+   "afterO5R": {
+    "o5rItem": 6,
+    "o5rStatus": "PASS",
+    "o5rRowCounts": {
+     "PASS": 3,
+     "INSTRUMENT_UNREADABLE": 1
+    },
+    "instrument": "\u00a7\u516d -- a CPU replay of the source refraction formula through the live card matrix, camera and cover transform, validated against the Target's own render, with three QA-only measurement programs supplying the candidate's UV fields",
+    "whatItSaysNow": "this is the round's substantive instrument result. The replay reproduces the Target's own displacement field to 1.4-1.6 px, and the candidate's field enters the Target's window at every readable viewport.",
+    "numbers": {
+     "rows": [
+      {
+       "vp": "1440x900",
+       "status": "PASS",
+       "validatedCards": [
+        45,
+        54
+       ],
+       "targetReplayResidualPx": 1.437,
+       "displacementMeanPx": {
+        "target": 18.399,
+        "control": 14.724,
+        "o5-clamped": 19.029,
+        "o5r-unclamped": 19.029
+       },
+       "vectorDeltaToTargetPx": {
+        "control": {
+         "discs": 5,
+         "meanVectorDeltaPx": 8.879,
+         "maxVectorDeltaPx": 14.384
+        },
+        "o5-clamped": {
+         "discs": 9,
+         "meanVectorDeltaPx": 0.793,
+         "maxVectorDeltaPx": 1.939
+        },
+        "o5r-unclamped": {
+         "discs": 9,
+         "meanVectorDeltaPx": 0.793,
+         "maxVectorDeltaPx": 1.939
+        }
+       },
+       "targetSelfDeltaRuns": [
+        0.0,
+        0.0
+       ],
+       "repeatability": 0.0,
+       "window": 1.5
+      },
+      {
+       "vp": "390x844",
+       "status": "PASS",
+       "validatedCards": [
+        43
+       ],
+       "targetReplayResidualPx": 1.397,
+       "displacementMeanPx": {
+        "target": 6.432,
+        "control": 5.613,
+        "o5-clamped": 7.133,
+        "o5r-unclamped": 7.133
+       },
+       "vectorDeltaToTargetPx": {
+        "control": {
+         "discs": 5,
+         "meanVectorDeltaPx": 4.857,
+         "maxVectorDeltaPx": 10.971
+        },
+        "o5-clamped": {
+         "discs": 5,
+         "meanVectorDeltaPx": 1.04,
+         "maxVectorDeltaPx": 2.501
+        },
+        "o5r-unclamped": {
+         "discs": 5,
+         "meanVectorDeltaPx": 1.04,
+         "maxVectorDeltaPx": 2.501
+        }
+       },
+       "targetSelfDeltaRuns": [
+        0.0,
+        0.0
+       ],
+       "repeatability": 0.0,
+       "window": 1.5
+      },
+      {
+       "vp": "844x390",
+       "status": "INSTRUMENT_UNREADABLE",
+       "why": "no card's Target replay validated inside 3.0 px, so this viewport has no verified baseline",
+       "targetCards": [
+        {
+         "slot": 34,
+         "residual": 0.295,
+         "usable": false,
+         "why": null
+        }
+       ]
+      },
+      {
+       "vp": "700x700",
+       "status": "PASS",
+       "validatedCards": [
+        54,
+        64
+       ],
+       "targetReplayResidualPx": 1.555,
+       "displacementMeanPx": {
+        "target": 9.364,
+        "control": 5.264,
+        "o5-clamped": 10.156,
+        "o5r-unclamped": 10.156
+       },
+       "vectorDeltaToTargetPx": {
+        "control": {
+         "discs": 5,
+         "meanVectorDeltaPx": 5.045,
+         "maxVectorDeltaPx": 9.278
+        },
+        "o5-clamped": {
+         "discs": 9,
+         "meanVectorDeltaPx": 1.079,
+         "maxVectorDeltaPx": 2.455
+        },
+        "o5r-unclamped": {
+         "discs": 9,
+         "meanVectorDeltaPx": 1.079,
+         "maxVectorDeltaPx": 2.455
+        }
+       },
+       "targetSelfDeltaRuns": [
+        0.0,
+        0.0
+       ],
+       "repeatability": 0.0,
+       "window": 1.5
+      }
+     ]
+    }
+   }
+  },
+  {
+   "o5Item": 9,
+   "name": "control-relative interior sharpness",
+   "kind": "INSTRUMENT UNREADABLE / INVALID",
+   "detail": "the coding asked that the candidate be no blurrier than the control. On hf-checker the control is SHARPER than the Target, so the candidate failed for being closer.",
+   "afterO5R": {
+    "o5rItem": 7,
+    "o5rStatus": "FAIL",
+    "o5rRowCounts": {
+     "PASS": 10,
+     "NOT_APPLICABLE": 12,
+     "FAIL": 2
+    },
+    "instrument": "\u00a7\u4e03 -- distance(candidate, Target) against distance(control, Target), with flat-interior assets marked NOT_APPLICABLE when the Target's own HF energy is below the pre-registered floor",
+    "whatItSaysNow": "the noise-floor assets are now excluded by name rather than argued away, and the candidate is closer to the Target than the control on 45 of 48 readable comparisons. The two rows that still fail are rgb-micro interior luminance and chroma at the two mobile viewports.",
+    "numbers": {
+     "rows": [
+      {
+       "vp": "390x844",
+       "asset": "rgb-micro",
+       "status": "FAIL",
+       "lanes": {
+        "target": {
+         "hfEnergy": 55.7821,
+         "interiorLuma": 92.851,
+         "interiorChroma": 162.375,
+         "localContrast": 67.9493
+        },
+        "control": {
+         "hfEnergy": 42.54,
+         "interiorLuma": 105.673,
+         "interiorChroma": 175.856,
+         "localContrast": 66.8336
+        },
+        "o5-clamped": {
+         "hfEnergy": 52.5786,
+         "interiorLuma": 98.377,
+         "interiorChroma": 182.931,
+         "localContrast": 69.0087
+        },
+        "o5r-unclamped": {
+         "hfEnergy": 52.5786,
+         "interiorLuma": 98.377,
+         "interiorChroma": 182.931,
+         "localContrast": 69.0087
+        }
+       },
+       "distanceToTarget": {
+        "hfEnergy": {
+         "control": 13.2421,
+         "o5-clamped": 3.2035,
+         "o5r-unclamped": 3.2035
+        },
+        "interiorLuma": {
+         "control": 12.822,
+         "o5-clamped": 5.526,
+         "o5r-unclamped": 5.526
+        },
+        "interiorChroma": {
+         "control": 13.481,
+         "o5-clamped": 20.556,
+         "o5r-unclamped": 20.556
+        },
+        "localContrast": {
+         "control": 1.1157,
+         "o5-clamped": 1.0594,
+         "o5r-unclamped": 1.0594
+        }
+       },
+       "candidateCloserThanControl": {
+        "hfEnergy": true,
+        "interiorLuma": true,
+        "interiorChroma": false,
+        "localContrast": true
+       },
+       "hfTileCorrelationToTarget": {
+        "control": {
+         "r": 0.7203,
+         "n": 204
+        },
+        "o5-clamped": {
+         "r": 0.8142,
+         "n": 204
+        },
+        "o5r-unclamped": {
+         "r": 0.8142,
+         "n": 204
+        }
+       },
+       "chromaTileCorrelationToTarget": {
+        "control": {
+         "r": 0.5694,
+         "n": 204
+        },
+        "o5-clamped": {
+         "r": 0.7198,
+         "n": 204
+        },
+        "o5r-unclamped": {
+         "r": 0.7198,
+         "n": 204
+        }
+       }
+      },
+      {
+       "vp": "844x390",
+       "asset": "rgb-micro",
+       "status": "FAIL",
+       "lanes": {
+        "target": {
+         "hfEnergy": 49.1373,
+         "interiorLuma": 102.368,
+         "interiorChroma": 175.822,
+         "localContrast": 79.8237
+        },
+        "control": {
+         "hfEnergy": 31.4882,
+         "interiorLuma": 97.956,
+         "interiorChroma": 186.756,
+         "localContrast": 69.4013
+        },
+        "o5-clamped": {
+         "hfEnergy": 40.6666,
+         "interiorLuma": 92.233,
+         "interiorChroma": 191.651,
+         "localContrast": 71.2137
+        },
+        "o5r-unclamped": {
+         "hfEnergy": 40.6666,
+         "interiorLuma": 92.233,
+         "interiorChroma": 191.651,
+         "localContrast": 71.2137
+        }
+       },
+       "distanceToTarget": {
+        "hfEnergy": {
+         "control": 17.6491,
+         "o5-clamped": 8.4707,
+         "o5r-unclamped": 8.4707
+        },
+        "interiorLuma": {
+         "control": 4.412,
+         "o5-clamped": 10.135,
+         "o5r-unclamped": 10.135
+        },
+        "interiorChroma": {
+         "control": 10.934,
+         "o5-clamped": 15.829,
+         "o5r-unclamped": 15.829
+        },
+        "localContrast": {
+         "control": 10.4224,
+         "o5-clamped": 8.61,
+         "o5r-unclamped": 8.61
+        }
+       },
+       "candidateCloserThanControl": {
+        "hfEnergy": true,
+        "interiorLuma": false,
+        "interiorChroma": false,
+        "localContrast": true
+       },
+       "hfTileCorrelationToTarget": {
+        "control": {
+         "r": 0.3919,
+         "n": 112
+        },
+        "o5-clamped": {
+         "r": 0.5581,
+         "n": 112
+        },
+        "o5r-unclamped": {
+         "r": 0.5581,
+         "n": 112
+        }
+       },
+       "chromaTileCorrelationToTarget": {
+        "control": {
+         "r": 0.1284,
+         "n": 112
+        },
+        "o5-clamped": {
+         "r": 0.2456,
+         "n": 112
+        },
+        "o5r-unclamped": {
+         "r": 0.2456,
+         "n": 112
+        }
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "o5Item": 10,
+   "name": "axis-aligned silhouette model",
+   "kind": "INSTRUMENT UNREADABLE / INVALID",
+   "detail": "the instrument evaluated an axis-aligned rounded-rect SDF over the card's screen bounding box. The cards are perspective-projected onto a sphere; their quad corners sit up to 109 px from the bounding-box corners. Both lanes failed it, which is the tell.",
+   "afterO5R": {
+    "o5rItem": 9,
+    "o5rStatus": "FAIL",
+    "o5rRowCounts": {
+     "PASS": 3,
+     "FAIL": 1
+    },
+    "instrument": "\u00a7\u516b -- the sdf-mask program's own coverage: the Target's SDF rendered through the real PlaneGeometry projection, the real card matrix and the real fwidth alpha",
+    "whatItSaysNow": "the projected reference is now right, and the REMAINING limit is the other half of the measurement: the rendered-alpha side still needs a background to compare against, and at these packed layouts the ring outside the card rect lands on neighbouring cards. See the disclosure in the README; the sealed row stands as FAIL rather than being relabelled after capture.",
+    "numbers": {
+     "rows": [
+      {
+       "vp": "1440x900",
+       "status": "PASS",
+       "rect": [
+        174,
+        33,
+        708,
+        441
+       ],
+       "projectedFrom": "o5r-unclamped-view-sdf-mask-1440x900.png",
+       "antialiasWidthPx": 21.259,
+       "lanes": {
+        "target": {
+         "renderedPixels": 217869,
+         "projectedPixels": 200453,
+         "intersection": 200453,
+         "iou": 0.920062,
+         "litBeyondSilhouette": 17416,
+         "litBeyondFraction": 0.086883,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 0.0
+        },
+        "control": {
+         "renderedPixels": 217820,
+         "projectedPixels": 200453,
+         "intersection": 200402,
+         "iou": 0.91982,
+         "litBeyondSilhouette": 17418,
+         "litBeyondFraction": 0.086893,
+         "unlitInsideSilhouette": 51,
+         "cornerRadiusPx": 0.0
+        },
+        "o5-clamped": {
+         "renderedPixels": 217865,
+         "projectedPixels": 200453,
+         "intersection": 200453,
+         "iou": 0.920079,
+         "litBeyondSilhouette": 17412,
+         "litBeyondFraction": 0.086863,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 0.0
+        },
+        "o5r-unclamped": {
+         "renderedPixels": 217865,
+         "projectedPixels": 200453,
+         "intersection": 200453,
+         "iou": 0.920079,
+         "litBeyondSilhouette": 17412,
+         "litBeyondFraction": 0.086863,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 0.0
+        }
+       },
+       "windows": {
+        "litBeyondFraction": 0.02,
+        "cornerRadiusPx": 1.0,
+        "iou": 0.02
+       },
+       "within": {
+        "litBeyondFraction": true,
+        "cornerRadiusPx": true,
+        "iou": true
+       }
+      },
+      {
+       "vp": "390x844",
+       "status": "FAIL",
+       "rect": [
+        54,
+        209,
+        335,
+        417
+       ],
+       "projectedFrom": "o5r-unclamped-view-sdf-mask-390x844.png",
+       "antialiasWidthPx": 6.874,
+       "lanes": {
+        "target": {
+         "renderedPixels": 58388,
+         "projectedPixels": 55274,
+         "intersection": 55274,
+         "iou": 0.946667,
+         "litBeyondSilhouette": 3114,
+         "litBeyondFraction": 0.056338,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 0.0
+        },
+        "control": {
+         "renderedPixels": 58448,
+         "projectedPixels": 55274,
+         "intersection": 55274,
+         "iou": 0.945695,
+         "litBeyondSilhouette": 3174,
+         "litBeyondFraction": 0.057423,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 0.0
+        },
+        "o5-clamped": {
+         "renderedPixels": 55802,
+         "projectedPixels": 55274,
+         "intersection": 55274,
+         "iou": 0.990538,
+         "litBeyondSilhouette": 528,
+         "litBeyondFraction": 0.009552,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 54.627
+        },
+        "o5r-unclamped": {
+         "renderedPixels": 55802,
+         "projectedPixels": 55274,
+         "intersection": 55274,
+         "iou": 0.990538,
+         "litBeyondSilhouette": 528,
+         "litBeyondFraction": 0.009552,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 54.627
+        }
+       },
+       "windows": {
+        "litBeyondFraction": 0.02,
+        "cornerRadiusPx": 1.0,
+        "iou": 0.02
+       },
+       "within": {
+        "litBeyondFraction": false,
+        "cornerRadiusPx": false,
+        "iou": false
+       }
+      },
+      {
+       "vp": "844x390",
+       "status": "PASS",
+       "rect": [
+        260,
+        0,
+        583,
+        189
+       ],
+       "projectedFrom": "o5r-unclamped-view-sdf-mask-844x390.png",
+       "antialiasWidthPx": 6.675,
+       "lanes": {
+        "target": {
+         "renderedPixels": 61042,
+         "projectedPixels": 58578,
+         "intersection": 58578,
+         "iou": 0.959634,
+         "litBeyondSilhouette": 2464,
+         "litBeyondFraction": 0.042064,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 0.0
+        },
+        "control": {
+         "renderedPixels": 61047,
+         "projectedPixels": 58578,
+         "intersection": 58578,
+         "iou": 0.959556,
+         "litBeyondSilhouette": 2469,
+         "litBeyondFraction": 0.042149,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 0.0
+        },
+        "o5-clamped": {
+         "renderedPixels": 61047,
+         "projectedPixels": 58578,
+         "intersection": 58578,
+         "iou": 0.959556,
+         "litBeyondSilhouette": 2469,
+         "litBeyondFraction": 0.042149,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 0.0
+        },
+        "o5r-unclamped": {
+         "renderedPixels": 61047,
+         "projectedPixels": 58578,
+         "intersection": 58578,
+         "iou": 0.959556,
+         "litBeyondSilhouette": 2469,
+         "litBeyondFraction": 0.042149,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 0.0
+        }
+       },
+       "windows": {
+        "litBeyondFraction": 0.02,
+        "cornerRadiusPx": 1.0,
+        "iou": 0.02
+       },
+       "within": {
+        "litBeyondFraction": true,
+        "cornerRadiusPx": true,
+        "iou": true
+       }
+      },
+      {
+       "vp": "700x700",
+       "status": "PASS",
+       "rect": [
+        216,
+        149,
+        483,
+        345
+       ],
+       "projectedFrom": "o5r-unclamped-view-sdf-mask-700x700.png",
+       "antialiasWidthPx": 7.307,
+       "lanes": {
+        "target": {
+         "renderedPixels": 52323,
+         "projectedPixels": 49066,
+         "intersection": 49066,
+         "iou": 0.937752,
+         "litBeyondSilhouette": 3257,
+         "litBeyondFraction": 0.06638,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 0.0
+        },
+        "control": {
+         "renderedPixels": 52332,
+         "projectedPixels": 49066,
+         "intersection": 49066,
+         "iou": 0.937591,
+         "litBeyondSilhouette": 3266,
+         "litBeyondFraction": 0.066563,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 0.0
+        },
+        "o5-clamped": {
+         "renderedPixels": 52326,
+         "projectedPixels": 49066,
+         "intersection": 49066,
+         "iou": 0.937698,
+         "litBeyondSilhouette": 3260,
+         "litBeyondFraction": 0.066441,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 0.0
+        },
+        "o5r-unclamped": {
+         "renderedPixels": 52326,
+         "projectedPixels": 49066,
+         "intersection": 49066,
+         "iou": 0.937698,
+         "litBeyondSilhouette": 3260,
+         "litBeyondFraction": 0.066441,
+         "unlitInsideSilhouette": 0,
+         "cornerRadiusPx": 0.0
+        }
+       },
+       "windows": {
+        "litBeyondFraction": 0.02,
+        "cornerRadiusPx": 1.0,
+        "iou": 0.02
+       },
+       "within": {
+        "litBeyondFraction": true,
+        "cornerRadiusPx": true,
+        "iou": true
+       }
+      }
+     ]
+    }
+   }
+  }
+ ],
+ "passesThatCarryNoSignal": [
+  {
+   "o5Item": 5,
+   "name": "saturated-edge metric",
+   "detail": "Target 0.0, control 0.0, candidate 0.0 on fringeRB, fringeWidthPxMean and edgeChroma, for rgb-bars, cool-blue and warm-skin alike. Every lane returned the same constant. Unreadable, not a pass -- it scored PASS because 'closer to the Target than the control' is vacuously true when all three inputs are zero.",
+   "mayBeCitedAsProof": false,
+   "afterO5R": {
+    "o5rItem": 5,
+    "o5rStatus": "FAIL",
+    "o5rRowCounts": {
+     "FAIL": 12
+    },
+    "instrument": "\u00a7\u4e94 -- feature-local: chroma at media gradients, chroma away from them, fringe localisation, and broad coloured rim area, with a per-channel gradient mask so a red-to-blue boundary is still a feature",
+    "whatItSaysNow": "the metric now discriminates strongly -- on cool-blue the candidate sits 2.2 from the Target where the shipped body sits 30.3 -- and the item FAILS, mostly on broad coloured rim area. The shipped body is closer on 46 of 72 readable comparisons here, which is the one item where that is true.",
+    "numbers": {
+     "rows": [
+      {
+       "vp": "1440x900",
+       "asset": "rgb-bars",
+       "status": "FAIL",
+       "lanes": {
+        "target": {
+         "chromaAtFeatures": 119.2163,
+         "chromaAwayFromFeatures": 123.6629,
+         "broadRimColouredFraction": 0.52271,
+         "fringeLocalisation": 0.964,
+         "featurePixels": 70949,
+         "nonFeaturePixels": 586042
+        },
+        "control": {
+         "chromaAtFeatures": 90.1923,
+         "chromaAwayFromFeatures": 131.7076,
+         "broadRimColouredFraction": 0.556969,
+         "fringeLocalisation": 0.6848,
+         "featurePixels": 49266,
+         "nonFeaturePixels": 607725
+        },
+        "o5-clamped": {
+         "chromaAtFeatures": 129.3588,
+         "chromaAwayFromFeatures": 133.3225,
+         "broadRimColouredFraction": 0.568326,
+         "fringeLocalisation": 0.9703,
+         "featurePixels": 44279,
+         "nonFeaturePixels": 612712
+        },
+        "o5r-unclamped": {
+         "chromaAtFeatures": 129.0735,
+         "chromaAwayFromFeatures": 133.3375,
+         "broadRimColouredFraction": 0.568315,
+         "fringeLocalisation": 0.968,
+         "featurePixels": 44382,
+         "nonFeaturePixels": 612609
+        }
+       },
+       "windows": {
+        "chromaAtFeatures": 3.0,
+        "chromaAwayFromFeatures": 3.0,
+        "broadRimColouredFraction": 0.004
+       },
+       "within": {
+        "chromaAtFeatures": false,
+        "chromaAwayFromFeatures": false,
+        "broadRimColouredFraction": false
+       }
+      },
+      {
+       "vp": "1440x900",
+       "asset": "cool-blue",
+       "status": "FAIL",
+       "lanes": {
+        "target": {
+         "chromaAtFeatures": 83.2231,
+         "chromaAwayFromFeatures": 117.2156,
+         "broadRimColouredFraction": 0.801394,
+         "fringeLocalisation": 0.71,
+         "featurePixels": 69408,
+         "nonFeaturePixels": 587583
+        },
+        "control": {
+         "chromaAtFeatures": 52.8894,
+         "chromaAwayFromFeatures": 117.0759,
+         "broadRimColouredFraction": 0.83712,
+         "fringeLocalisation": 0.4518,
+         "featurePixels": 34989,
+         "nonFeaturePixels": 622002
+        },
+        "o5-clamped": {
+         "chromaAtFeatures": 85.5492,
+         "chromaAwayFromFeatures": 122.4906,
+         "broadRimColouredFraction": 0.848392,
+         "fringeLocalisation": 0.6984,
+         "featurePixels": 40294,
+         "nonFeaturePixels": 616697
+        },
+        "o5r-unclamped": {
+         "chromaAtFeatures": 85.3759,
+         "chromaAwayFromFeatures": 122.5084,
+         "broadRimColouredFraction": 0.84839,
+         "fringeLocalisation": 0.6969,
+         "featurePixels": 40383,
+         "nonFeaturePixels": 616608
+        }
+       },
+       "windows": {
+        "chromaAtFeatures": 3.0,
+        "chromaAwayFromFeatures": 3.0,
+        "broadRimColouredFraction": 0.004
+       },
+       "within": {
+        "chromaAtFeatures": true,
+        "chromaAwayFromFeatures": false,
+        "broadRimColouredFraction": false
+       }
+      },
+      {
+       "vp": "1440x900",
+       "asset": "warm-skin",
+       "status": "FAIL",
+       "lanes": {
+        "target": {
+         "chromaAtFeatures": 32.6235,
+         "chromaAwayFromFeatures": 50.2108,
+         "broadRimColouredFraction": 0.855917,
+         "fringeLocalisation": 0.6497,
+         "featurePixels": 39912,
+         "nonFeaturePixels": 617079
+        },
+        "control": {
+         "chromaAtFeatures": 27.157,
+         "chromaAwayFromFeatures": 50.3024,
+         "broadRimColouredFraction": 0.847862,
+         "fringeLocalisation": 0.5399,
+         "featurePixels": 31030,
+         "nonFeaturePixels": 625961
+        },
+        "o5-clamped": {
+         "chromaAtFeatures": 30.2562,
+         "chromaAwayFromFeatures": 51.2612,
+         "broadRimColouredFraction": 0.901893,
+         "fringeLocalisation": 0.5902,
+         "featurePixels": 14342,
+         "nonFeaturePixels": 642649
+        },
+        "o5r-unclamped": {
+         "chromaAtFeatures": 30.1823,
+         "chromaAwayFromFeatures": 51.2599,
+         "broadRimColouredFraction": 0.901891,
+         "fringeLocalisation": 0.5888,
+         "featurePixels": 14376,
+         "nonFeaturePixels": 642615
+        }
+       },
+       "windows": {
+        "chromaAtFeatures": 3.0,
+        "chromaAwayFromFeatures": 3.0,
+        "broadRimColouredFraction": 0.004
+       },
+       "within": {
+        "chromaAtFeatures": true,
+        "chromaAwayFromFeatures": true,
+        "broadRimColouredFraction": false
+       }
+      },
+      {
+       "vp": "390x844",
+       "asset": "rgb-bars",
+       "status": "FAIL",
+       "lanes": {
+        "target": {
+         "chromaAtFeatures": 100.2785,
+         "chromaAwayFromFeatures": 118.1437,
+         "broadRimColouredFraction": 0.498836,
+         "fringeLocalisation": 0.8488,
+         "featurePixels": 19616,
+         "nonFeaturePixels": 90631
+        },
+        "control": {
+         "chromaAtFeatures": 108.736,
+         "chromaAwayFromFeatures": 128.6458,
+         "broadRimColouredFraction": 0.504717,
+         "fringeLocalisation": 0.8452,
+         "featurePixels": 19307,
+         "nonFeaturePixels": 90940
+        },
+        "o5-clamped": {
+         "chromaAtFeatures": 121.9466,
+         "chromaAwayFromFeatures": 131.4318,
+         "broadRimColouredFraction": 0.557324,
+         "fringeLocalisation": 0.9278,
+         "featurePixels": 13616,
+         "nonFeaturePixels": 96631
+        },
+        "o5r-unclamped": {
+         "chromaAtFeatures": 121.5754,
+         "chromaAwayFromFeatures": 131.4733,
+         "broadRimColouredFraction": 0.557324,
+         "fringeLocalisation": 0.9247,
+         "featurePixels": 13654,
+         "nonFeaturePixels": 96593
+        }
+       },
+       "windows": {
+        "chromaAtFeatures": 3.0,
+        "chromaAwayFromFeatures": 3.0,
+        "broadRimColouredFraction": 0.004
+       },
+       "within": {
+        "chromaAtFeatures": false,
+        "chromaAwayFromFeatures": false,
+        "broadRimColouredFraction": false
+       }
+      },
+      {
+       "vp": "390x844",
+       "asset": "cool-blue",
+       "status": "FAIL",
+       "lanes": {
+        "target": {
+         "chromaAtFeatures": 70.7915,
+         "chromaAwayFromFeatures": 112.9482,
+         "broadRimColouredFraction": 0.751975,
+         "fringeLocalisation": 0.6268,
+         "featurePixels": 19212,
+         "nonFeaturePixels": 91035
+        },
+        "control": {
+         "chromaAtFeatures": 60.7419,
+         "chromaAwayFromFeatures": 116.7112,
+         "broadRimColouredFraction": 0.815525,
+         "fringeLocalisation": 0.5204,
+         "featurePixels": 12516,
+         "nonFeaturePixels": 97731
+        },
+        "o5-clamped": {
+         "chromaAtFeatures": 82.313,
+         "chromaAwayFromFeatures": 121.5205,
+         "broadRimColouredFraction": 0.822434,
+         "fringeLocalisation": 0.6774,
+         "featurePixels": 12172,
+         "nonFeaturePixels": 98075
+        },
+        "o5r-unclamped": {
+         "chromaAtFeatures": 82.0917,
+         "chromaAwayFromFeatures": 121.559,
+         "broadRimColouredFraction": 0.822434,
+         "fringeLocalisation": 0.6753,
+         "featurePixels": 12205,
+         "nonFeaturePixels": 98042
+        }
+       },
+       "windows": {
+        "chromaAtFeatures": 3.0,
+        "chromaAwayFromFeatures": 3.0,
+        "broadRimColouredFraction": 0.004
+       },
+       "within": {
+        "chromaAtFeatures": false,
+        "chromaAwayFromFeatures": false,
+        "broadRimColouredFraction": false
+       }
+      },
+      {
+       "vp": "390x844",
+       "asset": "warm-skin",
+       "status": "FAIL",
+       "lanes": {
+        "target": {
+         "chromaAtFeatures": 27.8234,
+         "chromaAwayFromFeatures": 48.0449,
+         "broadRimColouredFraction": 0.800271,
+         "fringeLocalisation": 0.5791,
+         "featurePixels": 12581,
+         "nonFeaturePixels": 97666
+        },
+        "control": {
+         "chromaAtFeatures": 27.9889,
+         "chromaAwayFromFeatures": 49.7408,
+         "broadRimColouredFraction": 0.841392,
+         "fringeLocalisation": 0.5627,
+         "featurePixels": 9069,
+         "nonFeaturePixels": 101178
+        },
+        "o5-clamped": {
+         "chromaAtFeatures": 31.3686,
+         "chromaAwayFromFeatures": 50.5628,
+         "broadRimColouredFraction": 0.882798,
+         "fringeLocalisation": 0.6204,
+         "featurePixels": 6615,
+         "nonFeaturePixels": 103632
+        },
+        "o5r-unclamped": {
+         "chromaAtFeatures": 31.2343,
+         "chromaAwayFromFeatures": 50.5703,
+         "broadRimColouredFraction": 0.882798,
+         "fringeLocalisation": 0.6176,
+         "featurePixels": 6639,
+         "nonFeaturePixels": 103608
+        }
+       },
+       "windows": {
+        "chromaAtFeatures": 3.0,
+        "chromaAwayFromFeatures": 3.0,
+        "broadRimColouredFraction": 0.004
+       },
+       "within": {
+        "chromaAtFeatures": false,
+        "chromaAwayFromFeatures": true,
+        "broadRimColouredFraction": false
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "o5Item": 14,
+   "name": "the third fringe sub-check",
+   "detail": "colouredGlassFrame_fringeWidthPx read 0.0 for all three lanes, so its candidateCloser:true is vacuous. Item 14's verdict rests on the two sub-checks that do discriminate.",
+   "mayBeCitedAsProof": false,
+   "afterO5R": {
+    "o5rItem": null,
+    "instrument": "\u00a7\u4e09 -- degenerate_reading() is now the single place the rule lives, and every scored row is routed through it",
+    "whatItSaysNow": "a row where every lane returns the same constant is INSTRUMENT_UNREADABLE by construction and cannot reach PASS."
+   }
+  }
+ ],
+ "o5rAuthorisation": {
+  "mayModify": [
+   "the O5 optical measurement instruments",
+   "envSampleCeiling = 16, the one known non-source Target-body deviation",
+   "QA-only structural controls",
+   "evidence and product status"
+  ],
+  "mayNotModify": [
+   "Target source constants",
+   "ior",
+   "dispersion",
+   "sample count",
+   "refractStrength",
+   "bevelWidth",
+   "bevelPower",
+   "bevelMaxSlope",
+   "thickness",
+   "corner radius",
+   "fresnelF0",
+   "envIntensity",
+   "envMaxMix",
+   "env rotation",
+   "rimWidth",
+   "rimIntensity",
+   "the HDR asset",
+   "layout",
+   "typography",
+   "motion",
+   "label culling",
+   "render coverage verdict",
+   "media focus/crop",
+   "camera",
+   "adaptive quality policy"
+  ],
+  "didNotDo": [
+   "flip the shipped default",
+   "tune a source constant",
+   "create a second candidate variant",
+   "rewrite the sealed O5 evidence",
+   "enter Performance Final",
+   "merge main",
+   "assert Target Visual PASS"
+  ]
+ }
+}

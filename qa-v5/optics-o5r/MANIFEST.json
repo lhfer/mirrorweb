@@ -1,0 +1,163 @@
+{
+ "what": "\u00a7\u5341\u4e94 -- the public O5R evidence tree. Numbers, source anchors and verdicts only.",
+ "round": "O5R \u2014 target-source optical body product closure",
+ "generatedAt": "2026-08-22T17:04:02+00:00",
+ "head": "726ee02e914f945374cd43fa6866f23e60377276",
+ "correctedGate": {
+  "verdict": "FAIL",
+  "counts": {
+   "PASS": 7,
+   "FAIL": 7,
+   "NOT_APPLICABLE": 0,
+   "INSTRUMENT_UNREADABLE": 0
+  },
+  "total": 14
+ },
+ "verification": {
+  "requiredFiles": 18,
+  "missing": [],
+  "unlisted": [],
+  "imageOrVideoFiles": [],
+  "publicTreeHasNoTargetPixels": true,
+  "note": "the tree carries no image or video files at all, which is a stronger statement than 'no Target renditions were copied'. Target pixels live only in qa-v5/private/o5r-optical-body-review.zip.",
+  "pass": true
+ },
+ "fileCount": 27,
+ "files": [
+  {
+   "file": "README.md",
+   "bytes": 28424,
+   "sha256": "a8d06c35ac425492e64299286d5dc588f41701b0dbc335fee7f8b472f57b6574"
+  },
+  {
+   "file": "control-identity.json",
+   "bytes": 10246,
+   "sha256": "6d37fcfc1d706e1d7d336da776d4ee38284005387eaffd2578f08fdec1c9e4bf"
+  },
+  {
+   "file": "corrected-product-gate.json",
+   "bytes": 318813,
+   "sha256": "c99c66297de14a2e5c103f40e522509a45bba4e54daabd7abf9286b151bf1520"
+  },
+  {
+   "file": "dark-side-luma.json",
+   "bytes": 1263,
+   "sha256": "87fffc85853e024e788a9314981ba51ec5dd5c18a5c766522bbe09a4411252db"
+  },
+  {
+   "file": "full-frame-readiness.json",
+   "bytes": 65,
+   "sha256": "c14fe8ad521c5f827147cac74c2f3947058597fdc14ef3586b3192bb3f09bd07"
+  },
+  {
+   "file": "grayscale-v2.json",
+   "bytes": 30133,
+   "sha256": "1d803f9fd421730f99d160921e006bbb8e164b6917b94138759c5ad8e00fedbf"
+  },
+  {
+   "file": "hdr-radiance-audit.json",
+   "bytes": 3616,
+   "sha256": "5d7b84e950ea7e5f82e8f71f9af6b4014f666c6180806968822e9a4a8225fcb6"
+  },
+  {
+   "file": "instrument-contract.json",
+   "bytes": 16759,
+   "sha256": "444f8ccc8f00bbe918043614e74eb5a0ddc06e67c5b6ff87a52e538014b51230"
+  },
+  {
+   "file": "instrument-tests.json",
+   "bytes": 16532,
+   "sha256": "2e6112d0fa689224bdd635f236e284b03a4c20a59dae6bb28a275908a9784522"
+  },
+  {
+   "file": "interior-fidelity-v2.json",
+   "bytes": 24342,
+   "sha256": "2d0d459f3d09c43c7798101d0ff2e6b4f2e00ffaf686c104270b5e865e19e6a9"
+  },
+  {
+   "file": "mobile-consistency.json",
+   "bytes": 2403,
+   "sha256": "6f0cad6f3a4beaa20c66cd9fea2c7a37e6bf38f8be803bee18c368fb5c3efba0"
+  },
+  {
+   "file": "o5-product-review.json",
+   "bytes": 50834,
+   "sha256": "3804e8d4125e0201adc3ba93ff687332e897198fd9de5ed03463d9cb63596933"
+  },
+  {
+   "file": "original-o5-gate-regression.json",
+   "bytes": 2238,
+   "sha256": "f6fb816be378a4acc37328cad3ff734977aa0c59beb9dcb9290b811336235130"
+  },
+  {
+   "file": "own-media-isolation.json",
+   "bytes": 2026,
+   "sha256": "256692ba0d5d65f334bd8ae40fa68dcac7d44f39e936be600b5f5ae40e008faf"
+  },
+  {
+   "file": "pipeline-performance-v2.json",
+   "bytes": 90610,
+   "sha256": "3188b38fd316fcf2f89a5bb1695869a3736f17b1a8ec689a9654a4981fe37e7f"
+  },
+  {
+   "file": "pointer-path.json",
+   "bytes": 5234,
+   "sha256": "f606577a9f72dc3a3f67309558c2d2f3923266e54f6dc51079a1e5d836c553b4"
+  },
+  {
+   "file": "portrait-closure.json",
+   "bytes": 27586,
+   "sha256": "b894e00427dd29a826131ea375f594958ae9eae734d8b9a2186379254e278c57"
+  },
+  {
+   "file": "reflection-band.json",
+   "bytes": 1242,
+   "sha256": "391593f58791d2741e5d775eea3a7dd26b63f74821b997a781f6a06ca84c96f1"
+  },
+  {
+   "file": "refraction-compression-v2.json",
+   "bytes": 2530,
+   "sha256": "e70dd0f52c4066f357317aab9bb8336e82087853883cb8b0378be42d488b59a8"
+  },
+  {
+   "file": "regressions.json",
+   "bytes": 56859,
+   "sha256": "668ffd63f3312571dff000a2f862f86e6bc2dc96edda0d4588bb63093ddfe7f7"
+  },
+  {
+   "file": "saturated-edge-v2.json",
+   "bytes": 15666,
+   "sha256": "1a237b4b2e801be3e3a943bcdfec85ce8bfc571b55a5bf1acf3e960106faee89"
+  },
+  {
+   "file": "sealed-lane-identity.json",
+   "bytes": 5905,
+   "sha256": "b7b2baca63866d06f5d18aff768c41217281c075408fb8f9201eb0259cd35522"
+  },
+  {
+   "file": "silhouette-v2.json",
+   "bytes": 6008,
+   "sha256": "cbd875fc3fd025c9513bad65abed04c97c3cff4ad2674e1c949fcc4ac1b123fb"
+  },
+  {
+   "file": "source-env-correction.json",
+   "bytes": 9939,
+   "sha256": "88a773512ff13bd0abce88ee5293b87b29d9cc20a60a0a049804f34e2b87d76d"
+  },
+  {
+   "file": "target-repeatability.json",
+   "bytes": 100353,
+   "sha256": "78666e6727553a68d806a61a655dbbd4caa2f021e654e6fda2e8a51fe94ad49a"
+  },
+  {
+   "file": "temporal-continuity.json",
+   "bytes": 101076,
+   "sha256": "4326c617d4c31d41fed26755d085544b5b6dcb473ec40567db0ddc15a5b8ecdf"
+  },
+  {
+   "file": "white-reflection-ratio.json",
+   "bytes": 1306,
+   "sha256": "6d9b196a049f44d5bbbefcc37049db670c7d4beb35e7e44d3313be5036f85fd3"
+  }
+ ]
+}

@@ -1,0 +1,114 @@
+{
+ "what": "\u00a7\u5341\u4e09 mobile consistency.",
+ "rows": [
+  {
+   "metric": "reflection-band",
+   "vp": "1440x900",
+   "status": "PASS",
+   "movedTowardTarget": true,
+   "windowStatus": "PASS",
+   "candidateDelta": 0.0,
+   "controlDelta": 12.0
+  },
+  {
+   "metric": "reflection-band",
+   "vp": "390x844",
+   "status": "PASS",
+   "movedTowardTarget": true,
+   "windowStatus": "PASS",
+   "candidateDelta": 0.5,
+   "controlDelta": 6.5
+  },
+  {
+   "metric": "reflection-band",
+   "vp": "844x390",
+   "status": "PASS",
+   "movedTowardTarget": true,
+   "windowStatus": "PASS",
+   "candidateDelta": 0.0,
+   "controlDelta": 6.0
+  },
+  {
+   "metric": "reflection-band",
+   "vp": "700x700",
+   "status": "PASS",
+   "movedTowardTarget": true,
+   "windowStatus": "PASS",
+   "candidateDelta": 0.0,
+   "controlDelta": 5.0
+  },
+  {
+   "metric": "dark-side-luma",
+   "vp": "1440x900",
+   "status": "PASS",
+   "movedTowardTarget": true,
+   "windowStatus": "PASS",
+   "candidateDelta": 0.59,
+   "controlDelta": 47.04
+  },
+  {
+   "metric": "dark-side-luma",
+   "vp": "390x844",
+   "status": "PASS",
+   "movedTowardTarget": true,
+   "windowStatus": "FAIL",
+   "candidateDelta": 7.29,
+   "controlDelta": 27.66
+  },
+  {
+   "metric": "dark-side-luma",
+   "vp": "844x390",
+   "status": "PASS",
+   "movedTowardTarget": true,
+   "windowStatus": "PASS",
+   "candidateDelta": 1.17,
+   "controlDelta": 8.24
+  },
+  {
+   "metric": "dark-side-luma",
+   "vp": "700x700",
+   "status": "PASS",
+   "movedTowardTarget": true,
+   "windowStatus": "PASS",
+   "candidateDelta": 0.35,
+   "controlDelta": 45.63
+  },
+  {
+   "metric": "white-reflection-ratio",
+   "vp": "1440x900",
+   "status": "PASS",
+   "movedTowardTarget": true,
+   "windowStatus": "PASS",
+   "candidateDelta": 0.003,
+   "controlDelta": 2.1134
+  },
+  {
+   "metric": "white-reflection-ratio",
+   "vp": "390x844",
+   "status": "PASS",
+   "movedTowardTarget": true,
+   "windowStatus": "FAIL",
+   "candidateDelta": 1.0359,
+   "controlDelta": 2.328
+  },
+  {
+   "metric": "white-reflection-ratio",
+   "vp": "844x390",
+   "status": "PASS",
+   "movedTowardTarget": true,
+   "windowStatus": "PASS",
+   "candidateDelta": 0.0092,
+   "controlDelta": 0.2242
+  },
+  {
+   "metric": "white-reflection-ratio",
+   "vp": "700x700",
+   "status": "PASS",
+   "movedTowardTarget": true,
+   "windowStatus": "PASS",
+   "candidateDelta": 0.1009,
+   "controlDelta": 3.7094
+  }
+ ],
+ "status": "PASS"
+}

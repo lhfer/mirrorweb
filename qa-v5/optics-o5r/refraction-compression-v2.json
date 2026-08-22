@@ -1,0 +1,132 @@
+{
+ "what": "\u00a7\u516d refraction compression from the real projected body.",
+ "rows": [
+  {
+   "vp": "1440x900",
+   "status": "PASS",
+   "validatedCards": [
+    45,
+    54
+   ],
+   "targetReplayResidualPx": 1.437,
+   "displacementMeanPx": {
+    "target": 18.399,
+    "control": 14.724,
+    "o5-clamped": 19.029,
+    "o5r-unclamped": 19.029
+   },
+   "vectorDeltaToTargetPx": {
+    "control": {
+     "discs": 5,
+     "meanVectorDeltaPx": 8.879,
+     "maxVectorDeltaPx": 14.384
+    },
+    "o5-clamped": {
+     "discs": 9,
+     "meanVectorDeltaPx": 0.793,
+     "maxVectorDeltaPx": 1.939
+    },
+    "o5r-unclamped": {
+     "discs": 9,
+     "meanVectorDeltaPx": 0.793,
+     "maxVectorDeltaPx": 1.939
+    }
+   },
+   "targetSelfDeltaRuns": [
+    0.0,
+    0.0
+   ],
+   "repeatability": 0.0,
+   "window": 1.5
+  },
+  {
+   "vp": "390x844",
+   "status": "PASS",
+   "validatedCards": [
+    43
+   ],
+   "targetReplayResidualPx": 1.397,
+   "displacementMeanPx": {
+    "target": 6.432,
+    "control": 5.613,
+    "o5-clamped": 7.133,
+    "o5r-unclamped": 7.133
+   },
+   "vectorDeltaToTargetPx": {
+    "control": {
+     "discs": 5,
+     "meanVectorDeltaPx": 4.857,
+     "maxVectorDeltaPx": 10.971
+    },
+    "o5-clamped": {
+     "discs": 5,
+     "meanVectorDeltaPx": 1.04,
+     "maxVectorDeltaPx": 2.501
+    },
+    "o5r-unclamped": {
+     "discs": 5,
+     "meanVectorDeltaPx": 1.04,
+     "maxVectorDeltaPx": 2.501
+    }
+   },
+   "targetSelfDeltaRuns": [
+    0.0,
+    0.0
+   ],
+   "repeatability": 0.0,
+   "window": 1.5
+  },
+  {
+   "vp": "844x390",
+   "status": "INSTRUMENT_UNREADABLE",
+   "why": "no card's Target replay validated inside 3.0 px, so this viewport has no verified baseline",
+   "targetCards": [
+    {
+     "slot": 34,
+     "residual": 0.295,
+     "usable": false,
+     "why": null
+    }
+   ]
+  },
+  {
+   "vp": "700x700",
+   "status": "PASS",
+   "validatedCards": [
+    54,
+    64
+   ],
+   "targetReplayResidualPx": 1.555,
+   "displacementMeanPx": {
+    "target": 9.364,
+    "control": 5.264,
+    "o5-clamped": 10.156,
+    "o5r-unclamped": 10.156
+   },
+   "vectorDeltaToTargetPx": {
+    "control": {
+     "discs": 5,
+     "meanVectorDeltaPx": 5.045,
+     "maxVectorDeltaPx": 9.278
+    },
+    "o5-clamped": {
+     "discs": 9,
+     "meanVectorDeltaPx": 1.079,
+     "maxVectorDeltaPx": 2.455
+    },
+    "o5r-unclamped": {
+     "discs": 9,
+     "meanVectorDeltaPx": 1.079,
+     "maxVectorDeltaPx": 2.455
+    }
+   },
+   "targetSelfDeltaRuns": [
+    0.0,
+    0.0
+   ],
+   "repeatability": 0.0,
+   "window": 1.5
+  }
+ ],
+ "status": "PASS"
+}

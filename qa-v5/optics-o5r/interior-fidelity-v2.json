@@ -1,0 +1,1146 @@
+{
+ "what": "\u00a7\u4e03 Target-relative interior.",
+ "rows": [
+  {
+   "vp": "1440x900",
+   "asset": "hf-checker",
+   "status": "PASS",
+   "lanes": {
+    "target": {
+     "hfEnergy": 149.548,
+     "interiorLuma": 148.027,
+     "interiorChroma": 77.344,
+     "localContrast": 85.7238
+    },
+    "control": {
+     "hfEnergy": 183.3412,
+     "interiorLuma": 136.663,
+     "interiorChroma": 0.145,
+     "localContrast": 95.4336
+    },
+    "o5-clamped": {
+     "hfEnergy": 153.6823,
+     "interiorLuma": 144.295,
+     "interiorChroma": 80.031,
+     "localContrast": 86.1685
+    },
+    "o5r-unclamped": {
+     "hfEnergy": 153.6823,
+     "interiorLuma": 144.295,
+     "interiorChroma": 80.031,
+     "localContrast": 86.1685
+    }
+   },
+   "distanceToTarget": {
+    "hfEnergy": {
+     "control": 33.7932,
+     "o5-clamped": 4.1343,
+     "o5r-unclamped": 4.1343
+    },
+    "interiorLuma": {
+     "control": 11.364,
+     "o5-clamped": 3.732,
+     "o5r-unclamped": 3.732
+    },
+    "interiorChroma": {
+     "control": 77.199,
+     "o5-clamped": 2.687,
+     "o5r-unclamped": 2.687
+    },
+    "localContrast": {
+     "control": 9.7098,
+     "o5-clamped": 0.4447,
+     "o5r-unclamped": 0.4447
+    }
+   },
+   "candidateCloserThanControl": {
+    "hfEnergy": true,
+    "interiorLuma": true,
+    "interiorChroma": true,
+    "localContrast": true
+   },
+   "hfTileCorrelationToTarget": {
+    "control": {
+     "r": -0.0123,
+     "n": 1314
+    },
+    "o5-clamped": {
+     "r": 0.6619,
+     "n": 1314
+    },
+    "o5r-unclamped": {
+     "r": 0.6619,
+     "n": 1314
+    }
+   },
+   "chromaTileCorrelationToTarget": {
+    "control": {
+     "r": 0.2593,
+     "n": 1314
+    },
+    "o5-clamped": {
+     "r": 0.8133,
+     "n": 1314
+    },
+    "o5r-unclamped": {
+     "r": 0.8133,
+     "n": 1314
+    }
+   }
+  },
+  {
+   "vp": "1440x900",
+   "asset": "rgb-micro",
+   "status": "PASS",
+   "lanes": {
+    "target": {
+     "hfEnergy": 30.0751,
+     "interiorLuma": 99.244,
+     "interiorChroma": 176.714,
+     "localContrast": 75.1407
+    },
+    "control": {
+     "hfEnergy": 23.9856,
+     "interiorLuma": 94.004,
+     "interiorChroma": 191.047,
+     "localContrast": 69.4438
+    },
+    "o5-clamped": {
+     "hfEnergy": 27.3359,
+     "interiorLuma": 94.952,
+     "interiorChroma": 184.977,
+     "localContrast": 69.7855
+    },
+    "o5r-unclamped": {
+     "hfEnergy": 27.3359,
+     "interiorLuma": 94.952,
+     "interiorChroma": 184.977,
+     "localContrast": 69.7855
+    }
+   },
+   "distanceToTarget": {
+    "hfEnergy": {
+     "control": 6.0895,
+     "o5-clamped": 2.7392,
+     "o5r-unclamped": 2.7392
+    },
+    "interiorLuma": {
+     "control": 5.24,
+     "o5-clamped": 4.292,
+     "o5r-unclamped": 4.292
+    },
+    "interiorChroma": {
+     "control": 14.333,
+     "o5-clamped": 8.263,
+     "o5r-unclamped": 8.263
+    },
+    "localContrast": {
+     "control": 5.6969,
+     "o5-clamped": 5.3552,
+     "o5r-unclamped": 5.3552
+    }
+   },
+   "candidateCloserThanControl": {
+    "hfEnergy": true,
+    "interiorLuma": true,
+    "interiorChroma": true,
+    "localContrast": true
+   },
+   "hfTileCorrelationToTarget": {
+    "control": {
+     "r": 0.5373,
+     "n": 1314
+    },
+    "o5-clamped": {
+     "r": 0.6707,
+     "n": 1314
+    },
+    "o5r-unclamped": {
+     "r": 0.6707,
+     "n": 1314
+    }
+   },
+   "chromaTileCorrelationToTarget": {
+    "control": {
+     "r": 0.3515,
+     "n": 1314
+    },
+    "o5-clamped": {
+     "r": 0.488,
+     "n": 1314
+    },
+    "o5r-unclamped": {
+     "r": 0.488,
+     "n": 1314
+    }
+   }
+  },
+  {
+   "vp": "1440x900",
+   "asset": "detail-chart",
+   "status": "PASS",
+   "lanes": {
+    "target": {
+     "hfEnergy": 87.6014,
+     "interiorLuma": 134.465,
+     "interiorChroma": 51.627,
+     "localContrast": 98.7185
+    },
+    "control": {
+     "hfEnergy": 95.279,
+     "interiorLuma": 125.032,
+     "interiorChroma": 0.149,
+     "localContrast": 103.9765
+    },
+    "o5-clamped": {
+     "hfEnergy": 86.5364,
+     "interiorLuma": 129.494,
+     "interiorChroma": 51.564,
+     "localContrast": 99.3986
+    },
+    "o5r-unclamped": {
+     "hfEnergy": 86.5364,
+     "interiorLuma": 129.494,
+     "interiorChroma": 51.564,
+     "localContrast": 99.3986
+    }
+   },
+   "distanceToTarget": {
+    "hfEnergy": {
+     "control": 7.6776,
+     "o5-clamped": 1.065,
+     "o5r-unclamped": 1.065
+    },
+    "interiorLuma": {
+     "control": 9.433,
+     "o5-clamped": 4.971,
+     "o5r-unclamped": 4.971
+    },
+    "interiorChroma": {
+     "control": 51.478,
+     "o5-clamped": 0.063,
+     "o5r-unclamped": 0.063
+    },
+    "localContrast": {
+     "control": 5.258,
+     "o5-clamped": 0.6801,
+     "o5r-unclamped": 0.6801
+    }
+   },
+   "candidateCloserThanControl": {
+    "hfEnergy": true,
+    "interiorLuma": true,
+    "interiorChroma": true,
+    "localContrast": true
+   },
+   "hfTileCorrelationToTarget": {
+    "control": {
+     "r": 0.8221,
+     "n": 1314
+    },
+    "o5-clamped": {
+     "r": 0.9519,
+     "n": 1314
+    },
+    "o5r-unclamped": {
+     "r": 0.9519,
+     "n": 1314
+    }
+   },
+   "chromaTileCorrelationToTarget": {
+    "control": {
+     "r": 0.2218,
+     "n": 1314
+    },
+    "o5-clamped": {
+     "r": 0.9727,
+     "n": 1314
+    },
+    "o5r-unclamped": {
+     "r": 0.9727,
+     "n": 1314
+    }
+   }
+  },
+  {
+   "vp": "1440x900",
+   "asset": "bw-split",
+   "status": "NOT_APPLICABLE",
+   "why": "Target interior HF energy 4.8042 is below the pre-registered signal floor 20.0; this asset has no interior structure to measure and a difference here would be noise",
+   "targetHfEnergy": 4.8042,
+   "floor": 20.0
+  },
+  {
+   "vp": "1440x900",
+   "asset": "grayscale-step",
+   "status": "NOT_APPLICABLE",
+   "why": "Target interior HF energy 3.7703 is below the pre-registered signal floor 20.0; this asset has no interior structure to measure and a difference here would be noise",
+   "targetHfEnergy": 3.7703,
+   "floor": 20.0
+  },
+  {
+   "vp": "1440x900",
+   "asset": "rgb-bars",
+   "status": "NOT_APPLICABLE",
+   "why": "Target interior HF energy 5.6828 is below the pre-registered signal floor 20.0; this asset has no interior structure to measure and a difference here would be noise",
+   "targetHfEnergy": 5.6828,
+   "floor": 20.0
+  },
+  {
+   "vp": "390x844",
+   "asset": "hf-checker",
+   "status": "PASS",
+   "lanes": {
+    "target": {
+     "hfEnergy": 325.5264,
+     "interiorLuma": 129.942,
+     "interiorChroma": 91.236,
+     "localContrast": 81.7445
+    },
+    "control": {
+     "hfEnergy": 130.9315,
+     "interiorLuma": 183.333,
+     "interiorChroma": 0.233,
+     "localContrast": 49.6315
+    },
+    "o5-clamped": {
+     "hfEnergy": 316.4871,
+     "interiorLuma": 148.876,
+     "interiorChroma": 86.53,
+     "localContrast": 80.8568
+    },
+    "o5r-unclamped": {
+     "hfEnergy": 316.4871,
+     "interiorLuma": 148.876,
+     "interiorChroma": 86.53,
+     "localContrast": 80.8568
+    }
+   },
+   "distanceToTarget": {
+    "hfEnergy": {
+     "control": 194.5949,
+     "o5-clamped": 9.0393,
+     "o5r-unclamped": 9.0393
+    },
+    "interiorLuma": {
+     "control": 53.391,
+     "o5-clamped": 18.934,
+     "o5r-unclamped": 18.934
+    },
+    "interiorChroma": {
+     "control": 91.003,
+     "o5-clamped": 4.706,
+     "o5r-unclamped": 4.706
+    },
+    "localContrast": {
+     "control": 32.113,
+     "o5-clamped": 0.8877,
+     "o5r-unclamped": 0.8877
+    }
+   },
+   "candidateCloserThanControl": {
+    "hfEnergy": true,
+    "interiorLuma": true,
+    "interiorChroma": true,
+    "localContrast": true
+   },
+   "hfTileCorrelationToTarget": {
+    "control": {
+     "r": 0.3535,
+     "n": 204
+    },
+    "o5-clamped": {
+     "r": 0.7586,
+     "n": 204
+    },
+    "o5r-unclamped": {
+     "r": 0.7586,
+     "n": 204
+    }
+   },
+   "chromaTileCorrelationToTarget": {
+    "control": {
+     "r": 0.0851,
+     "n": 204
+    },
+    "o5-clamped": {
+     "r": 0.8868,
+     "n": 204
+    },
+    "o5r-unclamped": {
+     "r": 0.8868,
+     "n": 204
+    }
+   }
+  },
+  {
+   "vp": "390x844",
+   "asset": "rgb-micro",
+   "status": "FAIL",
+   "lanes": {
+    "target": {
+     "hfEnergy": 55.7821,
+     "interiorLuma": 92.851,
+     "interiorChroma": 162.375,
+     "localContrast": 67.9493
+    },
+    "control": {
+     "hfEnergy": 42.54,
+     "interiorLuma": 105.673,
+     "interiorChroma": 175.856,
+     "localContrast": 66.8336
+    },
+    "o5-clamped": {
+     "hfEnergy": 52.5786,
+     "interiorLuma": 98.377,
+     "interiorChroma": 182.931,
+     "localContrast": 69.0087
+    },
+    "o5r-unclamped": {
+     "hfEnergy": 52.5786,
+     "interiorLuma": 98.377,
+     "interiorChroma": 182.931,
+     "localContrast": 69.0087
+    }
+   },
+   "distanceToTarget": {
+    "hfEnergy": {
+     "control": 13.2421,
+     "o5-clamped": 3.2035,
+     "o5r-unclamped": 3.2035
+    },
+    "interiorLuma": {
+     "control": 12.822,
+     "o5-clamped": 5.526,
+     "o5r-unclamped": 5.526
+    },
+    "interiorChroma": {
+     "control": 13.481,
+     "o5-clamped": 20.556,
+     "o5r-unclamped": 20.556
+    },
+    "localContrast": {
+     "control": 1.1157,
+     "o5-clamped": 1.0594,
+     "o5r-unclamped": 1.0594
+    }
+   },
+   "candidateCloserThanControl": {
+    "hfEnergy": true,
+    "interiorLuma": true,
+    "interiorChroma": false,
+    "localContrast": true
+   },
+   "hfTileCorrelationToTarget": {
+    "control": {
+     "r": 0.7203,
+     "n": 204
+    },
+    "o5-clamped": {
+     "r": 0.8142,
+     "n": 204
+    },
+    "o5r-unclamped": {
+     "r": 0.8142,
+     "n": 204
+    }
+   },
+   "chromaTileCorrelationToTarget": {
+    "control": {
+     "r": 0.5694,
+     "n": 204
+    },
+    "o5-clamped": {
+     "r": 0.7198,
+     "n": 204
+    },
+    "o5r-unclamped": {
+     "r": 0.7198,
+     "n": 204
+    }
+   }
+  },
+  {
+   "vp": "390x844",
+   "asset": "detail-chart",
+   "status": "PASS",
+   "lanes": {
+    "target": {
+     "hfEnergy": 188.6529,
+     "interiorLuma": 118.525,
+     "interiorChroma": 19.836,
+     "localContrast": 97.2652
+    },
+    "control": {
+     "hfEnergy": 129.6347,
+     "interiorLuma": 157.712,
+     "interiorChroma": 0.512,
+     "localContrast": 83.7289
+    },
+    "o5-clamped": {
+     "hfEnergy": 194.3817,
+     "interiorLuma": 124.757,
+     "interiorChroma": 17.945,
+     "localContrast": 104.7414
+    },
+    "o5r-unclamped": {
+     "hfEnergy": 194.3817,
+     "interiorLuma": 124.757,
+     "interiorChroma": 17.945,
+     "localContrast": 104.7414
+    }
+   },
+   "distanceToTarget": {
+    "hfEnergy": {
+     "control": 59.0182,
+     "o5-clamped": 5.7288,
+     "o5r-unclamped": 5.7288
+    },
+    "interiorLuma": {
+     "control": 39.187,
+     "o5-clamped": 6.232,
+     "o5r-unclamped": 6.232
+    },
+    "interiorChroma": {
+     "control": 19.324,
+     "o5-clamped": 1.891,
+     "o5r-unclamped": 1.891
+    },
+    "localContrast": {
+     "control": 13.5363,
+     "o5-clamped": 7.4762,
+     "o5r-unclamped": 7.4762
+    }
+   },
+   "candidateCloserThanControl": {
+    "hfEnergy": true,
+    "interiorLuma": true,
+    "interiorChroma": true,
+    "localContrast": true
+   },
+   "hfTileCorrelationToTarget": {
+    "control": {
+     "r": 0.1344,
+     "n": 204
+    },
+    "o5-clamped": {
+     "r": 0.9824,
+     "n": 204
+    },
+    "o5r-unclamped": {
+     "r": 0.9824,
+     "n": 204
+    }
+   },
+   "chromaTileCorrelationToTarget": {
+    "control": {
+     "r": -0.2984,
+     "n": 204
+    },
+    "o5-clamped": {
+     "r": 0.9259,
+     "n": 204
+    },
+    "o5r-unclamped": {
+     "r": 0.9259,
+     "n": 204
+    }
+   }
+  },
+  {
+   "vp": "390x844",
+   "asset": "bw-split",
+   "status": "NOT_APPLICABLE",
+   "why": "Target interior HF energy 8.5163 is below the pre-registered signal floor 20.0; this asset has no interior structure to measure and a difference here would be noise",
+   "targetHfEnergy": 8.5163,
+   "floor": 20.0
+  },
+  {
+   "vp": "390x844",
+   "asset": "grayscale-step",
+   "status": "NOT_APPLICABLE",
+   "why": "Target interior HF energy 6.8022 is below the pre-registered signal floor 20.0; this asset has no interior structure to measure and a difference here would be noise",
+   "targetHfEnergy": 6.8022,
+   "floor": 20.0
+  },
+  {
+   "vp": "390x844",
+   "asset": "rgb-bars",
+   "status": "NOT_APPLICABLE",
+   "why": "Target interior HF energy 10.8906 is below the pre-registered signal floor 20.0; this asset has no interior structure to measure and a difference here would be noise",
+   "targetHfEnergy": 10.8906,
+   "floor": 20.0
+  },
+  {
+   "vp": "844x390",
+   "asset": "hf-checker",
+   "status": "PASS",
+   "lanes": {
+    "target": {
+     "hfEnergy": 321.0767,
+     "interiorLuma": 139.072,
+     "interiorChroma": 64.756,
+     "localContrast": 97.6514
+    },
+    "control": {
+     "hfEnergy": 159.9951,
+     "interiorLuma": 177.592,
+     "interiorChroma": 0.008,
+     "localContrast": 58.4793
+    },
+    "o5-clamped": {
+     "hfEnergy": 332.3882,
+     "interiorLuma": 135.217,
+     "interiorChroma": 57.172,
+     "localContrast": 95.6072
+    },
+    "o5r-unclamped": {
+     "hfEnergy": 332.3882,
+     "interiorLuma": 135.217,
+     "interiorChroma": 57.172,
+     "localContrast": 95.6072
+    }
+   },
+   "distanceToTarget": {
+    "hfEnergy": {
+     "control": 161.0816,
+     "o5-clamped": 11.3115,
+     "o5r-unclamped": 11.3115
+    },
+    "interiorLuma": {
+     "control": 38.52,
+     "o5-clamped": 3.855,
+     "o5r-unclamped": 3.855
+    },
+    "interiorChroma": {
+     "control": 64.748,
+     "o5-clamped": 7.584,
+     "o5r-unclamped": 7.584
+    },
+    "localContrast": {
+     "control": 39.1721,
+     "o5-clamped": 2.0442,
+     "o5r-unclamped": 2.0442
+    }
+   },
+   "candidateCloserThanControl": {
+    "hfEnergy": true,
+    "interiorLuma": true,
+    "interiorChroma": true,
+    "localContrast": true
+   },
+   "hfTileCorrelationToTarget": {
+    "control": {
+     "r": 0.1408,
+     "n": 112
+    },
+    "o5-clamped": {
+     "r": 0.4944,
+     "n": 112
+    },
+    "o5r-unclamped": {
+     "r": 0.4944,
+     "n": 112
+    }
+   },
+   "chromaTileCorrelationToTarget": {
+    "control": {
+     "r": 0.1496,
+     "n": 112
+    },
+    "o5-clamped": {
+     "r": 0.9237,
+     "n": 112
+    },
+    "o5r-unclamped": {
+     "r": 0.9237,
+     "n": 112
+    }
+   }
+  },
+  {
+   "vp": "844x390",
+   "asset": "rgb-micro",
+   "status": "FAIL",
+   "lanes": {
+    "target": {
+     "hfEnergy": 49.1373,
+     "interiorLuma": 102.368,
+     "interiorChroma": 175.822,
+     "localContrast": 79.8237
+    },
+    "control": {
+     "hfEnergy": 31.4882,
+     "interiorLuma": 97.956,
+     "interiorChroma": 186.756,
+     "localContrast": 69.4013
+    },
+    "o5-clamped": {
+     "hfEnergy": 40.6666,
+     "interiorLuma": 92.233,
+     "interiorChroma": 191.651,
+     "localContrast": 71.2137
+    },
+    "o5r-unclamped": {
+     "hfEnergy": 40.6666,
+     "interiorLuma": 92.233,
+     "interiorChroma": 191.651,
+     "localContrast": 71.2137
+    }
+   },
+   "distanceToTarget": {
+    "hfEnergy": {
+     "control": 17.6491,
+     "o5-clamped": 8.4707,
+     "o5r-unclamped": 8.4707
+    },
+    "interiorLuma": {
+     "control": 4.412,
+     "o5-clamped": 10.135,
+     "o5r-unclamped": 10.135
+    },
+    "interiorChroma": {
+     "control": 10.934,
+     "o5-clamped": 15.829,
+     "o5r-unclamped": 15.829
+    },
+    "localContrast": {
+     "control": 10.4224,
+     "o5-clamped": 8.61,
+     "o5r-unclamped": 8.61
+    }
+   },
+   "candidateCloserThanControl": {
+    "hfEnergy": true,
+    "interiorLuma": false,
+    "interiorChroma": false,
+    "localContrast": true
+   },
+   "hfTileCorrelationToTarget": {
+    "control": {
+     "r": 0.3919,
+     "n": 112
+    },
+    "o5-clamped": {
+     "r": 0.5581,
+     "n": 112
+    },
+    "o5r-unclamped": {
+     "r": 0.5581,
+     "n": 112
+    }
+   },
+   "chromaTileCorrelationToTarget": {
+    "control": {
+     "r": 0.1284,
+     "n": 112
+    },
+    "o5-clamped": {
+     "r": 0.2456,
+     "n": 112
+    },
+    "o5r-unclamped": {
+     "r": 0.2456,
+     "n": 112
+    }
+   }
+  },
+  {
+   "vp": "844x390",
+   "asset": "detail-chart",
+   "status": "PASS",
+   "lanes": {
+    "target": {
+     "hfEnergy": 146.5131,
+     "interiorLuma": 129.587,
+     "interiorChroma": 19.477,
+     "localContrast": 107.7558
+    },
+    "control": {
+     "hfEnergy": 126.0135,
+     "interiorLuma": 144.41,
+     "interiorChroma": 0.003,
+     "localContrast": 95.1562
+    },
+    "o5-clamped": {
+     "hfEnergy": 148.5238,
+     "interiorLuma": 120.033,
+     "interiorChroma": 17.336,
+     "localContrast": 107.785
+    },
+    "o5r-unclamped": {
+     "hfEnergy": 148.5238,
+     "interiorLuma": 120.033,
+     "interiorChroma": 17.336,
+     "localContrast": 107.785
+    }
+   },
+   "distanceToTarget": {
+    "hfEnergy": {
+     "control": 20.4996,
+     "o5-clamped": 2.0107,
+     "o5r-unclamped": 2.0107
+    },
+    "interiorLuma": {
+     "control": 14.823,
+     "o5-clamped": 9.554,
+     "o5r-unclamped": 9.554
+    },
+    "interiorChroma": {
+     "control": 19.474,
+     "o5-clamped": 2.141,
+     "o5r-unclamped": 2.141
+    },
+    "localContrast": {
+     "control": 12.5996,
+     "o5-clamped": 0.0292,
+     "o5r-unclamped": 0.0292
+    }
+   },
+   "candidateCloserThanControl": {
+    "hfEnergy": true,
+    "interiorLuma": true,
+    "interiorChroma": true,
+    "localContrast": true
+   },
+   "hfTileCorrelationToTarget": {
+    "control": {
+     "r": 0.7415,
+     "n": 112
+    },
+    "o5-clamped": {
+     "r": 0.9732,
+     "n": 112
+    },
+    "o5r-unclamped": {
+     "r": 0.9732,
+     "n": 112
+    }
+   },
+   "chromaTileCorrelationToTarget": {
+    "control": {
+     "r": -0.0314,
+     "n": 112
+    },
+    "o5-clamped": {
+     "r": 0.9846,
+     "n": 112
+    },
+    "o5r-unclamped": {
+     "r": 0.9846,
+     "n": 112
+    }
+   }
+  },
+  {
+   "vp": "844x390",
+   "asset": "bw-split",
+   "status": "NOT_APPLICABLE",
+   "why": "Target interior HF energy 13.1054 is below the pre-registered signal floor 20.0; this asset has no interior structure to measure and a difference here would be noise",
+   "targetHfEnergy": 13.1054,
+   "floor": 20.0
+  },
+  {
+   "vp": "844x390",
+   "asset": "grayscale-step",
+   "status": "NOT_APPLICABLE",
+   "why": "Target interior HF energy 10.333 is below the pre-registered signal floor 20.0; this asset has no interior structure to measure and a difference here would be noise",
+   "targetHfEnergy": 10.333,
+   "floor": 20.0
+  },
+  {
+   "vp": "844x390",
+   "asset": "rgb-bars",
+   "status": "NOT_APPLICABLE",
+   "why": "Target interior HF energy 12.591 is below the pre-registered signal floor 20.0; this asset has no interior structure to measure and a difference here would be noise",
+   "targetHfEnergy": 12.591,
+   "floor": 20.0
+  },
+  {
+   "vp": "700x700",
+   "asset": "hf-checker",
+   "status": "PASS",
+   "lanes": {
+    "target": {
+     "hfEnergy": 345.434,
+     "interiorLuma": 149.471,
+     "interiorChroma": 76.538,
+     "localContrast": 85.3876
+    },
+    "control": {
+     "hfEnergy": 386.7764,
+     "interiorLuma": 140.314,
+     "interiorChroma": 0.137,
+     "localContrast": 89.7621
+    },
+    "o5-clamped": {
+     "hfEnergy": 359.0885,
+     "interiorLuma": 144.703,
+     "interiorChroma": 79.722,
+     "localContrast": 85.8242
+    },
+    "o5r-unclamped": {
+     "hfEnergy": 359.0885,
+     "interiorLuma": 144.703,
+     "interiorChroma": 79.722,
+     "localContrast": 85.8242
+    }
+   },
+   "distanceToTarget": {
+    "hfEnergy": {
+     "control": 41.3424,
+     "o5-clamped": 13.6545,
+     "o5r-unclamped": 13.6545
+    },
+    "interiorLuma": {
+     "control": 9.157,
+     "o5-clamped": 4.768,
+     "o5r-unclamped": 4.768
+    },
+    "interiorChroma": {
+     "control": 76.401,
+     "o5-clamped": 3.184,
+     "o5r-unclamped": 3.184
+    },
+    "localContrast": {
+     "control": 4.3745,
+     "o5-clamped": 0.4366,
+     "o5r-unclamped": 0.4366
+    }
+   },
+   "candidateCloserThanControl": {
+    "hfEnergy": true,
+    "interiorLuma": true,
+    "interiorChroma": true,
+    "localContrast": true
+   },
+   "hfTileCorrelationToTarget": {
+    "control": {
+     "r": 0.2259,
+     "n": 324
+    },
+    "o5-clamped": {
+     "r": 0.5524,
+     "n": 324
+    },
+    "o5r-unclamped": {
+     "r": 0.5524,
+     "n": 324
+    }
+   },
+   "chromaTileCorrelationToTarget": {
+    "control": {
+     "r": 0.2352,
+     "n": 324
+    },
+    "o5-clamped": {
+     "r": 0.7552,
+     "n": 324
+    },
+    "o5r-unclamped": {
+     "r": 0.7552,
+     "n": 324
+    }
+   }
+  },
+  {
+   "vp": "700x700",
+   "asset": "rgb-micro",
+   "status": "PASS",
+   "lanes": {
+    "target": {
+     "hfEnergy": 61.8915,
+     "interiorLuma": 101.82,
+     "interiorChroma": 174.263,
+     "localContrast": 75.2759
+    },
+    "control": {
+     "hfEnergy": 52.1307,
+     "interiorLuma": 96.087,
+     "interiorChroma": 189.357,
+     "localContrast": 69.0265
+    },
+    "o5-clamped": {
+     "hfEnergy": 56.8401,
+     "interiorLuma": 96.614,
+     "interiorChroma": 183.671,
+     "localContrast": 70.0703
+    },
+    "o5r-unclamped": {
+     "hfEnergy": 56.8401,
+     "interiorLuma": 96.614,
+     "interiorChroma": 183.671,
+     "localContrast": 70.0703
+    }
+   },
+   "distanceToTarget": {
+    "hfEnergy": {
+     "control": 9.7608,
+     "o5-clamped": 5.0514,
+     "o5r-unclamped": 5.0514
+    },
+    "interiorLuma": {
+     "control": 5.733,
+     "o5-clamped": 5.206,
+     "o5r-unclamped": 5.206
+    },
+    "interiorChroma": {
+     "control": 15.094,
+     "o5-clamped": 9.408,
+     "o5r-unclamped": 9.408
+    },
+    "localContrast": {
+     "control": 6.2494,
+     "o5-clamped": 5.2056,
+     "o5r-unclamped": 5.2056
+    }
+   },
+   "candidateCloserThanControl": {
+    "hfEnergy": true,
+    "interiorLuma": true,
+    "interiorChroma": true,
+    "localContrast": true
+   },
+   "hfTileCorrelationToTarget": {
+    "control": {
+     "r": 0.6347,
+     "n": 324
+    },
+    "o5-clamped": {
+     "r": 0.7369,
+     "n": 324
+    },
+    "o5r-unclamped": {
+     "r": 0.7369,
+     "n": 324
+    }
+   },
+   "chromaTileCorrelationToTarget": {
+    "control": {
+     "r": 0.2159,
+     "n": 324
+    },
+    "o5-clamped": {
+     "r": 0.3549,
+     "n": 324
+    },
+    "o5r-unclamped": {
+     "r": 0.3549,
+     "n": 324
+    }
+   }
+  },
+  {
+   "vp": "700x700",
+   "asset": "detail-chart",
+   "status": "PASS",
+   "lanes": {
+    "target": {
+     "hfEnergy": 194.2685,
+     "interiorLuma": 135.253,
+     "interiorChroma": 47.74,
+     "localContrast": 98.9808
+    },
+    "control": {
+     "hfEnergy": 203.2462,
+     "interiorLuma": 126.458,
+     "interiorChroma": 0.156,
+     "localContrast": 102.2697
+    },
+    "o5-clamped": {
+     "hfEnergy": 195.5059,
+     "interiorLuma": 129.344,
+     "interiorChroma": 47.091,
+     "localContrast": 100.2121
+    },
+    "o5r-unclamped": {
+     "hfEnergy": 195.5059,
+     "interiorLuma": 129.344,
+     "interiorChroma": 47.091,
+     "localContrast": 100.2121
+    }
+   },
+   "distanceToTarget": {
+    "hfEnergy": {
+     "control": 8.9777,
+     "o5-clamped": 1.2374,
+     "o5r-unclamped": 1.2374
+    },
+    "interiorLuma": {
+     "control": 8.795,
+     "o5-clamped": 5.909,
+     "o5r-unclamped": 5.909
+    },
+    "interiorChroma": {
+     "control": 47.584,
+     "o5-clamped": 0.649,
+     "o5r-unclamped": 0.649
+    },
+    "localContrast": {
+     "control": 3.2889,
+     "o5-clamped": 1.2313,
+     "o5r-unclamped": 1.2313
+    }
+   },
+   "candidateCloserThanControl": {
+    "hfEnergy": true,
+    "interiorLuma": true,
+    "interiorChroma": true,
+    "localContrast": true
+   },
+   "hfTileCorrelationToTarget": {
+    "control": {
+     "r": 0.893,
+     "n": 324
+    },
+    "o5-clamped": {
+     "r": 0.9778,
+     "n": 324
+    },
+    "o5r-unclamped": {
+     "r": 0.9778,
+     "n": 324
+    }
+   },
+   "chromaTileCorrelationToTarget": {
+    "control": {
+     "r": 0.2748,
+     "n": 324
+    },
+    "o5-clamped": {
+     "r": 0.9406,
+     "n": 324
+    },
+    "o5r-unclamped": {
+     "r": 0.9406,
+     "n": 324
+    }
+   }
+  },
+  {
+   "vp": "700x700",
+   "asset": "bw-split",
+   "status": "NOT_APPLICABLE",
+   "why": "Target interior HF energy 11.1 is below the pre-registered signal floor 20.0; this asset has no interior structure to measure and a difference here would be noise",
+   "targetHfEnergy": 11.1,
+   "floor": 20.0
+  },
+  {
+   "vp": "700x700",
+   "asset": "grayscale-step",
+   "status": "NOT_APPLICABLE",
+   "why": "Target interior HF energy 8.7509 is below the pre-registered signal floor 20.0; this asset has no interior structure to measure and a difference here would be noise",
+   "targetHfEnergy": 8.7509,
+   "floor": 20.0
+  },
+  {
+   "vp": "700x700",
+   "asset": "rgb-bars",
+   "status": "NOT_APPLICABLE",
+   "why": "Target interior HF energy 12.9916 is below the pre-registered signal floor 20.0; this asset has no interior structure to measure and a difference here would be noise",
+   "targetHfEnergy": 12.9916,
+   "floor": 20.0
+  }
+ ],
+ "status": "FAIL"
+}

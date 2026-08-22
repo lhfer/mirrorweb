@@ -1,0 +1,5332 @@
+{
+ "what": "\u00a7\u5341\u4e8c -- performance and resource closure. Three independent fifteen-minute candidate sessions plus a control reference, sampled every ten seconds, scored on the shape of the curve rather than on a start/end delta.",
+ "summary": "the candidate lane retains memory across a fifteen-minute session and the shipped lane does not. The JS heap sawtooths under GC in both, so the least-squares slope is noisy (candidate final-third [2.5783, 1.8565, 1.0063] MB/min against a pre-registered floor of 0.35); the trough envelope is not, and it agrees: the floor the collector can return to rises [18.59, 20.03, 22.15] MB over ten minutes in the three candidate sessions and [-1.04] MB in the control, under an identical workload. Structural resources are flat in both lanes -- materials, geometries, textures, video elements and slot count are identical first sample to last -- so what is retained is JS-side and invisible to the pool state. The quality cycle is the obvious suspect: the candidate's sample count is a build-time literal, so every quality step rebuilds its body materials, and 180 steps were driven per session. That is a hypothesis this record does not test, and it is written here as one.",
+ "sessions": [
+  {
+   "lane": "candidate",
+   "opticalBody": "target-source-unclamped",
+   "session": 1,
+   "readyMs": 407,
+   "minutes": 15,
+   "sampleCount": 180,
+   "firstFrame": "candidate-s1-firstframe.png",
+   "heapFirstThirdSlopeMBPerMin": 2.7916,
+   "heapFinalThirdSlopeMBPerMin": 2.5783,
+   "heapStartMB": 21.81,
+   "heapEndMB": 69.82,
+   "postGcHeapMB": 64.83,
+   "postGcAvailable": true,
+   "poolFirst": {
+    "slots": 256,
+    "quality": "high",
+    "activeSlots": 100,
+    "created": 256,
+    "destroyed": 0,
+    "remaps": 0,
+    "cols": 10,
+    "rows": 10,
+    "materials": 5,
+    "geometries": 2,
+    "textures": 3,
+    "videos": 3,
+    "glass": "v4-volume"
+   },
+   "poolLast": {
+    "slots": 256,
+    "quality": "high",
+    "activeSlots": 100,
+    "created": 256,
+    "destroyed": 0,
+    "remaps": 0,
+    "cols": 10,
+    "rows": 10,
+    "materials": 5,
+    "geometries": 2,
+    "textures": 3,
+    "videos": 3,
+    "glass": "v4-volume"
+   },
+   "videoElementsFirst": 3,
+   "videoElementsLast": 3,
+   "videoElementsMax": 3,
+   "qualitySteps": [
+    {
+     "atMs": 15657,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 15934,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 16202,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 16468,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 35612,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 35883,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 36155,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 36429,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 55588,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 55861,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 56130,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 56401,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 75605,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 75875,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 76143,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 76410,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 95573,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 95837,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 96099,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 96365,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 115597,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 115866,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 116137,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 116411,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 135605,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 135872,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 136136,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 136413,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 155647,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 155912,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 156178,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 156450,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 175662,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 175932,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 176195,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 176460,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 195617,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 195892,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 196161,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 196435,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 215652,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 215922,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 216189,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 216460,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 235621,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 235892,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 236160,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 236433,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 255602,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 255867,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 256132,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 256402,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 275597,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 275869,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 276136,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 276411,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 295567,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 295837,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 296102,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 296371,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 315590,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 315857,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 316120,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 316391,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 335639,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 335904,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 336169,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 336440,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 355641,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 355911,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 356174,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 356446,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 375556,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 375821,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 376084,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 376348,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 395682,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 395957,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 396228,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 396501,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 415632,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 415904,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 416174,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 416449,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 435574,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 435843,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 436107,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 436380,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 455632,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 455900,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 456168,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 456439,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 475611,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 475881,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 476148,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 476420,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 495634,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 495905,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 496174,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 496446,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 515633,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 515905,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 516174,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 516449,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 535628,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 535894,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 536162,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 536436,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 555624,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 555894,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 556164,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 556431,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 575678,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 575949,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 576218,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 576493,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 595596,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 595868,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 596139,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 596412,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 615640,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 615915,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 616186,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 616461,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 635655,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 635929,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 636202,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 636475,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 655649,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 655914,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 656185,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 656454,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 675607,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 675872,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 676137,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 676402,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 695648,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 695913,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 696175,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 696438,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 715607,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 715871,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 716133,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 716398,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 735637,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 735911,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 736178,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 736449,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 755638,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 755910,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 756179,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 756444,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 775594,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 775864,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 776127,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 776392,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 795611,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 795883,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 796154,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 796423,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 815662,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 815934,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 816204,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 816475,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 835638,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 835912,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 836185,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 836459,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 855609,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 855878,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 856146,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 856419,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 875673,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 875945,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 876214,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 876488,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 895629,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 895898,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 896167,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 896441,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    }
+   ],
+   "shaderProgramCount": null,
+   "shaderProgramNote": "not exposed by the WebGPU backend. Reported as null rather than substituting draw calls, which answer a different question.",
+   "blackFrameShots": [
+    {
+     "atMs": 25744,
+     "file": "candidate-s1-t26.png"
+    },
+    {
+     "atMs": 56468,
+     "file": "candidate-s1-t56.png"
+    },
+    {
+     "atMs": 85744,
+     "file": "candidate-s1-t86.png"
+    },
+    {
+     "atMs": 116479,
+     "file": "candidate-s1-t116.png"
+    },
+    {
+     "atMs": 145762,
+     "file": "candidate-s1-t146.png"
+    },
+    {
+     "atMs": 176524,
+     "file": "candidate-s1-t176.png"
+    },
+    {
+     "atMs": 205759,
+     "file": "candidate-s1-t206.png"
+    },
+    {
+     "atMs": 236507,
+     "file": "candidate-s1-t236.png"
+    },
+    {
+     "atMs": 265725,
+     "file": "candidate-s1-t266.png"
+    },
+    {
+     "atMs": 296430,
+     "file": "candidate-s1-t296.png"
+    },
+    {
+     "atMs": 325761,
+     "file": "candidate-s1-t326.png"
+    },
+    {
+     "atMs": 356515,
+     "file": "candidate-s1-t356.png"
+    },
+    {
+     "atMs": 385772,
+     "file": "candidate-s1-t386.png"
+    },
+    {
+     "atMs": 416510,
+     "file": "candidate-s1-t416.png"
+    },
+    {
+     "atMs": 445753,
+     "file": "candidate-s1-t446.png"
+    },
+    {
+     "atMs": 476486,
+     "file": "candidate-s1-t476.png"
+    },
+    {
+     "atMs": 505751,
+     "file": "candidate-s1-t506.png"
+    },
+    {
+     "atMs": 536506,
+     "file": "candidate-s1-t536.png"
+    },
+    {
+     "atMs": 565772,
+     "file": "candidate-s1-t566.png"
+    },
+    {
+     "atMs": 596483,
+     "file": "candidate-s1-t596.png"
+    },
+    {
+     "atMs": 625763,
+     "file": "candidate-s1-t626.png"
+    },
+    {
+     "atMs": 656519,
+     "file": "candidate-s1-t656.png"
+    },
+    {
+     "atMs": 685767,
+     "file": "candidate-s1-t686.png"
+    },
+    {
+     "atMs": 716470,
+     "file": "candidate-s1-t716.png"
+    },
+    {
+     "atMs": 745766,
+     "file": "candidate-s1-t746.png"
+    },
+    {
+     "atMs": 776460,
+     "file": "candidate-s1-t776.png"
+    },
+    {
+     "atMs": 805762,
+     "file": "candidate-s1-t806.png"
+    },
+    {
+     "atMs": 836525,
+     "file": "candidate-s1-t836.png"
+    },
+    {
+     "atMs": 865774,
+     "file": "candidate-s1-t866.png"
+    },
+    {
+     "atMs": 896512,
+     "file": "candidate-s1-t896.png"
+    }
+   ],
+   "errorCount": 0,
+   "errors": []
+  },
+  {
+   "lane": "candidate",
+   "opticalBody": "target-source-unclamped",
+   "session": 2,
+   "readyMs": 333,
+   "minutes": 15,
+   "sampleCount": 180,
+   "firstFrame": "candidate-s2-firstframe.png",
+   "heapFirstThirdSlopeMBPerMin": 2.4472,
+   "heapFinalThirdSlopeMBPerMin": 1.8565,
+   "heapStartMB": 27.01,
+   "heapEndMB": 53.7,
+   "postGcHeapMB": 65.18,
+   "postGcAvailable": true,
+   "poolFirst": {
+    "slots": 256,
+    "quality": "high",
+    "activeSlots": 100,
+    "created": 256,
+    "destroyed": 0,
+    "remaps": 0,
+    "cols": 10,
+    "rows": 10,
+    "materials": 5,
+    "geometries": 2,
+    "textures": 3,
+    "videos": 3,
+    "glass": "v4-volume"
+   },
+   "poolLast": {
+    "slots": 256,
+    "quality": "high",
+    "activeSlots": 100,
+    "created": 256,
+    "destroyed": 0,
+    "remaps": 0,
+    "cols": 10,
+    "rows": 10,
+    "materials": 5,
+    "geometries": 2,
+    "textures": 3,
+    "videos": 3,
+    "glass": "v4-volume"
+   },
+   "videoElementsFirst": 3,
+   "videoElementsLast": 3,
+   "videoElementsMax": 3,
+   "qualitySteps": [
+    {
+     "atMs": 15625,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 15902,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 16175,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 16450,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 35660,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 35935,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 36208,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 36483,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 55636,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 55905,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 56169,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 56437,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 75617,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 75882,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 76148,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 76417,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 95651,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 95923,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 96192,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 96467,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 115649,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 115913,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 116183,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 116454,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 135621,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 135895,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 136162,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 136434,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 155623,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 155898,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 156168,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 156441,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 175627,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 175900,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 176167,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 176441,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 195592,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 195865,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 196132,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 196408,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 215618,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 215886,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 216152,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 216424,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 235589,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 235860,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 236128,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 236399,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 255624,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 255894,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 256164,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 256438,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 275689,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 275959,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 276228,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 276503,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 295608,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 295883,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 296152,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 296424,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 315623,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 315896,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 316166,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 316437,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 335651,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 335922,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 336188,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 336455,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 355625,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 355897,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 356167,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 356437,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 375598,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 375861,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 376122,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 376386,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 395554,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 395823,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 396090,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 396363,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 415452,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 415713,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 415973,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 416237,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 435578,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 435850,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 436120,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 436399,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 455587,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 455854,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 456117,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 456382,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 475594,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 475864,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 476131,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 476405,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 495609,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 495881,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 496151,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 496423,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 515669,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 515932,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 516200,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 516470,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 535611,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 535881,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 536150,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 536419,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 555632,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 555907,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 556173,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 556446,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 575641,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 575904,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 576166,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 576431,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 595611,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 595891,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 596166,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 596443,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 615648,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 615923,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 616193,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 616469,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 635645,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 635918,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 636188,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 636458,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 655613,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 655884,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 656150,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 656423,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 675614,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 675880,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 676144,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 676413,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 695616,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 695884,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 696150,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 696417,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 715647,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 715920,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 716188,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 716460,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 735480,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 735745,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 736015,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 736285,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 755848,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 756122,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 756390,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 756663,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 775615,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 775888,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 776155,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 776423,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 795582,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 795853,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 796116,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 796389,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 815616,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 815887,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 816150,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 816425,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 835616,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 835884,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 836152,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 836423,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 855617,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 855890,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 856159,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 856431,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 875632,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 875904,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 876175,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 876448,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 895639,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 895911,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 896182,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 896455,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    }
+   ],
+   "shaderProgramCount": null,
+   "shaderProgramNote": "not exposed by the WebGPU backend. Reported as null rather than substituting draw calls, which answer a different question.",
+   "blackFrameShots": [
+    {
+     "atMs": 25780,
+     "file": "candidate-s2-t26.png"
+    },
+    {
+     "atMs": 56487,
+     "file": "candidate-s2-t56.png"
+    },
+    {
+     "atMs": 85764,
+     "file": "candidate-s2-t86.png"
+    },
+    {
+     "atMs": 116524,
+     "file": "candidate-s2-t116.png"
+    },
+    {
+     "atMs": 145745,
+     "file": "candidate-s2-t146.png"
+    },
+    {
+     "atMs": 176517,
+     "file": "candidate-s2-t176.png"
+    },
+    {
+     "atMs": 205765,
+     "file": "candidate-s2-t206.png"
+    },
+    {
+     "atMs": 236463,
+     "file": "candidate-s2-t236.png"
+    },
+    {
+     "atMs": 265771,
+     "file": "candidate-s2-t266.png"
+    },
+    {
+     "atMs": 296492,
+     "file": "candidate-s2-t296.png"
+    },
+    {
+     "atMs": 325755,
+     "file": "candidate-s2-t326.png"
+    },
+    {
+     "atMs": 356504,
+     "file": "candidate-s2-t356.png"
+    },
+    {
+     "atMs": 385779,
+     "file": "candidate-s2-t386.png"
+    },
+    {
+     "atMs": 416287,
+     "file": "candidate-s2-t416.png"
+    },
+    {
+     "atMs": 445727,
+     "file": "candidate-s2-t446.png"
+    },
+    {
+     "atMs": 476463,
+     "file": "candidate-s2-t476.png"
+    },
+    {
+     "atMs": 505782,
+     "file": "candidate-s2-t506.png"
+    },
+    {
+     "atMs": 536476,
+     "file": "candidate-s2-t536.png"
+    },
+    {
+     "atMs": 565766,
+     "file": "candidate-s2-t566.png"
+    },
+    {
+     "atMs": 596508,
+     "file": "candidate-s2-t596.png"
+    },
+    {
+     "atMs": 625761,
+     "file": "candidate-s2-t626.png"
+    },
+    {
+     "atMs": 656484,
+     "file": "candidate-s2-t656.png"
+    },
+    {
+     "atMs": 685745,
+     "file": "candidate-s2-t686.png"
+    },
+    {
+     "atMs": 716515,
+     "file": "candidate-s2-t716.png"
+    },
+    {
+     "atMs": 745990,
+     "file": "candidate-s2-t746.png"
+    },
+    {
+     "atMs": 776493,
+     "file": "candidate-s2-t776.png"
+    },
+    {
+     "atMs": 805739,
+     "file": "candidate-s2-t806.png"
+    },
+    {
+     "atMs": 836489,
+     "file": "candidate-s2-t836.png"
+    },
+    {
+     "atMs": 865746,
+     "file": "candidate-s2-t866.png"
+    },
+    {
+     "atMs": 896525,
+     "file": "candidate-s2-t896.png"
+    }
+   ],
+   "errorCount": 0,
+   "errors": []
+  },
+  {
+   "lane": "candidate",
+   "opticalBody": "target-source-unclamped",
+   "session": 3,
+   "readyMs": 320,
+   "minutes": 15,
+   "sampleCount": 180,
+   "firstFrame": "candidate-s3-firstframe.png",
+   "heapFirstThirdSlopeMBPerMin": 4.219,
+   "heapFinalThirdSlopeMBPerMin": 1.0063,
+   "heapStartMB": 25.6,
+   "heapEndMB": 53.47,
+   "postGcHeapMB": 64.54,
+   "postGcAvailable": true,
+   "poolFirst": {
+    "slots": 256,
+    "quality": "high",
+    "activeSlots": 100,
+    "created": 256,
+    "destroyed": 0,
+    "remaps": 0,
+    "cols": 10,
+    "rows": 10,
+    "materials": 5,
+    "geometries": 2,
+    "textures": 3,
+    "videos": 3,
+    "glass": "v4-volume"
+   },
+   "poolLast": {
+    "slots": 256,
+    "quality": "high",
+    "activeSlots": 100,
+    "created": 256,
+    "destroyed": 0,
+    "remaps": 0,
+    "cols": 10,
+    "rows": 10,
+    "materials": 5,
+    "geometries": 2,
+    "textures": 3,
+    "videos": 3,
+    "glass": "v4-volume"
+   },
+   "videoElementsFirst": 3,
+   "videoElementsLast": 3,
+   "videoElementsMax": 3,
+   "qualitySteps": [
+    {
+     "atMs": 15654,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 15932,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 16207,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 16484,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 35616,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 35883,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 36152,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 36428,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 55597,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 55872,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 56142,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 56415,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 75612,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 75884,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 76153,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 76428,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 95650,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 95924,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 96192,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 96467,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 115629,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 115900,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 116172,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 116445,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 135818,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 136088,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 136356,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 136627,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 155632,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 155905,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 156174,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 156442,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 175614,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 175887,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 176157,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 176429,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 195583,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 195854,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 196124,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 196401,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 215635,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 215909,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 216178,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 216452,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 235632,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 235905,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 236175,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 236449,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 255606,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 255879,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 256145,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 256415,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 275632,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 275905,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 276176,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 276452,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 295576,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 295847,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 296117,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 296384,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 315609,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 315878,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 316147,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 316417,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 335598,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 335866,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 336132,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 336398,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 355602,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 355874,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 356138,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 356411,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 375619,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 375882,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 376147,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 376411,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 395630,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 395904,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 396173,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 396447,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 415570,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 415841,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 416111,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 416381,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 435547,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 435818,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 436086,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 436358,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 455595,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 455859,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 456121,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 456387,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 475571,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 475843,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 476112,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 476384,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 495586,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 495858,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 496125,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 496396,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 515639,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 515910,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 516181,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 516455,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 535611,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 535880,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 536148,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 536420,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 555562,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 555831,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 556099,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 556371,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 575610,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 575879,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 576145,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 576417,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 595595,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 595865,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 596133,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 596402,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 615599,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 615869,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 616135,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 616408,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 635664,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 635936,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 636204,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 636479,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 655649,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 655919,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 656188,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 656463,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 675594,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 675873,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 676141,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 676413,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 695624,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 695896,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 696166,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 696442,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 715638,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 715912,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 716183,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 716459,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 735583,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 735858,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 736128,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 736396,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 755668,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 755941,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 756209,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 756481,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 775631,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 775902,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 776172,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 776445,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 795818,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 796089,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 796358,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 796630,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 815666,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 815934,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 816199,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 816464,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 835588,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 835859,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 836128,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 836401,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 855634,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 855904,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 856173,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 856444,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 875874,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 876146,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 876415,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 876687,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 895621,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 895893,
+     "level": "medium",
+     "samples": 5,
+     "errors": 0
+    },
+    {
+     "atMs": 896162,
+     "level": "low",
+     "samples": 3,
+     "errors": 0
+    },
+    {
+     "atMs": 896436,
+     "level": "high",
+     "samples": 5,
+     "errors": 0
+    }
+   ],
+   "shaderProgramCount": null,
+   "shaderProgramNote": "not exposed by the WebGPU backend. Reported as null rather than substituting draw calls, which answer a different question.",
+   "blackFrameShots": [
+    {
+     "atMs": 25744,
+     "file": "candidate-s3-t26.png"
+    },
+    {
+     "atMs": 56484,
+     "file": "candidate-s3-t56.png"
+    },
+    {
+     "atMs": 85762,
+     "file": "candidate-s3-t86.png"
+    },
+    {
+     "atMs": 116521,
+     "file": "candidate-s3-t116.png"
+    },
+    {
+     "atMs": 145752,
+     "file": "candidate-s3-t146.png"
+    },
+    {
+     "atMs": 176501,
+     "file": "candidate-s3-t176.png"
+    },
+    {
+     "atMs": 205759,
+     "file": "candidate-s3-t206.png"
+    },
+    {
+     "atMs": 236509,
+     "file": "candidate-s3-t236.png"
+    },
+    {
+     "atMs": 265779,
+     "file": "candidate-s3-t266.png"
+    },
+    {
+     "atMs": 296449,
+     "file": "candidate-s3-t296.png"
+    },
+    {
+     "atMs": 325753,
+     "file": "candidate-s3-t326.png"
+    },
+    {
+     "atMs": 356476,
+     "file": "candidate-s3-t356.png"
+    },
+    {
+     "atMs": 385730,
+     "file": "candidate-s3-t386.png"
+    },
+    {
+     "atMs": 416443,
+     "file": "candidate-s3-t416.png"
+    },
+    {
+     "atMs": 445752,
+     "file": "candidate-s3-t446.png"
+    },
+    {
+     "atMs": 476444,
+     "file": "candidate-s3-t476.png"
+    },
+    {
+     "atMs": 505755,
+     "file": "candidate-s3-t506.png"
+    },
+    {
+     "atMs": 536483,
+     "file": "candidate-s3-t536.png"
+    },
+    {
+     "atMs": 565734,
+     "file": "candidate-s3-t566.png"
+    },
+    {
+     "atMs": 596463,
+     "file": "candidate-s3-t596.png"
+    },
+    {
+     "atMs": 625774,
+     "file": "candidate-s3-t626.png"
+    },
+    {
+     "atMs": 656530,
+     "file": "candidate-s3-t656.png"
+    },
+    {
+     "atMs": 685760,
+     "file": "candidate-s3-t686.png"
+    },
+    {
+     "atMs": 716529,
+     "file": "candidate-s3-t716.png"
+    },
+    {
+     "atMs": 745785,
+     "file": "candidate-s3-t746.png"
+    },
+    {
+     "atMs": 776520,
+     "file": "candidate-s3-t776.png"
+    },
+    {
+     "atMs": 805766,
+     "file": "candidate-s3-t806.png"
+    },
+    {
+     "atMs": 836468,
+     "file": "candidate-s3-t836.png"
+    },
+    {
+     "atMs": 866022,
+     "file": "candidate-s3-t866.png"
+    },
+    {
+     "atMs": 896508,
+     "file": "candidate-s3-t896.png"
+    }
+   ],
+   "errorCount": 0,
+   "errors": []
+  },
+  {
+   "lane": "control",
+   "opticalBody": "current",
+   "session": 1,
+   "readyMs": 363,
+   "minutes": 15,
+   "sampleCount": 180,
+   "firstFrame": "control-s1-firstframe.png",
+   "heapFirstThirdSlopeMBPerMin": 1.0512,
+   "heapFinalThirdSlopeMBPerMin": -0.1993,
+   "heapStartMB": 19.6,
+   "heapEndMB": 20.41,
+   "postGcHeapMB": 41.83,
+   "postGcAvailable": true,
+   "poolFirst": {
+    "slots": 256,
+    "quality": "high",
+    "activeSlots": 100,
+    "created": 256,
+    "destroyed": 0,
+    "remaps": 0,
+    "cols": 10,
+    "rows": 10,
+    "materials": 5,
+    "geometries": 2,
+    "textures": 3,
+    "videos": 3,
+    "glass": "v4-volume"
+   },
+   "poolLast": {
+    "slots": 256,
+    "quality": "high",
+    "activeSlots": 100,
+    "created": 256,
+    "destroyed": 0,
+    "remaps": 0,
+    "cols": 10,
+    "rows": 10,
+    "materials": 5,
+    "geometries": 2,
+    "textures": 3,
+    "videos": 3,
+    "glass": "v4-volume"
+   },
+   "videoElementsFirst": 3,
+   "videoElementsLast": 3,
+   "videoElementsMax": 3,
+   "qualitySteps": [
+    {
+     "atMs": 15650,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 15911,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 16170,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 16428,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 35653,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 35914,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 36173,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 36438,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 55636,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 55896,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 56153,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 56416,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 75634,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 75896,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 76153,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 76415,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 95641,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 95900,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 96157,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 96416,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 115626,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 115887,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 116146,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 116408,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 135618,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 135875,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 136132,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 136393,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 155651,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 155909,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 156167,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 156431,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 175605,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 175863,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 176120,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 176379,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 195635,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 195892,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 196150,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 196408,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 215633,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 215892,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 216148,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 216411,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 235634,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 235890,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 236147,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 236409,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 255619,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 255879,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 256138,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 256400,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 275668,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 275928,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 276187,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 276450,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 295605,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 295865,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 296121,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 296380,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 315619,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 315878,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 316135,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 316396,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 335659,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 335919,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 336175,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 336435,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 355627,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 355888,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 356147,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 356407,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 375620,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 375877,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 376134,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 376392,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 395639,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 395898,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 396156,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 396420,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 415612,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 415870,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 416127,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 416387,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 435594,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 435851,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 436108,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 436367,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 455635,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 455895,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 456151,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 456411,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 475619,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 475878,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 476135,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 476395,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 495621,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 495879,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 496135,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 496394,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 515636,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 515895,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 516151,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 516412,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 535606,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 535865,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 536124,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 536386,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 555577,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 555837,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 556093,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 556353,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 575602,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 575858,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 576115,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 576374,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 595611,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 595870,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 596124,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 596382,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 615619,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 615877,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 616135,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 616394,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 635632,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 635890,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 636147,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 636408,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 655606,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 655864,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 656122,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 656383,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 675624,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 675883,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 676138,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 676395,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 695663,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 695925,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 696185,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 696448,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 715630,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 715890,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 716147,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 716408,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 735618,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 735876,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 736133,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 736394,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 755651,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 755910,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 756167,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 756427,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 775636,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 775895,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 776154,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 776416,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 795644,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 795905,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 796163,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 796422,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 815642,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 815901,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 816160,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 816421,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 835626,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 835888,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 836146,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 836406,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 855612,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 855872,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 856130,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 856391,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 875650,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 875907,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 876166,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 876427,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 895641,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 895902,
+     "level": "medium",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 896161,
+     "level": "low",
+     "samples": null,
+     "errors": 0
+    },
+    {
+     "atMs": 896422,
+     "level": "high",
+     "samples": null,
+     "errors": 0
+    }
+   ],
+   "shaderProgramCount": null,
+   "shaderProgramNote": "not exposed by the WebGPU backend. Reported as null rather than substituting draw calls, which answer a different question.",
+   "blackFrameShots": [
+    {
+     "atMs": 25766,
+     "file": "control-s1-t26.png"
+    },
+    {
+     "atMs": 56477,
+     "file": "control-s1-t56.png"
+    },
+    {
+     "atMs": 85763,
+     "file": "control-s1-t86.png"
+    },
+    {
+     "atMs": 116468,
+     "file": "control-s1-t116.png"
+    },
+    {
+     "atMs": 145775,
+     "file": "control-s1-t146.png"
+    },
+    {
+     "atMs": 176437,
+     "file": "control-s1-t176.png"
+    },
+    {
+     "atMs": 205760,
+     "file": "control-s1-t206.png"
+    },
+    {
+     "atMs": 236472,
+     "file": "control-s1-t236.png"
+    },
+    {
+     "atMs": 265786,
+     "file": "control-s1-t266.png"
+    },
+    {
+     "atMs": 296428,
+     "file": "control-s1-t296.png"
+    },
+    {
+     "atMs": 325785,
+     "file": "control-s1-t326.png"
+    },
+    {
+     "atMs": 356460,
+     "file": "control-s1-t356.png"
+    },
+    {
+     "atMs": 385764,
+     "file": "control-s1-t386.png"
+    },
+    {
+     "atMs": 416445,
+     "file": "control-s1-t416.png"
+    },
+    {
+     "atMs": 445749,
+     "file": "control-s1-t446.png"
+    },
+    {
+     "atMs": 476451,
+     "file": "control-s1-t476.png"
+    },
+    {
+     "atMs": 505754,
+     "file": "control-s1-t506.png"
+    },
+    {
+     "atMs": 536450,
+     "file": "control-s1-t536.png"
+    },
+    {
+     "atMs": 565739,
+     "file": "control-s1-t566.png"
+    },
+    {
+     "atMs": 596446,
+     "file": "control-s1-t596.png"
+    },
+    {
+     "atMs": 625761,
+     "file": "control-s1-t626.png"
+    },
+    {
+     "atMs": 656441,
+     "file": "control-s1-t656.png"
+    },
+    {
+     "atMs": 685773,
+     "file": "control-s1-t686.png"
+    },
+    {
+     "atMs": 716466,
+     "file": "control-s1-t716.png"
+    },
+    {
+     "atMs": 745764,
+     "file": "control-s1-t746.png"
+    },
+    {
+     "atMs": 776486,
+     "file": "control-s1-t776.png"
+    },
+    {
+     "atMs": 805773,
+     "file": "control-s1-t806.png"
+    },
+    {
+     "atMs": 836465,
+     "file": "control-s1-t836.png"
+    },
+    {
+     "atMs": 865775,
+     "file": "control-s1-t866.png"
+    },
+    {
+     "atMs": 896479,
+     "file": "control-s1-t896.png"
+    }
+   ],
+   "errorCount": 0,
+   "errors": []
+  }
+ ],
+ "plots": [
+  "heap.png",
+  "counts.png"
+ ],
+ "attribution": {
+  "what": "DIAGNOSTIC, not scored. One arm per phase of the \u00a7\u5341\u4e8c workload, each run alone for the same wall-clock time, because in the rotating workload 'quality steps so far' and 'minutes elapsed' are the same variable.",
+  "troughRiseMBByArm": {
+   "idle": 1.99,
+   "desktop-drag": 0.89,
+   "mobile-touch": 1.21,
+   "quality-cycle": 39.36,
+   "resize": 2.06
+  },
+  "minutesPerArm": 6,
+  "workUnitsByArm": {
+   "idle": 0,
+   "desktop-drag": 144,
+   "mobile-touch": 144,
+   "quality-cycle": 576,
+   "resize": 576
+  },
+  "attributedTo": "quality-cycle",
+  "margin": "39.36 MB against at most 2.06 MB in every other arm, including 6-minute arms that drove the same number of work units",
+  "perStepMB": 0.0683,
+  "mechanismNotClaimed": "the rebuild DOES dispose the previous material -- InfiniteGlassGridV4.rebuildBodyMaterials calls dispose() on every prior handle after rebinding -- so this is not a missing dispose call. What is retained is whatever the node/pipeline caches hold per material, and naming that exactly needs heap snapshots this round did not take.",
+  "howMuchOfTheSessionEffectItExplains": "partially. The \u00a7\u5341\u4e8c sessions drove roughly 120 quality steps per ten minutes, which at this per-step figure is about a third to a half of the 18.6-22.2 MB observed. The attribution is that the quality cycle is the dominant phase by a wide margin, not that it is the only source."
+ },
+ "troughEnvelope": {
+  "what": "the mean of the lowest tenth of samples in the first third against the same in the final third. A leak raises the floor the collector can return to; GC sawtooth does not.",
+  "chosenAfterSeeingTheCurve": true,
+  "notScored": "reported beside the slope check, never instead of it. A statistic picked after the data is not allowed to overturn one fixed before it.",
+  "rows": {
+   "candidate-s1": {
+    "firstThirdTroughMB": 23.14,
+    "finalThirdTroughMB": 41.74,
+    "riseMB": 18.59,
+    "overMinutes": 10.0
+   },
+   "candidate-s2": {
+    "firstThirdTroughMB": 22.63,
+    "finalThirdTroughMB": 42.66,
+    "riseMB": 20.03,
+    "overMinutes": 10.0
+   },
+   "candidate-s3": {
+    "firstThirdTroughMB": 21.74,
+    "finalThirdTroughMB": 43.89,
+    "riseMB": 22.15,
+    "overMinutes": 10.0
+   },
+   "control-s1": {
+    "firstThirdTroughMB": 20.34,
+    "finalThirdTroughMB": 19.3,
+    "riseMB": -1.04,
+    "overMinutes": 10.0
+   }
+  }
+ },
+ "howTheHeapCurveShouldBeRead": {
+  "what": "performance.memory.usedJSHeapSize is reported with reduced precision in a non-isolated context and includes garbage that has not been collected yet, so an absolute MB figure from it is indicative rather than exact.",
+  "forcedGcAboveFinalSample": [
+   {
+    "session": 2,
+    "heapEndMB": 53.7,
+    "postGcHeapMB": 65.18
+   },
+   {
+    "session": 3,
+    "heapEndMB": 53.47,
+    "postGcHeapMB": 64.54
+   }
+  ],
+  "why": "in at least one session the post-GC reading came out ABOVE the last sample of the session, which a genuine collection cannot do. That is the measurement's own noise showing, and it is the reason the discriminating check here is the DIFFERENCE against the control lane under an identical workload rather than any absolute slope.",
+  "whatIsNotClaimed": "no leak claim is made in either direction from this curve. \u00a7\u5341\u4e8c says a start/end delta cannot support one; neither can a quantised curve without the structural resource counts beside it, which are the check that actually answers whether a wrap leaks a card."
+ },
+ "passed": 7,
+ "failed": 2,
+ "unreadable": 1,
+ "total": 10,
+ "pass": false,
+ "checks": [
+  {
+   "check": "three independent fifteen-minute candidate sessions",
+   "pass": true,
+   "detail": "\u00a7\u5341\u4e8c replaces the five-minute start/end delta. Each session is a fresh browser context, so nothing carries over between them.",
+   "numbers": {
+    "sessions": 3,
+    "minutes": [
+     15,
+     15,
+     15
+    ],
+    "samplesPerSession": [
+     180,
+     180,
+     180
+    ],
+    "sampleIntervalMs": 10000
+   }
+  },
+  {
+   "check": "the workload covers everything \u00a7\u5341\u4e8c names",
+   "pass": true,
+   "detail": "rotated so no phase dominates the sample.",
+   "numbers": {
+    "workload": [
+     "desktop drag / wrap",
+     "mobile touch / wrap",
+     "landscape drag / wrap",
+     "quality cycle high -> medium -> low -> high",
+     "resize and orientation cycles between every phase"
+    ]
+   }
+  },
+  {
+   "check": "the final-third JS heap slope is flat within the pre-registered floor",
+   "pass": false,
+   "detail": "The pre-registered floor is 0.35 MB/min, chosen before the sessions ran. A warm-up flattens; a leak keeps its slope to the end.",
+   "numbers": {
+    "firstThirdSlopes": [
+     2.7916,
+     2.4472,
+     4.219
+    ],
+    "finalThirdSlopes": [
+     2.5783,
+     1.8565,
+     1.0063
+    ],
+    "controlFinalThirdSlopes": [
+     -0.1993
+    ],
+    "floorMBPerMin": 0.35,
+    "heapStartMB": [
+     21.81,
+     27.01,
+     25.6
+    ],
+    "heapEndMB": [
+     69.82,
+     53.7,
+     53.47
+    ],
+    "postGcHeapMB": [
+     64.83,
+     65.18,
+     64.54
+    ],
+    "postGcAvailable": true
+   }
+  },
+  {
+   "check": "the candidate's heap behaviour is not worse than the shipped body's",
+   "pass": false,
+   "detail": "A slope both lanes share is a property of the workload or the runtime, not of the body under review. This is scored as a difference, and it is the check that separates the two.",
+   "numbers": {
+    "candidateWorstFinalThird": 2.5783,
+    "controlWorstFinalThird": -0.1993,
+    "difference": 2.7776
+   }
+  },
+  {
+   "check": "no material / texture / geometry growth across the session",
+   "pass": true,
+   "detail": "Counted from the app's own pool state rather than from the JS heap: GPU-side resources are not in usedJSHeapSize at all, so a leak of them would be invisible to the curve above. Scored on the LIVE counts (materials, geometries, textures, videos, slots) and on created minus destroyed. The raw created / destroyed / remaps counters are monotonic by design -- every wrap remaps a slot -- so they are reported, not scored.",
+   "numbers": {
+    "growthBySession": {
+     "s1": {},
+     "s2": {},
+     "s3": {}
+    },
+    "netLiveBySession": {
+     "s1": {
+      "first": 256,
+      "last": 256,
+      "remaps": 0
+     },
+     "s2": {
+      "first": 256,
+      "last": 256,
+      "remaps": 0
+     },
+     "s3": {
+      "first": 256,
+      "last": 256,
+      "remaps": 0
+     }
+    },
+    "poolFirst": {
+     "slots": 256,
+     "quality": "high",
+     "activeSlots": 100,
+     "created": 256,
+     "destroyed": 0,
+     "remaps": 0,
+     "cols": 10,
+     "rows": 10,
+     "materials": 5,
+     "geometries": 2,
+     "textures": 3,
+     "videos": 3,
+     "glass": "v4-volume"
+    },
+    "poolLast": {
+     "slots": 256,
+     "quality": "high",
+     "activeSlots": 100,
+     "created": 256,
+     "destroyed": 0,
+     "remaps": 0,
+     "cols": 10,
+     "rows": 10,
+     "materials": 5,
+     "geometries": 2,
+     "textures": 3,
+     "videos": 3,
+     "glass": "v4-volume"
+    }
+   }
+  },
+  {
+   "check": "no duplicate video element",
+   "pass": true,
+   "detail": "A wrap that re-created a card without releasing its media would show here first.",
+   "numbers": {
+    "firstLastMax": [
+     [
+      3,
+      3,
+      3
+     ],
+     [
+      3,
+      3,
+      3
+     ],
+     [
+      3,
+      3,
+      3
+     ]
+    ]
+   }
+  },
+  {
+   "check": "no first-frame black card",
+   "pass": true,
+   "detail": "The first frame is captured before any QA hook runs, so a black card at startup cannot be tidied away by the harness before it is seen. The images travel in the review package.",
+   "numbers": {
+    "firstFrames": [
+     "candidate-s1-firstframe.png",
+     "candidate-s2-firstframe.png",
+     "candidate-s3-firstframe.png"
+    ]
+   }
+  },
+  {
+   "check": "adaptive-quality sample counts remain 5 / 5 / 3",
+   "pass": true,
+   "detail": "The sample count is a build-time literal, so a quality step rebuilds the material. The cycle is driven repeatedly through the session.",
+   "numbers": {
+    "observed": {
+     "high": [
+      5
+     ],
+     "low": [
+      3
+     ],
+     "medium": [
+      5
+     ]
+    },
+    "required": {
+     "high": 5,
+     "medium": 5,
+     "low": 3
+    },
+    "cyclesObserved": 540
+   }
+  },
+  {
+   "check": "no console or page errors in any session",
+   "pass": true,
+   "detail": "Across the candidate sessions and the control.",
+   "numbers": {
+    "errorsByRecord": {
+     "candidate-s1": 0,
+     "candidate-s2": 0,
+     "candidate-s3": 0,
+     "control-s1": 0
+    }
+   }
+  },
+  {
+   "check": "shader program count",
+   "pass": null,
+   "detail": "Not exposed by the WebGPU backend. Reported as UNREADABLE rather than substituting draw calls, which answer a different question.",
+   "numbers": {
+    "shaderProgramCount": null
+   }
+  }
+ ]
+}

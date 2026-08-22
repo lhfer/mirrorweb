@@ -1,0 +1,594 @@
+{
+ "what": "\u00a7\u4e94 feature-local saturated edge.",
+ "rows": [
+  {
+   "vp": "1440x900",
+   "asset": "rgb-bars",
+   "status": "FAIL",
+   "lanes": {
+    "target": {
+     "chromaAtFeatures": 119.2163,
+     "chromaAwayFromFeatures": 123.6629,
+     "broadRimColouredFraction": 0.52271,
+     "fringeLocalisation": 0.964,
+     "featurePixels": 70949,
+     "nonFeaturePixels": 586042
+    },
+    "control": {
+     "chromaAtFeatures": 90.1923,
+     "chromaAwayFromFeatures": 131.7076,
+     "broadRimColouredFraction": 0.556969,
+     "fringeLocalisation": 0.6848,
+     "featurePixels": 49266,
+     "nonFeaturePixels": 607725
+    },
+    "o5-clamped": {
+     "chromaAtFeatures": 129.3588,
+     "chromaAwayFromFeatures": 133.3225,
+     "broadRimColouredFraction": 0.568326,
+     "fringeLocalisation": 0.9703,
+     "featurePixels": 44279,
+     "nonFeaturePixels": 612712
+    },
+    "o5r-unclamped": {
+     "chromaAtFeatures": 129.0735,
+     "chromaAwayFromFeatures": 133.3375,
+     "broadRimColouredFraction": 0.568315,
+     "fringeLocalisation": 0.968,
+     "featurePixels": 44382,
+     "nonFeaturePixels": 612609
+    }
+   },
+   "windows": {
+    "chromaAtFeatures": 3.0,
+    "chromaAwayFromFeatures": 3.0,
+    "broadRimColouredFraction": 0.004
+   },
+   "within": {
+    "chromaAtFeatures": false,
+    "chromaAwayFromFeatures": false,
+    "broadRimColouredFraction": false
+   }
+  },
+  {
+   "vp": "1440x900",
+   "asset": "cool-blue",
+   "status": "FAIL",
+   "lanes": {
+    "target": {
+     "chromaAtFeatures": 83.2231,
+     "chromaAwayFromFeatures": 117.2156,
+     "broadRimColouredFraction": 0.801394,
+     "fringeLocalisation": 0.71,
+     "featurePixels": 69408,
+     "nonFeaturePixels": 587583
+    },
+    "control": {
+     "chromaAtFeatures": 52.8894,
+     "chromaAwayFromFeatures": 117.0759,
+     "broadRimColouredFraction": 0.83712,
+     "fringeLocalisation": 0.4518,
+     "featurePixels": 34989,
+     "nonFeaturePixels": 622002
+    },
+    "o5-clamped": {
+     "chromaAtFeatures": 85.5492,
+     "chromaAwayFromFeatures": 122.4906,
+     "broadRimColouredFraction": 0.848392,
+     "fringeLocalisation": 0.6984,
+     "featurePixels": 40294,
+     "nonFeaturePixels": 616697
+    },
+    "o5r-unclamped": {
+     "chromaAtFeatures": 85.3759,
+     "chromaAwayFromFeatures": 122.5084,
+     "broadRimColouredFraction": 0.84839,
+     "fringeLocalisation": 0.6969,
+     "featurePixels": 40383,
+     "nonFeaturePixels": 616608
+    }
+   },
+   "windows": {
+    "chromaAtFeatures": 3.0,
+    "chromaAwayFromFeatures": 3.0,
+    "broadRimColouredFraction": 0.004
+   },
+   "within": {
+    "chromaAtFeatures": true,
+    "chromaAwayFromFeatures": false,
+    "broadRimColouredFraction": false
+   }
+  },
+  {
+   "vp": "1440x900",
+   "asset": "warm-skin",
+   "status": "FAIL",
+   "lanes": {
+    "target": {
+     "chromaAtFeatures": 32.6235,
+     "chromaAwayFromFeatures": 50.2108,
+     "broadRimColouredFraction": 0.855917,
+     "fringeLocalisation": 0.6497,
+     "featurePixels": 39912,
+     "nonFeaturePixels": 617079
+    },
+    "control": {
+     "chromaAtFeatures": 27.157,
+     "chromaAwayFromFeatures": 50.3024,
+     "broadRimColouredFraction": 0.847862,
+     "fringeLocalisation": 0.5399,
+     "featurePixels": 31030,
+     "nonFeaturePixels": 625961
+    },
+    "o5-clamped": {
+     "chromaAtFeatures": 30.2562,
+     "chromaAwayFromFeatures": 51.2612,
+     "broadRimColouredFraction": 0.901893,
+     "fringeLocalisation": 0.5902,
+     "featurePixels": 14342,
+     "nonFeaturePixels": 642649
+    },
+    "o5r-unclamped": {
+     "chromaAtFeatures": 30.1823,
+     "chromaAwayFromFeatures": 51.2599,
+     "broadRimColouredFraction": 0.901891,
+     "fringeLocalisation": 0.5888,
+     "featurePixels": 14376,
+     "nonFeaturePixels": 642615
+    }
+   },
+   "windows": {
+    "chromaAtFeatures": 3.0,
+    "chromaAwayFromFeatures": 3.0,
+    "broadRimColouredFraction": 0.004
+   },
+   "within": {
+    "chromaAtFeatures": true,
+    "chromaAwayFromFeatures": true,
+    "broadRimColouredFraction": false
+   }
+  },
+  {
+   "vp": "390x844",
+   "asset": "rgb-bars",
+   "status": "FAIL",
+   "lanes": {
+    "target": {
+     "chromaAtFeatures": 100.2785,
+     "chromaAwayFromFeatures": 118.1437,
+     "broadRimColouredFraction": 0.498836,
+     "fringeLocalisation": 0.8488,
+     "featurePixels": 19616,
+     "nonFeaturePixels": 90631
+    },
+    "control": {
+     "chromaAtFeatures": 108.736,
+     "chromaAwayFromFeatures": 128.6458,
+     "broadRimColouredFraction": 0.504717,
+     "fringeLocalisation": 0.8452,
+     "featurePixels": 19307,
+     "nonFeaturePixels": 90940
+    },
+    "o5-clamped": {
+     "chromaAtFeatures": 121.9466,
+     "chromaAwayFromFeatures": 131.4318,
+     "broadRimColouredFraction": 0.557324,
+     "fringeLocalisation": 0.9278,
+     "featurePixels": 13616,
+     "nonFeaturePixels": 96631
+    },
+    "o5r-unclamped": {
+     "chromaAtFeatures": 121.5754,
+     "chromaAwayFromFeatures": 131.4733,
+     "broadRimColouredFraction": 0.557324,
+     "fringeLocalisation": 0.9247,
+     "featurePixels": 13654,
+     "nonFeaturePixels": 96593
+    }
+   },
+   "windows": {
+    "chromaAtFeatures": 3.0,
+    "chromaAwayFromFeatures": 3.0,
+    "broadRimColouredFraction": 0.004
+   },
+   "within": {
+    "chromaAtFeatures": false,
+    "chromaAwayFromFeatures": false,
+    "broadRimColouredFraction": false
+   }
+  },
+  {
+   "vp": "390x844",
+   "asset": "cool-blue",
+   "status": "FAIL",
+   "lanes": {
+    "target": {
+     "chromaAtFeatures": 70.7915,
+     "chromaAwayFromFeatures": 112.9482,
+     "broadRimColouredFraction": 0.751975,
+     "fringeLocalisation": 0.6268,
+     "featurePixels": 19212,
+     "nonFeaturePixels": 91035
+    },
+    "control": {
+     "chromaAtFeatures": 60.7419,
+     "chromaAwayFromFeatures": 116.7112,
+     "broadRimColouredFraction": 0.815525,
+     "fringeLocalisation": 0.5204,
+     "featurePixels": 12516,
+     "nonFeaturePixels": 97731
+    },
+    "o5-clamped": {
+     "chromaAtFeatures": 82.313,
+     "chromaAwayFromFeatures": 121.5205,
+     "broadRimColouredFraction": 0.822434,
+     "fringeLocalisation": 0.6774,
+     "featurePixels": 12172,
+     "nonFeaturePixels": 98075
+    },
+    "o5r-unclamped": {
+     "chromaAtFeatures": 82.0917,
+     "chromaAwayFromFeatures": 121.559,
+     "broadRimColouredFraction": 0.822434,
+     "fringeLocalisation": 0.6753,
+     "featurePixels": 12205,
+     "nonFeaturePixels": 98042
+    }
+   },
+   "windows": {
+    "chromaAtFeatures": 3.0,
+    "chromaAwayFromFeatures": 3.0,
+    "broadRimColouredFraction": 0.004
+   },
+   "within": {
+    "chromaAtFeatures": false,
+    "chromaAwayFromFeatures": false,
+    "broadRimColouredFraction": false
+   }
+  },
+  {
+   "vp": "390x844",
+   "asset": "warm-skin",
+   "status": "FAIL",
+   "lanes": {
+    "target": {
+     "chromaAtFeatures": 27.8234,
+     "chromaAwayFromFeatures": 48.0449,
+     "broadRimColouredFraction": 0.800271,
+     "fringeLocalisation": 0.5791,
+     "featurePixels": 12581,
+     "nonFeaturePixels": 97666
+    },
+    "control": {
+     "chromaAtFeatures": 27.9889,
+     "chromaAwayFromFeatures": 49.7408,
+     "broadRimColouredFraction": 0.841392,
+     "fringeLocalisation": 0.5627,
+     "featurePixels": 9069,
+     "nonFeaturePixels": 101178
+    },
+    "o5-clamped": {
+     "chromaAtFeatures": 31.3686,
+     "chromaAwayFromFeatures": 50.5628,
+     "broadRimColouredFraction": 0.882798,
+     "fringeLocalisation": 0.6204,
+     "featurePixels": 6615,
+     "nonFeaturePixels": 103632
+    },
+    "o5r-unclamped": {
+     "chromaAtFeatures": 31.2343,
+     "chromaAwayFromFeatures": 50.5703,
+     "broadRimColouredFraction": 0.882798,
+     "fringeLocalisation": 0.6176,
+     "featurePixels": 6639,
+     "nonFeaturePixels": 103608
+    }
+   },
+   "windows": {
+    "chromaAtFeatures": 3.0,
+    "chromaAwayFromFeatures": 3.0,
+    "broadRimColouredFraction": 0.004
+   },
+   "within": {
+    "chromaAtFeatures": false,
+    "chromaAwayFromFeatures": true,
+    "broadRimColouredFraction": false
+   }
+  },
+  {
+   "vp": "844x390",
+   "asset": "rgb-bars",
+   "status": "FAIL",
+   "lanes": {
+    "target": {
+     "chromaAtFeatures": 118.5058,
+     "chromaAwayFromFeatures": 128.4489,
+     "broadRimColouredFraction": 0.538078,
+     "fringeLocalisation": 0.9226,
+     "featurePixels": 9554,
+     "nonFeaturePixels": 51493
+    },
+    "control": {
+     "chromaAtFeatures": 112.5745,
+     "chromaAwayFromFeatures": 134.511,
+     "broadRimColouredFraction": 0.573271,
+     "fringeLocalisation": 0.8369,
+     "featurePixels": 8158,
+     "nonFeaturePixels": 52889
+    },
+    "o5-clamped": {
+     "chromaAtFeatures": 123.6503,
+     "chromaAwayFromFeatures": 136.28,
+     "broadRimColouredFraction": 0.612005,
+     "fringeLocalisation": 0.9073,
+     "featurePixels": 5216,
+     "nonFeaturePixels": 55831
+    },
+    "o5r-unclamped": {
+     "chromaAtFeatures": 123.1451,
+     "chromaAwayFromFeatures": 136.3226,
+     "broadRimColouredFraction": 0.612005,
+     "fringeLocalisation": 0.9033,
+     "featurePixels": 5238,
+     "nonFeaturePixels": 55809
+    }
+   },
+   "windows": {
+    "chromaAtFeatures": 3.0,
+    "chromaAwayFromFeatures": 3.0,
+    "broadRimColouredFraction": 0.004
+   },
+   "within": {
+    "chromaAtFeatures": false,
+    "chromaAwayFromFeatures": false,
+    "broadRimColouredFraction": false
+   }
+  },
+  {
+   "vp": "844x390",
+   "asset": "cool-blue",
+   "status": "FAIL",
+   "lanes": {
+    "target": {
+     "chromaAtFeatures": 80.7928,
+     "chromaAwayFromFeatures": 125.1059,
+     "broadRimColouredFraction": 0.817413,
+     "fringeLocalisation": 0.6458,
+     "featurePixels": 9052,
+     "nonFeaturePixels": 51995
+    },
+    "control": {
+     "chromaAtFeatures": 52.4002,
+     "chromaAwayFromFeatures": 123.1342,
+     "broadRimColouredFraction": 0.897547,
+     "fringeLocalisation": 0.4256,
+     "featurePixels": 3911,
+     "nonFeaturePixels": 57136
+    },
+    "o5-clamped": {
+     "chromaAtFeatures": 79.5871,
+     "chromaAwayFromFeatures": 127.4417,
+     "broadRimColouredFraction": 0.896542,
+     "fringeLocalisation": 0.6245,
+     "featurePixels": 4352,
+     "nonFeaturePixels": 56695
+    },
+    "o5r-unclamped": {
+     "chromaAtFeatures": 79.2631,
+     "chromaAwayFromFeatures": 127.4841,
+     "broadRimColouredFraction": 0.896542,
+     "fringeLocalisation": 0.6217,
+     "featurePixels": 4371,
+     "nonFeaturePixels": 56676
+    }
+   },
+   "windows": {
+    "chromaAtFeatures": 3.0,
+    "chromaAwayFromFeatures": 3.0,
+    "broadRimColouredFraction": 0.004
+   },
+   "within": {
+    "chromaAtFeatures": true,
+    "chromaAwayFromFeatures": true,
+    "broadRimColouredFraction": false
+   }
+  },
+  {
+   "vp": "844x390",
+   "asset": "warm-skin",
+   "status": "FAIL",
+   "lanes": {
+    "target": {
+     "chromaAtFeatures": 31.2922,
+     "chromaAwayFromFeatures": 52.1823,
+     "broadRimColouredFraction": 0.869043,
+     "fringeLocalisation": 0.5997,
+     "featurePixels": 5596,
+     "nonFeaturePixels": 55451
+    },
+    "control": {
+     "chromaAtFeatures": 26.9558,
+     "chromaAwayFromFeatures": 51.5766,
+     "broadRimColouredFraction": 0.905526,
+     "fringeLocalisation": 0.5226,
+     "featurePixels": 3351,
+     "nonFeaturePixels": 57696
+    },
+    "o5-clamped": {
+     "chromaAtFeatures": 29.2267,
+     "chromaAwayFromFeatures": 52.0462,
+     "broadRimColouredFraction": 0.938883,
+     "fringeLocalisation": 0.5616,
+     "featurePixels": 1941,
+     "nonFeaturePixels": 59106
+    },
+    "o5r-unclamped": {
+     "chromaAtFeatures": 29.0538,
+     "chromaAwayFromFeatures": 52.0504,
+     "broadRimColouredFraction": 0.938883,
+     "fringeLocalisation": 0.5582,
+     "featurePixels": 1953,
+     "nonFeaturePixels": 59094
+    }
+   },
+   "windows": {
+    "chromaAtFeatures": 3.0,
+    "chromaAwayFromFeatures": 3.0,
+    "broadRimColouredFraction": 0.004
+   },
+   "within": {
+    "chromaAtFeatures": true,
+    "chromaAwayFromFeatures": true,
+    "broadRimColouredFraction": false
+   }
+  },
+  {
+   "vp": "700x700",
+   "asset": "rgb-bars",
+   "status": "FAIL",
+   "lanes": {
+    "target": {
+     "chromaAtFeatures": 123.3835,
+     "chromaAwayFromFeatures": 126.4254,
+     "broadRimColouredFraction": 0.479702,
+     "fringeLocalisation": 0.9759,
+     "featurePixels": 28505,
+     "nonFeaturePixels": 126787
+    },
+    "control": {
+     "chromaAtFeatures": 101.8281,
+     "chromaAwayFromFeatures": 132.7567,
+     "broadRimColouredFraction": 0.484121,
+     "fringeLocalisation": 0.767,
+     "featurePixels": 24969,
+     "nonFeaturePixels": 130323
+    },
+    "o5-clamped": {
+     "chromaAtFeatures": 128.1949,
+     "chromaAwayFromFeatures": 133.9566,
+     "broadRimColouredFraction": 0.525315,
+     "fringeLocalisation": 0.957,
+     "featurePixels": 17710,
+     "nonFeaturePixels": 137582
+    },
+    "o5r-unclamped": {
+     "chromaAtFeatures": 127.9526,
+     "chromaAwayFromFeatures": 133.9831,
+     "broadRimColouredFraction": 0.525306,
+     "fringeLocalisation": 0.955,
+     "featurePixels": 17744,
+     "nonFeaturePixels": 137548
+    }
+   },
+   "windows": {
+    "chromaAtFeatures": 3.0,
+    "chromaAwayFromFeatures": 3.0,
+    "broadRimColouredFraction": 0.004
+   },
+   "within": {
+    "chromaAtFeatures": false,
+    "chromaAwayFromFeatures": false,
+    "broadRimColouredFraction": false
+   }
+  },
+  {
+   "vp": "700x700",
+   "asset": "cool-blue",
+   "status": "FAIL",
+   "lanes": {
+    "target": {
+     "chromaAtFeatures": 87.093,
+     "chromaAwayFromFeatures": 121.6743,
+     "broadRimColouredFraction": 0.749573,
+     "fringeLocalisation": 0.7158,
+     "featurePixels": 27934,
+     "nonFeaturePixels": 127358
+    },
+    "control": {
+     "chromaAtFeatures": 56.4859,
+     "chromaAwayFromFeatures": 120.0552,
+     "broadRimColouredFraction": 0.787401,
+     "fringeLocalisation": 0.4705,
+     "featurePixels": 17622,
+     "nonFeaturePixels": 137670
+    },
+    "o5-clamped": {
+     "chromaAtFeatures": 87.8056,
+     "chromaAwayFromFeatures": 123.4751,
+     "broadRimColouredFraction": 0.80205,
+     "fringeLocalisation": 0.7111,
+     "featurePixels": 15724,
+     "nonFeaturePixels": 139568
+    },
+    "o5r-unclamped": {
+     "chromaAtFeatures": 87.5411,
+     "chromaAwayFromFeatures": 123.5203,
+     "broadRimColouredFraction": 0.80204,
+     "fringeLocalisation": 0.7087,
+     "featurePixels": 15776,
+     "nonFeaturePixels": 139516
+    }
+   },
+   "windows": {
+    "chromaAtFeatures": 3.0,
+    "chromaAwayFromFeatures": 3.0,
+    "broadRimColouredFraction": 0.004
+   },
+   "within": {
+    "chromaAtFeatures": true,
+    "chromaAwayFromFeatures": true,
+    "broadRimColouredFraction": false
+   }
+  },
+  {
+   "vp": "700x700",
+   "asset": "warm-skin",
+   "status": "FAIL",
+   "lanes": {
+    "target": {
+     "chromaAtFeatures": 34.8635,
+     "chromaAwayFromFeatures": 52.2788,
+     "broadRimColouredFraction": 0.833112,
+     "fringeLocalisation": 0.6669,
+     "featurePixels": 17996,
+     "nonFeaturePixels": 137296
+    },
+    "control": {
+     "chromaAtFeatures": 25.9423,
+     "chromaAwayFromFeatures": 51.0753,
+     "broadRimColouredFraction": 0.829665,
+     "fringeLocalisation": 0.5079,
+     "featurePixels": 13029,
+     "nonFeaturePixels": 142263
+    },
+    "o5-clamped": {
+     "chromaAtFeatures": 34.1594,
+     "chromaAwayFromFeatures": 51.6138,
+     "broadRimColouredFraction": 0.874314,
+     "fringeLocalisation": 0.6618,
+     "featurePixels": 8007,
+     "nonFeaturePixels": 147285
+    },
+    "o5r-unclamped": {
+     "chromaAtFeatures": 34.0005,
+     "chromaAwayFromFeatures": 51.6236,
+     "broadRimColouredFraction": 0.874314,
+     "fringeLocalisation": 0.6586,
+     "featurePixels": 8043,
+     "nonFeaturePixels": 147249
+    }
+   },
+   "windows": {
+    "chromaAtFeatures": 3.0,
+    "chromaAwayFromFeatures": 3.0,
+    "broadRimColouredFraction": 0.004
+   },
+   "within": {
+    "chromaAtFeatures": true,
+    "chromaAwayFromFeatures": true,
+    "broadRimColouredFraction": false
+   }
+  }
+ ],
+ "status": "FAIL"
+}

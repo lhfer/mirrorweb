@@ -1,0 +1,74 @@
+{
+ "what": "Carried from O5 unchanged.",
+ "rows": [
+  {
+   "vp": "1440x900",
+   "status": "PASS",
+   "target": 48.15,
+   "control": 95.19,
+   "o5-clamped": 48.61,
+   "o5r-unclamped": 48.74,
+   "targetRuns": [
+    48.15,
+    48.15,
+    48.15
+   ],
+   "repeatability": 0.0,
+   "window": 6.0,
+   "candidateDelta": 0.59,
+   "movedTowardTarget": true
+  },
+  {
+   "vp": "390x844",
+   "status": "FAIL",
+   "target": 51.28,
+   "control": 78.94,
+   "o5-clamped": 58.46,
+   "o5r-unclamped": 58.57,
+   "targetRuns": [
+    51.28,
+    51.28,
+    51.28
+   ],
+   "repeatability": 0.0,
+   "window": 6.0,
+   "candidateDelta": 7.29,
+   "movedTowardTarget": true
+  },
+  {
+   "vp": "844x390",
+   "status": "PASS",
+   "target": 86.19,
+   "control": 94.43,
+   "o5-clamped": 87.05,
+   "o5r-unclamped": 87.36,
+   "targetRuns": [
+    86.19,
+    86.19,
+    86.19
+   ],
+   "repeatability": 0.0,
+   "window": 6.0,
+   "candidateDelta": 1.17,
+   "movedTowardTarget": true
+  },
+  {
+   "vp": "700x700",
+   "status": "PASS",
+   "target": 44.2,
+   "control": 89.83,
+   "o5-clamped": 44.47,
+   "o5r-unclamped": 44.55,
+   "targetRuns": [
+    44.2,
+    44.2,
+    44.2
+   ],
+   "repeatability": 0.0,
+   "window": 6.0,
+   "candidateDelta": 0.35,
+   "movedTowardTarget": true
+  }
+ ],
+ "status": "FAIL"
+}
