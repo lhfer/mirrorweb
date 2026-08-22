@@ -1,0 +1,83 @@
+{
+ "what": "O4 instrument contract (\u00a7\u4e94). Every definition with a choice in it, fixed BEFORE any candidate lane runs. Sealed at the commit below; no coding here may be replaced once candidate pixels exist.",
+ "sealedAtHead": "968e7ddfaa67714923d4e46ea969cf5f9856ba26",
+ "sealedBeforeAnyCandidateLane": true,
+ "instrumentsModule": {
+  "path": "scripts/v5/o4_instruments.py",
+  "sha256": "ed0bed924cde7bb3859b010c576cbad8ae9c2b9cffde3b34e56f5e24533ceab4",
+  "note": "one implementation, read by the attribution, the gate and the unit tests alike."
+ },
+ "unitTests": {
+  "path": "qa-v5/optics-o4/instrument-tests.json",
+  "tests": 32,
+  "allNegativePartnersPresent": true
+ },
+ "definitions": {
+  "bandWidth": {
+   "coding": "per card: scan inward from the card's dark-side edge at mid height, count consecutive pixels with luma > 60, then average the WIDTHS across cards.",
+   "neverDoThis": "average the profiles across cards and threshold once. Cards' bands sit at different depths, so the mean profile clears the threshold for longer than any card does -- it read the Target at 9 px where the Target measures 3.3.",
+   "threshold": 60.0,
+   "provenance": "the O2/O3 gate coding, unchanged and re-exported so there is exactly one definition."
+  },
+  "bandEnergy": {
+   "coding": "integral of max(luma - 16, 0) over the first 24 px inward from each card's dark-side edge, per card, then averaged.",
+   "why": "band width is thresholded and quantises to whole pixels, so small effects tie and interactions become unreadable. Every attribution number is computed on BOTH; interaction dominance is read from this continuous one.",
+   "registeredAs": "the pre-registered continuous secondary measurand."
+  },
+  "trueSilhouette": {
+   "coding": "the set of pixels the glass layer changes, taken as glass-visible XOR media-only on the ALL-CURRENT CONTROL lane, per viewport and per media, then reused for every lane in that cell.",
+   "whyControlLane": "a lane with the body neutralised renders close to the bare media, so its own silhouette degenerates and the comparison would silently change basis.",
+   "flatQuadIsNotTheBoundary": "the rendered card is a bulged lens with sidewalls and projects outside its own plane quad. O3 item 13 measured that annulus as gutter; this instrument does not.",
+   "outsideSilhouetteComparison": "control and candidate are compared DIRECTLY outside the silhouette -- ink ratio and differing-pixel count."
+  },
+  "labels": {
+   "coding": "labels OFF for every optical ROI and every pointer metric, via setRenderLayers({labels:false}).",
+   "basisVerified": "available and accepted on BOTH the e913aa6 baseline build and the current build, so the control-identity proof and the factorial share one basis rather than splitting it."
+  },
+  "interior": {
+   "coding": "baseline-aware. RELATIVE (12% ceiling on saturation and on luminance) only when the baseline interior saturation is at least the absolute saturation ceiling; otherwise ABSOLUTE (0.02 saturation, 2.0 chroma). Luminance is always relative.",
+   "relativeBranchFloor": 0.02,
+   "floorIsDerivedNotChosen": "a relative reading is meaningful only when the baseline is at least as large as the absolute change the same instrument is willing to ignore. Below that, a change entirely inside the absolute tolerance would score as more than 100% relative and the two codings would contradict each other. So the floor IS the absolute ceiling: 0.02.",
+   "measuredContext": "the deterministic media is exactly achromatic through the media-only path (interior saturation 0.00000 on bw-split), so any interior saturation in a glass render is shader-introduced.",
+   "disclosure": "under O3's sealed floor of 0.01, hf-checker (baseline 0.0104) took the relative branch and fired on an absolute change of 0.0035. That O3 verdict stands and is not revisited. This floor is derived from the coherence requirement above, not from that outcome, and is sealed before any O4 candidate pixel exists.",
+   "branchDependsOnBaselineOnly": true
+  },
+  "pointer": {
+   "coding": "each pointer state is cropped at its OWN card rect and compared on a common card-space raster; bright low-chroma pixels present in EVERY state are removed as ink; the surviving population is the glass reflection.",
+   "noPostCaptureCrop": "no arbitrary percentage crop is applied after capture. The ink exclusion is structural.",
+   "provenance": "the O3 F11 construction, unchanged."
+  },
+  "aggregatorShapes": {
+   "coding": "error records are normalised through zero_errors(), which excludes bools explicitly because bool subclasses int in Python; malformed or missing records raise AggregatorShapeError rather than being coerced.",
+   "why": "both defects occurred in O3's own aggregator and reported FAIL on suites whose every real counter was zero."
+  }
+ },
+ "selectionRule": {
+  "operationalisedBeforeTheFactorial": true,
+  "minExplainedFraction": 0.4,
+  "excessDefinition": "excess = local System-B-OFF band width - Target band width, per viewport",
+  "desktopExcessPx": 6.4,
+  "desktopMinExplainedPx": 2.56,
+  "largestStableContributor": "must be the largest single contributor on at least 75% of the scored media and must not change sign on any of them",
+  "notDominatedByInteraction": "total interaction magnitude must be at most 0.50x the factor's own main effect",
+  "signStableAcrossViewports": "required",
+  "ifNoFactorQualifies": "O4 BODY FLOOR ATTRIBUTION INCONCLUSIVE -- stop. Do not combine subsystems, and do not default to own-media refraction."
+ },
+ "targetRepeatability": {
+  "reused": "qa-v5/optics-o3/target-repeatability.json",
+  "why": "the Target was captured three times per cell under the same deterministic shared-media harness this round uses, and every repeat was byte-identical, so the measured spread is 0 and every threshold binds at its floor. Recapturing would produce the same byte-identical repeats and the same floors; it would add no information.",
+  "byteIdenticalAcrossRepeats": "Every scored capture is BYTE-IDENTICAL across the three independent page loads, so the measured spread is exactly 0 on every metric and all three thresholds bind at their \u00a7\u516b floors. That is a property of the deterministic shared-media harness, not of the Target: routed frozen renditions plus a condition-driven mount wait remove the decode-order and mount-timing variance the raw Target page has. The floors therefore carry the whole tolerance, which is the conservative direction -- a 0-spread threshold would have been 0 px.",
+  "targetAnchors": {
+   "desktopBandPx": 3.3,
+   "portraitBandPx": 1.5,
+   "landscapeBandPx": 2.0
+  }
+ },
+ "prohibited": [
+  "replacing any coding above after candidate pixels exist",
+  "adding a new crop, mask or exclusion once a candidate has been seen",
+  "re-deriving the interior branch floor from a candidate result",
+  "using the flat layout quad as a gutter boundary",
+  "measuring an optical ROI with labels on"
+ ]
+}

@@ -1,0 +1,1588 @@
+{
+ "what": "O4A \u2014 compiled Body-path audit. Read from the generated program and from runtime probes; no TypeScript comment is evidence here, and nothing was fixed.",
+ "question": "Does the TSL shared-normal codegen issue discovered in O2 also affect the current Beauty refraction path?",
+ "answer": "YES. The geometry normal is unpacked exactly once, inside the `normals` debug branch. Every other branch -- the shipped Beauty path included -- aliases a zero-initialised var<private>, so the Beauty refraction, the projected-normal offset and the facing term all consume a ZERO normal.",
+ "auditMeasurable": true,
+ "verdict": "AFFECTED",
+ "staticEvidence": {
+  "unpackSiteCount": 1,
+  "unpackBranch": "normals",
+  "aliasSiteCount": 14,
+  "aliasSitesInBranchesWithNoUnpack": 13,
+  "beautyBranchAliasLines": [
+   357,
+   367,
+   368
+  ],
+  "perQuality": {
+   "high": {
+    "file": "program-high.txt",
+    "privateDeclaration": true,
+    "zeroInitialisedByLanguage": "WGSL zero-initialises module-scope var<private>",
+    "unpackSites": [
+     {
+      "line": 247,
+      "branch": "normals",
+      "debugCode": 3,
+      "side": "taken"
+     }
+    ],
+    "aliasSites": [
+     {
+      "line": 248,
+      "branch": "normals",
+      "debugCode": 3,
+      "side": "taken"
+     },
+     {
+      "line": 264,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 273,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 274,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 290,
+      "branch": "fresnel",
+      "debugCode": 7,
+      "side": "taken"
+     },
+     {
+      "line": 300,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 310,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 311,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 325,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 335,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 336,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 357,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 367,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 368,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     }
+    ],
+    "aliasSitesInBranchesWithNoUnpack": [
+     {
+      "line": 264,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 273,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 274,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 290,
+      "branch": "fresnel",
+      "debugCode": 7,
+      "side": "taken"
+     },
+     {
+      "line": 300,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 310,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 311,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 325,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 335,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 336,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 357,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 367,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 368,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     }
+    ],
+    "consumerLines": {
+     "refract": [
+      271,
+      308,
+      333,
+      365
+     ],
+     "projectedNormalOffset": [
+      275,
+      312,
+      337,
+      369
+     ],
+     "facingDot": [
+      292
+     ]
+    },
+    "beautyBranchAliases": [
+     {
+      "line": 357,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 367,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 368,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     }
+    ]
+   },
+   "medium": {
+    "file": "program-medium.txt",
+    "privateDeclaration": true,
+    "zeroInitialisedByLanguage": "WGSL zero-initialises module-scope var<private>",
+    "unpackSites": [
+     {
+      "line": 247,
+      "branch": "normals",
+      "debugCode": 3,
+      "side": "taken"
+     }
+    ],
+    "aliasSites": [
+     {
+      "line": 248,
+      "branch": "normals",
+      "debugCode": 3,
+      "side": "taken"
+     },
+     {
+      "line": 264,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 273,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 274,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 290,
+      "branch": "fresnel",
+      "debugCode": 7,
+      "side": "taken"
+     },
+     {
+      "line": 300,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 310,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 311,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 325,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 335,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 336,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 357,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 367,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 368,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     }
+    ],
+    "aliasSitesInBranchesWithNoUnpack": [
+     {
+      "line": 264,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 273,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 274,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 290,
+      "branch": "fresnel",
+      "debugCode": 7,
+      "side": "taken"
+     },
+     {
+      "line": 300,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 310,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 311,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 325,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 335,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 336,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 357,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 367,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 368,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     }
+    ],
+    "consumerLines": {
+     "refract": [
+      271,
+      308,
+      333,
+      365
+     ],
+     "projectedNormalOffset": [
+      275,
+      312,
+      337,
+      369
+     ],
+     "facingDot": [
+      292
+     ]
+    },
+    "beautyBranchAliases": [
+     {
+      "line": 357,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 367,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 368,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     }
+    ]
+   },
+   "low": {
+    "file": "program-low.txt",
+    "privateDeclaration": true,
+    "zeroInitialisedByLanguage": "WGSL zero-initialises module-scope var<private>",
+    "unpackSites": [
+     {
+      "line": 247,
+      "branch": "normals",
+      "debugCode": 3,
+      "side": "taken"
+     }
+    ],
+    "aliasSites": [
+     {
+      "line": 248,
+      "branch": "normals",
+      "debugCode": 3,
+      "side": "taken"
+     },
+     {
+      "line": 264,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 273,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 274,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 290,
+      "branch": "fresnel",
+      "debugCode": 7,
+      "side": "taken"
+     },
+     {
+      "line": 300,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 310,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 311,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 325,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 335,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 336,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 357,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 367,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 368,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     }
+    ],
+    "aliasSitesInBranchesWithNoUnpack": [
+     {
+      "line": 264,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 273,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 274,
+      "branch": "refraction-offset",
+      "debugCode": 5,
+      "side": "taken"
+     },
+     {
+      "line": 290,
+      "branch": "fresnel",
+      "debugCode": 7,
+      "side": "taken"
+     },
+     {
+      "line": 300,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 310,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 311,
+      "branch": "dispersion",
+      "debugCode": 8,
+      "side": "taken"
+     },
+     {
+      "line": 325,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 335,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 336,
+      "branch": "adaptivity",
+      "debugCode": 9,
+      "side": "taken"
+     },
+     {
+      "line": 357,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 367,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 368,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     }
+    ],
+    "consumerLines": {
+     "refract": [
+      271,
+      308,
+      333,
+      365
+     ],
+     "projectedNormalOffset": [
+      275,
+      312,
+      337,
+      369
+     ],
+     "facingDot": [
+      292
+     ]
+    },
+    "beautyBranchAliases": [
+     {
+      "line": 357,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 367,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     },
+     {
+      "line": 368,
+      "branch": "beauty (else side of every debug test)",
+      "debugCode": 0,
+      "side": "fallthrough"
+     }
+    ]
+   }
+  }
+ },
+ "runtimeEvidence": {
+  "discriminator": "`normals` and `fresnel` read normalView in DIFFERENT branches of one program, same frame, same geometry. A normal that varies across the card cannot yield a spatially constant fresnel; if it does, the branches are reading different values.",
+  "normalsViewVaries": true,
+  "fresnelViewSpatiallyConstant": true,
+  "refractionOffsetViewSpatiallyConstant": false,
+  "controlViewsVary": true,
+  "controlNote": "optical-zones and thickness read unshared vertex attributes. They vary correctly, which places the fault in the shared normal emission rather than in the geometry, the harness or the capture.",
+  "perQuality": {
+   "high": {
+    "views": {
+     "beauty": {
+      "view": "beauty",
+      "pixels": 381977,
+      "meanRGB": [
+       113.79,
+       113.79,
+       113.79
+      ],
+      "minRGB": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "maxRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rangeRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "stdRGB": [
+       113.955,
+       113.955,
+       113.955
+      ],
+      "spatiallyConstant": false
+     },
+     "normals": {
+      "view": "normals",
+      "pixels": 381977,
+      "meanRGB": [
+       200.78,
+       201.51,
+       226.74
+      ],
+      "minRGB": [
+       178.0,
+       155.0,
+       224.0
+      ],
+      "maxRGB": [
+       216.0,
+       221.0,
+       227.0
+      ],
+      "rangeRGB": [
+       38.0,
+       66.0,
+       3.0
+      ],
+      "stdRGB": [
+       2.852,
+       7.132,
+       0.342
+      ],
+      "spatiallyConstant": false,
+      "normalValidity": {
+       "pixels": 381977,
+       "nonFinitePixels": 0,
+       "unitLengthPixels": 136652,
+       "unitLengthFraction": 0.3577,
+       "meanLength": 1.1282,
+       "lengthRange": [
+        0.9256,
+        1.2448
+       ],
+       "note": "the readback is 8-bit PNG, so a NaN cannot arrive as NaN. It is detected here as an invalid decoded length, not counted directly. Stated rather than implied.",
+       "unitLengthFractionIsNotAValidityVerdict": "the body material is toneMapped, so the debug output passes through ACES before readback and n = 2c - 1 does not invert it. The meaningful readings here are that NO pixel is non-finite and that the length range is tight and centred near 1 -- consistent with a unit normal through a monotone transfer. The low unit-length fraction is the transfer, not a bad normal, and the audit does not rest on it: it rests on the single unpack site and on the normals-vs-fresnel discriminator."
+      }
+     },
+     "fresnel": {
+      "view": "fresnel",
+      "pixels": 381977,
+      "meanRGB": [
+       227.08,
+       227.08,
+       227.08
+      ],
+      "minRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "maxRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rangeRGB": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "stdRGB": [
+       0.918,
+       0.918,
+       0.918
+      ],
+      "spatiallyConstant": true
+     },
+     "refraction-offset": {
+      "view": "refraction-offset",
+      "pixels": 381977,
+      "meanRGB": [
+       200.81,
+       200.0,
+       78.36
+      ],
+      "minRGB": [
+       200.0,
+       200.0,
+       74.0
+      ],
+      "maxRGB": [
+       202.0,
+       200.0,
+       200.0
+      ],
+      "rangeRGB": [
+       2.0,
+       0.0,
+       126.0
+      ],
+      "stdRGB": [
+       1.151,
+       0.0,
+       14.669
+      ],
+      "spatiallyConstant": false
+     },
+     "optical-zones": {
+      "view": "optical-zones",
+      "pixels": 381977,
+      "meanRGB": [
+       171.46,
+       134.19,
+       133.92
+      ],
+      "minRGB": [
+       153.0,
+       24.0,
+       22.0
+      ],
+      "maxRGB": [
+       253.0,
+       230.0,
+       155.0
+      ],
+      "rangeRGB": [
+       100.0,
+       206.0,
+       133.0
+      ],
+      "stdRGB": [
+       36.174,
+       48.494,
+       49.179
+      ],
+      "spatiallyConstant": false
+     },
+     "thickness": {
+      "view": "thickness",
+      "pixels": 381977,
+      "meanRGB": [
+       227.02,
+       227.02,
+       227.02
+      ],
+      "minRGB": [
+       217.0,
+       217.0,
+       217.0
+      ],
+      "maxRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rangeRGB": [
+       11.0,
+       11.0,
+       11.0
+      ],
+      "stdRGB": [
+       1.028,
+       1.028,
+       1.028
+      ],
+      "spatiallyConstant": false
+     }
+    },
+    "transectFromLeftEdge": {
+     "beauty": {
+      "centre": [
+       76.0,
+       76.0,
+       76.0
+      ],
+      "shoulder": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "rim": [
+       68.88,
+       72.34,
+       80.72
+      ]
+     },
+     "normals": {
+      "centre": [
+       201.0,
+       198.0,
+       227.0
+      ],
+      "shoulder": [
+       184.59,
+       197.0,
+       226.67
+      ],
+      "rim": [
+       183.79,
+       197.02,
+       226.49
+      ]
+     },
+     "fresnel": {
+      "centre": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "shoulder": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rim": [
+       228.0,
+       228.0,
+       228.0
+      ]
+     },
+     "refraction-offset": {
+      "centre": [
+       202.0,
+       200.0,
+       74.0
+      ],
+      "shoulder": [
+       201.0,
+       200.0,
+       100.22
+      ],
+      "rim": [
+       200.0,
+       200.0,
+       225.49
+      ]
+     },
+     "optical-zones": {
+      "centre": [
+       155.0,
+       155.0,
+       155.0
+      ],
+      "shoulder": [
+       253.0,
+       24.0,
+       22.0
+      ],
+      "rim": [
+       153.0,
+       230.0,
+       93.0
+      ]
+     },
+     "thickness": {
+      "centre": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "shoulder": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rim": [
+       212.67,
+       212.67,
+       212.67
+      ]
+     }
+    }
+   },
+   "medium": {
+    "views": {
+     "beauty": {
+      "view": "beauty",
+      "pixels": 381977,
+      "meanRGB": [
+       113.97,
+       113.97,
+       113.97
+      ],
+      "minRGB": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "maxRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rangeRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "stdRGB": [
+       113.871,
+       113.871,
+       113.871
+      ],
+      "spatiallyConstant": false
+     },
+     "normals": {
+      "view": "normals",
+      "pixels": 381977,
+      "meanRGB": [
+       200.79,
+       201.49,
+       226.74
+      ],
+      "minRGB": [
+       179.0,
+       155.0,
+       224.0
+      ],
+      "maxRGB": [
+       216.0,
+       221.0,
+       227.0
+      ],
+      "rangeRGB": [
+       37.0,
+       66.0,
+       3.0
+      ],
+      "stdRGB": [
+       2.856,
+       7.044,
+       0.342
+      ],
+      "spatiallyConstant": false,
+      "normalValidity": {
+       "pixels": 381977,
+       "nonFinitePixels": 0,
+       "unitLengthPixels": 137060,
+       "unitLengthFraction": 0.3588,
+       "meanLength": 1.1282,
+       "lengthRange": [
+        0.9283,
+        1.2448
+       ],
+       "note": "the readback is 8-bit PNG, so a NaN cannot arrive as NaN. It is detected here as an invalid decoded length, not counted directly. Stated rather than implied.",
+       "unitLengthFractionIsNotAValidityVerdict": "the body material is toneMapped, so the debug output passes through ACES before readback and n = 2c - 1 does not invert it. The meaningful readings here are that NO pixel is non-finite and that the length range is tight and centred near 1 -- consistent with a unit normal through a monotone transfer. The low unit-length fraction is the transfer, not a bad normal, and the audit does not rest on it: it rests on the single unpack site and on the normals-vs-fresnel discriminator."
+      }
+     },
+     "fresnel": {
+      "view": "fresnel",
+      "pixels": 381977,
+      "meanRGB": [
+       227.08,
+       227.08,
+       227.08
+      ],
+      "minRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "maxRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rangeRGB": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "stdRGB": [
+       0.918,
+       0.918,
+       0.918
+      ],
+      "spatiallyConstant": true
+     },
+     "refraction-offset": {
+      "view": "refraction-offset",
+      "pixels": 381977,
+      "meanRGB": [
+       200.8,
+       200.0,
+       78.55
+      ],
+      "minRGB": [
+       200.0,
+       200.0,
+       74.0
+      ],
+      "maxRGB": [
+       202.0,
+       200.0,
+       200.0
+      ],
+      "rangeRGB": [
+       2.0,
+       0.0,
+       126.0
+      ],
+      "stdRGB": [
+       1.151,
+       0.0,
+       14.954
+      ],
+      "spatiallyConstant": false
+     },
+     "optical-zones": {
+      "view": "optical-zones",
+      "pixels": 381977,
+      "meanRGB": [
+       172.78,
+       132.38,
+       132.06
+      ],
+      "minRGB": [
+       155.0,
+       24.0,
+       22.0
+      ],
+      "maxRGB": [
+       253.0,
+       155.0,
+       155.0
+      ],
+      "rangeRGB": [
+       98.0,
+       131.0,
+       133.0
+      ],
+      "stdRGB": [
+       37.429,
+       50.002,
+       50.66
+      ],
+      "spatiallyConstant": false
+     },
+     "thickness": {
+      "view": "thickness",
+      "pixels": 381977,
+      "meanRGB": [
+       227.01,
+       227.01,
+       227.01
+      ],
+      "minRGB": [
+       217.0,
+       217.0,
+       217.0
+      ],
+      "maxRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rangeRGB": [
+       11.0,
+       11.0,
+       11.0
+      ],
+      "stdRGB": [
+       1.028,
+       1.028,
+       1.029
+      ],
+      "spatiallyConstant": false
+     }
+    },
+    "transectFromLeftEdge": {
+     "beauty": {
+      "centre": [
+       108.77,
+       108.77,
+       108.77
+      ],
+      "shoulder": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "rim": [
+       68.8,
+       72.22,
+       80.32
+      ]
+     },
+     "normals": {
+      "centre": [
+       201.0,
+       198.0,
+       227.0
+      ],
+      "shoulder": [
+       184.89,
+       197.0,
+       226.67
+      ],
+      "rim": [
+       183.27,
+       197.12,
+       226.43
+      ]
+     },
+     "fresnel": {
+      "centre": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "shoulder": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rim": [
+       228.0,
+       228.0,
+       228.0
+      ]
+     },
+     "refraction-offset": {
+      "centre": [
+       202.0,
+       200.0,
+       74.0
+      ],
+      "shoulder": [
+       201.0,
+       200.0,
+       98.25
+      ],
+      "rim": [
+       200.0,
+       200.0,
+       225.41
+      ]
+     },
+     "optical-zones": {
+      "centre": [
+       155.0,
+       155.0,
+       155.0
+      ],
+      "shoulder": [
+       253.0,
+       24.0,
+       22.0
+      ],
+      "rim": [
+       153.0,
+       230.0,
+       93.0
+      ]
+     },
+     "thickness": {
+      "centre": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "shoulder": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rim": [
+       212.33,
+       212.33,
+       212.33
+      ]
+     }
+    }
+   },
+   "low": {
+    "views": {
+     "beauty": {
+      "view": "beauty",
+      "pixels": 381977,
+      "meanRGB": [
+       114.17,
+       114.17,
+       114.17
+      ],
+      "minRGB": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "maxRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rangeRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "stdRGB": [
+       113.796,
+       113.796,
+       113.796
+      ],
+      "spatiallyConstant": false
+     },
+     "normals": {
+      "view": "normals",
+      "pixels": 381977,
+      "meanRGB": [
+       200.8,
+       201.53,
+       226.75
+      ],
+      "minRGB": [
+       177.0,
+       156.0,
+       224.0
+      ],
+      "maxRGB": [
+       216.0,
+       221.0,
+       227.0
+      ],
+      "rangeRGB": [
+       39.0,
+       65.0,
+       3.0
+      ],
+      "stdRGB": [
+       2.858,
+       6.916,
+       0.325
+      ],
+      "spatiallyConstant": false,
+      "normalValidity": {
+       "pixels": 381977,
+       "nonFinitePixels": 0,
+       "unitLengthPixels": 136869,
+       "unitLengthFraction": 0.3583,
+       "meanLength": 1.1283,
+       "lengthRange": [
+        0.9256,
+        1.2448
+       ],
+       "note": "the readback is 8-bit PNG, so a NaN cannot arrive as NaN. It is detected here as an invalid decoded length, not counted directly. Stated rather than implied.",
+       "unitLengthFractionIsNotAValidityVerdict": "the body material is toneMapped, so the debug output passes through ACES before readback and n = 2c - 1 does not invert it. The meaningful readings here are that NO pixel is non-finite and that the length range is tight and centred near 1 -- consistent with a unit normal through a monotone transfer. The low unit-length fraction is the transfer, not a bad normal, and the audit does not rest on it: it rests on the single unpack site and on the normals-vs-fresnel discriminator."
+      }
+     },
+     "fresnel": {
+      "view": "fresnel",
+      "pixels": 381977,
+      "meanRGB": [
+       227.08,
+       227.08,
+       227.08
+      ],
+      "minRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "maxRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rangeRGB": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "stdRGB": [
+       0.918,
+       0.918,
+       0.918
+      ],
+      "spatiallyConstant": true
+     },
+     "refraction-offset": {
+      "view": "refraction-offset",
+      "pixels": 381977,
+      "meanRGB": [
+       200.8,
+       200.0,
+       78.96
+      ],
+      "minRGB": [
+       200.0,
+       200.0,
+       74.0
+      ],
+      "maxRGB": [
+       202.0,
+       200.0,
+       201.0
+      ],
+      "rangeRGB": [
+       2.0,
+       0.0,
+       127.0
+      ],
+      "stdRGB": [
+       1.15,
+       0.0,
+       15.35
+      ],
+      "spatiallyConstant": false
+     },
+     "optical-zones": {
+      "view": "optical-zones",
+      "pixels": 381977,
+      "meanRGB": [
+       174.06,
+       130.64,
+       130.3
+      ],
+      "minRGB": [
+       153.0,
+       24.0,
+       22.0
+      ],
+      "maxRGB": [
+       253.0,
+       230.0,
+       155.0
+      ],
+      "rangeRGB": [
+       100.0,
+       206.0,
+       133.0
+      ],
+      "stdRGB": [
+       38.41,
+       51.383,
+       52.257
+      ],
+      "spatiallyConstant": false
+     },
+     "thickness": {
+      "view": "thickness",
+      "pixels": 381977,
+      "meanRGB": [
+       227.01,
+       227.01,
+       227.01
+      ],
+      "minRGB": [
+       217.0,
+       217.0,
+       217.0
+      ],
+      "maxRGB": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rangeRGB": [
+       11.0,
+       11.0,
+       11.0
+      ],
+      "stdRGB": [
+       1.032,
+       1.032,
+       1.032
+      ],
+      "spatiallyConstant": false
+     }
+    },
+    "transectFromLeftEdge": {
+     "beauty": {
+      "centre": [
+       156.79,
+       156.79,
+       156.79
+      ],
+      "shoulder": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "rim": [
+       67.93,
+       71.55,
+       79.93
+      ]
+     },
+     "normals": {
+      "centre": [
+       201.0,
+       198.0,
+       227.0
+      ],
+      "shoulder": [
+       185.06,
+       197.0,
+       226.73
+      ],
+      "rim": [
+       182.31,
+       197.43,
+       226.57
+      ]
+     },
+     "fresnel": {
+      "centre": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "shoulder": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rim": [
+       228.0,
+       228.0,
+       228.0
+      ]
+     },
+     "refraction-offset": {
+      "centre": [
+       202.0,
+       200.0,
+       74.0
+      ],
+      "shoulder": [
+       201.0,
+       200.0,
+       98.97
+      ],
+      "rim": [
+       200.0,
+       200.0,
+       225.67
+      ]
+     },
+     "optical-zones": {
+      "centre": [
+       155.0,
+       155.0,
+       155.0
+      ],
+      "shoulder": [
+       253.0,
+       24.0,
+       22.0
+      ],
+      "rim": [
+       153.0,
+       230.0,
+       93.0
+      ]
+     },
+     "thickness": {
+      "centre": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "shoulder": [
+       228.0,
+       228.0,
+       228.0
+      ],
+      "rim": [
+       212.61,
+       212.61,
+       212.61
+      ]
+     }
+    }
+   }
+  }
+ },
+ "consequencesInTheShippedBeautyPath": [
+  "refract(-V, N, 1/ior) with N = 0 returns eta * incident -- a scaled view ray with NO dependence on the surface, so the refraction displacement carries perspective only.",
+  "projectedNormalOffset = vec2(N.x, -N.y) * ... = exactly zero. This term was described in OpticsConfigV4 as 'the only term that tracks the surface normal directly'.",
+  "facing = saturate(dot(N, V)) = 0, so fresnel = pow(1, 5) = 1 -- saturated everywhere, which is what the flat fresnel view shows."
+ ],
+ "explainsGate005": "GATE-005 recorded that the refraction-offset debug view moves at most 2 of 255 levels while the same change moved 34.9% of beauty pixels, and treated that view as unsound. The audit gives the mechanism: projectedNormalOffset is identically zero, so that view was reporting a real zero rather than failing to report. The anomaly is explained, not merely reproduced.",
+ "notFixedHere": "\u00a7\u4e09 forbids repair during the audit. The finding is carried into the O4 attribution and makes \u00a7\u4e03.E eligible for consideration -- it does not select it."
+}

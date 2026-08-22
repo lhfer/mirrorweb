@@ -1,0 +1,170 @@
+{
+ "what": "unit tests for the O4 instruments sealed in \u00a7\u4e94. Every check has a negative partner: an instrument that cannot fail is not conservative, it is broken.",
+ "instrumentsModule": "scripts/v5/o4_instruments.py",
+ "tests": 32,
+ "passed": 32,
+ "failed": 0,
+ "pass": true,
+ "results": [
+  {
+   "test": "band width is per card, then averaged (3 and 12 -> 7.5)",
+   "pass": true,
+   "detail": "got {'meanPx': 7.5, 'meanNormToCardWidth': 0.075, 'perCard': [3, 12], 'threshold': 60.0}"
+  },
+  {
+   "test": "a smeared profile would read WIDER than either card -- the defect the sealed coding avoids",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "band energy is continuous where band width ties",
+   "pass": true,
+   "detail": "width tie 7.5, energy 1792.5 -> 1710.0"
+  },
+  {
+   "test": "true silhouette is exactly the pixels the glass changes",
+   "pass": true,
+   "detail": "400 px"
+  },
+  {
+   "test": "a REAL gutter leak fails",
+   "pass": true,
+   "detail": "{\"control\": {\"gutterInkRatio\": 0.0, \"gutterPixels\": 3200}, \"candidate\": {\"gutterInkRatio\": 0.007812, \"gutterPixels\": 3200}, \"differingPixelsOutsideSilhouette\": 25, \"maxChannelDeltaOutsideSilhouette\": 225}"
+  },
+  {
+   "test": "ink INSIDE the silhouette is not counted as gutter invasion",
+   "pass": true,
+   "detail": "{\"control\": {\"gutterInkRatio\": 0.0, \"gutterPixels\": 3200}, \"candidate\": {\"gutterInkRatio\": 0.0, \"gutterPixels\": 3200}, \"differingPixelsOutsideSilhouette\": 0, \"maxChannelDeltaOutsideSilhouette\": 0}"
+  },
+  {
+   "test": "a flat layout quad is NOT the gutter boundary -- the silhouette is derived from rendered pixels, so a bulged lens keeps its own annulus",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "a ZERO-baseline saturation change takes the ABSOLUTE branch",
+   "pass": true,
+   "detail": "{\"coding\": \"absolute\", \"codingChosenBy\": \"baseline interior saturation 0.00000 < 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)\", \"baselineSaturation\": 0.0, \"relLuminanceChange\": 0.0, \"absSaturationDelta\": 0.004, \"absChromaDelta\": 0.5, \"fired\": false, \"reasons\": []}"
+  },
+  {
+   "test": "the absolute branch still FIRES on a large absolute change",
+   "pass": true,
+   "detail": "{\"coding\": \"absolute\", \"codingChosenBy\": \"baseline interior saturation 0.00000 < 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)\", \"baselineSaturation\": 0.0, \"relLuminanceChange\": 0.0, \"absSaturationDelta\": 0.09, \"absChromaDelta\": 9.0, \"fired\": true, \"reasons\": [\"interior saturation moved 0.0900 > 0.02\", \"interior chroma moved 9.000 > 2.0\"]}"
+  },
+  {
+   "test": "a well-supported baseline takes the RELATIVE branch and fires at 50%",
+   "pass": true,
+   "detail": "{\"coding\": \"relative\", \"codingChosenBy\": \"baseline interior saturation 0.60000 >= 0.02 (= the absolute saturation ceiling; a relative reading below it would contradict the absolute one)\", \"baselineSaturation\": 0.6, \"relLuminanceChange\": 0.0, \"relSaturationChange\": 0.5, \"fired\": true, \"reasons\": [\"interior saturation moved 50.0% > 12%\"]}"
+  },
+  {
+   "test": "the branch floor equals the absolute ceiling, so the two codings cannot contradict each other",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "the branch depends on the BASELINE only, not on the candidate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "a NON-MONOTONIC pointer path FAILS",
+   "pass": true,
+   "detail": "{\"targetNxPath\": [0.2, 0.5, 0.8], \"candidateNxPath\": [0.2, 0.9, 0.3], \"adjacentJumps\": [0.7, 0.6], \"targetDirection\": 1, \"targetRange\": 0.6, \"candidateRange\": 0.7, \"branch\": \"tracking-reference\", \"branchChosenBy\": \"target path range 0.6000 >= 0.05\", \"fired\": true, \"reasons\": [\"adjacent jump 0.7000 > 0.4\", \"candidate path not monotonic in the target direction\"]}"
+  },
+  {
+   "test": "a path monotonic in the target's direction PASSES",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "a path moving the WRONG way FAILS",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "an unmeasurable state FAILS rather than passing quietly",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "zero_errors accepts an all-zero dict",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "zero_errors ignores a sibling bool verdict flag rather than counting it",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "zero_errors rejects a real non-zero count",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "a BOOL passed as an error record fails fast",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "a MISSING error record fails fast",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "a dict with no numeric counts fails fast",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "an unusable type fails fast",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "require_number rejects a bool masquerading as a count",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "require_number rejects a missing key",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "require_number accepts a real number",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "a large, stable, low-interaction factor is ELIGIBLE",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "a factor explaining under 40% is NOT eligible",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "a factor dominated by interaction is NOT eligible",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "a factor that flips sign across media is NOT eligible",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "a factor not sign-stable across viewports is NOT eligible",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "a factor that is largest on only half the media is NOT eligible",
+   "pass": true,
+   "detail": ""
+  }
+ ]
+}

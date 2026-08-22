@@ -1,0 +1,277 @@
+{
+ "what": "O4 \u00a7\u56db -- the Target Body source contract. Every Target claim byte-anchored in the shipped bundle; every absence read from an anchored completeness span, never inferred from candidate output.",
+ "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+ "bundleBytes": 2008349,
+ "liveBundle": {
+  "sha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+  "bytes": 2008349,
+  "matchesCapturedBundle": true
+ },
+ "sites": 17,
+ "sitesFailed": 0,
+ "pass": true,
+ "completenessSpan": {
+  "anchors": [
+   "bodyViewDirectionInPlaneSpace",
+   "bodyAccumulatorInit",
+   "spectralAccumulateNoLod",
+   "bodyReturnIsAccumulatorTintedAndMixed"
+  ],
+  "allAnchorsByteExact": true,
+  "byteRange": [
+   1975111,
+   1976472
+  ],
+  "method": "the body colour chain is anchored from the camera transform into card space, through the accumulator initialisation and the spectral loop, to the return statement and the material that consumes it. Anything not inside that span is not in the Target's body. Absence claims below cite this span rather than a byte offset, because absence has no bytes."
+ },
+ "absenceClaims": [
+  {
+   "id": "noSceneColourTarget",
+   "readFrom": "completenessSpan",
+   "reasoning": "The body chain samples `s` -- the card's own VideoTexture -- and no other sampler. There is no render target, no screen uv, and no resolve of the scene."
+  },
+  {
+   "id": "noBlurOrMipLod",
+   "readFrom": "completenessSpan",
+   "reasoning": "No `.level(` appears in the body chain, and the media VideoTexture generates no mipmaps, so no mip level exists to sample."
+  },
+  {
+   "id": "noAdaptiveContrast",
+   "readFrom": "completenessSpan",
+   "reasoning": "Nothing between the accumulator and the return reads neighbouring texels or the local luminance; there is no contrast gain term."
+  },
+  {
+   "id": "noAdaptiveEdgeLift",
+   "readFrom": "completenessSpan",
+   "reasoning": "No additive term keyed on darkness or flatness appears in the span."
+  },
+  {
+   "id": "noAdaptiveInternalShadow",
+   "readFrom": "completenessSpan",
+   "reasoning": "No subtractive term keyed on brightness or curvature appears in the span."
+  }
+ ],
+ "localCurrentBody": {
+  "sceneColourTarget": "src/v4/preview/SceneColorPipelineV4.ts renders the media to a scene-colour target which the glass samples in SCREEN space.",
+  "screenSpaceRefractionOffset": "LiquidGlassMaterialV4 projects a Snell exit point through cameraProjectionMatrix and differences it in NDC, then adds projectedNormalOffset and radialLensOffset.",
+  "blurLodMipSampling": "`.level(blurLod)` with blurLod = params.blurLod * pow(blurZone, 1.6) * mix(0.4, 1, thicknessNorm).",
+  "screenSpaceSpectralAnalogue": "the o1-spectral law spreads the SCREEN offset per sample rather than refracting at per-sample IOR.",
+  "contrastShaped": "a local-contrast gain around the local luminance.",
+  "adaptiveEdgeLift": "an additive lift keyed on darkness x flatness x curvature x blurZone.",
+  "adaptiveInternalShadow": "a subtractive shadow keyed on brightness x flatness x blurZone x curvature.",
+  "acesFinalPass": "bodyMaterial.toneMapped = true, so the body passes through the renderer's ACESFilmicToneMapping.",
+  "refractionNormalIsZero": "O4A: the Beauty branch aliases a zero-initialised private, so refract() and projectedNormalOffset consume a ZERO normal. See qa-v5/optics-o4/body-code-audit.json."
+ },
+ "records": [
+  {
+   "id": "ownMediaVideoTexture",
+   "claim": "The Target's card media is its OWN texture, created per card from the card's video element -- not a scene-colour render target.",
+   "verbatim": "let e=new eF.VideoTexture(n);e.colorSpace=eF.SRGBColorSpace,e.wrapS=eF.ClampToEdgeWrapping,e.wrapT=eF.ClampToEdgeWrapping",
+   "formula": "texture = VideoTexture(videoElement); colorSpace = sRGB; wrapS = wrapT = ClampToEdgeWrapping",
+   "confidence": "SOURCE_READ",
+   "settles": "Own-media sampling, sRGB input colour space, and ClampToEdge in one site. three's VideoTexture defaults to generateMipmaps = false with a LinearFilter minFilter, so there is no mip chain to sample even if a LOD were asked for.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1970454,
+   "byteExact": true
+  },
+  {
+   "id": "textureNodeIsTheCardMedia",
+   "claim": "The body samples that texture directly.",
+   "verbatim": "s=(0,dB.texture)(e)",
+   "formula": "s = texture(cardMediaTexture)",
+   "confidence": "SOURCE_READ",
+   "settles": "`s` in the spectral loop is the card's own media. There is no second sampler in the body chain.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1973758,
+   "byteExact": true
+  },
+  {
+   "id": "coverScaleOffsetUniforms",
+   "claim": "Cover-fit is carried as two uniforms on the card material.",
+   "verbatim": "coverScale:(0,dB.uniform)(new eF.Vector2(1,1)),coverOffset:(0,dB.uniform)(new eF.Vector2(0,0))",
+   "formula": "coverScale : vec2 = (1,1); coverOffset : vec2 = (0,0)",
+   "confidence": "SOURCE_READ",
+   "settles": "The cover fit is a per-card uniform pair, not a texture transform and not a geometry change.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1973361,
+   "byteExact": true
+  },
+  {
+   "id": "coverFitLaw",
+   "claim": "The cover-fit law itself: aspect-compare, scale the over-long axis, centre the remainder.",
+   "verbatim": "let a=i/n;if(a>t){let e=t/a;return{scaleX:e,scaleY:1,offsetX:(1-e)/2,offsetY:0}}let s=a/t;return{scaleX:1,scaleY:s,offsetX:0,offsetY:(1-s)/2}",
+   "formula": "mediaAspect = w/h; if mediaAspect > planeAspect: scaleX = planeAspect/mediaAspect, scaleY = 1, offsetX = (1-scaleX)/2, offsetY = 0; else scaleX = 1, scaleY = mediaAspect/planeAspect, offsetX = 0, offsetY = (1-scaleY)/2",
+   "confidence": "SOURCE_READ",
+   "settles": "The exact cover fit, in the card's own uv space.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1978621,
+   "byteExact": true
+  },
+  {
+   "id": "bodyViewDirectionInPlaneSpace",
+   "claim": "The body's view direction is built in plane space from the camera position transformed into card-local space.",
+   "verbatim": "v=dB.modelWorldMatrixInverse.mul((0,dB.vec4)(dB.cameraPosition,1)).xyz",
+   "formula": "cameraLocal = modelWorldMatrixInverse * vec4(cameraPosition, 1)",
+   "confidence": "SOURCE_READ",
+   "completenessAnchor": true,
+   "settles": "Start of the body chain. Everything the body colour reads is derived from here down to the return.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1975111,
+   "byteExact": true
+  },
+  {
+   "id": "bodyAccumulatorInit",
+   "claim": "The body colour is a spectral ACCUMULATOR initialised to zero.",
+   "verbatim": "S=(0,dB.uv)(),_=(0,dB.vec3)(0",
+   "formula": "S = uv(); accumulator = vec3(0)",
+   "confidence": "SOURCE_READ",
+   "completenessAnchor": true,
+   "settles": "The body starts from the card's own uv and an empty accumulator -- not from a screen-space sample.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1975308,
+   "byteExact": true
+  },
+  {
+   "id": "perSampleIor",
+   "claim": "Each spectral sample refracts at its OWN index.",
+   "verbatim": "let t=(0,dB.float)(1).div((0,dB.max)(n.ior.add(n.dispersion.mul(e.offset)),(0,dB.float)(1.0001))",
+   "formula": "eta_i = 1 / max(ior + dispersion * offset_i, 1.0001)",
+   "confidence": "SOURCE_READ",
+   "settles": "Dispersion is per-IOR inside refract(), not a post-hoc uv spread of one refracted sample.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1975355,
+   "byteExact": true
+  },
+  {
+   "id": "refractConsumesAnalyticNormal",
+   "claim": "refract() consumes the analytic bevel normal A.",
+   "verbatim": "r=(0,dB.refract)(E.negate(),A,t)",
+   "formula": "r = refract(-E, A, eta_i)",
+   "confidence": "SOURCE_READ",
+   "reusedFrom": "qa-v5/optics-o3/target-bevel-reflection-source.json (refractionConsumesSameNormal)",
+   "settles": "The Target's refraction reads a REAL surface normal -- the same one its fresnel and environment reflection read. This is the Target-side counterpart of the O4A finding that our Beauty refraction reads a zero normal.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1975453,
+   "byteExact": true
+  },
+  {
+   "id": "thicknessOverAbsRzTravel",
+   "claim": "Optical travel is thickness / |r.z|, floored at 0.05.",
+   "verbatim": "i=n.thickness.div((0,dB.max)((0,dB.abs)(r.z),(0,dB.float)(.05))",
+   "formula": "travel_i = thickness / max(abs(r_i.z), 0.05)",
+   "confidence": "SOURCE_READ",
+   "settles": "Travel is a real slab traversal along the refracted ray, so a grazing ray travels further. Our body instead projects an exit point through the camera matrix and differences it in NDC.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1975486,
+   "byteExact": true
+  },
+  {
+   "id": "uvDisplacementAndRefractStrength",
+   "claim": "The displacement is applied in the card's OWN uv, scaled by refractStrength and normalised by planeSize.",
+   "verbatim": "a=S.add(r.xy.mul(i).mul(n.refractStrength).div(n.planeSize))",
+   "formula": "uv_i = uv + r_i.xy * travel_i * refractStrength / planeSize",
+   "confidence": "SOURCE_READ",
+   "settles": "Card-space displacement. No screen-space offset, no scene target, and nothing that can reach a neighbouring card.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1975551,
+   "byteExact": true
+  },
+  {
+   "id": "clampThenCoverFit",
+   "claim": "The uv is clamped to the card BEFORE the cover fit.",
+   "verbatim": "o=(0,dB.clamp)(a,0,1).mul(n.coverScale).add(n.coverOffset)",
+   "formula": "sampleUv_i = clamp(uv_i, 0, 1) * coverScale + coverOffset",
+   "confidence": "SOURCE_READ",
+   "settles": "Order matters: clamping first means a displaced sample walks into the card's own border pixels, never past the cover-fitted region into whatever the atlas holds next.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1975612,
+   "byteExact": true
+  },
+  {
+   "id": "spectralAccumulateNoLod",
+   "claim": "Each sample is a plain texture sample with per-channel weights and NO explicit LOD.",
+   "verbatim": "_=_.add(s.sample(o).rgb.mul((0,dB.vec3)(...e.weight))",
+   "formula": "accumulator += texture.sample(sampleUv_i).rgb * weight_i",
+   "confidence": "SOURCE_READ",
+   "completenessAnchor": true,
+   "settles": "`sample(o)` with no `.level(...)`. Combined with a VideoTexture that generates no mipmaps, the Target's body has no mip blur available to it at all.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1975671,
+   "byteExact": true
+  },
+  {
+   "id": "spectralSampleTable",
+   "claim": "The spectral table: N samples at offsets n/(N-1) - 0.5, with per-channel weights normalised to sum to one per channel.",
+   "verbatim": "let n=e/(t-1),a=[L2(n,0),L2(n,.5),L2(n,1)];i[0]+=a[0],i[1]+=a[1],i[2]+=a[2],r.push({offset:n-.5,weight:a})",
+   "formula": "for i in 0..N-1: n = i/(N-1); weight = [L2(n,0), L2(n,0.5), L2(n,1)]; offset = n - 0.5; then each channel is divided by that channel's sum over all samples",
+   "confidence": "SOURCE_READ",
+   "settles": "Energy-preserving per channel. The weights are a fixed basis evaluated at three channel centres, not a tap triple.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1973540,
+   "byteExact": true
+  },
+  {
+   "id": "dispersionSampleCount",
+   "claim": "N is clamped to at least 3.",
+   "verbatim": "let t=Math.max(3,Math.round(e))",
+   "formula": "N = max(3, round(dispersionSamples))",
+   "confidence": "SOURCE_READ",
+   "settles": "With the shipped dispersionSamples = 5, N = 5.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1973471,
+   "byteExact": true
+  },
+  {
+   "id": "bodySettings",
+   "claim": "The shipped body constants.",
+   "verbatim": "thickness:155,ior:2.3,roughness:0,refractStrength:.7,dispersion:.32,dispersionSamples:5",
+   "formula": "thickness 155, ior 2.3, roughness 0, refractStrength 0.7, dispersion 0.32, dispersionSamples 5",
+   "confidence": "SOURCE_READ",
+   "reusedFrom": "qa-v5/optics-o3/target-bevel-reflection-source.json (settingsBH)",
+   "settles": "ior 2.3 -- not our 1.48. dispersion 0.32. Five samples.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1303680,
+   "byteExact": true
+  },
+  {
+   "id": "bodyReturnIsAccumulatorTintedAndMixed",
+   "claim": "The body RETURNS the accumulator, tinted, mixed with the environment, plus the rim -- and nothing else.",
+   "verbatim": "return(0,dB.mix)(_.mul(n.tint),D,(0,dB.min)((0,dB.saturate)(B.mul(n.envIntensity)),n.envMaxMix)).add(N.mul(k))",
+   "formula": "return mix(accumulator * tint, envColour, min(saturate(schlick * envIntensity), envMaxMix)) + rimColour * rim",
+   "confidence": "SOURCE_READ",
+   "completenessAnchor": true,
+   "settles": "THE COMPLETENESS ANCHOR. Between the accumulator and this return there is the System B block and nothing else. No contrast shaping, no edge lift, no internal shadow, no local-contrast probe, no second sampler.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1976472,
+   "byteExact": true
+  },
+  {
+   "id": "bodyMaterialToneMappedFalse",
+   "claim": "The card material disables tone mapping.",
+   "verbatim": "new ek.MeshBasicNodeMaterial({transparent:!0,alphaTest:.001,depthWrite:!0,depthTest:!0,side:eF.FrontSide,toneMapped:!1})",
+   "formula": "MeshBasicNodeMaterial({ toneMapped: false, ... })",
+   "confidence": "SOURCE_READ",
+   "settles": "The mechanism is MATERIAL-level `toneMapped: false`, not a renderer tone-mapping change. That is what factor E must copy: three's default is toneMapped = true, and our bodyMaterial sets it true explicitly.",
+   "bundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+   "occurrences": 1,
+   "byteOffset": 1976795,
+   "byteExact": true
+  }
+ ]
+}
