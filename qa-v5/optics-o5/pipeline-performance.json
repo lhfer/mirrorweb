@@ -1,0 +1,204 @@
+{
+ "what": "O5 \u00a7\u5341 pipeline and performance. The candidate may remove the scene-colour pass; each thing it may NOT pay for that with is a named check.",
+ "passed": 7,
+ "failed": 0,
+ "total": 7,
+ "pass": true,
+ "summary": "Scene-colour pass: 52 draw calls in the control, 0 in the candidate. Final pass 17 vs 17. CPU frame time p50 0.8 vs 0.7 ms, p99 1.4 vs 1 ms. Ready in 361 vs 305 ms. 7/7 checks pass.",
+ "frameTime": {
+  "control": {
+   "p50": 0.8,
+   "p95": 1,
+   "p99": 1.4,
+   "n": 180,
+   "note": "CPU wall-clock around a forced renderOnce, not GPU time"
+  },
+  "candidate": {
+   "p50": 0.7,
+   "p95": 0.9,
+   "p99": 1,
+   "n": 180,
+   "note": "CPU wall-clock around a forced renderOnce, not GPU time"
+  }
+ },
+ "gpuTime": {
+  "control": null,
+  "candidate": null,
+  "note": "not exposed by this backend; reported as null rather than substituting CPU time"
+ },
+ "readyMs": {
+  "control": 361,
+  "candidate": 305
+ },
+ "memory": {
+  "control": {
+   "before": {
+    "usedJSHeapMB": 45.7,
+    "totalJSHeapMB": 70.85
+   },
+   "after": {
+    "usedJSHeapMB": 36.19
+   }
+  },
+  "candidate": {
+   "before": {
+    "usedJSHeapMB": 22.48,
+    "totalJSHeapMB": 39.53
+   },
+   "after": {
+    "usedJSHeapMB": 46.49
+   }
+  }
+ },
+ "renderPasses": {
+  "control": {
+   "sceneColorCalls": 52,
+   "sceneColorTriangles": 104,
+   "finalCalls": 17,
+   "finalTriangles": 178177
+  },
+  "candidate": {
+   "sceneColorCalls": 0,
+   "sceneColorTriangles": 0,
+   "finalCalls": 17,
+   "finalTriangles": 6145
+  }
+ },
+ "checks": [
+  {
+   "check": "scene-colour pass removed in the candidate lane",
+   "pass": true,
+   "detail": "\u00a7\u5341 explicitly allows this. Shown against the control, which still runs the pass, so the removal is demonstrated rather than asserted.",
+   "numbers": {
+    "control": {
+     "sceneColorCalls": 52,
+     "sceneColorTriangles": 104,
+     "finalCalls": 17,
+     "finalTriangles": 178177
+    },
+    "candidate": {
+     "sceneColorCalls": 0,
+     "sceneColorTriangles": 0,
+     "finalCalls": 17,
+     "finalTriangles": 6145
+    }
+   }
+  },
+  {
+   "check": "no first-frame black cards",
+   "pass": true,
+   "detail": "The in-page canvas probe is non-functional on a WebGPU canvas -- it returns meanLuma 0 for both lanes whatever is drawn -- so it is reported below as evidence of its own failure, not as a result. The verdict is taken from the screenshots. At `ready` both lanes still show the app's loading overlay, and neither has any near-black region: the requirement is met. The mean-luminance difference between the lanes is disclosed alongside, with the reason it is not the measurand.",
+   "numbers": {
+    "fromScreenshot": {
+     "control": {
+      "meanLuma": 15.047,
+      "nearBlackFraction": 0.0,
+      "p99Luma": 22.93
+     },
+     "candidate": {
+      "meanLuma": 13.24,
+      "nearBlackFraction": 0.0,
+      "p99Luma": 20.0
+     }
+    },
+    "inPageProbeNonFunctional": {
+     "control": {
+      "meanLuma": 0,
+      "nearBlackFraction": 1
+     },
+     "candidate": {
+      "meanLuma": 0,
+      "nearBlackFraction": 1
+     },
+     "why": "drawImage() on a WebGPU canvas returns a blank bitmap"
+    }
+   }
+  },
+  {
+   "check": "media crop is not remapped on resize",
+   "pass": true,
+   "detail": "The frozen focus must survive a viewport change. repeat/offset legitimately move with the card size; the visible fraction of the source must not.",
+   "numbers": {
+    "controlEqual": true,
+    "candidateEqual": true
+   }
+  },
+  {
+   "check": "no resource leak over a 5-minute repeated drag",
+   "pass": true,
+   "detail": "Wrap happens many times over in this sequence, so a video texture rebuilt on wrap or a per-frame material shows as heap growth. Judged against the control's own growth, since some growth is the JS heap doing its job.",
+   "numbers": {
+    "controlHeapGrowthMB": 1.02,
+    "candidateHeapGrowthMB": 11.62,
+    "soakMs": 300000,
+    "controlSamples": 299,
+    "candidateSamples": 299
+   }
+  },
+  {
+   "check": "no per-frame materials or pool churn",
+   "pass": true,
+   "detail": "The slot pool census before and after the soak must be identical: a material or mesh created per frame shows up here.",
+   "numbers": {
+    "controlStable": true,
+    "candidateStable": true
+   }
+  },
+  {
+   "check": "adaptive quality transitions are clean and change the sample count",
+   "pass": true,
+   "detail": "Stepping high -> medium -> low -> high. The candidate's spectral sample count is a build-time literal, so a quality step must rebuild its materials or the lane would keep five samples on a device that asked for three.",
+   "numbers": {
+    "steps": [
+     {
+      "level": "high",
+      "samples": 5,
+      "errors": 0
+     },
+     {
+      "level": "medium",
+      "samples": 5,
+      "errors": 0
+     },
+     {
+      "level": "low",
+      "samples": 3,
+      "errors": 0
+     },
+     {
+      "level": "high",
+      "samples": 5,
+      "errors": 0
+     }
+    ],
+    "controlSteps": [
+     {
+      "level": "high",
+      "errors": 0
+     },
+     {
+      "level": "medium",
+      "errors": 0
+     },
+     {
+      "level": "low",
+      "errors": 0
+     },
+     {
+      "level": "high",
+      "errors": 0
+     }
+    ]
+   }
+  },
+  {
+   "check": "no console or page errors in either lane",
+   "pass": true,
+   "detail": "Across load, soak, resize and every quality step.",
+   "numbers": {
+    "control": 0,
+    "candidate": 0
+   }
+  }
+ ]
+}

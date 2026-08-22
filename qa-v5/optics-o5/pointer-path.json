@@ -1,0 +1,131 @@
+{
+ "what": "\u00a7\u4e5d.11 pointer reflection.",
+ "rows": [
+  {
+   "vp": "1440x900",
+   "lane": "target",
+   "statesUsedForInk": [
+    "pbr",
+    "pl",
+    "pr",
+    "rest"
+   ],
+   "cardSpaceDims": [
+    403,
+    274
+   ],
+   "excludedInkPixels": 3073,
+   "glassPixelsPerState": {
+    "pl": 3158,
+    "rest": 2997,
+    "pr": 3126,
+    "pbr": 6550
+   },
+   "path": [
+    0.5156,
+    0.4885,
+    0.5009
+   ]
+  },
+  {
+   "vp": "1440x900",
+   "lane": "control",
+   "statesUsedForInk": [
+    "pbr",
+    "pl",
+    "pr",
+    "rest"
+   ],
+   "cardSpaceDims": [
+    403,
+    274
+   ],
+   "excludedInkPixels": 65,
+   "glassPixelsPerState": {
+    "pl": 1133,
+    "rest": 741,
+    "pr": 466,
+    "pbr": 5932
+   },
+   "path": [
+    0.2801,
+    0.0918,
+    0.0684
+   ]
+  },
+  {
+   "vp": "1440x900",
+   "lane": "candidate",
+   "statesUsedForInk": [
+    "pbr",
+    "pl",
+    "pr",
+    "rest"
+   ],
+   "cardSpaceDims": [
+    403,
+    274
+   ],
+   "excludedInkPixels": 660,
+   "glassPixelsPerState": {
+    "pl": 599,
+    "rest": 674,
+    "pr": 641,
+    "pbr": 3466
+   },
+   "path": [
+    0.1182,
+    0.1116,
+    0.1109
+   ]
+  }
+ ],
+ "candidateVerdict": {
+  "targetNxPath": [
+   0.5156,
+   0.4885,
+   0.5009
+  ],
+  "candidateNxPath": [
+   0.1182,
+   0.1116,
+   0.1109
+  ],
+  "adjacentJumps": [
+   0.0066,
+   0.0007
+  ],
+  "targetDirection": -1,
+  "targetRange": 0.0271,
+  "candidateRange": 0.0073,
+  "branch": "flat-reference",
+  "branchChosenBy": "target path range 0.0271 < 0.05",
+  "fired": false,
+  "reasons": []
+ },
+ "controlVerdict": {
+  "targetNxPath": [
+   0.5156,
+   0.4885,
+   0.5009
+  ],
+  "candidateNxPath": [
+   0.2801,
+   0.0918,
+   0.0684
+  ],
+  "adjacentJumps": [
+   0.1883,
+   0.0234
+  ],
+  "targetDirection": -1,
+  "targetRange": 0.0271,
+  "candidateRange": 0.2117,
+  "branch": "flat-reference",
+  "branchChosenBy": "target path range 0.0271 < 0.05",
+  "fired": true,
+  "reasons": [
+   "target reflection centroid is effectively stationary (range 0.0271) but the candidate swings 0.2117 > 0.1000"
+  ]
+ }
+}

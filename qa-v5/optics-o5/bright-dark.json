@@ -1,0 +1,71 @@
+{
+ "what": "\u00a7\u4e5d.5 saturated and bright/dark media.",
+ "rows": [
+  {
+   "asset": "rgb-bars",
+   "vp": "1440x900",
+   "target": {
+    "fringeRB": 0.0,
+    "fringeWidthPxMean": 0.0,
+    "edgeChroma": 0.0
+   },
+   "control": {
+    "fringeRB": 0.0,
+    "fringeWidthPxMean": 0.0,
+    "edgeChroma": 0.0
+   },
+   "candidate": {
+    "fringeRB": 0.0,
+    "fringeWidthPxMean": 0.0,
+    "edgeChroma": 0.0
+   },
+   "closerToTarget": true,
+   "notBroaderThanEither": true,
+   "pass": true
+  },
+  {
+   "asset": "cool-blue",
+   "vp": "1440x900",
+   "target": {
+    "fringeRB": 0.0,
+    "fringeWidthPxMean": 0.0,
+    "edgeChroma": 0.0
+   },
+   "control": {
+    "fringeRB": 0.0,
+    "fringeWidthPxMean": 0.0,
+    "edgeChroma": 0.0
+   },
+   "candidate": {
+    "fringeRB": 0.0,
+    "fringeWidthPxMean": 0.0,
+    "edgeChroma": 0.0
+   },
+   "closerToTarget": true,
+   "notBroaderThanEither": true,
+   "pass": true
+  },
+  {
+   "asset": "warm-skin",
+   "vp": "1440x900",
+   "target": {
+    "fringeRB": 0.0,
+    "fringeWidthPxMean": 0.0,
+    "edgeChroma": 0.0
+   },
+   "control": {
+    "fringeRB": 0.0,
+    "fringeWidthPxMean": 0.0,
+    "edgeChroma": 0.0
+   },
+   "candidate": {
+    "fringeRB": 0.0,
+    "fringeWidthPxMean": 0.0,
+    "edgeChroma": 0.0
+   },
+   "closerToTarget": true,
+   "notBroaderThanEither": true,
+   "pass": true
+  }
+ ]
+}

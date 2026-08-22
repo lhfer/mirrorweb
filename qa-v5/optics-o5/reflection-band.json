@@ -1,0 +1,55 @@
+{
+ "what": "\u00a7\u4e5d.1 band width, all viewports.",
+ "rows": [
+  {
+   "vp": "1440x900",
+   "target": 3.3,
+   "control": 15.3,
+   "candidate": 3.3,
+   "windowPx": 1.5,
+   "candidateDelta": 0.0,
+   "controlDelta": 12.0,
+   "enters": true,
+   "rectBasis": "fully-visible cards"
+  },
+  {
+   "vp": "390x844",
+   "target": 1.5,
+   "control": 8.0,
+   "candidate": 2.0,
+   "windowPx": 1.5,
+   "candidateDelta": 0.5,
+   "controlDelta": 6.5,
+   "enters": true,
+   "rectBasis": "fully-visible cards"
+  },
+  {
+   "vp": "844x390",
+   "target": 2.0,
+   "control": 8.0,
+   "candidate": 2.0,
+   "windowPx": 1.5,
+   "candidateDelta": 0.0,
+   "controlDelta": 6.0,
+   "enters": true,
+   "rectBasis": "no fully-visible card -- widest drawn card"
+  },
+  {
+   "vp": "700x700",
+   "target": 2.0,
+   "control": 7.0,
+   "candidate": 2.0,
+   "windowPx": 1.5,
+   "candidateDelta": 0.0,
+   "controlDelta": 5.0,
+   "enters": true,
+   "rectBasis": "fully-visible cards"
+  }
+ ],
+ "windows": {
+  "1440x900": 1.5,
+  "390x844": 1.5,
+  "844x390": 1.5,
+  "700x700": 1.5
+ }
+}

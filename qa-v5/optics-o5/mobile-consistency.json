@@ -1,0 +1,45 @@
+{
+ "what": "\u00a7\u4e5d.13 mobile.",
+ "rows": [
+  {
+   "vp": "390x844",
+   "target": {
+    "bandPx": 1.5,
+    "darkLuma": 51.28,
+    "whiteRatio": 4.9035
+   },
+   "control": {
+    "bandPx": 8.0,
+    "darkLuma": 78.94,
+    "whiteRatio": 2.5755
+   },
+   "candidate": {
+    "bandPx": 2.0,
+    "darkLuma": 58.46,
+    "whiteRatio": 3.8712
+   },
+   "bandTowardTarget": true,
+   "pass": true
+  },
+  {
+   "vp": "844x390",
+   "target": {
+    "bandPx": 2.0,
+    "darkLuma": 86.19,
+    "whiteRatio": 2.2815
+   },
+   "control": {
+    "bandPx": 8.0,
+    "darkLuma": 94.43,
+    "whiteRatio": 2.0573
+   },
+   "candidate": {
+    "bandPx": 2.0,
+    "darkLuma": 87.05,
+    "whiteRatio": 2.2805
+   },
+   "bandTowardTarget": true,
+   "pass": true
+  }
+ ]
+}

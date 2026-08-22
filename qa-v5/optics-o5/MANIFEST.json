@@ -1,0 +1,101 @@
+{
+ "round": "O5 \u2014 source-exact card optical body",
+ "what": "Public evidence: numbers, source anchors and verdicts only. Target pixels and video live in the private package.",
+ "capturedAtHead": "b11051a541940c2199a4afb857f45980f449e5b6",
+ "reviewHeadNote": "absent from the public tree: a committed file cannot carry its own commit hash. The private package carries both heads.",
+ "finalState": "O5 TARGET-SOURCE BODY FAILED ABSOLUTE GATE",
+ "absoluteGate": "FAIL",
+ "containsTargetPixels": false,
+ "files": [
+  {
+   "file": "README.md",
+   "bytes": 11790,
+   "sha256": "3fe096bfa1eef67f7f76825785734453bb2e5eb2279980a1c9b38040d182b11b"
+  },
+  {
+   "file": "body-absolute-gate.json",
+   "bytes": 126821,
+   "sha256": "d5ff612096c3c6db2142c8707e8c888aecbaace8cecf2d01f3a67a82e39f99ff"
+  },
+  {
+   "file": "bright-dark.json",
+   "bytes": 1326,
+   "sha256": "bc00891251930af50d001a05eb9f3c462314ac7ab2ce880045ae7fed82e84734"
+  },
+  {
+   "file": "compiled-body-audit.json",
+   "bytes": 8969,
+   "sha256": "c8bfd6f395b4b684d662249805af7d807f1cd103aaad6c61330cc64315c199fd"
+  },
+  {
+   "file": "control-identity.json",
+   "bytes": 10246,
+   "sha256": "017fff5ff20117c19f6e999f02da10f3008b6eab828617c907d97d40a71568b9"
+  },
+  {
+   "file": "grayscale-ringing.json",
+   "bytes": 787,
+   "sha256": "8750f769294ffd2cc5ec1ea0376ef5fce6411e18595a205512127e1b96b1b842"
+  },
+  {
+   "file": "instrument-tests.json",
+   "bytes": 7038,
+   "sha256": "5842cdc2f057aca55a96ceda1031f022592b14f0510033ca24bf1a784cd03556"
+  },
+  {
+   "file": "mobile-consistency.json",
+   "bytes": 736,
+   "sha256": "e02fa776f5d57de504a72f02187fd9034884ebd7a920148736b6219df53dc9d5"
+  },
+  {
+   "file": "o5-architecture.json",
+   "bytes": 14759,
+   "sha256": "8d9e218d336ae06631d64659fc47859e5056b894139ed9538cf7370b4dc6f678"
+  },
+  {
+   "file": "pipeline-performance.json",
+   "bytes": 5380,
+   "sha256": "91d2cb6e3dc723617f4de77384b7bbf3e7d4f211178da0fd7bacf9287c6146c6"
+  },
+  {
+   "file": "pointer-path.json",
+   "bytes": 2006,
+   "sha256": "b1147d1f552c694fb4b2f574d5a4d0a9648ac3f175c2a007eb80cc916a04f54c"
+  },
+  {
+   "file": "reflection-band.json",
+   "bytes": 1042,
+   "sha256": "6603f50039a2ceb40579eebbcc1eefc710da870f526bcb366c1c535e413812d6"
+  },
+  {
+   "file": "refraction-compression.json",
+   "bytes": 4990,
+   "sha256": "496da1d7ac8ff503c5b19dafc69c78aa1ac7ea45c90702d930300e464f92338e"
+  },
+  {
+   "file": "regressions.json",
+   "bytes": 53170,
+   "sha256": "ef4870a60434d84e0bc1b12cdeb194c188fa719d4e89f5469f93d01e3d208e4f"
+  },
+  {
+   "file": "spectral-structure.json",
+   "bytes": 854,
+   "sha256": "750b1355b55354d35bb4710b46b54b7852f84d95d91d2a782e9cbc4564061022"
+  },
+  {
+   "file": "target-optical-body-contract.json",
+   "bytes": 48301,
+   "sha256": "d8c349290c581302ecbd86fe824cd0f900970cf6ef96c6ac76b126718eaed13e"
+  },
+  {
+   "file": "target-repeatability.json",
+   "bytes": 1852,
+   "sha256": "63e6efe6f089c550f5b9fa8892e0dc80dd20fcb4c16e6dc08475c32176bf58e7"
+  },
+  {
+   "file": "temporal-continuity.json",
+   "bytes": 82511,
+   "sha256": "cc78bf8afa3cbb509c14993d66687c586653adf4b556a4b7e58117b4c7edc2a1"
+  }
+ ]
+}

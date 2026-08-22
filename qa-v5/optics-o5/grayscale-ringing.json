@@ -1,0 +1,49 @@
+{
+ "what": "\u00a7\u4e5d.4 achromatic media.",
+ "rows": [
+  {
+   "vp": "1440x900",
+   "asset": "grayscale-step",
+   "target": {
+    "p995": 30.0,
+    "max": 130.0,
+    "mean": 1.85
+   },
+   "control": {
+    "p995": 18.0,
+    "max": 32.0,
+    "mean": 1.91
+   },
+   "candidate": {
+    "p995": 18.0,
+    "max": 130.0,
+    "mean": 2.06
+   },
+   "ceiling": 6.0,
+   "scoredStatistic": "p995Chroma",
+   "withinCeiling": false
+  },
+  {
+   "vp": "1440x900",
+   "asset": "bw-split",
+   "target": {
+    "p995": 30.0,
+    "max": 220.0,
+    "mean": 2.03
+   },
+   "control": {
+    "p995": 18.0,
+    "max": 47.0,
+    "mean": 1.92
+   },
+   "candidate": {
+    "p995": 20.0,
+    "max": 224.0,
+    "mean": 2.21
+   },
+   "ceiling": 6.0,
+   "scoredStatistic": "p995Chroma",
+   "withinCeiling": false
+  }
+ ]
+}

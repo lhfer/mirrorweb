@@ -1,0 +1,44 @@
+{
+ "what": "\u00a7\u4e5d.6 high-frequency structure.",
+ "summary": {
+  "hfEnergy": {
+   "target": 149.548,
+   "control": 183.3412,
+   "candidate": 153.6823,
+   "retention": 1.0276
+  },
+  "localSpectralCorrelationToTarget": {
+   "r": 0.9274,
+   "n": 4477
+  },
+  "controlSpectralCorrelationToTarget": {
+   "r": 0.6886,
+   "n": 4477
+  },
+  "edgeProfileCorrelationToTarget": {
+   "r": 1.0,
+   "n": 28
+  },
+  "falseColour": {
+   "target": {
+    "chromaAtFeatures": 84.673,
+    "chromaAwayFromFeatures": 26.617,
+    "featureThreshold": 24.0
+   },
+   "control": {
+    "chromaAtFeatures": 1.204,
+    "chromaAwayFromFeatures": 6.951,
+    "featureThreshold": 24.0
+   },
+   "candidate": {
+    "chromaAtFeatures": 86.721,
+    "chromaAwayFromFeatures": 29.992,
+    "featureThreshold": 24.0
+   }
+  },
+  "floors": {
+   "correlation": 0.7,
+   "hfRetention": 0.6
+  }
+ }
+}

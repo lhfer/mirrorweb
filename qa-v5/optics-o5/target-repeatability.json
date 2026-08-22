@@ -1,0 +1,104 @@
+{
+ "what": "Target repeatability, captured BEFORE any candidate frame. Every \u00a7\u4e5d window is max(2 x repeatability, floor). Spread is half the full range across repeats, not a standard deviation: a two-mode flicker between runs is exactly what this must not average away.",
+ "repeats": 3,
+ "byViewport": {
+  "1440x900": {
+   "bandRepeatabilityPx": 0.0,
+   "bandRuns": [
+    3.3,
+    3.3,
+    3.3
+   ],
+   "bandWindowPx": 1.5,
+   "darkLumaRepeatability": 0.0,
+   "darkRuns": [
+    48.15,
+    48.15,
+    48.15
+   ],
+   "darkLumaWindow": 6.0,
+   "whiteRatioRepeatability": 0.0,
+   "ratioRuns": [
+    4.3619,
+    4.3619,
+    4.3619
+   ],
+   "whiteRatioWindow": 0.15
+  },
+  "390x844": {
+   "bandRepeatabilityPx": 0.0,
+   "bandRuns": [
+    1.5,
+    1.5,
+    1.5
+   ],
+   "bandWindowPx": 1.5,
+   "darkLumaRepeatability": 0.0,
+   "darkRuns": [
+    51.28,
+    51.28,
+    51.28
+   ],
+   "darkLumaWindow": 6.0,
+   "whiteRatioRepeatability": 0.0,
+   "ratioRuns": [
+    4.9035,
+    4.9035,
+    4.9035
+   ],
+   "whiteRatioWindow": 0.15
+  },
+  "844x390": {
+   "bandRepeatabilityPx": 0.0,
+   "bandRuns": [
+    2.0,
+    2.0,
+    2.0
+   ],
+   "bandWindowPx": 1.5,
+   "darkLumaRepeatability": 0.0,
+   "darkRuns": [
+    86.19,
+    86.19,
+    86.19
+   ],
+   "darkLumaWindow": 6.0,
+   "whiteRatioRepeatability": 0.0,
+   "ratioRuns": [
+    2.2815,
+    2.2815,
+    2.2815
+   ],
+   "whiteRatioWindow": 0.15
+  },
+  "700x700": {
+   "bandRepeatabilityPx": 0.0,
+   "bandRuns": [
+    2.0,
+    2.0,
+    2.0
+   ],
+   "bandWindowPx": 1.5,
+   "darkLumaRepeatability": 0.0,
+   "darkRuns": [
+    44.2,
+    44.2,
+    44.2
+   ],
+   "darkLumaWindow": 6.0,
+   "whiteRatioRepeatability": 0.0,
+   "ratioRuns": [
+    5.8683,
+    5.8683,
+    5.8683
+   ],
+   "whiteRatioWindow": 0.15
+  }
+ },
+ "floors": {
+  "bandPx": 1.5,
+  "darkLuma": 6.0,
+  "whiteRatio": 0.15,
+  "compressionPx": 1.5
+ }
+}

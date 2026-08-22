@@ -65,6 +65,7 @@ gutter_pair_outside_silhouette = O4.gutter_pair_outside_silhouette
 interior_change = O4.interior_change
 glass_reflection_masks = O4.glass_reflection_masks
 pointer_judge = O4.pointer_judge
+centroid_of = O4.centroid_of
 AggregatorShapeError = O4.AggregatorShapeError
 zero_errors = O4.zero_errors
 require_number = O4.require_number
