@@ -8,6 +8,9 @@ pointer sweep / slow drag / fast flick, mobile touch, bright / dark /
 checker / grayscale sweeps), capturedAtHead + reviewHead + per-file
 SHA-256. The builder re-reads the zip and fails on any unlisted file.
 
+Both heads are written as complete 40-hex SHAs; a short commit-ish on the
+command line is expanded and verified against this repository first.
+
 Target pixels live ONLY in this package, never in the public tree.
 
 Usage: o2-package.py --measure=<dir> --recordings=<dir>
@@ -45,6 +48,28 @@ S = _load("o2_optics_stats_pkg", "o2_optics_stats.py")
 
 def run(cmd):
     subprocess.run(cmd, check=True)
+
+
+def full_sha(label: str, value: str) -> str:
+    """Resolve a commit-ish to its full 40-hex SHA, or die.
+
+    O2 product acceptance (§二) requires the private MANIFEST to carry
+    complete SHAs: a 7-hex prefix identifies a commit only by luck, and a
+    review package that outlives the branch has to name its heads
+    unambiguously. Short input is EXPANDED here rather than rejected, so
+    older call sites keep working, but what lands in the manifest is
+    always 40 hex and always a commit that exists in this repository.
+    """
+    proc = subprocess.run(["git", "-C", str(REPO), "rev-parse", "--verify",
+                           f"{value}^{{commit}}"],
+                          capture_output=True, text=True)
+    if proc.returncode != 0:
+        raise SystemExit(f"{label}: {value!r} does not resolve to a commit "
+                         f"in {REPO}")
+    sha = proc.stdout.strip()
+    if len(sha) != 40 or any(c not in "0123456789abcdef" for c in sha):
+        raise SystemExit(f"{label}: resolved to a non-40-hex value {sha!r}")
+    return sha
 
 
 def uniform_indices(rel_ms, fps):
@@ -110,8 +135,8 @@ def main() -> int:
         args[k] = v
     measure = Path(args["measure"])
     recordings = Path(args["recordings"])
-    captured = args["capturedAtHead"]
-    review = args["reviewHead"]
+    captured = full_sha("capturedAtHead", args["capturedAtHead"])
+    review = full_sha("reviewHead", args["reviewHead"])
     out_zip = Path(args["out"])
 
     stage = Path(tempfile.mkdtemp(prefix="o2pkg-"))

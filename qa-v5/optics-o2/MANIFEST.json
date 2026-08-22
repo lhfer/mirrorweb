@@ -1,8 +1,8 @@
 {
  "package": "qa-v5/optics-o2",
  "generatedAt": "2026-08-22T00:21:42+00:00",
- "capturedAtHead": "e913aa6",
- "finalState": "READY FOR O2 OPTICS PRODUCT REVIEW",
+ "capturedAtHead": "e913aa6a33e384ba4fc80eb28b9a8718fb20e5b9",
+ "finalState": "PASS -- ACCEPTED by O2 optics product review",
  "selectedCandidate": "A+B",
  "f12": {
   "registered": "the same-media full-frame side-by-side does not read as an unmistakable step toward white studio glass WITHOUT zooming",
@@ -16,8 +16,8 @@
  "files": [
   {
    "file": "README.md",
-   "bytes": 7223,
-   "sha256": "fc6ac1ff7ff38fb887dcca635fdd1ae771d6ef07eabdf7f50d711575cd661736"
+   "bytes": 7912,
+   "sha256": "099e485e620dddbcd3234c171c1704216a4045881c1ed827b8cce4294fb3a772"
   },
   {
    "file": "shared-media-harness.json",
@@ -79,5 +79,17 @@
    "bytes": 2237,
    "sha256": "3a3a0bba232f9352bcddf8255c096ca1ee631f8ee0a6496d624c4e964e3451bd"
   }
- ]
+ ],
+ "productAcceptance": {
+  "status": "ACCEPTED",
+  "behaviourBaseline": "e913aa6a33e384ba4fc80eb28b9a8718fb20e5b9",
+  "acceptedReviewTip": "fd12b97c4d9a28b732d3611035d98446a0201c68",
+  "selectedLane": "A+B (dispersionLaw=o1-spectral)",
+  "freezes": "the System B mechanism -- harness, env asset, integrated body LERP, Schlick F0 0.045 / exponent 5, envIntensity 1.93, envMaxMix 0.27, envRotationY -2 / envRotationX 0, level-0 equirect sample, sourceExact Beauty shell OFF, A+B default lane, v_o2NormalView branch-safe varying, media-only unchanged, envMixScale / rimScale QA floor levers",
+  "doesNotFreeze": "the reflection SUPPORT FIELD -- geometry normal as the System B fresnel-normal analogue, strongLensRim as the white rim mask, reflection support width, reflection band luminance, rim spatial profile. These are the authorised O3 scope",
+  "o1Verdict": "UNCHANGED -- O1 System A remains FAILED ABSOLUTE GATE; System A is in the product only through the O2 interaction gate",
+  "targetVisualPass": "NOT ASSERTED",
+  "contract": "docs/v5/O2_OPTICS_FREEZE_CONTRACT.md",
+  "note": "acceptance record only -- no capture, threshold or measurement in this evidence tree was re-run or edited"
+ }
 }

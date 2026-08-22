@@ -2,7 +2,7 @@
 
 Single canonical entry point. Every delivery updates this file.
 
-Last updated: 2026-08-21 (O2 delivered: System B — White Studio Reflection / fresnel-capped LERP — scored under the deterministic shared-media harness; A+B selected by the pre-registered rule; **READY FOR O2 OPTICS PRODUCT REVIEW**)
+Last updated: 2026-08-21 (**O2 System B ACCEPTED** by product review — mechanism frozen, reflection support field deliberately left open; O3 Target analytic bevel reflection support opened)
 
 | | |
 | --- | --- |
@@ -55,7 +55,8 @@ stated here and no further hygiene commit is created to chase it.
 | V1 WebGL render culling | **ACCEPTED — FROZEN** (behaviour baseline `b625f90`, accepted review tip `5159cf8`), see [`RENDER_CULLING_FREEZE_CONTRACT.md`](RENDER_CULLING_FREEZE_CONTRACT.md) |
 | Optics — O0 diagnosis | **ACCEPTED** as the current optics source baseline |
 | Optics — O1 System A | **FAILED ABSOLUTE GATE**; commit `e01fb30` remains an EXPERIMENTAL LANE only — not an accepted baseline, not frozen. See the O0/O1 section and the wording correction below |
-| Optics — O2 System B | **READY FOR O2 OPTICS PRODUCT REVIEW** — candidate `e913aa6`; selected lane **A+B** (System A retained ONLY through the pre-registered O2 interaction gate, never from the failed O1 result); evidence `qa-v5/optics-o2/` + private `o2-optics-review.zip`. Awaiting product review — not accepted, not frozen |
+| Optics — O2 System B | **ACCEPTED** — behaviour baseline `e913aa6`, accepted review tip `fd12b97`; selected lane **A+B** (System A retained ONLY through the pre-registered O2 interaction gate, never from the failed O1 result). Mechanism frozen, reflection SUPPORT FIELD deliberately not frozen — see [`O2_OPTICS_FREEZE_CONTRACT.md`](O2_OPTICS_FREEZE_CONTRACT.md) |
+| Optics — O3 Target analytic bevel reflection support | **IN PROGRESS** — the only authorised change is the support field (analytic bevel normal + Target SDF rim); every accepted O2 parameter is frozen |
 | Media / Layout | unmodified, frozen |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
@@ -317,9 +318,13 @@ never retroactively from the failed O1 result.
 
 ## O2 — System B: White Studio Reflection / fresnel-capped LERP
 
-**READY FOR O2 OPTICS PRODUCT REVIEW.** Candidate `e913aa6`; selected
-lane **A+B** by the pre-registered rule (all six strict criteria — the
-exact path §四 authorised for System A to re-enter the product).
+**ACCEPTED by product review.** Behaviour baseline
+`e913aa6a33e384ba4fc80eb28b9a8718fb20e5b9`, accepted review tip
+`fd12b97c4d9a28b732d3611035d98446a0201c68`; selected lane **A+B** by the
+pre-registered rule (all six strict criteria — the exact path §四
+authorised for System A to re-enter the product). What acceptance freezes,
+and what it deliberately leaves open for O3, is
+[`O2_OPTICS_FREEZE_CONTRACT.md`](O2_OPTICS_FREEZE_CONTRACT.md).
 Evidence: [`qa-v5/optics-o2/`](../../qa-v5/optics-o2/README.md) + private
 `qa-v5/private/o2-optics-review.zip`.
 
@@ -374,9 +379,11 @@ Findings a reviewer should read in order:
    the white band more than the Target's analytic bevel. Recorded for
    product review.
 
-Stop state: awaiting product review. No O3 work, no refraction / tone
-mapping / layout / typography / motion / culling changes, no Target
-Visual PASS asserted, no main merge.
+Product review accepted the mechanism and, on finding 5, opened O3: the
+reflection law is right and the field it is evaluated on is too wide, so
+the support field — the geometry normal and the `strongLensRim` mask — is
+NOT frozen. Every accepted parameter above is. O1's own verdict stays
+FAILED; System A is in the product only through the O2 interaction gate.
 
 ## FSX-A integration hardening
 
@@ -402,10 +409,12 @@ See [`FSX_ACCEPTANCE.md`](FSX_ACCEPTANCE.md).
 - M3 motion source reconciliation: `b8cbbd2` writer-order forensics · `4df03f2` writer-order code (motion behaviour baseline) · `8f906f1` evidence · `b99e5ce` hygiene (accepted review tip) · `17fcaca` acceptance record (docs)
 - V0 label coverage culling: `820cd92` code (culling behaviour baseline) · `7f9e0ef` evidence · `b4a4450` package hygiene (accepted review tip)
 
-**Candidate, not accepted**
 - V1 render culling: `cba2e72` forensics · `b625f90` code (render culling behaviour baseline) · `04cff37` evidence · `5159cf8` accept record — GATE PASS, frozen
-- O0/O1 optics: `03676b1` O0 source diagnosis + pre-registered system selection · `e01fb30` O1 candidate code (the Target's dispersion law, System A only) · the O1 evidence commit — **O1 FAILED ABSOLUTE GATE**; attribution corrected to System B
-- O2 optics: `62498e5` shared-media harness (10/10 PASS) · `8147156` System B source contract + pre-registration (sealed before candidate code) · `e913aa6` System B code (branch-safe implementation; structural lane proof EXACT 0) · this delivery's evidence commit — **READY FOR O2 OPTICS PRODUCT REVIEW**, selected lane A+B
+- O2 optics: `62498e5` shared-media harness (10/10 PASS) · `8147156` System B source contract + pre-registration (sealed before candidate code) · `e913aa6` System B code (behaviour baseline; branch-safe implementation, structural lane proof EXACT 0) · `fd12b97` evidence (accepted review tip) · the product-accept record — **ACCEPTED**, selected lane A+B; mechanism frozen, support field open
+
+**Candidate, not accepted**
+- O0/O1 optics: `03676b1` O0 source diagnosis + pre-registered system selection · `e01fb30` O1 candidate code (the Target's dispersion law, System A only) · the O1 evidence commit — **O1 FAILED ABSOLUTE GATE**; attribution corrected to System B. System A ships only through the O2 interaction gate; that verdict is not overturned
+- O3 optics: Target analytic bevel reflection support — in progress
 - `dd6d7bf` / `4ca597f` F2 · `b5cff63` F2 audit · `730beb7` F3 diagnosis
 - `f56f55e` / `ba4ba32` F2.5 · this delivery's three F2.6 commits
 
@@ -572,8 +581,10 @@ attribution (System B) and the Target-lane variance warning in
 `qa-v5/optics/o0-source-diagnosis.json`. The O2 round answered exactly
 that: System B scored under the deterministic shared-media harness
 (cross-page Target numbers secondary by design), candidate **A+B** won
-the pre-registered interaction rule on all six strict criteria, and the
-delivery is **READY FOR O2 OPTICS PRODUCT REVIEW** (see the O2 section).
+the pre-registered interaction rule on all six strict criteria, and
+product review **ACCEPTED** it — freezing the mechanism and opening O3 on
+the reflection support field (see the O2 section and
+[`O2_OPTICS_FREEZE_CONTRACT.md`](O2_OPTICS_FREEZE_CONTRACT.md)).
 
 ### Superseded F2.7 decisions
 

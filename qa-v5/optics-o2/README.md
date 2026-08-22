@@ -1,9 +1,11 @@
 # O2 -- System B: White Studio Reflection / Fresnel-capped LERP
 
-**Verdict: READY FOR O2 OPTICS PRODUCT REVIEW.**
+**Verdict: PASS. Product review status: ACCEPTED.**
 **Selected candidate: A+B** (System A (o1-spectral dispersion) stays in the product ONLY through this O2 interaction gate; config default dispersionLaw remains o1-spectral).
 
-Captured at `e913aa6`. Base lanes: V1 accepted `5159cf8` (B-only base / Before), O1 experimental `62d3ac4` (A+B base). Media: the deterministic shared-media harness (all-PASS, see shared-media-harness.json) -- every number below is a same-media, mostly same-page number; cross-page Target numbers are secondary by design.
+Product acceptance record (added after review, no measurement re-run): behaviour baseline `e913aa6a33e384ba4fc80eb28b9a8718fb20e5b9`, accepted review tip `fd12b97c4d9a28b732d3611035d98446a0201c68`. Acceptance freezes the System B MECHANISM and deliberately does NOT freeze the reflection SUPPORT FIELD -- the geometry-normal fresnel analogue, the `strongLensRim` mask, the band width, the band luminance and the rim spatial profile stay open, and are the authorised O3 scope. See `docs/v5/O2_OPTICS_FREEZE_CONTRACT.md`. O1's own verdict is NOT overturned. Target Visual PASS is NOT asserted. Every number below is unchanged from the reviewed evidence.
+
+Captured at `e913aa6a33e384ba4fc80eb28b9a8718fb20e5b9`. Base lanes: V1 accepted `5159cf8` (B-only base / Before), O1 experimental `62d3ac4` (A+B base). Media: the deterministic shared-media harness (all-PASS, see shared-media-harness.json) -- every number below is a same-media, mostly same-page number; cross-page Target numbers are secondary by design.
 
 ## Gate verdicts
 
