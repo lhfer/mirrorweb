@@ -1371,6 +1371,23 @@ export class GridAppV4 {
   }
 
   /**
+   * O5F §五 QA-only. The grid's material-cache truth plus the renderer's own
+   * resource counts. `info.memory` is what the WebGPU backend actually
+   * tracks; a field it does not carry reads null rather than a substitute.
+   */
+  getBodyMaterialCacheTruth(): Record<string, unknown> {
+    const info = this.renderer.handle?.renderer.info as
+      | { memory?: Record<string, number> }
+      | undefined;
+    return {
+      ...this.grid.getBodyMaterialCacheTruth(),
+      rendererTextures: info?.memory?.textures ?? null,
+      rendererGeometries: info?.memory?.geometries ?? null,
+      rendererPrograms: info?.memory?.programs ?? null,
+    };
+  }
+
+  /**
    * QA only (O3 gate 18). The generated program for the glass BODY, so a
    * gate can prove which support the beauty path actually consumes rather
    * than inferring it from the TypeScript. Readback only -- nothing here

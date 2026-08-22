@@ -39,6 +39,7 @@ import {
 } from "../OpticsConfigV4";
 import {
   TARGET_BODY_SOURCE,
+  V5_BODY_SAMPLES,
   applyTargetOpticalBodyFrameV5,
   createTargetOpticalBodyMaterialV5,
   createTargetOpticalBodyUniformsV5,
@@ -65,6 +66,26 @@ export type SlotV4 = {
 };
 
 const pose: TilePose = { x: 0, y: 0, z: 0, rotX: 0, rotY: 0 };
+
+/**
+ * O5F §四 -- one finite cached material set.
+ *
+ * A set owns one material per CLIP (the Target's own granularity) plus the
+ * per-clip cover uniforms those materials carry. The set is keyed by every
+ * build-time input that changes the generated program: the spectral sample
+ * count, the QA view, the environment mode, the clamp mode and the lane.
+ * Within one build only the sample count can change at runtime -- a quality
+ * step -- so the product Beauty cache holds exactly two sets: the 5-sample
+ * set High and Medium share, and the 3-sample set for Low.
+ */
+type BodyMaterialCacheEntry = {
+  key: string;
+  sampleCount: number;
+  /** One handle per clip, index = clipIndex, exactly as bodyHandles binds. */
+  handles: TargetOpticalBodyHandleV5[];
+  /** Monotonic creation generation, for the §五 truth surface. */
+  generation: number;
+};
 
 /**
  * Source-exact pool capacity.
@@ -127,8 +148,25 @@ export class InfiniteGlassGridV4 {
   private bodyView: V5BodyView = "beauty";
   /** O5R §十: the environment as a structural choice, not a multiply. */
   private environmentMode: V4EnvironmentMode = "source";
-  /** Kept so a quality step can rebuild the candidate materials. */
+  /** Kept so a lazily-created cached set can still reach the environment. */
   private bodyEnvTexture: Texture | null = null;
+  /**
+   * O5F §四 -- the finite material-set cache.
+   *
+   * O5R §十二 measured the candidate lane retaining ~68 KB per quality step
+   * (39.36 MB over a six-minute quality-cycle arm against <= 2.06 MB in every
+   * other arm) even though every rebuilt material was disposed. So materials
+   * are no longer rebuilt at all: a quality step SWITCHES between cached
+   * sets, and after both product sets exist no quality transition may create
+   * a material. The counters are monotonic across the grid's life, so a leak
+   * shows as creationCount motion rather than being hidden by a reset.
+   */
+  private bodyMaterialCache = new Map<string, BodyMaterialCacheEntry>();
+  private activeBodyCacheKey: string | null = null;
+  private bodyMaterialCreationCount = 0;
+  private bodyMaterialDisposalCount = 0;
+  private bodyCacheSwitchCount = 0;
+  private bodyCacheGeneration = 0;
 
   constructor(private readonly params = createLiquidGlassParamsV4()) {
     this.root.name = "MirrorWeb.V4.GridRoot";
@@ -309,7 +347,17 @@ export class InfiniteGlassGridV4 {
     // FROZEN MediaFit result, never from the Target's centred formula: media
     // focus and crop are frozen, and clip 2 carries a product decision the
     // Target's formula does not express.
-    this.rebuildBodyMaterials();
+    this.activateBodyMaterials();
+    // O5F §四.2 -- the product Beauty path builds BOTH product sets at
+    // initialisation: the 5-sample set High and Medium share, and the
+    // 3-sample set for Low. So no later quality transition can create a
+    // material, and the first drop to Low binds a set that already exists
+    // instead of paying a mid-session build. QA measurement views hold their
+    // quality for a capture's whole life, so they create only the one set
+    // they use -- their cache stays finite through the same keyed map.
+    if (this.bodyView === "beauty") {
+      this.ensureBodyMaterialSet(this.quality === "low" ? "high" : "low");
+    }
 
     for (let n = 0; n < SOURCE_EXACT_POOL; n += 1) {
       const group = new Group();
@@ -333,44 +381,94 @@ export class InfiniteGlassGridV4 {
   }
 
   /**
-   * (Re)build the per-clip candidate materials.
+   * O5F §四 -- the cache key. Every build-time input that changes the
+   * generated program is in it; everything else (cover fits, layout frame,
+   * QA scales) is a uniform shared by or written into every set.
+   */
+  private bodyCacheKeyFor(quality: QualityLevel): string {
+    const clamp = this.opticalBody === "target-source";
+    return `samples=${V5_BODY_SAMPLES[quality]}|view=${this.bodyView}`
+      + `|env=${this.environmentMode}|clamp=${clamp ? "clamped" : "unclamped"}`
+      + `|lane=${this.opticalBody}`;
+  }
+
+  /**
+   * Build ONE cached set -- one material per clip, at `quality`'s sample
+   * count. The only place a candidate body material is ever created.
    *
    * The spectral sample count is a BUILD-TIME literal -- the Target bakes its
-   * weights on the CPU and so do we -- so a quality step has to rebuild these
-   * materials or the lane would keep five samples on a device that asked for
-   * three. The control lane has the same property and the same limitation; the
-   * difference is that here it is optically load-bearing, so it is handled.
+   * weights on the CPU and so do we -- which is why the sample count needs a
+   * separate PROGRAM rather than a uniform. O5's answer was to rebuild the
+   * materials on every quality step and dispose the previous set; O5R §十二
+   * measured that retaining ~68 KB per step despite the dispose. The cached
+   * sets share the same Video elements, the same VideoTextures, the same HDR
+   * texture, the same geometry and the same layout uniform block; only the
+   * baked spectral table differs between them.
    */
-  private rebuildBodyMaterials(): void {
-    if (!this.bodyUniforms) return;
-    const previous = this.bodyHandles;
+  private buildBodyMaterialSet(quality: QualityLevel): BodyMaterialCacheEntry {
     const count = Math.max(1, this.ownMediaTextures.length);
-    const next: TargetOpticalBodyHandleV5[] = [];
+    const handles: TargetOpticalBodyHandleV5[] = [];
     for (let index = 0; index < count; index += 1) {
       const fit = this.mediaFits[index];
-      next.push(createTargetOpticalBodyMaterialV5({
-        uniforms: this.bodyUniforms,
+      handles.push(createTargetOpticalBodyMaterialV5({
+        uniforms: this.bodyUniforms!,
         media: this.ownMediaTextures[index],
         environment: (this.bodyEnvTexture
           ?? this.ownMediaTextures[index]) as Texture,
         coverScale: fit ? [fit.repeatX, fit.repeatY] : [1, 1],
         coverOffset: fit ? [fit.offsetX, fit.offsetY] : [0, 0],
-        quality: this.quality,
+        quality,
         view: this.bodyView,
         // O5R §十. The clamp survives ONLY in the lane O5 sealed, so the
         // original gate stays re-runnable against the pixels it was scored on.
         clampEnvSample: this.opticalBody === "target-source",
         environmentMode: this.environmentMode,
       }));
+      this.bodyMaterialCreationCount += 1;
     }
-    this.bodyHandles = next;
+    this.bodyCacheGeneration += 1;
+    return {
+      key: this.bodyCacheKeyFor(quality),
+      sampleCount: V5_BODY_SAMPLES[quality],
+      handles,
+      generation: this.bodyCacheGeneration,
+    };
+  }
+
+  /** Get-or-create the cached set for `quality`'s sample count. */
+  private ensureBodyMaterialSet(quality: QualityLevel): BodyMaterialCacheEntry {
+    const key = this.bodyCacheKeyFor(quality);
+    let entry = this.bodyMaterialCache.get(key);
+    if (!entry) {
+      entry = this.buildBodyMaterialSet(quality);
+      this.bodyMaterialCache.set(key, entry);
+    }
+    return entry;
+  }
+
+  /**
+   * O5F §四.4 -- make the set for the CURRENT quality the active one.
+   *
+   * A quality change is exactly this: switch the active cached set and rebind
+   * every slot's material reference. Nothing is created once both product
+   * sets exist, nothing is EVER disposed here -- the inactive set stays
+   * cached so the original material UUIDs return on the next visit to that
+   * tier -- and the geometry is not touched: the candidate's 16x12 body plane
+   * is part of the source contract, not a quality knob.
+   */
+  private activateBodyMaterials(): void {
+    if (!this.bodyUniforms) return;
+    const entry = this.ensureBodyMaterialSet(this.quality);
+    if (this.activeBodyCacheKey !== null
+        && this.activeBodyCacheKey !== entry.key) {
+      this.bodyCacheSwitchCount += 1;
+    }
+    this.activeBodyCacheKey = entry.key;
+    this.bodyHandles = entry.handles;
     for (const slot of this.slots) {
-      slot.glass.material = next[slot.slotIndex % next.length].material;
+      slot.glass.material =
+        entry.handles[slot.slotIndex % entry.handles.length].material;
     }
-    // Dispose AFTER rebinding, never before: a mesh holding a disposed
-    // material draws nothing for a frame, which is exactly the resource
-    // pop-in §十 forbids.
-    for (const handle of previous) handle.material.dispose();
   }
 
   /**
@@ -471,11 +569,17 @@ export class InfiniteGlassGridV4 {
       // Same fit, expressed as the Target's uniforms. repeat/offset IS
       // coverScale/coverOffset -- three's texture matrix and the Target's
       // `clamp(uv,0,1)*coverScale + coverOffset` are the same convention, so
-      // this is a rename rather than a recomputation.
-      const body = this.bodyHandles[index];
-      if (body) {
-        body.coverScale.value.set(fit.repeatX, fit.repeatY);
-        body.coverOffset.value.set(fit.offsetX, fit.offsetY);
+      // this is a rename rather than a recomputation. O5F §四.5: written into
+      // EVERY cached set, active or not -- an inactive set that missed a
+      // resize would come back with the previous viewport's crop on its next
+      // activation, which is exactly the stale-uniform pop the cache must
+      // not introduce.
+      for (const entry of this.bodyMaterialCache.values()) {
+        const body = entry.handles[index];
+        if (body) {
+          body.coverScale.value.set(fit.repeatX, fit.repeatY);
+          body.coverOffset.value.set(fit.offsetX, fit.offsetY);
+        }
       }
     }
   }
@@ -627,6 +731,45 @@ export class InfiniteGlassGridV4 {
         envRotationX: this.params.envRotationX.value,
         rimIntensity: this.params.rimIntensity.value,
       },
+    };
+  }
+
+  /**
+   * O5F §五 QA-only -- the material-cache truth, read off the live cache.
+   *
+   * Everything here is state the cache already carries; nothing is derived,
+   * so a harness invariant ("creationCount is constant", "the original UUIDs
+   * return") is checked against what the grid actually holds rather than
+   * against a bookkeeping mirror that could drift from it.
+   */
+  getBodyMaterialCacheTruth(): Record<string, unknown> {
+    const entries = [...this.bodyMaterialCache.values()];
+    return {
+      lane: this.opticalBody,
+      cacheApplies: isTargetSourceBody(this.opticalBody) && this.sourceExact,
+      activeKey: this.activeBodyCacheKey,
+      cacheKeys: entries.map((e) => e.key),
+      cacheSize: entries.length,
+      sets: entries.map((e) => ({
+        key: e.key,
+        sampleCount: e.sampleCount,
+        generation: e.generation,
+        materialUuids: e.handles.map((h) => h.material.uuid),
+        coverScale: e.handles.map((h) =>
+          [h.coverScale.value.x, h.coverScale.value.y]),
+        coverOffset: e.handles.map((h) =>
+          [h.coverOffset.value.x, h.coverOffset.value.y]),
+      })),
+      activeMaterialUuids: this.bodyHandles.map((h) => h.material.uuid),
+      activeSamples: this.bodyHandles[0]?.samples ?? null,
+      materialCreationCount: this.bodyMaterialCreationCount,
+      materialDisposalCount: this.bodyMaterialDisposalCount,
+      cacheSwitchCount: this.bodyCacheSwitchCount,
+      videoTextureUuids: this.ownMediaTextures.map((t) => t.uuid),
+      environmentUuid: this.bodyEnvTexture?.uuid ?? null,
+      quality: this.quality,
+      opticalBody: this.opticalBody,
+      bodyView: isTargetSourceBody(this.opticalBody) ? this.bodyView : null,
     };
   }
 
@@ -830,6 +973,19 @@ export class InfiniteGlassGridV4 {
   setQuality(quality: QualityLevel): void {
     if (this.foundation || quality === this.quality) return;
     this.quality = quality;
+    if (this.bodyUniforms) {
+      // O5F §四.4 -- the candidate lane's quality change is a cached-set
+      // switch and a material rebind, nothing else. The convex-glass
+      // geometry rebuild below is the CONTROL lane's: the candidate's body
+      // is the 16x12 subdivided plane from the source contract, which has no
+      // quality dependence -- and until O5F, falling through to the shared
+      // rebuild silently handed every candidate card the convex volume's
+      // vertex distribution after the first quality step, collapsing the
+      // tessellation the vertex-stage dome is resolved by. Fixed by
+      // implementing §四.4's definition rather than patched around.
+      this.activateBodyMaterials();
+      return;
+    }
     this.glassGeometry.dispose();
     // The source-exact card is 4:3 and is sized by a uniform scale off the
     // reference plane. Rebuilding the volume at a new quality without the
@@ -847,7 +1003,6 @@ export class InfiniteGlassGridV4 {
       slot.glass.geometry = this.glassGeometry;
       if (slot.shell) slot.shell.geometry = this.glassGeometry;
     }
-    if (isTargetSourceBody(this.opticalBody)) this.rebuildBodyMaterials();
     // Re-apply the layout frame: the scales live on the meshes, and a quality
     // step must not be able to leave them describing the previous geometry.
     if (this.sourceExact && this.frame) this.setFrame(this.frame);
@@ -979,8 +1134,18 @@ export class InfiniteGlassGridV4 {
     this.mediaMaterials.length = 0;
     for (const texture of this.calibrationTextures) texture.dispose();
     this.calibrationTextures.length = 0;
-    for (const handle of this.bodyHandles) handle.material.dispose();
-    this.bodyHandles.length = 0;
+    // O5F §四.8 -- every cached set is disposed here, exactly once, and
+    // nowhere else. bodyHandles aliases one of these sets, so it is cleared
+    // without a second dispose pass over the same materials.
+    for (const entry of this.bodyMaterialCache.values()) {
+      for (const handle of entry.handles) {
+        handle.material.dispose();
+        this.bodyMaterialDisposalCount += 1;
+      }
+    }
+    this.bodyMaterialCache.clear();
+    this.activeBodyCacheKey = null;
+    this.bodyHandles = [];
     for (const texture of this.ownMediaTextures) texture.dispose();
     this.ownMediaTextures.length = 0;
     this.bodyUniforms = undefined;

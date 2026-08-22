@@ -64,6 +64,8 @@ export type GridQaV4 = {
   setEnvMixScale: (value: number) => void;
   setRimScale: (value: number) => void;
   getOpticsState: () => Record<string, unknown>;
+  /** O5F §五 QA-only: the finite material-set cache truth. */
+  getBodyMaterialCacheTruth: () => Record<string, unknown>;
   /** QA only (O3 gate 18): the generated glass-body program. */
   getGlassShaderSource: () => Promise<Record<string, unknown> | null>;
   getRenderCullingTruth: () => Record<string, unknown>;
@@ -159,6 +161,7 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
     setEnvMixScale: (value) => app.setEnvMixScale(value),
     setRimScale: (value) => app.setRimScale(value),
     getOpticsState: () => app.getOpticsState(),
+    getBodyMaterialCacheTruth: () => app.getBodyMaterialCacheTruth(),
     getGlassShaderSource: () => app.getGlassShaderSource(),
       getRenderCullingTruth: () => app.getRenderCullingTruth(),
       getRenderPassStats: () => app.getRenderPassStats(),
