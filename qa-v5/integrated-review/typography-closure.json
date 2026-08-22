@@ -1,0 +1,44 @@
+{
+ "what": "Integrated Visual Sprint 1 §八 -- Phase B typography closure: the Target's live DOM re-read and the local candidate proven against it with ONE reader, loaded-face proof included. Verdict first: every text-carrying style is live-equal and the loaded faces shape identical glyph bounds -- NO code change was needed, so Before == After for typography and zero product files were touched.",
+ "generatedAt": "2026-08-22",
+ "instrument": "scripts/v5/t1-target-typography.mjs -- the sealed dual-side reader, extended this round with a fontProof block (document.fonts.check + two-fallback shaping detector + actualBoundingBox glyph bounds). Same code reads both sides; the collector was also fixed to pick a VISIBLE card (culled labels are display:none and render-aware innerText reads empty on them).",
+ "sides": {
+  "target": "https://infinite-liquid-glass.shader.se/?v=2 (live, re-read this round)",
+  "local": "http://127.0.0.1:5293/?review=target&qa (the review route)"
+ },
+ "viewports": ["1440x900", "700x700", "390x844", "844x390"],
+ "loadedFaceProof": {
+  "claimStandard": "no 'the code says Geist' -- proof is document.fonts status, fonts.check(), the two-fallback shaping test, and measured glyph bounds.",
+  "target": "family 'Geist' / 'Geist Mono' (variable, weight range 100-900), status loaded, check true, shapes true.",
+  "local": "family 'Geist Variable' / 'Geist Mono Variable' (@fontsource-variable 5.3.0), status loaded, check true, shapes true. No system-ui fallback anywhere.",
+  "glyphBoundsIdentity": {
+   "title (600 @ 65.66px)": { "target": [47.916, 10.692, -5.28, 312.933], "local": [47.916, 10.692, -5.28, 312.933] },
+   "deck (500 @ 13.68px)": { "target": [11.616, 2.592, -1.376, 74.515], "local": [11.616, 2.592, -1.376, 74.515] },
+   "meta (Mono 500 @ 9.30px)": { "target": [11.616, 2.592, -1.075, 75.903], "local": [11.616, 2.592, -1.075, 75.903] },
+   "footer label (Mono 500 @ 11.52px)": { "target": [11.616, 2.592, -1.075, 75.903], "local": [11.616, 2.592, -1.075, 75.903] },
+   "cta (Mono 400 @ 11.52px)": { "target": [11.616, 2.592, -1.12, 75.839], "local": [11.616, 2.592, -1.12, 75.839] },
+   "note": "ascent/descent/left/right of the probe string, px. Bit-equal at matched size and weight: the two names are the SAME variable font."
+  }
+ },
+ "styleMatrix": {
+  "textCarriers": "meta, title, deck: fontWeight, fontSizePx, lineHeightPx, letterSpacingPx, textTransform, maxWidth, padding, opacity, overflow and lineCount ALL MATCH at all four viewports (title: 600 / 12cqw / leading 0.82 / tracking -0.085em / max-w 92%; deck: 500 / 2.5cqw / leading-tight / tracking -0.01em / max-w 58cqw / white 82%; meta: Mono 500 / 1.7cqw / tracking 0.18em / uppercase).",
+  "containers": "card box = plane box on both sides (sealed container law re-verified, object scale 1); se-clip overflow hidden matches the Target's clip; content padding 7cqw matches.",
+  "textPlaneDepth": { "1440x900": [-203.676, -203.676], "700x700": [-240.486, -240.486], "390x844": [-78.878, -78.878], "844x390": [-79.998, -79.998], "note": "[target tz, local tz] -- exact at every viewport." },
+  "residualDiffRows": [
+   "container lineHeight 24px (inherited Tailwind root) vs 'normal' on OUR se-clip/se-content/se-rule -- these boxes carry no direct inline text, so the inherited value has no rendered effect; every text element sets its own matching line-height.",
+   "deck color serialization: Tailwind emits oklab(0.999994 ... / 0.82), ours rgba(255,255,255,0.82) -- the same white at 82% alpha.",
+   "lineCount on container rows: instrument artifact (the Target containers' first child is not a text node so the reader returns null there; text elements compare properly and match)."
+  ]
+ },
+ "acceptance": {
+  "labelsShownAllSides": "every §四 still and recording carries labels + footer on both runtimes.",
+  "titleNeverCrossesCards": "se-clip overflow hidden (matched) + title localBox inside the card box + matching lineCounts.",
+  "visualWeight": "weight 600 with bit-equal glyph bounds -- same ink.",
+  "lineBreaks": "title and deck lineCounts match per viewport (content strings differ by design; the wrap LAW -- max-widths, leading, tracking -- is equal).",
+  "metaDeckRule": "matched (styleMatrix); the rule sits above the title on both sides.",
+  "motionCoupling": "labels ride the cards in all six real-input recordings (artifacts/integrated-review/*/recordings/) -- the CSS3D layer consumes the same layout frame as the renderer; no separation visible in slow drag, flick, wrap or orientation change.",
+  "contentDifferences": "by design: our catalog titles and the ATELIER footer brand (Iowan Old Style 700) replace the Target's titles and SHADER brand -- product content, not typography-system divergence."
+ },
+ "codeChanges": "NONE to product files. The §八 allowed files (TileLabelLayer, typography CSS, font loading, footer typography) were not touched: the re-proof passed everything. Only the reader script gained its fontProof block.",
+ "priorStatus": "Typography was Engineering Accepted in earlier rounds but the O5F package showed no local labels; this round replaces that gap with a live four-viewport loaded-face proof at the current head."
+}

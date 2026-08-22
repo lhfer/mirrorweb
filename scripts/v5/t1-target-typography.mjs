@@ -144,10 +144,72 @@ function readTypography() {
     };
     walkFooter(footer, 0);
   }
+  // Integrated Visual Sprint 1 §八: LOADED-face proof, not CSS-declaration
+  // proof. For every distinct (family stack, weight, size) among the first
+  // card's text elements and the footer: does document.fonts.check() pass,
+  // and does the first family in the stack actually shape glyphs? The
+  // detector is the classic two-fallback width compare -- a family that did
+  // not load makes '"X", serif' and '"X", monospace' render their different
+  // fallbacks, so equal widths across both (and both differing from the bare
+  // fallbacks) prove X itself shaped the text. actualBoundingBox of a probe
+  // string records the glyph bounds the loaded face produces.
+  const fontProof = (() => {
+    const tuples = new Map();
+    const collect = (el) => {
+      if (!el || !(el.innerText || "").trim()) return;
+      const cs = getComputedStyle(el);
+      const key = `${cs.fontFamily}|${cs.fontWeight}|${cs.fontSize}`;
+      if (!tuples.has(key)) tuples.set(key, { family: cs.fontFamily, weight: cs.fontWeight,
+        sizePx: px(cs.fontSize), sampleText: (el.innerText || "").trim().slice(0, 24),
+        className: typeof el.className === "string" ? el.className : null });
+    };
+    // A VISIBLE card: culled labels are display:none and innerText (which is
+    // render-aware) reads empty on them, so the first [data-slot] in DOM
+    // order can be a hidden one that yields no tuples at all.
+    const firstCard = Array.from(document.querySelectorAll("[data-slot], [data-ilg]"))
+      .find((d) => (d.innerText || "").trim())
+      ?? Array.from(document.querySelectorAll("div")).find((d) =>
+        getComputedStyle(d).transform.startsWith("matrix3d") && /ILG/.test(d.innerText || ""));
+    if (firstCard) for (const el of firstCard.querySelectorAll("*")) collect(el);
+    const foot = document.querySelector("footer");
+    if (foot) { collect(foot); for (const el of foot.querySelectorAll("*")) collect(el); }
+    const canvas = document.createElement("canvas");
+    const ctx2 = canvas.getContext("2d");
+    const PROBE = "Refraction Study 0123 waves ILG";
+    const rows = [];
+    for (const t of tuples.values()) {
+      const first = t.family.split(",")[0].trim().replace(/^"|"$/g, "");
+      const w = /^\d+$/.test(t.weight) ? t.weight : "400";
+      const size = Math.max(16, Math.round(t.sizePx || 16));
+      const width = (stack) => { ctx2.font = `${w} ${size}px ${stack}`; return ctx2.measureText(PROBE).width; };
+      const wSerif = width(`"${first}", serif`);
+      const wMono = width(`"${first}", monospace`);
+      const bareSerif = width("serif");
+      const bareMono = width("monospace");
+      const firstLoaded = Math.abs(wSerif - wMono) < 0.01
+        && Math.abs(wSerif - bareSerif) > 0.01 && Math.abs(wMono - bareMono) > 0.01;
+      ctx2.font = `${w} ${size}px ${t.family}`;
+      const m = ctx2.measureText("RgILG—01");
+      rows.push({
+        ...t, firstFamily: first,
+        fontsCheck: document.fonts && document.fonts.check
+          ? document.fonts.check(`${w} ${size}px "${first}"`) : null,
+        firstFamilyShapesText: firstLoaded,
+        stackWidthPx: +width(t.family).toFixed(3),
+        glyphBounds: {
+          ascent: +m.actualBoundingBoxAscent.toFixed(3),
+          descent: +m.actualBoundingBoxDescent.toFixed(3),
+          left: +m.actualBoundingBoxLeft.toFixed(3),
+          right: +m.actualBoundingBoxRight.toFixed(3),
+        },
+      });
+    }
+    return rows;
+  })();
   return {
     innerWidth: window.innerWidth, innerHeight: window.innerHeight,
     devicePixelRatio: window.devicePixelRatio, userAgent: navigator.userAgent,
-    container, root, cards,
+    container, root, cards, fontProof,
     // DOM order is the paint order for a CSS3D layer that does not sort.
     cardDomOrder: cards.map((c) => ({ code: c.code, domIndex: c.domIndex, tz: c.translation[2] })),
     footer: footer ? styleOf(footer) : null,
