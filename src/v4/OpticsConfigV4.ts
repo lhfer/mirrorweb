@@ -77,6 +77,20 @@ export const V4_BODY_DIAG_ORDER = [
   "repairRefractionNormal", // N -- feed the body a real geometry normal
 ] as const;
 
+// O4 PRODUCT lane switch, distinct from the diagnostic factors above.
+// "current" is the accepted O2 body; "remove-adaptive-shaping" is the one
+// subsystem §七 selected (qa-v5/optics-o4/o4-selected-subsystem.json): the
+// Target's body chain contains no contrast shaping, no edge lift and no
+// internal shadow, and ours contributes 141% of the desktop body-floor
+// excess through them. Build-time, like every other lane switch here.
+export const V4_BODY_FLOOR_MODES = ["current", "remove-adaptive-shaping"] as const;
+export type V4BodyFloorMode = (typeof V4_BODY_FLOOR_MODES)[number];
+
+export function parseBodyFloorMode(v: string | null | undefined): V4BodyFloorMode {
+  return V4_BODY_FLOOR_MODES.includes(v as V4BodyFloorMode)
+    ? (v as V4BodyFloorMode) : "current";
+}
+
 export type V4BodyDiagFactor = (typeof V4_BODY_DIAG_ORDER)[number];
 export type V4BodyDiag = Record<V4BodyDiagFactor, boolean>;
 
@@ -189,6 +203,10 @@ export const V4_OPTICS_CONFIG = {
     // if all twenty absolute-gate items pass; see
     // qa-v5/optics-o3/o3-preregistration.json.
     reflectionSupport: "geometry" as V4ReflectionSupport,
+    // O4: the code commit ships the CONTROL. The O4 absolute gate decides
+    // whether the candidate becomes the default; there is no automatic
+    // flip, and product review owns that call.
+    bodyFloorMode: "current" as V4BodyFloorMode,
     // O2 System B -- the Target's shipped values, adopted verbatim
     // (byte-anchored in qa-v5/optics-o2/target-system-b-source.json).
     // None of these is a tunable; see o2-selected-system.json.

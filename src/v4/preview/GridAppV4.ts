@@ -35,7 +35,7 @@ import {
 } from "../../materials/LiquidGlassMaterialV4";
 import {
   V4_DEBUG_MODES, V4_OPTICS_CONFIG,
-  type V4BodyDiag, type V4DebugMode, type V4DispersionLaw,
+  type V4BodyDiag, type V4BodyFloorMode, type V4DebugMode, type V4DispersionLaw,
   type V4ReflectionSupport, type V4ShellMode,
 } from "../OpticsConfigV4";
 import { createStripLightEnvironmentV4 } from "../StripLightEnvironmentV4";
@@ -74,6 +74,8 @@ export type GridAppV4Options = {
   reflectionSupport?: V4ReflectionSupport;
   /** O4 body-floor diagnostic factors (?bodyDiag=ABCDEN); default all off. */
   bodyDiag?: V4BodyDiag;
+  /** O4 product lane (?bodyFloorMode=); default from OpticsConfigV4. */
+  bodyFloorMode?: V4BodyFloorMode;
 };
 
 /**
@@ -278,6 +280,7 @@ export class GridAppV4 {
         dispersionLaw: this.options.dispersionLaw,
         reflectionSupport: this.options.reflectionSupport,
         bodyDiag: this.options.bodyDiag,
+        bodyFloorMode: this.options.bodyFloorMode,
       },
     );
     if (this.frame) this.grid.setFrame(this.frame);

@@ -42,6 +42,7 @@ import {
   type V4ReflectionSupport,
   type V4ShellMode,
   V4_BODY_DIAG_OFF,
+  type V4BodyFloorMode,
   bodyDiagCode,
   type V4BodyDiag,
 } from "../v4/OpticsConfigV4";
@@ -110,6 +111,8 @@ export type LiquidGlassMaterialV4Handle = {
   getReflectionSupport: () => V4ReflectionSupport;
   /** O4 diagnostic factor code, e.g. "000000" for the shipped body. */
   getBodyDiag: () => string;
+  /** O4 product lane: "current" or "remove-adaptive-shaping". */
+  getBodyFloorMode: () => V4BodyFloorMode;
   /**
    * O3: the Target's per-frame bevel uniform writes. A no-op on the GPU in
    * the geometry lane, where nothing references them.
@@ -156,6 +159,11 @@ export type LiquidGlassMaterialV4Options = {
    * exact-zero proof against the accepted O2 body.
    */
   bodyDiag?: V4BodyDiag;
+  /**
+   * O4 product lane. "current" is the accepted O2 body; the candidate
+   * removes the local adaptive body shaping the Target does not have.
+   */
+  bodyFloorMode?: V4BodyFloorMode;
 };
 
 export function createLiquidGlassMaterialV4(
@@ -170,6 +178,13 @@ export function createLiquidGlassMaterialV4(
   const reflectionSupport: V4ReflectionSupport =
     options.reflectionSupport ?? V4_OPTICS_CONFIG.material.reflectionSupport;
   const diag: V4BodyDiag = options.bodyDiag ?? V4_BODY_DIAG_OFF;
+  const bodyFloorMode: V4BodyFloorMode =
+    options.bodyFloorMode ?? V4_OPTICS_CONFIG.material.bodyFloorMode;
+  // The product candidate and the diagnostic factor neutralise the SAME
+  // three terms, so they share one branch: a difference between the lane
+  // and the factor could then only come from somewhere else.
+  const removeAdaptiveShaping =
+    diag.noAdaptiveShaping || bodyFloorMode === "remove-adaptive-shaping";
   // Created unconditionally so the handle's shape does not depend on the
   // lane; only the target-sdf branch REFERENCES them, and an unreferenced
   // uniform is not emitted into the program.
@@ -433,7 +448,7 @@ export function createLiquidGlassMaterialV4(
   // no contrast gain, no edge lift, no internal shadow. The Target's body
   // chain contains none of the three (qa-v5/optics-o4/target-body-source
   // .json, completeness span 1975111..1976472).
-  const beauty = diag.noAdaptiveShaping
+  const beauty = removeAdaptiveShaping
     ? refractedColor
     : contrastShaped
         .add(vec3(adaptiveEdgeLift))
@@ -662,6 +677,7 @@ export function createLiquidGlassMaterialV4(
     getDispersionLaw: () => dispersionLaw,
     getReflectionSupport: () => reflectionSupport,
     getBodyDiag: () => bodyDiagCode(diag),
+    getBodyFloorMode: () => bodyFloorMode,
     setLayoutFrame: (frame) => applyTargetBevelFrameV4(bevelUniforms, frame),
     dispose: () => {
       bodyMaterial.dispose();
