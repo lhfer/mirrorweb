@@ -10,6 +10,31 @@ import { installQAHooks } from "./debug/QAHooks";
 // `?foundation=layout` is the V5 dev/QA layout view. It routes to V4 as well,
 // because V4 is the build under review; the layout it shows is the shared
 // GRID/TILE/placeTile geometry, so it is equally valid for V3.
+// `?review=target` / `?review=current` are the product review routes: one
+// URL, no hand-assembled query, the complete page. `target` pins the leading
+// optical candidate (composition=sourceExact + opticalBody=target-source-
+// unclamped, which carries the Target device-tier sample law); `current`
+// pins the same page on the shipped optical default, for comparison.
+// Everything else -- labels, footer, motion, coverage culling, source-exact
+// typography, beauty view, real media, adaptive quality -- is already the
+// default on this path, so the route only pins what a query could vary.
+// The expansion is written back onto location.search BEFORE anything boots
+// because config.ts readers (compositionVersion, verticalMode, ...) parse
+// location.search themselves; review= wins over any conflicting param. The
+// shipped no-query default is untouched: no review, nothing changes.
+const REVIEW_ROUTES: Record<string, string> = {
+  target: "target-source-unclamped",
+  current: "current",
+};
+{
+  const review = new URLSearchParams(location.search).get("review") ?? "";
+  if (review in REVIEW_ROUTES) {
+    const expanded = new URLSearchParams(location.search);
+    expanded.set("composition", "sourceExact");
+    expanded.set("opticalBody", REVIEW_ROUTES[review]);
+    history.replaceState(null, "", `${location.pathname}?${expanded}${location.hash}`);
+  }
+}
 const query = new URLSearchParams(location.search);
 // Any V5 composition selects the V4 build, because that is the build those
 // compositions exist in. `composition=sourceExact` previously fell through to
