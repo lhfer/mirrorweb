@@ -43,7 +43,7 @@ def run(cmd):
         raise SystemExit(f"{' '.join(map(str, cmd))}\n{r.stderr}")
 
 
-def jpeg(src: Path, dst: Path, q=95):
+def jpeg(src: Path, dst: Path, q=92):
     Image.open(src).convert("RGB").save(dst, quality=q, optimize=True)
 
 
@@ -64,7 +64,7 @@ def contact_sheet(vp: str, dst: Path):
         sheet.paste(im, (x, cap + pad))
         dr.text((x + 4, 8), f"{label}  {vp}", fill=(235, 235, 235))
         x += im.width + pad
-    sheet.save(dst, quality=90, optimize=True)
+    sheet.save(dst, quality=88, optimize=True)
 
 
 def encode(frames_dir: Path, fps: float, dst: Path):
@@ -72,7 +72,7 @@ def encode(frames_dir: Path, fps: float, dst: Path):
          "-framerate", f"{fps:.2f}", "-i", str(frames_dir / "%05d.jpg"),
          "-vf", "select='not(mod(n\\,2))',scale=trunc(iw/2)*2:trunc(ih/2)*2",
          "-r", f"{fps / 2:.2f}", "-c:v", "libx264", "-preset", "medium",
-         "-crf", "27", "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(dst)])
+         "-crf", "28", "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(dst)])
 
 
 def main() -> int:
@@ -158,7 +158,7 @@ def main() -> int:
         },
         "budgets": {"videos": f"{len(videos)}/8", "stills": f"{len(stills)}/24",
                      "contactSheets": len(sheets)},
-        "encoding": "stills JPEG q95 (pixel-exact PNGs remain in local artifacts/); videos re-encoded CRF 27 at half screencast rate, wall-clock preserved",
+        "encoding": "stills JPEG q92 (pixel-exact PNGs remain in local artifacts/); videos re-encoded CRF 28 at half screencast rate, wall-clock preserved",
         "stills": stills, "contactSheets": sheets, "videos": videos,
         "motionOverlays": sorted(p.name for p in (STAGE / "motion").glob("*.png")),
         "data": data,
