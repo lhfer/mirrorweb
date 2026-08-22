@@ -1,0 +1,106 @@
+{
+ "what": "O4 \u00a7\u4e5d gate codings for the items the \u00a7\u4e94 instrument contract did not already cover. Sealed BEFORE any gate pixel is captured, in its own commit, for the same reason \u00a7\u4e94 was sealed before the factorial: a coding written after seeing a candidate is not a coding, it is a result.",
+ "sealedAtHead": "66684dd0a48a035baa8136faddfc90c591b924bc",
+ "whyASeparateCommit": "\u00a7\u5341\u4e09's five commits are described as suggested. Writing these codings into the evidence commit would place them, in the record, after the pixels they judge. One extra clearly-named pre-registration commit is the cheaper honesty.",
+ "primaryGate": {
+  "state": "System B OFF (envMixScale 0, rimScale 0, shell off), labels off, deterministic frozen media, reflectionSupport=geometry, dispersionLaw=o1-spectral",
+  "anchors": {
+   "1440x900": {
+    "targetBandPx": 3.3,
+    "acceptedLocalFloorPx": 9.7
+   },
+   "390x844": {
+    "targetBandPx": 1.5,
+    "acceptedLocalFloorPx": 6.0
+   },
+   "844x390": {
+    "targetBandPx": 2.0,
+    "acceptedLocalFloorPx": 6.0
+   }
+  },
+  "item1": {
+   "rule": "body floor reduced by >= 40% of the accepted local floor",
+   "threshold": 0.4
+  },
+  "item2": {
+   "rule": "abs(candidate - target) <= max(2 x Target repeatability, 1.5 px)",
+   "thresholdPx": 1.5,
+   "repeatabilitySource": "qa-v5/optics-o3/target-repeatability.json -- byte-identical repeats, spread 0, so the floor binds",
+   "note": "this is a two-sided window. Undershooting the Target is as much a miss as overshooting it, and is scored as one."
+  },
+  "item3": {
+   "rule": "dark-side body luma moves TOWARD the Target's dark-side edge luma",
+   "targetDarkSideEdgeLuma": 48.1,
+   "targetLumaBasisNote": "48.1 is the Target's full render; the Target has no System-B-off mode to capture, so this item is scored as DIRECTION only, exactly as \u00a7\u4e5d.3 words it."
+  },
+  "mobile": {
+   "rule": "same direction, and enter the same 1.5 px window against that viewport's own Target anchor"
+  }
+ },
+ "item4": {
+  "title": "grayscale does not add colour",
+  "asset": "grayscale-step",
+  "coding": "edgeChromaMean and interiorChromaMean, candidate vs control. The media is achromatic through the media-only path, so any chroma here is shader-introduced.",
+  "pass": "candidate <= control + 0.5 on both",
+  "threshold": 0.5,
+  "thresholdOrigin": "the O2-recorded deterministic <=1/255-per-channel shader-program envelope, expressed on a 0-255 chroma mean; reused unchanged from O3 items 8/9."
+ },
+ "item5": {
+  "title": "no increase in broad coloured rim",
+  "assets": [
+   "rgb-bars",
+   "cool-blue",
+   "warm-skin"
+  ],
+  "coding": "fringeRB and fringeWidthPxMean, candidate vs control",
+  "pass": "candidate <= control + 0.5 on BOTH, on every asset",
+  "threshold": 0.5
+ },
+ "item6": {
+  "title": "HF checker preserves or improves local high-frequency structure",
+  "asset": "hf-checker",
+  "coding": "hfEnergy = mean absolute 4-neighbour Laplacian of luma over the card interior (middle 55%). Higher means more surviving high-frequency structure. Reported for the media-only frame too, which is the unblurred ideal.",
+  "pass": "candidate hfEnergy >= 0.98 x control hfEnergy",
+  "threshold": 0.98,
+  "why": "'preserve or improve' is a one-sided test: the candidate may sharpen, and must not smear. The 2% allowance is the same order as the shader-program envelope above."
+ },
+ "item7": {
+  "title": "interior media within sealed tolerance",
+  "coding": "o4_instruments.interior_change(control, candidate) on every scored desktop asset -- the baseline-aware branch sealed in the instrument contract",
+  "pass": "fired == false on every asset"
+ },
+ "item8": {
+  "title": "media-only exact zero",
+  "pass": "differingPixels == 0 exactly; the body change is not in the media path at all"
+ },
+ "item9": {
+  "title": "true gutter unchanged",
+  "coding": "o4_instruments.gutter_pair_outside_silhouette against the TRUE silhouette derived from the control lane",
+  "pass": "differingPixelsOutsideSilhouette == 0 exactly",
+  "why": "a body-colour change cannot legitimately alter a pixel the glass does not cover, so the correct threshold is zero, not a tolerance."
+ },
+ "item10": {
+  "title": "no temporal pop",
+  "coding": "the O3 pop coding, unchanged: per recorded frame, the full-frame count of bright low-chroma pixels (luma > 200, chroma < 40); no adjacent-frame relative change above 40%, and no frame at zero between two non-zero neighbours",
+  "sequences": [
+   "pointer-sweep",
+   "slow-horizontal-drag",
+   "fast-flick",
+   "touch-drag-release"
+  ]
+ },
+ "item11": {
+  "title": "control lane exact zero vs the accepted baseline",
+  "coding": "bodyFloorMode=current vs a worktree build of e913aa6a33e384ba4fc80eb28b9a8718fb20e5b9, System B OFF, labels off, same frozen media, every scored viewport",
+  "pass": "differingPixels == 0 exactly"
+ },
+ "item12": {
+  "title": "all frozen suites PASS",
+  "suites": "\u00a7\u5341\u4e00's list, aggregated by scripts/v5/o4-regressions.py"
+ },
+ "prohibited": [
+  "changing any threshold above after gate pixels exist",
+  "scoring item 2 as one-sided",
+  "substituting a different measurand for a failing one"
+ ]
+}
