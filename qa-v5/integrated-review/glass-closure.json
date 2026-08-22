@@ -1,0 +1,45 @@
+{
+ "what": "Integrated Visual Sprint 1 §七 -- Phase A glass closure: the one-system fix, its verification on complete pages, and an honest visibility grade.",
+ "generatedAt": "2026-08-22",
+ "selectedProblem": "qa-v5/integrated-review/glass-selected-problem.json",
+ "fix": {
+  "system": "renderer output transform (tone-mapping exposure), candidate lane only",
+  "change": "GridAppV4.start(): opticalBody === 'target-source-unclamped' renders at toneMappingExposure 1.0 -- the value the Target's output stage actually runs (r3f default ACESFilmic, three.js default exposure, no app-side assignment anywhere in the archived bundle). Control and sealed clamped lanes keep 1.05. No new constant was invented; 1.0 is the platform default the Target inherits.",
+  "files": ["src/v4/preview/GridAppV4.ts"],
+  "linesOfProductCode": 3
+ },
+ "verification": {
+  "controlLaneInvariance": "review=current before/after stills: 0 differing pixels, maxDelta 0, at ALL FOUR viewports (1440x900, 700x700, 390x844, 844x390) -- every frozen identity gate keeps its ground truth. This double-serves as the determinism proof for the still pipeline.",
+  "exposureProvenance": {
+   "review=target fine-pointer 1440x900": { "opticalBody": "target-source-unclamped", "toneMappingExposure": 1.0 },
+   "review=target touch 390x844": { "opticalBody": "target-source-unclamped", "toneMappingExposure": 1.0 },
+   "review=current fine-pointer 1440x900": { "opticalBody": "current", "toneMappingExposure": 1.05 }
+  },
+  "candidateChange": {
+   "1440x900": { "differingPixels": 1256897, "maxDelta": 15, "pageMeanLuma": "135.97 -> 133.79" },
+   "700x700": { "differingPixels": 473507, "maxDelta": 15, "pageMeanLuma": "141.99 -> 139.75" },
+   "390x844": { "differingPixels": 318823, "maxDelta": 17, "pageMeanLuma": "135.78 -> 133.63" },
+   "844x390": { "differingPixels": 316981, "maxDelta": 15, "pageMeanLuma": "140.34 -> 138.09" }
+  },
+  "signature": "mid-tone darkening peaking at -3.4 bytes in the luma 96-160 band and tapering at both ends -- the exposure-through-ACES shape; ~80% of the frame moves 2-3.5 bytes at every viewport. On the sealed dark band's own range (luma 32-95) the shift is -2 to -2.9 bytes against a sealed residual of +7.3: the correction carries the residual's DIRECTION and closes roughly a third of it. Magnitude closure is NOT asserted; the sealed windows are not re-scored this round (§一.8)."
+ },
+ "acceptance": {
+  "targetBeforeAfterFullPages": "artifacts/integrated-review/{target,review-target}/stills{-before,}/ -- 4 viewports each side, labels+footer on, no overlays; shipped in the private package.",
+  "darkContent": "shadow regions of the bull cards and the dark shoulder streak bands settle deeper (the band where the fix peaks); the Target's deep-dark reading is approached, not reached.",
+  "brightContent": "white comic cards nearly unchanged (-0.6 bytes in the 224-255 band) -- highlights were already right; the fix does not wash them.",
+  "highTexture": "grass-field cards settle with the mid-tones; edge streaking unchanged (dispersion structure was ruled media-confounded, see glass-selected-problem.json notSelected).",
+  "desktop": "1440x900 and 700x700 pairs above",
+  "mobilePortrait": "390x844 pair above; the touch context runs the same lane exposure (provenance row)",
+  "pointerMovement": "artifacts/integrated-review/review-target/recordings/desktop-pointer-sweep.mp4 (post-fix, real pointer)",
+  "fastFlick": "artifacts/integrated-review/review-target/recordings/desktop-fast-flick.mp4 (post-fix, real input); all six scenarios re-recorded post-fix"
+ },
+ "honestVisibilityGrade": "SUBTLE-BUT-PAGE-WIDE. In a direct A/B flip the whole page visibly settles (mid-tones deepen everywhere, the plastic cast quiets); as an isolated glance the change is gentle. It is a true source-fidelity correction with the sealed residual's direction, not a transformative visual jump. The remaining gap to the Target's deep-dark contrast stays declared and is NOT chased further this round (§一.8).",
+ "constraintsRespected": {
+  "shippedDefaultUntouched": true,
+  "controlLanePixelExact": true,
+  "sealedClampedLanePixelExact": "keeps 1.05 by construction (lane test is target-source-unclamped only)",
+  "noSourceConstantTouched": true,
+  "noNewArchitecture": true,
+  "oneSystemOnly": true
+ }
+}

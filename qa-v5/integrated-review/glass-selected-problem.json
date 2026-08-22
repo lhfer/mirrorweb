@@ -1,0 +1,42 @@
+{
+ "what": "Integrated Visual Sprint 1 §七 -- the ONE glass problem this round fixes, selected from the complete-page Before pairs and the developer-source comparison, before any glass code was edited.",
+ "generatedAt": "2026-08-22",
+ "selectedProblem": "broad dark shoulder / plastic-frame reading: the candidate's dark content, shoulder bands and page ground all render a step hotter and milkier than the Target's, and the white rim reads relatively dimmer -- the glass loses the Target's deep-dark-plus-tight-bright contrast and takes on a thick plastic cast.",
+ "menuItem": "broad dark shoulder (§七 list item 1)",
+ "notSelected": {
+  "excessive coarse-edge dispersion": "partially media-confounded: the Target's own busy bright card (Common Sky, 700x700 still) streaks comparably; our line-art clips amplify fringe visibility. Not defensible as a glass defect on the evidence.",
+  "thick black/plastic edge, incorrect highlight shape": "both are FACES of the selected problem (hot darks + relatively dim rim); fixing the output transform addresses the reading itself.",
+  "incorrect corner reading": "corner curls match the Target's structure; apparent differences track media content."
+ },
+ "evidence": {
+  "fullPage": {
+   "target": ["artifacts/integrated-review/target/stills/390x844.png", "artifacts/integrated-review/target/stills/844x390.png (night-sky card: near-black interior, delicate bright rim)"],
+   "candidate": ["artifacts/integrated-review/review-target/stills/390x844.png", "artifacts/integrated-review/review-target/stills/844x390.png"]
+  },
+  "sealedSameMediaConfirmation": "the O5R corrected portrait gate measured the SAME phenomenon with identical media on both sides: dark-side luma 58.57 vs Target 51.28 (ours hotter, +14%), white-reflection ratio 3.8676 vs 4.9035 (ours relatively dimmer rim). Sealed numbers, not re-measured this round.",
+  "transcriptionAudit": {
+   "conclusion": "the card program itself is transcription-complete -- the divergence cannot be inside it.",
+   "auditedAgainst": "artifacts/optics-o2/live-bundle.js (sha-anchored archive of the live bundle)",
+   "matched": [
+    "rounded-box SDF, bevel profile pow(1-t^k)^(1/k)*thickness, gradient epsilon max(bevelWidth*0.06, 0.35), slope clamp bevelMaxSlope=1.74",
+    "sphere-curvature normal vec3(p/sphereZ - clampedGrad, 1)*faceDirection",
+    "local-space view vector with planeSize metric; spectral loop eta=1/max(ior+dispersion*offset, 1.0001), travel=thickness/max(|r.z|,0.05), clamp-then-cover own-media sample",
+    "world transforms, reflect, envRotation/-2 then envRotationX/0, equirectUV, un-clamped env sample (candidate lane), Schlick^5 fresnel, envMix=min(saturate(F*1.93), 0.27)",
+    "rim smoothstep(-rimWidth,0,sdf)*0.11, final combine mix(media*tint, env, envMix) + rimColor*rim",
+    "opacity 1-smoothstep(±max(fwidth(sdf)*0.5,1e-4)) * materialOpacity, alphaTest 0.001, FrontSide, vertex-stage dome",
+    "every shipped constant at bundle offset 1303603 equals TARGET_BODY_SOURCE; tint/rimColor/rimColorTop are all #ffffff so our foldings are inert",
+    "video texture parameters: the Target sets only colorSpace=SRGB + ClampToEdge wrapping (bundle offset 1970457) -- three.js VideoTexture defaults otherwise, equal to ours (Linear/Linear, no mips)",
+    "environment input: the served HDR is byte-identical to ours (sha 29267a4a..., public/hdri/PROVENANCE.md)"
+   ],
+   "found": "outside the card program. Our renderer: toneMapping=ACESFilmicToneMapping, toneMappingExposure=1.05 (src/rendering/RendererController.ts, unchanged since the day-one import e37bc53; the pre-V4 reference spec lists exposure as 'missing as a numeric value' -- it was never sourced). The Target: r3f applies its default ACESFilmic + SRGB output (bundle offset 1235834, `m||(F.outputColorSpace=SRGBColorSpace, F.toneMapping=ACESFilmicToneMapping)`), the app passes no flat/linear flag anywhere in the bundle, and NO toneMappingExposure assignment exists outside three.js internals -- so the Target renders at the three.js default exposure 1.0.",
+   "whySealedInstrumentsMissedIt": "exposure is a renderer uniform applied AFTER the card program: compiled-program comparisons see identical programs, the nine term views and the CPU replay all live inside the card program, and every identity gate compares our lanes against our own captures. §十D recorded its marker comparison as vacuous for exactly this stage."
+  },
+  "directionCheck": "ACES at 1.05x input: dark-toe output rises ~8% relative per 5% exposure (RRTAndODTFit slope), highlights rise less -- exactly the sealed signature: dark side hotter (+14% band), white/dark ratio lower. The exposure difference carries the direction of the entire sealed residual; magnitude closure is NOT asserted."
+ },
+ "theOneSystem": {
+  "system": "renderer output transform (tone-mapping exposure), candidate lane only",
+  "change": "the target-source-unclamped lane renders at the Target's output-stage exposure 1.0; the control lane and the sealed clamped lane keep 1.05 so every frozen identity and regression gate stays pixel-exact. One assignment at app start, decided by the lane, no new constant invented (1.0 is the three.js default the Target runs).",
+  "explicitlyNot": ["a Target source constant edit", "a portrait-only or viewport-only multiplier", "a new glass architecture", "MeshPhysicalMaterial", "a scene-colour lens", "layout/typography/motion changes"]
+ },
+ "acceptance": "§七: Target / Before / After complete pages, dark + bright + high-texture content, desktop + mobile portrait, pointer movement + fast flick. PASS only if the page visibly reads thinner, quieter, closer to the Target without ROI zoom."
+}

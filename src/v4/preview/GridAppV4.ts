@@ -237,6 +237,19 @@ export class GridAppV4 {
       document.getElementById(this.options.viewportId ?? "viewport")!,
       false,
     );
+    // Integrated Visual Sprint 1 §七: the Target's output stage is the r3f
+    // default ACESFilmic at the three.js default exposure 1.0 -- its bundle
+    // assigns toneMappingExposure nowhere outside three internals and passes
+    // no flat/linear flag. Our 1.05 predates the source work (day-one
+    // import; the pre-V4 reference spec left exposure "missing as a numeric
+    // value") and sits AFTER the card program, where every sealed in-program
+    // instrument was structurally blind to it. The candidate lane takes the
+    // Target's value. The control and sealed clamped lanes keep 1.05: their
+    // frozen identity gates compare pixels against captures rendered at
+    // 1.05, and those must stay exact.
+    if (this.options.opticalBody === "target-source-unclamped") {
+      handle.renderer.toneMappingExposure = 1.0;
+    }
     this.loading.setPercent(22);
 
     this.environment = createStripLightEnvironmentV4();
@@ -1367,6 +1380,8 @@ export class GridAppV4 {
       ...this.grid.getOpticsState(),
       envTextureLoaded: Boolean(this.envHdr),
       shellModeApplied: this.v4Shell,
+      // §七 provenance: which output-stage exposure this page renders at.
+      toneMappingExposure: this.renderer.handle?.renderer.toneMappingExposure ?? null,
     };
   }
 

@@ -1,0 +1,78 @@
+{
+ "what": "Integrated Visual Sprint 1 §五 -- the product P0 ranking, read off complete pages (12 full-page stills, 12 real-input recordings; artifacts/integrated-review/), not off any band metric. Maximum four items by brief; four listed, in rank order.",
+ "generatedAt": "2026-08-22",
+ "capturedAtHead": "f013671",
+ "captureNote": "All captures: labels ON, footer ON, loading finished, no debug overlay, no ROI crop. Stills media-frozen at t=2 s on each side's OWN clips (the product ships its own media and label content by design, so pairs compare the glass / type / motion SYSTEMS, not clip content). Recordings: real CDP pointer and touch events only; identical input sequences on both sides; desktop scenarios in fine-pointer contexts and mobile scenarios in touch contexts because both runtimes tier their samples off the pointer capability.",
+ "p0": [
+  {
+   "rank": 1,
+   "key": "glass-output-exposure",
+   "system": "Glass -- renderer output transform (dark shoulder / plastic-frame feeling)",
+   "target": {
+    "stills": ["artifacts/integrated-review/target/stills/390x844.png", "artifacts/integrated-review/target/stills/1440x900.png"],
+    "video": "artifacts/integrated-review/target/recordings/desktop-slow-drag.mp4 @ 4.5s",
+    "reading": "dark media stays deep and rich through the glass (the night-sky card reads near-black inside a delicate bright rim); the bevel shoulder is a quiet dark band; the page ground is deep."
+   },
+   "candidate": {
+    "stills": ["artifacts/integrated-review/review-target/stills/390x844.png", "artifacts/integrated-review/review-target/stills/1440x900.png"],
+    "video": "artifacts/integrated-review/review-target/recordings/desktop-slow-drag.mp4 @ 4.5s",
+    "reading": "the same chain renders visibly hotter: shoulder bands and dark content sit a step milkier, the rim reads relatively dimmer, and the card edge takes on the thick 'plastic frame' feel. The sealed portrait gate said exactly this with the SAME media on both sides: dark-side luma 58.57 vs 51.28, white-reflection ratio 3.8676 vs 4.9035."
+   },
+   "userQuestion": "为什么我们的玻璃看起来比 Target 厚、闷、像塑料相框？Target 的暗部更沉、白边更亮更薄。",
+   "rootCauseHypothesis": "The card program is transcription-complete (this round's code-to-code audit of the archived bundle found zero structural or constant differences, all foldings proven inert by the shipped settings object at bundle offset 1303603). The divergence is OUTSIDE the card program: our renderer runs ACESFilmic at toneMappingExposure 1.05 (RendererController.ts, unchanged since the day-one import; the original reference spec lists exposure as 'missing as a numeric value') while the Target runs the r3f default ACESFilmic at the three.js default exposure 1.0 (bundle: r3f defaults application at offset 1235834 with no flat/linear flag anywhere; no app-side toneMapping or toneMappingExposure assignment exists in the app region). Every sealed instrument was structurally blind to this: exposure is a uniform, not a program marker, and it applies after the card program that every term view and CPU replay measured.",
+   "allowedFiles": ["src/v4/preview/GridAppV4.ts (candidate-lane exposure only; control and sealed clamped lanes keep 1.05 so every frozen identity gate stays exact)"],
+   "expectedVisibleResult": "darks across the whole page (card interiors, shoulder bands, page ground) settle deeper on the candidate; the white rim reads relatively brighter; the glass loses the milky 'thick plastic' cast and sits closer to the Target -- visible on the full 390x844 and 1440x900 pages without ROI zoom."
+  },
+  {
+   "rank": 2,
+   "key": "typography-live-font-proof",
+   "system": "Typography -- loaded face, weight, wrap, baseline",
+   "target": {
+    "stills": ["artifacts/integrated-review/target/stills/390x844.png"],
+    "video": "artifacts/integrated-review/target/recordings/mobile-touch-drag.mp4 @ 2.0s",
+    "reading": "titles set in loaded Geist, consistent weight, single-card wrap, deck/meta/rule hierarchy tight."
+   },
+   "candidate": {
+    "stills": ["artifacts/integrated-review/review-target/stills/390x844.png"],
+    "video": "artifacts/integrated-review/review-target/recordings/mobile-touch-drag.mp4 @ 2.0s",
+    "reading": "the full-page pairs LOOK close at every viewport, but 'looks close in one capture' is not font proof: the O5F package showed no local labels at all, so the current pages' loaded face, fallback state and glyph bounds are unproven."
+   },
+   "userQuestion": "本地页面的标题字体真的加载了和 Target 一样的字体吗？粗细、断行、基线在四个视口都对吗？还是其实回退到了系统字体？",
+   "rootCauseHypothesis": "Risk concentrates in font LOADING (document.fonts vs CSS declaration) rather than CSS values; Phase B must prove the loaded face live on both runtimes before touching anything.",
+   "allowedFiles": ["src/ui/TileLabelLayer (typography only)", "SourceExact typography CSS", "font loading", "footer typography"],
+   "expectedVisibleResult": "Target / Before / After label pairs at all four viewports with proven loaded faces; titles never cross cards; weight and wrap read the same."
+  },
+  {
+   "rank": 3,
+   "key": "motion-trajectory-wrap",
+   "system": "Motion -- card trajectories, gutters, wrap (DIAGNOSIS ONLY this round)",
+   "target": {
+    "video": "artifacts/integrated-review/target/recordings/desktop-slow-drag.mp4 @ 0.9-4.5s and mobile-long-drag-wrap.mp4 @ 1.0-5.5s"
+   },
+   "candidate": {
+    "video": "artifacts/integrated-review/review-target/recordings/desktop-slow-drag.mp4 @ 0.9-4.5s and mobile-long-drag-wrap.mp4 @ 1.0-5.5s",
+    "reading": "at the same input timestamp the grids sit at closely matching phases (mid-drag frame pair 00450: both pages moved a comparable distance); flick glide, wrap and orientation behaviour to be read frame-by-frame in the §九 diagnosis."
+   },
+   "userQuestion": "拖动和甩动时，卡片轨迹、卡片间距、回环有没有肉眼可见的差别？",
+   "rootCauseHypothesis": "none asserted -- §九 collects evidence only; motion code is frozen this round.",
+   "allowedFiles": [],
+   "expectedVisibleResult": "qa-v5/integrated-review/motion-visual-diagnosis.json with per-question timecoded conclusions; the top-ranked motion P0 (if any) goes to the NEXT round."
+  },
+  {
+   "rank": 4,
+   "key": "smoothness-popin",
+   "system": "Perceived smoothness / resource pop-in (BOUNDED SMOKE ONLY this round)",
+   "target": {
+    "video": "artifacts/integrated-review/target/recordings/desktop-fast-flick.mp4 @ 1.2-4.0s"
+   },
+   "candidate": {
+    "video": "artifacts/integrated-review/review-target/recordings/desktop-fast-flick.mp4 @ 1.2-4.0s",
+    "reading": "no visible stutter or black-card pop-in in any of the six candidate recordings; the material cache is accepted/frozen from O5F. Verification is a single 10-minute smoke, not a study."
+   },
+   "userQuestion": "候选页面在拖动、甩动、切换质量档时有没有卡顿或黑卡闪现？",
+   "rootCauseHypothesis": "none -- O5F closed the known retention defect; smoke only.",
+   "allowedFiles": [],
+   "expectedVisibleResult": "a bounded 10-minute candidate smoke (§十) with FPS/frame-time p95, heap, cache and pop-in observations; escalate only on a clear regression."
+  }
+ ]
+}
