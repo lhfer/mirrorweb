@@ -1,0 +1,225 @@
+{
+ "what": "the O5R product review, machine-readable. The human record is docs/v5/O5R_PRODUCT_REVIEW.md.",
+ "reviewedAt": "445037e11eb44ae07bca6360707e043d969b1d4b",
+ "sealedCorrectedGate": {
+  "counts": {
+   "PASS": 7,
+   "FAIL": 7,
+   "NOT_APPLICABLE": 0,
+   "INSTRUMENT_UNREADABLE": 0
+  },
+  "gate": "FAIL",
+  "finalState": "O5R TARGET-SOURCE BODY FAILED CORRECTED PRODUCT GATE",
+  "notRewritten": true
+ },
+ "accepted": {
+  "hdrAuditAndUnclamp": {
+   "asA": "source correction",
+   "audit": {
+    "nanChannels": 0,
+    "infChannels": 0,
+    "maxRadiance": 3581.9922,
+    "oldCeiling": {
+     "value": 16.0,
+     "channelsAbove": 14243,
+     "channelFractionAbove": 0.009055,
+     "texelsWithAnyChannelAbove": 5186,
+     "luminanceFractionAbove": 0.008951,
+     "maxTimesCeiling": 223.87,
+     "binds": true,
+     "note": "corroborates the O5 disclosure. The guard is not inert: wherever a card reflects one of these texels our highlight is dimmer than the Target's, and the brightest texel is suppressed by more than two orders of magnitude."
+    },
+    "verdict": "SOURCE ASSET FINITE"
+   },
+   "consequence": "target-source-unclamped is the only active optics candidate; the sealed clamped lane is retained for regression only"
+  },
+  "structuralEnvironmentOff": "environmentMode=off omits the sample from the PROGRAM",
+  "refractionCompression": {
+   "status": "PASS",
+   "note": "replay validated on the Target's own render to 1.4-1.6 px; candidate displacement inside the Target window at every readable viewport"
+  },
+  "reflectionBand": {
+   "status": "PASS",
+   "rows": [
+    {
+     "vp": "1440x900",
+     "status": "PASS",
+     "target": 3.3,
+     "control": 15.3,
+     "o5-clamped": 3.3,
+     "o5r-unclamped": 3.3,
+     "targetRuns": [
+      3.3,
+      3.3,
+      3.3
+     ],
+     "repeatability": 0.0,
+     "window": 1.5,
+     "candidateDelta": 0.0,
+     "movedTowardTarget": true
+    },
+    {
+     "vp": "390x844",
+     "status": "PASS",
+     "target": 1.5,
+     "control": 8.0,
+     "o5-clamped": 2.0,
+     "o5r-unclamped": 2.0,
+     "targetRuns": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "repeatability": 0.0,
+     "window": 1.5,
+     "candidateDelta": 0.5,
+     "movedTowardTarget": true
+    },
+    {
+     "vp": "844x390",
+     "status": "PASS",
+     "target": 2.0,
+     "control": 8.0,
+     "o5-clamped": 2.0,
+     "o5r-unclamped": 2.0,
+     "targetRuns": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "repeatability": 0.0,
+     "window": 1.5,
+     "candidateDelta": 0.0,
+     "movedTowardTarget": true
+    },
+    {
+     "vp": "700x700",
+     "status": "PASS",
+     "target": 2.0,
+     "control": 7.0,
+     "o5-clamped": 2.0,
+     "o5r-unclamped": 2.0,
+     "targetRuns": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "repeatability": 0.0,
+     "window": 1.5,
+     "candidateDelta": 0.0,
+     "movedTowardTarget": true
+    }
+   ]
+  },
+  "ownMediaIsolation": "PASS",
+  "temporalContinuity": "PASS",
+  "mobileDirection": "PASS",
+  "controlIdentity": {
+   "comparisons": 35,
+   "verdict": "PASS"
+  },
+  "sealedLaneIdentity": {
+   "comparisons": 22,
+   "exactZero": true
+  },
+  "frozenRegressions": {
+   "passed": 24,
+   "total": 24
+  }
+ },
+ "notAccepted": {
+  "defaultFlip": "opticalBody=current remains shipped",
+  "darkSideLuma390x844": {
+   "target": 51.28,
+   "control": 78.94,
+   "o5Clamped": 58.46,
+   "o5rUnclamped": 58.57,
+   "window": 6.0,
+   "remainingDifference": 7.29,
+   "movedByUnclamp": 0.11
+  },
+  "whiteReflectionRatio390x844": {
+   "target": 4.9035,
+   "control": 2.5755,
+   "o5Clamped": 3.8712,
+   "o5rUnclamped": 3.8676,
+   "window": 0.15,
+   "remainingDifference": 1.0359,
+   "movedByUnclamp": -0.0036
+  },
+  "memoryResourceStability": {
+   "sessionTroughRisesMB": [
+    18.59,
+    20.03,
+    22.15
+   ],
+   "controlTroughRiseMB": -1.04,
+   "attribution": "quality-step material rebuild -- 39.36 MB in the six-minute quality-cycle arm against <= 2.06 MB in every other arm, ~68 KB per step",
+   "performanceVerdict": false
+  },
+  "targetVisualPass": "NOT ASSERTED"
+ },
+ "evidenceWordingCorrections": {
+  "A_pointerPath": {
+   "correction": "NOT 'every instrument now reads': one readable PASS row and three INSTRUMENT_UNREADABLE rows",
+   "sealedRows": [
+    {
+     "vp": "1440x900",
+     "status": "PASS"
+    },
+    {
+     "vp": "390x844",
+     "status": "INSTRUMENT_UNREADABLE"
+    },
+    {
+     "vp": "844x390",
+     "status": "INSTRUMENT_UNREADABLE"
+    },
+    {
+     "vp": "700x700",
+     "status": "INSTRUMENT_UNREADABLE"
+    }
+   ]
+  },
+  "B_fullFrameReadiness": "proves the review package exists; it is not a product visual PASS",
+  "C_silhouette": {
+   "correction": "background ring contaminated by neighbouring cards; three PASS rows near-degenerate; at 390x844 the candidate is the closest silhouette match despite the sealed FAIL",
+   "numbers390x844": {
+    "target": {
+     "litBeyondSilhouette": 3114,
+     "iou": 0.946667
+    },
+    "control": {
+     "litBeyondSilhouette": 3174,
+     "iou": 0.945695
+    },
+    "o5-clamped": {
+     "litBeyondSilhouette": 528,
+     "iou": 0.990538
+    },
+    "o5r-unclamped": {
+     "litBeyondSilhouette": 528,
+     "iou": 0.990538
+    }
+   }
+  },
+  "D_windowFloors": "the grayscale and saturated-edge instruments discriminate, but their fixed floors are scale-blind; the sealed FAIL rows stand and may not be cited as calibrated absolute product thresholds",
+  "E_packageMetadata": {
+   "defect": "O5R package reviewHead recorded 726ee02; the semantic reviewHead is 445037e",
+   "fix": "applied in the O5F package only: capturedAtHead = the capture SHA, reviewHead = the final evidence SHA. No standalone hygiene delivery."
+  }
+ },
+ "o5fAuthorisation": {
+  "phaseA": "eliminate the quality-step material retention behind a finite material-set cache; identity then stress, both pre-registered",
+  "phaseB": "identify the FIRST source-level cause of the 390x844 residual; at most one proven source-transcription correction; no constant tuning",
+  "not": [
+   "default flip",
+   "main merge",
+   "source constant tuning",
+   "another optics architecture",
+   "rewriting O5/O5R sealed evidence",
+   "Final Integration",
+   "Target Visual PASS"
+  ]
+ }
+}

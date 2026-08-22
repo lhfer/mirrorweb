@@ -1,0 +1,416 @@
+{
+ "what": "O5F \u00a7\u4e03 -- the pre-registered material-cache stress gate, scored against the thresholds sealed in material-cache-contract.json (both generated from o5f_stress.py).",
+ "contract": "qa-v5/optics-o5f/material-cache-contract.json",
+ "runs": {
+  "qualityCycleSteps": 1200,
+  "qualityCycles": 300,
+  "candidateSessions": 3,
+  "controlSessions": 3,
+  "sessionMinutes": 15,
+  "workload": [
+   "desktop drag / wrap",
+   "mobile touch / wrap",
+   "landscape drag / wrap",
+   "quality cycle high -> medium -> low -> high",
+   "resize and orientation cycles between every phase"
+  ]
+ },
+ "checks": [
+  {
+   "n": 1,
+   "check": "after both product sets exist, materialCreationCount does not increase",
+   "status": "PASS",
+   "threshold": "== 6 at every cycle step and every session sample",
+   "numbers": {
+    "cycleDistinctValues": [
+     6
+    ],
+    "sessionDistinctValues": [
+     6
+    ],
+    "cycleSteps": 1200,
+    "sessionSamples": 540
+   }
+  },
+  {
+   "n": 2,
+   "check": "cacheSize remains finite and constant",
+   "status": "PASS",
+   "threshold": "== 2 at every sample",
+   "numbers": {
+    "cycleDistinctValues": [
+     2
+    ],
+    "sessionDistinctValues": [
+     2
+    ]
+   }
+  },
+  {
+   "n": 3,
+   "check": "high <-> medium creates zero material",
+   "status": "PASS",
+   "threshold": "creation delta == 0 across every high<->medium step",
+   "numbers": {
+    "transitions": 300,
+    "nonZeroDeltas": []
+   }
+  },
+  {
+   "n": 4,
+   "check": "the original material UUIDs return after every cycle",
+   "status": "PASS",
+   "threshold": "per-tier UUID list identical at every visit across all cycle steps; high and medium share one list; low carries its own; per session at most two distinct active lists, one VideoTexture list, one environment UUID",
+   "numbers": {
+    "cycleStepsAllUuidOk": true,
+    "highMediumShareUuids": true,
+    "lowHasOwnUuids": true,
+    "perSession": [
+     {
+      "session": 1,
+      "distinctActiveUuidLists": 1,
+      "distinctVideoUuidLists": 1,
+      "distinctEnvUuids": 1
+     },
+     {
+      "session": 2,
+      "distinctActiveUuidLists": 1,
+      "distinctVideoUuidLists": 1,
+      "distinctEnvUuids": 1
+     },
+     {
+      "session": 3,
+      "distinctActiveUuidLists": 1,
+      "distinctVideoUuidLists": 1,
+      "distinctEnvUuids": 1
+     }
+    ]
+   }
+  },
+  {
+   "n": 5,
+   "check": "final-third heap slope",
+   "status": "PASS",
+   "threshold": "<= 1.4368 MB/min = max(control repeatability window 1.4368, floor 0.35)",
+   "numbers": {
+    "candidateFinalThirdSlopes": [
+     0.475,
+     -0.0495,
+     -0.0122
+    ],
+    "controlFinalThirdSlopes": [
+     -1.4368,
+     -1.0627,
+     -0.3752
+    ],
+    "threshold": 1.4368
+   }
+  },
+  {
+   "n": 6,
+   "check": "ten-minute GC-trough rise",
+   "status": "PASS",
+   "threshold": "<= 5.68 MB = max(2 x control spread, floor 4.0)",
+   "numbers": {
+    "candidate": [
+     {
+      "firstThirdTroughMB": 20.35,
+      "finalThirdTroughMB": 18.89,
+      "riseMB": -1.46
+     },
+     {
+      "firstThirdTroughMB": 20.05,
+      "finalThirdTroughMB": 19.55,
+      "riseMB": -0.5
+     },
+     {
+      "firstThirdTroughMB": 19.07,
+      "finalThirdTroughMB": 18.2,
+      "riseMB": -0.87
+     }
+    ],
+    "control": [
+     {
+      "firstThirdTroughMB": 21.23,
+      "finalThirdTroughMB": 21.78,
+      "riseMB": 0.55
+     },
+     {
+      "firstThirdTroughMB": 21.54,
+      "finalThirdTroughMB": 19.37,
+      "riseMB": -2.17
+     },
+     {
+      "firstThirdTroughMB": 21.78,
+      "finalThirdTroughMB": 22.45,
+      "riseMB": 0.67
+     }
+    ],
+    "threshold": 5.68,
+    "o5rCandidateRises": [
+     18.59,
+     20.03,
+     22.15
+    ],
+    "o5rControlRise": -1.04
+   }
+  },
+  {
+   "n": 7,
+   "check": "no texture / geometry / video-element growth",
+   "status": "PASS",
+   "threshold": "pool LIVE counts and created-destroyed zero-delta; video elements first == last == max; renderer texture/geometry counts single-valued on matched post-warm-up samples; renderer program count constant after the first quality phase",
+   "numbers": {
+    "poolGrowthBySession": {
+     "s1": {},
+     "s2": {},
+     "s3": {}
+    },
+    "netLiveBySession": {
+     "s1": {
+      "first": 256,
+      "last": 256
+     },
+     "s2": {
+      "first": 256,
+      "last": 256
+     },
+     "s3": {
+      "first": 256,
+      "last": 256
+     }
+    },
+    "videoElementsFirstLastMax": [
+     [
+      3,
+      3,
+      3
+     ],
+     [
+      3,
+      3,
+      3
+     ],
+     [
+      3,
+      3,
+      3
+     ]
+    ],
+    "rendererCounts": {
+     "s1": {
+      "texturesDistinct": [
+       6
+      ],
+      "geometriesDistinct": [
+       2
+      ],
+      "programsAfterFirstQualityPhase": [
+       6
+      ]
+     },
+     "s2": {
+      "texturesDistinct": [
+       6
+      ],
+      "geometriesDistinct": [
+       2
+      ],
+      "programsAfterFirstQualityPhase": [
+       6
+      ]
+     },
+     "s3": {
+      "texturesDistinct": [
+       6
+      ],
+      "geometriesDistinct": [
+       2
+      ],
+      "programsAfterFirstQualityPhase": [
+       6
+      ]
+     }
+    },
+    "rendererCountsControl": {
+     "s1": {
+      "texturesDistinct": [
+       8
+      ],
+      "geometriesDistinct": [
+       3
+      ],
+      "programsAfterFirstQualityPhase": [
+       6
+      ]
+     },
+     "s2": {
+      "texturesDistinct": [
+       8
+      ],
+      "geometriesDistinct": [
+       3
+      ],
+      "programsAfterFirstQualityPhase": [
+       6
+      ]
+     },
+     "s3": {
+      "texturesDistinct": [
+       8
+      ],
+      "geometriesDistinct": [
+       3
+      ],
+      "programsAfterFirstQualityPhase": [
+       6
+      ]
+     }
+    },
+    "monotonicCountersReportedNotScored": {
+     "s1": {
+      "created": [
+       256,
+       256
+      ],
+      "destroyed": [
+       0,
+       0
+      ],
+      "remaps": [
+       0,
+       0
+      ]
+     },
+     "s2": {
+      "created": [
+       256,
+       256
+      ],
+      "destroyed": [
+       0,
+       0
+      ],
+      "remaps": [
+       0,
+       0
+      ]
+     },
+     "s3": {
+      "created": [
+       256,
+       256
+      ],
+      "destroyed": [
+       0,
+       0
+      ],
+      "remaps": [
+       0,
+       0
+      ]
+     }
+    }
+   }
+  },
+  {
+   "n": 8,
+   "check": "no first-frame black card",
+   "status": "PASS",
+   "threshold": "the pre-hook first frame is captured and travels in the review package; luma reported as a diagnostic (bw-split media legitimately carries a black half); transition blackouts are caught by check 9's exact-zero identity",
+   "numbers": {
+    "firstFrames": [
+     {
+      "file": "candidate-s1-firstframe.png",
+      "meanLuma": 13.01,
+      "nearBlackFraction": 0.0
+     },
+     {
+      "file": "candidate-s2-firstframe.png",
+      "meanLuma": 14.8,
+      "nearBlackFraction": 0.0
+     },
+     {
+      "file": "candidate-s3-firstframe.png",
+      "meanLuma": 13.01,
+      "nearBlackFraction": 0.0
+     },
+     {
+      "file": "control-s1-firstframe.png",
+      "meanLuma": 14.99,
+      "nearBlackFraction": 0.0
+     },
+     {
+      "file": "control-s2-firstframe.png",
+      "meanLuma": 13.14,
+      "nearBlackFraction": 0.0
+     },
+     {
+      "file": "control-s3-firstframe.png",
+      "meanLuma": 13.14,
+      "nearBlackFraction": 0.0
+     }
+    ]
+   }
+  },
+  {
+   "n": 9,
+   "check": "no quality-transition pop",
+   "status": "PASS",
+   "threshold": "every post-warm-up visit to a tier equals that tier's reference still with 0 differing pixels, across all 1,200 steps",
+   "numbers": {
+    "steps": 1200,
+    "mismatches": [],
+    "crossTierDiagnosticNotScored": {
+     "highVsMedium": true,
+     "highVsLow": false
+    },
+    "cycleHeapFirstMB": 25.71,
+    "cycleHeapLastMB": 19.68,
+    "cycleElapsedMin": 1.0
+   }
+  },
+  {
+   "n": 10,
+   "check": "sample count remains 5 / 5 / 3",
+   "status": "PASS",
+   "threshold": "opticalBodySamples == {'high': 5, 'medium': 5, 'low': 3} at every step",
+   "numbers": {
+    "observed": {
+     "high": [
+      5
+     ],
+     "low": [
+      3
+     ],
+     "medium": [
+      5
+     ]
+    }
+   }
+  }
+ ],
+ "passed": 10,
+ "total": 10,
+ "verdict": "PASS",
+ "finalStateIfFailed": "O5F MATERIAL CACHE FAILED",
+ "plots": [
+  "heap-candidate-s1.png",
+  "heap-candidate-s2.png",
+  "heap-candidate-s3.png",
+  "heap-control-s1.png",
+  "heap-control-s2.png",
+  "heap-control-s3.png"
+ ],
+ "consoleAndPageErrors": {
+  "cycle": 0,
+  "sessions": {
+   "candidate-s1": 0,
+   "candidate-s2": 0,
+   "candidate-s3": 0,
+   "control-s1": 0,
+   "control-s2": 0,
+   "control-s3": 0
+  }
+ }
+}

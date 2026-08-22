@@ -263,6 +263,12 @@ export const V5_BODY_VIEWS = [
   "uv-unrefracted",
   "uv-refracted",
   "refraction-displacement",
+  "raw-env-sample",
+  "reflection-vector",
+  "equirect-uv",
+  "fresnel",
+  "env-mix-factor",
+  "white-rim",
 ] as const;
 export type V5BodyView = (typeof V5_BODY_VIEWS)[number];
 
@@ -479,10 +485,15 @@ export function createTargetOpticalBodyMaterialV5(
     const rimColor = vec3(1, 1, 1);
 
     if (envMode === "off") {
+      // The five environment terms do not EXIST in this program -- that is
+      // the §十 structural-off property -- so their fields are null and the
+      // O5F term views render black under env-off rather than sampling.
       return {
         colour: body.add(rimColor.mul(rim)),
         N, sdf, body, uvUnrefracted,
         uvRefracted: baseSampleUv, displacement: baseDisplacement,
+        reflected: null, rotX: null, sampled: null, fresnel: null,
+        envMix: null, rim,
       };
     }
 
@@ -533,9 +544,13 @@ export function createTargetOpticalBodyMaterialV5(
     ).mul(u.envMixScale);
 
     const colour = mix(body, envColor, envMix).add(rimColor.mul(rim));
+    // The chain's named intermediates ride along for the O5F term views.
+    // Returned-but-unused nodes never enter a generated program, so the
+    // Beauty program stays byte-identical to the §六C sealed hashes.
     return {
       colour, N, sdf, body, uvUnrefracted,
       uvRefracted: baseSampleUv, displacement: baseDisplacement,
+      reflected, rotX, sampled, fresnel, envMix, rim,
     };
   };
 
@@ -589,6 +604,51 @@ export function createTargetOpticalBodyMaterialV5(
     // package uses "media-only" for the media-PLANE capture, which is
     // a different picture answering a different question.
     if (view === "refraction-only") return chain.body;
+    // O5F §九 term views. Each is its own program reading ONE named
+    // intermediate of the chain above; under environmentMode="off" the five
+    // environment terms do not exist (chain fields are null at build time)
+    // and the view renders black instead of inventing a sample. Values are
+    // pushed through the inverse output transform like the O5R views, so
+    // the stored byte IS the value.
+    if (view === "raw-env-sample") {
+      // Reinhard e/(1+e): an HDR radiance has no upper bound, and this is
+      // the compressor whose inverse e = c/(1-c) needs no ceiling constant.
+      if (!chain.sampled) return vec3(0, 0, 0);
+      const e = chain.sampled;
+      return srgbToLinear(e.div(e.add(float(1))));
+    }
+    if (view === "reflection-vector") {
+      // The WORLD reflection vector BEFORE the environment rotations --
+      // §十C reads the pre-rotation direction and applies the rotations in
+      // the replay, so a rotation transcription error shows up as an
+      // equirect-uv divergence, not a reflection-vector one.
+      if (!chain.reflected) return vec3(0, 0, 0);
+      return srgbToLinear(chain.reflected.mul(0.5).add(0.5));
+    }
+    if (view === "equirect-uv") {
+      // Computed IN the view branch from the rotated direction the chain
+      // already carries, so the Beauty expression at line "envTex.sample(
+      // equirectUV(rotX))" is not restructured even trivially.
+      if (!chain.rotX) return vec3(0, 0, 0);
+      const uvE = equirectUV(chain.rotX);
+      return srgbToLinear(vec3(uvE.x, uvE.y, 0));
+    }
+    if (view === "fresnel") {
+      if (!chain.fresnel) return vec3(0, 0, 0);
+      const f = chain.fresnel;
+      return srgbToLinear(vec3(f, f, f));
+    }
+    if (view === "env-mix-factor") {
+      if (!chain.envMix) return vec3(0, 0, 0);
+      const m = chain.envMix;
+      return srgbToLinear(vec3(m, m, m));
+    }
+    if (view === "white-rim") {
+      // Exists under BOTH environment modes -- the rim is hoisted above the
+      // environment block exactly so that env-off keeps it.
+      const r = chain.rim;
+      return srgbToLinear(vec3(r, r, r));
+    }
     // O5R §六 measurement views. Each writes a NUMBER, not a picture, so each
     // is pushed through the inverse of the output transform: the renderer
     // encodes linear -> sRGB on the way out, and sRGB quantisation near 0.5 is

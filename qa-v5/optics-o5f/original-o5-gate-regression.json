@@ -1,0 +1,114 @@
+{
+ "what": "the ORIGINAL O5 gate, re-run unchanged at the O5F head for history and regression only. Its verdict is not restated as an O5F result.",
+ "script": "scripts/v5/o5-gate.py, imported and executed as it sits on disk. Not edited, not copied, not parameterised; only its output path was redirected.",
+ "rerunExitCode": 1,
+ "sealedVerdict": {
+  "passed": 8,
+  "failed": 6,
+  "pending": 0,
+  "total": 14,
+  "absoluteGate": "FAIL",
+  "finalState": "O5 TARGET-SOURCE BODY FAILED ABSOLUTE GATE"
+ },
+ "rerunVerdict": {
+  "passed": 8,
+  "failed": 6,
+  "pending": 0,
+  "total": 14,
+  "absoluteGate": "FAIL",
+  "finalState": "O5 TARGET-SOURCE BODY FAILED ABSOLUTE GATE"
+ },
+ "identical": true,
+ "perItem": [
+  {
+   "item": 1,
+   "sealed": true,
+   "rerun": true,
+   "same": true
+  },
+  {
+   "item": 2,
+   "sealed": false,
+   "rerun": false,
+   "same": true
+  },
+  {
+   "item": 3,
+   "sealed": false,
+   "rerun": false,
+   "same": true
+  },
+  {
+   "item": 4,
+   "sealed": false,
+   "rerun": false,
+   "same": true
+  },
+  {
+   "item": 5,
+   "sealed": true,
+   "rerun": true,
+   "same": true
+  },
+  {
+   "item": 6,
+   "sealed": true,
+   "rerun": true,
+   "same": true
+  },
+  {
+   "item": 7,
+   "sealed": false,
+   "rerun": false,
+   "same": true
+  },
+  {
+   "item": 8,
+   "sealed": true,
+   "rerun": true,
+   "same": true
+  },
+  {
+   "item": 9,
+   "sealed": false,
+   "rerun": false,
+   "same": true
+  },
+  {
+   "item": 10,
+   "sealed": false,
+   "rerun": false,
+   "same": true
+  },
+  {
+   "item": 11,
+   "sealed": true,
+   "rerun": true,
+   "same": true
+  },
+  {
+   "item": 12,
+   "sealed": true,
+   "rerun": true,
+   "same": true
+  },
+  {
+   "item": 13,
+   "sealed": true,
+   "rerun": true,
+   "same": true
+  },
+  {
+   "item": 14,
+   "sealed": true,
+   "rerun": true,
+   "same": true
+  }
+ ],
+ "laneStillRendersThoseFrames": {
+  "source": "qa-v5/optics-o5f/sealed-lane-identity.json (o5-clamped rows)",
+  "clampedLane": null,
+  "chain": "O5F captures == O5R captures (this round, exact zero) and O5R captures == O5 frames (sealed O5R round, 22/22 byte-identical)."
+ },
+ "pass": false
+}

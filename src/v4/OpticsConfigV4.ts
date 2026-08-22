@@ -159,9 +159,18 @@ export function parseOpticalBody(v: string | null | undefined): V4OpticalBody {
 // that lands in the PNG is the encoded value itself rather than its sRGB
 // transform -- otherwise the mid-tones where the displacement lives are
 // quantised more than three times as coarsely as the ends.
+// O5F §九 adds six more, one per term of the environment chain, so the
+// portrait decomposition can read each stage of the compiled program as a
+// number: the raw HDR texel (Reinhard-compressed, e/(1+e)), the world
+// reflection vector (biased to 0.5), the equirect UV, and the three scalars
+// (fresnel, env-mix factor, white rim). All are written through the same
+// inverse-sRGB as the O5R views, and each is a separate program -- the
+// Beauty program is proven byte-unchanged by the §六C hash.
 export const V5_BODY_VIEW_NAMES = [
   "beauty", "sdf-mask", "analytic-normal", "refraction-only",
   "uv-unrefracted", "uv-refracted", "refraction-displacement",
+  "raw-env-sample", "reflection-vector", "equirect-uv",
+  "fresnel", "env-mix-factor", "white-rim",
 ] as const;
 
 /**

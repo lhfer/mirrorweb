@@ -1,0 +1,1294 @@
+{
+ "what": "O5F \u00a7\u516d -- identity of the cached build against a 445037e worktree build: the shipped lane, the candidate lane, and the generated programs. Runs BEFORE any memory scoring.",
+ "baselineCommit": "445037e11eb44ae07bca6360707e043d969b1d4b",
+ "local": "http://127.0.0.1:5293",
+ "base": "http://127.0.0.1:5294",
+ "asset": "bw-split",
+ "freeze": 4,
+ "viewports": [
+  "1440x900",
+  "1920x1080",
+  "390x844",
+  "844x390",
+  "700x700"
+ ],
+ "states": [
+  "rest",
+  "pointer-left",
+  "pointer-right",
+  "pointer-corner",
+  "slow-drag",
+  "fast-flick",
+  "touch"
+ ],
+ "A_controlIdentity": {
+  "lane": "current",
+  "comparisons": 35,
+  "allExactZero": true,
+  "allProbesMatch": true
+ },
+ "B_candidateIdentity": {
+  "lane": "target-source-unclamped",
+  "comparisons": 35,
+  "allExactZero": true,
+  "allProbesMatch": true,
+  "note": "this is the \u00a7\u56db rule 10 proof -- the cache changed no optical output. Both product sets exist at page load on the O5F side (cacheSize 2, creationCount 6 in the per-row cache truth); the extra unrendered set moved nothing."
+ },
+ "C_programIdentity": {
+  "coding": "sha256 over the generated WGSL, vertex and fragment separately, at high (5 samples), after a switch to low (3 samples), and back at high. All pairs must match.",
+  "allMatch": true,
+  "rows": [
+   {
+    "step": "high",
+    "samples": [
+     5,
+     5
+    ],
+    "vertexMatch": true,
+    "fragmentMatch": true,
+    "vertexSha256": "da52204b8e22bbb9c96dadc10af06a8727271221fa74cf99d8c0761a62bf3628",
+    "fragmentSha256": "fe03db5200fcb4fab929616076833b6bfa15b50320e039de2f28aa8347038a51",
+    "samplesOk": true
+   },
+   {
+    "step": "low",
+    "samples": [
+     3,
+     3
+    ],
+    "vertexMatch": true,
+    "fragmentMatch": true,
+    "vertexSha256": "7fdab513f69b7c5f85a4b7b5b71923c2f2790ebdad9a6b469d91130a137c8760",
+    "fragmentSha256": "4d8459e958b5bf1fa9bae60636afd18baba1fc21d18d3ec72df9e2c32f0389d3",
+    "samplesOk": true
+   },
+   {
+    "step": "high-return",
+    "samples": [
+     5,
+     5
+    ],
+    "vertexMatch": true,
+    "fragmentMatch": true,
+    "vertexSha256": "da52204b8e22bbb9c96dadc10af06a8727271221fa74cf99d8c0761a62bf3628",
+    "fragmentSha256": "fe03db5200fcb4fab929616076833b6bfa15b50320e039de2f28aa8347038a51",
+    "samplesOk": true
+   }
+  ]
+ },
+ "retiredDefectDemonstration": {
+  "what": "high -> low -> high on a paused, media-frozen page. At the baseline the first quality step rebinds the convex volume geometry, so the pixels cannot return; at O5F a quality change switches cached sets and must return exactly.",
+  "o5fCycleReturn": {
+   "differingPixels": 0,
+   "maxDelta": 0,
+   "totalPixels": 1296000
+  },
+  "o5fMustBeZero": true,
+  "o5fIsZero": true,
+  "baselineCycleResidual": {
+   "differingPixels": 977083,
+   "maxDelta": 255,
+   "totalPixels": 1296000
+  },
+  "baselineNote": "reported as the measurement of the retired defect. The sealed baseline is not being gated; its captures were all taken at build quality with no quality step, so this residual is in no sealed number."
+ },
+ "consoleAndPageErrors": 0,
+ "verdict": "PASS",
+ "finalStateIfFailed": "O5F MATERIAL CACHE IDENTITY FAILED",
+ "rows": {
+  "current": [
+   {
+    "vp": "1440x900",
+    "state": "rest",
+    "localFile": "current-local-rest-1440x900.png",
+    "baseFile": "current-base-rest-1440x900.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 1296000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1440x900",
+    "state": "pointer-left",
+    "localFile": "current-local-pointer-left-1440x900.png",
+    "baseFile": "current-base-pointer-left-1440x900.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 1296000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1440x900",
+    "state": "pointer-right",
+    "localFile": "current-local-pointer-right-1440x900.png",
+    "baseFile": "current-base-pointer-right-1440x900.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 1296000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1440x900",
+    "state": "pointer-corner",
+    "localFile": "current-local-pointer-corner-1440x900.png",
+    "baseFile": "current-base-pointer-corner-1440x900.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 1296000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1440x900",
+    "state": "slow-drag",
+    "localFile": "current-local-slow-drag-1440x900.png",
+    "baseFile": "current-base-slow-drag-1440x900.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 1296000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1440x900",
+    "state": "fast-flick",
+    "localFile": "current-local-fast-flick-1440x900.png",
+    "baseFile": "current-base-fast-flick-1440x900.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 1296000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1440x900",
+    "state": "touch",
+    "localFile": "current-local-touch-1440x900.png",
+    "baseFile": "current-base-touch-1440x900.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 1296000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1920x1080",
+    "state": "rest",
+    "localFile": "current-local-rest-1920x1080.png",
+    "baseFile": "current-base-rest-1920x1080.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 2073600,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1920x1080",
+    "state": "pointer-left",
+    "localFile": "current-local-pointer-left-1920x1080.png",
+    "baseFile": "current-base-pointer-left-1920x1080.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 2073600,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1920x1080",
+    "state": "pointer-right",
+    "localFile": "current-local-pointer-right-1920x1080.png",
+    "baseFile": "current-base-pointer-right-1920x1080.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 2073600,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1920x1080",
+    "state": "pointer-corner",
+    "localFile": "current-local-pointer-corner-1920x1080.png",
+    "baseFile": "current-base-pointer-corner-1920x1080.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 2073600,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1920x1080",
+    "state": "slow-drag",
+    "localFile": "current-local-slow-drag-1920x1080.png",
+    "baseFile": "current-base-slow-drag-1920x1080.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 2073600,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1920x1080",
+    "state": "fast-flick",
+    "localFile": "current-local-fast-flick-1920x1080.png",
+    "baseFile": "current-base-fast-flick-1920x1080.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 2073600,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1920x1080",
+    "state": "touch",
+    "localFile": "current-local-touch-1920x1080.png",
+    "baseFile": "current-base-touch-1920x1080.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 2073600,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "390x844",
+    "state": "rest",
+    "localFile": "current-local-rest-390x844.png",
+    "baseFile": "current-base-rest-390x844.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "390x844",
+    "state": "pointer-left",
+    "localFile": "current-local-pointer-left-390x844.png",
+    "baseFile": "current-base-pointer-left-390x844.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "390x844",
+    "state": "pointer-right",
+    "localFile": "current-local-pointer-right-390x844.png",
+    "baseFile": "current-base-pointer-right-390x844.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "390x844",
+    "state": "pointer-corner",
+    "localFile": "current-local-pointer-corner-390x844.png",
+    "baseFile": "current-base-pointer-corner-390x844.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "390x844",
+    "state": "slow-drag",
+    "localFile": "current-local-slow-drag-390x844.png",
+    "baseFile": "current-base-slow-drag-390x844.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "390x844",
+    "state": "fast-flick",
+    "localFile": "current-local-fast-flick-390x844.png",
+    "baseFile": "current-base-fast-flick-390x844.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "390x844",
+    "state": "touch",
+    "localFile": "current-local-touch-390x844.png",
+    "baseFile": "current-base-touch-390x844.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "844x390",
+    "state": "rest",
+    "localFile": "current-local-rest-844x390.png",
+    "baseFile": "current-base-rest-844x390.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "844x390",
+    "state": "pointer-left",
+    "localFile": "current-local-pointer-left-844x390.png",
+    "baseFile": "current-base-pointer-left-844x390.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "844x390",
+    "state": "pointer-right",
+    "localFile": "current-local-pointer-right-844x390.png",
+    "baseFile": "current-base-pointer-right-844x390.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "844x390",
+    "state": "pointer-corner",
+    "localFile": "current-local-pointer-corner-844x390.png",
+    "baseFile": "current-base-pointer-corner-844x390.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "844x390",
+    "state": "slow-drag",
+    "localFile": "current-local-slow-drag-844x390.png",
+    "baseFile": "current-base-slow-drag-844x390.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "844x390",
+    "state": "fast-flick",
+    "localFile": "current-local-fast-flick-844x390.png",
+    "baseFile": "current-base-fast-flick-844x390.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "844x390",
+    "state": "touch",
+    "localFile": "current-local-touch-844x390.png",
+    "baseFile": "current-base-touch-844x390.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "700x700",
+    "state": "rest",
+    "localFile": "current-local-rest-700x700.png",
+    "baseFile": "current-base-rest-700x700.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 490000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "700x700",
+    "state": "pointer-left",
+    "localFile": "current-local-pointer-left-700x700.png",
+    "baseFile": "current-base-pointer-left-700x700.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 490000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "700x700",
+    "state": "pointer-right",
+    "localFile": "current-local-pointer-right-700x700.png",
+    "baseFile": "current-base-pointer-right-700x700.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 490000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "700x700",
+    "state": "pointer-corner",
+    "localFile": "current-local-pointer-corner-700x700.png",
+    "baseFile": "current-base-pointer-corner-700x700.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 490000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "700x700",
+    "state": "slow-drag",
+    "localFile": "current-local-slow-drag-700x700.png",
+    "baseFile": "current-base-slow-drag-700x700.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 490000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "700x700",
+    "state": "fast-flick",
+    "localFile": "current-local-fast-flick-700x700.png",
+    "baseFile": "current-base-fast-flick-700x700.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 490000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "700x700",
+    "state": "touch",
+    "localFile": "current-local-touch-700x700.png",
+    "baseFile": "current-base-touch-700x700.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 490000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": null,
+     "cacheSize": 0,
+     "materialCreationCount": 0,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   }
+  ],
+  "target-source-unclamped": [
+   {
+    "vp": "1440x900",
+    "state": "rest",
+    "localFile": "target-source-unclamped-local-rest-1440x900.png",
+    "baseFile": "target-source-unclamped-base-rest-1440x900.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 1296000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1440x900",
+    "state": "pointer-left",
+    "localFile": "target-source-unclamped-local-pointer-left-1440x900.png",
+    "baseFile": "target-source-unclamped-base-pointer-left-1440x900.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 1296000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1440x900",
+    "state": "pointer-right",
+    "localFile": "target-source-unclamped-local-pointer-right-1440x900.png",
+    "baseFile": "target-source-unclamped-base-pointer-right-1440x900.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 1296000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1440x900",
+    "state": "pointer-corner",
+    "localFile": "target-source-unclamped-local-pointer-corner-1440x900.png",
+    "baseFile": "target-source-unclamped-base-pointer-corner-1440x900.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 1296000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1440x900",
+    "state": "slow-drag",
+    "localFile": "target-source-unclamped-local-slow-drag-1440x900.png",
+    "baseFile": "target-source-unclamped-base-slow-drag-1440x900.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 1296000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1440x900",
+    "state": "fast-flick",
+    "localFile": "target-source-unclamped-local-fast-flick-1440x900.png",
+    "baseFile": "target-source-unclamped-base-fast-flick-1440x900.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 1296000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1440x900",
+    "state": "touch",
+    "localFile": "target-source-unclamped-local-touch-1440x900.png",
+    "baseFile": "target-source-unclamped-base-touch-1440x900.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 1296000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1920x1080",
+    "state": "rest",
+    "localFile": "target-source-unclamped-local-rest-1920x1080.png",
+    "baseFile": "target-source-unclamped-base-rest-1920x1080.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 2073600,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1920x1080",
+    "state": "pointer-left",
+    "localFile": "target-source-unclamped-local-pointer-left-1920x1080.png",
+    "baseFile": "target-source-unclamped-base-pointer-left-1920x1080.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 2073600,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1920x1080",
+    "state": "pointer-right",
+    "localFile": "target-source-unclamped-local-pointer-right-1920x1080.png",
+    "baseFile": "target-source-unclamped-base-pointer-right-1920x1080.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 2073600,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1920x1080",
+    "state": "pointer-corner",
+    "localFile": "target-source-unclamped-local-pointer-corner-1920x1080.png",
+    "baseFile": "target-source-unclamped-base-pointer-corner-1920x1080.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 2073600,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1920x1080",
+    "state": "slow-drag",
+    "localFile": "target-source-unclamped-local-slow-drag-1920x1080.png",
+    "baseFile": "target-source-unclamped-base-slow-drag-1920x1080.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 2073600,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1920x1080",
+    "state": "fast-flick",
+    "localFile": "target-source-unclamped-local-fast-flick-1920x1080.png",
+    "baseFile": "target-source-unclamped-base-fast-flick-1920x1080.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 2073600,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "1920x1080",
+    "state": "touch",
+    "localFile": "target-source-unclamped-local-touch-1920x1080.png",
+    "baseFile": "target-source-unclamped-base-touch-1920x1080.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 2073600,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "390x844",
+    "state": "rest",
+    "localFile": "target-source-unclamped-local-rest-390x844.png",
+    "baseFile": "target-source-unclamped-base-rest-390x844.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "390x844",
+    "state": "pointer-left",
+    "localFile": "target-source-unclamped-local-pointer-left-390x844.png",
+    "baseFile": "target-source-unclamped-base-pointer-left-390x844.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "390x844",
+    "state": "pointer-right",
+    "localFile": "target-source-unclamped-local-pointer-right-390x844.png",
+    "baseFile": "target-source-unclamped-base-pointer-right-390x844.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "390x844",
+    "state": "pointer-corner",
+    "localFile": "target-source-unclamped-local-pointer-corner-390x844.png",
+    "baseFile": "target-source-unclamped-base-pointer-corner-390x844.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "390x844",
+    "state": "slow-drag",
+    "localFile": "target-source-unclamped-local-slow-drag-390x844.png",
+    "baseFile": "target-source-unclamped-base-slow-drag-390x844.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "390x844",
+    "state": "fast-flick",
+    "localFile": "target-source-unclamped-local-fast-flick-390x844.png",
+    "baseFile": "target-source-unclamped-base-fast-flick-390x844.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "390x844",
+    "state": "touch",
+    "localFile": "target-source-unclamped-local-touch-390x844.png",
+    "baseFile": "target-source-unclamped-base-touch-390x844.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "844x390",
+    "state": "rest",
+    "localFile": "target-source-unclamped-local-rest-844x390.png",
+    "baseFile": "target-source-unclamped-base-rest-844x390.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "844x390",
+    "state": "pointer-left",
+    "localFile": "target-source-unclamped-local-pointer-left-844x390.png",
+    "baseFile": "target-source-unclamped-base-pointer-left-844x390.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "844x390",
+    "state": "pointer-right",
+    "localFile": "target-source-unclamped-local-pointer-right-844x390.png",
+    "baseFile": "target-source-unclamped-base-pointer-right-844x390.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "844x390",
+    "state": "pointer-corner",
+    "localFile": "target-source-unclamped-local-pointer-corner-844x390.png",
+    "baseFile": "target-source-unclamped-base-pointer-corner-844x390.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "844x390",
+    "state": "slow-drag",
+    "localFile": "target-source-unclamped-local-slow-drag-844x390.png",
+    "baseFile": "target-source-unclamped-base-slow-drag-844x390.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "844x390",
+    "state": "fast-flick",
+    "localFile": "target-source-unclamped-local-fast-flick-844x390.png",
+    "baseFile": "target-source-unclamped-base-fast-flick-844x390.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "844x390",
+    "state": "touch",
+    "localFile": "target-source-unclamped-local-touch-844x390.png",
+    "baseFile": "target-source-unclamped-base-touch-844x390.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 329160,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "700x700",
+    "state": "rest",
+    "localFile": "target-source-unclamped-local-rest-700x700.png",
+    "baseFile": "target-source-unclamped-base-rest-700x700.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 490000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "700x700",
+    "state": "pointer-left",
+    "localFile": "target-source-unclamped-local-pointer-left-700x700.png",
+    "baseFile": "target-source-unclamped-base-pointer-left-700x700.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 490000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "700x700",
+    "state": "pointer-right",
+    "localFile": "target-source-unclamped-local-pointer-right-700x700.png",
+    "baseFile": "target-source-unclamped-base-pointer-right-700x700.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 490000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "700x700",
+    "state": "pointer-corner",
+    "localFile": "target-source-unclamped-local-pointer-corner-700x700.png",
+    "baseFile": "target-source-unclamped-base-pointer-corner-700x700.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 490000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "700x700",
+    "state": "slow-drag",
+    "localFile": "target-source-unclamped-local-slow-drag-700x700.png",
+    "baseFile": "target-source-unclamped-base-slow-drag-700x700.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 490000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "700x700",
+    "state": "fast-flick",
+    "localFile": "target-source-unclamped-local-fast-flick-700x700.png",
+    "baseFile": "target-source-unclamped-base-fast-flick-700x700.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 490000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   },
+   {
+    "vp": "700x700",
+    "state": "touch",
+    "localFile": "target-source-unclamped-local-touch-700x700.png",
+    "baseFile": "target-source-unclamped-base-touch-700x700.png",
+    "differingPixels": 0,
+    "maxDelta": 0,
+    "totalPixels": 490000,
+    "probeMismatches": {},
+    "o5fCacheTruth": {
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "cacheSize": 2,
+     "materialCreationCount": 6,
+     "cacheSwitchCount": 0
+    },
+    "identical": true
+   }
+  ]
+ }
+}
