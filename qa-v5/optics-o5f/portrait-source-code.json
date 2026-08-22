@@ -1,0 +1,234 @@
+{
+ "what": "\u00a7\u5341\u4e00 -- the ONE authorised portrait source correction, with its \u00a7\u5341\u56db verification. The correction: the unclamped candidate lane's spectral sample count follows the Target's device-tier predicate (bundle byte 1968911), decided once at load, instead of the quality map.",
+ "generatedAt": "2026-08-22T21:19:05+00:00",
+ "head": "c54564915412f460a5cdc84c5f3f7500b871d34d",
+ "cause": {
+  "kind": "WRONG RUNTIME SAMPLE-TIER MAPPING",
+  "explicitlyListedIn": "\u00a7\u5341\u4e00 allowed example",
+  "proof": "qa-v5/optics-o5f/target-mobile-tier.json -- live Target compiles 3 refract calls at 390x844 and 844x390 (coarse pointer) where our candidate ran 5; counting convention validated on the desktop control (predicted 5, observed 5); live bundle sha256 equals the archived bundle.",
+  "targetP0": {
+   "vp": "390x844",
+   "targetSamplesObserved": 3,
+   "ourCandidateSamples": 5,
+   "sampleTierMismatch": true
+  }
+ },
+ "scope": {
+  "lane": "target-source-unclamped only",
+  "sealedClampedLane": "keeps the frozen quality map -- its regression identity may not move",
+  "controlLane": "untouched",
+  "bothSetsStillBuiltAtInit": true
+ },
+ "gates": {
+  "controlIdentityAfterFix": "PASS",
+  "stressRerun": "INCOMPLETE_PAUSED"
+ },
+ "identityDetail": {
+  "controlRows": 35,
+  "candidateDesktopRows": 21,
+  "candidateMobileRows": 14,
+  "candidateMobileDiffRange": [
+   769,
+   3575
+  ]
+ },
+ "identitySemantics": "control exact-zero everywhere; candidate exact-zero at fine-pointer contexts and DIFFERENT at coarse-pointer contexts -- a zero mobile diff would mean the correction did not apply.",
+ "sealedLaneIdentityPostFix": {
+  "frozenLanesExactZeroVsO5R": true,
+  "frozenComparisons": 196,
+  "candidateDesktopExactZeroVsForensicsHead": true,
+  "candidateDesktopComparisons": 54,
+  "candidateMobileChangedByDesign": true,
+  "candidateMobileComparisons": 54,
+  "candidateMobileDiffs": [
+   [
+    "390x844",
+    0
+   ],
+   [
+    "844x390",
+    0
+   ]
+  ]
+ },
+ "stressRerunDetail": {
+  "status": "INCOMPLETE_PAUSED",
+  "completedBeforePause": {
+   "quality-cycle": "1200 steps, 0 pixel mismatches, cross-tier diagnostic flipped as pre-registered (high==low true in the fine-pointer context)",
+   "sessions": "interrupted before completion"
+  },
+  "addendum": "scripts/v5/o5f-stress-postfix.py -- sealed in the correction commit; the re-run can resume any time with the same sealed expectations"
+ },
+ "postFixP0": {
+  "darkSideLumaInsideWindow": false,
+  "whiteReflectionRatioInsideWindow": false,
+  "detail": {
+   "rows": 6,
+   "byClip": {
+    "0": {
+     "rows": 2,
+     "meanResidual": {
+      "darkSideLuma": 7.285,
+      "whiteReflectionRatio": -1.0358
+     },
+     "allInsideWindow": {
+      "darkSideLuma": false,
+      "whiteReflectionRatio": false
+     }
+    },
+    "1": {
+     "rows": 2,
+     "meanResidual": {
+      "darkSideLuma": 7.285,
+      "whiteReflectionRatio": -1.0358
+     },
+     "allInsideWindow": {
+      "darkSideLuma": false,
+      "whiteReflectionRatio": false
+     }
+    },
+    "2": {
+     "rows": 2,
+     "meanResidual": {
+      "darkSideLuma": 7.285,
+      "whiteReflectionRatio": -1.0358
+     },
+     "allInsideWindow": {
+      "darkSideLuma": false,
+      "whiteReflectionRatio": false
+     }
+    }
+   },
+   "perRow": [
+    {
+     "rect": 0,
+     "rot": 0,
+     "clipIndex": 1,
+     "candidate": {
+      "darkSideLuma": 81.56,
+      "whiteReflectionRatio": 2.5787
+     },
+     "target": {
+      "darkSideLuma": 80.82,
+      "whiteReflectionRatio": 2.58
+     },
+     "residual": {
+      "darkSideLuma": 0.74,
+      "whiteReflectionRatio": -0.0013
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 0,
+     "rot": 1,
+     "clipIndex": 0,
+     "candidate": {
+      "darkSideLuma": 81.56,
+      "whiteReflectionRatio": 2.5787
+     },
+     "target": {
+      "darkSideLuma": 80.82,
+      "whiteReflectionRatio": 2.58
+     },
+     "residual": {
+      "darkSideLuma": 0.74,
+      "whiteReflectionRatio": -0.0013
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 0,
+     "rot": 2,
+     "clipIndex": 2,
+     "candidate": {
+      "darkSideLuma": 81.56,
+      "whiteReflectionRatio": 2.5787
+     },
+     "target": {
+      "darkSideLuma": 80.82,
+      "whiteReflectionRatio": 2.58
+     },
+     "residual": {
+      "darkSideLuma": 0.74,
+      "whiteReflectionRatio": -0.0013
+     },
+     "insideWindow": {
+      "darkSideLuma": true,
+      "whiteReflectionRatio": true
+     }
+    },
+    {
+     "rect": 1,
+     "rot": 0,
+     "clipIndex": 2,
+     "candidate": {
+      "darkSideLuma": 35.58,
+      "whiteReflectionRatio": 5.1566
+     },
+     "target": {
+      "darkSideLuma": 21.75,
+      "whiteReflectionRatio": 7.227
+     },
+     "residual": {
+      "darkSideLuma": 13.83,
+      "whiteReflectionRatio": -2.0704
+     },
+     "insideWindow": {
+      "darkSideLuma": false,
+      "whiteReflectionRatio": false
+     }
+    },
+    {
+     "rect": 1,
+     "rot": 1,
+     "clipIndex": 1,
+     "candidate": {
+      "darkSideLuma": 35.58,
+      "whiteReflectionRatio": 5.1566
+     },
+     "target": {
+      "darkSideLuma": 21.75,
+      "whiteReflectionRatio": 7.227
+     },
+     "residual": {
+      "darkSideLuma": 13.83,
+      "whiteReflectionRatio": -2.0704
+     },
+     "insideWindow": {
+      "darkSideLuma": false,
+      "whiteReflectionRatio": false
+     }
+    },
+    {
+     "rect": 1,
+     "rot": 2,
+     "clipIndex": 0,
+     "candidate": {
+      "darkSideLuma": 35.58,
+      "whiteReflectionRatio": 5.1566
+     },
+     "target": {
+      "darkSideLuma": 21.75,
+      "whiteReflectionRatio": 7.227
+     },
+     "residual": {
+      "darkSideLuma": 13.83,
+      "whiteReflectionRatio": -2.0704
+     },
+     "insideWindow": {
+      "darkSideLuma": false,
+      "whiteReflectionRatio": false
+     }
+    }
+   ]
+  },
+  "windows": "the sealed corrected gate's own: max(Target repeat spread, floor 6.0 / 0.15) per metric"
+ },
+ "noOtherChange": "no Target source constant touched; no portrait multiplier; no viewport-specific look; the quality map itself is unedited for the lanes that keep it."
+}

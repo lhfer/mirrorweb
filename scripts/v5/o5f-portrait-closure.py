@@ -45,6 +45,10 @@ FINAL_STATES = [
     "READY FOR PRODUCT REVIEW WITH DECLARED PORTRAIT RESIDUAL",
     "O5F MATERIAL CACHE FAILED",
     "O5F PORTRAIT SOURCE RECONCILIATION FAILED",
+    # Not a §十七 state: emitted only when the round is interrupted by a
+    # user pause before §十四 completes. It asserts nothing the §十七
+    # vocabulary owns.
+    "ROUND PAUSED BY USER — INTERIM SNAPSHOT, NO §十七 STATE ASSERTED",
 ]
 
 # The sealed O5R corrected-gate residuals this round set out to explain.
@@ -200,6 +204,23 @@ def main() -> int:
         trace.append({"step": "correction", "applied": True,
                       "cause": fix.get("cause"), "gatesPass": gates_pass,
                       "postFixBothInsideWindow": both_inside})
+        if gates.get("stressRerun") == "INCOMPLETE_PAUSED":
+            # The round was interrupted by a user pause before the §十四
+            # sessions completed. Nothing failed; nothing may be asserted.
+            return emit({
+                "finalState": "ROUND PAUSED BY USER — INTERIM SNAPSHOT, "
+                              "NO §十七 STATE ASSERTED",
+                "classification": "CORRECTION APPLIED AND DISCLOSED; "
+                                  "RESIDUAL NOT CLOSED; §十四 STRESS "
+                                  "RE-RUN INCOMPLETE",
+                "ifResumed": "complete the §十四 sessions and stress "
+                             "re-run (scripts/v5/o5f-stress-postfix.py, "
+                             "sealed in the correction commit); on PASS "
+                             "the pre-registered tree resolves to READY "
+                             "FOR PRODUCT REVIEW WITH DECLARED PORTRAIT "
+                             "RESIDUAL, since the post-fix P0 windows do "
+                             "not close.",
+                "cause": cause, "correction": fix, "trace": trace})
         if not gates_pass:
             return emit({
                 "finalState": "O5F PORTRAIT SOURCE RECONCILIATION FAILED",

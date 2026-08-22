@@ -52,12 +52,20 @@ IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".mp4", ".webm", ".gif", ".webp",
 
 
 def main() -> int:
+    paused = "--paused" in sys.argv
     head = subprocess.run(["git", "-C", str(REPO), "rev-parse", "HEAD"],
                           capture_output=True, text=True).stdout.strip()
     present = sorted(p.name for p in QA.iterdir() if p.is_file())
     named = set(REQUIRED) | set(ALSO_EXPECTED)
     missing = [f for f in REQUIRED
                if f not in present and f != "MANIFEST.json"]
+    not_produced = []
+    if paused:
+        # The user paused the round before the aggregate regression stage;
+        # files that stage would have produced are recorded as
+        # not-produced-at-pause, not as manifest failures.
+        not_produced = [f for f in missing if f == "regressions.json"]
+        missing = [f for f in missing if f not in not_produced]
     unlisted = [f for f in present if f not in named]
     images = [f for f in present if Path(f).suffix.lower() in IMAGE_SUFFIXES]
 
@@ -80,9 +88,11 @@ def main() -> int:
         "phaseA": {"identity": ident["verdict"],
                    "stress": stress["verdict"],
                    "stressChecks": f"{stress['passed']}/{stress['total']}"},
+        "roundPaused": paused or None,
         "verification": {
             "requiredFiles": len(REQUIRED),
             "missing": missing,
+            "notProducedAtPause": not_produced or None,
             "unlisted": unlisted,
             "imageOrVideoFiles": images,
             "publicTreeHasNoTargetPixels": not images,

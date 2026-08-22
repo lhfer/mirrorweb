@@ -1,0 +1,327 @@
+{
+ "what": "\u00a7\u5341/\u00a7\u5341\u4e00 -- the portrait closure decision, applied by the pre-registered tree in scripts/v5/o5f-portrait-closure.py.",
+ "sealedResidualUnderExamination": {
+  "darkSideLuma390x844": {
+   "candidate": 51.28,
+   "target": 58.57
+  },
+  "whiteReflectionRatio390x844": {
+   "candidate": 4.9035,
+   "target": 3.8676
+  }
+ },
+ "finalState": "ROUND PAUSED BY USER \u2014 INTERIM SNAPSHOT, NO \u00a7\u5341\u4e03 STATE ASSERTED",
+ "classification": "CORRECTION APPLIED AND DISCLOSED; RESIDUAL NOT CLOSED; \u00a7\u5341\u56db STRESS RE-RUN INCOMPLETE",
+ "ifResumed": "complete the \u00a7\u5341\u56db sessions and stress re-run (scripts/v5/o5f-stress-postfix.py, sealed in the correction commit); on PASS the pre-registered tree resolves to READY FOR PRODUCT REVIEW WITH DECLARED PORTRAIT RESIDUAL, since the post-fix P0 windows do not close.",
+ "cause": {
+  "kind": "WRONG RUNTIME SAMPLE-TIER MAPPING",
+  "basis": "target-mobile-tier.json: the Target's tier is a device predicate, and its P0 program runs a different sample count than ours",
+  "target": {
+   "vp": "390x844",
+   "targetSamplesObserved": 3,
+   "ourCandidateSamples": 5,
+   "sampleTierMismatch": true
+  },
+  "explicitlyListedIn": "\u00a7\u5341\u4e00 allowed example: wrong runtime sample-tier mapping"
+ },
+ "correction": {
+  "what": "\u00a7\u5341\u4e00 -- the ONE authorised portrait source correction, with its \u00a7\u5341\u56db verification. The correction: the unclamped candidate lane's spectral sample count follows the Target's device-tier predicate (bundle byte 1968911), decided once at load, instead of the quality map.",
+  "generatedAt": "2026-08-22T21:19:05+00:00",
+  "head": "c54564915412f460a5cdc84c5f3f7500b871d34d",
+  "cause": {
+   "kind": "WRONG RUNTIME SAMPLE-TIER MAPPING",
+   "explicitlyListedIn": "\u00a7\u5341\u4e00 allowed example",
+   "proof": "qa-v5/optics-o5f/target-mobile-tier.json -- live Target compiles 3 refract calls at 390x844 and 844x390 (coarse pointer) where our candidate ran 5; counting convention validated on the desktop control (predicted 5, observed 5); live bundle sha256 equals the archived bundle.",
+   "targetP0": {
+    "vp": "390x844",
+    "targetSamplesObserved": 3,
+    "ourCandidateSamples": 5,
+    "sampleTierMismatch": true
+   }
+  },
+  "scope": {
+   "lane": "target-source-unclamped only",
+   "sealedClampedLane": "keeps the frozen quality map -- its regression identity may not move",
+   "controlLane": "untouched",
+   "bothSetsStillBuiltAtInit": true
+  },
+  "gates": {
+   "controlIdentityAfterFix": "PASS",
+   "stressRerun": "INCOMPLETE_PAUSED"
+  },
+  "identityDetail": {
+   "controlRows": 35,
+   "candidateDesktopRows": 21,
+   "candidateMobileRows": 14,
+   "candidateMobileDiffRange": [
+    769,
+    3575
+   ]
+  },
+  "identitySemantics": "control exact-zero everywhere; candidate exact-zero at fine-pointer contexts and DIFFERENT at coarse-pointer contexts -- a zero mobile diff would mean the correction did not apply.",
+  "sealedLaneIdentityPostFix": {
+   "frozenLanesExactZeroVsO5R": true,
+   "frozenComparisons": 196,
+   "candidateDesktopExactZeroVsForensicsHead": true,
+   "candidateDesktopComparisons": 54,
+   "candidateMobileChangedByDesign": true,
+   "candidateMobileComparisons": 54,
+   "candidateMobileDiffs": [
+    [
+     "390x844",
+     0
+    ],
+    [
+     "844x390",
+     0
+    ]
+   ]
+  },
+  "stressRerunDetail": {
+   "status": "INCOMPLETE_PAUSED",
+   "completedBeforePause": {
+    "quality-cycle": "1200 steps, 0 pixel mismatches, cross-tier diagnostic flipped as pre-registered (high==low true in the fine-pointer context)",
+    "sessions": "interrupted before completion"
+   },
+   "addendum": "scripts/v5/o5f-stress-postfix.py -- sealed in the correction commit; the re-run can resume any time with the same sealed expectations"
+  },
+  "postFixP0": {
+   "darkSideLumaInsideWindow": false,
+   "whiteReflectionRatioInsideWindow": false,
+   "detail": {
+    "rows": 6,
+    "byClip": {
+     "0": {
+      "rows": 2,
+      "meanResidual": {
+       "darkSideLuma": 7.285,
+       "whiteReflectionRatio": -1.0358
+      },
+      "allInsideWindow": {
+       "darkSideLuma": false,
+       "whiteReflectionRatio": false
+      }
+     },
+     "1": {
+      "rows": 2,
+      "meanResidual": {
+       "darkSideLuma": 7.285,
+       "whiteReflectionRatio": -1.0358
+      },
+      "allInsideWindow": {
+       "darkSideLuma": false,
+       "whiteReflectionRatio": false
+      }
+     },
+     "2": {
+      "rows": 2,
+      "meanResidual": {
+       "darkSideLuma": 7.285,
+       "whiteReflectionRatio": -1.0358
+      },
+      "allInsideWindow": {
+       "darkSideLuma": false,
+       "whiteReflectionRatio": false
+      }
+     }
+    },
+    "perRow": [
+     {
+      "rect": 0,
+      "rot": 0,
+      "clipIndex": 1,
+      "candidate": {
+       "darkSideLuma": 81.56,
+       "whiteReflectionRatio": 2.5787
+      },
+      "target": {
+       "darkSideLuma": 80.82,
+       "whiteReflectionRatio": 2.58
+      },
+      "residual": {
+       "darkSideLuma": 0.74,
+       "whiteReflectionRatio": -0.0013
+      },
+      "insideWindow": {
+       "darkSideLuma": true,
+       "whiteReflectionRatio": true
+      }
+     },
+     {
+      "rect": 0,
+      "rot": 1,
+      "clipIndex": 0,
+      "candidate": {
+       "darkSideLuma": 81.56,
+       "whiteReflectionRatio": 2.5787
+      },
+      "target": {
+       "darkSideLuma": 80.82,
+       "whiteReflectionRatio": 2.58
+      },
+      "residual": {
+       "darkSideLuma": 0.74,
+       "whiteReflectionRatio": -0.0013
+      },
+      "insideWindow": {
+       "darkSideLuma": true,
+       "whiteReflectionRatio": true
+      }
+     },
+     {
+      "rect": 0,
+      "rot": 2,
+      "clipIndex": 2,
+      "candidate": {
+       "darkSideLuma": 81.56,
+       "whiteReflectionRatio": 2.5787
+      },
+      "target": {
+       "darkSideLuma": 80.82,
+       "whiteReflectionRatio": 2.58
+      },
+      "residual": {
+       "darkSideLuma": 0.74,
+       "whiteReflectionRatio": -0.0013
+      },
+      "insideWindow": {
+       "darkSideLuma": true,
+       "whiteReflectionRatio": true
+      }
+     },
+     {
+      "rect": 1,
+      "rot": 0,
+      "clipIndex": 2,
+      "candidate": {
+       "darkSideLuma": 35.58,
+       "whiteReflectionRatio": 5.1566
+      },
+      "target": {
+       "darkSideLuma": 21.75,
+       "whiteReflectionRatio": 7.227
+      },
+      "residual": {
+       "darkSideLuma": 13.83,
+       "whiteReflectionRatio": -2.0704
+      },
+      "insideWindow": {
+       "darkSideLuma": false,
+       "whiteReflectionRatio": false
+      }
+     },
+     {
+      "rect": 1,
+      "rot": 1,
+      "clipIndex": 1,
+      "candidate": {
+       "darkSideLuma": 35.58,
+       "whiteReflectionRatio": 5.1566
+      },
+      "target": {
+       "darkSideLuma": 21.75,
+       "whiteReflectionRatio": 7.227
+      },
+      "residual": {
+       "darkSideLuma": 13.83,
+       "whiteReflectionRatio": -2.0704
+      },
+      "insideWindow": {
+       "darkSideLuma": false,
+       "whiteReflectionRatio": false
+      }
+     },
+     {
+      "rect": 1,
+      "rot": 2,
+      "clipIndex": 0,
+      "candidate": {
+       "darkSideLuma": 35.58,
+       "whiteReflectionRatio": 5.1566
+      },
+      "target": {
+       "darkSideLuma": 21.75,
+       "whiteReflectionRatio": 7.227
+      },
+      "residual": {
+       "darkSideLuma": 13.83,
+       "whiteReflectionRatio": -2.0704
+      },
+      "insideWindow": {
+       "darkSideLuma": false,
+       "whiteReflectionRatio": false
+      }
+     }
+    ]
+   },
+   "windows": "the sealed corrected gate's own: max(Target repeat spread, floor 6.0 / 0.15) per metric"
+  },
+  "noOtherChange": "no Target source constant touched; no portrait multiplier; no viewport-specific look; the quality map itself is unedited for the lanes that keep it."
+ },
+ "trace": [
+  {
+   "step": "phaseA",
+   "identity": "PASS",
+   "stress": "PASS",
+   "pass": true
+  },
+  {
+   "step": "clip2Isolation",
+   "roiClean": false,
+   "isolatedToClip2": {
+    "darkSideLuma": false,
+    "whiteReflectionRatio": false
+   },
+   "readable": false,
+   "isolated": false,
+   "amendment": "roi.pass no longer gates readability -- rect pixels identical across rotations make the isolation verdict contamination-proof"
+  },
+  {
+   "step": "sourceCause",
+   "decompositionReadable": true,
+   "instrumentUnreadableTerms": [
+    "body-refracted"
+   ],
+   "firstDivergingTerm": null,
+   "tierReadable": true,
+   "tierMismatch": true,
+   "reflectionDirection": true,
+   "outputTransformAgrees": true,
+   "ringDecomposition": {
+    "worstRect": {
+     "rect": 1,
+     "offSilhouetteFraction": 0.2168,
+     "residualUnmasked": 13.832,
+     "residualSilhouetteOnly": 19.1513,
+     "ringEffect": 5.3193
+    },
+    "reading": "masking off-silhouette pixels moves the worst-rect dark-luma residual from 13.83 to 19.15: the differing background ring (O5R correction C, quantified here) was DILUTING the sealed number, so the card body itself carries MORE residual than the sealed row states -- consistent with a sample-tier cause and inconsistent with the residual being ring artifact."
+   }
+  },
+  {
+   "step": "correction",
+   "applied": true,
+   "cause": {
+    "kind": "WRONG RUNTIME SAMPLE-TIER MAPPING",
+    "explicitlyListedIn": "\u00a7\u5341\u4e00 allowed example",
+    "proof": "qa-v5/optics-o5f/target-mobile-tier.json -- live Target compiles 3 refract calls at 390x844 and 844x390 (coarse pointer) where our candidate ran 5; counting convention validated on the desktop control (predicted 5, observed 5); live bundle sha256 equals the archived bundle.",
+    "targetP0": {
+     "vp": "390x844",
+     "targetSamplesObserved": 3,
+     "ourCandidateSamples": 5,
+     "sampleTierMismatch": true
+    }
+   },
+   "gatesPass": false,
+   "postFixBothInsideWindow": false
+  }
+ ],
+ "reviewSummaryWordingRules": {
+  "silhouette": "N/A-UNREADABLE in this round's summary: the background ring is contaminated by neighbouring cards and three of four PASS rows are near-degenerate (O5R correction C). The sealed rows themselves stand unmodified.",
+  "pointerPath": "one readable PASS row (1440x900) and three INSTRUMENT_UNREADABLE rows -- never 'a 4-viewport PASS' (O5R correction A).",
+  "fullFrameReadiness": "proves the review package exists; it is not a product visual PASS (O5R correction B).",
+  "o5rGate": "PASS 7 / FAIL 7 stays sealed and regression-only; full-frame judgment is owned by the product review.",
+  "noNewThresholds": "no threshold in this round was created after Candidate capture."
+ },
+ "targetVisualPass": "NOT ASSERTED"
+}

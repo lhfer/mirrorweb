@@ -147,7 +147,11 @@ def main() -> int:
                                    and (sealed_lane or {})
                                    .get("candidateDesktopExactZeroVsForensicsHead"))
                         else "FAIL")
-    stress_verdict = (stress or {}).get("verdict") or "FAIL"
+    # A missing stress re-run is NOT a failure: the §十四 sessions were
+    # interrupted by a user pause. INCOMPLETE_PAUSED is recorded so the
+    # closure can distinguish "gate broke" from "gate not yet run".
+    stress_verdict = ((stress or {}).get("verdict")
+                      or "INCOMPLETE_PAUSED")
 
     p0 = None
     dark_in = white_in = None
@@ -208,12 +212,24 @@ def main() -> int:
                              "zero mobile diff would mean the correction "
                              "did not apply.",
         "sealedLaneIdentityPostFix": sealed_lane,
-        "stressRerunDetail": None if not stress else {
+        "stressRerunDetail": {
             "checks": f"{stress['passed']}/{stress['total']}",
             "amendedItems": stress.get("amendedItems"),
             "addendum": "scripts/v5/o5f-stress-postfix.py -- committed in "
                         "the correction commit, before any re-capture",
             "sealedScorerOnSameData": stress.get("sealedScorerOnSameData"),
+        } if stress else {
+            "status": "INCOMPLETE_PAUSED",
+            "completedBeforePause": {
+                "quality-cycle": "1200 steps, 0 pixel mismatches, "
+                                 "cross-tier diagnostic flipped as "
+                                 "pre-registered (high==low true in the "
+                                 "fine-pointer context)",
+                "sessions": "interrupted before completion",
+            },
+            "addendum": "scripts/v5/o5f-stress-postfix.py -- sealed in the "
+                        "correction commit; the re-run can resume any time "
+                        "with the same sealed expectations",
         },
         "postFixP0": {
             "darkSideLumaInsideWindow": dark_in,

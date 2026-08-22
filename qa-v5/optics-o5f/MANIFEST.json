@@ -1,0 +1,112 @@
+{
+ "what": "\u00a7\u5341\u4e94 -- the public O5F evidence tree. Numbers, source anchors and verdicts only.",
+ "round": "O5F \u2014 material cache and portrait source reconciliation",
+ "generatedAt": "2026-08-22T21:20:06+00:00",
+ "head": "c54564915412f460a5cdc84c5f3f7500b871d34d",
+ "phaseA": {
+  "identity": "PASS",
+  "stress": "PASS",
+  "stressChecks": "10/10"
+ },
+ "roundPaused": true,
+ "verification": {
+  "requiredFiles": 16,
+  "missing": [],
+  "notProducedAtPause": [
+   "regressions.json"
+  ],
+  "unlisted": [],
+  "imageOrVideoFiles": [],
+  "publicTreeHasNoTargetPixels": true,
+  "note": "the tree carries no image or video files at all. Target pixels live only in qa-v5/private/o5f-optical-body-review.zip.",
+  "pass": true
+ },
+ "fileCount": 17,
+ "files": [
+  {
+   "file": "README.md",
+   "bytes": 7974,
+   "sha256": "8a70e6d205054fd76e06c00da845b62748c0056b011291ef8b0153c7fa272d8e"
+  },
+  {
+   "file": "clip-index-attribution.json",
+   "bytes": 21358,
+   "sha256": "fb5da36eda7b14a9987517edf5380914f98900069ebaa666fc5cc908e315be43"
+  },
+  {
+   "file": "control-identity.json",
+   "bytes": 15290,
+   "sha256": "fdedb46a766f72d0e596a6d50b78273ecc9dde14b4186b0ec31181a5a5cb6caf"
+  },
+  {
+   "file": "material-cache-contract.json",
+   "bytes": 9432,
+   "sha256": "678e9dc0865e83fe3dae21ca700f4f05c7631d4701b4e0dc6db8e6b21f8c6e9e"
+  },
+  {
+   "file": "material-cache-identity.json",
+   "bytes": 36908,
+   "sha256": "5060edb9025391ce5514ebc3c4546a51201143ebee1fdd143092bccf13f8a852"
+  },
+  {
+   "file": "material-cache-stress.json",
+   "bytes": 8460,
+   "sha256": "94fab265efe47a21fb4c0ab24fadaf8e9f67c09fd8133746de07beddf4ff70d0"
+  },
+  {
+   "file": "o5r-gate-regression.json",
+   "bytes": 2103,
+   "sha256": "29af819298fab2218a8dfb3930e214e2cd5e911d25f77a1686a873f310606f2f"
+  },
+  {
+   "file": "o5r-product-review.json",
+   "bytes": 6145,
+   "sha256": "df69bb7352bfc61583b5e4aaa1341ee4626a47119219f1d0a1cd6597efd252a1"
+  },
+  {
+   "file": "original-o5-gate-regression.json",
+   "bytes": 2122,
+   "sha256": "4a07563a6c850f7325d1b7b65f13ef9946b72838104a6bfdccd654e1aada7763"
+  },
+  {
+   "file": "output-transform.json",
+   "bytes": 6298,
+   "sha256": "e311723f74b5442b995838222fac027d2c518c8300fe68f87064cc03e8dd5e10"
+  },
+  {
+   "file": "portrait-closure.json",
+   "bytes": 10464,
+   "sha256": "ec2f9a9dcd04e20cb60f609f80e10f28dda8388f146aceace8ee6b51ff2b9fb5"
+  },
+  {
+   "file": "portrait-source-code.json",
+   "bytes": 6178,
+   "sha256": "3cd9a5c31f94e8384462e6488ec0b9e683f16782bc4df1e8c0f36a8a35b8fc74"
+  },
+  {
+   "file": "portrait-term-decomposition.json",
+   "bytes": 51886,
+   "sha256": "73f7b5d8f55af954eca9190c03b442536f11c0c32483078efab21e86294e1b4a"
+  },
+  {
+   "file": "reflection-direction.json",
+   "bytes": 2735,
+   "sha256": "510e741dfad6fd7d61505f88d99669336c558adf8555f0e6e545b4e55a6648d2"
+  },
+  {
+   "file": "roi-isolation.json",
+   "bytes": 6187,
+   "sha256": "2858e4ea4b0b51e3fc7698bc3166716c13b132a531d93ff2c952e2363f9314e4"
+  },
+  {
+   "file": "sealed-lane-identity.json",
+   "bytes": 65859,
+   "sha256": "6b3cfac1f06680415f01386be2e625a8142fd6b48af1afc10157e7a5dd2df6f9"
+  },
+  {
+   "file": "target-mobile-tier.json",
+   "bytes": 6009,
+   "sha256": "3b4d13a64d1d2dc8a6ec3b8626a8f3833f9ad5dcd3550146a36340016a7975f8"
+  }
+ ]
+}
