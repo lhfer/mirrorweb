@@ -425,6 +425,7 @@ export class InfiniteGlassGridV4 {
   getOpticsState(): Record<string, unknown> {
     return {
       dispersionLaw: this.handle?.getDispersionLaw() ?? null,
+      reflectionSupport: this.handle?.getReflectionSupport() ?? null,
       envMixScale: this.params.envMixScale.value,
       rimScale: this.params.rimScale.value,
       shellMode: this.handle?.getShellMode() ?? null,
@@ -471,8 +472,17 @@ export class InfiniteGlassGridV4 {
    * identity -- and therefore the ILG code bound to it -- is stable across every
    * resize. Slots beyond the active count are hidden, not removed.
    */
+  /** QA only: the first active glass mesh, for the O3 shader-proof gate. */
+  firstGlassMesh(): Mesh | undefined {
+    const slot = this.slots.find((s) => s.active) ?? this.slots[0];
+    return slot?.glass as Mesh | undefined;
+  }
+
   setFrame(frame: SourceExactLayoutFrame): void {
     this.frame = frame;
+    // O3: the Target's per-frame bevel uniform writes. Harmless in the
+    // geometry lane, where the shader references none of them.
+    this.handle?.setLayoutFrame(frame);
     this.activeSlotCount = Math.min(frame.activeSlotCount, this.slots.length);
     for (let n = 0; n < this.slots.length; n += 1) {
       const slot = this.slots[n];

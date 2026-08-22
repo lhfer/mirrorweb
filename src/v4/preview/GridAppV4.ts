@@ -33,7 +33,7 @@ import {
   createPointerKeyLightV4,
   updatePointerKeyLightV4,
 } from "../../materials/LiquidGlassMaterialV4";
-import { V4_DEBUG_MODES, V4_OPTICS_CONFIG, type V4DebugMode, type V4DispersionLaw, type V4ShellMode } from "../OpticsConfigV4";
+import { V4_DEBUG_MODES, V4_OPTICS_CONFIG, type V4DebugMode, type V4DispersionLaw, type V4ReflectionSupport, type V4ShellMode } from "../OpticsConfigV4";
 import { createStripLightEnvironmentV4 } from "../StripLightEnvironmentV4";
 import { InfiniteGlassGridV4 } from "./InfiniteGlassGridV4";
 import { SceneColorPipelineV4 } from "./SceneColorPipelineV4";
@@ -65,6 +65,8 @@ export type GridAppV4Options = {
   landscapeRowOrigin?: LandscapeRowOrigin;
   /** O2 lane switch (?dispersionLaw=); default from OpticsConfigV4. */
   dispersionLaw?: V4DispersionLaw;
+  /** O3 reflection-support lane (?reflectionSupport=); default from OpticsConfigV4. */
+  reflectionSupport?: V4ReflectionSupport;
 };
 
 /**
@@ -262,6 +264,7 @@ export class GridAppV4 {
       {
         envTexture: this.envHdr ?? null,
         dispersionLaw: this.options.dispersionLaw,
+        reflectionSupport: this.options.reflectionSupport,
       },
     );
     if (this.frame) this.grid.setFrame(this.frame);
@@ -1285,6 +1288,30 @@ export class GridAppV4 {
       ...this.grid.getOpticsState(),
       envTextureLoaded: Boolean(this.envHdr),
       shellModeApplied: this.v4Shell,
+    };
+  }
+
+  /**
+   * QA only (O3 gate 18). The generated program for the glass BODY, so a
+   * gate can prove which support the beauty path actually consumes rather
+   * than inferring it from the TypeScript. Readback only -- nothing here
+   * changes what is rendered.
+   */
+  async getGlassShaderSource(): Promise<Record<string, unknown> | null> {
+    const handle = this.renderer.handle;
+    const mesh = this.grid.firstGlassMesh();
+    if (!handle || !mesh) return null;
+    const src = await (handle.renderer as unknown as {
+      debug: { getShaderAsync: (s: unknown, c: unknown, o: unknown) => Promise<{
+        vertexShader: string; fragmentShader: string;
+      }> };
+    }).debug.getShaderAsync(handle.scene, handle.camera, mesh);
+    return {
+      backend: handle.backend,
+      reflectionSupport: this.grid.getOpticsState().reflectionSupport ?? null,
+      dispersionLaw: this.grid.getOpticsState().dispersionLaw ?? null,
+      vertexShader: src.vertexShader,
+      fragmentShader: src.fragmentShader,
     };
   }
 

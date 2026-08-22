@@ -13,6 +13,12 @@ export const V4_DEBUG_MODES = [
   "fresnel",
   "dispersion",
   "adaptivity",
+  // O3 support-field views. They exist only in the target-sdf lane's
+  // shader; selecting one in the geometry lane renders beauty, because
+  // adding their branches to the control chain would change the control
+  // program and forfeit its exact-zero proof against e913aa6.
+  "rim-mask",
+  "analytic-normal",
 ] as const;
 
 export type V4DebugMode = (typeof V4_DEBUG_MODES)[number];
@@ -28,6 +34,8 @@ export const V4_DEBUG_CODE: Readonly<Record<V4DebugMode, number>> = {
   fresnel: 7,
   dispersion: 8,
   adaptivity: 9,
+  "rim-mask": 10,
+  "analytic-normal": 11,
 };
 
 export const V4_SHELL_MODES = ["additive", "energy-controlled", "off"] as const;
@@ -38,6 +46,16 @@ export const V4_SHELL_MODES = ["additive", "energy-controlled", "off"] as const;
 // load with ?dispersionLaw=.
 export const V4_DISPERSION_LAWS = ["v1-taps", "o1-spectral"] as const;
 export type V4DispersionLaw = (typeof V4_DISPERSION_LAWS)[number];
+
+// O3 reflection-support lane switch. "geometry" is the accepted O2 control
+// (the v_o2NormalView geometry normal + the strongLensRim mask);
+// "target-sdf" is the O3 candidate (the Target's analytic bevel normal +
+// its rounded-rect SDF rim). Selected at material build time -- a JS
+// branch, not a shader one, so the geometry lane emits the O2 program byte
+// for byte and stays provably pixel-identical to e913aa6. Overridable per
+// page load with ?reflectionSupport=.
+export const V4_REFLECTION_SUPPORTS = ["geometry", "target-sdf"] as const;
+export type V4ReflectionSupport = (typeof V4_REFLECTION_SUPPORTS)[number];
 export type V4ShellMode = (typeof V4_SHELL_MODES)[number];
 
 export type V4GeometryConfig = {
@@ -123,6 +141,11 @@ export const V4_OPTICS_CONFIG = {
     // default AFTER both lanes are scored; flipping it is the execution
     // of that rule, recorded in candidate-selection.json.
     dispersionLaw: "o1-spectral" as V4DispersionLaw,
+    // O3: the code commit ships the O2 CONTROL. The pre-registered §六
+    // rule flips this to "target-sdf" in the evidence commit if and only
+    // if all twenty absolute-gate items pass; see
+    // qa-v5/optics-o3/o3-preregistration.json.
+    reflectionSupport: "geometry" as V4ReflectionSupport,
     // O2 System B -- the Target's shipped values, adopted verbatim
     // (byte-anchored in qa-v5/optics-o2/target-system-b-source.json).
     // None of these is a tunable; see o2-selected-system.json.

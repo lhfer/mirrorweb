@@ -1,6 +1,6 @@
 import type { QualityLevel } from "../../config";
 import type { MediaFitMode } from "../../content/MediaFit";
-import { V4_DEBUG_MODES, V4_SHELL_MODES, type V4DebugMode, type V4DispersionLaw, type V4ShellMode } from "../OpticsConfigV4";
+import { V4_DEBUG_MODES, V4_REFLECTION_SUPPORTS, V4_SHELL_MODES, type V4DebugMode, type V4DispersionLaw, type V4ReflectionSupport, type V4ShellMode } from "../OpticsConfigV4";
 import { GridAppV4, type GridAppV4Options } from "./GridAppV4";
 
 export type GridQaV4 = {
@@ -56,6 +56,8 @@ export type GridQaV4 = {
   setEnvMixScale: (value: number) => void;
   setRimScale: (value: number) => void;
   getOpticsState: () => Record<string, unknown>;
+  /** QA only (O3 gate 18): the generated glass-body program. */
+  getGlassShaderSource: () => Promise<Record<string, unknown> | null>;
   getRenderCullingTruth: () => Record<string, unknown>;
   getRenderPassStats: () => Record<string, number | null>;
   reset: () => void;
@@ -75,6 +77,15 @@ export function parseDispersionLaw(value: string | null): V4DispersionLaw | unde
   return undefined;
 }
 
+/** O3 lane switch. Unrecognised values fall back to the config default. */
+export function parseReflectionSupport(
+  value: string | null,
+): V4ReflectionSupport | undefined {
+  return V4_REFLECTION_SUPPORTS.includes(value as V4ReflectionSupport)
+    ? (value as V4ReflectionSupport)
+    : undefined;
+}
+
 /**
  * Boots the V4 multi-card preview and publishes the same QA surface the V3 app
  * exposes, so one capture harness can drive both optical versions through the
@@ -87,6 +98,7 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
     debugMode: parseV4DebugMode(query.get("v4debug")),
     shellMode: query.has("shell") ? parseV4ShellMode(query.get("shell")) : undefined,
     dispersionLaw: parseDispersionLaw(query.get("dispersionLaw")),
+    reflectionSupport: parseReflectionSupport(query.get("reflectionSupport")),
     ...(Number.isFinite(overscanQuery) && overscanQuery >= 1 ? { overscan: overscanQuery } : {}),
     ...options,
   });
@@ -133,6 +145,7 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
     setEnvMixScale: (value) => app.setEnvMixScale(value),
     setRimScale: (value) => app.setRimScale(value),
     getOpticsState: () => app.getOpticsState(),
+    getGlassShaderSource: () => app.getGlassShaderSource(),
       getRenderCullingTruth: () => app.getRenderCullingTruth(),
       getRenderPassStats: () => app.getRenderPassStats(),
       reset: () => app.reset(),

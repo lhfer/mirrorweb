@@ -39,8 +39,15 @@ import {
   V4_OPTICS_CONFIG,
   type V4DebugMode,
   type V4DispersionLaw,
+  type V4ReflectionSupport,
   type V4ShellMode,
 } from "../v4/OpticsConfigV4";
+import {
+  applyTargetBevelFrameV4,
+  createTargetBevelFieldV4,
+  createTargetBevelUniformsV4,
+  type TargetBevelUniformsV4,
+} from "./TargetBevelFieldV4";
 
 export function createLiquidGlassParamsV4() {
   const defaults = V4_OPTICS_CONFIG.material;
@@ -97,6 +104,14 @@ export type LiquidGlassMaterialV4Handle = {
   setShellMode: (mode: V4ShellMode) => void;
   getShellMode: () => V4ShellMode;
   getDispersionLaw: () => V4DispersionLaw;
+  getReflectionSupport: () => V4ReflectionSupport;
+  /**
+   * O3: the Target's per-frame bevel uniform writes. A no-op on the GPU in
+   * the geometry lane, where nothing references them.
+   */
+  setLayoutFrame: (frame: {
+    planeWidth: number; planeHeight: number; cardScale: number; sphereRadius: number;
+  }) => void;
   dispose: () => void;
 };
 
@@ -121,6 +136,14 @@ export type LiquidGlassMaterialV4Options = {
    * base). Chosen at material build time -- a JS branch, not a shader one.
    */
   dispersionLaw?: V4DispersionLaw;
+  /**
+   * O3 lane switch: "geometry" is the accepted O2 control (the
+   * v_o2NormalView geometry normal and the strongLensRim mask);
+   * "target-sdf" is the candidate (the Target's analytic bevel normal and
+   * its rounded-rect SDF rim). A build-time JS branch on purpose -- the
+   * geometry lane must emit the O2 shader byte for byte.
+   */
+  reflectionSupport?: V4ReflectionSupport;
 };
 
 export function createLiquidGlassMaterialV4(
@@ -132,6 +155,12 @@ export function createLiquidGlassMaterialV4(
 ): LiquidGlassMaterialV4Handle {
   const dispersionLaw: V4DispersionLaw =
     options.dispersionLaw ?? V4_OPTICS_CONFIG.material.dispersionLaw;
+  const reflectionSupport: V4ReflectionSupport =
+    options.reflectionSupport ?? V4_OPTICS_CONFIG.material.reflectionSupport;
+  // Created unconditionally so the handle's shape does not depend on the
+  // lane; only the target-sdf branch REFERENCES them, and an unreferenced
+  // uniform is not emitted into the program.
+  const bevelUniforms: TargetBevelUniformsV4 = createTargetBevelUniformsV4();
   const sceneColor = texture(sceneColorTexture);
   const debugCode = uniform(V4_DEBUG_CODE[initialDebugMode]);
   let debugMode = initialDebugMode;
@@ -384,6 +413,17 @@ export function createLiquidGlassMaterialV4(
   // envMixScale=0 reproduces `beauty` exactly -- 0 * Inf would not).
   // Without an env texture the body renders the pre-O2 composition
   // unchanged.
+  //
+  // O3 swaps exactly TWO inputs into the block below and nothing else: the
+  // normal the fresnel and the reflection are built from, and the mask the
+  // white rim rides on. Every other line -- the schlick expression, the
+  // reflect idiom, both env rotations, the sample ceiling, the LERP, the
+  // rim intensity -- is shared between the lanes by construction, so a
+  // difference between them can only be the support field.
+  const o3Field = reflectionSupport === "target-sdf"
+    ? createTargetBevelFieldV4(bevelUniforms)
+    : null;
+
   let bodyBeauty = beauty;
   if (options.envTexture) {
     const envTex = texture(options.envTexture);
@@ -397,12 +437,14 @@ export function createLiquidGlassMaterialV4(
     // reflectVector idiom) preserves dot products and commutes with
     // reflect, so the math equals the Target's world-space form at the
     // pre-registered analytic-vs-geometry normal analogue.
-    const o2NormalView = varying(normalViewGeometry, "v_o2NormalView").normalize();
-    const o2Facing = clamp(o2NormalView.dot(positionViewDirection), 0, 1);
+    const supportNormalView = o3Field
+      ? o3Field.analyticBevelNormalView
+      : varying(normalViewGeometry, "v_o2NormalView").normalize();
+    const o2Facing = clamp(supportNormalView.dot(positionViewDirection), 0, 1);
     const schlick = params.fresnelF0.add(
       float(1).sub(params.fresnelF0).mul(
         pow(clamp(float(1).sub(o2Facing), 0, 1), 5)));
-    const reflected = reflect(positionViewDirection.negate(), o2NormalView)
+    const reflected = reflect(positionViewDirection.negate(), supportNormalView)
       .transformDirection(cameraWorldMatrix);
     const cy = cos(params.envRotationY);
     const sy = sin(params.envRotationY);
@@ -427,7 +469,8 @@ export function createLiquidGlassMaterialV4(
       clamp(schlick.mul(params.envIntensity), 0, 1),
       params.envMaxMix,
     ).mul(params.envMixScale);
-    const rimTerm = strongLensRim
+    const rimMask = o3Field ? o3Field.targetRimMask : strongLensRim;
+    const rimTerm = rimMask
       .mul(params.rimIntensity)
       .mul(params.rimScale);
     bodyBeauty = mix(beauty, envSample, envMixFactor).add(vec3(rimTerm));
@@ -454,7 +497,22 @@ export function createLiquidGlassMaterialV4(
   const fresnelDebug = vec3(fresnel);
   const adaptivityDebug = vec3(localLuma, localContrast, localChroma);
 
-  const bodyColorNode = Fn(() => debugCode.equal(V4_DEBUG_CODE["edge-mask"]).select(
+  // §十 support-field views. They are wired ONLY in the target-sdf lane:
+  // adding their branches to the control chain would change the control
+  // program, and the control must stay byte-identical to O2. Each gets its
+  // OWN field instance, and therefore its own varying -- three's TSL emits
+  // a varying's unpack into the first branch that references it, so two
+  // branches sharing one would leave the later reading zeros. That is the
+  // hazard O2 root-caused, defended against by construction here.
+  const rimMaskDebug = o3Field
+    ? vec3(createTargetBevelFieldV4(bevelUniforms, "v_o3CardUvRim").targetRimMask)
+    : null;
+  const analyticNormalDebug = o3Field
+    ? createTargetBevelFieldV4(bevelUniforms, "v_o3CardUvNormal")
+        .analyticBevelNormalView.mul(0.5).add(0.5)
+    : null;
+
+  const debugChain = () => debugCode.equal(V4_DEBUG_CODE["edge-mask"]).select(
     edgeDebug,
     debugCode.equal(V4_DEBUG_CODE["optical-zones"]).select(
       opticalZonesDebug,
@@ -478,6 +536,18 @@ export function createLiquidGlassMaterialV4(
         ),
       ),
     ),
+  );
+
+  const bodyColorNode = Fn(() => (
+    rimMaskDebug && analyticNormalDebug
+      ? debugCode.equal(V4_DEBUG_CODE["rim-mask"]).select(
+          rimMaskDebug,
+          debugCode.equal(V4_DEBUG_CODE["analytic-normal"]).select(
+            analyticNormalDebug,
+            debugChain(),
+          ),
+        )
+      : debugChain()
   ))();
 
   const bodyMaterial = new MeshBasicNodeMaterial();
@@ -544,6 +614,8 @@ export function createLiquidGlassMaterialV4(
     setShellMode,
     getShellMode: () => shellMode,
     getDispersionLaw: () => dispersionLaw,
+    getReflectionSupport: () => reflectionSupport,
+    setLayoutFrame: (frame) => applyTargetBevelFrameV4(bevelUniforms, frame),
     dispose: () => {
       bodyMaterial.dispose();
       reflectionMaterial.dispose();
