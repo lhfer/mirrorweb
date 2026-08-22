@@ -1,0 +1,313 @@
+{
+ "what": "O5 instrument unit tests. Every check has a negative partner: a synthetic input that must make it fail. Run before sealing.",
+ "passed": 61,
+ "total": 61,
+ "pass": true,
+ "results": [
+  {
+   "test": "landmark: finds a single step at nx 0.5",
+   "pass": true,
+   "note": "nx=0.5"
+  },
+  {
+   "test": "landmark NEGATIVE: flat card yields none",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "landmark NEGATIVE: sub-threshold step ignored",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "landmark: three steps returned in x order",
+   "pass": true,
+   "note": "[0.25, 0.5, 0.75]"
+  },
+  {
+   "test": "landmark: sub-pixel centroid lands between samples",
+   "pass": true,
+   "note": "nx=0.502083"
+  },
+  {
+   "test": "flat: identity cover maps source nx to itself",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "flat: 16:9 into 4:3 puts source .375 at card 1/3",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "flat NEGATIVE: cropped-away landmark returns None",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "flat NEGATIVE: degenerate scale returns None",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "compression: measures a 6 px displacement",
+   "pass": true,
+   "note": "got 6.0"
+  },
+  {
+   "test": "compression: analytic flat baseline verified against media-only",
+   "pass": true,
+   "note": "residual 0.0 px"
+  },
+  {
+   "test": "compression: outward sign is positive on the left half",
+   "pass": true,
+   "note": "outward 6.0"
+  },
+  {
+   "test": "compression NEGATIVE: identical render reads ~0",
+   "pass": true,
+   "note": "got 0.0"
+  },
+  {
+   "test": "compression NEGATIVE: wrong cover law flags baseline unverified",
+   "pass": true,
+   "note": "residual 120.0 px"
+  },
+  {
+   "test": "pairing: three landmarks pair cleanly and read ~0",
+   "pass": true,
+   "note": "mean 0.0, matched 3"
+  },
+  {
+   "test": "pairing NEGATIVE: a missing landmark refuses to produce a mean",
+   "pass": true,
+   "note": "matched 1/3"
+  },
+  {
+   "test": "pairing NEGATIVE: an incomplete set is not usable",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "pairing NEGATIVE: two-of-three does not cancel to a false zero",
+   "pass": true,
+   "note": "matched 2/3"
+  },
+  {
+   "test": "baseline NEGATIVE: a 1.9 px baseline error is NOT verified",
+   "pass": true,
+   "note": "residual 1.9 px, limit 0.5"
+  },
+  {
+   "test": "baseline: a correct baseline is verified",
+   "pass": true,
+   "note": "residual 0.0 px"
+  },
+  {
+   "test": "baseline: the residual limit is well inside the scored window",
+   "pass": true,
+   "note": "0.5 < 1.5"
+  },
+  {
+   "test": "hf region: a bright RIM does not register as media structure",
+   "pass": true,
+   "note": "0.0 vs 0.0"
+  },
+  {
+   "test": "hf region NEGATIVE: interior structure does register",
+   "pass": true,
+   "note": "62.3077"
+  },
+  {
+   "test": "grayscale: one hot pixel does not move the SCORED statistic",
+   "pass": true,
+   "note": "p995 0.0, raw max 135.0"
+  },
+  {
+   "test": "grayscale: the raw max still reports the outlier as a diagnostic",
+   "pass": true,
+   "note": "135.0"
+  },
+  {
+   "test": "grayscale: the scored statistic is named in the result",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "grayscale NEGATIVE: a real cyan cast exceeds the ceiling",
+   "pass": true,
+   "note": "p995 20.0"
+  },
+  {
+   "test": "spectral: checker yields non-zero HF energy",
+   "pass": true,
+   "note": "hfMean 117.9403"
+  },
+  {
+   "test": "spectral NEGATIVE: blur collapses HF energy",
+   "pass": true,
+   "note": "23.6128 vs 117.9403"
+  },
+  {
+   "test": "correlate: self-correlation is 1",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "correlate NEGATIVE: noise does not correlate",
+   "pass": true,
+   "note": "r=0.0789"
+  },
+  {
+   "test": "correlate NEGATIVE: constant series named, not NaN",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "correlate NEGATIVE: too-few tiles named, not NaN",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "spectral: chroma energy separates a tinted render from a grey one",
+   "pass": true,
+   "note": "33.5 vs 0.0"
+  },
+  {
+   "test": "false colour: achromatic checker has ~0 chroma away from features",
+   "pass": true,
+   "note": "0.0"
+  },
+  {
+   "test": "false colour NEGATIVE: a blue wash is detected away from features",
+   "pass": true,
+   "note": "10.0"
+  },
+  {
+   "test": "sdf: centre is well inside (negative)",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "sdf: card corner is outside (positive)",
+   "pass": true,
+   "note": "14.45"
+  },
+  {
+   "test": "sdf: edge midpoint is near zero",
+   "pass": true,
+   "note": "-0.50"
+  },
+  {
+   "test": "sdf NEGATIVE: radius 0 puts the corner ON the outline, not outside",
+   "pass": true,
+   "note": "-0.50"
+  },
+  {
+   "test": "alpha: a correctly rounded card lights no pixel outside its SDF",
+   "pass": true,
+   "note": "0"
+  },
+  {
+   "test": "alpha NEGATIVE: a square card is caught with NO background supplied",
+   "pass": true,
+   "note": "1084"
+  },
+  {
+   "test": "alpha: explicit and inferred backgrounds agree",
+   "pass": true,
+   "note": "1084 vs 1084"
+  },
+  {
+   "test": "alpha NEGATIVE: no sampleable background raises rather than guesses",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "dark luma: reads the dark edge band",
+   "pass": true,
+   "note": "30.0"
+  },
+  {
+   "test": "white ratio: bright over dark is ~7",
+   "pass": true,
+   "note": "7.0"
+  },
+  {
+   "test": "white ratio NEGATIVE: swapped sides invert the ratio",
+   "pass": true,
+   "note": "0.1429"
+  },
+  {
+   "test": "grayscale chroma: grey card is achromatic",
+   "pass": true,
+   "note": "0.0"
+  },
+  {
+   "test": "grayscale chroma NEGATIVE: a cyan/magenta streak is caught",
+   "pass": true,
+   "note": "30.0"
+  },
+  {
+   "test": "window: floor binds when the Target is very repeatable",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "window: 2x repeatability binds when it exceeds the floor",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "enters: inside the window passes",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "enters NEGATIVE: outside the window fails",
+   "pass": true,
+   "note": "an UNDERSHOOT must fail a two-sided window -- the O4 lesson"
+  },
+  {
+   "test": "toward: moving closer is True",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "toward NEGATIVE: overshooting past the Target is False",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "toward NEGATIVE: control already at Target yields None, not a claim",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "carried: bools are not counted as numeric errors",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "carried NEGATIVE: a real numeric error is counted",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "carried: a malformed aggregator shape fails fast",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "carried NEGATIVE: a missing key fails fast too",
+   "pass": true,
+   "note": ""
+  },
+  {
+   "test": "carried: interior relative-branch floor equals the absolute ceiling",
+   "pass": true,
+   "note": ""
+  }
+ ]
+}

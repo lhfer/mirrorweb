@@ -1,0 +1,348 @@
+{
+ "what": "O5 §五 -- the architecture decision, fixed before any candidate code exists. Two lanes only; every deviation from the Target's own scheme is named, with the frozen constraint that forces it.",
+ "lanes": {
+  "current": {
+   "switch": "opticalBody=current",
+   "body": "existing convex ConvexGlassGeometryV4 + shared LiquidGlassMaterialV4 body + reflection shell",
+   "media": "separate media plane, MeshBasicMaterial per clip",
+   "sceneColour": "SceneColorPipelineV4 pass runs and is sampled",
+   "role": "exact rollback and the control for §六. Must remain byte-identical to a 5a87751 build."
+  },
+  "target-source": {
+   "switch": "opticalBody=target-source",
+   "body": "PlaneGeometry(1,1,16,12), one material PER CLIP, positionNode sphere dome, SDF alpha, analytic bevel normal, own-media per-IOR spectral refraction, System B environment and white SDF rim in the SAME material",
+   "media": "the body material samples its own VideoTexture directly; no media plane in Beauty",
+   "sceneColour": "not sampled; the pass is skipped for this lane at build time",
+   "role": "the O5 candidate. Default stays `current` until product review."
+  }
+ },
+ "decisions": [
+  {
+   "id": "unitPlaneAndScale",
+   "decision": "Adopt the Target's unit-plane scheme unchanged: PlaneGeometry(1,1,16,12), mesh scaled to (planeWidth, planeHeight, 1), and a planeSize uniform carrying the same two numbers.",
+   "why": "The Target's shader uses planeSize BOTH to convert positionLocal into card pixels and to undo the anisotropic scale for direction vectors (viewVector multiplies xy by planeSize, toWorldFn divides by it). Baking the card size into the geometry instead would break that pair and skew refraction and reflection on non-square cards.",
+   "kind": "TRANSCRIPTION"
+  },
+  {
+   "id": "uniformsFromFrozenLayout",
+   "decision": "planeSize, sphereRadius, cardScale come from the FROZEN SourceExactLayoutFrame. L6 is never re-derived in the material or the grid.",
+   "why": "Layout is ACCEPTED/FROZEN and O5 may not modify layout formulas. Our frame already reproduces L6 exactly at every O5 viewport (see layoutReproducesL6), so reading it is both correct and the only non-duplicating route.",
+   "kind": "TRANSCRIPTION"
+  },
+  {
+   "id": "coverFitMechanismNotValues",
+   "decision": "Adopt the Target's coverScale/coverOffset MECHANISM and clamp-then-cover ordering, but feed it the FROZEN MediaFit values, not the Target's centred formula.",
+   "why": "Media focus/crop is frozen by §一.18. Clips 0 and 1 (focus 0.5/0.5, zoom 1) reproduce the Target's centred cover to the last bit; clip 2 carries a frozen 2026-08-20 product decision (focusY 0.46, zoom 1.06) that the Target's formula does not express. Adopting the Target's formula would silently re-crop that clip and fail the Media Fit regression. The mapping is 1:1 and lossless: coverScale = (repeatX, repeatY), coverOffset = (offsetX, offsetY), which is exactly three's texture repeat/offset convention.",
+   "kind": "DEVIATION_FORCED_BY_FROZEN_SYSTEM",
+   "evidence": "coverFitComparison below"
+  },
+  {
+   "id": "candidateOwnsItsTextures",
+   "decision": "The candidate lane creates its OWN VideoTexture per clip (sRGB, ClampToEdge, no mipmaps) and never mutates the control lane's reel textures.",
+   "why": "The control lane must stay byte-identical for §六. Mutating a shared texture's wrap or colour space to suit the candidate would change the control's pixels and forfeit the identity proof. Two textures over one video element is the cost; it is paid once per clip, not per card.",
+   "kind": "DEVIATION_FORCED_BY_CONTROL_IDENTITY"
+  },
+  {
+   "id": "materialPerClipBySlotIdentity",
+   "decision": "One material per clip, assigned to cards by the FROZEN slot identity. No per-card materials.",
+   "why": "Matches the Target exactly, and is safe here because nothing gives our cards per-card opacity: no site in the Target bundle assigns .opacity on these materials, and our own body has no per-card opacity either (only the control lane's reflection shell has an opacityNode, and the candidate has no shell). Slot identity is frozen, so which clip a card shows does not change.",
+   "kind": "TRANSCRIPTION"
+  },
+  {
+   "id": "noShellNoMediaPlaneInBeauty",
+   "decision": "The candidate draws ONE mesh per card. No reflection shell, no separate media plane in Beauty. The media plane is retained for media-only QA captures only.",
+   "why": "The Target has no shell and no media plane: reflection, refraction and media all live in one material (absence claim noReflectionShell). Keeping our shell would double-count the environment.",
+   "kind": "TRANSCRIPTION"
+  },
+  {
+   "id": "sceneColourPassSkipped",
+   "decision": "The scene-colour pass is skipped for the candidate lane, at build time.",
+   "why": "The candidate body never samples it (absence claim noSceneColourTarget). §十 explicitly allows removing the pass. Build-time, so the control lane's pipeline is untouched.",
+   "kind": "TRANSCRIPTION"
+  },
+  {
+   "id": "outputTransformTranscribedInertly",
+   "decision": "Set `material.toneMapped = false`, exactly as the Target does, and change NOTHING about the renderer's tone mapping for this lane.",
+   "why": "O4 found that three's WebGPU node renderer never reads Material.toneMapped, and drew from it the conclusion that the intent had to be implemented at the renderer stage instead. Reading the Target's own bundle reverses that: all four `.toneMapped` reads there are WebGL-only parameter builders, none in the node path, so the Target's flag is inert for exactly the same reason ours is. Its cards ARE tone-mapped by its output stage, despite the flag. Forcing NoToneMapping on our candidate would therefore introduce a difference the Target does not have. Being faithful means reproducing the inertness.",
+   "kind": "TRANSCRIPTION",
+   "evidence": "three.webgpu.js: 0 occurrences of `.toneMapped`. Target bundle: 4 occurrences, at bytes 216960, 217782, 282464 and 387472, all WebGL paths (WebGLBackground and the WebGLProgram parameter builders).",
+   "supersedes": "the O4-era reading that this needed a renderer stage deviation"
+  },
+  {
+   "id": "sampleCountMapping",
+   "decision": "high -> 5 samples, medium -> 5, low -> 3.",
+   "why": "The Target has two device tiers (high 5 / low 3) and we have three quality levels. Our adaptive quality policy is frozen, so the candidate reads OUR level and maps it. Mapping medium to 5 keeps the optical behaviour identical across the two tiers a desktop review will actually see; low keeps the Target's own floor of 3.",
+   "kind": "DEVIATION_3_TIER_TO_2_TIER"
+  },
+  {
+   "id": "debugViewsAreBuildTime",
+   "decision": "Every candidate debug view (SDF mask, normal, media-only, glass-only) is a BUILD-TIME separate program, never a runtime branch over a shared varying.",
+   "why": "This is the exact shape of the O4A defect: three's TSL emits a shared varying's unpack into only the first branch that references it, so every other branch reads a zero-initialised private. A build-time program per view cannot express that bug. It also keeps the Beauty program free of debug branches entirely.",
+   "kind": "DEVIATION_FORCED_BY_ENGINE_DEFECT"
+  },
+  {
+   "id": "envSampleCeilingRetained",
+   "decision": "O2's envSampleCeiling guard (clamp the HDR sample at 16 before the LERP) is RETAINED in the candidate, and recorded as a local deviation.",
+   "why": "The Target has no such clamp. Ours exists because a hot texel can inject Inf, and 0 * Inf = NaN would destroy the envMixScale=0 floor. The ceiling is far above envIntensity*envMaxMix, so it cannot bind in normal rendering -- it is a NaN guard, not a look control. Recorded rather than dropped.",
+   "kind": "DEVIATION_LOCAL_SAFETY"
+  },
+  {
+   "id": "coverageCullingUnchanged",
+   "decision": "Coverage culling uses the already-frozen verdict. Render-culling instruments may become mode-aware (the candidate has one mesh per card where the control has three), but the VERDICT -- which slots draw -- is identical in both lanes.",
+   "why": "§十二 allows mode-aware instruments and forbids a changed verdict. Draw-call COUNTS legitimately differ between a 3-mesh and a 1-mesh card; slot membership must not.",
+   "kind": "TRANSCRIPTION"
+  },
+  {
+   "id": "layoutNotAdapted",
+   "decision": "No layout, camera, card size or slot placement changes to accommodate the material.",
+   "why": "§一.18. The unit-plane scheme is designed to make this unnecessary: the material adapts to the card through planeSize, so the card never adapts to the material.",
+   "kind": "CONSTRAINT"
+  }
+ ],
+ "layoutReproducesL6": {
+  "allEqual": true,
+  "why": "If our frozen frame did not reproduce L6, every Target constant would land at the wrong size and the whole contract would be inapplicable. It does, exactly, at all five O5 viewports including the new 700x700.",
+  "rows": [
+   {
+    "viewport": "1440x900",
+    "fields": {
+     "planeWidth": {
+      "ours": 547.2,
+      "target": 547.2,
+      "equal": true
+     },
+     "planeHeight": {
+      "ours": 410.4,
+      "target": 410.4,
+      "equal": true
+     },
+     "sphereRadius": {
+      "ours": 4166.666667,
+      "target": 4166.666667,
+      "equal": true
+     },
+     "cardScale": {
+      "ours": 0.833333,
+      "target": 0.833333,
+      "equal": true
+     },
+     "perspective": {
+      "ours": 1000.0,
+      "target": 1000.0,
+      "equal": true
+     }
+    }
+   },
+   {
+    "viewport": "1920x1080",
+    "fields": {
+     "planeWidth": {
+      "ours": 729.6,
+      "target": 729.6,
+      "equal": true
+     },
+     "planeHeight": {
+      "ours": 547.2,
+      "target": 547.2,
+      "equal": true
+     },
+     "sphereRadius": {
+      "ours": 5555.555556,
+      "target": 5555.555556,
+      "equal": true
+     },
+     "cardScale": {
+      "ours": 1.111111,
+      "target": 1.111111,
+      "equal": true
+     },
+     "perspective": {
+      "ours": 1333.333333,
+      "target": 1333.333333,
+      "equal": true
+     }
+    }
+   },
+   {
+    "viewport": "390x844",
+    "fields": {
+     "planeWidth": {
+      "ours": 280.8,
+      "target": 280.8,
+      "equal": true
+     },
+     "planeHeight": {
+      "ours": 210.6,
+      "target": 210.6,
+      "equal": true
+     },
+     "sphereRadius": {
+      "ours": 2442.12963,
+      "target": 2442.12963,
+      "equal": true
+     },
+     "cardScale": {
+      "ours": 0.427632,
+      "target": 0.427632,
+      "equal": true
+     },
+     "perspective": {
+      "ours": 586.111111,
+      "target": 586.111111,
+      "equal": true
+     }
+    }
+   },
+   {
+    "viewport": "844x390",
+    "fields": {
+     "planeWidth": {
+      "ours": 320.72,
+      "target": 320.72,
+      "equal": true
+     },
+     "planeHeight": {
+      "ours": 240.54,
+      "target": 240.54,
+      "equal": true
+     },
+     "sphereRadius": {
+      "ours": 2442.12963,
+      "target": 2442.12963,
+      "equal": true
+     },
+     "cardScale": {
+      "ours": 0.488426,
+      "target": 0.488426,
+      "equal": true
+     },
+     "perspective": {
+      "ours": 586.111111,
+      "target": 586.111111,
+      "equal": true
+     }
+    }
+   },
+   {
+    "viewport": "700x700",
+    "fields": {
+     "planeWidth": {
+      "ours": 266.0,
+      "target": 266.0,
+      "equal": true
+     },
+     "planeHeight": {
+      "ours": 199.5,
+      "target": 199.5,
+      "equal": true
+     },
+     "sphereRadius": {
+      "ours": 2025.462963,
+      "target": 2025.462963,
+      "equal": true
+     },
+     "cardScale": {
+      "ours": 0.405093,
+      "target": 0.405093,
+      "equal": true
+     },
+     "perspective": {
+      "ours": 486.111111,
+      "target": 486.111111,
+      "equal": true
+     }
+    }
+   }
+  ]
+ },
+ "coverFitComparison": {
+  "planeAspect": 1.3333333333333333,
+  "allEqual": false,
+  "finding": "Clips 0 and 1 reproduce the Target's centred cover exactly. Clip 2 differs by a frozen product decision (focusY 0.46, zoom 1.06). Hence the coverFitMechanismNotValues decision above.",
+  "rows": [
+   {
+    "clip": "niulai-intro",
+    "sourceWidth": 960,
+    "sourceHeight": 540,
+    "frozenFocus": {
+     "focusX": 0.5,
+     "focusY": 0.5,
+     "zoom": 1.0
+    },
+    "targetCentredCover": {
+     "scaleX": 0.75,
+     "scaleY": 1.0,
+     "offsetX": 0.125,
+     "offsetY": 0.0
+    },
+    "frozenMediaFit": {
+     "scaleX": 0.75,
+     "scaleY": 1.0,
+     "offsetX": 0.125,
+     "offsetY": 0.0
+    },
+    "equal": true
+   },
+   {
+    "clip": "cursor-niulai",
+    "sourceWidth": 960,
+    "sourceHeight": 556,
+    "frozenFocus": {
+     "focusX": 0.5,
+     "focusY": 0.5,
+     "zoom": 1.0
+    },
+    "targetCentredCover": {
+     "scaleX": 0.772222,
+     "scaleY": 1.0,
+     "offsetX": 0.113889,
+     "offsetY": 0.0
+    },
+    "frozenMediaFit": {
+     "scaleX": 0.772222,
+     "scaleY": 1.0,
+     "offsetX": 0.113889,
+     "offsetY": 0.0
+    },
+    "equal": true
+   },
+   {
+    "clip": "pelican-ai",
+    "sourceWidth": 960,
+    "sourceHeight": 540,
+    "frozenFocus": {
+     "focusX": 0.5,
+     "focusY": 0.46,
+     "zoom": 1.06
+    },
+    "targetCentredCover": {
+     "scaleX": 0.75,
+     "scaleY": 1.0,
+     "offsetX": 0.125,
+     "offsetY": 0.0
+    },
+    "frozenMediaFit": {
+     "scaleX": 0.707547,
+     "scaleY": 0.943396,
+     "offsetX": 0.146226,
+     "offsetY": 0.030566
+    },
+    "equal": false
+   }
+  ]
+ },
+ "notAdopted": [
+  {
+   "what": "The Target's device-tier predicate (coarse pointer / cores / memory)",
+   "why": "Our adaptive quality policy is frozen; we read our own quality level instead."
+  },
+  {
+   "what": "The Target's centred cover VALUES",
+   "why": "Media focus/crop is frozen; the mechanism is adopted, the values are ours."
+  },
+  {
+   "what": "A renderer-stage tone-mapping override for the candidate lane",
+   "why": "The Target does not have one either. Its `toneMapped:false` is as inert as ours, so overriding would be a difference rather than a match."
+  }
+ ]
+}
