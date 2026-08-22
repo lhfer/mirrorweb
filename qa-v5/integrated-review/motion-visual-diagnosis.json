@@ -1,0 +1,58 @@
+{
+ "what": "Integrated Visual Sprint 1 §九 -- motion VISUAL diagnosis from the synchronized §四 recordings. Evidence only; motion code was not touched this round. Same real input sequence on both sides per scenario; timecodes are seconds from recording start (input begins at ~0.9s). Traces: FFT phase-correlation displacement per frame pair (artifacts/integrated-review/motion/*.json), overlays: *-overlay.png alongside.",
+ "generatedAt": "2026-08-22",
+ "instrumentScope": "the correlation reads GLOBAL grid displacement -- ideal for trajectory, follow, glide duration and wrap discontinuities; gutter and dolly rows below are answered from frame pairs and are marked as visual reads.",
+ "questions": [
+  {
+   "q": "Card centre trajectory 是否一致",
+   "targetTimecode": "desktop-slow-drag.mp4 0.9-4.9s",
+   "localTimecode": "desktop-slow-drag.mp4 0.9-4.9s",
+   "overlay": "artifacts/integrated-review/motion/desktop-slow-drag-overlay.png",
+   "conclusion": "一致。同一真实输入下，整段拖动的位移曲线几乎重合：总位移 target -812px vs candidate -796px（2%），沉降时刻 4.855s vs 4.952s。中段帧对（frame 00450）里两侧网格相位吻合。"
+  },
+  {
+   "q": "相邻 Card gutter 是否随移动错误变化",
+   "targetTimecode": "desktop-slow-drag.mp4 rest 0.5s vs mid-drag 4.5s",
+   "localTimecode": "same frames",
+   "overlay": "frame pairs (visual read)",
+   "conclusion": "未见错误变化。两侧的 gutter 在静止帧与拖动中帧读起来同样稳定；没有观察到某一侧 gutter 随移动收窄或扩张的现象。（全局相关法不直接量 gutter，此行为帧对目检结论。）"
+  },
+  {
+   "q": "Camera dolly 是否让卡片间距读错",
+   "targetTimecode": "desktop-fast-flick.mp4 1.2-2.2s (dolly window)",
+   "localTimecode": "same window",
+   "overlay": "frame pairs (visual read)",
+   "conclusion": "未见读错。两侧在快甩时的 dolly 后退量与卡片间距的视觉变化一致（间距随 dolly 同步缩放，无单侧异常）。两侧运动模型同源（sourceExact dolly 律此前已封存对齐），本轮帧对未见反例。"
+  },
+  {
+   "q": "Drag follow 是否明显不同",
+   "targetTimecode": "desktop-slow-drag.mp4 0.9-4.5s; mobile-touch-drag.mp4 0.9-2.2s",
+   "localTimecode": "same",
+   "overlay": "artifacts/integrated-review/motion/mobile-touch-drag-overlay.png",
+   "conclusion": "不明显。桌面拖动全程贴手一致；移动端一次 220px 触摸拖动的终点位移 -304 vs -284px（差 20px，约 7%——含惯性尾段的测量差），跟手段曲线重合。肉眼看不出差别。"
+  },
+  {
+   "q": "Flick duration 是否明显不同",
+   "targetTimecode": "desktop-fast-flick.mp4 1.0-3.0s",
+   "localTimecode": "same",
+   "overlay": "artifacts/integrated-review/motion/desktop-fast-flick-overlay.png",
+   "conclusion": "不明显。同一次真实快甩后，滑行终点 -764 vs -772px（1%），滑行停止时刻 1.881s vs 1.840s（41ms）。叠加曲线几乎重合。"
+  },
+  {
+   "q": "Wrap 是否有视觉跳变",
+   "targetTimecode": "mobile-long-drag-wrap.mp4 1.0-7.5s",
+   "localTimecode": "same",
+   "overlay": "artifacts/integrated-review/motion/mobile-long-drag-wrap-overlay.png",
+   "conclusion": "两侧都没有。跨多个 cell 的长拖（总位移两侧精确相同 -1144px）全程无任何 >120px 的帧间不连续——occupant 轮换在两侧都是无缝的。"
+  },
+  {
+   "q": "Touch 是否卡顿",
+   "targetTimecode": "mobile-touch-drag.mp4 / mobile-long-drag-wrap.mp4 全程",
+   "localTimecode": "same",
+   "overlay": "trace step smoothness in artifacts/integrated-review/motion/*.json",
+   "conclusion": "未见卡顿。两侧触摸段的每帧步长平滑（峰值步长 8-16px/采样对，无尖峰），截屏时间戳节奏稳定。"
+  }
+ ],
+ "rankedMotionP0": "NONE VISIBLE from this round's evidence -- no motion item qualifies as a next-round P0 on visual grounds. If the next round wants one anyway, the only measurable candidate is the mobile touch-drag terminal offset (-304 vs -284px), which is below visual notice.",
+ "motionCodeTouched": false
+}

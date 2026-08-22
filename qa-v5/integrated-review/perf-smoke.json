@@ -1,0 +1,89 @@
+{
+ "what": "Integrated Visual Sprint 1 \u00a7\u5341 -- the ONE bounded candidate smoke (10 minutes total). No thresholds invented; numbers reported raw against the O5F accepted expectations. Raw series: private package data/perf-smoke-raw.json.",
+ "generatedAt": "2026-08-22T23:03:17+00:00",
+ "route": "http://127.0.0.1:5293/?review=target&qa (candidate lane, adaptive quality ON as the route ships)",
+ "phases": [
+  {
+   "phase": "desktop",
+   "viewport": "1440x900",
+   "touchContext": false,
+   "minutes": 6,
+   "samples": 73,
+   "heapMB": {
+    "first": 21.52,
+    "last": 17.6,
+    "min": 15.29,
+    "max": 40.79
+   },
+   "fpsMean": {
+    "min": 120,
+    "median": 120
+   },
+   "frameP95ms": {
+    "max": 10.1,
+    "median": 9.9
+   },
+   "cacheStatesSeen": [
+    [
+     2,
+     5
+    ]
+   ],
+   "qualitySeries": "HHHHHHHHHHHHHHHHHHHHHHMHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH",
+   "videoAdvancing": true,
+   "assetReadyThroughout": true
+  },
+  {
+   "phase": "mobile",
+   "viewport": "390x844",
+   "touchContext": true,
+   "minutes": 4,
+   "samples": 49,
+   "heapMB": {
+    "first": 25.19,
+    "last": 23,
+    "min": 16.07,
+    "max": 40.9
+   },
+   "fpsMean": {
+    "min": 120,
+    "median": 120
+   },
+   "frameP95ms": {
+    "max": 10.1,
+    "median": 10
+   },
+   "cacheStatesSeen": [
+    [
+     2,
+     3
+    ]
+   ],
+   "qualitySeries": "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH",
+   "videoAdvancing": true,
+   "assetReadyThroughout": true
+  }
+ ],
+ "reading": {
+  "heap": "desktop 21.52 -> 17.60 MB over 6 min of continuous drag/flick/wrap (ends BELOW start; transient peak 40.79 during churn); mobile 25.19 -> 23.00 MB over 4 min. No climb.",
+  "frames": "fps pinned at the display rate (median and min 120) in both phases; frame-time p95 9.9-10.1 ms. No stutter signature.",
+  "materialCache": "cacheSize constant 2 and activeSamples constant (5 desktop / 3 mobile by the device law) at every sample -- the O5F accepted design holding. The counters 'created/switches' are not fields of the truth; constancy of cacheSize + activeKey is the evidence here.",
+  "qualityCycling": "the six manual High/Medium/Low sets all fired (driver log) and exercised the cache, but ADAPTIVE QUALITY -- on, as the route ships it -- promoted the page straight back to high on this 120 fps machine, so the sampled series reads mostly H with one M caught mid-flight. Honest note: this smoke therefore proves the PRODUCT behaviour (adaptive holding high under churn), while exhaustive per-level switching remains covered by the sealed O5F 1,200-step suite.",
+  "videoTexture": "3 video elements, video clock advancing in both phases; renderer texture truth after the run: 6 textures / 4 programs / 2 geometries, cacheSize 2.",
+  "blackCards": {
+   "cardRectsSampled": 69,
+   "minCardRectMeanLuma": 59.8,
+   "worstRect": {
+    "file": "mobile-still-0.png",
+    "rect": [
+     -190,
+     -122,
+     262,
+     180
+    ]
+   },
+   "note": "a black/pop-in card would read near 0; the darkest sampled card rect stays far above it"
+  }
+ },
+ "escalation": "NONE -- no regression signal; \u00a7\u5341 says stop here."
+}

@@ -1,0 +1,64 @@
+{
+ "what": "Integrated Visual Sprint 1 -- the public evidence tree. \u00a7\u5341\u4e00 hard limit: at most 10 files, no images; Target pixels live only in qa-v5/private/ivr1-integrated-review.zip.",
+ "round": "Integrated Visual Sprint 1 (product-driven, complete pages)",
+ "generatedAt": "2026-08-22T23:03:39+00:00",
+ "head": "a3748fdeb3d82a955ad04a19b4ead81fba0c6c57",
+ "finalProductState": "READY FOR INTEGRATED VISUAL PRODUCT REVIEW",
+ "stateBasis": {
+  "reviewRoute": "?review=target / ?review=current verified live on fine- and coarse-pointer contexts (pinned optics, labels, footer, real input; shipped no-query default untouched)",
+  "glass": "the ONE \u00a7\u4e03 fix applied and verified -- candidate lane output exposure 1.0 (the Target's); control lane 0 differing pixels at all four viewports; honest visibility grade SUBTLE-BUT-PAGE-WIDE; remaining gap to the Target's deep-dark contrast DECLARED, not chased",
+  "typography": "live loaded-face proof at four viewports -- bit-equal glyph bounds, no fallback, no fix needed",
+  "motion": "diagnosis only (code frozen): no visible motion P0 found; wrap seamless on both sides",
+  "performance": "bounded 10-minute smoke clean: fps pinned 120, heap ends below start, cache constant, darkest card rect 59.8 luma (no black cards)",
+  "notAsserted": [
+   "Target Visual PASS",
+   "default flip",
+   "any sealed-gate rewrite"
+  ]
+ },
+ "verification": {
+  "fileLimit": 10,
+  "fileCount": 7,
+  "missing": [],
+  "unlisted": [],
+  "imageOrVideoFiles": [],
+  "pass": true
+ },
+ "files": [
+  {
+   "file": "README.md",
+   "bytes": 4700,
+   "sha256": "db59778cf1d1b2682df20e2314f6ecef277510c7df71fa753e224a5c6f3458a2"
+  },
+  {
+   "file": "glass-closure.json",
+   "bytes": 4307,
+   "sha256": "c22002ff11cd389f71e37f9cb72df2b39276df85b98963cc48df8ec063e8c1f1"
+  },
+  {
+   "file": "glass-selected-problem.json",
+   "bytes": 5676,
+   "sha256": "220954de4f0217ce53dac30203d50162744c208cc62fbccbb6325d4390a2981a"
+  },
+  {
+   "file": "motion-visual-diagnosis.json",
+   "bytes": 4126,
+   "sha256": "9ac3fbc7924fc10f1b3f81c14f73c473379ee0a5fbb0a8a629ef3dabcae949c2"
+  },
+  {
+   "file": "p0-ranking.json",
+   "bytes": 7341,
+   "sha256": "caa47c70005a833832dc3591b40aec435a66218620a1e935ea3930a99961470b"
+  },
+  {
+   "file": "perf-smoke.json",
+   "bytes": 3114,
+   "sha256": "7ecf549966f2b2e24c1f9bfccca523179c5eb8fa63c29b4e51036ae974192dee"
+  },
+  {
+   "file": "typography-closure.json",
+   "bytes": 5186,
+   "sha256": "78f8b860c5fb93a2b9ba9f17a7870a548ffae97ad17865d4d759a97fcc605a56"
+  }
+ ]
+}
