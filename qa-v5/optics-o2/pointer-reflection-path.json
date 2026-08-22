@@ -1,0 +1,110 @@
+{
+ "artifact": "pointer reflection path (F11 measurand)",
+ "capturedAtHead": "e913aa6",
+ "registered": "candidate centroid nx not monotonic in the Target's direction across left/rest/right, or an adjacent jump exceeds 0.4 card widths",
+ "measurement": "centroid of luma>200 chroma<40 pixels over the DARK half of the largest twin card, nx normalised to that half-rect; local pointer via jumpPointer NDC, Target via real mouse + 2s settle",
+ "lanes": {
+  "target": {
+   "pl": {
+    "nx": 0.4983,
+    "ny": 0.628,
+    "pixels": 5727
+   },
+   "rest": {
+    "nx": 0.4662,
+    "ny": 0.6583,
+    "pixels": 5432
+   },
+   "pr": {
+    "nx": 0.4686,
+    "ny": 0.6538,
+    "pixels": 5314
+   },
+   "pbr": {
+    "nx": 0.385,
+    "ny": 0.6642,
+    "pixels": 8666
+   }
+  },
+  "B-only": {
+   "pl": {
+    "nx": 0.53,
+    "ny": 0.6623,
+    "pixels": 6868
+   },
+   "rest": {
+    "nx": 0.518,
+    "ny": 0.7002,
+    "pixels": 5859
+   },
+   "pr": {
+    "nx": 0.5421,
+    "ny": 0.7107,
+    "pixels": 5412
+   },
+   "pbr": {
+    "nx": 0.3219,
+    "ny": 0.6379,
+    "pixels": 11606
+   }
+  },
+  "A+B": {
+   "pl": {
+    "nx": 0.5308,
+    "ny": 0.6613,
+    "pixels": 6878
+   },
+   "rest": {
+    "nx": 0.5179,
+    "ny": 0.7002,
+    "pixels": 5860
+   },
+   "pr": {
+    "nx": 0.542,
+    "ny": 0.7107,
+    "pixels": 5413
+   },
+   "pbr": {
+    "nx": 0.3219,
+    "ny": 0.638,
+    "pixels": 11603
+   }
+  }
+ },
+ "checks": {
+  "B-only": {
+   "targetNxPath": [
+    0.4983,
+    0.4662,
+    0.4686
+   ],
+   "candidateNxPath": [
+    0.53,
+    0.518,
+    0.5421
+   ],
+   "adjacentJumps": [
+    0.01200000000000001,
+    0.02410000000000001
+   ],
+   "fired": false
+  },
+  "A+B": {
+   "targetNxPath": [
+    0.4983,
+    0.4662,
+    0.4686
+   ],
+   "candidateNxPath": [
+    0.5308,
+    0.5179,
+    0.542
+   ],
+   "adjacentJumps": [
+    0.012900000000000023,
+    0.02410000000000001
+   ],
+   "fired": false
+  }
+ }
+}

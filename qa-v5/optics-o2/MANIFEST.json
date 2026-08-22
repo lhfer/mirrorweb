@@ -1,0 +1,83 @@
+{
+ "package": "qa-v5/optics-o2",
+ "generatedAt": "2026-08-22T00:21:42+00:00",
+ "capturedAtHead": "e913aa6",
+ "finalState": "READY FOR O2 OPTICS PRODUCT REVIEW",
+ "selectedCandidate": "A+B",
+ "f12": {
+  "registered": "the same-media full-frame side-by-side does not read as an unmistakable step toward white studio glass WITHOUT zooming",
+  "framesJudged": [
+   "target-rest-bw-split-1440x900 vs local-v1-before-bw-split-1440x900 vs local-o1-fullB-bw-split-1440x900",
+   "target-rest-cool-blue-1440x900 vs local-o1-fullB-cool-blue-1440x900"
+  ],
+  "judgment": "PASS -- stated plainly: the Before frame reads as a dark, saturated coloured frame (hard red/cyan fringe lines around every card, flat dark edges, black media dark-over-dark); the candidate frame reads as white studio glass (soft white bevel bands hugging the card edges, black media stays black, no visible colour fringing at full-frame scale). The difference is unmistakable without zooming; the candidate is visually much closer to the Target's same-media frame. Judged on the recorded full frames listed above, both lanes; the A+B lane additionally removes the residual tap fringes B-only keeps on saturated media.",
+  "fired": false
+ },
+ "files": [
+  {
+   "file": "README.md",
+   "bytes": 7223,
+   "sha256": "fc6ac1ff7ff38fb887dcca635fdd1ae771d6ef07eabdf7f50d711575cd661736"
+  },
+  {
+   "file": "shared-media-harness.json",
+   "bytes": 42332,
+   "sha256": "ad4bede817b5abe2ffb05a578d5381b6e7da8f883ab38e2798a97020e28e91b7"
+  },
+  {
+   "file": "o2-selected-system.json",
+   "bytes": 10311,
+   "sha256": "d4961c7acc3ab0ae63e374941a0100db9e528d79a3ce55e9e6a7761be13c6e15"
+  },
+  {
+   "file": "target-system-b-source.json",
+   "bytes": 10008,
+   "sha256": "a1e56faf83bdca985c7417e688f0d92e736db61345097c18047dff0af28f5f83"
+  },
+  {
+   "file": "b-only-gate.json",
+   "bytes": 42328,
+   "sha256": "7b17daa8d3adee2c6df614443ed4b5cca7336ab8429a3ad78b22b25ab875fbed"
+  },
+  {
+   "file": "a-plus-b-gate.json",
+   "bytes": 42262,
+   "sha256": "573b7e4e0541523d2b735941cb7deb35f6051bf897d7654682b183a9f5cd8be1"
+  },
+  {
+   "file": "candidate-selection.json",
+   "bytes": 4711,
+   "sha256": "e04e4dd87c5ef77a5d57d1892378962341d93309dba2cf1e6d17fa5bbf9f5d13"
+  },
+  {
+   "file": "same-page-floor.json",
+   "bytes": 44240,
+   "sha256": "de7c3712d82bb0b01286efc8d1eae7f74ae2627e99146825775f92436c04d87a"
+  },
+  {
+   "file": "bright-dark.json",
+   "bytes": 9691,
+   "sha256": "1089e2bb0fb9bfc1c2c0d512d65fceed5c8d50f00c9aa027ea156123e7986495"
+  },
+  {
+   "file": "grayscale-ringing.json",
+   "bytes": 11861,
+   "sha256": "36de2cc818e9ef3db154efaf07532834963ad5b363bc4cc33bf563ce193c4517"
+  },
+  {
+   "file": "pointer-reflection-path.json",
+   "bytes": 1866,
+   "sha256": "057af2b21ce2d633043cbcb79ba1042430223fea087b0145cb0ae8beb75024db"
+  },
+  {
+   "file": "lane-equivalence.json",
+   "bytes": 5268,
+   "sha256": "b5d43eec4645b615aa6aec038ace42a3e188b9da4e0a148d85278f67ee57ba46"
+  },
+  {
+   "file": "regressions.json",
+   "bytes": 2237,
+   "sha256": "3a3a0bba232f9352bcddf8255c096ca1ee631f8ee0a6496d624c4e964e3451bd"
+  }
+ ]
+}

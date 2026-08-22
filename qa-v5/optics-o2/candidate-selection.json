@@ -1,0 +1,194 @@
+{
+ "artifact": "B-only vs A+B selection (pre-registered rule)",
+ "capturedAtHead": "e913aa6",
+ "verbatimRule": "Retain A only if A+B: improves fringe width / fringe chroma versus B-only; does not reduce white reflection ratio; does not worsen Bright/Dark sign stability; does not worsen Mobile; does not alter Media-only; does not create colour ringing on grayscale media. Otherwise choose B-only and remove O1 System A from the accepted product path.",
+ "operationalisation": "as registered in o2-selected-system.json: strict inequalities on same-media same-page numbers; ties go to B-only",
+ "metrics": {
+  "B-only": {
+   "fringe": {
+    "rgb-bars": {
+     "fringeRB": 78.51,
+     "fringeWidthPxMean": 13.29
+    },
+    "cool-blue": {
+     "fringeRB": 92.37,
+     "fringeWidthPxMean": 21.43
+    },
+    "warm-skin": {
+     "fringeRB": 44.89,
+     "fringeWidthPxMean": 20.57
+    }
+   },
+   "white": {
+    "bw-split": 0.4174,
+    "grayscale-step": 0.4139
+   },
+   "brightDark": {
+    "brightSideEdgeChroma": 17.91,
+    "darkOverBrightLumaRatio": 0.509
+   },
+   "mobile": {
+    "390x844": {
+     "bw-split": {
+      "whiteLeverDesktop": 44.0,
+      "whiteLeverMobile": 26.4
+     },
+     "grayscale-step": {
+      "ringingChangeDesktop": -3.1,
+      "ringingChangeMobile": -2.85
+     },
+     "rgb-bars": {
+      "satChromaDropDesktop": 18.1,
+      "satChromaDropMobile": 18.84
+     },
+     "cool-blue": {
+      "satChromaDropDesktop": 18.16,
+      "satChromaDropMobile": 19.0
+     },
+     "warm-skin": {
+      "satChromaDropDesktop": 9.24,
+      "satChromaDropMobile": 8.79
+     }
+    },
+    "844x390": {
+     "bw-split": {
+      "whiteLeverDesktop": 44.0,
+      "whiteLeverMobile": 43.3
+     },
+     "grayscale-step": {
+      "ringingChangeDesktop": -3.1,
+      "ringingChangeMobile": -10.68
+     },
+     "rgb-bars": {
+      "satChromaDropDesktop": 18.1,
+      "satChromaDropMobile": 34.65
+     },
+     "cool-blue": {
+      "satChromaDropDesktop": 18.16,
+      "satChromaDropMobile": 37.17
+     },
+     "warm-skin": {
+      "satChromaDropDesktop": 9.24,
+      "satChromaDropMobile": 22.79
+     }
+    }
+   },
+   "mediaOnly": {
+    "bw-split@1440x900": {
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    "rgb-bars@1440x900": {
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    "bw-split@390x844": {
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    }
+   },
+   "ringing": {
+    "grayscale-step": 8.12,
+    "bw-split": 7.74
+   }
+  },
+  "A+B": {
+   "fringe": {
+    "rgb-bars": {
+     "fringeRB": 76.16,
+     "fringeWidthPxMean": 9.11
+    },
+    "cool-blue": {
+     "fringeRB": 89.65,
+     "fringeWidthPxMean": 19.54
+    },
+    "warm-skin": {
+     "fringeRB": 42.22,
+     "fringeWidthPxMean": 17.75
+    }
+   },
+   "white": {
+    "bw-split": 0.4364,
+    "grayscale-step": 0.4341
+   },
+   "brightDark": {
+    "brightSideEdgeChroma": 3.22,
+    "darkOverBrightLumaRatio": 0.5006
+   },
+   "mobile": {
+    "390x844": {
+     "bw-split": {
+      "whiteLeverDesktop": 44.5,
+      "whiteLeverMobile": 26.5
+     },
+     "grayscale-step": {
+      "ringingChangeDesktop": -7.66,
+      "ringingChangeMobile": -7.59
+     },
+     "rgb-bars": {
+      "satChromaDropDesktop": 20.58,
+      "satChromaDropMobile": 20.86
+     },
+     "cool-blue": {
+      "satChromaDropDesktop": 20.96,
+      "satChromaDropMobile": 21.5
+     },
+     "warm-skin": {
+      "satChromaDropDesktop": 12.55,
+      "satChromaDropMobile": 11.4
+     }
+    },
+    "844x390": {
+     "bw-split": {
+      "whiteLeverDesktop": 44.5,
+      "whiteLeverMobile": 43.5
+     },
+     "grayscale-step": {
+      "ringingChangeDesktop": -7.66,
+      "ringingChangeMobile": -26.11
+     },
+     "rgb-bars": {
+      "satChromaDropDesktop": 20.58,
+      "satChromaDropMobile": 41.0
+     },
+     "cool-blue": {
+      "satChromaDropDesktop": 20.96,
+      "satChromaDropMobile": 49.72
+     },
+     "warm-skin": {
+      "satChromaDropDesktop": 12.55,
+      "satChromaDropMobile": 32.48
+     }
+    }
+   },
+   "mediaOnly": {
+    "bw-split@1440x900": {
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    "rgb-bars@1440x900": {
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    "bw-split@390x844": {
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    }
+   },
+   "ringing": {
+    "grayscale-step": 3.56,
+    "bw-split": 3.68
+   }
+  }
+ },
+ "criteria": {
+  "improvesFringe": true,
+  "doesNotReduceWhiteRatio": true,
+  "doesNotWorsenBrightDark": true,
+  "doesNotWorsenMobile": true,
+  "doesNotAlterMediaOnly": true,
+  "noGrayscaleRinging": true
+ },
+ "winner": "A+B",
+ "consequence": "System A (o1-spectral dispersion) stays in the product ONLY through this O2 interaction gate; config default dispersionLaw remains o1-spectral"
+}

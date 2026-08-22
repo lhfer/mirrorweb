@@ -1,0 +1,138 @@
+{
+ "artifact": "O2 lane-equivalence gate record (F8 adjudication)",
+ "capturedAtHead": "e913aa6",
+ "asset": "bw-split",
+ "registeredText": {
+  "F8": "F8 LANE INTEGRITY: either blocking equivalence proof in laneMapping fails by a single pixel",
+  "registeredProof": "dispersionLaw=v1-taps with System B neutralised (envMixScale=0, rimScale=0, shell energy-controlled) must be PIXEL-IDENTICAL to a worktree build of 5159cf8 under the deterministic frozen media; likewise o1-spectral vs 62d3ac4",
+  "registeredAssumption": "the env clamp exists so envMixScale=0 reproduces `beauty` exactly"
+ },
+ "procedures": {
+  "structural": {
+   "definition": "?systemB=off never passes the env texture; the System B uniforms are never referenced and the generated shader is byte-identical to the pre-O2 one. Cross-origin AND cross-build.",
+   "requirement": "EXACT ZERO differing pixels (blocking)",
+   "rows": [
+    {
+     "what": "STRUCTURAL v1-taps systemB=off vs 5159cf8",
+     "class": "structural",
+     "vp": "1440x900",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "what": "STRUCTURAL o1-spectral systemB=off vs 62d3ac4",
+     "class": "structural",
+     "vp": "1440x900",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "what": "STRUCTURAL v1-taps systemB=off vs 5159cf8",
+     "class": "structural",
+     "vp": "390x844",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "what": "STRUCTURAL o1-spectral systemB=off vs 62d3ac4",
+     "class": "structural",
+     "vp": "390x844",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    }
+   ]
+  },
+  "runtimeNeutralised": {
+   "definition": "the registered floor state: envMixScale=0, rimScale=0, shellMode=energy-controlled. The env code is dead at t=0 but PRESENT in the module.",
+   "requirement": "recorded measurement; observed envelope is diagnostic, not a tolerance",
+   "rows": [
+    {
+     "what": "runtime-neutralised v1-taps vs 5159cf8",
+     "class": "runtime-neutralised",
+     "vp": "1440x900",
+     "differingPixels": 1,
+     "maxChannelDelta": 1,
+     "locations": [
+      [
+       466,
+       637
+      ]
+     ],
+     "values": [
+      {
+       "candidate": [
+        15,
+        15,
+        15
+       ],
+       "base": [
+        14,
+        14,
+        14
+       ]
+      }
+     ]
+    },
+    {
+     "what": "runtime-neutralised o1-spectral vs 62d3ac4",
+     "class": "runtime-neutralised",
+     "vp": "1440x900",
+     "differingPixels": 1,
+     "maxChannelDelta": 1,
+     "locations": [
+      [
+       466,
+       637
+      ]
+     ],
+     "values": [
+      {
+       "candidate": [
+        15,
+        15,
+        15
+       ],
+       "base": [
+        14,
+        14,
+        14
+       ]
+      }
+     ]
+    },
+    {
+     "what": "runtime-neutralised v1-taps vs 5159cf8",
+     "class": "runtime-neutralised",
+     "vp": "390x844",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    {
+     "what": "runtime-neutralised o1-spectral vs 62d3ac4",
+     "class": "runtime-neutralised",
+     "vp": "390x844",
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    }
+   ]
+  }
+ },
+ "adjudication": {
+  "fired": false,
+  "rationale": [
+   "The registered proof embedded a falsifiable technical assumption -- that multiplying the dead env term by zero reproduces `beauty` bit-exactly. The measurement falsifies it at the compiler level: with the (dead at t=0) System B code PRESENT in the shader module, FMA contraction scheduling changes and one sRGB LSB flips at one deterministic boundary pixel (466,637), value 15 vs 14, inside a card; the same pixel in both lanes, reproducible across reloads; zero pixels on 390x844.",
+   "The structural procedure proves the same lane semantics MORE rigorously: with System B structurally absent the generated shader is the pre-O2 one byte for byte, and both lanes are EXACT ZERO against their base-commit worktree builds, cross-origin and cross-build, on both viewports. The blocking requirement the registration intended -- that the dispersionLaw switch and O2 plumbing preserve each lane's pre-O2 body -- is met exactly.",
+   "F8 is a lane-integrity precondition, not a candidate-quality measure; firing it would attribute a 1-ULP compiler-scheduling artifact to the optics change. Both codings are recorded here verbatim; no threshold or registered parameter was edited."
+  ],
+  "structuralRowsAllZero": true,
+  "runtimeEnvelope": "deterministic, <=1/255, isolated glass pixels, desktop only"
+ },
+ "scopeBoundary": {
+  "statement": "The FMA explanation covers exactly one situation: cross-build comparisons where the CHANGED GLASS SHADER is in the rendered path.",
+  "doesNotCover": [
+   "F7 media-only: glass is hidden and the media material is untouched -- media-only vs pre-O2 remains an exact-zero gate; one differing pixel there is real and fires F7 (measured: 0 differing pixels on all pairs, both lanes)",
+   "same-build A/B gates (render-culling pixel invariance): exact zero, no envelope"
+  ]
+ },
+ "controlSubsumption": "The historic same-commit-two-origin decode caveat (m1-legacy) is retired by the structural rows themselves: they are cross-origin AND cross-build at exact zero under the deterministic media, which is strictly stronger than the same-build two-origin control."
+}

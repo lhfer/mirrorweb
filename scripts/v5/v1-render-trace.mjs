@@ -205,7 +205,13 @@ for (const vp of opts.vps) {
       const snapshot = snapshotAtEnd
         ? await page.evaluate(() => window.__V1.snapshot()) : null;
       const data = await page.evaluate(() => ({ frames: window.__V1.frames }));
-      trace.runs.push({ viewport: vp, state, frameCount: frames,
+      // O2 instrument update: the shell law is MODE-AWARE. Record the
+      // applied shell mode as engine truth so the gate can assert the
+      // right pairing (off -> zero shells; otherwise shell==glass).
+      const shellMode = await page.evaluate(() =>
+        window.__ILG_QA__.getOpticsState?.()?.shellModeApplied
+        ?? "energy-controlled");
+      trace.runs.push({ viewport: vp, state, shellMode, frameCount: frames,
                         frames: data.frames, snapshot, errors });
       process.stdout.write(`  v1 ${vp} ${state}: frames ${frames}, `
         + `errors ${errors.length}\n`);

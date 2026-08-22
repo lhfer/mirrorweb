@@ -16,8 +16,13 @@ Verdicts, each written as data:
    card" gate, margin band included.
 3. STRICT-VIEWPORT COMPLETENESS -- no frame may hide a card whose replayed
    quad overlaps the strict viewport.
-4. SHELL / MEDIA COMPOSITION -- the shell count equals the glass count
-   (shell rides the glass under beauty), and the media count equals the
+4. SHELL / MEDIA COMPOSITION -- mode-aware since O2: with the run's
+   recorded shellMode "off" (the O2 System B default on source-exact;
+   the white reflection lives in the body LERP) the shell count must be
+   ZERO -- shell ink leaking into Beauty is exactly what this now
+   catches; with any other mode the shell count equals the glass count
+   (shell rides the glass under beauty, the V1 law). The media count
+   equals the
    ACTIVE count whenever the frame was captured outside the scene-colour
    flip (media is deliberately not coverage-culled; the recorder samples on
    rAF, after the pipeline restored the final-pass state media=off), so the
@@ -109,7 +114,8 @@ def check_run(run):
                 strict_missing += 1
         if f["mediaCount"] != 0:
             media_leaks += 1
-        if f["shellCount"] != len(glass):
+        expected_shells = 0 if run.get("shellMode") == "off" else len(glass)
+        if f["shellCount"] != expected_shells:
             shell_mism += 1
     return {
         "viewport": run["viewport"], "state": run["state"],

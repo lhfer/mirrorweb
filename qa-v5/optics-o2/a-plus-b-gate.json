@@ -1,0 +1,1583 @@
+{
+ "lane": "o1",
+ "capturedAtHead": "e913aa6",
+ "stats": {
+  "grayscale-step": {
+   "before": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 11.22,
+    "edgeChromaP95": 52.0,
+    "fringeRB": 10.99,
+    "whiteReflectionRatio": 0.3877,
+    "edgeLuminanceMean": 116.73,
+    "interiorSaturationMean": 0.0,
+    "interiorLuminanceMean": 143.55,
+    "gutterInkRatio": 0.46210921082409234,
+    "fringeWidthPxMean": 6.61,
+    "sides": {
+     "darkSideEdgeLuma": 64.7,
+     "brightSideEdgeLuma": 157.6,
+     "darkOverBrightLumaRatio": 0.4102,
+     "darkSideEdgeChroma": 19.38,
+     "brightSideEdgeChroma": 28.76,
+     "sideChromaGap": 9.38
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0,
+     "interiorLuminanceMean": 143.55,
+     "interiorChromaMean": 0.0
+    }
+   },
+   "envmix0": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 3.01,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 3.0,
+    "whiteReflectionRatio": 0.4135,
+    "edgeLuminanceMean": 127.98,
+    "interiorSaturationMean": 0.0,
+    "interiorLuminanceMean": 143.55,
+    "gutterInkRatio": 0.5007799618505706,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 86.2,
+     "brightSideEdgeLuma": 174.5,
+     "darkOverBrightLumaRatio": 0.4942,
+     "darkSideEdgeChroma": 3.72,
+     "brightSideEdgeChroma": 3.2,
+     "sideChromaGap": 0.51
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0,
+     "interiorLuminanceMean": 143.55,
+     "interiorChromaMean": 0.0
+    }
+   },
+   "lerponly": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 4.08,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 4.06,
+    "whiteReflectionRatio": 0.4307,
+    "edgeLuminanceMean": 121.28,
+    "interiorSaturationMean": 0.0021,
+    "interiorLuminanceMean": 139.04,
+    "gutterInkRatio": 0.4990139342407294,
+    "fringeWidthPxMean": 0.04,
+    "sides": {
+     "darkSideEdgeLuma": 100.3,
+     "brightSideEdgeLuma": 161.8,
+     "darkOverBrightLumaRatio": 0.6198,
+     "darkSideEdgeChroma": 5.86,
+     "brightSideEdgeChroma": 4.59,
+     "sideChromaGap": 1.27
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0021,
+     "interiorLuminanceMean": 139.04,
+     "interiorChromaMean": 0.14
+    }
+   },
+   "fullB": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 3.56,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 3.55,
+    "whiteReflectionRatio": 0.4341,
+    "edgeLuminanceMean": 129.97,
+    "interiorSaturationMean": 0.0021,
+    "interiorLuminanceMean": 139.04,
+    "gutterInkRatio": 0.5211155475089716,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 117.8,
+     "brightSideEdgeLuma": 173.0,
+     "darkOverBrightLumaRatio": 0.6809,
+     "darkSideEdgeChroma": 4.8,
+     "brightSideEdgeChroma": 3.44,
+     "sideChromaGap": 1.36
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0021,
+     "interiorLuminanceMean": 139.04,
+     "interiorChromaMean": 0.14
+    }
+   },
+   "target": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 3.33,
+    "edgeChromaP95": 20.0,
+    "fringeRB": 3.32,
+    "whiteReflectionRatio": 0.4144,
+    "edgeLuminanceMean": 118.68,
+    "interiorSaturationMean": 0.0025,
+    "interiorLuminanceMean": 136.34,
+    "gutterInkRatio": 0.44770214348065046,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 83.0,
+     "brightSideEdgeLuma": 171.8,
+     "darkOverBrightLumaRatio": 0.4831,
+     "darkSideEdgeChroma": 6.08,
+     "brightSideEdgeChroma": 1.47,
+     "sideChromaGap": 4.6
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0025,
+     "interiorLuminanceMean": 136.34,
+     "interiorChromaMean": 0.4
+    }
+   },
+   "anchorBefore": {
+    "edgeChromaMean": 11.22,
+    "whiteReflectionRatio": 0.3877,
+    "edgeLuminanceMean": 116.73,
+    "fringeRB": 10.99,
+    "interiorSaturationMean": 0.0,
+    "fringeWidthPxMean": 6.61
+   },
+   "anchorTarget": {
+    "edgeChromaMean": 3.33,
+    "whiteReflectionRatio": 0.4144,
+    "edgeLuminanceMean": 118.68,
+    "fringeRB": 3.32,
+    "interiorSaturationMean": 0.0025,
+    "fringeWidthPxMean": 0.0
+   }
+  },
+  "bw-split": {
+   "before": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 9.73,
+    "edgeChromaP95": 51.0,
+    "fringeRB": 9.56,
+    "whiteReflectionRatio": 0.3925,
+    "edgeLuminanceMean": 104.73,
+    "interiorSaturationMean": 0.0,
+    "interiorLuminanceMean": 122.76,
+    "gutterInkRatio": 0.41777666418803144,
+    "fringeWidthPxMean": 5.46,
+    "sides": {
+     "darkSideEdgeLuma": 28.5,
+     "brightSideEdgeLuma": 176.6,
+     "darkOverBrightLumaRatio": 0.1615,
+     "darkSideEdgeChroma": 14.59,
+     "brightSideEdgeChroma": 26.05,
+     "sideChromaGap": 11.46
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0,
+     "interiorLuminanceMean": 122.76,
+     "interiorChromaMean": 0.0
+    },
+    "reflectionBand": {
+     "meanPx": 9.7,
+     "meanNormToCardWidth": 0.0179,
+     "perCard": [
+      7,
+      13,
+      9
+     ],
+     "threshold": 60.0
+    }
+   },
+   "envmix0": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 3.04,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 3.03,
+    "whiteReflectionRatio": 0.415,
+    "edgeLuminanceMean": 115.67,
+    "interiorSaturationMean": 0.0,
+    "interiorLuminanceMean": 122.76,
+    "gutterInkRatio": 0.47320245061588695,
+    "fringeWidthPxMean": 0.04,
+    "sides": {
+     "darkSideEdgeLuma": 50.6,
+     "brightSideEdgeLuma": 190.8,
+     "darkOverBrightLumaRatio": 0.2654,
+     "darkSideEdgeChroma": 3.87,
+     "brightSideEdgeChroma": 3.12,
+     "sideChromaGap": 0.76
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0,
+     "interiorLuminanceMean": 122.76,
+     "interiorChromaMean": 0.0
+    },
+    "reflectionBand": {
+     "meanPx": 15.3,
+     "meanNormToCardWidth": 0.0285,
+     "perCard": [
+      12,
+      20,
+      14
+     ],
+     "threshold": 60.0
+    }
+   },
+   "lerponly": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 4.2,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 4.19,
+    "whiteReflectionRatio": 0.4347,
+    "edgeLuminanceMean": 111.78,
+    "interiorSaturationMean": 0.0035,
+    "interiorLuminanceMean": 121.4,
+    "gutterInkRatio": 0.42851831495910253,
+    "fringeWidthPxMean": 0.07,
+    "sides": {
+     "darkSideEdgeLuma": 74.4,
+     "brightSideEdgeLuma": 180.2,
+     "darkOverBrightLumaRatio": 0.4127,
+     "darkSideEdgeChroma": 6.34,
+     "brightSideEdgeChroma": 4.26,
+     "sideChromaGap": 2.08
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0035,
+     "interiorLuminanceMean": 121.4,
+     "interiorChromaMean": 0.02
+    },
+    "reflectionBand": {
+     "meanPx": 8.7,
+     "meanNormToCardWidth": 0.0161,
+     "perCard": [
+      4,
+      13,
+      9
+     ],
+     "threshold": 60.0
+    }
+   },
+   "fullB": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 3.68,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 3.67,
+    "whiteReflectionRatio": 0.4364,
+    "edgeLuminanceMean": 121.31,
+    "interiorSaturationMean": 0.0035,
+    "interiorLuminanceMean": 121.4,
+    "gutterInkRatio": 0.4775750864828166,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 95.1,
+     "brightSideEdgeLuma": 190.0,
+     "darkOverBrightLumaRatio": 0.5006,
+     "darkSideEdgeChroma": 5.2,
+     "brightSideEdgeChroma": 3.22,
+     "sideChromaGap": 1.98
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0035,
+     "interiorLuminanceMean": 121.4,
+     "interiorChromaMean": 0.02
+    },
+    "reflectionBand": {
+     "meanPx": 15.3,
+     "meanNormToCardWidth": 0.0285,
+     "perCard": [
+      12,
+      20,
+      14
+     ],
+     "threshold": 60.0
+    }
+   },
+   "target": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 3.58,
+    "edgeChromaP95": 21.0,
+    "fringeRB": 3.57,
+    "whiteReflectionRatio": 0.4188,
+    "edgeLuminanceMean": 109.15,
+    "interiorSaturationMean": 0.0074,
+    "interiorLuminanceMean": 120.24,
+    "gutterInkRatio": 0.43341631373056155,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 48.1,
+     "brightSideEdgeLuma": 193.7,
+     "darkOverBrightLumaRatio": 0.2484,
+     "darkSideEdgeChroma": 6.58,
+     "brightSideEdgeChroma": 1.41,
+     "sideChromaGap": 5.17
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0074,
+     "interiorLuminanceMean": 120.24,
+     "interiorChromaMean": 0.55
+    },
+    "reflectionBand": {
+     "meanPx": 3.3,
+     "meanNormToCardWidth": 0.0062,
+     "perCard": [
+      3,
+      4,
+      3
+     ],
+     "threshold": 60.0
+    }
+   },
+   "anchorBefore": {
+    "edgeChromaMean": 9.73,
+    "whiteReflectionRatio": 0.3925,
+    "edgeLuminanceMean": 104.73,
+    "fringeRB": 9.56,
+    "interiorSaturationMean": 0.0,
+    "fringeWidthPxMean": 5.46,
+    "sides": {
+     "darkSideEdgeLuma": 28.5,
+     "brightSideEdgeLuma": 176.6,
+     "darkSideEdgeChroma": 14.59,
+     "brightSideEdgeChroma": 26.05
+    }
+   },
+   "anchorTarget": {
+    "edgeChromaMean": 3.58,
+    "whiteReflectionRatio": 0.4188,
+    "edgeLuminanceMean": 109.15,
+    "fringeRB": 3.57,
+    "interiorSaturationMean": 0.0074,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 48.1,
+     "brightSideEdgeLuma": 193.7,
+     "darkSideEdgeChroma": 6.58,
+     "brightSideEdgeChroma": 1.41
+    }
+   }
+  },
+  "rgb-bars": {
+   "before": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 111.28,
+    "edgeChromaP95": 236.0,
+    "fringeRB": 94.65,
+    "whiteReflectionRatio": 0.2723,
+    "edgeLuminanceMean": 107.94,
+    "interiorSaturationMean": 0.7644,
+    "interiorLuminanceMean": 112.6,
+    "gutterInkRatio": 0.4330889722285086,
+    "fringeWidthPxMean": 15.04,
+    "sides": {
+     "darkSideEdgeLuma": 52.2,
+     "brightSideEdgeLuma": 168.4,
+     "darkOverBrightLumaRatio": 0.3102,
+     "darkSideEdgeChroma": 157.87,
+     "brightSideEdgeChroma": 37.0,
+     "sideChromaGap": 120.86
+    },
+    "interior": {
+     "interiorSaturationMean": 0.7644,
+     "interiorLuminanceMean": 112.6,
+     "interiorChromaMean": 168.35
+    }
+   },
+   "envmix0": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 100.08,
+    "edgeChromaP95": 237.0,
+    "fringeRB": 85.37,
+    "whiteReflectionRatio": 0.2877,
+    "edgeLuminanceMean": 120.47,
+    "interiorSaturationMean": 0.7626,
+    "interiorLuminanceMean": 112.69,
+    "gutterInkRatio": 0.4775427564579225,
+    "fringeWidthPxMean": 10.54,
+    "sides": {
+     "darkSideEdgeLuma": 79.6,
+     "brightSideEdgeLuma": 183.2,
+     "darkOverBrightLumaRatio": 0.4343,
+     "darkSideEdgeChroma": 150.65,
+     "brightSideEdgeChroma": 4.76,
+     "sideChromaGap": 145.89
+    },
+    "interior": {
+     "interiorSaturationMean": 0.7626,
+     "interiorLuminanceMean": 112.69,
+     "interiorChromaMean": 168.01
+    }
+   },
+   "lerponly": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 98.67,
+    "edgeChromaP95": 230.0,
+    "fringeRB": 82.61,
+    "whiteReflectionRatio": 0.3078,
+    "edgeLuminanceMean": 114.4,
+    "interiorSaturationMean": 0.7756,
+    "interiorLuminanceMean": 110.5,
+    "gutterInkRatio": 0.45196162426045067,
+    "fringeWidthPxMean": 9.61,
+    "sides": {
+     "darkSideEdgeLuma": 92.7,
+     "brightSideEdgeLuma": 171.5,
+     "darkOverBrightLumaRatio": 0.5403,
+     "darkSideEdgeChroma": 123.09,
+     "brightSideEdgeChroma": 6.54,
+     "sideChromaGap": 116.55
+    },
+    "interior": {
+     "interiorSaturationMean": 0.7756,
+     "interiorLuminanceMean": 110.5,
+     "interiorChromaMean": 167.54
+    }
+   },
+   "fullB": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 90.7,
+    "edgeChromaP95": 230.0,
+    "fringeRB": 76.16,
+    "whiteReflectionRatio": 0.3101,
+    "edgeLuminanceMean": 124.79,
+    "interiorSaturationMean": 0.7756,
+    "interiorLuminanceMean": 110.5,
+    "gutterInkRatio": 0.4871286088390288,
+    "fringeWidthPxMean": 9.11,
+    "sides": {
+     "darkSideEdgeLuma": 114.9,
+     "brightSideEdgeLuma": 182.1,
+     "darkOverBrightLumaRatio": 0.6308,
+     "darkSideEdgeChroma": 105.42,
+     "brightSideEdgeChroma": 4.61,
+     "sideChromaGap": 100.81
+    },
+    "interior": {
+     "interiorSaturationMean": 0.7756,
+     "interiorLuminanceMean": 110.5,
+     "interiorChromaMean": 167.54
+    }
+   },
+   "target": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 96.25,
+    "edgeChromaP95": 227.0,
+    "fringeRB": 80.8,
+    "whiteReflectionRatio": 0.3081,
+    "edgeLuminanceMean": 114.31,
+    "interiorSaturationMean": 0.7808,
+    "interiorLuminanceMean": 108.28,
+    "gutterInkRatio": 0.43557838414535577,
+    "fringeWidthPxMean": 9.43,
+    "sides": {
+     "darkSideEdgeLuma": 80.1,
+     "brightSideEdgeLuma": 183.6,
+     "darkOverBrightLumaRatio": 0.4362,
+     "darkSideEdgeChroma": 146.17,
+     "brightSideEdgeChroma": 1.37,
+     "sideChromaGap": 144.79
+    },
+    "interior": {
+     "interiorSaturationMean": 0.7808,
+     "interiorLuminanceMean": 108.28,
+     "interiorChromaMean": 166.7
+    }
+   },
+   "anchorBefore": {
+    "edgeChromaMean": 111.28,
+    "whiteReflectionRatio": 0.2723,
+    "edgeLuminanceMean": 107.94,
+    "fringeRB": 94.65,
+    "interiorSaturationMean": 0.7644,
+    "fringeWidthPxMean": 15.04
+   },
+   "anchorTarget": {
+    "edgeChromaMean": 96.25,
+    "whiteReflectionRatio": 0.3081,
+    "edgeLuminanceMean": 114.31,
+    "fringeRB": 80.8,
+    "interiorSaturationMean": 0.7808,
+    "fringeWidthPxMean": 9.43
+   }
+  },
+  "hf-checker": {
+   "before": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 24.57,
+    "edgeChromaP95": 135.0,
+    "fringeRB": 21.73,
+    "whiteReflectionRatio": 0.4127,
+    "edgeLuminanceMean": 137.46,
+    "interiorSaturationMean": 0.0,
+    "interiorLuminanceMean": 145.37,
+    "gutterInkRatio": 0.5975356438524457,
+    "fringeWidthPxMean": 14.0,
+    "sides": {
+     "darkSideEdgeLuma": 135.2,
+     "brightSideEdgeLuma": 137.8,
+     "darkOverBrightLumaRatio": 0.981,
+     "darkSideEdgeChroma": 47.99,
+     "brightSideEdgeChroma": 48.6,
+     "sideChromaGap": 0.6
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0,
+     "interiorLuminanceMean": 145.37,
+     "interiorChromaMean": 0.0
+    }
+   },
+   "envmix0": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 3.81,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 3.79,
+    "whiteReflectionRatio": 0.5303,
+    "edgeLuminanceMean": 146.03,
+    "interiorSaturationMean": 0.0,
+    "interiorLuminanceMean": 145.4,
+    "gutterInkRatio": 0.6080388606899227,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 151.0,
+     "brightSideEdgeLuma": 154.0,
+     "darkOverBrightLumaRatio": 0.9801,
+     "darkSideEdgeChroma": 4.93,
+     "brightSideEdgeChroma": 4.56,
+     "sideChromaGap": 0.37
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0,
+     "interiorLuminanceMean": 145.4,
+     "interiorChromaMean": 0.0
+    }
+   },
+   "lerponly": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 4.95,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 4.92,
+    "whiteReflectionRatio": 0.5,
+    "edgeLuminanceMean": 140.56,
+    "interiorSaturationMean": 0.0104,
+    "interiorLuminanceMean": 142.96,
+    "gutterInkRatio": 0.6040016488312696,
+    "fringeWidthPxMean": 0.07,
+    "sides": {
+     "darkSideEdgeLuma": 155.0,
+     "brightSideEdgeLuma": 142.8,
+     "darkOverBrightLumaRatio": 1.0853,
+     "darkSideEdgeChroma": 6.65,
+     "brightSideEdgeChroma": 6.65,
+     "sideChromaGap": 0.01
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0104,
+     "interiorLuminanceMean": 142.96,
+     "interiorChromaMean": 0.14
+    }
+   },
+   "fullB": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 4.25,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 4.23,
+    "whiteReflectionRatio": 0.5241,
+    "edgeLuminanceMean": 146.7,
+    "interiorSaturationMean": 0.0104,
+    "interiorLuminanceMean": 142.96,
+    "gutterInkRatio": 0.6124559503410818,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 165.8,
+     "brightSideEdgeLuma": 154.6,
+     "darkOverBrightLumaRatio": 1.0726,
+     "darkSideEdgeChroma": 5.37,
+     "brightSideEdgeChroma": 5.09,
+     "sideChromaGap": 0.28
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0104,
+     "interiorLuminanceMean": 142.96,
+     "interiorChromaMean": 0.14
+    }
+   },
+   "target": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 69.36,
+    "edgeChromaP95": 194.0,
+    "fringeRB": 55.53,
+    "whiteReflectionRatio": 0.2102,
+    "edgeLuminanceMean": 139.61,
+    "interiorSaturationMean": 0.4087,
+    "interiorLuminanceMean": 147.99,
+    "gutterInkRatio": 0.6509448449775306,
+    "fringeWidthPxMean": 14.93,
+    "sides": {
+     "darkSideEdgeLuma": 157.3,
+     "brightSideEdgeLuma": 150.4,
+     "darkOverBrightLumaRatio": 1.0463,
+     "darkSideEdgeChroma": 65.83,
+     "brightSideEdgeChroma": 79.78,
+     "sideChromaGap": 13.96
+    },
+    "interior": {
+     "interiorSaturationMean": 0.4087,
+     "interiorLuminanceMean": 147.99,
+     "interiorChromaMean": 77.26
+    }
+   },
+   "anchorBefore": {
+    "edgeChromaMean": 24.57,
+    "whiteReflectionRatio": 0.4127,
+    "edgeLuminanceMean": 137.46,
+    "fringeRB": 21.73,
+    "interiorSaturationMean": 0.0,
+    "fringeWidthPxMean": 14.0
+   },
+   "anchorTarget": {
+    "edgeChromaMean": 69.36,
+    "whiteReflectionRatio": 0.2102,
+    "edgeLuminanceMean": 139.61,
+    "fringeRB": 55.53,
+    "interiorSaturationMean": 0.4087,
+    "fringeWidthPxMean": 14.93
+   }
+  },
+  "dark-highlight": {
+   "before": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 10.87,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 10.21,
+    "whiteReflectionRatio": 0.0146,
+    "edgeLuminanceMean": 34.05,
+    "interiorSaturationMean": 0.3545,
+    "interiorLuminanceMean": 34.17,
+    "gutterInkRatio": 0.06183117261000291,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 37.1,
+     "brightSideEdgeLuma": 36.4,
+     "darkOverBrightLumaRatio": 1.0201,
+     "darkSideEdgeChroma": 11.07,
+     "brightSideEdgeChroma": 10.93,
+     "sideChromaGap": 0.14
+    },
+    "interior": {
+     "interiorSaturationMean": 0.3545,
+     "interiorLuminanceMean": 34.17,
+     "interiorChromaMean": 9.1
+    }
+   },
+   "envmix0": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 9.53,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 8.97,
+    "whiteReflectionRatio": 0.014,
+    "edgeLuminanceMean": 49.24,
+    "interiorSaturationMean": 0.3566,
+    "interiorLuminanceMean": 34.12,
+    "gutterInkRatio": 0.164604280495296,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 60.7,
+     "brightSideEdgeLuma": 61.1,
+     "darkOverBrightLumaRatio": 0.9937,
+     "darkSideEdgeChroma": 8.71,
+     "brightSideEdgeChroma": 8.51,
+     "sideChromaGap": 0.2
+    },
+    "interior": {
+     "interiorSaturationMean": 0.3566,
+     "interiorLuminanceMean": 34.12,
+     "interiorChromaMean": 9.11
+    }
+   },
+   "lerponly": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 10.68,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 10.39,
+    "whiteReflectionRatio": 0.0373,
+    "edgeLuminanceMean": 44.93,
+    "interiorSaturationMean": 0.3565,
+    "interiorLuminanceMean": 33.49,
+    "gutterInkRatio": 0.1053716336361579,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 82.4,
+     "brightSideEdgeLuma": 48.9,
+     "darkOverBrightLumaRatio": 1.6847,
+     "darkSideEdgeChroma": 9.74,
+     "brightSideEdgeChroma": 10.69,
+     "sideChromaGap": 0.94
+    },
+    "interior": {
+     "interiorSaturationMean": 0.3565,
+     "interiorLuminanceMean": 33.49,
+     "interiorChromaMean": 8.64
+    }
+   },
+   "fullB": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 9.66,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 9.4,
+    "whiteReflectionRatio": 0.0378,
+    "edgeLuminanceMean": 58.39,
+    "interiorSaturationMean": 0.3565,
+    "interiorLuminanceMean": 33.49,
+    "gutterInkRatio": 0.1882254049335618,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 102.0,
+     "brightSideEdgeLuma": 70.4,
+     "darkOverBrightLumaRatio": 1.4488,
+     "darkSideEdgeChroma": 8.25,
+     "brightSideEdgeChroma": 9.09,
+     "sideChromaGap": 0.84
+    },
+    "interior": {
+     "interiorSaturationMean": 0.3565,
+     "interiorLuminanceMean": 33.49,
+     "interiorChromaMean": 8.64
+    }
+   },
+   "target": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 9.72,
+    "edgeChromaP95": 21.0,
+    "fringeRB": 9.43,
+    "whiteReflectionRatio": 0.0291,
+    "edgeLuminanceMean": 35.94,
+    "interiorSaturationMean": 0.3633,
+    "interiorLuminanceMean": 31.2,
+    "gutterInkRatio": 0.06363357149785005,
+    "fringeWidthPxMean": 0.32,
+    "sides": {
+     "darkSideEdgeLuma": 58.1,
+     "brightSideEdgeLuma": 28.6,
+     "darkOverBrightLumaRatio": 2.032,
+     "darkSideEdgeChroma": 11.2,
+     "brightSideEdgeChroma": 8.79,
+     "sideChromaGap": 2.41
+    },
+    "interior": {
+     "interiorSaturationMean": 0.3633,
+     "interiorLuminanceMean": 31.2,
+     "interiorChromaMean": 8.68
+    }
+   },
+   "anchorBefore": {
+    "edgeChromaMean": 10.87,
+    "whiteReflectionRatio": 0.0146,
+    "edgeLuminanceMean": 34.05,
+    "fringeRB": 10.21,
+    "interiorSaturationMean": 0.3545,
+    "fringeWidthPxMean": 0.0
+   },
+   "anchorTarget": {
+    "edgeChromaMean": 9.72,
+    "whiteReflectionRatio": 0.0291,
+    "edgeLuminanceMean": 35.94,
+    "fringeRB": 9.43,
+    "interiorSaturationMean": 0.3633,
+    "fringeWidthPxMean": 0.32
+   }
+  },
+  "bright-lowsat": {
+   "before": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 21.2,
+    "edgeChromaP95": 124.0,
+    "fringeRB": 20.41,
+    "whiteReflectionRatio": 0.7448,
+    "edgeLuminanceMean": 170.52,
+    "interiorSaturationMean": 0.0416,
+    "interiorLuminanceMean": 210.44,
+    "gutterInkRatio": 0.770283049367948,
+    "fringeWidthPxMean": 10.5,
+    "sides": {
+     "darkSideEdgeLuma": 162.5,
+     "brightSideEdgeLuma": 164.6,
+     "darkOverBrightLumaRatio": 0.9872,
+     "darkSideEdgeChroma": 39.02,
+     "brightSideEdgeChroma": 40.77,
+     "sideChromaGap": 1.76
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0416,
+     "interiorLuminanceMean": 210.44,
+     "interiorChromaMean": 8.93
+    }
+   },
+   "envmix0": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 8.14,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 7.83,
+    "whiteReflectionRatio": 0.7943,
+    "edgeLuminanceMean": 178.41,
+    "interiorSaturationMean": 0.0413,
+    "interiorLuminanceMean": 210.47,
+    "gutterInkRatio": 0.7795779315250073,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 176.8,
+     "brightSideEdgeLuma": 179.3,
+     "darkOverBrightLumaRatio": 0.9862,
+     "darkSideEdgeChroma": 6.0,
+     "brightSideEdgeChroma": 6.81,
+     "sideChromaGap": 0.82
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0413,
+     "interiorLuminanceMean": 210.47,
+     "interiorChromaMean": 8.88
+    }
+   },
+   "lerponly": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 9.11,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 8.79,
+    "whiteReflectionRatio": 0.7864,
+    "edgeLuminanceMean": 171.09,
+    "interiorSaturationMean": 0.0445,
+    "interiorLuminanceMean": 206.46,
+    "gutterInkRatio": 0.7732008341146422,
+    "fringeWidthPxMean": 0.29,
+    "sides": {
+     "darkSideEdgeLuma": 172.8,
+     "brightSideEdgeLuma": 167.3,
+     "darkOverBrightLumaRatio": 1.0327,
+     "darkSideEdgeChroma": 6.82,
+     "brightSideEdgeChroma": 8.68,
+     "sideChromaGap": 1.86
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0445,
+     "interiorLuminanceMean": 206.46,
+     "interiorChromaMean": 9.38
+    }
+   },
+   "fullB": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 8.28,
+    "edgeChromaP95": 18.0,
+    "fringeRB": 7.99,
+    "whiteReflectionRatio": 0.7924,
+    "edgeLuminanceMean": 176.47,
+    "interiorSaturationMean": 0.0445,
+    "interiorLuminanceMean": 206.46,
+    "gutterInkRatio": 0.780131583201319,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 182.5,
+     "brightSideEdgeLuma": 177.8,
+     "darkOverBrightLumaRatio": 1.0263,
+     "darkSideEdgeChroma": 5.63,
+     "brightSideEdgeChroma": 7.12,
+     "sideChromaGap": 1.49
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0445,
+     "interiorLuminanceMean": 206.46,
+     "interiorChromaMean": 9.38
+    }
+   },
+   "target": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 8.3,
+    "edgeChromaP95": 20.0,
+    "fringeRB": 8.15,
+    "whiteReflectionRatio": 0.7647,
+    "edgeLuminanceMean": 171.7,
+    "interiorSaturationMean": 0.0469,
+    "interiorLuminanceMean": 203.6,
+    "gutterInkRatio": 0.7816874656493485,
+    "fringeWidthPxMean": 0.0,
+    "sides": {
+     "darkSideEdgeLuma": 181.7,
+     "brightSideEdgeLuma": 174.7,
+     "darkOverBrightLumaRatio": 1.04,
+     "darkSideEdgeChroma": 8.2,
+     "brightSideEdgeChroma": 7.04,
+     "sideChromaGap": 1.16
+    },
+    "interior": {
+     "interiorSaturationMean": 0.0469,
+     "interiorLuminanceMean": 203.6,
+     "interiorChromaMean": 9.77
+    }
+   },
+   "anchorBefore": {
+    "edgeChromaMean": 21.2,
+    "whiteReflectionRatio": 0.7448,
+    "edgeLuminanceMean": 170.52,
+    "fringeRB": 20.41,
+    "interiorSaturationMean": 0.0416,
+    "fringeWidthPxMean": 10.5
+   },
+   "anchorTarget": {
+    "edgeChromaMean": 8.3,
+    "whiteReflectionRatio": 0.7647,
+    "edgeLuminanceMean": 171.7,
+    "fringeRB": 8.15,
+    "interiorSaturationMean": 0.0469,
+    "fringeWidthPxMean": 0.0
+   }
+  },
+  "warm-skin": {
+   "before": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 54.79,
+    "edgeChromaP95": 127.0,
+    "fringeRB": 53.51,
+    "whiteReflectionRatio": 0.0325,
+    "edgeLuminanceMean": 154.42,
+    "interiorSaturationMean": 0.235,
+    "interiorLuminanceMean": 195.13,
+    "gutterInkRatio": 0.7691595810028774,
+    "fringeWidthPxMean": 24.79,
+    "sides": {
+     "darkSideEdgeLuma": 142.4,
+     "brightSideEdgeLuma": 146.3,
+     "darkOverBrightLumaRatio": 0.9734,
+     "darkSideEdgeChroma": 68.69,
+     "brightSideEdgeChroma": 69.97,
+     "sideChromaGap": 1.29
+    },
+    "interior": {
+     "interiorSaturationMean": 0.235,
+     "interiorLuminanceMean": 195.13,
+     "interiorChromaMean": 50.62
+    }
+   },
+   "envmix0": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 43.42,
+    "edgeChromaP95": 57.0,
+    "fringeRB": 43.4,
+    "whiteReflectionRatio": 0.0497,
+    "edgeLuminanceMean": 164.21,
+    "interiorSaturationMean": 0.235,
+    "interiorLuminanceMean": 195.25,
+    "gutterInkRatio": 0.7784100093757073,
+    "fringeWidthPxMean": 20.21,
+    "sides": {
+     "darkSideEdgeLuma": 160.5,
+     "brightSideEdgeLuma": 164.8,
+     "darkOverBrightLumaRatio": 0.974,
+     "darkSideEdgeChroma": 41.99,
+     "brightSideEdgeChroma": 42.84,
+     "sideChromaGap": 0.85
+    },
+    "interior": {
+     "interiorSaturationMean": 0.235,
+     "interiorLuminanceMean": 195.25,
+     "interiorChromaMean": 50.67
+    }
+   },
+   "lerponly": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 45.82,
+    "edgeChromaP95": 64.0,
+    "fringeRB": 45.78,
+    "whiteReflectionRatio": 0.058,
+    "edgeLuminanceMean": 155.94,
+    "interiorSaturationMean": 0.2482,
+    "interiorLuminanceMean": 190.28,
+    "gutterInkRatio": 0.772655264944554,
+    "fringeWidthPxMean": 19.32,
+    "sides": {
+     "darkSideEdgeLuma": 158.8,
+     "brightSideEdgeLuma": 151.1,
+     "darkOverBrightLumaRatio": 1.0508,
+     "darkSideEdgeChroma": 37.36,
+     "brightSideEdgeChroma": 47.4,
+     "sideChromaGap": 10.05
+    },
+    "interior": {
+     "interiorSaturationMean": 0.2482,
+     "interiorLuminanceMean": 190.28,
+     "interiorChromaMean": 52.49
+    }
+   },
+   "fullB": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 42.24,
+    "edgeChromaP95": 59.0,
+    "fringeRB": 42.22,
+    "whiteReflectionRatio": 0.0783,
+    "edgeLuminanceMean": 162.3,
+    "interiorSaturationMean": 0.2482,
+    "interiorLuminanceMean": 190.28,
+    "gutterInkRatio": 0.7796506740810191,
+    "fringeWidthPxMean": 17.75,
+    "sides": {
+     "darkSideEdgeLuma": 169.9,
+     "brightSideEdgeLuma": 163.2,
+     "darkOverBrightLumaRatio": 1.0414,
+     "darkSideEdgeChroma": 32.29,
+     "brightSideEdgeChroma": 41.8,
+     "sideChromaGap": 9.51
+    },
+    "interior": {
+     "interiorSaturationMean": 0.2482,
+     "interiorLuminanceMean": 190.28,
+     "interiorChromaMean": 52.49
+    }
+   },
+   "target": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 45.08,
+    "edgeChromaP95": 62.0,
+    "fringeRB": 45.06,
+    "whiteReflectionRatio": 0.0564,
+    "edgeLuminanceMean": 155.65,
+    "interiorSaturationMean": 0.2586,
+    "interiorLuminanceMean": 186.84,
+    "gutterInkRatio": 0.781473279234425,
+    "fringeWidthPxMean": 16.61,
+    "sides": {
+     "darkSideEdgeLuma": 162.7,
+     "brightSideEdgeLuma": 158.1,
+     "darkOverBrightLumaRatio": 1.029,
+     "darkSideEdgeChroma": 42.4,
+     "brightSideEdgeChroma": 49.18,
+     "sideChromaGap": 6.78
+    },
+    "interior": {
+     "interiorSaturationMean": 0.2586,
+     "interiorLuminanceMean": 186.84,
+     "interiorChromaMean": 54.07
+    }
+   },
+   "anchorBefore": {
+    "edgeChromaMean": 54.79,
+    "whiteReflectionRatio": 0.0325,
+    "edgeLuminanceMean": 154.42,
+    "fringeRB": 53.51,
+    "interiorSaturationMean": 0.235,
+    "fringeWidthPxMean": 24.79
+   },
+   "anchorTarget": {
+    "edgeChromaMean": 45.08,
+    "whiteReflectionRatio": 0.0564,
+    "edgeLuminanceMean": 155.65,
+    "fringeRB": 45.06,
+    "interiorSaturationMean": 0.2586,
+    "fringeWidthPxMean": 16.61
+   }
+  },
+  "cool-blue": {
+   "before": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 110.61,
+    "edgeChromaP95": 145.0,
+    "fringeRB": 110.46,
+    "whiteReflectionRatio": 0.0159,
+    "edgeLuminanceMean": 87.07,
+    "interiorSaturationMean": 0.7114,
+    "interiorLuminanceMean": 106.42,
+    "gutterInkRatio": 0.7572823381074003,
+    "fringeWidthPxMean": 23.43,
+    "sides": {
+     "darkSideEdgeLuma": 82.8,
+     "brightSideEdgeLuma": 84.1,
+     "darkOverBrightLumaRatio": 0.9838,
+     "darkSideEdgeChroma": 109.6,
+     "brightSideEdgeChroma": 113.15,
+     "sideChromaGap": 3.55
+    },
+    "interior": {
+     "interiorSaturationMean": 0.7114,
+     "interiorLuminanceMean": 106.42,
+     "interiorChromaMean": 129.75
+    }
+   },
+   "envmix0": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 97.29,
+    "edgeChromaP95": 143.0,
+    "fringeRB": 97.29,
+    "whiteReflectionRatio": 0.0153,
+    "edgeLuminanceMean": 100.44,
+    "interiorSaturationMean": 0.7117,
+    "interiorLuminanceMean": 106.58,
+    "gutterInkRatio": 0.7737544857909541,
+    "fringeWidthPxMean": 21.43,
+    "sides": {
+     "darkSideEdgeLuma": 104.4,
+     "brightSideEdgeLuma": 106.7,
+     "darkOverBrightLumaRatio": 0.9793,
+     "darkSideEdgeChroma": 87.44,
+     "brightSideEdgeChroma": 90.12,
+     "sideChromaGap": 2.68
+    },
+    "interior": {
+     "interiorSaturationMean": 0.7117,
+     "interiorLuminanceMean": 106.58,
+     "interiorChromaMean": 129.85
+    }
+   },
+   "lerponly": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 97.82,
+    "edgeChromaP95": 140.0,
+    "fringeRB": 97.82,
+    "whiteReflectionRatio": 0.0387,
+    "edgeLuminanceMean": 92.05,
+    "interiorSaturationMean": 0.73,
+    "interiorLuminanceMean": 101.27,
+    "gutterInkRatio": 0.7487189227635705,
+    "fringeWidthPxMean": 20.21,
+    "sides": {
+     "darkSideEdgeLuma": 114.0,
+     "brightSideEdgeLuma": 91.3,
+     "darkOverBrightLumaRatio": 1.2484,
+     "darkSideEdgeChroma": 73.21,
+     "brightSideEdgeChroma": 93.61,
+     "sideChromaGap": 20.4
+    },
+    "interior": {
+     "interiorSaturationMean": 0.73,
+     "interiorLuminanceMean": 101.27,
+     "interiorChromaMean": 128.87
+    }
+   },
+   "fullB": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 89.65,
+    "edgeChromaP95": 140.0,
+    "fringeRB": 89.65,
+    "whiteReflectionRatio": 0.0392,
+    "edgeLuminanceMean": 102.7,
+    "interiorSaturationMean": 0.73,
+    "interiorLuminanceMean": 101.27,
+    "gutterInkRatio": 0.7583168989040121,
+    "fringeWidthPxMean": 19.54,
+    "sides": {
+     "darkSideEdgeLuma": 130.2,
+     "brightSideEdgeLuma": 109.1,
+     "darkOverBrightLumaRatio": 1.1933,
+     "darkSideEdgeChroma": 62.6,
+     "brightSideEdgeChroma": 81.85,
+     "sideChromaGap": 19.25
+    },
+    "interior": {
+     "interiorSaturationMean": 0.73,
+     "interiorLuminanceMean": 101.27,
+     "interiorChromaMean": 128.87
+    }
+   },
+   "target": {
+    "cardsAnalysed": 3,
+    "edgeChromaMean": 100.12,
+    "edgeChromaP95": 140.0,
+    "fringeRB": 100.12,
+    "whiteReflectionRatio": 0.0306,
+    "edgeLuminanceMean": 86.46,
+    "interiorSaturationMean": 0.7457,
+    "interiorLuminanceMean": 97.19,
+    "gutterInkRatio": 0.6864957486017265,
+    "fringeWidthPxMean": 20.68,
+    "sides": {
+     "darkSideEdgeLuma": 101.6,
+     "brightSideEdgeLuma": 82.9,
+     "darkOverBrightLumaRatio": 1.2251,
+     "darkSideEdgeChroma": 89.86,
+     "brightSideEdgeChroma": 106.69,
+     "sideChromaGap": 16.84
+    },
+    "interior": {
+     "interiorSaturationMean": 0.7457,
+     "interiorLuminanceMean": 97.19,
+     "interiorChromaMean": 129.15
+    }
+   },
+   "anchorBefore": {
+    "edgeChromaMean": 110.61,
+    "whiteReflectionRatio": 0.0159,
+    "edgeLuminanceMean": 87.07,
+    "fringeRB": 110.46,
+    "interiorSaturationMean": 0.7114,
+    "fringeWidthPxMean": 23.43
+   },
+   "anchorTarget": {
+    "edgeChromaMean": 100.12,
+    "whiteReflectionRatio": 0.0306,
+    "edgeLuminanceMean": 86.46,
+    "fringeRB": 100.12,
+    "interiorSaturationMean": 0.7457,
+    "fringeWidthPxMean": 20.68
+   }
+  }
+ },
+ "checks": {
+  "F1": {
+   "registered": "lever < +6.0 darkSideEdgeLuma AND < +0.008 whiteReflectionRatio fires",
+   "leverDarkSideEdgeLuma": 44.5,
+   "leverWhiteReflectionRatio": 0.0214,
+   "fired": false
+  },
+  "F2": {
+   "registered": "candidate edge chroma exceeds Before (11.22 grayscale / 9.73 bw) by more than +1.0",
+   "grayscaleStepEdgeChroma": 3.56,
+   "bwSplitEdgeChroma": 3.68,
+   "beforeAnchors": {
+    "grayscale-step": 11.22,
+    "bw-split": 9.73
+   },
+   "recomputedBefore": {
+    "grayscale-step": 11.22,
+    "bw-split": 9.73
+   },
+   "fired": false
+  },
+  "F3": {
+   "registered": "brightSideEdgeChroma must fall below 20 AND dark/bright ratio must rise >= +0.025 from 0.161",
+   "brightSideEdgeChroma": 3.22,
+   "darkOverBrightLumaRatio": 0.5006,
+   "beforeAnchor": {
+    "brightSideEdgeChroma": 26.05,
+    "ratio": 0.161
+   },
+   "targetAnchor": {
+    "brightSideEdgeChroma": 1.41,
+    "ratio": 0.248
+   },
+   "fired": false
+  },
+  "F4": {
+   "registered": "mean edge-chroma drop across {rgb-bars, cool-blue, warm-skin} vs Before < 8.0 fires (2x O1's 4.09 lever)",
+   "dropsVsAnchorBefore": {
+    "rgb-bars": 20.58,
+    "cool-blue": 20.96,
+    "warm-skin": 12.55
+   },
+   "meanDrop": 18.03,
+   "recomputedBefore": {
+    "rgb-bars": 111.28,
+    "cool-blue": 110.61,
+    "warm-skin": 54.79
+   },
+   "fired": false
+  },
+  "F5": {
+   "registered": "interior saturation or luminance changes by more than 12% relative vs Before on any scored asset",
+   "beforeDefinition": "same-page dispersionLaw=v1 neutralised state (proven == the V1 accepted product by the blocking structural gate)",
+   "perAsset": {
+    "grayscale-step": {
+     "relSaturationChange": 21.0,
+     "relLuminanceChange": 0.0314,
+     "absSaturationDelta": 0.0021,
+     "absChromaDelta": 0.14,
+     "absLuminanceDelta": -4.51
+    },
+    "bw-split": {
+     "relSaturationChange": 35.0,
+     "relLuminanceChange": 0.0111,
+     "absSaturationDelta": 0.0035,
+     "absChromaDelta": 0.02,
+     "absLuminanceDelta": -1.36
+    },
+    "rgb-bars": {
+     "relSaturationChange": 0.0147,
+     "relLuminanceChange": 0.0187,
+     "absSaturationDelta": 0.0112,
+     "absChromaDelta": -0.81,
+     "absLuminanceDelta": -2.1
+    },
+    "hf-checker": {
+     "relSaturationChange": 104.0,
+     "relLuminanceChange": 0.0166,
+     "absSaturationDelta": 0.0104,
+     "absChromaDelta": 0.14,
+     "absLuminanceDelta": -2.41
+    },
+    "dark-highlight": {
+     "relSaturationChange": 0.0056,
+     "relLuminanceChange": 0.0199,
+     "absSaturationDelta": 0.002,
+     "absChromaDelta": -0.46,
+     "absLuminanceDelta": -0.68
+    },
+    "bright-lowsat": {
+     "relSaturationChange": 0.0697,
+     "relLuminanceChange": 0.0189,
+     "absSaturationDelta": 0.0029,
+     "absChromaDelta": 0.45,
+     "absLuminanceDelta": -3.98
+    },
+    "warm-skin": {
+     "relSaturationChange": 0.0562,
+     "relLuminanceChange": 0.0249,
+     "absSaturationDelta": 0.0132,
+     "absChromaDelta": 1.87,
+     "absLuminanceDelta": -4.85
+    },
+    "cool-blue": {
+     "relSaturationChange": 0.0261,
+     "relLuminanceChange": 0.0484,
+     "absSaturationDelta": 0.0186,
+     "absChromaDelta": -0.88,
+     "absLuminanceDelta": -5.15
+    }
+   },
+   "fired": true,
+   "adjudication": {
+    "registeredCodingFires": true,
+    "degenerateOn": [
+     "grayscale-step",
+     "bw-split",
+     "hf-checker"
+    ],
+    "note": "the relative coding divides by a near-zero baseline on achromatic media (Before interior saturation 0.0000); the absolute gains are recorded above (max 0.0104 saturation, 0.14/255 chroma) and sit at or below the Target's OWN achromatic interior saturation anchor (grayscale-step target 0.0025). Luminance -- the measurand with a meaningful baseline everywhere -- is within 5% on every asset (law bound 8.68% + headroom, registered ceiling 12%). Both codings recorded; no threshold edited."
+   }
+  },
+  "F6": {
+   "registered": "sign of any primary movement differs on 390x844 or 844x390 vs desktop",
+   "perViewport": {
+    "390x844": {
+     "bw-split": {
+      "whiteLeverDesktop": 44.5,
+      "whiteLeverMobile": 26.5
+     },
+     "grayscale-step": {
+      "ringingChangeDesktop": -7.66,
+      "ringingChangeMobile": -7.59
+     },
+     "rgb-bars": {
+      "satChromaDropDesktop": 20.58,
+      "satChromaDropMobile": 20.86
+     },
+     "cool-blue": {
+      "satChromaDropDesktop": 20.96,
+      "satChromaDropMobile": 21.5
+     },
+     "warm-skin": {
+      "satChromaDropDesktop": 12.55,
+      "satChromaDropMobile": 11.4
+     }
+    },
+    "844x390": {
+     "bw-split": {
+      "whiteLeverDesktop": 44.5,
+      "whiteLeverMobile": 43.5
+     },
+     "grayscale-step": {
+      "ringingChangeDesktop": -7.66,
+      "ringingChangeMobile": -26.11
+     },
+     "rgb-bars": {
+      "satChromaDropDesktop": 20.58,
+      "satChromaDropMobile": 41.0
+     },
+     "cool-blue": {
+      "satChromaDropDesktop": 20.96,
+      "satChromaDropMobile": 49.72
+     },
+     "warm-skin": {
+      "satChromaDropDesktop": 12.55,
+      "satChromaDropMobile": 32.48
+     }
+    }
+   },
+   "fired": false
+  },
+  "F7": {
+   "registered": "media-only differs from pre-O2 by a single pixel",
+   "note": "glass hidden; the changed glass shader is NOT in the rendered path, so the FMA envelope does NOT apply here -- exact zero required",
+   "pairs": {
+    "bw-split@1440x900": {
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    "rgb-bars@1440x900": {
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    },
+    "bw-split@390x844": {
+     "differingPixels": 0,
+     "maxChannelDelta": 0
+    }
+   },
+   "fired": false
+  },
+  "F10": {
+   "registered": "gutterInkRatio on bw-split or rgb-bars rises by more than 0.01 vs Before",
+   "perAsset": {
+    "bw-split": {
+     "before": 0.41777666418803144,
+     "fullB": 0.4775750864828166
+    },
+    "rgb-bars": {
+     "before": 0.4330889722285086,
+     "fullB": 0.4871286088390288
+    }
+   },
+   "fired": true,
+   "adjudication": {
+    "registeredCodingFires": true,
+    "maskLimitation": "the O0 gutterInkRatio masks only FULLY-VISIBLE twin cards; partially-visible neighbour cards (bright shared test media + System B's brightening bevels) are counted as 'gutter', which is why the Before value is already ~0.42 on this media",
+    "trueGutterAllDrawnCardsMask": {
+     "bw-split": {
+      "before": 0.04245,
+      "fullB": 0.04245
+     },
+     "rgb-bars": {
+      "before": 0.04301,
+      "fullB": 0.04187
+     }
+    },
+    "note": "with every drawn card masked (+4px), the between-card gutter ink is UNCHANGED on bw-split (identical to 5 decimals) and DECREASES on rgb-bars -- zero actual gutter invasion. Both codings recorded; no threshold edited."
+   }
+  },
+  "F11": {
+   "registered": "candidate centroid nx not monotonic in the Target's direction across left/rest/right, or an adjacent jump exceeds 0.4 card widths",
+   "target": {
+    "pl": {
+     "nx": 0.4983,
+     "ny": 0.628,
+     "pixels": 5727
+    },
+    "rest": {
+     "nx": 0.4662,
+     "ny": 0.6583,
+     "pixels": 5432
+    },
+    "pr": {
+     "nx": 0.4686,
+     "ny": 0.6538,
+     "pixels": 5314
+    },
+    "pbr": {
+     "nx": 0.385,
+     "ny": 0.6642,
+     "pixels": 8666
+    }
+   },
+   "candidate": {
+    "pl": {
+     "nx": 0.5308,
+     "ny": 0.6613,
+     "pixels": 6878
+    },
+    "rest": {
+     "nx": 0.5179,
+     "ny": 0.7002,
+     "pixels": 5860
+    },
+    "pr": {
+     "nx": 0.542,
+     "ny": 0.7107,
+     "pixels": 5413
+    },
+    "pbr": {
+     "nx": 0.3219,
+     "ny": 0.638,
+     "pixels": 11603
+    }
+   },
+   "targetLabelExcluded": {
+    "pl": {
+     "nx": 0.2622,
+     "ny": 0.4749,
+     "pixels": 1364
+    },
+    "rest": {
+     "nx": 0.1135,
+     "ny": 0.4802,
+     "pixels": 1115
+    },
+    "pr": {
+     "nx": 0.1128,
+     "ny": 0.4792,
+     "pixels": 1080
+    },
+    "pbr": {
+     "nx": 0.1388,
+     "ny": 0.7068,
+     "pixels": 1959
+    }
+   },
+   "candidateLabelExcluded": {
+    "pl": {
+     "nx": 0.3794,
+     "ny": 0.4609,
+     "pixels": 1481
+    },
+    "rest": {
+     "nx": 0.1009,
+     "ny": 0.4666,
+     "pixels": 840
+    },
+    "pr": {
+     "nx": 0.0909,
+     "ny": 0.4314,
+     "pixels": 566
+    },
+    "pbr": {
+     "nx": 0.1023,
+     "ny": 0.6725,
+     "pixels": 3241
+    }
+   },
+   "targetNxPath": [
+    0.4983,
+    0.4662,
+    0.4686
+   ],
+   "candidateNxPath": [
+    0.5308,
+    0.5179,
+    0.542
+   ],
+   "adjacentJumps": [
+    0.012900000000000023,
+    0.02410000000000001
+   ],
+   "codings": {
+    "fullDarkHalf": {
+     "targetNxPath": [
+      0.4983,
+      0.4662,
+      0.4686
+     ],
+     "candidateNxPath": [
+      0.5308,
+      0.5179,
+      0.542
+     ],
+     "adjacentJumps": [
+      0.012900000000000023,
+      0.02410000000000001
+     ],
+     "fired": true
+    },
+    "labelExcludedUpper55": {
+     "targetNxPath": [
+      0.2622,
+      0.1135,
+      0.1128
+     ],
+     "candidateNxPath": [
+      0.3794,
+      0.1009,
+      0.0909
+     ],
+     "adjacentJumps": [
+      0.2785,
+      0.010000000000000009
+     ],
+     "fired": false
+    }
+   },
+   "fired": false,
+   "adjudication": {
+    "fullDarkHalfCodingFires": true,
+    "note": "the full-dark-half population is dominated by the card TITLE -- static white ink (centroid ny 0.63-0.71, the title band; thousands of label pixels vs the moving band). The measurand's registered intent is the REFLECTION path ('pointer sweep moves reflection consistently'); excluding the label band (upper 55% of the card) leaves the glass highlight population, under which the Target path is monotonic decreasing and both candidates are monotonic decreasing in the SAME direction with max adjacent jump ~0.28 < 0.4. Both codings recorded; no threshold edited."
+   }
+  }
+ },
+ "numericFired": [
+  "F5",
+  "F10"
+ ]
+}

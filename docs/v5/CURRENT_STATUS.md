@@ -2,7 +2,7 @@
 
 Single canonical entry point. Every delivery updates this file.
 
-Last updated: 2026-08-21 (O2 round open: product accepted V1 and the O0 diagnosis, confirmed O1 System A FAILED — experimental lane only — and authorised System B behind a deterministic shared-media harness)
+Last updated: 2026-08-21 (O2 delivered: System B — White Studio Reflection / fresnel-capped LERP — scored under the deterministic shared-media harness; A+B selected by the pre-registered rule; **READY FOR O2 OPTICS PRODUCT REVIEW**)
 
 | | |
 | --- | --- |
@@ -55,7 +55,7 @@ stated here and no further hygiene commit is created to chase it.
 | V1 WebGL render culling | **ACCEPTED — FROZEN** (behaviour baseline `b625f90`, accepted review tip `5159cf8`), see [`RENDER_CULLING_FREEZE_CONTRACT.md`](RENDER_CULLING_FREEZE_CONTRACT.md) |
 | Optics — O0 diagnosis | **ACCEPTED** as the current optics source baseline |
 | Optics — O1 System A | **FAILED ABSOLUTE GATE**; commit `e01fb30` remains an EXPERIMENTAL LANE only — not an accepted baseline, not frozen. See the O0/O1 section and the wording correction below |
-| Optics — O2 System B | authorised: Environment / White Studio Reflection / Fresnel-capped LERP, behind a deterministic shared-media harness. In progress |
+| Optics — O2 System B | **READY FOR O2 OPTICS PRODUCT REVIEW** — candidate `e913aa6`; selected lane **A+B** (System A retained ONLY through the pre-registered O2 interaction gate, never from the failed O1 result); evidence `qa-v5/optics-o2/` + private `o2-optics-review.zip`. Awaiting product review — not accepted, not frozen |
 | Media / Layout | unmodified, frozen |
 | Main merge | **NOT AUTHORISED** |
 | Old F0 layout baseline | Historical Accepted Baseline, superseded by SourceExact Composition |
@@ -315,6 +315,69 @@ an EXPERIMENTAL LANE only (product decision). It re-enters the product
 path only if the O2 A+B lane wins the pre-registered interaction gate —
 never retroactively from the failed O1 result.
 
+## O2 — System B: White Studio Reflection / fresnel-capped LERP
+
+**READY FOR O2 OPTICS PRODUCT REVIEW.** Candidate `e913aa6`; selected
+lane **A+B** by the pre-registered rule (all six strict criteria — the
+exact path §四 authorised for System A to re-enter the product).
+Evidence: [`qa-v5/optics-o2/`](../../qa-v5/optics-o2/README.md) + private
+`qa-v5/private/o2-optics-review.zip`.
+
+The round ran in the pre-registered order. First the deterministic
+shared-media harness (10/10 PASS: byte-anchored HLS/mp4 renditions with
+identical elementary streams served to BOTH pages, frozen at 4.0s,
+decoded-frame hashes EQUAL cross-page, cover law verified three ways) —
+every scored number is a same-media, mostly same-page number. Then the
+System B source contract (14/14 byte-anchored sites, live bundle
+identical; env = the Target-identical CC0 `studio_small_03_1k.hdr` with
+recorded provenance, NOT copied from the Target). Then the sealed
+pre-registration (`o2-selected-system.json`, committed before any
+candidate code). Then the code, the scoring, the gates.
+
+Findings a reviewer should read in order:
+
+1. **A latent V1 shader state was discovered and worked around, not
+   silently fixed.** three's TSL emits the shared `normalView` varying
+   unpack only into the FIRST debug-select branch that references it, so
+   the beauty path has always read the shared normal globals as zeros —
+   V1's `facing` term (which only ever fed the QA shell opacity and a
+   debug view) has always been 0. V1's frozen pixels are untouched;
+   System B reads the interpolated geometry normal through its OWN
+   varying and mirrors the Target's law in view space (rotations
+   preserve dot products and commute with reflect — mathematically the
+   Target's world-space form). Proven by compiled-shader dumps; recorded
+   in the README and the code commit.
+2. **Lane integrity is proven structurally at EXACT ZERO.** `?systemB=off`
+   builds the pre-O2 shader byte-for-byte; both lanes are pixel-identical
+   to worktree builds of `5159cf8` / `62d3ac4`, cross-origin and
+   cross-build, both viewports. The registered runtime-neutralised proof
+   carries a deterministic 1px/1-step FMA artifact (desktop only) —
+   adjudicated with both codings in `lane-equivalence.json`; the FMA
+   explanation is scope-bounded (media-only and A/B gates stay
+   exact-zero, and measured exactly zero).
+3. **The gates.** F1 white lever +44 dark-side edge luma (≥6 required);
+   F4 saturated edge-chroma mean drop 18.0 (≥8 required, 2× the whole O1
+   lever was the floor); A+B achromatic edge chroma 3.56/3.68 vs the
+   Target's own 3.33/3.58; media-only 0 differing pixels everywhere; all
+   frozen suites PASS. Three registered codings fired on instrument
+   degeneracies (F5 zero-baseline division on achromatic media, F10
+   neighbour-card mask pollution, F11 title-ink domination) — each gate
+   JSON records BOTH codings with primary evidence; no threshold was
+   edited after capture.
+4. **One recorded instrument update:** the V1 render gate's shell law is
+   mode-aware since O2 (shell defaults OFF in Beauty on source-exact —
+   pre-registered; the gate now asserts ZERO shells in that mode, which
+   catches shell ink leaking into Beauty, and re-passed 20204/20204
+   frames clean).
+5. **Observed, not gated:** the reflection band on black media is wider
+   than the Target's (~15px vs 3.3px mean) — the geometry bevel spreads
+   the white band more than the Target's analytic bevel. Recorded for
+   product review.
+
+Stop state: awaiting product review. No O3 work, no refraction / tone
+mapping / layout / typography / motion / culling changes, no Target
+Visual PASS asserted, no main merge.
+
 ## FSX-A integration hardening
 
 | | |
@@ -342,6 +405,7 @@ See [`FSX_ACCEPTANCE.md`](FSX_ACCEPTANCE.md).
 **Candidate, not accepted**
 - V1 render culling: `cba2e72` forensics · `b625f90` code (render culling behaviour baseline) · `04cff37` evidence · `5159cf8` accept record — GATE PASS, frozen
 - O0/O1 optics: `03676b1` O0 source diagnosis + pre-registered system selection · `e01fb30` O1 candidate code (the Target's dispersion law, System A only) · the O1 evidence commit — **O1 FAILED ABSOLUTE GATE**; attribution corrected to System B
+- O2 optics: `62498e5` shared-media harness (10/10 PASS) · `8147156` System B source contract + pre-registration (sealed before candidate code) · `e913aa6` System B code (branch-safe implementation; structural lane proof EXACT 0) · this delivery's evidence commit — **READY FOR O2 OPTICS PRODUCT REVIEW**, selected lane A+B
 - `dd6d7bf` / `4ca597f` F2 · `b5cff63` F2 audit · `730beb7` F3 diagnosis
 - `f56f55e` / `ba4ba32` F2.5 · this delivery's three F2.6 commits
 
@@ -505,7 +569,11 @@ Typography is **ACCEPTED and frozen**; Motion is **ACCEPTED and frozen**;
 label and render culling are frozen. Optics: the O1 System A candidate
 **FAILED its absolute gate**; the O2 selection must read the corrected
 attribution (System B) and the Target-lane variance warning in
-`qa-v5/optics/o0-source-diagnosis.json`.
+`qa-v5/optics/o0-source-diagnosis.json`. The O2 round answered exactly
+that: System B scored under the deterministic shared-media harness
+(cross-page Target numbers secondary by design), candidate **A+B** won
+the pre-registered interaction rule on all six strict criteria, and the
+delivery is **READY FOR O2 OPTICS PRODUCT REVIEW** (see the O2 section).
 
 ### Superseded F2.7 decisions
 

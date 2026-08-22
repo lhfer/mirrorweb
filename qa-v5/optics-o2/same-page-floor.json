@@ -1,0 +1,1616 @@
+{
+ "artifact": "\u00a7\u516d within-page floor decomposition (same page, same frozen media)",
+ "capturedAtHead": "e913aa6",
+ "lanes": {
+  "B-only": {
+   "grayscale-step": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 11.22,
+      "whiteReflectionRatio": 0.3877,
+      "fringeRB": 10.99,
+      "fringeWidthPxMean": 6.61,
+      "gutterInkRatio": 0.46210921082409234,
+      "sides": {
+       "darkSideEdgeLuma": 64.7,
+       "brightSideEdgeLuma": 157.6,
+       "darkOverBrightLumaRatio": 0.4102,
+       "darkSideEdgeChroma": 19.38,
+       "brightSideEdgeChroma": 28.76,
+       "sideChromaGap": 9.38
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0,
+       "interiorLuminanceMean": 143.55,
+       "interiorChromaMean": 0.0
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 8.2,
+      "whiteReflectionRatio": 0.3926,
+      "fringeRB": 8.08,
+      "fringeWidthPxMean": 5.14,
+      "gutterInkRatio": 0.5008001681161295,
+      "sides": {
+       "darkSideEdgeLuma": 87.0,
+       "brightSideEdgeLuma": 173.5,
+       "darkOverBrightLumaRatio": 0.5016,
+       "darkSideEdgeChroma": 13.21,
+       "brightSideEdgeChroma": 19.13,
+       "sideChromaGap": 5.93
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0,
+       "interiorLuminanceMean": 143.55,
+       "interiorChromaMean": 0.0
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 11.2,
+      "whiteReflectionRatio": 0.41,
+      "fringeRB": 10.99,
+      "fringeWidthPxMean": 5.57,
+      "gutterInkRatio": 0.49846836507064113,
+      "sides": {
+       "darkSideEdgeLuma": 100.7,
+       "brightSideEdgeLuma": 159.8,
+       "darkOverBrightLumaRatio": 0.6302,
+       "darkSideEdgeChroma": 15.88,
+       "brightSideEdgeChroma": 28.37,
+       "sideChromaGap": 12.49
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0021,
+       "interiorLuminanceMean": 139.04,
+       "interiorChromaMean": 0.14
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 8.12,
+      "whiteReflectionRatio": 0.4139,
+      "fringeRB": 8.01,
+      "fringeWidthPxMean": 4.5,
+      "gutterInkRatio": 0.5213095276583363,
+      "sides": {
+       "darkSideEdgeLuma": 118.3,
+       "brightSideEdgeLuma": 171.9,
+       "darkOverBrightLumaRatio": 0.6883,
+       "darkSideEdgeChroma": 11.02,
+       "brightSideEdgeChroma": 18.2,
+       "sideChromaGap": 7.18
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0021,
+       "interiorLuminanceMean": 139.04,
+       "interiorChromaMean": 0.14
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": -0.02,
+      "whiteReflectionRatio": 0.0223
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -3.08,
+      "whiteReflectionRatio": 0.0039
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": -0.08,
+      "whiteReflectionRatio": 0.0213
+     }
+    }
+   },
+   "bw-split": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 9.73,
+      "whiteReflectionRatio": 0.3925,
+      "fringeRB": 9.56,
+      "fringeWidthPxMean": 5.46,
+      "gutterInkRatio": 0.41777666418803144,
+      "sides": {
+       "darkSideEdgeLuma": 28.5,
+       "brightSideEdgeLuma": 176.6,
+       "darkOverBrightLumaRatio": 0.1615,
+       "darkSideEdgeChroma": 14.59,
+       "brightSideEdgeChroma": 26.05,
+       "sideChromaGap": 11.46
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0,
+       "interiorLuminanceMean": 122.76,
+       "interiorChromaMean": 0.0
+      },
+      "reflectionBand": {
+       "meanPx": 9.7,
+       "meanNormToCardWidth": 0.0179
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 7.46,
+      "whiteReflectionRatio": 0.3968,
+      "fringeRB": 7.35,
+      "fringeWidthPxMean": 5.36,
+      "gutterInkRatio": 0.47335601823413403,
+      "sides": {
+       "darkSideEdgeLuma": 52.2,
+       "brightSideEdgeLuma": 189.9,
+       "darkOverBrightLumaRatio": 0.2747,
+       "darkSideEdgeChroma": 10.5,
+       "brightSideEdgeChroma": 18.36,
+       "sideChromaGap": 7.86
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0,
+       "interiorLuminanceMean": 122.76,
+       "interiorChromaMean": 0.0
+      },
+      "reflectionBand": {
+       "meanPx": 15.3,
+       "meanNormToCardWidth": 0.0285
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 9.97,
+      "whiteReflectionRatio": 0.4147,
+      "fringeRB": 9.8,
+      "fringeWidthPxMean": 5.04,
+      "gutterInkRatio": 0.4288092851831496,
+      "sides": {
+       "darkSideEdgeLuma": 75.7,
+       "brightSideEdgeLuma": 178.9,
+       "darkOverBrightLumaRatio": 0.4234,
+       "darkSideEdgeChroma": 12.56,
+       "brightSideEdgeChroma": 25.07,
+       "sideChromaGap": 12.52
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0035,
+       "interiorLuminanceMean": 121.4,
+       "interiorChromaMean": 0.02
+      },
+      "reflectionBand": {
+       "meanPx": 9.7,
+       "meanNormToCardWidth": 0.0179
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 7.74,
+      "whiteReflectionRatio": 0.4174,
+      "fringeRB": 7.65,
+      "fringeWidthPxMean": 4.79,
+      "gutterInkRatio": 0.4778054379101872,
+      "sides": {
+       "darkSideEdgeLuma": 96.2,
+       "brightSideEdgeLuma": 189.1,
+       "darkOverBrightLumaRatio": 0.509,
+       "darkSideEdgeChroma": 9.45,
+       "brightSideEdgeChroma": 17.91,
+       "sideChromaGap": 8.46
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0035,
+       "interiorLuminanceMean": 121.4,
+       "interiorChromaMean": 0.02
+      },
+      "reflectionBand": {
+       "meanPx": 15.3,
+       "meanNormToCardWidth": 0.0285
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": 0.24,
+      "whiteReflectionRatio": 0.0222,
+      "darkSideEdgeLuma": 47.2
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -2.23,
+      "whiteReflectionRatio": 0.0027,
+      "darkSideEdgeLuma": 20.5
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": 0.28,
+      "whiteReflectionRatio": 0.0206,
+      "darkSideEdgeLuma": 44.0
+     }
+    }
+   },
+   "rgb-bars": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 111.28,
+      "whiteReflectionRatio": 0.2723,
+      "fringeRB": 94.65,
+      "fringeWidthPxMean": 15.04,
+      "gutterInkRatio": 0.4330889722285086,
+      "sides": {
+       "darkSideEdgeLuma": 52.2,
+       "brightSideEdgeLuma": 168.4,
+       "darkOverBrightLumaRatio": 0.3102,
+       "darkSideEdgeChroma": 157.87,
+       "brightSideEdgeChroma": 37.0,
+       "sideChromaGap": 120.86
+      },
+      "interior": {
+       "interiorSaturationMean": 0.7644,
+       "interiorLuminanceMean": 112.6,
+       "interiorChromaMean": 168.35
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 102.63,
+      "whiteReflectionRatio": 0.2746,
+      "fringeRB": 87.78,
+      "fringeWidthPxMean": 14.79,
+      "gutterInkRatio": 0.47755892147036955,
+      "sides": {
+       "darkSideEdgeLuma": 78.4,
+       "brightSideEdgeLuma": 183.3,
+       "darkOverBrightLumaRatio": 0.4276,
+       "darkSideEdgeChroma": 144.16,
+       "brightSideEdgeChroma": 25.0,
+       "sideChromaGap": 119.16
+      },
+      "interior": {
+       "interiorSaturationMean": 0.7626,
+       "interiorLuminanceMean": 112.69,
+       "interiorChromaMean": 168.01
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 102.35,
+      "whiteReflectionRatio": 0.2954,
+      "fringeRB": 86.15,
+      "fringeWidthPxMean": 13.82,
+      "gutterInkRatio": 0.4517878503766448,
+      "sides": {
+       "darkSideEdgeLuma": 92.0,
+       "brightSideEdgeLuma": 170.8,
+       "darkOverBrightLumaRatio": 0.5388,
+       "darkSideEdgeChroma": 114.36,
+       "brightSideEdgeChroma": 35.27,
+       "sideChromaGap": 79.09
+      },
+      "interior": {
+       "interiorSaturationMean": 0.7756,
+       "interiorLuminanceMean": 110.5,
+       "interiorChromaMean": 167.54
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 93.18,
+      "whiteReflectionRatio": 0.2977,
+      "fringeRB": 78.51,
+      "fringeWidthPxMean": 13.29,
+      "gutterInkRatio": 0.4873266302415053,
+      "sides": {
+       "darkSideEdgeLuma": 113.8,
+       "brightSideEdgeLuma": 182.0,
+       "darkOverBrightLumaRatio": 0.6253,
+       "darkSideEdgeChroma": 99.82,
+       "brightSideEdgeChroma": 23.67,
+       "sideChromaGap": 76.15
+      },
+      "interior": {
+       "interiorSaturationMean": 0.7756,
+       "interiorLuminanceMean": 110.5,
+       "interiorChromaMean": 167.54
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": -8.93,
+      "whiteReflectionRatio": 0.0231
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -9.17,
+      "whiteReflectionRatio": 0.0023
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": -9.45,
+      "whiteReflectionRatio": 0.0231
+     }
+    }
+   },
+   "hf-checker": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 24.57,
+      "whiteReflectionRatio": 0.4127,
+      "fringeRB": 21.73,
+      "fringeWidthPxMean": 14.0,
+      "gutterInkRatio": 0.5975356438524457,
+      "sides": {
+       "darkSideEdgeLuma": 135.2,
+       "brightSideEdgeLuma": 137.8,
+       "darkOverBrightLumaRatio": 0.981,
+       "darkSideEdgeChroma": 47.99,
+       "brightSideEdgeChroma": 48.6,
+       "sideChromaGap": 0.6
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0,
+       "interiorLuminanceMean": 145.37,
+       "interiorChromaMean": 0.0
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 18.54,
+      "whiteReflectionRatio": 0.4613,
+      "fringeRB": 16.37,
+      "fringeWidthPxMean": 12.75,
+      "gutterInkRatio": 0.6090330089554169,
+      "sides": {
+       "darkSideEdgeLuma": 151.2,
+       "brightSideEdgeLuma": 154.3,
+       "darkOverBrightLumaRatio": 0.9798,
+       "darkSideEdgeChroma": 34.23,
+       "brightSideEdgeChroma": 34.41,
+       "sideChromaGap": 0.18
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0,
+       "interiorLuminanceMean": 145.4,
+       "interiorChromaMean": 0.0
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 23.71,
+      "whiteReflectionRatio": 0.4245,
+      "fringeRB": 20.93,
+      "fringeWidthPxMean": 12.79,
+      "gutterInkRatio": 0.6055413662668521,
+      "sides": {
+       "darkSideEdgeLuma": 154.5,
+       "brightSideEdgeLuma": 142.1,
+       "darkOverBrightLumaRatio": 1.0869,
+       "darkSideEdgeChroma": 41.27,
+       "brightSideEdgeChroma": 47.13,
+       "sideChromaGap": 5.86
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0104,
+       "interiorLuminanceMean": 142.96,
+       "interiorChromaMean": 0.14
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 18.08,
+      "whiteReflectionRatio": 0.455,
+      "fringeRB": 15.91,
+      "fringeWidthPxMean": 11.36,
+      "gutterInkRatio": 0.6134783873783582,
+      "sides": {
+       "darkSideEdgeLuma": 165.9,
+       "brightSideEdgeLuma": 154.7,
+       "darkOverBrightLumaRatio": 1.0726,
+       "darkSideEdgeChroma": 30.05,
+       "brightSideEdgeChroma": 33.29,
+       "sideChromaGap": 3.24
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0104,
+       "interiorLuminanceMean": 142.96,
+       "interiorChromaMean": 0.14
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": -0.86,
+      "whiteReflectionRatio": 0.0118
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -5.63,
+      "whiteReflectionRatio": 0.0305
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": -0.46,
+      "whiteReflectionRatio": -0.0063
+     }
+    }
+   },
+   "dark-highlight": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 10.87,
+      "whiteReflectionRatio": 0.0146,
+      "fringeRB": 10.21,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.06183117261000291,
+      "sides": {
+       "darkSideEdgeLuma": 37.1,
+       "brightSideEdgeLuma": 36.4,
+       "darkOverBrightLumaRatio": 1.0201,
+       "darkSideEdgeChroma": 11.07,
+       "brightSideEdgeChroma": 10.93,
+       "sideChromaGap": 0.14
+      },
+      "interior": {
+       "interiorSaturationMean": 0.3545,
+       "interiorLuminanceMean": 34.17,
+       "interiorChromaMean": 9.1
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 9.94,
+      "whiteReflectionRatio": 0.014,
+      "fringeRB": 9.33,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.1645113316737254,
+      "sides": {
+       "darkSideEdgeLuma": 60.7,
+       "brightSideEdgeLuma": 61.1,
+       "darkOverBrightLumaRatio": 0.9937,
+       "darkSideEdgeChroma": 9.51,
+       "brightSideEdgeChroma": 9.3,
+       "sideChromaGap": 0.2
+      },
+      "interior": {
+       "interiorSaturationMean": 0.3566,
+       "interiorLuminanceMean": 34.12,
+       "interiorChromaMean": 9.11
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 11.22,
+      "whiteReflectionRatio": 0.0373,
+      "fringeRB": 10.87,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.10535546862371084,
+      "sides": {
+       "darkSideEdgeLuma": 82.3,
+       "brightSideEdgeLuma": 48.8,
+       "darkOverBrightLumaRatio": 1.6866,
+       "darkSideEdgeChroma": 10.75,
+       "brightSideEdgeChroma": 11.78,
+       "sideChromaGap": 1.03
+      },
+      "interior": {
+       "interiorSaturationMean": 0.3565,
+       "interiorLuminanceMean": 33.49,
+       "interiorChromaMean": 8.64
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 9.98,
+      "whiteReflectionRatio": 0.0378,
+      "fringeRB": 9.69,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.18803142478419707,
+      "sides": {
+       "darkSideEdgeLuma": 101.9,
+       "brightSideEdgeLuma": 70.3,
+       "darkOverBrightLumaRatio": 1.4494,
+       "darkSideEdgeChroma": 8.85,
+       "brightSideEdgeChroma": 9.75,
+       "sideChromaGap": 0.9
+      },
+      "interior": {
+       "interiorSaturationMean": 0.3565,
+       "interiorLuminanceMean": 33.49,
+       "interiorChromaMean": 8.64
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": 0.35,
+      "whiteReflectionRatio": 0.0227
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -1.24,
+      "whiteReflectionRatio": 0.0005
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": 0.04,
+      "whiteReflectionRatio": 0.0238
+     }
+    }
+   },
+   "bright-lowsat": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 21.2,
+      "whiteReflectionRatio": 0.7448,
+      "fringeRB": 20.41,
+      "fringeWidthPxMean": 10.5,
+      "gutterInkRatio": 0.770283049367948,
+      "sides": {
+       "darkSideEdgeLuma": 162.5,
+       "brightSideEdgeLuma": 164.6,
+       "darkOverBrightLumaRatio": 0.9872,
+       "darkSideEdgeChroma": 39.02,
+       "brightSideEdgeChroma": 40.77,
+       "sideChromaGap": 1.76
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0416,
+       "interiorLuminanceMean": 210.44,
+       "interiorChromaMean": 8.93
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 16.31,
+      "whiteReflectionRatio": 0.7544,
+      "fringeRB": 15.75,
+      "fringeWidthPxMean": 10.18,
+      "gutterInkRatio": 0.779909314280172,
+      "sides": {
+       "darkSideEdgeLuma": 176.9,
+       "brightSideEdgeLuma": 179.4,
+       "darkOverBrightLumaRatio": 0.9857,
+       "darkSideEdgeChroma": 27.01,
+       "brightSideEdgeChroma": 28.18,
+       "sideChromaGap": 1.17
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0413,
+       "interiorLuminanceMean": 210.47,
+       "interiorChromaMean": 8.88
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 20.18,
+      "whiteReflectionRatio": 0.7493,
+      "fringeRB": 19.46,
+      "fringeWidthPxMean": 9.29,
+      "gutterInkRatio": 0.7735887944133717,
+      "sides": {
+       "darkSideEdgeLuma": 172.3,
+       "brightSideEdgeLuma": 166.7,
+       "darkOverBrightLumaRatio": 1.0332,
+       "darkSideEdgeChroma": 31.4,
+       "brightSideEdgeChroma": 39.36,
+       "sideChromaGap": 7.95
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0445,
+       "interiorLuminanceMean": 206.46,
+       "interiorChromaMean": 9.38
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 15.55,
+      "whiteReflectionRatio": 0.7569,
+      "fringeRB": 15.05,
+      "fringeWidthPxMean": 8.61,
+      "gutterInkRatio": 0.7804144709191426,
+      "sides": {
+       "darkSideEdgeLuma": 182.5,
+       "brightSideEdgeLuma": 177.9,
+       "darkOverBrightLumaRatio": 1.0259,
+       "darkSideEdgeChroma": 21.73,
+       "brightSideEdgeChroma": 26.85,
+       "sideChromaGap": 5.12
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0445,
+       "interiorLuminanceMean": 206.46,
+       "interiorChromaMean": 9.38
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": -1.02,
+      "whiteReflectionRatio": 0.0045
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -4.63,
+      "whiteReflectionRatio": 0.0076
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": -0.76,
+      "whiteReflectionRatio": 0.0025
+     }
+    }
+   },
+   "warm-skin": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 54.79,
+      "whiteReflectionRatio": 0.0325,
+      "fringeRB": 53.51,
+      "fringeWidthPxMean": 24.79,
+      "gutterInkRatio": 0.7691595810028774,
+      "sides": {
+       "darkSideEdgeLuma": 142.4,
+       "brightSideEdgeLuma": 146.3,
+       "darkOverBrightLumaRatio": 0.9734,
+       "darkSideEdgeChroma": 68.69,
+       "brightSideEdgeChroma": 69.97,
+       "sideChromaGap": 1.29
+      },
+      "interior": {
+       "interiorSaturationMean": 0.235,
+       "interiorLuminanceMean": 195.13,
+       "interiorChromaMean": 50.62
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 47.47,
+      "whiteReflectionRatio": 0.0409,
+      "fringeRB": 46.73,
+      "fringeWidthPxMean": 23.5,
+      "gutterInkRatio": 0.778636319549966,
+      "sides": {
+       "darkSideEdgeLuma": 159.8,
+       "brightSideEdgeLuma": 164.1,
+       "darkOverBrightLumaRatio": 0.9739,
+       "darkSideEdgeChroma": 53.49,
+       "brightSideEdgeChroma": 54.34,
+       "sideChromaGap": 0.85
+      },
+      "interior": {
+       "interiorSaturationMean": 0.235,
+       "interiorLuminanceMean": 195.25,
+       "interiorChromaMean": 50.67
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 51.96,
+      "whiteReflectionRatio": 0.0575,
+      "fringeRB": 50.85,
+      "fringeWidthPxMean": 22.61,
+      "gutterInkRatio": 0.7726431411852187,
+      "sides": {
+       "darkSideEdgeLuma": 156.9,
+       "brightSideEdgeLuma": 149.1,
+       "darkOverBrightLumaRatio": 1.0524,
+       "darkSideEdgeChroma": 52.38,
+       "brightSideEdgeChroma": 66.26,
+       "sideChromaGap": 13.88
+      },
+      "interior": {
+       "interiorSaturationMean": 0.2482,
+       "interiorLuminanceMean": 190.28,
+       "interiorChromaMean": 52.49
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 45.55,
+      "whiteReflectionRatio": 0.071,
+      "fringeRB": 44.89,
+      "fringeWidthPxMean": 20.57,
+      "gutterInkRatio": 0.7797436229025896,
+      "sides": {
+       "darkSideEdgeLuma": 169.2,
+       "brightSideEdgeLuma": 162.4,
+       "darkOverBrightLumaRatio": 1.0422,
+       "darkSideEdgeChroma": 40.33,
+       "brightSideEdgeChroma": 51.87,
+       "sideChromaGap": 11.55
+      },
+      "interior": {
+       "interiorSaturationMean": 0.2482,
+       "interiorLuminanceMean": 190.28,
+       "interiorChromaMean": 52.49
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": -2.83,
+      "whiteReflectionRatio": 0.025
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -6.41,
+      "whiteReflectionRatio": 0.0135
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": -1.92,
+      "whiteReflectionRatio": 0.0301
+     }
+    }
+   },
+   "cool-blue": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 110.61,
+      "whiteReflectionRatio": 0.0159,
+      "fringeRB": 110.46,
+      "fringeWidthPxMean": 23.43,
+      "gutterInkRatio": 0.7572823381074003,
+      "sides": {
+       "darkSideEdgeLuma": 82.8,
+       "brightSideEdgeLuma": 84.1,
+       "darkOverBrightLumaRatio": 0.9838,
+       "darkSideEdgeChroma": 109.6,
+       "brightSideEdgeChroma": 113.15,
+       "sideChromaGap": 3.55
+      },
+      "interior": {
+       "interiorSaturationMean": 0.7114,
+       "interiorLuminanceMean": 106.42,
+       "interiorChromaMean": 129.75
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 100.4,
+      "whiteReflectionRatio": 0.0153,
+      "fringeRB": 100.3,
+      "fringeWidthPxMean": 23.29,
+      "gutterInkRatio": 0.7741868998739129,
+      "sides": {
+       "darkSideEdgeLuma": 104.5,
+       "brightSideEdgeLuma": 106.7,
+       "darkOverBrightLumaRatio": 0.9793,
+       "darkSideEdgeChroma": 94.04,
+       "brightSideEdgeChroma": 96.71,
+       "sideChromaGap": 2.68
+      },
+      "interior": {
+       "interiorSaturationMean": 0.7117,
+       "interiorLuminanceMean": 106.58,
+       "interiorChromaMean": 129.85
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 102.5,
+      "whiteReflectionRatio": 0.0387,
+      "fringeRB": 102.38,
+      "fringeWidthPxMean": 21.82,
+      "gutterInkRatio": 0.7483026736930587,
+      "sides": {
+       "darkSideEdgeLuma": 113.8,
+       "brightSideEdgeLuma": 91.1,
+       "darkOverBrightLumaRatio": 1.2498,
+       "darkSideEdgeChroma": 83.15,
+       "brightSideEdgeChroma": 103.78,
+       "sideChromaGap": 20.63
+      },
+      "interior": {
+       "interiorSaturationMean": 0.73,
+       "interiorLuminanceMean": 101.27,
+       "interiorChromaMean": 128.87
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 92.45,
+      "whiteReflectionRatio": 0.0392,
+      "fringeRB": 92.37,
+      "fringeWidthPxMean": 21.43,
+      "gutterInkRatio": 0.7587695192525298,
+      "sides": {
+       "darkSideEdgeLuma": 130.4,
+       "brightSideEdgeLuma": 109.2,
+       "darkOverBrightLumaRatio": 1.1934,
+       "darkSideEdgeChroma": 68.22,
+       "brightSideEdgeChroma": 87.64,
+       "sideChromaGap": 19.42
+      },
+      "interior": {
+       "interiorSaturationMean": 0.73,
+       "interiorLuminanceMean": 101.27,
+       "interiorChromaMean": 128.87
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": -8.11,
+      "whiteReflectionRatio": 0.0228
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -10.05,
+      "whiteReflectionRatio": 0.0005
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": -7.95,
+      "whiteReflectionRatio": 0.0239
+     }
+    }
+   }
+  },
+  "A+B": {
+   "grayscale-step": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 11.22,
+      "whiteReflectionRatio": 0.3877,
+      "fringeRB": 10.99,
+      "fringeWidthPxMean": 6.61,
+      "gutterInkRatio": 0.46210921082409234,
+      "sides": {
+       "darkSideEdgeLuma": 64.7,
+       "brightSideEdgeLuma": 157.6,
+       "darkOverBrightLumaRatio": 0.4102,
+       "darkSideEdgeChroma": 19.38,
+       "brightSideEdgeChroma": 28.76,
+       "sideChromaGap": 9.38
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0,
+       "interiorLuminanceMean": 143.55,
+       "interiorChromaMean": 0.0
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 3.01,
+      "whiteReflectionRatio": 0.4135,
+      "fringeRB": 3.0,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.5007799618505706,
+      "sides": {
+       "darkSideEdgeLuma": 86.2,
+       "brightSideEdgeLuma": 174.5,
+       "darkOverBrightLumaRatio": 0.4942,
+       "darkSideEdgeChroma": 3.72,
+       "brightSideEdgeChroma": 3.2,
+       "sideChromaGap": 0.51
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0,
+       "interiorLuminanceMean": 143.55,
+       "interiorChromaMean": 0.0
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 4.08,
+      "whiteReflectionRatio": 0.4307,
+      "fringeRB": 4.06,
+      "fringeWidthPxMean": 0.04,
+      "gutterInkRatio": 0.4990139342407294,
+      "sides": {
+       "darkSideEdgeLuma": 100.3,
+       "brightSideEdgeLuma": 161.8,
+       "darkOverBrightLumaRatio": 0.6198,
+       "darkSideEdgeChroma": 5.86,
+       "brightSideEdgeChroma": 4.59,
+       "sideChromaGap": 1.27
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0021,
+       "interiorLuminanceMean": 139.04,
+       "interiorChromaMean": 0.14
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 3.56,
+      "whiteReflectionRatio": 0.4341,
+      "fringeRB": 3.55,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.5211155475089716,
+      "sides": {
+       "darkSideEdgeLuma": 117.8,
+       "brightSideEdgeLuma": 173.0,
+       "darkOverBrightLumaRatio": 0.6809,
+       "darkSideEdgeChroma": 4.8,
+       "brightSideEdgeChroma": 3.44,
+       "sideChromaGap": 1.36
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0021,
+       "interiorLuminanceMean": 139.04,
+       "interiorChromaMean": 0.14
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": -7.14,
+      "whiteReflectionRatio": 0.043
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -0.52,
+      "whiteReflectionRatio": 0.0034
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": 0.55,
+      "whiteReflectionRatio": 0.0206
+     }
+    }
+   },
+   "bw-split": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 9.73,
+      "whiteReflectionRatio": 0.3925,
+      "fringeRB": 9.56,
+      "fringeWidthPxMean": 5.46,
+      "gutterInkRatio": 0.41777666418803144,
+      "sides": {
+       "darkSideEdgeLuma": 28.5,
+       "brightSideEdgeLuma": 176.6,
+       "darkOverBrightLumaRatio": 0.1615,
+       "darkSideEdgeChroma": 14.59,
+       "brightSideEdgeChroma": 26.05,
+       "sideChromaGap": 11.46
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0,
+       "interiorLuminanceMean": 122.76,
+       "interiorChromaMean": 0.0
+      },
+      "reflectionBand": {
+       "meanPx": 9.7,
+       "meanNormToCardWidth": 0.0179
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 3.04,
+      "whiteReflectionRatio": 0.415,
+      "fringeRB": 3.03,
+      "fringeWidthPxMean": 0.04,
+      "gutterInkRatio": 0.47320245061588695,
+      "sides": {
+       "darkSideEdgeLuma": 50.6,
+       "brightSideEdgeLuma": 190.8,
+       "darkOverBrightLumaRatio": 0.2654,
+       "darkSideEdgeChroma": 3.87,
+       "brightSideEdgeChroma": 3.12,
+       "sideChromaGap": 0.76
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0,
+       "interiorLuminanceMean": 122.76,
+       "interiorChromaMean": 0.0
+      },
+      "reflectionBand": {
+       "meanPx": 15.3,
+       "meanNormToCardWidth": 0.0285
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 4.2,
+      "whiteReflectionRatio": 0.4347,
+      "fringeRB": 4.19,
+      "fringeWidthPxMean": 0.07,
+      "gutterInkRatio": 0.42851831495910253,
+      "sides": {
+       "darkSideEdgeLuma": 74.4,
+       "brightSideEdgeLuma": 180.2,
+       "darkOverBrightLumaRatio": 0.4127,
+       "darkSideEdgeChroma": 6.34,
+       "brightSideEdgeChroma": 4.26,
+       "sideChromaGap": 2.08
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0035,
+       "interiorLuminanceMean": 121.4,
+       "interiorChromaMean": 0.02
+      },
+      "reflectionBand": {
+       "meanPx": 8.7,
+       "meanNormToCardWidth": 0.0161
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 3.68,
+      "whiteReflectionRatio": 0.4364,
+      "fringeRB": 3.67,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.4775750864828166,
+      "sides": {
+       "darkSideEdgeLuma": 95.1,
+       "brightSideEdgeLuma": 190.0,
+       "darkOverBrightLumaRatio": 0.5006,
+       "darkSideEdgeChroma": 5.2,
+       "brightSideEdgeChroma": 3.22,
+       "sideChromaGap": 1.98
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0035,
+       "interiorLuminanceMean": 121.4,
+       "interiorChromaMean": 0.02
+      },
+      "reflectionBand": {
+       "meanPx": 15.3,
+       "meanNormToCardWidth": 0.0285
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": -5.53,
+      "whiteReflectionRatio": 0.0422,
+      "darkSideEdgeLuma": 45.9
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -0.52,
+      "whiteReflectionRatio": 0.0017,
+      "darkSideEdgeLuma": 20.7
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": 0.64,
+      "whiteReflectionRatio": 0.0214,
+      "darkSideEdgeLuma": 44.5
+     }
+    }
+   },
+   "rgb-bars": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 111.28,
+      "whiteReflectionRatio": 0.2723,
+      "fringeRB": 94.65,
+      "fringeWidthPxMean": 15.04,
+      "gutterInkRatio": 0.4330889722285086,
+      "sides": {
+       "darkSideEdgeLuma": 52.2,
+       "brightSideEdgeLuma": 168.4,
+       "darkOverBrightLumaRatio": 0.3102,
+       "darkSideEdgeChroma": 157.87,
+       "brightSideEdgeChroma": 37.0,
+       "sideChromaGap": 120.86
+      },
+      "interior": {
+       "interiorSaturationMean": 0.7644,
+       "interiorLuminanceMean": 112.6,
+       "interiorChromaMean": 168.35
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 100.08,
+      "whiteReflectionRatio": 0.2877,
+      "fringeRB": 85.37,
+      "fringeWidthPxMean": 10.54,
+      "gutterInkRatio": 0.4775427564579225,
+      "sides": {
+       "darkSideEdgeLuma": 79.6,
+       "brightSideEdgeLuma": 183.2,
+       "darkOverBrightLumaRatio": 0.4343,
+       "darkSideEdgeChroma": 150.65,
+       "brightSideEdgeChroma": 4.76,
+       "sideChromaGap": 145.89
+      },
+      "interior": {
+       "interiorSaturationMean": 0.7626,
+       "interiorLuminanceMean": 112.69,
+       "interiorChromaMean": 168.01
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 98.67,
+      "whiteReflectionRatio": 0.3078,
+      "fringeRB": 82.61,
+      "fringeWidthPxMean": 9.61,
+      "gutterInkRatio": 0.45196162426045067,
+      "sides": {
+       "darkSideEdgeLuma": 92.7,
+       "brightSideEdgeLuma": 171.5,
+       "darkOverBrightLumaRatio": 0.5403,
+       "darkSideEdgeChroma": 123.09,
+       "brightSideEdgeChroma": 6.54,
+       "sideChromaGap": 116.55
+      },
+      "interior": {
+       "interiorSaturationMean": 0.7756,
+       "interiorLuminanceMean": 110.5,
+       "interiorChromaMean": 167.54
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 90.7,
+      "whiteReflectionRatio": 0.3101,
+      "fringeRB": 76.16,
+      "fringeWidthPxMean": 9.11,
+      "gutterInkRatio": 0.4871286088390288,
+      "sides": {
+       "darkSideEdgeLuma": 114.9,
+       "brightSideEdgeLuma": 182.1,
+       "darkOverBrightLumaRatio": 0.6308,
+       "darkSideEdgeChroma": 105.42,
+       "brightSideEdgeChroma": 4.61,
+       "sideChromaGap": 100.81
+      },
+      "interior": {
+       "interiorSaturationMean": 0.7756,
+       "interiorLuminanceMean": 110.5,
+       "interiorChromaMean": 167.54
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": -12.61,
+      "whiteReflectionRatio": 0.0355
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -7.97,
+      "whiteReflectionRatio": 0.0023
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": -9.38,
+      "whiteReflectionRatio": 0.0224
+     }
+    }
+   },
+   "hf-checker": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 24.57,
+      "whiteReflectionRatio": 0.4127,
+      "fringeRB": 21.73,
+      "fringeWidthPxMean": 14.0,
+      "gutterInkRatio": 0.5975356438524457,
+      "sides": {
+       "darkSideEdgeLuma": 135.2,
+       "brightSideEdgeLuma": 137.8,
+       "darkOverBrightLumaRatio": 0.981,
+       "darkSideEdgeChroma": 47.99,
+       "brightSideEdgeChroma": 48.6,
+       "sideChromaGap": 0.6
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0,
+       "interiorLuminanceMean": 145.37,
+       "interiorChromaMean": 0.0
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 3.81,
+      "whiteReflectionRatio": 0.5303,
+      "fringeRB": 3.79,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.6080388606899227,
+      "sides": {
+       "darkSideEdgeLuma": 151.0,
+       "brightSideEdgeLuma": 154.0,
+       "darkOverBrightLumaRatio": 0.9801,
+       "darkSideEdgeChroma": 4.93,
+       "brightSideEdgeChroma": 4.56,
+       "sideChromaGap": 0.37
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0,
+       "interiorLuminanceMean": 145.4,
+       "interiorChromaMean": 0.0
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 4.95,
+      "whiteReflectionRatio": 0.5,
+      "fringeRB": 4.92,
+      "fringeWidthPxMean": 0.07,
+      "gutterInkRatio": 0.6040016488312696,
+      "sides": {
+       "darkSideEdgeLuma": 155.0,
+       "brightSideEdgeLuma": 142.8,
+       "darkOverBrightLumaRatio": 1.0853,
+       "darkSideEdgeChroma": 6.65,
+       "brightSideEdgeChroma": 6.65,
+       "sideChromaGap": 0.01
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0104,
+       "interiorLuminanceMean": 142.96,
+       "interiorChromaMean": 0.14
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 4.25,
+      "whiteReflectionRatio": 0.5241,
+      "fringeRB": 4.23,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.6124559503410818,
+      "sides": {
+       "darkSideEdgeLuma": 165.8,
+       "brightSideEdgeLuma": 154.6,
+       "darkOverBrightLumaRatio": 1.0726,
+       "darkSideEdgeChroma": 5.37,
+       "brightSideEdgeChroma": 5.09,
+       "sideChromaGap": 0.28
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0104,
+       "interiorLuminanceMean": 142.96,
+       "interiorChromaMean": 0.14
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": -19.62,
+      "whiteReflectionRatio": 0.0873
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -0.7,
+      "whiteReflectionRatio": 0.0241
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": 0.44,
+      "whiteReflectionRatio": -0.0062
+     }
+    }
+   },
+   "dark-highlight": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 10.87,
+      "whiteReflectionRatio": 0.0146,
+      "fringeRB": 10.21,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.06183117261000291,
+      "sides": {
+       "darkSideEdgeLuma": 37.1,
+       "brightSideEdgeLuma": 36.4,
+       "darkOverBrightLumaRatio": 1.0201,
+       "darkSideEdgeChroma": 11.07,
+       "brightSideEdgeChroma": 10.93,
+       "sideChromaGap": 0.14
+      },
+      "interior": {
+       "interiorSaturationMean": 0.3545,
+       "interiorLuminanceMean": 34.17,
+       "interiorChromaMean": 9.1
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 9.53,
+      "whiteReflectionRatio": 0.014,
+      "fringeRB": 8.97,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.164604280495296,
+      "sides": {
+       "darkSideEdgeLuma": 60.7,
+       "brightSideEdgeLuma": 61.1,
+       "darkOverBrightLumaRatio": 0.9937,
+       "darkSideEdgeChroma": 8.71,
+       "brightSideEdgeChroma": 8.51,
+       "sideChromaGap": 0.2
+      },
+      "interior": {
+       "interiorSaturationMean": 0.3566,
+       "interiorLuminanceMean": 34.12,
+       "interiorChromaMean": 9.11
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 10.68,
+      "whiteReflectionRatio": 0.0373,
+      "fringeRB": 10.39,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.1053716336361579,
+      "sides": {
+       "darkSideEdgeLuma": 82.4,
+       "brightSideEdgeLuma": 48.9,
+       "darkOverBrightLumaRatio": 1.6847,
+       "darkSideEdgeChroma": 9.74,
+       "brightSideEdgeChroma": 10.69,
+       "sideChromaGap": 0.94
+      },
+      "interior": {
+       "interiorSaturationMean": 0.3565,
+       "interiorLuminanceMean": 33.49,
+       "interiorChromaMean": 8.64
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 9.66,
+      "whiteReflectionRatio": 0.0378,
+      "fringeRB": 9.4,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.1882254049335618,
+      "sides": {
+       "darkSideEdgeLuma": 102.0,
+       "brightSideEdgeLuma": 70.4,
+       "darkOverBrightLumaRatio": 1.4488,
+       "darkSideEdgeChroma": 8.25,
+       "brightSideEdgeChroma": 9.09,
+       "sideChromaGap": 0.84
+      },
+      "interior": {
+       "interiorSaturationMean": 0.3565,
+       "interiorLuminanceMean": 33.49,
+       "interiorChromaMean": 8.64
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": -0.19,
+      "whiteReflectionRatio": 0.0227
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -1.02,
+      "whiteReflectionRatio": 0.0005
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": 0.13,
+      "whiteReflectionRatio": 0.0238
+     }
+    }
+   },
+   "bright-lowsat": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 21.2,
+      "whiteReflectionRatio": 0.7448,
+      "fringeRB": 20.41,
+      "fringeWidthPxMean": 10.5,
+      "gutterInkRatio": 0.770283049367948,
+      "sides": {
+       "darkSideEdgeLuma": 162.5,
+       "brightSideEdgeLuma": 164.6,
+       "darkOverBrightLumaRatio": 0.9872,
+       "darkSideEdgeChroma": 39.02,
+       "brightSideEdgeChroma": 40.77,
+       "sideChromaGap": 1.76
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0416,
+       "interiorLuminanceMean": 210.44,
+       "interiorChromaMean": 8.93
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 8.14,
+      "whiteReflectionRatio": 0.7943,
+      "fringeRB": 7.83,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.7795779315250073,
+      "sides": {
+       "darkSideEdgeLuma": 176.8,
+       "brightSideEdgeLuma": 179.3,
+       "darkOverBrightLumaRatio": 0.9862,
+       "darkSideEdgeChroma": 6.0,
+       "brightSideEdgeChroma": 6.81,
+       "sideChromaGap": 0.82
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0413,
+       "interiorLuminanceMean": 210.47,
+       "interiorChromaMean": 8.88
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 9.11,
+      "whiteReflectionRatio": 0.7864,
+      "fringeRB": 8.79,
+      "fringeWidthPxMean": 0.29,
+      "gutterInkRatio": 0.7732008341146422,
+      "sides": {
+       "darkSideEdgeLuma": 172.8,
+       "brightSideEdgeLuma": 167.3,
+       "darkOverBrightLumaRatio": 1.0327,
+       "darkSideEdgeChroma": 6.82,
+       "brightSideEdgeChroma": 8.68,
+       "sideChromaGap": 1.86
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0445,
+       "interiorLuminanceMean": 206.46,
+       "interiorChromaMean": 9.38
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 8.28,
+      "whiteReflectionRatio": 0.7924,
+      "fringeRB": 7.99,
+      "fringeWidthPxMean": 0.0,
+      "gutterInkRatio": 0.780131583201319,
+      "sides": {
+       "darkSideEdgeLuma": 182.5,
+       "brightSideEdgeLuma": 177.8,
+       "darkOverBrightLumaRatio": 1.0263,
+       "darkSideEdgeChroma": 5.63,
+       "brightSideEdgeChroma": 7.12,
+       "sideChromaGap": 1.49
+      },
+      "interior": {
+       "interiorSaturationMean": 0.0445,
+       "interiorLuminanceMean": 206.46,
+       "interiorChromaMean": 9.38
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": -12.09,
+      "whiteReflectionRatio": 0.0416
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -0.83,
+      "whiteReflectionRatio": 0.006
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": 0.14,
+      "whiteReflectionRatio": -0.0019
+     }
+    }
+   },
+   "warm-skin": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 54.79,
+      "whiteReflectionRatio": 0.0325,
+      "fringeRB": 53.51,
+      "fringeWidthPxMean": 24.79,
+      "gutterInkRatio": 0.7691595810028774,
+      "sides": {
+       "darkSideEdgeLuma": 142.4,
+       "brightSideEdgeLuma": 146.3,
+       "darkOverBrightLumaRatio": 0.9734,
+       "darkSideEdgeChroma": 68.69,
+       "brightSideEdgeChroma": 69.97,
+       "sideChromaGap": 1.29
+      },
+      "interior": {
+       "interiorSaturationMean": 0.235,
+       "interiorLuminanceMean": 195.13,
+       "interiorChromaMean": 50.62
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 43.42,
+      "whiteReflectionRatio": 0.0497,
+      "fringeRB": 43.4,
+      "fringeWidthPxMean": 20.21,
+      "gutterInkRatio": 0.7784100093757073,
+      "sides": {
+       "darkSideEdgeLuma": 160.5,
+       "brightSideEdgeLuma": 164.8,
+       "darkOverBrightLumaRatio": 0.974,
+       "darkSideEdgeChroma": 41.99,
+       "brightSideEdgeChroma": 42.84,
+       "sideChromaGap": 0.85
+      },
+      "interior": {
+       "interiorSaturationMean": 0.235,
+       "interiorLuminanceMean": 195.25,
+       "interiorChromaMean": 50.67
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 45.82,
+      "whiteReflectionRatio": 0.058,
+      "fringeRB": 45.78,
+      "fringeWidthPxMean": 19.32,
+      "gutterInkRatio": 0.772655264944554,
+      "sides": {
+       "darkSideEdgeLuma": 158.8,
+       "brightSideEdgeLuma": 151.1,
+       "darkOverBrightLumaRatio": 1.0508,
+       "darkSideEdgeChroma": 37.36,
+       "brightSideEdgeChroma": 47.4,
+       "sideChromaGap": 10.05
+      },
+      "interior": {
+       "interiorSaturationMean": 0.2482,
+       "interiorLuminanceMean": 190.28,
+       "interiorChromaMean": 52.49
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 42.24,
+      "whiteReflectionRatio": 0.0783,
+      "fringeRB": 42.22,
+      "fringeWidthPxMean": 17.75,
+      "gutterInkRatio": 0.7796506740810191,
+      "sides": {
+       "darkSideEdgeLuma": 169.9,
+       "brightSideEdgeLuma": 163.2,
+       "darkOverBrightLumaRatio": 1.0414,
+       "darkSideEdgeChroma": 32.29,
+       "brightSideEdgeChroma": 41.8,
+       "sideChromaGap": 9.51
+      },
+      "interior": {
+       "interiorSaturationMean": 0.2482,
+       "interiorLuminanceMean": 190.28,
+       "interiorChromaMean": 52.49
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": -8.97,
+      "whiteReflectionRatio": 0.0255
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -3.58,
+      "whiteReflectionRatio": 0.0203
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": -1.18,
+      "whiteReflectionRatio": 0.0286
+     }
+    }
+   },
+   "cool-blue": {
+    "states": {
+     "before": {
+      "edgeChromaMean": 110.61,
+      "whiteReflectionRatio": 0.0159,
+      "fringeRB": 110.46,
+      "fringeWidthPxMean": 23.43,
+      "gutterInkRatio": 0.7572823381074003,
+      "sides": {
+       "darkSideEdgeLuma": 82.8,
+       "brightSideEdgeLuma": 84.1,
+       "darkOverBrightLumaRatio": 0.9838,
+       "darkSideEdgeChroma": 109.6,
+       "brightSideEdgeChroma": 113.15,
+       "sideChromaGap": 3.55
+      },
+      "interior": {
+       "interiorSaturationMean": 0.7114,
+       "interiorLuminanceMean": 106.42,
+       "interiorChromaMean": 129.75
+      }
+     },
+     "envmix0": {
+      "edgeChromaMean": 97.29,
+      "whiteReflectionRatio": 0.0153,
+      "fringeRB": 97.29,
+      "fringeWidthPxMean": 21.43,
+      "gutterInkRatio": 0.7737544857909541,
+      "sides": {
+       "darkSideEdgeLuma": 104.4,
+       "brightSideEdgeLuma": 106.7,
+       "darkOverBrightLumaRatio": 0.9793,
+       "darkSideEdgeChroma": 87.44,
+       "brightSideEdgeChroma": 90.12,
+       "sideChromaGap": 2.68
+      },
+      "interior": {
+       "interiorSaturationMean": 0.7117,
+       "interiorLuminanceMean": 106.58,
+       "interiorChromaMean": 129.85
+      }
+     },
+     "lerponly": {
+      "edgeChromaMean": 97.82,
+      "whiteReflectionRatio": 0.0387,
+      "fringeRB": 97.82,
+      "fringeWidthPxMean": 20.21,
+      "gutterInkRatio": 0.7487189227635705,
+      "sides": {
+       "darkSideEdgeLuma": 114.0,
+       "brightSideEdgeLuma": 91.3,
+       "darkOverBrightLumaRatio": 1.2484,
+       "darkSideEdgeChroma": 73.21,
+       "brightSideEdgeChroma": 93.61,
+       "sideChromaGap": 20.4
+      },
+      "interior": {
+       "interiorSaturationMean": 0.73,
+       "interiorLuminanceMean": 101.27,
+       "interiorChromaMean": 128.87
+      }
+     },
+     "fullB": {
+      "edgeChromaMean": 89.65,
+      "whiteReflectionRatio": 0.0392,
+      "fringeRB": 89.65,
+      "fringeWidthPxMean": 19.54,
+      "gutterInkRatio": 0.7583168989040121,
+      "sides": {
+       "darkSideEdgeLuma": 130.2,
+       "brightSideEdgeLuma": 109.1,
+       "darkOverBrightLumaRatio": 1.1933,
+       "darkSideEdgeChroma": 62.6,
+       "brightSideEdgeChroma": 81.85,
+       "sideChromaGap": 19.25
+      },
+      "interior": {
+       "interiorSaturationMean": 0.73,
+       "interiorLuminanceMean": 101.27,
+       "interiorChromaMean": 128.87
+      }
+     }
+    },
+    "levers": {
+     "integratedLerpVsBefore": {
+      "edgeChromaMean": -12.79,
+      "whiteReflectionRatio": 0.0228
+     },
+     "rimOnTopOfLerp": {
+      "edgeChromaMean": -8.17,
+      "whiteReflectionRatio": 0.0005
+     },
+     "envLeverAtFullRim": {
+      "edgeChromaMean": -7.64,
+      "whiteReflectionRatio": 0.0239
+     }
+    }
+   }
+  }
+ }
+}

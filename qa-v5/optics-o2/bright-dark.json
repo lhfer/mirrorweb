@@ -1,0 +1,370 @@
+{
+ "artifact": "bright/dark cohort behaviour (bw-split sides + bright/dark assets)",
+ "capturedAtHead": "e913aa6",
+ "targetAnchors": {
+  "bw-split": {
+   "edgeChromaMean": 3.58,
+   "whiteReflectionRatio": 0.4188,
+   "edgeLuminanceMean": 109.15,
+   "fringeRB": 3.57,
+   "interiorSaturationMean": 0.0074,
+   "fringeWidthPxMean": 0.0,
+   "sides": {
+    "darkSideEdgeLuma": 48.1,
+    "brightSideEdgeLuma": 193.7,
+    "darkSideEdgeChroma": 6.58,
+    "brightSideEdgeChroma": 1.41
+   }
+  },
+  "dark-highlight": {
+   "edgeChromaMean": 9.72,
+   "whiteReflectionRatio": 0.0291,
+   "edgeLuminanceMean": 35.94,
+   "fringeRB": 9.43,
+   "interiorSaturationMean": 0.3633,
+   "fringeWidthPxMean": 0.32
+  },
+  "bright-lowsat": {
+   "edgeChromaMean": 8.3,
+   "whiteReflectionRatio": 0.7647,
+   "edgeLuminanceMean": 171.7,
+   "fringeRB": 8.15,
+   "interiorSaturationMean": 0.0469,
+   "fringeWidthPxMean": 0.0
+  }
+ },
+ "beforeAnchors": {
+  "bw-split": {
+   "edgeChromaMean": 9.73,
+   "whiteReflectionRatio": 0.3925,
+   "edgeLuminanceMean": 104.73,
+   "fringeRB": 9.56,
+   "interiorSaturationMean": 0.0,
+   "fringeWidthPxMean": 5.46,
+   "sides": {
+    "darkSideEdgeLuma": 28.5,
+    "brightSideEdgeLuma": 176.6,
+    "darkSideEdgeChroma": 14.59,
+    "brightSideEdgeChroma": 26.05
+   }
+  },
+  "dark-highlight": {
+   "edgeChromaMean": 10.87,
+   "whiteReflectionRatio": 0.0146,
+   "edgeLuminanceMean": 34.05,
+   "fringeRB": 10.21,
+   "interiorSaturationMean": 0.3545,
+   "fringeWidthPxMean": 0.0
+  },
+  "bright-lowsat": {
+   "edgeChromaMean": 21.2,
+   "whiteReflectionRatio": 0.7448,
+   "edgeLuminanceMean": 170.52,
+   "fringeRB": 20.41,
+   "interiorSaturationMean": 0.0416,
+   "fringeWidthPxMean": 10.5
+  }
+ },
+ "lanes": {
+  "B-only": {
+   "bw-split": {
+    "before": {
+     "edgeChromaMean": 9.73,
+     "whiteReflectionRatio": 0.3925,
+     "fringeRB": 9.56,
+     "fringeWidthPxMean": 5.46,
+     "gutterInkRatio": 0.41777666418803144,
+     "sides": {
+      "darkSideEdgeLuma": 28.5,
+      "brightSideEdgeLuma": 176.6,
+      "darkOverBrightLumaRatio": 0.1615,
+      "darkSideEdgeChroma": 14.59,
+      "brightSideEdgeChroma": 26.05,
+      "sideChromaGap": 11.46
+     },
+     "interior": {
+      "interiorSaturationMean": 0.0,
+      "interiorLuminanceMean": 122.76,
+      "interiorChromaMean": 0.0
+     },
+     "reflectionBand": {
+      "meanPx": 9.7,
+      "meanNormToCardWidth": 0.0179
+     }
+    },
+    "fullB": {
+     "edgeChromaMean": 7.74,
+     "whiteReflectionRatio": 0.4174,
+     "fringeRB": 7.65,
+     "fringeWidthPxMean": 4.79,
+     "gutterInkRatio": 0.4778054379101872,
+     "sides": {
+      "darkSideEdgeLuma": 96.2,
+      "brightSideEdgeLuma": 189.1,
+      "darkOverBrightLumaRatio": 0.509,
+      "darkSideEdgeChroma": 9.45,
+      "brightSideEdgeChroma": 17.91,
+      "sideChromaGap": 8.46
+     },
+     "interior": {
+      "interiorSaturationMean": 0.0035,
+      "interiorLuminanceMean": 121.4,
+      "interiorChromaMean": 0.02
+     },
+     "reflectionBand": {
+      "meanPx": 15.3,
+      "meanNormToCardWidth": 0.0285
+     }
+    }
+   },
+   "dark-highlight": {
+    "before": {
+     "edgeChromaMean": 10.87,
+     "whiteReflectionRatio": 0.0146,
+     "fringeRB": 10.21,
+     "fringeWidthPxMean": 0.0,
+     "gutterInkRatio": 0.06183117261000291,
+     "sides": {
+      "darkSideEdgeLuma": 37.1,
+      "brightSideEdgeLuma": 36.4,
+      "darkOverBrightLumaRatio": 1.0201,
+      "darkSideEdgeChroma": 11.07,
+      "brightSideEdgeChroma": 10.93,
+      "sideChromaGap": 0.14
+     },
+     "interior": {
+      "interiorSaturationMean": 0.3545,
+      "interiorLuminanceMean": 34.17,
+      "interiorChromaMean": 9.1
+     }
+    },
+    "fullB": {
+     "edgeChromaMean": 9.98,
+     "whiteReflectionRatio": 0.0378,
+     "fringeRB": 9.69,
+     "fringeWidthPxMean": 0.0,
+     "gutterInkRatio": 0.18803142478419707,
+     "sides": {
+      "darkSideEdgeLuma": 101.9,
+      "brightSideEdgeLuma": 70.3,
+      "darkOverBrightLumaRatio": 1.4494,
+      "darkSideEdgeChroma": 8.85,
+      "brightSideEdgeChroma": 9.75,
+      "sideChromaGap": 0.9
+     },
+     "interior": {
+      "interiorSaturationMean": 0.3565,
+      "interiorLuminanceMean": 33.49,
+      "interiorChromaMean": 8.64
+     }
+    }
+   },
+   "bright-lowsat": {
+    "before": {
+     "edgeChromaMean": 21.2,
+     "whiteReflectionRatio": 0.7448,
+     "fringeRB": 20.41,
+     "fringeWidthPxMean": 10.5,
+     "gutterInkRatio": 0.770283049367948,
+     "sides": {
+      "darkSideEdgeLuma": 162.5,
+      "brightSideEdgeLuma": 164.6,
+      "darkOverBrightLumaRatio": 0.9872,
+      "darkSideEdgeChroma": 39.02,
+      "brightSideEdgeChroma": 40.77,
+      "sideChromaGap": 1.76
+     },
+     "interior": {
+      "interiorSaturationMean": 0.0416,
+      "interiorLuminanceMean": 210.44,
+      "interiorChromaMean": 8.93
+     }
+    },
+    "fullB": {
+     "edgeChromaMean": 15.55,
+     "whiteReflectionRatio": 0.7569,
+     "fringeRB": 15.05,
+     "fringeWidthPxMean": 8.61,
+     "gutterInkRatio": 0.7804144709191426,
+     "sides": {
+      "darkSideEdgeLuma": 182.5,
+      "brightSideEdgeLuma": 177.9,
+      "darkOverBrightLumaRatio": 1.0259,
+      "darkSideEdgeChroma": 21.73,
+      "brightSideEdgeChroma": 26.85,
+      "sideChromaGap": 5.12
+     },
+     "interior": {
+      "interiorSaturationMean": 0.0445,
+      "interiorLuminanceMean": 206.46,
+      "interiorChromaMean": 9.38
+     }
+    }
+   },
+   "F3": {
+    "registered": "brightSideEdgeChroma must fall below 20 AND dark/bright ratio must rise >= +0.025 from 0.161",
+    "brightSideEdgeChroma": 17.91,
+    "darkOverBrightLumaRatio": 0.509,
+    "beforeAnchor": {
+     "brightSideEdgeChroma": 26.05,
+     "ratio": 0.161
+    },
+    "targetAnchor": {
+     "brightSideEdgeChroma": 1.41,
+     "ratio": 0.248
+    },
+    "fired": false
+   }
+  },
+  "A+B": {
+   "bw-split": {
+    "before": {
+     "edgeChromaMean": 9.73,
+     "whiteReflectionRatio": 0.3925,
+     "fringeRB": 9.56,
+     "fringeWidthPxMean": 5.46,
+     "gutterInkRatio": 0.41777666418803144,
+     "sides": {
+      "darkSideEdgeLuma": 28.5,
+      "brightSideEdgeLuma": 176.6,
+      "darkOverBrightLumaRatio": 0.1615,
+      "darkSideEdgeChroma": 14.59,
+      "brightSideEdgeChroma": 26.05,
+      "sideChromaGap": 11.46
+     },
+     "interior": {
+      "interiorSaturationMean": 0.0,
+      "interiorLuminanceMean": 122.76,
+      "interiorChromaMean": 0.0
+     },
+     "reflectionBand": {
+      "meanPx": 9.7,
+      "meanNormToCardWidth": 0.0179
+     }
+    },
+    "fullB": {
+     "edgeChromaMean": 3.68,
+     "whiteReflectionRatio": 0.4364,
+     "fringeRB": 3.67,
+     "fringeWidthPxMean": 0.0,
+     "gutterInkRatio": 0.4775750864828166,
+     "sides": {
+      "darkSideEdgeLuma": 95.1,
+      "brightSideEdgeLuma": 190.0,
+      "darkOverBrightLumaRatio": 0.5006,
+      "darkSideEdgeChroma": 5.2,
+      "brightSideEdgeChroma": 3.22,
+      "sideChromaGap": 1.98
+     },
+     "interior": {
+      "interiorSaturationMean": 0.0035,
+      "interiorLuminanceMean": 121.4,
+      "interiorChromaMean": 0.02
+     },
+     "reflectionBand": {
+      "meanPx": 15.3,
+      "meanNormToCardWidth": 0.0285
+     }
+    }
+   },
+   "dark-highlight": {
+    "before": {
+     "edgeChromaMean": 10.87,
+     "whiteReflectionRatio": 0.0146,
+     "fringeRB": 10.21,
+     "fringeWidthPxMean": 0.0,
+     "gutterInkRatio": 0.06183117261000291,
+     "sides": {
+      "darkSideEdgeLuma": 37.1,
+      "brightSideEdgeLuma": 36.4,
+      "darkOverBrightLumaRatio": 1.0201,
+      "darkSideEdgeChroma": 11.07,
+      "brightSideEdgeChroma": 10.93,
+      "sideChromaGap": 0.14
+     },
+     "interior": {
+      "interiorSaturationMean": 0.3545,
+      "interiorLuminanceMean": 34.17,
+      "interiorChromaMean": 9.1
+     }
+    },
+    "fullB": {
+     "edgeChromaMean": 9.66,
+     "whiteReflectionRatio": 0.0378,
+     "fringeRB": 9.4,
+     "fringeWidthPxMean": 0.0,
+     "gutterInkRatio": 0.1882254049335618,
+     "sides": {
+      "darkSideEdgeLuma": 102.0,
+      "brightSideEdgeLuma": 70.4,
+      "darkOverBrightLumaRatio": 1.4488,
+      "darkSideEdgeChroma": 8.25,
+      "brightSideEdgeChroma": 9.09,
+      "sideChromaGap": 0.84
+     },
+     "interior": {
+      "interiorSaturationMean": 0.3565,
+      "interiorLuminanceMean": 33.49,
+      "interiorChromaMean": 8.64
+     }
+    }
+   },
+   "bright-lowsat": {
+    "before": {
+     "edgeChromaMean": 21.2,
+     "whiteReflectionRatio": 0.7448,
+     "fringeRB": 20.41,
+     "fringeWidthPxMean": 10.5,
+     "gutterInkRatio": 0.770283049367948,
+     "sides": {
+      "darkSideEdgeLuma": 162.5,
+      "brightSideEdgeLuma": 164.6,
+      "darkOverBrightLumaRatio": 0.9872,
+      "darkSideEdgeChroma": 39.02,
+      "brightSideEdgeChroma": 40.77,
+      "sideChromaGap": 1.76
+     },
+     "interior": {
+      "interiorSaturationMean": 0.0416,
+      "interiorLuminanceMean": 210.44,
+      "interiorChromaMean": 8.93
+     }
+    },
+    "fullB": {
+     "edgeChromaMean": 8.28,
+     "whiteReflectionRatio": 0.7924,
+     "fringeRB": 7.99,
+     "fringeWidthPxMean": 0.0,
+     "gutterInkRatio": 0.780131583201319,
+     "sides": {
+      "darkSideEdgeLuma": 182.5,
+      "brightSideEdgeLuma": 177.8,
+      "darkOverBrightLumaRatio": 1.0263,
+      "darkSideEdgeChroma": 5.63,
+      "brightSideEdgeChroma": 7.12,
+      "sideChromaGap": 1.49
+     },
+     "interior": {
+      "interiorSaturationMean": 0.0445,
+      "interiorLuminanceMean": 206.46,
+      "interiorChromaMean": 9.38
+     }
+    }
+   },
+   "F3": {
+    "registered": "brightSideEdgeChroma must fall below 20 AND dark/bright ratio must rise >= +0.025 from 0.161",
+    "brightSideEdgeChroma": 3.22,
+    "darkOverBrightLumaRatio": 0.5006,
+    "beforeAnchor": {
+     "brightSideEdgeChroma": 26.05,
+     "ratio": 0.161
+    },
+    "targetAnchor": {
+     "brightSideEdgeChroma": 1.41,
+     "ratio": 0.248
+    },
+    "fired": false
+   }
+  }
+ }
+}
