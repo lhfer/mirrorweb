@@ -30,12 +30,19 @@ export const MEDIA_DIR = path.join(REPO, "artifacts/optics-o2/media");
 
 const sha256 = (buf) => createHash("sha256").update(buf).digest("hex");
 
-export function loadAsset(name) {
+/**
+ * `mediaDir` defaults to the O2 set. O5R generates three calibration assets of
+ * its own into artifacts/optics-o5r/media with the SAME encode, container and
+ * HLS remux discipline, so they travel through this identical routing; passing
+ * the directory keeps the O2 manifest untouched rather than appending to a
+ * harness other rounds already scored against.
+ */
+export function loadAsset(name, mediaDir = MEDIA_DIR) {
   const manifest = JSON.parse(
-    readFileSync(path.join(MEDIA_DIR, "media-manifest.json"), "utf8"));
+    readFileSync(path.join(mediaDir, "media-manifest.json"), "utf8"));
   const entry = manifest.assets.find((a) => a.name === name);
   if (!entry) throw new Error(`unknown asset ${name}`);
-  const dir = path.join(MEDIA_DIR, name);
+  const dir = path.join(mediaDir, name);
   const mp4 = readFileSync(path.join(dir, `${name}.mp4`));
   const rawPlaylist = readFileSync(path.join(dir, "hls/media.m3u8"), "utf8");
   const servedPlaylist = rawPlaylist

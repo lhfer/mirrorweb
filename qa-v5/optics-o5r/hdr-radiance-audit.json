@@ -1,0 +1,79 @@
+{
+ "what": "O5R \u00a7\u5341 -- radiance audit of the product HDR, decoded from its own bytes. \u00a7\u5341 makes the source-environment code change conditional on this file's finiteness, so the decode is done here rather than delegated to the loader under review.",
+ "asset": "public/hdri/studio_small_03_1k.hdr",
+ "sha256": "29267a4aa8c10de26cae758e4e3c4daadde88673798666ad657724bab7224a35",
+ "provenanceSha256Matches": true,
+ "bytes": 1680234,
+ "header": [
+  "#?RADIANCE",
+  "# Made with Adobe Photoshop",
+  "GAMMA=1",
+  "PRIMARIES=0 0 0 0 0 0 0 0",
+  "FORMAT=32-bit_rle_rgbe",
+  "-Y 512 +X 1024"
+ ],
+ "width": 1024,
+ "height": 512,
+ "texels": 524288,
+ "colourChannels": 1572864,
+ "decode": "three's RGBEByteToRGBFloat: byte * 2^(exponent - 128) / 255, with exponent 0 decoding to exactly 0. Transcribed from the vendored loader.",
+ "percentileConvention": "percentiles are over the flattened set of COLOUR CHANNEL values (3 per texel), not over per-texel luminance; the luminance distribution is reported separately. The channel convention is the binding one because the clamp under review clamped .rgb per-channel.",
+ "finiteChannels": 1572864,
+ "nanChannels": 0,
+ "infChannels": 0,
+ "nonFiniteTexels": 0,
+ "allFinite": true,
+ "maxRadiance": 3581.9922,
+ "maxRadianceChannel": "B",
+ "minRadiance": 0.0,
+ "meanRadiance": 1.889293,
+ "channelPercentiles": {
+  "p50": 0.012439,
+  "p90": 0.607843,
+  "p99": 14.054902,
+  "p99.9": 124.053082,
+  "p99.99": 2971.607843,
+  "p100": 3581.9922
+ },
+ "luminance": {
+  "max": 3364.6632,
+  "mean": 1.854892,
+  "p99": 13.87299,
+  "p99.9": 120.399395,
+  "p99.99": 2871.421289
+ },
+ "runtimeTexture": {
+  "type": "HalfFloatType",
+  "loaderClampsAt": 65504.0,
+  "channelsAboveHalfMax": 0,
+  "loaderClampVerified": {
+   "verified": true,
+   "defaultTypeIsHalfFloat": true,
+   "clampSites": 3,
+   "clampValue": "65504",
+   "why": "three's RGBEByteToRGBHalf applies Math.min(v, 65504) on every colour channel before toHalfFloat, and HDRLoader defaults to HalfFloatType. The texture our shader samples is therefore finite by construction -- no NaN, no Inf -- whatever the file encodes. Read out of the vendored loader, not assumed."
+  },
+  "consequence": "the sampled environment is finite whatever this file holds, and the Target -- which loads the same asset through the same three RGBE half-float path -- gets exactly the same bound. Removing our own ceiling does not expose the shader to a non-finite sample."
+ },
+ "oldCeiling": {
+  "value": 16.0,
+  "channelsAbove": 14243,
+  "channelFractionAbove": 0.009055,
+  "texelsWithAnyChannelAbove": 5186,
+  "luminanceFractionAbove": 0.008951,
+  "maxTimesCeiling": 223.87,
+  "binds": true,
+  "note": "corroborates the O5 disclosure. The guard is not inert: wherever a card reflects one of these texels our highlight is dimmer than the Target's, and the brightest texel is suppressed by more than two orders of magnitude."
+ },
+ "reconciliationWithO5": {
+  "o5MaxRadiance": 3568.0,
+  "thisMaxRadiance": 3581.9922,
+  "ratio": 1.00392157,
+  "explanation": "255/256 -- the older RGBELoader scale is 2^(e-128)/256, the vendored HDRLoader uses 2^(e-128)/255. This audit follows the vendored loader, so it describes the texture the shader samples. Neither reading changes the decision.",
+  "o5TexelFractionAboveCeiling": 0.009809,
+  "thisTexelFractionAboveCeiling": 0.009892
+ },
+ "verdict": "SOURCE ASSET FINITE",
+ "authorisesUnclamp": true,
+ "verdictDetail": "1572864 colour channels decoded, 0 NaN, 0 Inf. \u00a7\u5341's condition is met: the target-source Beauty path samples the source HDR without a ceiling. No replacement clamp is introduced."
+}

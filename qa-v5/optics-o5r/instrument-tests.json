@@ -1,0 +1,537 @@
+{
+ "what": "O5R instrument tests. \u00a7\u4e09 requires a positive test, a negative test, a Target self-test, a Control self-test, a candidate-readable test and an explicit UNREADABLE state for every corrected instrument.",
+ "sealedBefore": "any capture of the O5R candidate lane (opticalBody=target-source-unclamped)",
+ "selfTestSources": {
+  "target": "artifacts/optics-o5r/measure",
+  "controlAndCandidate": "artifacts/optics-o5/measure -- the O5 control and the O5 CLAMPED candidate. Neither is the O5R candidate."
+ },
+ "passed": 66,
+ "total": 66,
+ "pass": true,
+ "coverage": {
+  "grayscale_v2": {
+   "tests": 12,
+   "passed": 12,
+   "hasPositive": true,
+   "hasNegative": true,
+   "hasUnreadable": true,
+   "hasTargetSelfTest": true,
+   "hasControlSelfTest": true,
+   "hasCandidateReadable": true
+  },
+  "saturated_edge_v2": {
+   "tests": 7,
+   "passed": 7,
+   "hasPositive": true,
+   "hasNegative": true,
+   "hasUnreadable": true,
+   "hasTargetSelfTest": true,
+   "hasControlSelfTest": true,
+   "hasCandidateReadable": true
+  },
+  "refraction_compression_v2": {
+   "tests": 16,
+   "passed": 16,
+   "hasPositive": true,
+   "hasNegative": true,
+   "hasUnreadable": true,
+   "hasTargetSelfTest": true,
+   "hasControlSelfTest": true,
+   "hasCandidateReadable": true
+  },
+  "interior_fidelity_v2": {
+   "tests": 10,
+   "passed": 10,
+   "hasPositive": true,
+   "hasNegative": true,
+   "hasUnreadable": true,
+   "hasTargetSelfTest": true,
+   "hasControlSelfTest": true,
+   "hasCandidateReadable": true
+  },
+  "silhouette_v2": {
+   "tests": 11,
+   "passed": 11,
+   "hasPositive": true,
+   "hasNegative": true,
+   "hasUnreadable": true,
+   "hasTargetSelfTest": true,
+   "hasControlSelfTest": true,
+   "hasCandidateReadable": true
+  },
+  "target_replay": {
+   "tests": 10,
+   "passed": 10,
+   "hasPositive": true,
+   "hasNegative": true,
+   "hasUnreadable": true,
+   "hasTargetSelfTest": true,
+   "hasControlSelfTest": true,
+   "hasCandidateReadable": true
+  }
+ },
+ "results": [
+  {
+   "instrument": "grayscale_v2",
+   "kind": "positive",
+   "test": "edge-local chroma is reported at gradients, not as false colour",
+   "pass": true,
+   "detail": "atGradients 40.0 away 0.3361 falseArea 0.008333"
+  },
+  {
+   "instrument": "grayscale_v2",
+   "kind": "negative",
+   "test": "a broad cast is caught as false colour away from features",
+   "pass": true,
+   "detail": "falseArea 0.991667 away 40.0"
+  },
+  {
+   "instrument": "grayscale_v2",
+   "kind": "positive",
+   "test": "distance to Target is zero for an identical lane",
+   "pass": true,
+   "detail": "{'meanChroma': 0.0, 'p95Chroma': 0.0, 'p995Chroma': 0.0, 'chromaAtGradients': 0.0, 'chromaAwayFromGradients': 0.0, 'falseColourAreaFraction': 0.0, 'falseColourAreaExcess': 0.0}"
+  },
+  {
+   "instrument": "grayscale_v2",
+   "kind": "negative",
+   "test": "distance to Target is large for the cast lane",
+   "pass": true,
+   "detail": "{'meanChroma': 39.3333, 'p95Chroma': 40.0, 'p995Chroma': 0.0, 'chromaAtGradients': 0.0, 'chromaAwayFromGradients': 39.6639, 'falseColourAreaFraction': 0.983334, 'falseColourAreaExcess': 0.983334}"
+  },
+  {
+   "instrument": "grayscale_v2",
+   "kind": "unreadable",
+   "test": "refuses when there are no card rects",
+   "pass": true,
+   "detail": "grayscale_v2: no card rects"
+  },
+  {
+   "instrument": "grayscale_v2",
+   "kind": "unreadable",
+   "test": "three identical lane values return UNREADABLE, not PASS",
+   "pass": true,
+   "detail": "grayscale: every lane returned the same value (0.0); the metric cannot discriminate here and a comparison against it would be vacuously true"
+  },
+  {
+   "instrument": "grayscale_v2",
+   "kind": "positive",
+   "test": "differing lane values are not degenerate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "instrument": "saturated_edge_v2",
+   "kind": "positive",
+   "test": "reads a feature population on textured media",
+   "pass": true,
+   "detail": "atFeatures 140.0 px 1800"
+  },
+  {
+   "instrument": "saturated_edge_v2",
+   "kind": "negative",
+   "test": "a broad cyan/magenta rim is caught by broadRimColouredFraction",
+   "pass": true,
+   "detail": "broadRim candidate 0.977345 vs textured 0.955937"
+  },
+  {
+   "instrument": "saturated_edge_v2",
+   "kind": "negative",
+   "test": "colour following the texture keeps localisation up",
+   "pass": true,
+   "detail": "textured 1.0 vs broad-rim 0.9261"
+  },
+  {
+   "instrument": "saturated_edge_v2",
+   "kind": "unreadable",
+   "test": "refuses on media with no features",
+   "pass": true,
+   "detail": "saturated_edge_v2: this asset has no feature population (0 feature px, 43200 non-feature px); the feature-local question cannot be asked of it"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "positive",
+   "test": "the displacement encoding round-trips to inside one 8-bit code",
+   "pass": true,
+   "detail": "max error 0.001961 UV, one code = 0.001961"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "negative",
+   "test": "saturated pixels are excluded, not decoded",
+   "pass": true,
+   "detail": "1600 excluded of 19200"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "positive",
+   "test": "disc centroids land on the discs, sub-pixel",
+   "pass": true,
+   "detail": "found [(60.5, 50.5), (90.5, 150.5), (190.5, 95.5), (210.5, 40.5)] want [(60.5, 50.5), (90.5, 150.5), (190.5, 95.5), (210.5, 40.5)]"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "negative",
+   "test": "a known shift is recovered exactly",
+   "pass": true,
+   "detail": "dx 3.0 dy -2.0"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "negative",
+   "test": "an incomplete pairing refuses to report a mean",
+   "pass": true,
+   "detail": "matched 2 of 4"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "negative",
+   "test": "a pairing beyond the search radius is refused",
+   "pass": true,
+   "detail": "matched 0"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "unreadable",
+   "test": "refuses a card with no landmark contrast",
+   "pass": true,
+   "detail": "disc_blobs: card has no usable contrast (p2 120.0, p98 120.0); the calibration discs are not resolvable here"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "positive",
+   "test": "window measurement lands on the discs to well inside a pixel",
+   "pass": true,
+   "detail": "4/4 maxResid 0.0"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "negative",
+   "test": "a disc image split in two is still measured as one object",
+   "pass": true,
+   "detail": "{'id': 0, 'measured': True, 'x': 100.5, 'y': 90.5, 'predicted': [100.5, 90.5], 'residualPx': 0.0, 'areaPx': 530, 'predictedAreaPx': 615, 'areaRatio': 0.862}"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "unreadable",
+   "test": "overlapping windows are refused, not shared",
+   "pass": true,
+   "detail": "[{'id': 0, 'measured': False, 'why': 'window overlaps disc(s) [1]'}, {'id': 99, 'measured': False, 'why': 'window overlaps disc(s) [0]'}]"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "positive",
+   "test": "displacement is measured against the unrefracted prediction, and recovers a known offset",
+   "pass": true,
+   "detail": "mean 5.0 expected 5.0"
+  },
+  {
+   "instrument": "interior_fidelity_v2",
+   "kind": "positive",
+   "test": "a sharp texture reads higher HF than a blurred one",
+   "pass": true,
+   "detail": "sharp 256.7958 blurred 101.6409"
+  },
+  {
+   "instrument": "interior_fidelity_v2",
+   "kind": "negative",
+   "test": "proximity, not sharpness: the blurrier lane wins when it is nearer",
+   "pass": true,
+   "detail": "|blurred-T| 63.24 < |sharp-T| 91.91; the O5 coding would have failed the nearer lane for being blurrier"
+  },
+  {
+   "instrument": "interior_fidelity_v2",
+   "kind": "positive",
+   "test": "a textured asset is applicable for sharpness",
+   "pass": true,
+   "detail": "hf 256.7958"
+  },
+  {
+   "instrument": "interior_fidelity_v2",
+   "kind": "unreadable",
+   "test": "a flat asset is NOT_APPLICABLE, not a pass and not a failure",
+   "pass": true,
+   "detail": "Target interior HF energy 4.8 is below the pre-registered signal floor 20.0; this asset has no interior structure to measure and a difference here would be noise"
+  },
+  {
+   "instrument": "interior_fidelity_v2",
+   "kind": "negative",
+   "test": "a flat card falls below the signal floor",
+   "pass": true,
+   "detail": "hf 0.0 floor 20.0"
+  },
+  {
+   "instrument": "interior_fidelity_v2",
+   "kind": "unreadable",
+   "test": "refuses a card too small to inset",
+   "pass": true,
+   "detail": "interior_stats: no usable card interior"
+  },
+  {
+   "instrument": "silhouette_v2",
+   "kind": "positive",
+   "test": "a synthetically perfect card matches its silhouette",
+   "pass": true,
+   "detail": "iou 1.0 beyond 0"
+  },
+  {
+   "instrument": "silhouette_v2",
+   "kind": "negative",
+   "test": "a square card is distinguishable from the rounded one",
+   "pass": true,
+   "detail": "square beyond 2276 iou 0.956231 vs perfect beyond 0"
+  },
+  {
+   "instrument": "silhouette_v2",
+   "kind": "positive",
+   "test": "the measured corner radius recovers the real one",
+   "pass": true,
+   "detail": "measured 44.385 expected 42.38"
+  },
+  {
+   "instrument": "silhouette_v2",
+   "kind": "negative",
+   "test": "a square card measures a corner radius near zero",
+   "pass": true,
+   "detail": "square 0.0 vs rounded 44.385"
+  },
+  {
+   "instrument": "silhouette_v2",
+   "kind": "positive",
+   "test": "an antialias width is measurable from the soft map",
+   "pass": true,
+   "detail": "aa 1.182"
+  },
+  {
+   "instrument": "silhouette_v2",
+   "kind": "unreadable",
+   "test": "refuses when no background can be sampled",
+   "pass": true,
+   "detail": "rendered_alpha_mask: the card rect touches every frame edge, so no background can be sampled"
+  },
+  {
+   "instrument": "silhouette_v2",
+   "kind": "unreadable",
+   "test": "refuses mismatched mask shapes",
+   "pass": true,
+   "detail": "silhouette_compare: mask shapes differ"
+  },
+  {
+   "instrument": "target_replay",
+   "kind": "positive",
+   "test": "refract() at normal incidence stays on the axis",
+   "pass": true,
+   "detail": "r = (0, 0, -1.000000)"
+  },
+  {
+   "instrument": "target_replay",
+   "kind": "negative",
+   "test": "total internal reflection returns the GLSL zero",
+   "pass": true,
+   "detail": "ok False"
+  },
+  {
+   "instrument": "target_replay",
+   "kind": "positive",
+   "test": "the SDF is negative inside and positive outside",
+   "pass": true,
+   "detail": "in -112.50 out 50.00"
+  },
+  {
+   "instrument": "target_replay",
+   "kind": "positive",
+   "test": "the bevel is zero at the outline, full inside",
+   "pass": true,
+   "detail": "edge 0 deep 155"
+  },
+  {
+   "instrument": "target_replay",
+   "kind": "negative",
+   "test": "the dome falls away from the card centre",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "instrument": "target_replay",
+   "kind": "positive",
+   "test": "the media v flip is the documented one",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "instrument": "target_replay",
+   "kind": "unreadable",
+   "test": "a landmark outside the cover crop is reported outside, not clamped",
+   "pass": true,
+   "detail": "inside [True, False]"
+  },
+  {
+   "instrument": "grayscale_v2",
+   "kind": "target-self-test",
+   "test": "reads real target pixels on grayscale-step",
+   "pass": true,
+   "detail": "p995 30.0 falseArea 0.040225"
+  },
+  {
+   "instrument": "grayscale_v2",
+   "kind": "control-self-test",
+   "test": "reads real control pixels on grayscale-step",
+   "pass": true,
+   "detail": "p995 18.0 falseArea 0.057961"
+  },
+  {
+   "instrument": "grayscale_v2",
+   "kind": "candidate-self-test",
+   "test": "reads real candidate pixels on grayscale-step",
+   "pass": true,
+   "detail": "p995 18.0 falseArea 0.064679"
+  },
+  {
+   "instrument": "grayscale_v2",
+   "kind": "discrimination",
+   "test": "the lanes are not all the same value",
+   "pass": true,
+   "detail": "{'target': 30.0, 'control': 18.0, 'candidate': 18.0}"
+  },
+  {
+   "instrument": "grayscale_v2",
+   "kind": "target-window",
+   "test": "the Target passes its own repeatability window",
+   "pass": true,
+   "detail": "3 runs, spread 0.0, window 3.0, worst deviation 0.0"
+  },
+  {
+   "instrument": "saturated_edge_v2",
+   "kind": "target-self-test",
+   "test": "reads real target pixels on rgb-bars",
+   "pass": true,
+   "detail": "atFeatures 119.2163 away 123.6629 localisation 0.964"
+  },
+  {
+   "instrument": "saturated_edge_v2",
+   "kind": "control-self-test",
+   "test": "reads real control pixels on rgb-bars",
+   "pass": true,
+   "detail": "atFeatures 90.1923 away 131.7076 localisation 0.6848"
+  },
+  {
+   "instrument": "saturated_edge_v2",
+   "kind": "candidate-self-test",
+   "test": "reads real candidate pixels on rgb-bars",
+   "pass": true,
+   "detail": "atFeatures 129.3588 away 133.3225 localisation 0.9703"
+  },
+  {
+   "instrument": "interior_fidelity_v2",
+   "kind": "target-self-test",
+   "test": "reads real target pixels on hf-checker",
+   "pass": true,
+   "detail": "hf 149.548 chroma 77.344 luma 148.027"
+  },
+  {
+   "instrument": "interior_fidelity_v2",
+   "kind": "control-self-test",
+   "test": "reads real control pixels on hf-checker",
+   "pass": true,
+   "detail": "hf 183.3412 chroma 0.145 luma 136.663"
+  },
+  {
+   "instrument": "interior_fidelity_v2",
+   "kind": "candidate-self-test",
+   "test": "reads real candidate pixels on hf-checker",
+   "pass": true,
+   "detail": "hf 153.6823 chroma 80.031 luma 144.295"
+  },
+  {
+   "instrument": "interior_fidelity_v2",
+   "kind": "applicability",
+   "test": "hf-checker is applicable for sharpness on real Target pixels",
+   "pass": true,
+   "detail": "target hf 149.548 floor 20.0"
+  },
+  {
+   "instrument": "silhouette_v2",
+   "kind": "target-self-test",
+   "test": "reads a real target coverage mask",
+   "pass": true,
+   "detail": "lit 217869 px, measured corner radius 0.0"
+  },
+  {
+   "instrument": "silhouette_v2",
+   "kind": "control-self-test",
+   "test": "reads a real control coverage mask",
+   "pass": true,
+   "detail": "lit 217820 px, measured corner radius 0.0"
+  },
+  {
+   "instrument": "silhouette_v2",
+   "kind": "candidate-self-test",
+   "test": "reads a real candidate coverage mask",
+   "pass": true,
+   "detail": "lit 217865 px, measured corner radius 0.0"
+  },
+  {
+   "instrument": "silhouette_v2",
+   "kind": "candidate-readable",
+   "test": "the sdf-mask program yields a real projected silhouette",
+   "pass": true,
+   "detail": "coverage 0.92 from o5-clamped-view-sdf-mask-1440x900.png"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "candidate-readable",
+   "test": "the displacement program yields a real, non-constant field",
+   "pass": true,
+   "detail": "|du|max 0.24804 |dv|max 0.21863"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "target-self-test",
+   "test": "the calibration discs are detectable in a real Target render",
+   "pass": true,
+   "detail": "9 blobs in the scored region"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "target-self-test",
+   "test": "the \u00a7\u516d chain reads real target pixels",
+   "pass": true,
+   "detail": "2/3 cards, displacement 18.399 px, replay residual 1.437 px"
+  },
+  {
+   "instrument": "target_replay",
+   "kind": "target-self-test",
+   "test": "the replayed source formula lands on the Target's own render, which is what makes it usable as the Target's prediction",
+   "pass": true,
+   "detail": "mean residual 1.437 px over 2 cards, against the pre-registered 3.0 px"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "control-self-test",
+   "test": "the \u00a7\u516d chain reads real control pixels",
+   "pass": true,
+   "detail": "1/3 cards, displacement 14.724 px, replay residual 9.128 px"
+  },
+  {
+   "instrument": "target_replay",
+   "kind": "control-self-test",
+   "test": "the replay's PROJECTION half agrees with the control's own card geometry",
+   "pass": true,
+   "detail": "projected box agreement 3.86 px"
+  },
+  {
+   "instrument": "refraction_compression_v2",
+   "kind": "candidate-readable",
+   "test": "the \u00a7\u516d chain reads real o5-clamped pixels",
+   "pass": true,
+   "detail": "2/3 cards, displacement 19.029 px, replay residual 2.096 px"
+  },
+  {
+   "instrument": "target_replay",
+   "kind": "candidate-readable",
+   "test": "the CPU replay agrees with the GPU displacement program",
+   "pass": true,
+   "detail": "p99 |dU| 0.00098 p99 |dV| 0.001044 vs one encoding step 0.001961 (4096 samples)"
+  }
+ ]
+}
