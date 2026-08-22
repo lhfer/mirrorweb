@@ -42,6 +42,13 @@ export class SceneColorPipelineV4 {
   glassToneMapping: typeof ACESFilmicToneMapping | typeof NoToneMapping =
     ACESFilmicToneMapping;
 
+  /**
+   * O5 lane flag. True only for opticalBody=target-source, whose body has no
+   * scene-colour texture reference at all (contract absence claim
+   * noSceneColourTarget).
+   */
+  skipSceneColorPass = false;
+
   readonly sceneColor: SceneColorTargetV4;
   private readonly overscanCamera = new PerspectiveCamera();
   private overscan: number;
@@ -125,16 +132,27 @@ export class SceneColorPipelineV4 {
       info.reset();
     }
 
-    grid.setGlassVisible(false);
-    grid.setMediaVisible(true);
-    renderer.toneMapping = NoToneMapping;
-    renderer.setRenderTarget(this.sceneColor.target);
-    renderer.clear();
-    renderer.render(scene, this.overscanCamera);
-    renderer.setRenderTarget(null);
-    if (collect) {
-      collect("sceneColor", info.render.drawCalls, info.render.triangles);
-      info.reset();
+    // O5: the target-source body never samples the scene-colour target, so
+    // the pass that fills it is dead work in that lane and §十 explicitly
+    // allows removing it. Reported as 0 draw calls rather than omitted, so the
+    // pipeline comparison shows the pass was skipped instead of losing a row.
+    if (this.skipSceneColorPass) {
+      if (collect) {
+        collect("sceneColor", 0, 0);
+        info.reset();
+      }
+    } else {
+      grid.setGlassVisible(false);
+      grid.setMediaVisible(true);
+      renderer.toneMapping = NoToneMapping;
+      renderer.setRenderTarget(this.sceneColor.target);
+      renderer.clear();
+      renderer.render(scene, this.overscanCamera);
+      renderer.setRenderTarget(null);
+      if (collect) {
+        collect("sceneColor", info.render.drawCalls, info.render.triangles);
+        info.reset();
+      }
     }
 
     renderer.toneMapping = this.glassToneMapping;

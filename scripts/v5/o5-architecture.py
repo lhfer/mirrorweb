@@ -301,15 +301,41 @@ def main() -> int:
             {
                 "id": "envSampleCeilingRetained",
                 "decision": "O2's envSampleCeiling guard (clamp the HDR sample "
-                            "at 16 before the LERP) is RETAINED in the "
-                            "candidate, and recorded as a local deviation.",
+                            "at 16 before the mix) is RETAINED in the "
+                            "candidate, and recorded as a local deviation that "
+                            "DOES change pixels.",
                 "why": "The Target has no such clamp. Ours exists because a "
-                       "hot texel can inject Inf, and 0 * Inf = NaN would "
-                       "destroy the envMixScale=0 floor. The ceiling is far "
-                       "above envIntensity*envMaxMix, so it cannot bind in "
-                       "normal rendering -- it is a NaN guard, not a look "
-                       "control. Recorded rather than dropped.",
-                "kind": "DEVIATION_LOCAL_SAFETY",
+                       "hot texel can be Inf, and 0 * Inf = NaN would destroy "
+                       "the envMixScale=0 floor.",
+                "correction": "An earlier draft of this record justified the "
+                              "clamp as unable to bind, on the grounds that 16 "
+                              "sits far above envIntensity * envMaxMix = "
+                              "0.521. That reasoning is WRONG and is corrected "
+                              "here: 16 is a bound on RADIANCE and 0.521 is a "
+                              "dimensionless MIX WEIGHT. They are "
+                              "incommensurate, and no conclusion follows from "
+                              "comparing them.",
+                "measured": {
+                    "asset": "/hdri/studio_small_03_1k.hdr",
+                    "texels": "1024x512",
+                    "maxRadiance": 3568.0,
+                    "fractionAboveCeiling": 0.009809,
+                    "ceilingTimesBelowMax": 223,
+                    "conclusion": "The clamp BINDS. Just under 1% of the "
+                                  "environment's texels exceed 16 and the "
+                                  "brightest is 223x it, so wherever a card "
+                                  "reflects one of those texels the candidate "
+                                  "renders a dimmer highlight than the Target "
+                                  "would.",
+                },
+                "notChangedAfterCapture": "The render was NOT altered once the "
+                                          "gate pixels existed. Removing the "
+                                          "clamp now would be a post-capture "
+                                          "adjustment, which §十一 forbids. It "
+                                          "is disclosed as a known deviation "
+                                          "with its measured magnitude, and it "
+                                          "belongs to the next round's scope.",
+                "kind": "DEVIATION_LOCAL_SAFETY_THAT_BINDS",
             },
             {
                 "id": "coverageCullingUnchanged",

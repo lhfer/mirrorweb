@@ -39,6 +39,8 @@ import {
   V4_OPTICS_CONFIG,
   type V4DebugMode,
   type V4DispersionLaw,
+  type V4OpticalBody,
+  type V5BodyViewName,
   type V4ReflectionSupport,
   type V4ShellMode,
   V4_BODY_DIAG_OFF,
@@ -133,6 +135,14 @@ function luminanceNode(color: any) {
  * body accidentally.
  */
 export type LiquidGlassMaterialV4Options = {
+  /**
+   * O5 lane switch, read by the GRID rather than by this material: the
+   * "target-source" lane builds no control material at all. It lives on this
+   * options object so the whole optics lane selection travels together.
+   */
+  opticalBody?: V4OpticalBody;
+  /** O5 candidate debug view; ignored in the current lane. */
+  bodyView?: V5BodyViewName;
   /**
    * O2 System B: the white studio equirect. When absent the body renders
    * exactly the pre-O2 composition (legacy callers stay byte-identical).

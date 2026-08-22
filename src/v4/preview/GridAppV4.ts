@@ -36,6 +36,8 @@ import {
 import {
   V4_DEBUG_MODES, V4_OPTICS_CONFIG,
   type V4BodyDiag, type V4BodyFloorMode, type V4DebugMode, type V4DispersionLaw,
+  type V4OpticalBody,
+  type V5BodyViewName,
   type V4ReflectionSupport, type V4ShellMode,
 } from "../OpticsConfigV4";
 import { createStripLightEnvironmentV4 } from "../StripLightEnvironmentV4";
@@ -76,6 +78,10 @@ export type GridAppV4Options = {
   bodyDiag?: V4BodyDiag;
   /** O4 product lane (?bodyFloorMode=); default from OpticsConfigV4. */
   bodyFloorMode?: V4BodyFloorMode;
+  /** O5 product lane (?opticalBody=); default from OpticsConfigV4. */
+  opticalBody?: V4OpticalBody;
+  /** O5 candidate debug view (?bodyView=). */
+  bodyView?: V5BodyViewName;
 };
 
 /**
@@ -267,7 +273,23 @@ export class GridAppV4 {
       // is a pass setting here and a material flag in the Target.
       this.pipeline.glassToneMapping = NoToneMapping;
     }
+    if (this.options.opticalBody === "target-source"
+        && this.options.bodyView && this.options.bodyView !== "beauty") {
+      // QA ONLY, and only for the candidate's DEBUG views. A normal or an SDF
+      // read through ACES is not the value the shader produced -- O4 spent a
+      // finding on exactly that confusion, where a tone-mapped normal debug
+      // view read as 35.8% unit-length and looked like an invalid normal.
+      // Beauty is untouched: the candidate's product path keeps the same
+      // output transform the control has, because the Target's own
+      // `toneMapped:false` is equally inert under the node renderer.
+      this.pipeline.glassToneMapping = NoToneMapping;
+    }
     this.applyPipelineSize();
+    // O5: tell the pipeline whether this lane needs the scene-colour pass at
+    // all. Set before build so the very first frame is already correct -- a
+    // one-frame flash of a pass that should not run would show up in the
+    // first-frame checks §十 asks for.
+    this.pipeline.skipSceneColorPass = this.options.opticalBody === "target-source";
     this.grid.build(
       this.quality.level,
       this.pipeline.sceneColor.texture,
@@ -281,6 +303,8 @@ export class GridAppV4 {
         reflectionSupport: this.options.reflectionSupport,
         bodyDiag: this.options.bodyDiag,
         bodyFloorMode: this.options.bodyFloorMode,
+        opticalBody: this.options.opticalBody,
+        bodyView: this.options.bodyView,
       },
     );
     if (this.frame) this.grid.setFrame(this.frame);
@@ -1325,6 +1349,9 @@ export class GridAppV4 {
     return {
       backend: handle.backend,
       reflectionSupport: this.grid.getOpticsState().reflectionSupport ?? null,
+      opticalBody: this.grid.getOpticsState().opticalBody ?? null,
+      opticalBodyView: this.grid.getOpticsState().opticalBodyView ?? null,
+      opticalBodySamples: this.grid.getOpticsState().opticalBodySamples ?? null,
       dispersionLaw: this.grid.getOpticsState().dispersionLaw ?? null,
       vertexShader: src.vertexShader,
       fragmentShader: src.fragmentShader,

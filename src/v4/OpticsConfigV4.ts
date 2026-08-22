@@ -86,6 +86,42 @@ export const V4_BODY_DIAG_ORDER = [
 export const V4_BODY_FLOOR_MODES = ["current", "remove-adaptive-shaping"] as const;
 export type V4BodyFloorMode = (typeof V4_BODY_FLOOR_MODES)[number];
 
+// O5 PRODUCT lane switch: the whole card optical body, as one system.
+//
+// "current" is everything O2 accepted -- convex geometry, a shared
+// screen-space body, a separate reflection shell and a separate media plane.
+// "target-source" is the Target's own material chain, transcribed from
+// qa-v5/optics-o5/target-optical-body-contract.json: a domed unit plane, a
+// rounded-rect SDF, an analytic bevel normal, per-IOR spectral refraction of
+// the card's OWN media, and the accepted System B environment and white rim in
+// the SAME material.
+//
+// Build-time, like every other lane switch here, and for the same reason: the
+// two lanes must be different PROGRAMS, so the control lane emits the accepted
+// body byte for byte and keeps its exact-zero identity proof. Overridable per
+// page load with ?opticalBody=.
+export const V4_OPTICAL_BODIES = ["current", "target-source"] as const;
+export type V4OpticalBody = (typeof V4_OPTICAL_BODIES)[number];
+
+export function parseOpticalBody(v: string | null | undefined): V4OpticalBody {
+  return V4_OPTICAL_BODIES.includes(v as V4OpticalBody)
+    ? (v as V4OpticalBody)
+    : "current";
+}
+
+// O5 candidate debug views. Each is a SEPARATE PROGRAM built at material
+// construction, never a runtime branch -- see TargetOpticalBodyV5 for why that
+// distinction is load-bearing after the O4A codegen finding.
+export const V5_BODY_VIEW_NAMES = [
+  "beauty", "sdf-mask", "analytic-normal", "refraction-only",
+] as const;
+export type V5BodyViewName = (typeof V5_BODY_VIEW_NAMES)[number];
+
+export function parseBodyView(v: string | null | undefined): V5BodyViewName {
+  return V5_BODY_VIEW_NAMES.includes(v as V5BodyViewName)
+    ? (v as V5BodyViewName) : "beauty";
+}
+
 export function parseBodyFloorMode(v: string | null | undefined): V4BodyFloorMode {
   return V4_BODY_FLOOR_MODES.includes(v as V4BodyFloorMode)
     ? (v as V4BodyFloorMode) : "current";
@@ -207,6 +243,10 @@ export const V4_OPTICS_CONFIG = {
     // whether the candidate becomes the default; there is no automatic
     // flip, and product review owns that call.
     bodyFloorMode: "current" as V4BodyFloorMode,
+    // O5: the code commit ships the CONTROL. There is no automatic flip in
+    // this brief -- its final states do not include one, and product review
+    // owns the decision.
+    opticalBody: "current" as V4OpticalBody,
     // O2 System B -- the Target's shipped values, adopted verbatim
     // (byte-anchored in qa-v5/optics-o2/target-system-b-source.json).
     // None of these is a tunable; see o2-selected-system.json.

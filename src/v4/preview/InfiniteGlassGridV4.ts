@@ -6,7 +6,9 @@ import {
   type BufferGeometry,
   type Texture,
 } from "three/webgpu";
-import { CanvasTexture, SRGBColorSpace, LinearFilter } from "three/webgpu";
+import {
+  CanvasTexture, ClampToEdgeWrapping, LinearFilter, SRGBColorSpace, VideoTexture,
+} from "three/webgpu";
 import { GRID, TILE, type QualityLevel } from "../../config";
 import {
   placeSourceExactSlot, slotCode, REFERENCE_PLANE_WIDTH,
@@ -31,7 +33,15 @@ import {
   createLiquidGlassParamsV4,
   type LiquidGlassMaterialV4Handle,
 } from "../../materials/LiquidGlassMaterialV4";
-import type { V4DebugMode, V4ShellMode } from "../OpticsConfigV4";
+import type { V4DebugMode, V4OpticalBody, V4ShellMode } from "../OpticsConfigV4";
+import {
+  applyTargetOpticalBodyFrameV5,
+  createTargetOpticalBodyMaterialV5,
+  createTargetOpticalBodyUniformsV5,
+  type TargetOpticalBodyHandleV5,
+  type TargetOpticalBodyUniformsV5,
+  type V5BodyView,
+} from "../../materials/TargetOpticalBodyV5";
 import { FOUNDATION_SLAB_COLOR } from "../../debug/FoundationMode";
 import { ClipReelV4 } from "./ClipReelV4";
 
@@ -99,6 +109,20 @@ export class InfiniteGlassGridV4 {
   private sourceExact = false;
   private mediaFits: MediaFitResult[] = [];
   private calibrationTextures: CanvasTexture[] = [];
+  /** O5 lane. "current" is the accepted O2 body; see OpticsConfigV4. */
+  private opticalBody: V4OpticalBody = "current";
+  private bodyUniforms?: TargetOpticalBodyUniformsV5;
+  private bodyHandles: TargetOpticalBodyHandleV5[] = [];
+  private bodyGeometry?: PlaneGeometry;
+  /**
+   * The candidate lane's OWN media textures. It never mutates the reel
+   * textures the control lane shares: doing so would change control pixels
+   * and forfeit the exact-identity proof the whole round rests on.
+   */
+  private ownMediaTextures: VideoTexture[] = [];
+  private bodyView: V5BodyView = "beauty";
+  /** Kept so a quality step can rebuild the candidate materials. */
+  private bodyEnvTexture: Texture | null = null;
 
   constructor(private readonly params = createLiquidGlassParamsV4()) {
     this.root.name = "MirrorWeb.V4.GridRoot";
@@ -128,10 +152,21 @@ export class InfiniteGlassGridV4 {
       this.buildFoundationPool();
       return;
     }
+    this.opticalBody = materialOptions?.opticalBody ?? "current";
+    this.bodyView = materialOptions?.bodyView ?? "beauty";
+    const targetSource = this.opticalBody === "target-source" && this.sourceExact;
     this.glassGeometry.dispose();
     this.glassGeometry = createConvexGlassGeometryV4(quality);
-    this.handle = createLiquidGlassMaterialV4(
-      sceneColor, this.params, debugMode, shellMode, materialOptions ?? {});
+    // The candidate lane builds NO control material: its body carries
+    // refraction, environment and rim itself, and it never samples the
+    // scene-colour target. Creating the control material anyway would leave a
+    // second body program and a scene-colour binding alive for the §十
+    // pipeline measurement to count, which would misreport what this lane
+    // actually costs.
+    this.handle = targetSource
+      ? undefined
+      : createLiquidGlassMaterialV4(
+          sceneColor, this.params, debugMode, shellMode, materialOptions ?? {});
     // The build-time shell mode must seed the SAME flags the setter keeps,
     // or the mesh-visibility truth disagrees with the material state.
     this.shellEnabled = shellMode !== "off";
@@ -147,7 +182,11 @@ export class InfiniteGlassGridV4 {
     this.applyMediaFits();
 
     if (this.sourceExact) {
-      this.buildSourceExactPool();
+      if (this.opticalBody === "target-source") {
+        this.buildTargetSourcePool(materialOptions?.envTexture ?? null);
+      } else {
+        this.buildSourceExactPool();
+      }
       return;
     }
     const halfCols = Math.floor(GRID.cols / 2);
@@ -156,10 +195,10 @@ export class InfiniteGlassGridV4 {
     for (let dj = -halfRows; dj <= halfRows; dj += 1) {
       for (let di = -halfCols; di <= halfCols; di += 1) {
         const group = new Group();
-        const glass = new Mesh(this.glassGeometry, this.handle.bodyMaterial);
+        const glass = new Mesh(this.glassGeometry, this.handle!.bodyMaterial);
         glass.name = "MirrorWeb.V4.RefractionBody";
         glass.renderOrder = 10;
-        const shell = new Mesh(this.glassGeometry, this.handle.reflectionMaterial);
+        const shell = new Mesh(this.glassGeometry, this.handle!.reflectionMaterial);
         shell.name = "MirrorWeb.V4.ReflectionShell";
         shell.renderOrder = 11;
         const media = new Mesh(this.mediaGeometry, this.mediaFor(di, dj));
@@ -218,6 +257,109 @@ export class InfiniteGlassGridV4 {
                         code: slotCode(n), active: false });
       this.created += 1;
     }
+  }
+
+  /**
+   * O5 candidate pool: the Target's own topology.
+   *
+   * ONE mesh per card, drawn with the material belonging to that slot's clip.
+   * No reflection shell -- the Target has none, and keeping ours would
+   * double-count the environment. The media plane is still created, but it is
+   * drawn ONLY when the glass layer is switched off, because it exists purely
+   * so a media-only QA capture has something to show; in Beauty the body
+   * samples its own media directly.
+   *
+   * The geometry is PlaneGeometry(1,1,16,12) scaled to
+   * (planeWidth, planeHeight, 1) -- the Target's `t.scale.set(d,h,1)`. The
+   * 16x12 tessellation is load-bearing: the dome is a vertex displacement, so
+   * the curvature is resolved by subdivision.
+   */
+  private buildTargetSourcePool(envTexture: Texture | null): void {
+    this.bodyEnvTexture = envTexture;
+    this.bodyGeometry?.dispose();
+    this.bodyGeometry = new PlaneGeometry(1, 1, 16, 12);
+    this.mediaGeometry.dispose();
+    this.mediaGeometry = new PlaneGeometry(1, 1);
+    this.bodyUniforms = createTargetOpticalBodyUniformsV5();
+
+    // The candidate's OWN textures, over the same video elements. sRGB and
+    // ClampToEdge as the Target sets them; no mipmaps, so there is no chain to
+    // sample even if a LOD were asked for.
+    const videos = this.reel?.videos ?? [];
+    this.ownMediaTextures = videos.map((video, index) => {
+      const texture = new VideoTexture(video);
+      texture.colorSpace = SRGBColorSpace;
+      texture.wrapS = ClampToEdgeWrapping;
+      texture.wrapT = ClampToEdgeWrapping;
+      texture.minFilter = LinearFilter;
+      texture.magFilter = LinearFilter;
+      texture.generateMipmaps = false;
+      texture.name = `MirrorWeb.V5.OwnMedia.${index}`;
+      return texture;
+    });
+
+    // One material per CLIP, as the Target does. Cover values come from the
+    // FROZEN MediaFit result, never from the Target's centred formula: media
+    // focus and crop are frozen, and clip 2 carries a product decision the
+    // Target's formula does not express.
+    this.rebuildBodyMaterials();
+
+    for (let n = 0; n < SOURCE_EXACT_POOL; n += 1) {
+      const group = new Group();
+      const body = this.bodyHandles[n % this.bodyHandles.length];
+      const glass = new Mesh(this.bodyGeometry, body.material);
+      glass.name = "MirrorWeb.V5.TargetOpticalBody";
+      glass.renderOrder = 10;
+      // Clip binding is by POOL SLOT and set once, exactly as the control
+      // lane binds it, so both lanes show the same clip in the same slot.
+      const media = new Mesh(this.mediaGeometry, this.mediaForSlot(n));
+      media.name = "MirrorWeb.V4.Media";
+      media.renderOrder = -1;
+      media.visible = false;
+      group.add(glass, media);
+      group.visible = false;
+      this.root.add(group);
+      this.slots.push({ group, glass, media, i: 0, j: 0, slotIndex: n,
+                        code: slotCode(n), active: false });
+      this.created += 1;
+    }
+  }
+
+  /**
+   * (Re)build the per-clip candidate materials.
+   *
+   * The spectral sample count is a BUILD-TIME literal -- the Target bakes its
+   * weights on the CPU and so do we -- so a quality step has to rebuild these
+   * materials or the lane would keep five samples on a device that asked for
+   * three. The control lane has the same property and the same limitation; the
+   * difference is that here it is optically load-bearing, so it is handled.
+   */
+  private rebuildBodyMaterials(): void {
+    if (!this.bodyUniforms) return;
+    const previous = this.bodyHandles;
+    const count = Math.max(1, this.ownMediaTextures.length);
+    const next: TargetOpticalBodyHandleV5[] = [];
+    for (let index = 0; index < count; index += 1) {
+      const fit = this.mediaFits[index];
+      next.push(createTargetOpticalBodyMaterialV5({
+        uniforms: this.bodyUniforms,
+        media: this.ownMediaTextures[index],
+        environment: (this.bodyEnvTexture
+          ?? this.ownMediaTextures[index]) as Texture,
+        coverScale: fit ? [fit.repeatX, fit.repeatY] : [1, 1],
+        coverOffset: fit ? [fit.offsetX, fit.offsetY] : [0, 0],
+        quality: this.quality,
+        view: this.bodyView,
+      }));
+    }
+    this.bodyHandles = next;
+    for (const slot of this.slots) {
+      slot.glass.material = next[slot.slotIndex % next.length].material;
+    }
+    // Dispose AFTER rebinding, never before: a mesh holding a disposed
+    // material draws nothing for a frame, which is exactly the resource
+    // pop-in §十 forbids.
+    for (const handle of previous) handle.material.dispose();
   }
 
   /**
@@ -315,6 +457,15 @@ export class InfiniteGlassGridV4 {
       );
       applyMediaFit(map, fit);
       this.mediaFits.push(fit);
+      // Same fit, expressed as the Target's uniforms. repeat/offset IS
+      // coverScale/coverOffset -- three's texture matrix and the Target's
+      // `clamp(uv,0,1)*coverScale + coverOffset` are the same convention, so
+      // this is a rename rather than a recomputation.
+      const body = this.bodyHandles[index];
+      if (body) {
+        body.coverScale.value.set(fit.repeatX, fit.repeatY);
+        body.coverOffset.value.set(fit.offsetX, fit.offsetY);
+      }
     }
   }
 
@@ -391,7 +542,15 @@ export class InfiniteGlassGridV4 {
         slot.shell.visible =
           slot.glass.visible && this.shellEnabled && this.debugShellOn;
       }
-      if (slot.media) slot.media.visible = activeOk && this.passMedia;
+      if (slot.media) {
+        // In the candidate lane the body draws its own media, so the plane is
+        // a QA surface only: it appears exactly when the glass layer is
+        // switched off, which is what a media-only capture asks for. In the
+        // control lane it is the media BEHIND the glass and shows normally.
+        slot.media.visible = this.opticalBody === "target-source"
+          ? activeOk && this.passMedia && !this.passGlass
+          : activeOk && this.passMedia;
+      }
     }
   }
 
@@ -415,11 +574,18 @@ export class InfiniteGlassGridV4 {
    */
   /** O2 QA-only floor levers (o2-selected-system.json); product value 1. */
   setEnvMixScale(value: number): void {
-    this.params.envMixScale.value = Math.max(0, Math.min(1, value));
+    const v = Math.max(0, Math.min(1, value));
+    this.params.envMixScale.value = v;
+    // The candidate carries the environment in its own body, so the QA scale
+    // has to reach its uniform too or a "System B off" capture would silently
+    // still have System B on in that lane.
+    if (this.bodyUniforms) (this.bodyUniforms.envMixScale as { value: number }).value = v;
   }
 
   setRimScale(value: number): void {
-    this.params.rimScale.value = Math.max(0, Math.min(1, value));
+    const v = Math.max(0, Math.min(1, value));
+    this.params.rimScale.value = v;
+    if (this.bodyUniforms) (this.bodyUniforms.rimScale as { value: number }).value = v;
   }
 
   getOpticsState(): Record<string, unknown> {
@@ -428,6 +594,11 @@ export class InfiniteGlassGridV4 {
       reflectionSupport: this.handle?.getReflectionSupport() ?? null,
       bodyDiag: this.handle?.getBodyDiag() ?? null,
       bodyFloorMode: this.handle?.getBodyFloorMode() ?? null,
+      opticalBody: this.opticalBody,
+      opticalBodyView: this.opticalBody === "target-source" ? this.bodyView : null,
+      opticalBodySamples: this.bodyHandles[0]?.samples ?? null,
+      opticalBodyMaterials: this.bodyHandles.length,
+      opticalBodyOwnTextures: this.ownMediaTextures.length,
       envMixScale: this.params.envMixScale.value,
       rimScale: this.params.rimScale.value,
       shellMode: this.handle?.getShellMode() ?? null,
@@ -485,6 +656,11 @@ export class InfiniteGlassGridV4 {
     // O3: the Target's per-frame bevel uniform writes. Harmless in the
     // geometry lane, where the shader references none of them.
     this.handle?.setLayoutFrame(frame);
+    // The candidate's geometry uniforms come from the FROZEN frame. L6 is
+    // never re-derived here: our frame already reproduces it exactly at every
+    // O5 viewport, so reading it cannot drift from the layout the rest of the
+    // app uses.
+    if (this.bodyUniforms) applyTargetOpticalBodyFrameV5(this.bodyUniforms, frame);
     this.activeSlotCount = Math.min(frame.activeSlotCount, this.slots.length);
     for (let n = 0; n < this.slots.length; n += 1) {
       const slot = this.slots[n];
@@ -492,8 +668,24 @@ export class InfiniteGlassGridV4 {
       slot.active = active;
       slot.group.visible = active;
       if (!active) continue;
-      if (this.foundation) {
+      if (this.foundation || this.opticalBody === "target-source") {
+        // Unit plane scaled to the card -- the Target's own
+        // `t.scale.set(d,h,1)`. Z stays 1 so the vertex dome, which is already
+        // in card pixels, is not scaled twice.
         slot.glass.scale.set(frame.planeWidth, frame.planeHeight, 1);
+        if (slot.media) {
+          slot.media.scale.set(frame.planeWidth, frame.planeHeight, 1);
+          // The candidate's media plane is a QA SURFACE ONLY -- it is hidden
+          // in Beauty, where the body samples its own texture. So it must sit
+          // exactly where the control's does, or a media-only capture would
+          // project the media at a slightly different size in each lane and
+          // the two would not be comparable. They feed the true-silhouette
+          // derivation and the edge-compression baseline check, both of which
+          // compare lanes, so this parity is load-bearing for QA even though
+          // it is invisible in the product path.
+          slot.media.position.z =
+            (-TILE.thickness * 0.5 - TILE.backDish - 2) * frame.cardScale;
+        }
       } else {
         slot.glass.scale.setScalar(frame.cardScale);
         slot.shell?.scale.setScalar(frame.cardScale);
@@ -581,6 +773,7 @@ export class InfiniteGlassGridV4 {
       slot.glass.geometry = this.glassGeometry;
       if (slot.shell) slot.shell.geometry = this.glassGeometry;
     }
+    if (this.opticalBody === "target-source") this.rebuildBodyMaterials();
     // Re-apply the layout frame: the scales live on the meshes, and a quality
     // step must not be able to leave them describing the previous geometry.
     if (this.sourceExact && this.frame) this.setFrame(this.frame);
@@ -712,6 +905,11 @@ export class InfiniteGlassGridV4 {
     this.mediaMaterials.length = 0;
     for (const texture of this.calibrationTextures) texture.dispose();
     this.calibrationTextures.length = 0;
+    for (const handle of this.bodyHandles) handle.material.dispose();
+    this.bodyHandles.length = 0;
+    for (const texture of this.ownMediaTextures) texture.dispose();
+    this.ownMediaTextures.length = 0;
+    this.bodyUniforms = undefined;
     this.mediaFits = [];
     this.slabGeometry?.dispose();
     this.slabGeometry = undefined;
@@ -723,6 +921,8 @@ export class InfiniteGlassGridV4 {
     this.disposePool();
     this.glassGeometry.dispose();
     this.mediaGeometry.dispose();
+    this.bodyGeometry?.dispose();
+    this.bodyGeometry = undefined;
     this.reel?.dispose();
     this.reel = undefined;
   }

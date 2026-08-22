@@ -1,0 +1,201 @@
+{
+ "what": "O5 \u00a7\u4e03 compiled-body audit of the target-source candidate. Program evidence settles contents and absences; runtime probes settle finiteness and variance. Neither alone is enough -- O4A is the reason.",
+ "passed": 15,
+ "total": 15,
+ "pass": true,
+ "programs": {
+  "high": {
+   "bytes": 13691,
+   "sha256": "2f36da7a166179bb03457a36460fc73a8bdbda4daed2948e9f51e246a362672e",
+   "refracts": 5,
+   "samples": 5,
+   "satisfiesContract": true
+  },
+  "medium": {
+   "bytes": 13691,
+   "sha256": "2f36da7a166179bb03457a36460fc73a8bdbda4daed2948e9f51e246a362672e",
+   "refracts": 5,
+   "samples": 5,
+   "satisfiesContract": true
+  },
+  "low": {
+   "bytes": 12266,
+   "sha256": "4a5e6e2285add2d7a2b62472fc4d1f55bad20372979fb849d61263443f51b8f3",
+   "refracts": 3,
+   "samples": 3,
+   "satisfiesContract": true
+  }
+ },
+ "controlProgramBytes": 28304,
+ "candidateVsControlProgramBytes": {
+  "candidateHigh": 13691,
+  "controlHigh": 28304,
+  "note": "The candidate's whole body -- refraction, dispersion, environment, rim, silhouette -- compiles to less than half the control's program, because it has no scene-colour path, no blur chain, no adaptive shaping and no debug branches."
+ },
+ "runtimeProbe": {
+  "encodedAs": "N * 0.5 + 0.5, NoToneMapping, sRGB-encoded target",
+  "decodedBy": "sRGB -> linear, then v*2-1",
+  "insetPx": 4,
+  "pixels": 634495,
+  "nonFinitePixels": 0,
+  "channelRanges": {
+   "r": [
+    0.0,
+    248.0
+   ],
+   "g": [
+    16.0,
+    248.0
+   ],
+   "b": [
+    37.0,
+    255.0
+   ]
+  },
+  "channelStd": [
+   46.94,
+   46.119,
+   46.619
+  ],
+  "decodedLengthMean": 1.0342,
+  "decodedLengthP01": 0.991,
+  "decodedLengthP99": 1.7049,
+  "unitLengthFraction": 0.9495,
+  "unitLengthFractionNote": "Not 100%, and should not be: 8-bit quantisation alone moves |N| by up to ~0.01, and the encoding clips any component beyond [-1,1]. What matters is that the distribution sits AT 1 rather than at 0, which is the O4A discriminator.",
+  "allBlackPixels": 0
+ },
+ "renderPasses": {
+  "sceneColorCalls": 0,
+  "sceneColorTriangles": 0,
+  "finalCalls": 17,
+  "finalTriangles": 6145
+ },
+ "renderLayers": {
+  "activeSlots": 100,
+  "glassMeshesVisible": 16,
+  "reflectionShellsVisible": 0,
+  "mediaMeshesVisible": 0,
+  "labelLayerDisplay": "none",
+  "labelElementsShown": 16
+ },
+ "textureBindings": {
+  "candidate": 2,
+  "control": 2,
+  "note": "Both lanes bind two textures. The candidate's are its own media and the environment; the control's are the scene-colour target and the environment. Identifiers are minified, so which is which is settled by item 9's runtime proof, not by reading names."
+ },
+ "textureSampleCalls": {
+  "candidate": 6,
+  "control": 1,
+  "candidateExplicitLod": 0,
+  "controlExplicitLod": 20
+ },
+ "consoleAndPageErrors": 0,
+ "items": [
+  {
+   "item": 1,
+   "name": "analytic normal is finite",
+   "evidence": "RUNTIME",
+   "pass": true,
+   "detail": "634495 card pixels read from the linear analytic-normal view; non-finite 0, all-black 0. Decoded |N| mean 1.0342 (p1 0.991, p99 1.7049)."
+  },
+  {
+   "item": 2,
+   "name": "NaN count = 0",
+   "evidence": "RUNTIME",
+   "pass": true,
+   "detail": "A NaN reaching the framebuffer clamps to 0 in an 8-bit target, so this is read together with item 1's all-black count rather than from the float alone: 0 non-finite AND 0 all-black card pixels."
+  },
+  {
+   "item": 3,
+   "name": "Inf count = 0",
+   "evidence": "RUNTIME",
+   "pass": true,
+   "detail": "An Inf saturates to 255 across the board; channel maxima are [248.0, 248.0, 255.0] with real spread (std [46.94, 46.119, 46.619]), not a saturated plane."
+  },
+  {
+   "item": 4,
+   "name": "normal has spatial variance",
+   "evidence": "RUNTIME",
+   "pass": true,
+   "detail": "Per-channel standard deviation across the card is [46.94, 46.119, 46.619]. This is the discriminator O4A turned on: a zero or constant normal reads as std 0."
+  },
+  {
+   "item": 5,
+   "name": "Beauty refract consumes the analytic normal",
+   "evidence": "PROGRAM",
+   "pass": true,
+   "detail": "5 refract() calls in the high program, and NO shared normal varying is declared at all (v_o*NormalView / normalViewGeometry: absent). The normal is computed per fragment from positionLocal, so there is nothing for refract to consume except the analytic normal."
+  },
+  {
+   "item": 6,
+   "name": "every spectral sample executes its own refract",
+   "evidence": "PROGRAM",
+   "pass": true,
+   "detail": "refract() appears 5 times at high with 5 samples; 3 times at low with 3. The count tracks the sample count exactly, which is what distinguishes five real refractions from one refraction reused with UV offsets."
+  },
+  {
+   "item": 7,
+   "name": "no zero-initialised shared normal alias reaches Beauty",
+   "evidence": "PROGRAM",
+   "pass": true,
+   "detail": "The O4A defect needs a shared varying to occur on. This program declares none, and has no debug branches at all -- each view is a separate program. The failure mode has no surface here."
+  },
+  {
+   "item": 8,
+   "name": "own media texture is sampled",
+   "evidence": "PROGRAM",
+   "pass": true,
+   "detail": "6 textureSample() calls -- at least one per spectral sample plus the environment. The media binding is the card's own VideoTexture; the lane creates its own textures and never mutates the control lane's reel textures."
+  },
+  {
+   "item": 9,
+   "name": "scene-colour texture is not referenced",
+   "evidence": "RUNTIME+PROGRAM",
+   "pass": true,
+   "detail": "Decisive runtime proof rather than a string search: in the candidate lane the scene-colour pass draws 0 calls and the media plane is hidden (0 visible of 100 active slots, 16 bodies drawn) -- yet the cards still show media, luminance std 80.795 inside the card. Nothing was ever rendered INTO the scene-colour target, so the media the body displays cannot have come from it. (A WGSL string search cannot settle this: identifiers are minified, and both lanes declare exactly two texture bindings -- the candidate's are its own media and the environment, the control's are the scene-colour target and the environment.)"
+  },
+  {
+   "item": 10,
+   "name": "no .level() / mip LOD path",
+   "evidence": "PROGRAM",
+   "pass": true,
+   "detail": "Candidate explicit-LOD sampler calls: none. Control program, as a POSITIVE control on the same test: {'textureSampleLevel': 20}. The probe demonstrably fires on a program that has the path, so the candidate's zero is an absence and not a broken check. Structurally reinforced: the lane's textures are created with generateMipmaps = false, so there is no chain to sample even if a LOD were requested."
+  },
+  {
+   "item": 11,
+   "name": "no adaptive shaping nodes",
+   "evidence": "PROGRAM",
+   "pass": true,
+   "detail": "Adaptive-shaping identifiers in the candidate: none. The Target's factory contains none either (contract absence claims noAdaptiveContrast, noEdgeLift, noInternalShadow)."
+  },
+  {
+   "item": 12,
+   "name": "no ACES / tone-mapped body path",
+   "evidence": "PROGRAM",
+   "pass": true,
+   "detail": "Tone-mapping identifiers inside the body program: none. The material sets toneMapped=false exactly as the Target does. Note the flag is INERT under three's WebGPU node renderer in BOTH codebases -- 0 reads in our three.webgpu.js, and all 4 in the Target's bundle are WebGL-only paths -- so the renderer's output stage is left alone rather than overridden, which is what reproduces the Target's actual behaviour."
+  },
+  {
+   "item": 13,
+   "name": "reflection and refraction use the same analytic normal",
+   "evidence": "PROGRAM",
+   "pass": true,
+   "detail": "Structural: the body chain computes N once into a var and both the spectral loop and the reflection vector read that same var. There is no second normal source in the program -- no varying, no vertex normal, no attribute."
+  },
+  {
+   "item": 14,
+   "name": "high / medium / low all satisfy the contract",
+   "evidence": "PROGRAM",
+   "pass": true,
+   "detail": "{\"high\": {\"bytes\": 13691, \"sha256\": \"2f36da7a166179bb03457a36460fc73a8bdbda4daed2948e9f51e246a362672e\", \"refracts\": 5, \"samples\": 5, \"satisfiesContract\": true}, \"medium\": {\"bytes\": 13691, \"sha256\": \"2f36da7a166179bb03457a36460fc73a8bdbda4daed2948e9f51e246a362672e\", \"refracts\": 5, \"samples\": 5, \"satisfiesContract\": true}, \"low\": {\"bytes\": 12266, \"sha256\": \"4a5e6e2285add2d7a2b62472fc4d1f55bad20372979fb849d61263443f51b8f3\", \"refracts\": 3, \"samples\": 3, \"satisfiesContract\": true}}"
+  },
+  {
+   "item": 15,
+   "name": "sample-count quality cap matches Target source",
+   "evidence": "PROGRAM",
+   "pass": true,
+   "detail": "Measured {'high': 5, 'medium': 5, 'low': 3}. The Target caps at min(dispersionSamples=5, low ? 3 : Infinity) -> 5 high / 3 low. We have three levels against its two, so medium maps to 5 and low to 3; recorded in o5-architecture.json as a stated 3-tier-to-2-tier mapping, not a transcription."
+  }
+ ],
+ "finalStateIfFailed": "O5 TARGET-SOURCE BODY FAILED ABSOLUTE GATE"
+}
