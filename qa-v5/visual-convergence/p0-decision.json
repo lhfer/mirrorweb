@@ -7,7 +7,6 @@
   "pageChrome": "artifacts/visual-convergence/chrome-truth-before.json -- per-row luma of the bottom 288 rows of matched full-page stills, four viewports.",
   "structure": "artifacts/visual-convergence/recon.json -- both pages' footer subtree with rects and computed styles, 1440x900 and 390x844."
  },
-
  "candidates": [
   {
    "system": "A. Dynamic Grid / Motion / Camera Dolly",
@@ -42,7 +41,6 @@
    "chosen": true
   }
  ],
-
  "chosenP0": {
   "system": "C. Typography / Footer / Brand",
   "title": "The page chrome band: the missing bottom scrim, the footer's viewport law, and the brand box",
@@ -74,10 +72,54 @@
   ],
   "brandHonesty": "The Target's wordmark is its own studio logo and is never copied into this repo. What is matched is the PRESENTATION -- the box, the scaling law, the drop shadow -- rendered with our own ATELIER mark as inline SVG so it scales inside that box."
  },
-
  "rankedForNextRound": [
-  {"rank": 1, "system": "Motion", "finding": "fling distance 2.0% long (832.1 px vs 815.6 px on the same input), leaving a 16.6 px terminal offset and a 1.5% projected-size offset", "where": "card-trajectory-truth.json -> desktop-fast-flick"},
-  {"rank": 2, "system": "Motion", "finding": "orientation relayout arrives ~330 ms early with one 36.7 px single-frame step against the Target's 3.9 px maximum", "where": "card-trajectory-truth.json -> orientation-change"},
-  {"rank": 3, "system": "Glass", "finding": "+2.0 to +3.9 luma page-wide outside the footer band on matched media -- now measurable for the first time, but closed for this round by §一.2", "where": "chrome-truth-before.json -> above144 deltas"}
- ]
+  {
+   "rank": 1,
+   "system": "Motion",
+   "finding": "fling distance 2.0% long (832.1 px vs 815.6 px on the same input), leaving a 16.6 px terminal offset and a 1.5% projected-size offset",
+   "where": "card-trajectory-truth.json -> desktop-fast-flick"
+  },
+  {
+   "rank": 2,
+   "system": "Motion",
+   "finding": "orientation relayout arrives ~330 ms early with one 36.7 px single-frame step against the Target's 3.9 px maximum",
+   "where": "card-trajectory-truth.json -> orientation-change"
+  },
+  {
+   "rank": 3,
+   "system": "Glass",
+   "finding": "+2.0 to +3.9 luma page-wide outside the footer band on matched media -- now measurable for the first time, but closed for this round by §一.2",
+   "where": "chrome-truth-before.json -> above144 deltas"
+  }
+ ],
+ "correction": {
+  "addedAt": "2026-08-22, in the evidence commit, after the product change",
+  "why": "the motion numbers in candidate A above were taken from ONE Target run against ONE Candidate run. They are superseded here rather than rewritten, because the original text is the honest record of what one pair showed and the correction is the point of keeping it.",
+  "whatChanged": [
+   "'our fling carries 2.0% further' is WRONG as stated. With five Candidate samples the fling is BIMODAL: three runs travel 815.55, 815.76 and 815.55 px -- inside the Target's own 814.75-817.18 px spread -- and two travel 832.15 and 833.07 px. Roughly two runs in five overshoot by ~17.4 px (2.1%) on identical dispatched input, and the Target's three runs show no such second mode. The finding is an intermittent overshoot, not a constant offset, and it is a better finding than the one it replaces.",
+   "'the orientation relayout arrives about 330 ms early' is not supported as a settle-time claim: row-stagger settle time is 4845/4837/5000 ms on our side against 4849/4832/5000 on the Target's. What IS reproducible is the row-phase path through the resize -- cross-pair median p95 103.4 px with both sides self-repeating to under 2.6 px -- and a single-frame step of 36.72/36.72/36.79 px on our side against the Target's 3.89/4.50/3.71 px. Our page makes one ~37 px jump through the portrait-to-landscape relayout where the Target's largest single-frame move is 4.5 px.",
+   "The estimator changed with it: the published comparison now judges the MEDIAN p95 across the full Target x Candidate pair matrix and publishes every pair, and it reports UNRESOLVABLE where the Candidate's own self-repeat spread already exceeds the pre-registered threshold. The thresholds themselves were not touched."
+  ],
+  "doesThisChangeTheP0": "No. Both corrected findings are still transients or landing-point differences on an infinite grid, and neither clears §六's visible-at-1x bar. If anything the correction strengthens the choice: the flick divergence is intermittent, so a fix for it could not have been demonstrated as a visible improvement this round.",
+  "correctedRanking": [
+   {
+    "rank": 1,
+    "system": "Motion",
+    "finding": "intermittent fling overshoot -- 2 of 5 runs travel ~17.4 px (2.1%) further than the other 3 on identical input, while the Target shows one mode across 3 runs",
+    "where": "card-trajectory-truth.json -> desktop-fast-flick -> travelPx"
+   },
+   {
+    "rank": 2,
+    "system": "Motion",
+    "finding": "one ~36.7 px single-frame step through the portrait-to-landscape relayout, reproduced in all three runs, against the Target's 4.5 px maximum",
+    "where": "card-trajectory-truth.json -> orientation-change"
+   },
+   {
+    "rank": 3,
+    "system": "Glass",
+    "finding": "+2.0 to +3.9 luma page-wide outside the chrome band on matched media -- measurable for the first time, closed for this round by §一.2",
+    "where": "product-closure.json -> chromeBandMeasurement -> above144"
+   }
+  ]
+ }
 }

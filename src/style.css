@@ -182,15 +182,36 @@ body {
   color: #fff;
 }
 
+/* The bottom scrim, measured from the Target's own chrome container: a 144px
+   (h-36) gradient from 60% black at the last screen row to transparent, across
+   the full width, painted ABOVE the cards and their labels because it lives in
+   the overlay layer. We had no such element at any viewport, and on matched
+   media the bottom 144 rows read 13-19 luma levels brighter than the Target's
+   (up to 43 at the last row). See qa-v5/visual-convergence/p0-decision.json. */
+.page-chrome-scrim {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 144px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  pointer-events: none;
+}
+
+/* The footer row spans the full width and carries its inset as padding, which
+   is how the Target's does it: the row's own box reaches the viewport edges,
+   the content stops 20px short. Centred on a phone, bottom-aligned from the
+   Target's `lg` breakpoint up. */
 .page-footer {
   position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  padding: 0 20px 20px;
 }
 
 .experiment-link,
@@ -200,20 +221,35 @@ body {
   color: rgb(237, 237, 237);
 }
 
+/* Target: `flex flex-col lg:items-center gap-3 lg:flex-row` -- the caption and
+   the wordmark stack INSIDE this link on a phone, and the footer row itself
+   never stacks. Ours stacked the whole row below 720px, which pushed the brand
+   59px above where the Target's sits at 390x844. */
 .experiment-link {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 12px;
   font-size: 16px;
   line-height: 20px;
   font-weight: 400;
 }
 
+@media (min-width: 1024px) {
+  .page-footer {
+    align-items: flex-end;
+  }
+
+  .experiment-link {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
 /* Footer label, measured from the Target's own footer: Geist Mono, weight 500,
    clamp(0.58rem, 0.8vw, 0.72rem), tracking 0.18em, uppercase, white at 70%.
    Ours was 16px Geist at full opacity -- roughly 40% too large and the wrong
    family, which is why the footer read as a page heading rather than a caption. */
-.experiment-link > span:first-child {
+.experiment-caption {
   font-family: "Geist Mono Variable", "Geist Mono", ui-monospace, monospace;
   font-size: clamp(0.58rem, 0.8vw, 0.72rem);
   font-weight: 500;
@@ -223,7 +259,39 @@ body {
   color: rgba(255, 255, 255, 0.7);
 }
 
+/* The wordmark BOX is the Target's -- `w-[min(26vw,148px)]` with
+   drop-shadow(0 2px 12px rgba(0,0,0,0.45)) -- so the mark scales with the
+   viewport instead of staying 132px wide on a phone. The mark inside it is
+   ours; the Target's logo is its own studio mark and is not reproduced here.
+   The viewBox is 265x35.5, the same 7.46 aspect as the box the Target gives
+   its own wordmark, so the footer band reads at the same weight. */
+.footer-wordmark {
+  display: block;
+  width: min(26vw, 148px);
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.45));
+}
+
+.footer-wordmark svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* `textLength` holds the word to its designed width whatever the face resolves
+   to, absorbing metric differences into letter spacing rather than into the
+   size of the box. */
+.footer-wordmark-text {
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: 0.08em;
+  fill: rgb(237, 237, 237);
+}
+
 .cta-link {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -236,10 +304,27 @@ body {
   -webkit-backdrop-filter: blur(28px) saturate(0.7);
   font-family: "Geist Mono Variable", "Geist Mono", ui-monospace, monospace;
   font-size: clamp(0.58rem, 0.8vw, 0.72rem);
+  line-height: 1.5;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.92);
   transition: border-color 300ms, background-color 300ms, transform 300ms;
+}
+
+/* The Target's pill carries a sheen over its top half: a white/24 gradient to
+   transparent at 70% opacity. Ours was a flat fill. */
+.cta-sheen {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 50%;
+  background: linear-gradient(rgba(255, 255, 255, 0.24), rgba(0, 0, 0, 0));
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.cta-label,
+.cta-arrow {
+  position: relative;
 }
 
 .cta-link:hover {
@@ -449,25 +534,7 @@ body {
   outline-offset: -1px;
 }
 
-@media (max-width: 720px) {
-  .page-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    bottom: 16px;
-  }
-
-  .experiment-link {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 13px;
-  }
-
-  .experiment-link > span:first-child {
-    font-size: 0.58rem;
-  }
-
-  .cta-link {
-    align-self: flex-end;
-  }
-}
+/* The 720px block that used to live here stacked the whole footer and shrank
+   the caption. Both are now handled by the Target's own law: the row never
+   stacks, only the wordmark link does, and the caption's clamp already floors
+   at 0.58rem below 1160px so the override was doing nothing. */
