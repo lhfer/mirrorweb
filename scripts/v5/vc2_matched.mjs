@@ -186,14 +186,22 @@ export function assetFor(key) {
  * Open a matched context on one side. Media routes and the two init scripts
  * are installed BEFORE the first navigation, so nothing unmatched is ever
  * decoded and no card is ever painted with its own copy.
+ *
+ * `initScripts` are installed FIRST, ahead of everything else, because the
+ * only instruments that belong there are the ones that must wrap the page's
+ * own callbacks rather than queue behind them. They are the same strings on
+ * both sides -- an instrument installed on one page only is not an
+ * instrument, it is a difference.
  */
-export async function openMatched(browser, { side, url, vp, asset, mediaLog }) {
+export async function openMatched(browser,
+                                  { side, url, vp, asset, mediaLog, initScripts = [] }) {
   const [width, height] = vp.split("x").map(Number);
   const touch = width < 768;
   const ctx = await browser.newContext({
     viewport: { width, height }, deviceScaleFactor: 1,
     hasTouch: touch, isMobile: touch, ...(touch ? { userAgent: MOBILE_UA } : {}),
   });
+  for (const s of initScripts) await ctx.addInitScript(s);
   if (asset) {
     if (side === "target") await installTargetRoutes(ctx, asset, mediaLog);
     else await installLocalRoutes(ctx, asset, mediaLog);
