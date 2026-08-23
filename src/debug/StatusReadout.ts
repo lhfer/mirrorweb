@@ -1,9 +1,15 @@
 import type { GridAppV4 } from "../v4/preview/GridAppV4";
 
 /**
- * Final Motion §六 -- the real-device status readout.
+ * The real-device status readout (Final Motion §六, extended for Final Entry §九).
  *
- * A phone on the LAN has no console, so the five numbers §六 asks for have to
+ * Final Entry adds the frame-pacing tail (p99 and the longest frame, not just
+ * p95 -- §八 is explicit that an average is not an answer), the CSS3D layer
+ * census (mounted / visible / transform writes) and the cold-load entry state,
+ * because those are the three things this round changed and a phone is where
+ * they most need checking.
+ *
+ * A phone on the LAN has no console, so the numbers the brief asks for have to
  * be on the glass. This is the only way to get them there, and it is a QA
  * surface, not a product one:
  *
@@ -62,7 +68,14 @@ export class StatusReadout {
     if (media.some((v) => v.readyState < 2 || v.videoWidth === 0)) this.blackSamples += 1;
     const fps = typeof m.fps === "number" ? m.fps : 0;
     const rows = [
-      `fps        ${fps.toFixed(1)}  (p95 ${Number(m.p95FrameMs ?? 0).toFixed(1)} ms)`,
+      `fps        ${fps.toFixed(1)}  p95 ${Number(m.p95FrameMs ?? 0).toFixed(1)}`
+        + `  p99 ${Number(m.p99FrameMs ?? 0).toFixed(1)}`
+        + `  max ${Number(m.longestFrameMs ?? 0).toFixed(1)} ms`,
+      `intro      ${String(m.introState)}`
+        + `  ${(Number(m.introProgress ?? 0) * 100).toFixed(0)}%`,
+      `css3d      mounted ${String(m.css3dMounted ?? "n/a")}`
+        + `  vis ${String(m.css3dVisible ?? "n/a")}`
+        + `  writes ${String(m.css3dTransformWrites ?? "n/a")}`,
       `quality    ${String(m.quality)}${m.adaptiveSampler ? "" : "  [adaptive off]"}`,
       `sampleTier ${String(optics.opticalBodySamples ?? "n/a")}`
         + `  body ${String(optics.opticalBody ?? "n/a")}`,

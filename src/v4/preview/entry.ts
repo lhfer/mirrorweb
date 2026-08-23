@@ -15,6 +15,10 @@ export type GridQaV4 = {
   setTime: (seconds: number) => void;
   setMediaTimeAndFreeze: (seconds: number) => Promise<unknown>;
   getMediaState: () => unknown;
+  /** The cold-load entry: state, gap, progress, mounted CSS3D count. */
+  getIntroState: () => Record<string, unknown>;
+  /** QA only: land the entry at exact identity now. */
+  finishIntro: () => void;
   setRenderLayers: (layers: { glass?: boolean; media?: boolean; labels?: boolean }) => void;
   setOffset: (x: number, y: number) => void;
   setVelocity: (x: number, y: number) => void;
@@ -134,6 +138,8 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
       setTime: (seconds) => app.setTime(seconds),
       setMediaTimeAndFreeze: (seconds) => app.setMediaTimeAndFreeze(seconds),
       getMediaState: () => app.getMediaState(),
+      getIntroState: () => app.getIntroState(),
+      finishIntro: () => app.finishIntro(),
       setRenderLayers: (layers) => app.setRenderLayers(layers),
       setOffset: (x, y) => app.setOffset(x, y),
       setVelocity: (x, y) => app.setVelocity(x, y),

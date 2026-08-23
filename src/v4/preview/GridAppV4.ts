@@ -19,6 +19,8 @@ import { FoundationOverlay } from "../../debug/FoundationOverlay";
 import { effectiveCellH } from "../../scene/GridCurvature";
 import { InputController } from "../../interaction/InputController";
 import { MotionController } from "../../interaction/MotionController";
+import { SourceExactIntro } from "../../interaction/SourceExactIntro";
+import ENTRY_CONTRACT from "../../../config/target-entry-source-v1.json";
 import { MOTION_CONTRACT, sourceExactDolly, sourceExactMaxZoomZ, sourceExactOrbit }
   from "../../interaction/SourceExactMotion";
 import { AdaptiveQuality } from "../../quality/AdaptiveQuality";
@@ -95,6 +97,16 @@ export type GridAppV4Options = {
  * untouched V3 systems; this app only swaps the optical stack and the
  * scene-color pipeline. V3 remains the default and is never loaded here.
  */
+/**
+ * The Target's ready ladder, read from `config/target-entry-source-v1.json`.
+ * Named here so the frame loop below reads as prose rather than as literals.
+ */
+const ENTRY_ASSET_SHARE = ENTRY_CONTRACT.progress.assetShare;
+const ENTRY_COMPILE_START = 0.92;
+const ENTRY_COMPILE_DONE = 0.96;
+const ENTRY_WARM_FRAMES = ENTRY_CONTRACT.ready.warmFrames;
+const ENTRY_RAF_HOPS = ENTRY_CONTRACT.ready.rafHops;
+
 export class GridAppV4 {
   readonly motion = new MotionController();
   readonly renderer = new RendererController();
@@ -120,6 +132,22 @@ export class GridAppV4 {
    */
   private sourceExactCoverageCamera?: PerspectiveCamera;
   private readonly labelCulling = new SourceExactLabelCulling();
+  /**
+   * The cold-load entry. One spring on the grid gap ratio, nothing else.
+   *
+   * It is constructed in the "waiting" state, which holds the gap at 3, so
+   * every frame drawn between the grid being built and the page being ready --
+   * the compile frame and the five warm frames -- is drawn at the spread pose,
+   * behind the opaque loading overlay. That is what stops a one-frame flash of
+   * the final layout before the entry begins.
+   *
+   * On every path that is not source-exact it is finished immediately and the
+   * placement never sees it: the legacy compositions keep the layout and the
+   * 480 ms loader fade they were built with.
+   */
+  private readonly intro = new SourceExactIntro();
+  /** `performance.now()` at ready, i.e. at the first frame of the entry. */
+  private introStartedAt = 0;
   /**
    * QA-only labels.sync CPU probe. OFF by default so the product frame loop
    * carries no timing calls; a perf harness turns it on for a measured run.
@@ -233,12 +261,12 @@ export class GridAppV4 {
   async start(): Promise<void> {
     const loadingHost = document.getElementById(this.options.loadingId ?? "loading-overlay");
     const overlayHost = document.getElementById(this.options.pageOverlayId ?? "page-overlay");
-    this.loading = new LoadingOverlay(loadingHost!);
+    this.loading = new LoadingOverlay(loadingHost!, this.sourceExact && !this.layoutOnly);
     // Foundation mode drops the footer overlay and the CSS3D type layer: both
     // sit on top of the cards and would contaminate a layout measurement.
     if (overlayHost && !this.layoutOnly) new PageOverlay(overlayHost);
     this.labels = new TileLabelLayer(document.getElementById(this.options.labelsId ?? "labels")!);
-    this.loading.setPercent(8);
+    this.loading.setPercent(this.entryLadder(0.03));
 
     this.renderer.composition = this.composition;
     this.renderer.verticalMode = this.verticalMode;
@@ -261,7 +289,7 @@ export class GridAppV4 {
     if (this.options.opticalBody === "target-source-unclamped") {
       handle.renderer.toneMappingExposure = 1.0;
     }
-    this.loading.setPercent(22);
+    this.loading.setPercent(this.entryLadder(0.12));
 
     this.environment = createStripLightEnvironmentV4();
     handle.scene.environment = this.environment;
@@ -271,7 +299,8 @@ export class GridAppV4 {
     handle.scene.add(ambient, this.pointerLight, this.pointerLight.target);
 
     if (!this.layoutOnly) {
-      await this.grid.prepare((value) => this.loading.setPercent(value));
+      await this.grid.prepare(
+        (value) => this.loading.setPercent(this.entryLadder(value / 100)));
       this.grid.reel?.unlock();
     }
 
@@ -359,7 +388,7 @@ export class GridAppV4 {
       this.labels.attach(this.gridAsV3(), this.debugMode, this.frame);
       this.labels.setSize(window.innerWidth, window.innerHeight);
     }
-    this.grid.update(this.gridX(0), this.gridY(0));
+    this.grid.update(this.gridX(0), this.gridY(0), this.intro.frameFor(this.frame));
     this.applyPose();
     this.syncLabels();
 
@@ -379,11 +408,122 @@ export class GridAppV4 {
       : [window.innerWidth, window.innerHeight, window.devicePixelRatio || 1];
     this.syncViewport();
     this.drawFrame();
-    this.loading.setPercent(100);
-    if (this.grid.getAssetState().ready) this.loading.hide();
+    await this.reachReady();
     this.startedAt = performance.now();
     this.lastT = this.startedAt;
     this.tick(this.lastT);
+  }
+
+  /**
+   * The loading percentage, on the Target's ladder.
+   *
+   * The Target gives the ASSETS nine tenths of the bar -- each video's buffered
+   * fraction, meaned, times 0.9 -- and keeps the last tenth for the two stages
+   * that happen after the bytes have arrived and before anything is ready to
+   * look at: 0.92 entering the shader compile, 0.96 leaving it, and the five
+   * warm frames closing 0.96 to 1. Ours reported 8, then 22, then 24..84 from
+   * the reel, then a jump to 100, which spent most of the bar on the first
+   * third of the wait and none of it on the compile.
+   *
+   * `fraction` is 0..1 of the asset stage; the mapping is the Target's 0.9.
+   */
+  private entryLadder(fraction: number): number {
+    const f = Math.max(0, Math.min(1, fraction));
+    if (!this.sourceExact || this.layoutOnly) return Math.round(f * 100);
+    return f * 100 * ENTRY_ASSET_SHARE;
+  }
+
+  /** One animation frame, awaited. */
+  private nextFrame(): Promise<number> {
+    return new Promise((resolve) => requestAnimationFrame(resolve));
+  }
+
+  /**
+   * Everything between "the bytes are here" and "the entry may begin".
+   *
+   * Transcribed from the Target's `PF`, which is the component whose entire job
+   * this is:
+   *
+   *     useEffect(() => { (async () => {
+   *       b5(.92)
+   *       try { gl.compileAsync && await gl.compileAsync(scene, camera) } catch {}
+   *       phase = "warm"; b5(.96)
+   *     })() })
+   *     useFrame(() => { if (phase !== "warm") return
+   *       n += 1; b5(.96 + .04 * n / 5)
+   *       if (n < 5) return
+   *       phase = "done"; b5(1)
+   *       requestAnimationFrame(() => requestAnimationFrame(onReady)) })
+   *
+   * Why each piece is here rather than tidied away:
+   *
+   * - The compile is awaited so the first frame a viewer sees is not the frame
+   *   that compiles the glass program. Errors are swallowed exactly as the
+   *   Target swallows them: a renderer without `compileAsync` still reaches
+   *   ready, one warm frame later than it otherwise would.
+   * - The five warm frames are five real draws, at gap 3, behind the opaque
+   *   overlay. They exist to get the pipeline's caches and the first video
+   *   uploads through a full frame before the screen is handed over.
+   * - The two `requestAnimationFrame` hops are not padding. They are what puts
+   *   the loader's exit and the first frame of the entry in the same paint: the
+   *   Target reaches them from inside its own frame callback, and starting the
+   *   spring from there would begin the entry a frame before the overlay had
+   *   been told to leave.
+   *
+   * Legacy paths keep what they had: percent 100, and hide when the assets say
+   * they are ready.
+   */
+  private async reachReady(): Promise<void> {
+    if (!this.sourceExact || this.layoutOnly) {
+      this.intro.finish(performance.now());
+      this.loading.setPercent(100);
+      if (this.grid.getAssetState().ready) this.loading.hide();
+      return;
+    }
+    this.loading.setPercent(ENTRY_COMPILE_START * 100);
+    await this.compileScene();
+    this.loading.setPercent(ENTRY_COMPILE_DONE * 100);
+    for (let n = 1; n <= ENTRY_WARM_FRAMES; n += 1) {
+      await this.nextFrame();
+      if (this.disposed) return;
+      this.warmFrame();
+      this.loading.setPercent(
+        (ENTRY_COMPILE_DONE + (1 - ENTRY_COMPILE_DONE) * (n / ENTRY_WARM_FRAMES)) * 100);
+    }
+    for (let n = 0; n < ENTRY_RAF_HOPS; n += 1) {
+      await this.nextFrame();
+      if (this.disposed) return;
+    }
+    // Ready. The overlay begins its 1.15 s exit and stops taking pointer
+    // events on the same frame the gap spring starts, which is the Target's
+    // unlock point: the page is draggable while the cards are still arriving.
+    this.introStartedAt = performance.now();
+    this.intro.start(this.introStartedAt);
+    this.loading.hide();
+  }
+
+  /** `renderer.compileAsync`, with the Target's own indifference to failure. */
+  private async compileScene(): Promise<void> {
+    const handle = this.renderer.handle;
+    if (!handle) return;
+    const gl = handle.renderer as unknown as {
+      compileAsync?: (scene: unknown, camera: unknown) => Promise<unknown>;
+    };
+    if (typeof gl.compileAsync !== "function") return;
+    try {
+      await gl.compileAsync(handle.scene, handle.camera);
+    } catch {
+      // Same as the Target: a compile that will not pre-warm is not a reason
+      // to hold the page behind a loading screen.
+    }
+  }
+
+  /** One warm draw at the entry's held pose. Not a tick: nothing advances. */
+  private warmFrame(): void {
+    this.grid.update(this.gridX(0), this.gridY(0), this.intro.frameFor(this.frame));
+    this.applyPose();
+    this.syncLabels();
+    this.drawFrame();
   }
 
   /**
@@ -396,8 +536,39 @@ export class GridAppV4 {
   }
 
   pause(): void {
+    // A paused page is a FIXED-STATE page, and an entry still running under it
+    // would make every pose a harness pins depend on how long that harness
+    // happened to take to get here. So pausing lands the entry at exact
+    // identity first. Product code never calls pause().
+    this.finishIntro();
     this.motion.paused = true;
     this.grid.reel?.pause();
+  }
+
+  /**
+   * QA only: end the cold-load entry now, at exact identity.
+   *
+   * The same reasoning as `pause`, for the two other calls that mean "put the
+   * page in precisely this state": `setOffset` and `reset`. There is NO query
+   * parameter and no product switch for this -- the shipped page always plays
+   * its entry, and the only way to skip it is a QA call that a shipped page
+   * never makes.
+   */
+  finishIntro(): void {
+    this.intro.finish(performance.now());
+  }
+
+  /** QA and the status readout: the live entry state. */
+  getIntroState(): Record<string, unknown> {
+    return {
+      ...this.intro.truth(performance.now()),
+      sourceExact: this.sourceExact,
+      startedAtMs: this.introStartedAt || null,
+      loaderPercentShown: this.loading ? this.loading.displayedPercent() : null,
+      // Optional-called: the mount census arrives with the CSS3D lifecycle
+      // change, and this file must compile without it.
+      css3dMounted: this.labels?.mountedCount?.() ?? null,
+    };
   }
 
   resume(): void {
@@ -500,6 +671,7 @@ export class GridAppV4 {
     // Through the controller, not into the field: on the source-exact path the
     // scroll is a spring, and writing only the field would leave the spring
     // pulling the page back to where it was on the very next frame.
+    this.finishIntro();
     this.motion.setScroll(x, y);
     this.renderOnce();
   }
@@ -665,6 +837,7 @@ export class GridAppV4 {
   }
 
   reset(): void {
+    this.finishIntro();
     this.motion.reset();
     this.elapsed = 0;
     this.renderOnce();
@@ -689,6 +862,12 @@ export class GridAppV4 {
     });
     return {
       ready: true,
+      // The cold-load entry, so a harness can wait for it rather than race it.
+      // `introDone` is true on every path that has no entry, which is every
+      // path but source-exact, so a wait on it is safe everywhere.
+      introState: this.intro.state,
+      introProgress: this.intro.progress,
+      introDone: this.intro.done,
       optics: "v4",
       backend: this.renderer.handle.backend,
       quality: this.quality.level,
@@ -1125,6 +1304,14 @@ export class GridAppV4 {
       medianFrameMs: pick(0.5),
       p95FrameMs: pick(0.95),
       p99FrameMs: pick(0.99),
+      longestFrameMs: sorted.length ? sorted[sorted.length - 1] : 0,
+      // §九: the CSS3D layer census, on the device readout rather than in a
+      // console nobody can open on a phone.
+      css3dMounted: this.labels?.mountedCount?.() ?? null,
+      css3dVisible: this.labels?.visibleCount?.() ?? null,
+      css3dTransformWrites: this.labels?.lastTransformWrites ?? null,
+      introState: this.intro.state,
+      introProgress: this.intro.progress,
       // `render.calls` counts render() INVOCATIONS since load; the per-frame
       // draw-call field in the WebGPU Info is `drawCalls`.
       drawCalls: (info.render as { drawCalls?: number })?.drawCalls ?? 0,
@@ -1167,7 +1354,7 @@ export class GridAppV4 {
   renderOnce(): number {
     const handle = this.renderer.handle;
     if (!handle) return this.renderStamp;
-    this.grid.update(this.gridX(), this.gridY());
+    this.grid.update(this.gridX(), this.gridY(), this.intro.frameFor(this.frame));
     this.applyPose();
     this.syncLabels();
     handle.renderer.info.reset?.();
@@ -1241,7 +1428,7 @@ export class GridAppV4 {
     if (this.frame && !this.layoutOnly) this.labels.setFrame(this.frame);
     // The rest offset is regime-dependent, so a resize can flip the brick
     // parity; re-place the grid before anything reads its positions.
-    this.grid.update(this.gridX(), this.gridY());
+    this.grid.update(this.gridX(), this.gridY(), this.intro.frameFor(this.frame));
     this.applyPipelineSize();
     this.labels.setSize(window.innerWidth, window.innerHeight);
     this.foundationOverlay?.setSize(window.innerWidth, window.innerHeight);
@@ -1345,7 +1532,11 @@ export class GridAppV4 {
       }
     }
     this.motion.step(dt, now);
-    this.grid.update(this.gridX(), this.gridY());
+    // The entry is stepped with the same `now` the motion model got, and
+    // BEFORE placement, so a frame is placed at the gap this frame owns rather
+    // than at the previous frame's.
+    this.intro.advance(now);
+    this.grid.update(this.gridX(), this.gridY(), this.intro.frameFor(this.frame));
     this.applyPose();
     const handle = this.renderer.handle;
     this.syncLabels();

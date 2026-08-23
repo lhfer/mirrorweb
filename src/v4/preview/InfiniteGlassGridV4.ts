@@ -967,8 +967,21 @@ export class InfiniteGlassGridV4 {
    * rotation taking the card's local +Z onto the surface normal -- a quaternion,
    * not a pair of independent Euler angles that only approximate it.
    */
-  updateSourceExact(scrollX: number, scrollY: number): void {
-    const frame = this.frame;
+  /**
+   * `placementFrame` is the cold-load entry's view of the layout frame, and is
+   * the ONLY way the entry reaches the grid.
+   *
+   * While the entry runs it carries the animated `cellW`, `cellH`, `periodX`
+   * and `periodY` and nothing else; every other field is the frozen frame's.
+   * Once the entry is over the caller passes the frozen frame itself -- the
+   * same object, not a copy of it -- so the placement arithmetic from that
+   * frame on is bit-for-bit what it was before this parameter existed. Omitted,
+   * it falls back to the frozen frame, which is what every legacy path and
+   * every existing caller gets.
+   */
+  updateSourceExact(scrollX: number, scrollY: number,
+                    placementFrame?: SourceExactLayoutFrame): void {
+    const frame = placementFrame ?? this.frame;
     if (!frame) return;
     for (let n = 0; n < this.activeSlotCount; n += 1) {
       const slot = this.slots[n];
@@ -982,9 +995,10 @@ export class InfiniteGlassGridV4 {
     }
   }
 
-  update(scrollX: number, scrollY: number): void {
+  update(scrollX: number, scrollY: number,
+         placementFrame?: SourceExactLayoutFrame): void {
     if (this.sourceExact) {
-      this.updateSourceExact(scrollX, scrollY);
+      this.updateSourceExact(scrollX, scrollY, placementFrame);
       return;
     }
     const originI = Math.round(scrollX / GRID.cellW);
