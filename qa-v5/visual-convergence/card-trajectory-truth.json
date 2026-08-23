@@ -1,0 +1,1766 @@
+{
+ "what": "VC2 §五 dynamic card geometry truth. Per-frame, per-card CSS3D matrix and projected rect, read by ONE reader on both pages, on matched media and matched copy. Global phase correlation is NOT used here and is not sufficient evidence for any spacing or trajectory claim.",
+ "thresholdsFrom": "qa-v5/visual-convergence/card-trajectory-thresholds.json",
+ "thresholdRule": "threshold[scenario][gate] = max(floor, 2.0 x worst self-repeat p95 measured in that scenario)",
+ "thresholds": {
+  "desktop-fast-flick": {
+   "centreDeltaPx": 7.182,
+   "scaleDeltaPx": 2.054,
+   "gutterDeltaPx": 2.0,
+   "staggerDeltaPx": 2.0
+  },
+  "desktop-pointer-sweep": {
+   "centreDeltaPx": 2.0,
+   "scaleDeltaPx": 1.5,
+   "gutterDeltaPx": 2.0,
+   "staggerDeltaPx": 2.0
+  },
+  "desktop-slow-drag": {
+   "centreDeltaPx": 5.9,
+   "scaleDeltaPx": 1.5,
+   "gutterDeltaPx": 2.0,
+   "staggerDeltaPx": 2.0
+  },
+  "mobile-long-drag-wrap": {
+   "centreDeltaPx": 16.906,
+   "scaleDeltaPx": 4.246,
+   "gutterDeltaPx": 2.0,
+   "staggerDeltaPx": 2.0
+  },
+  "mobile-touch-drag": {
+   "centreDeltaPx": 3.978,
+   "scaleDeltaPx": 1.5,
+   "gutterDeltaPx": 2.0,
+   "staggerDeltaPx": 2.0
+  },
+  "orientation-change": {
+   "centreDeltaPx": 71.724,
+   "scaleDeltaPx": 7.424,
+   "gutterDeltaPx": 6.81,
+   "staggerDeltaPx": 5.072
+  },
+  "rest": {
+   "centreDeltaPx": 2.0,
+   "scaleDeltaPx": 1.5,
+   "gutterDeltaPx": 2.0,
+   "staggerDeltaPx": 2.0
+  }
+ },
+ "scenarios": {
+  "desktop-fast-flick": {
+   "vp": "1440x900",
+   "resizeTo": null,
+   "what": "short hard flick -- the dolly window",
+   "cardsTracked": 10,
+   "copyBodySha": {
+    "target": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+    "candidate": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419"
+   },
+   "sameCopy": true,
+   "gridFrames": 211,
+   "gridSpanMs": 3514.8,
+   "fps": {
+    "a": 120.24,
+    "b": 120.16
+   },
+   "limits": {
+    "centreDeltaPx": 7.182,
+    "scaleDeltaPx": 2.054,
+    "gutterDeltaPx": 2.0,
+    "staggerDeltaPx": 2.0
+   },
+   "rows": {
+    "centreX": {
+     "unit": "px",
+     "what": "single-card centre trajectory, horizontal",
+     "delta": {
+      "n": 1345,
+      "median": 19.786,
+      "p95": 24.682,
+      "max": 24.682,
+      "mean": 18.035
+     },
+     "aAtRest": [
+      720.0,
+      441.14,
+      998.86,
+      181.38
+     ],
+     "bAtRest": [
+      720.0,
+      441.14,
+      998.86,
+      181.38
+     ],
+     "gate": "centreDeltaPx",
+     "limit": 7.182,
+     "pass": false
+    },
+    "centreY": {
+     "unit": "px",
+     "what": "single-card centre trajectory, vertical",
+     "delta": {
+      "n": 1345,
+      "median": 0.821,
+      "p95": 2.704,
+      "max": 3.518,
+      "mean": 1.153
+     },
+     "aAtRest": [
+      -155.23,
+      237.25,
+      237.25,
+      660.38
+     ],
+     "bAtRest": [
+      -155.23,
+      237.25,
+      237.25,
+      660.38
+     ],
+     "gate": "centreDeltaPx",
+     "limit": 7.182,
+     "pass": true
+    },
+    "projectedWidth": {
+     "unit": "px",
+     "what": "projected card width -- the dolly observable",
+     "delta": {
+      "n": 1345,
+      "median": 4.745,
+      "p95": 7.09,
+      "max": 7.09,
+      "mean": 4.419
+     },
+     "aAtRest": [
+      537.51,
+      533.89,
+      533.89,
+      492.62
+     ],
+     "bAtRest": [
+      537.51,
+      533.89,
+      533.89,
+      492.62
+     ],
+     "gate": "scaleDeltaPx",
+     "limit": 2.054,
+     "pass": false
+    },
+    "projectedHeight": {
+     "unit": "px",
+     "what": "projected card height",
+     "delta": {
+      "n": 1345,
+      "median": 0.847,
+      "p95": 1.824,
+      "max": 2.465,
+      "mean": 0.926
+     },
+     "aAtRest": [
+      349.97,
+      408.05,
+      408.05,
+      404.99
+     ],
+     "bAtRest": [
+      349.97,
+      408.05,
+      408.05,
+      404.99
+     ],
+     "gate": "scaleDeltaPx",
+     "limit": 2.054,
+     "pass": true
+    },
+    "hGutter": {
+     "unit": "px",
+     "what": "edge-to-edge gap to the horizontal neighbour",
+     "delta": {
+      "n": 211,
+      "median": 1.193,
+      "p95": 1.194,
+      "max": 5.059,
+      "mean": 1.161
+     },
+     "aAtRest": 17.337,
+     "bAtRest": 17.337,
+     "gate": "gutterDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "vGutter": {
+     "unit": "px",
+     "what": "edge-to-edge gap to the vertical neighbour",
+     "delta": {
+      "n": 211,
+      "median": 1.793,
+      "p95": 1.795,
+      "max": 57.334,
+      "mean": 2.161
+     },
+     "aAtRest": 16.616,
+     "bAtRest": 16.616,
+     "gate": "gutterDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "rowStagger": {
+     "unit": "px",
+     "what": "horizontal phase between adjacent rows",
+     "delta": {
+      "n": 211,
+      "median": 1.827,
+      "p95": 2.333,
+      "max": 198.82,
+      "mean": 6.082
+     },
+     "aAtRest": 0.0,
+     "bAtRest": 0.0,
+     "gate": "staggerDeltaPx",
+     "limit": 2.0,
+     "pass": false
+    },
+    "rotation": {
+     "unit": "deg",
+     "what": "screen-plane rotation of the card basis",
+     "delta": {
+      "n": 2110,
+      "median": 0.012,
+      "p95": 0.029,
+      "max": 0.031,
+      "mean": 0.014
+     },
+     "aAtRest": [
+      0.0,
+      0.1,
+      -0.1,
+      -0.2
+     ],
+     "bAtRest": [
+      0.0,
+      0.1,
+      -0.1,
+      -0.2
+     ],
+     "gate": null,
+     "limit": null,
+     "pass": null
+    }
+   },
+   "dolly": {
+    "a": {
+     "maxScale": 1.193,
+     "minScale": 0.6141,
+     "excursion": 0.5789
+    },
+    "b": {
+     "maxScale": 1.1892,
+     "minScale": 0.613,
+     "excursion": 0.5761
+    },
+    "excursionDelta": 0.0028
+   },
+   "wrap": {
+    "a": {
+     "events": 0,
+     "maxStepPx": 32.88
+    },
+    "b": {
+     "events": 0,
+     "maxStepPx": 33.01
+    }
+   }
+  },
+  "desktop-pointer-sweep": {
+   "vp": "1440x900",
+   "resizeTo": null,
+   "what": "pointer crosses the page with no button down -- pose only, no scroll",
+   "cardsTracked": 10,
+   "copyBodySha": {
+    "target": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+    "candidate": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419"
+   },
+   "sameCopy": true,
+   "gridFrames": 170,
+   "gridSpanMs": 2827.8,
+   "fps": {
+    "a": 120.05,
+    "b": 120.3
+   },
+   "limits": {
+    "centreDeltaPx": 2.0,
+    "scaleDeltaPx": 1.5,
+    "gutterDeltaPx": 2.0,
+    "staggerDeltaPx": 2.0
+   },
+   "rows": {
+    "centreX": {
+     "unit": "px",
+     "what": "single-card centre trajectory, horizontal",
+     "delta": {
+      "n": 1700,
+      "median": 0.024,
+      "p95": 0.26,
+      "max": 0.735,
+      "mean": 0.061
+     },
+     "aAtRest": [
+      720.0,
+      441.14,
+      998.86,
+      181.38
+     ],
+     "bAtRest": [
+      720.0,
+      441.14,
+      998.86,
+      181.38
+     ],
+     "gate": "centreDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "centreY": {
+     "unit": "px",
+     "what": "single-card centre trajectory, vertical",
+     "delta": {
+      "n": 1700,
+      "median": 0.01,
+      "p95": 0.23,
+      "max": 0.516,
+      "mean": 0.047
+     },
+     "aAtRest": [
+      -155.23,
+      237.25,
+      237.25,
+      660.38
+     ],
+     "bAtRest": [
+      -155.23,
+      237.25,
+      237.25,
+      660.38
+     ],
+     "gate": "centreDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "projectedWidth": {
+     "unit": "px",
+     "what": "projected card width -- the dolly observable",
+     "delta": {
+      "n": 1700,
+      "median": 0.02,
+      "p95": 0.281,
+      "max": 0.554,
+      "mean": 0.077
+     },
+     "aAtRest": [
+      537.51,
+      533.89,
+      533.89,
+      492.62
+     ],
+     "bAtRest": [
+      537.51,
+      533.89,
+      533.89,
+      492.62
+     ],
+     "gate": "scaleDeltaPx",
+     "limit": 1.5,
+     "pass": true
+    },
+    "projectedHeight": {
+     "unit": "px",
+     "what": "projected card height",
+     "delta": {
+      "n": 1700,
+      "median": 0.013,
+      "p95": 0.234,
+      "max": 0.385,
+      "mean": 0.052
+     },
+     "aAtRest": [
+      349.97,
+      408.05,
+      408.05,
+      404.99
+     ],
+     "bAtRest": [
+      349.97,
+      408.05,
+      408.05,
+      404.99
+     ],
+     "gate": "scaleDeltaPx",
+     "limit": 1.5,
+     "pass": true
+    },
+    "hGutter": {
+     "unit": "px",
+     "what": "edge-to-edge gap to the horizontal neighbour",
+     "delta": {
+      "n": 170,
+      "median": 0.008,
+      "p95": 0.068,
+      "max": 0.075,
+      "mean": 0.022
+     },
+     "aAtRest": 17.337,
+     "bAtRest": 17.337,
+     "gate": "gutterDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "vGutter": {
+     "unit": "px",
+     "what": "edge-to-edge gap to the vertical neighbour",
+     "delta": {
+      "n": 170,
+      "median": 0.011,
+      "p95": 0.099,
+      "max": 139.216,
+      "mean": 1.745
+     },
+     "aAtRest": 16.616,
+     "bAtRest": 16.616,
+     "gate": "gutterDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "rowStagger": {
+     "unit": "px",
+     "what": "horizontal phase between adjacent rows",
+     "delta": {
+      "n": 170,
+      "median": 0.019,
+      "p95": 0.06,
+      "max": 0.095,
+      "mean": 0.024
+     },
+     "aAtRest": 0.0,
+     "bAtRest": 0.0,
+     "gate": "staggerDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "rotation": {
+     "unit": "deg",
+     "what": "screen-plane rotation of the card basis",
+     "delta": {
+      "n": 1700,
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0,
+      "mean": 0.0
+     },
+     "aAtRest": [
+      0.0,
+      0.1,
+      -0.1,
+      -0.2
+     ],
+     "bAtRest": [
+      0.0,
+      0.1,
+      -0.1,
+      -0.2
+     ],
+     "gate": null,
+     "limit": null,
+     "pass": null
+    }
+   },
+   "dolly": {
+    "a": {
+     "maxScale": 1.0669,
+     "minScale": 0.9367,
+     "excursion": 0.1302
+    },
+    "b": {
+     "maxScale": 1.0669,
+     "minScale": 0.9367,
+     "excursion": 0.1302
+    },
+    "excursionDelta": 0.0
+   },
+   "wrap": {
+    "a": {
+     "events": 0,
+     "maxStepPx": 1.4
+    },
+    "b": {
+     "events": 0,
+     "maxStepPx": 1.27
+    }
+   }
+  },
+  "desktop-slow-drag": {
+   "vp": "1440x900",
+   "resizeTo": null,
+   "what": "one slow 420 px leftward drag with a slight rise, released",
+   "cardsTracked": 10,
+   "copyBodySha": {
+    "target": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+    "candidate": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419"
+   },
+   "sameCopy": true,
+   "gridFrames": 216,
+   "gridSpanMs": 3599.4,
+   "fps": {
+    "a": 120.15,
+    "b": 120.17
+   },
+   "limits": {
+    "centreDeltaPx": 5.9,
+    "scaleDeltaPx": 1.5,
+    "gutterDeltaPx": 2.0,
+    "staggerDeltaPx": 2.0
+   },
+   "rows": {
+    "centreX": {
+     "unit": "px",
+     "what": "single-card centre trajectory, horizontal",
+     "delta": {
+      "n": 1834,
+      "median": 0.034,
+      "p95": 1.307,
+      "max": 2.643,
+      "mean": 0.34
+     },
+     "aAtRest": [
+      720.0,
+      441.14,
+      998.86,
+      181.38
+     ],
+     "bAtRest": [
+      720.0,
+      441.14,
+      998.86,
+      181.38
+     ],
+     "gate": "centreDeltaPx",
+     "limit": 5.9,
+     "pass": true
+    },
+    "centreY": {
+     "unit": "px",
+     "what": "single-card centre trajectory, vertical",
+     "delta": {
+      "n": 1834,
+      "median": 0.016,
+      "p95": 0.28,
+      "max": 0.49,
+      "mean": 0.07
+     },
+     "aAtRest": [
+      -155.23,
+      237.25,
+      237.25,
+      660.38
+     ],
+     "bAtRest": [
+      -155.23,
+      237.25,
+      237.25,
+      660.38
+     ],
+     "gate": "centreDeltaPx",
+     "limit": 5.9,
+     "pass": true
+    },
+    "projectedWidth": {
+     "unit": "px",
+     "what": "projected card width -- the dolly observable",
+     "delta": {
+      "n": 1834,
+      "median": 0.021,
+      "p95": 0.289,
+      "max": 0.638,
+      "mean": 0.078
+     },
+     "aAtRest": [
+      537.51,
+      533.89,
+      533.89,
+      492.62
+     ],
+     "bAtRest": [
+      537.51,
+      533.89,
+      533.89,
+      492.62
+     ],
+     "gate": "scaleDeltaPx",
+     "limit": 1.5,
+     "pass": true
+    },
+    "projectedHeight": {
+     "unit": "px",
+     "what": "projected card height",
+     "delta": {
+      "n": 1834,
+      "median": 0.016,
+      "p95": 0.178,
+      "max": 0.294,
+      "mean": 0.048
+     },
+     "aAtRest": [
+      349.97,
+      408.05,
+      408.05,
+      404.99
+     ],
+     "bAtRest": [
+      349.97,
+      408.05,
+      408.05,
+      404.99
+     ],
+     "gate": "scaleDeltaPx",
+     "limit": 1.5,
+     "pass": true
+    },
+    "hGutter": {
+     "unit": "px",
+     "what": "edge-to-edge gap to the horizontal neighbour",
+     "delta": {
+      "n": 216,
+      "median": 0.002,
+      "p95": 0.055,
+      "max": 0.304,
+      "mean": 0.013
+     },
+     "aAtRest": 17.337,
+     "bAtRest": 17.337,
+     "gate": "gutterDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "vGutter": {
+     "unit": "px",
+     "what": "edge-to-edge gap to the vertical neighbour",
+     "delta": {
+      "n": 216,
+      "median": 0.004,
+      "p95": 0.191,
+      "max": 3.463,
+      "mean": 0.076
+     },
+     "aAtRest": 16.616,
+     "bAtRest": 16.616,
+     "gate": "gutterDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "rowStagger": {
+     "unit": "px",
+     "what": "horizontal phase between adjacent rows",
+     "delta": {
+      "n": 216,
+      "median": 0.005,
+      "p95": 0.063,
+      "max": 19.224,
+      "mean": 0.109
+     },
+     "aAtRest": 0.0,
+     "bAtRest": 0.0,
+     "gate": "staggerDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "rotation": {
+     "unit": "deg",
+     "what": "screen-plane rotation of the card basis",
+     "delta": {
+      "n": 2160,
+      "median": 0.0,
+      "p95": 0.001,
+      "max": 0.007,
+      "mean": 0.0
+     },
+     "aAtRest": [
+      0.0,
+      0.1,
+      -0.1,
+      -0.2
+     ],
+     "bAtRest": [
+      0.0,
+      0.1,
+      -0.1,
+      -0.2
+     ],
+     "gate": null,
+     "limit": null,
+     "pass": null
+    }
+   },
+   "dolly": {
+    "a": {
+     "maxScale": 1.2048,
+     "minScale": 0.6887,
+     "excursion": 0.5161
+    },
+    "b": {
+     "maxScale": 1.2048,
+     "minScale": 0.6878,
+     "excursion": 0.517
+    },
+    "excursionDelta": 0.0009
+   },
+   "wrap": {
+    "a": {
+     "events": 0,
+     "maxStepPx": 5.86
+    },
+    "b": {
+     "events": 0,
+     "maxStepPx": 5.69
+    }
+   }
+  },
+  "mobile-long-drag-wrap": {
+   "vp": "390x844",
+   "resizeTo": null,
+   "what": "long touch drag across several cells -- forces occupant rotation",
+   "cardsTracked": 10,
+   "copyBodySha": {
+    "target": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+    "candidate": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419"
+   },
+   "sameCopy": true,
+   "gridFrames": 295,
+   "gridSpanMs": 4906.2,
+   "fps": {
+    "a": 119.49,
+    "b": 120.05
+   },
+   "limits": {
+    "centreDeltaPx": 16.906,
+    "scaleDeltaPx": 4.246,
+    "gutterDeltaPx": 2.0,
+    "staggerDeltaPx": 2.0
+   },
+   "rows": {
+    "centreX": {
+     "unit": "px",
+     "what": "single-card centre trajectory, horizontal",
+     "delta": {
+      "n": 1514,
+      "median": 3.116,
+      "p95": 15.786,
+      "max": 28.25,
+      "mean": 5.68
+     },
+     "aAtRest": [
+      195.0,
+      -57.85,
+      54.73,
+      335.27
+     ],
+     "bAtRest": [
+      195.0,
+      -57.85,
+      54.73,
+      335.27
+     ],
+     "gate": "centreDeltaPx",
+     "limit": 16.906,
+     "pass": true
+    },
+    "centreY": {
+     "unit": "px",
+     "what": "single-card centre trajectory, vertical",
+     "delta": {
+      "n": 1514,
+      "median": 0.553,
+      "p95": 2.175,
+      "max": 3.657,
+      "mean": 0.629
+     },
+     "aAtRest": [
+      -68.85,
+      -57.91,
+      108.13,
+      108.13
+     ],
+     "bAtRest": [
+      -68.85,
+      -57.91,
+      108.13,
+      108.13
+     ],
+     "gate": "centreDeltaPx",
+     "limit": 16.906,
+     "pass": true
+    },
+    "projectedWidth": {
+     "unit": "px",
+     "what": "projected card width -- the dolly observable",
+     "delta": {
+      "n": 1514,
+      "median": 0.925,
+      "p95": 2.419,
+      "max": 4.723,
+      "mean": 1.054
+     },
+     "aAtRest": [
+      263.62,
+      253.65,
+      271.59,
+      271.59
+     ],
+     "bAtRest": [
+      263.62,
+      253.65,
+      271.59,
+      271.59
+     ],
+     "gate": "scaleDeltaPx",
+     "limit": 4.246,
+     "pass": true
+    },
+    "projectedHeight": {
+     "unit": "px",
+     "what": "projected card height",
+     "delta": {
+      "n": 1514,
+      "median": 0.221,
+      "p95": 1.744,
+      "max": 2.529,
+      "mean": 0.51
+     },
+     "aAtRest": [
+      150.07,
+      173.91,
+      194.7,
+      194.7
+     ],
+     "bAtRest": [
+      150.07,
+      173.91,
+      194.7,
+      194.7
+     ],
+     "gate": "scaleDeltaPx",
+     "limit": 4.246,
+     "pass": true
+    },
+    "hGutter": {
+     "unit": "px",
+     "what": "edge-to-edge gap to the horizontal neighbour",
+     "delta": {
+      "n": 46,
+      "median": 0.082,
+      "p95": 0.158,
+      "max": 6.359,
+      "mean": 0.256
+     },
+     "aAtRest": 9.76,
+     "bAtRest": 9.76,
+     "gate": "gutterDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "vGutter": {
+     "unit": "px",
+     "what": "edge-to-edge gap to the vertical neighbour",
+     "delta": {
+      "n": 295,
+      "median": 0.52,
+      "p95": 1.007,
+      "max": 150.606,
+      "mean": 1.075
+     },
+     "aAtRest": 203.246,
+     "bAtRest": 203.246,
+     "gate": "gutterDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "rowStagger": {
+     "unit": "px",
+     "what": "horizontal phase between adjacent rows",
+     "delta": {
+      "n": 35,
+      "median": 0.312,
+      "p95": 0.948,
+      "max": 15.977,
+      "mean": 0.821
+     },
+     "aAtRest": 126.423,
+     "bAtRest": 126.423,
+     "gate": "staggerDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "rotation": {
+     "unit": "deg",
+     "what": "screen-plane rotation of the card basis",
+     "delta": {
+      "n": 2950,
+      "median": 0.006,
+      "p95": 0.026,
+      "max": 2.179,
+      "mean": 0.011
+     },
+     "aAtRest": [
+      0.0,
+      0.77,
+      0.23,
+      -0.23
+     ],
+     "bAtRest": [
+      0.0,
+      0.77,
+      0.23,
+      -0.23
+     ],
+     "gate": null,
+     "limit": null,
+     "pass": null
+    }
+   },
+   "dolly": {
+    "a": {
+     "maxScale": 1.0691,
+     "minScale": 0.795,
+     "excursion": 0.2741
+    },
+    "b": {
+     "maxScale": 1.0707,
+     "minScale": 0.7967,
+     "excursion": 0.274
+    },
+    "excursionDelta": 0.0001
+   },
+   "wrap": {
+    "a": {
+     "events": 4,
+     "maxStepPx": 13.5
+    },
+    "b": {
+     "events": 4,
+     "maxStepPx": 6.67
+    }
+   }
+  },
+  "mobile-touch-drag": {
+   "vp": "390x844",
+   "resizeTo": null,
+   "what": "single 240 px touch drag and release",
+   "cardsTracked": 10,
+   "copyBodySha": {
+    "target": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+    "candidate": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419"
+   },
+   "sameCopy": true,
+   "gridFrames": 212,
+   "gridSpanMs": 3521.2,
+   "fps": {
+    "a": 120.2,
+    "b": 120.07
+   },
+   "limits": {
+    "centreDeltaPx": 3.978,
+    "scaleDeltaPx": 1.5,
+    "gutterDeltaPx": 2.0,
+    "staggerDeltaPx": 2.0
+   },
+   "rows": {
+    "centreX": {
+     "unit": "px",
+     "what": "single-card centre trajectory, horizontal",
+     "delta": {
+      "n": 1469,
+      "median": 0.141,
+      "p95": 1.288,
+      "max": 1.705,
+      "mean": 0.455
+     },
+     "aAtRest": [
+      195.0,
+      -57.85,
+      54.73,
+      335.27
+     ],
+     "bAtRest": [
+      195.0,
+      -57.85,
+      54.73,
+      335.27
+     ],
+     "gate": "centreDeltaPx",
+     "limit": 3.978,
+     "pass": true
+    },
+    "centreY": {
+     "unit": "px",
+     "what": "single-card centre trajectory, vertical",
+     "delta": {
+      "n": 1469,
+      "median": 0.046,
+      "p95": 0.484,
+      "max": 1.024,
+      "mean": 0.151
+     },
+     "aAtRest": [
+      -68.85,
+      -57.91,
+      108.13,
+      108.13
+     ],
+     "bAtRest": [
+      -68.85,
+      -57.91,
+      108.13,
+      108.13
+     ],
+     "gate": "centreDeltaPx",
+     "limit": 3.978,
+     "pass": true
+    },
+    "projectedWidth": {
+     "unit": "px",
+     "what": "projected card width -- the dolly observable",
+     "delta": {
+      "n": 1469,
+      "median": 0.029,
+      "p95": 0.46,
+      "max": 1.142,
+      "mean": 0.112
+     },
+     "aAtRest": [
+      263.62,
+      253.65,
+      271.59,
+      271.59
+     ],
+     "bAtRest": [
+      263.62,
+      253.65,
+      271.59,
+      271.59
+     ],
+     "gate": "scaleDeltaPx",
+     "limit": 1.5,
+     "pass": true
+    },
+    "projectedHeight": {
+     "unit": "px",
+     "what": "projected card height",
+     "delta": {
+      "n": 1469,
+      "median": 0.007,
+      "p95": 0.335,
+      "max": 0.629,
+      "mean": 0.064
+     },
+     "aAtRest": [
+      150.07,
+      173.91,
+      194.7,
+      194.7
+     ],
+     "bAtRest": [
+      150.07,
+      173.91,
+      194.7,
+      194.7
+     ],
+     "gate": "scaleDeltaPx",
+     "limit": 1.5,
+     "pass": true
+    },
+    "hGutter": {
+     "unit": "px",
+     "what": "edge-to-edge gap to the horizontal neighbour",
+     "delta": {
+      "n": 212,
+      "median": 0.008,
+      "p95": 0.067,
+      "max": 3.632,
+      "mean": 0.048
+     },
+     "aAtRest": 9.76,
+     "bAtRest": 9.76,
+     "gate": "gutterDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "vGutter": {
+     "unit": "px",
+     "what": "edge-to-edge gap to the vertical neighbour",
+     "delta": {
+      "n": 212,
+      "median": 0.001,
+      "p95": 0.376,
+      "max": 11.079,
+      "mean": 0.419
+     },
+     "aAtRest": 203.246,
+     "bAtRest": 203.246,
+     "gate": "gutterDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "rowStagger": {
+     "unit": "px",
+     "what": "horizontal phase between adjacent rows",
+     "delta": {
+      "n": 64,
+      "median": 0.123,
+      "p95": 0.293,
+      "max": 12.222,
+      "mean": 0.327
+     },
+     "aAtRest": 126.423,
+     "bAtRest": 126.423,
+     "gate": "staggerDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "rotation": {
+     "unit": "deg",
+     "what": "screen-plane rotation of the card basis",
+     "delta": {
+      "n": 2120,
+      "median": 0.0,
+      "p95": 0.003,
+      "max": 0.009,
+      "mean": 0.001
+     },
+     "aAtRest": [
+      0.0,
+      0.77,
+      0.23,
+      -0.23
+     ],
+     "bAtRest": [
+      0.0,
+      0.77,
+      0.23,
+      -0.23
+     ],
+     "gate": null,
+     "limit": null,
+     "pass": null
+    }
+   },
+   "dolly": {
+    "a": {
+     "maxScale": 1.0713,
+     "minScale": 0.8385,
+     "excursion": 0.2327
+    },
+    "b": {
+     "maxScale": 1.071,
+     "minScale": 0.8384,
+     "excursion": 0.2326
+    },
+    "excursionDelta": 0.0001
+   },
+   "wrap": {
+    "a": {
+     "events": 0,
+     "maxStepPx": 3.37
+    },
+    "b": {
+     "events": 0,
+     "maxStepPx": 3.05
+    }
+   }
+  },
+  "orientation-change": {
+   "vp": "390x844",
+   "resizeTo": "844x390",
+   "what": "drag, then a live portrait -> landscape resize, then drag again",
+   "cardsTracked": 10,
+   "copyBodySha": {
+    "target": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+    "candidate": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419"
+   },
+   "sameCopy": true,
+   "gridFrames": 382,
+   "gridSpanMs": 6362.6,
+   "fps": {
+    "a": 120.14,
+    "b": 119.3
+   },
+   "limits": {
+    "centreDeltaPx": 71.724,
+    "scaleDeltaPx": 7.424,
+    "gutterDeltaPx": 6.81,
+    "staggerDeltaPx": 5.072
+   },
+   "rows": {
+    "centreX": {
+     "unit": "px",
+     "what": "single-card centre trajectory, horizontal",
+     "delta": {
+      "n": 2145,
+      "median": 1.052,
+      "p95": 41.436,
+      "max": 64.544,
+      "mean": 5.683
+     },
+     "aAtRest": [
+      195.0,
+      -57.85,
+      54.73,
+      335.27
+     ],
+     "bAtRest": [
+      195.0,
+      -57.85,
+      54.73,
+      335.27
+     ],
+     "gate": "centreDeltaPx",
+     "limit": 71.724,
+     "pass": true
+    },
+    "centreY": {
+     "unit": "px",
+     "what": "single-card centre trajectory, vertical",
+     "delta": {
+      "n": 2145,
+      "median": 0.336,
+      "p95": 54.129,
+      "max": 55.894,
+      "mean": 12.849
+     },
+     "aAtRest": [
+      -68.85,
+      -57.91,
+      108.13,
+      108.13
+     ],
+     "bAtRest": [
+      -68.85,
+      -57.91,
+      108.13,
+      108.13
+     ],
+     "gate": "centreDeltaPx",
+     "limit": 71.724,
+     "pass": true
+    },
+    "projectedWidth": {
+     "unit": "px",
+     "what": "projected card width -- the dolly observable",
+     "delta": {
+      "n": 2145,
+      "median": 0.129,
+      "p95": 9.323,
+      "max": 73.415,
+      "mean": 2.283
+     },
+     "aAtRest": [
+      263.62,
+      253.65,
+      271.59,
+      271.59
+     ],
+     "bAtRest": [
+      263.62,
+      253.65,
+      271.59,
+      271.59
+     ],
+     "gate": "scaleDeltaPx",
+     "limit": 7.424,
+     "pass": false
+    },
+    "projectedHeight": {
+     "unit": "px",
+     "what": "projected card height",
+     "delta": {
+      "n": 2145,
+      "median": 0.062,
+      "p95": 4.019,
+      "max": 49.202,
+      "mean": 0.835
+     },
+     "aAtRest": [
+      150.07,
+      173.91,
+      194.7,
+      194.7
+     ],
+     "bAtRest": [
+      150.07,
+      173.91,
+      194.7,
+      194.7
+     ],
+     "gate": "scaleDeltaPx",
+     "limit": 7.424,
+     "pass": true
+    },
+    "hGutter": {
+     "unit": "px",
+     "what": "edge-to-edge gap to the horizontal neighbour",
+     "delta": {
+      "n": 382,
+      "median": 0.054,
+      "p95": 1.382,
+      "max": 9.294,
+      "mean": 0.328
+     },
+     "aAtRest": 9.76,
+     "bAtRest": 9.76,
+     "gate": "gutterDeltaPx",
+     "limit": 6.81,
+     "pass": true
+    },
+    "vGutter": {
+     "unit": "px",
+     "what": "edge-to-edge gap to the vertical neighbour",
+     "delta": {
+      "n": 382,
+      "median": 0.142,
+      "p95": 5.016,
+      "max": 99.237,
+      "mean": 1.124
+     },
+     "aAtRest": 203.246,
+     "bAtRest": 203.246,
+     "gate": "gutterDeltaPx",
+     "limit": 6.81,
+     "pass": true
+    },
+    "rowStagger": {
+     "unit": "px",
+     "what": "horizontal phase between adjacent rows",
+     "delta": {
+      "n": 382,
+      "median": 0.102,
+      "p95": 106.521,
+      "max": 145.881,
+      "mean": 11.245
+     },
+     "aAtRest": 126.423,
+     "bAtRest": 126.423,
+     "gate": "staggerDeltaPx",
+     "limit": 5.072,
+     "pass": false
+    },
+    "rotation": {
+     "unit": "deg",
+     "what": "screen-plane rotation of the card basis",
+     "delta": {
+      "n": 3820,
+      "median": 0.003,
+      "p95": 0.195,
+      "max": 1.787,
+      "mean": 0.046
+     },
+     "aAtRest": [
+      0.0,
+      0.77,
+      0.23,
+      -0.23
+     ],
+     "bAtRest": [
+      0.0,
+      0.77,
+      0.23,
+      -0.23
+     ],
+     "gate": null,
+     "limit": null,
+     "pass": null
+    }
+   },
+   "dolly": {
+    "a": {
+     "maxScale": 1.2452,
+     "minScale": 0.7692,
+     "excursion": 0.4761
+    },
+    "b": {
+     "maxScale": 1.2283,
+     "minScale": 0.7946,
+     "excursion": 0.4337
+    },
+    "excursionDelta": 0.0424
+   },
+   "wrap": {
+    "a": {
+     "events": 25,
+     "maxStepPx": 3.89
+    },
+    "b": {
+     "events": 7,
+     "maxStepPx": 36.73
+    }
+   }
+  },
+  "rest": {
+   "vp": "1440x900",
+   "resizeTo": null,
+   "what": "still page, pointer parked at centre",
+   "cardsTracked": 10,
+   "copyBodySha": {
+    "target": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+    "candidate": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419"
+   },
+   "sameCopy": true,
+   "gridFrames": 156,
+   "gridSpanMs": 2599.6,
+   "fps": {
+    "a": 120.36,
+    "b": 120.33
+   },
+   "limits": {
+    "centreDeltaPx": 2.0,
+    "scaleDeltaPx": 1.5,
+    "gutterDeltaPx": 2.0,
+    "staggerDeltaPx": 2.0
+   },
+   "rows": {
+    "centreX": {
+     "unit": "px",
+     "what": "single-card centre trajectory, horizontal",
+     "delta": {
+      "n": 1560,
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0,
+      "mean": 0.0
+     },
+     "aAtRest": [
+      720.0,
+      441.14,
+      998.86,
+      181.38
+     ],
+     "bAtRest": [
+      720.0,
+      441.14,
+      998.86,
+      181.38
+     ],
+     "gate": "centreDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "centreY": {
+     "unit": "px",
+     "what": "single-card centre trajectory, vertical",
+     "delta": {
+      "n": 1560,
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0,
+      "mean": 0.0
+     },
+     "aAtRest": [
+      -155.23,
+      237.25,
+      237.25,
+      660.38
+     ],
+     "bAtRest": [
+      -155.23,
+      237.25,
+      237.25,
+      660.38
+     ],
+     "gate": "centreDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "projectedWidth": {
+     "unit": "px",
+     "what": "projected card width -- the dolly observable",
+     "delta": {
+      "n": 1560,
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0,
+      "mean": 0.0
+     },
+     "aAtRest": [
+      537.51,
+      533.89,
+      533.89,
+      492.62
+     ],
+     "bAtRest": [
+      537.51,
+      533.89,
+      533.89,
+      492.62
+     ],
+     "gate": "scaleDeltaPx",
+     "limit": 1.5,
+     "pass": true
+    },
+    "projectedHeight": {
+     "unit": "px",
+     "what": "projected card height",
+     "delta": {
+      "n": 1560,
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0,
+      "mean": 0.0
+     },
+     "aAtRest": [
+      349.97,
+      408.05,
+      408.05,
+      404.99
+     ],
+     "bAtRest": [
+      349.97,
+      408.05,
+      408.05,
+      404.99
+     ],
+     "gate": "scaleDeltaPx",
+     "limit": 1.5,
+     "pass": true
+    },
+    "hGutter": {
+     "unit": "px",
+     "what": "edge-to-edge gap to the horizontal neighbour",
+     "delta": {
+      "n": 156,
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0,
+      "mean": 0.0
+     },
+     "aAtRest": 17.337,
+     "bAtRest": 17.337,
+     "gate": "gutterDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "vGutter": {
+     "unit": "px",
+     "what": "edge-to-edge gap to the vertical neighbour",
+     "delta": {
+      "n": 156,
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0,
+      "mean": 0.0
+     },
+     "aAtRest": 16.616,
+     "bAtRest": 16.616,
+     "gate": "gutterDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "rowStagger": {
+     "unit": "px",
+     "what": "horizontal phase between adjacent rows",
+     "delta": {
+      "n": 156,
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0,
+      "mean": 0.0
+     },
+     "aAtRest": 0.0,
+     "bAtRest": 0.0,
+     "gate": "staggerDeltaPx",
+     "limit": 2.0,
+     "pass": true
+    },
+    "rotation": {
+     "unit": "deg",
+     "what": "screen-plane rotation of the card basis",
+     "delta": {
+      "n": 1560,
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0,
+      "mean": 0.0
+     },
+     "aAtRest": [
+      0.0,
+      0.1,
+      -0.1,
+      -0.2
+     ],
+     "bAtRest": [
+      0.0,
+      0.1,
+      -0.1,
+      -0.2
+     ],
+     "gate": null,
+     "limit": null,
+     "pass": null
+    }
+   },
+   "dolly": {
+    "a": {
+     "maxScale": 1.0,
+     "minScale": 1.0,
+     "excursion": 0.0
+    },
+    "b": {
+     "maxScale": 1.0,
+     "minScale": 1.0,
+     "excursion": 0.0
+    },
+    "excursionDelta": 0.0
+   },
+   "wrap": {
+    "a": {
+     "events": 0,
+     "maxStepPx": 0.0
+    },
+    "b": {
+     "events": 0,
+     "maxStepPx": 0.0
+    }
+   }
+  }
+ },
+ "assertions": [
+  {
+   "assertion": "every gated observable within its pre-registered threshold, every scenario",
+   "pass": false,
+   "detail": [
+    "desktop-fast-flick:centreX",
+    "desktop-fast-flick:projectedWidth",
+    "desktop-fast-flick:rowStagger",
+    "orientation-change:projectedWidth",
+    "orientation-change:rowStagger"
+   ]
+  },
+  {
+   "assertion": "matched copy on both sides in every compared scenario",
+   "pass": true
+  },
+  {
+   "assertion": "dolly excursion agrees to within 0.01 of projected-size ratio",
+   "pass": false,
+   "detail": {
+    "desktop-fast-flick": 0.0028,
+    "desktop-pointer-sweep": 0.0,
+    "desktop-slow-drag": 0.0009,
+    "mobile-long-drag-wrap": 0.0001,
+    "mobile-touch-drag": 0.0001,
+    "orientation-change": 0.0424,
+    "rest": 0.0
+   }
+  }
+ ],
+ "verdict": "CARD GEOMETRY DIVERGENCE FOUND",
+ "divergences": [
+  {
+   "scenario": "desktop-fast-flick",
+   "observable": "centreX",
+   "targetAtRest": [
+    720.0,
+    441.14,
+    998.86,
+    181.38
+   ],
+   "candidateAtRest": [
+    720.0,
+    441.14,
+    998.86,
+    181.38
+   ],
+   "delta": {
+    "n": 1345,
+    "median": 19.786,
+    "p95": 24.682,
+    "max": 24.682,
+    "mean": 18.035
+   },
+   "limit": 7.182
+  },
+  {
+   "scenario": "desktop-fast-flick",
+   "observable": "projectedWidth",
+   "targetAtRest": [
+    537.51,
+    533.89,
+    533.89,
+    492.62
+   ],
+   "candidateAtRest": [
+    537.51,
+    533.89,
+    533.89,
+    492.62
+   ],
+   "delta": {
+    "n": 1345,
+    "median": 4.745,
+    "p95": 7.09,
+    "max": 7.09,
+    "mean": 4.419
+   },
+   "limit": 2.054
+  },
+  {
+   "scenario": "desktop-fast-flick",
+   "observable": "rowStagger",
+   "targetAtRest": 0.0,
+   "candidateAtRest": 0.0,
+   "delta": {
+    "n": 211,
+    "median": 1.827,
+    "p95": 2.333,
+    "max": 198.82,
+    "mean": 6.082
+   },
+   "limit": 2.0
+  },
+  {
+   "scenario": "orientation-change",
+   "observable": "projectedWidth",
+   "targetAtRest": [
+    263.62,
+    253.65,
+    271.59,
+    271.59
+   ],
+   "candidateAtRest": [
+    263.62,
+    253.65,
+    271.59,
+    271.59
+   ],
+   "delta": {
+    "n": 2145,
+    "median": 0.129,
+    "p95": 9.323,
+    "max": 73.415,
+    "mean": 2.283
+   },
+   "limit": 7.424
+  },
+  {
+   "scenario": "orientation-change",
+   "observable": "rowStagger",
+   "targetAtRest": 126.423,
+   "candidateAtRest": 126.423,
+   "delta": {
+    "n": 382,
+    "median": 0.102,
+    "p95": 106.521,
+    "max": 145.881,
+    "mean": 11.245
+   },
+   "limit": 5.072
+  }
+ ]
+}

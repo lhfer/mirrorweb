@@ -1,0 +1,83 @@
+{
+ "what": "VC2 §六 -- the one P0 this round changes, decided from matched-content evidence and written BEFORE any product code was touched.",
+ "decidedAt": "2026-08-22",
+ "evidenceBasis": {
+  "matchedContent": "qa-v5/visual-convergence/matched-content-contract.json -- MATCHED-CONTENT HARNESS PROVEN. Same H.264 elementary stream, per-pixel-verified decode, same injected copy hash, same viewport/DPR/pointer class/card box/cover fit on both pages.",
+  "cardGeometry": "qa-v5/visual-convergence/card-trajectory-truth.json -- per-frame, per-card CSS3D matrix and projected rect, ten cards, seven scenarios, thresholds pre-registered from Target self-repeats.",
+  "pageChrome": "artifacts/visual-convergence/chrome-truth-before.json -- per-row luma of the bottom 288 rows of matched full-page stills, four viewports.",
+  "structure": "artifacts/visual-convergence/recon.json -- both pages' footer subtree with rects and computed styles, 1440x900 and 390x844."
+ },
+
+ "candidates": [
+  {
+   "system": "A. Dynamic Grid / Motion / Camera Dolly",
+   "userFeedback": "卡片运动时的间距与轨迹",
+   "whatTheMatchedEvidenceSays": [
+    "Spacing is NOT the problem. At rest, at every viewport, the two pages agree exactly: horizontal gutter 17.337 px and vertical gutter 16.616 px at 1440x900, identical card centres, identical projected sizes, identical row stagger. Under a slow drag, a pointer sweep, a mobile touch drag and a long wrapping touch drag, every gated observable is inside its pre-registered threshold -- gutters to 1.8 px p95 or better, stagger to 0.06 px on a slow drag.",
+    "Two real divergences exist, and neither is a spacing error. (1) FAST FLICK: our fling carries 2.0% further -- total travel 832.1 px against the Target's 815.6 px on the same dispatched input -- so the page settles 16.6 px past the Target's landing point, and the cards there project 6.03 px (1.5%) smaller. Mid-flight centre p95 24.7 px against a 7.2 px threshold; projected width p95 7.09 px against 2.05 px. The dolly ENVELOPE matches (excursion 0.5789 vs 0.5761); it is the fling distance that differs, and the size difference follows from where the grid stops. (2) ORIENTATION CHANGE: our relayout completes about 330 ms earlier than the Target's. Both pages start and end at the same row phase (126.42 -> -139.6 on both); in between the Target sweeps for ~1 s and we arrive early, with one 36.7 px single-frame step where the Target's largest is 3.9 px."
+   ],
+   "chosen": false,
+   "whyNot": "Both findings are real, both are now measured rather than assumed, and neither clears §六's visibility bar. The flick difference is a landing-point difference on an infinite grid: a viewer looking at one page sees a flick that feels right, and only a synchronised side-by-side shows the 16.6 px phase. The orientation finding lives inside a 700 ms transient. Fixing either would move a number, and §一.10 rules out a round whose only result is that a number moved. Both are carried forward as the ranked motion candidates for the next round -- which is the answer §一.6 asked for: 'no motion P0' is replaced by two named, measured, reproducible ones."
+  },
+  {
+   "system": "B. Target-source Glass Product Visual",
+   "userFeedback": "玻璃仍然厚、闷、像框",
+   "whatTheMatchedEvidenceSays": [
+    "This is the first round where the glass can be judged at all: until now the two pages were showing different clips. On matched media the page-wide luma difference outside the footer band is +2.0 to +3.9 (candidate brighter) at the four viewports -- real, but small, and the same signature Sprint 1 already attributed to the output transform.",
+    "Sprint 1's code-to-code audit found the card program transcription-complete: every constant matches the shipped bundle, the tint/rim foldings are inert, the served HDR is byte-identical. No un-audited optical subsystem has been named."
+   ],
+   "chosen": false,
+   "whyNot": "§一.2 closes exposure, tone mapping and page brightness for this round, and §一.10 rules out another SUBTLE-BUT-PAGE-WIDE glass result. With the card program proven complete and no new root cause identified, picking B would mean tuning a constant and hoping -- exactly the failure mode the brief forbids. The matched-content harness built this round is what a future glass round needs, and it now exists."
+  },
+  {
+   "system": "C. Typography / Footer / Brand -- the page chrome band",
+   "userFeedback": "字体与 Footer 完整视觉",
+   "whatTheMatchedEvidenceSays": [
+    "THE TARGET PAINTS A 144 px GRADIENT SCRIM ACROSS THE FULL WIDTH OF EVERY PAGE. Its own DOM: div.absolute.inset-x-0.bottom-0.h-36, background linear-gradient(to top, black/60, transparent), inside the fixed footer container at z-20 -- so it darkens the cards and their labels, not just the background. Our page has no such element at any viewport (recon.json scrims: target 1, local 0).",
+    "Measured on matched full-page stills, mean luma of the bottom 144 rows, target vs candidate: 1440x900 39.08 vs 52.26 (+13.19), 390x844 37.50 vs 54.55 (+17.05), 844x390 28.82 vs 43.32 (+14.49), 700x700 33.28 vs 52.19 (+18.91). Isolating the scrim from the page-wide difference (bottom-144 delta minus the delta of the 144 rows above it) leaves +11.18, +13.15, +11.02 and +16.80. At the very last screen row the difference is +18.9, +16.3, +25.0 and +43.2 luma levels.",
+    "The footer's own geometry differs too. On mobile (390x844) the Target keeps the caption/wordmark and the CTA in ONE row and stacks only inside the wordmark link (flex-col below lg); ours stacks the whole footer, which puts the brand block at y=750.8 where the Target's wordmark sits at y=809.6 -- 59 px too high -- and makes the footer 99.1 px tall against the Target's 61.2 px.",
+    "The brand: the Target renders its wordmark as artwork in a box of width min(26vw, 148px) with drop-shadow(0 2px 12px rgba(0,0,0,0.45)) -- 148x19.8 px on desktop, 101x13.6 px on the phone. Ours is a 28x14 px mark plus 20 px type, 132.3x20 px on desktop and the same 132.3x20 px on the phone: it does not scale with the viewport at all.",
+    "The CTA pill matches except for one element -- the Target's pill carries a top-half sheen (linear-gradient(white/24, transparent), opacity .7) that ours does not have."
+   ],
+   "chosen": true
+  }
+ ],
+
+ "chosenP0": {
+  "system": "C. Typography / Footer / Brand",
+  "title": "The page chrome band: the missing bottom scrim, the footer's viewport law, and the brand box",
+  "sixQualification": {
+   "matchedEvidenceRepeatable": "yes -- measured on §三-proven matched media and matched copy, at four viewports, and the structural read is reproducible from vc2-recon.mjs",
+   "differenceVisibleToTheEye": "yes -- the bottom 144 rows of every viewport, up to 43 luma levels at the last row; the bottom sixth of the page is a different colour",
+   "notCausedByMedia": "yes -- identical decoded frames on both pages (five of six categories bit-identical)",
+   "notCausedByCopyLength": "yes -- identical injected strings, identical copy hash; the scrim carries no text at all",
+   "notAOneToThreeGreyMicroDifference": "yes -- 11 to 17 luma levels of scrim-specific ramp, 19 to 43 at the last row",
+   "visibleAt1xAfterFix": "yes -- adding the scrim changes the bottom sixth of every full frame; the mobile footer moves 59 px",
+   "clearCodeRootCause": "yes -- src/ui/PageOverlay.ts emits no scrim element, and src/style.css stacks the whole footer below 720px instead of stacking only the wordmark link below 1024px",
+   "oneSystemOnly": "yes -- page chrome presentation: PageOverlay markup and its stylesheet block. No layout, no motion, no glass, no card typography."
+  },
+  "allowedFiles": [
+   "src/ui/PageOverlay.ts",
+   "src/style.css (footer/chrome block only)"
+  ],
+  "forbiddenThisRound": [
+   "SourceExact layout contract, plane size, cell pitch, sphere radius",
+   "MotionController and any motion scheduling",
+   "TargetOpticalBodyV5 and any optical constant",
+   "card label markup and card typography CSS (TileLabelLayer is left untouched: the card typography contract already passes and must keep passing)"
+  ],
+  "expectedVisibleResult": [
+   "The bottom 144 px of every viewport gains a gradient to 60% black, grounding the footer and pulling the bottom row of cards down in tone -- the bottom-144 mean luma should fall by roughly the measured 11-17 level ramp at all four viewports.",
+   "On the phone the footer becomes one row again: the caption and wordmark stack inside their own link at the bottom-left, the CTA stays bottom-right, and the brand block lands where the Target's does instead of 59 px above it.",
+   "The wordmark scales with the viewport (min(26vw, 148px)) and carries the same drop shadow, so the footer band reads at the same weight on a phone as on a desktop.",
+   "The CTA pill gains its top sheen."
+  ],
+  "brandHonesty": "The Target's wordmark is its own studio logo and is never copied into this repo. What is matched is the PRESENTATION -- the box, the scaling law, the drop shadow -- rendered with our own ATELIER mark as inline SVG so it scales inside that box."
+ },
+
+ "rankedForNextRound": [
+  {"rank": 1, "system": "Motion", "finding": "fling distance 2.0% long (832.1 px vs 815.6 px on the same input), leaving a 16.6 px terminal offset and a 1.5% projected-size offset", "where": "card-trajectory-truth.json -> desktop-fast-flick"},
+  {"rank": 2, "system": "Motion", "finding": "orientation relayout arrives ~330 ms early with one 36.7 px single-frame step against the Target's 3.9 px maximum", "where": "card-trajectory-truth.json -> orientation-change"},
+  {"rank": 3, "system": "Glass", "finding": "+2.0 to +3.9 luma page-wide outside the footer band on matched media -- now measurable for the first time, but closed for this round by §一.2", "where": "chrome-truth-before.json -> above144 deltas"}
+ ]
+}

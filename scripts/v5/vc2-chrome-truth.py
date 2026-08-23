@@ -46,10 +46,10 @@ def row_profile(img: np.ndarray, band: int) -> list[float]:
 
 def main() -> int:
     args = dict(a[2:].split("=", 1) for a in sys.argv[1:] if a.startswith("--"))
-    a_dir, b_dir = Path(args["a"]), Path(args["b"])
+    a_dir, b_dir = (REPO / args["a"]).resolve(), (REPO / args["b"]).resolve()
     band = int(args.get("band", 288))
     la, lb = args.get("label-a", "target"), args.get("label-b", "candidate")
-    out_p = Path(args.get("out", REPO / "artifacts/visual-convergence/chrome-truth.json"))
+    out_p = REPO / args.get("out", "artifacts/visual-convergence/chrome-truth.json")
     doc = {"what": "page-chrome truth from matched full-page stills",
            "a": {"label": la, "dir": str(a_dir.relative_to(REPO))},
            "b": {"label": lb, "dir": str(b_dir.relative_to(REPO))},
