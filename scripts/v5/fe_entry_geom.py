@@ -21,6 +21,10 @@ import math
 from pathlib import Path
 
 
+INTRO_FROM_GAP = 3.0
+INTRO_REST_GAP = 0.045
+
+
 def _cards(frame) -> dict:
     """`{code: (cx, cy, w, h)}` for the cards drawn in one frame."""
     out = {}
@@ -98,24 +102,34 @@ def tracked_codes(frames, lo: int, hi: int, want: int = 8):
     return keep[:max(want, 8)]
 
 
-def settle_index(frames, lo: int, codes, tol: float = 0.15, quiet: int = 24) -> int | None:
-    """Last frame on which a tracked card moved more than `tol` px.
+def settle_index(frames, lo: int, codes=None, tol: float = 0.15,
+                 quiet: int = 24) -> int | None:
+    """Last frame on which ANY card visibly moved.
 
-    Reported as the frame AFTER that one -- the first frame of stillness -- and
-    only if the stillness then holds for `quiet` frames, so a momentary pause
-    partway down an overdamped curve is not mistaken for the end of it.
+    "Any card", not "any tracked card". The tracked set is chosen by how long a
+    card survives coverage, and the two pages do not produce the same size of
+    set at the same viewport -- five on the Target and three on ours at a
+    portrait phone, from the same rule. Since this landmark fires on the FIRST
+    card to exceed the threshold, a larger set settles later, and the two sides
+    were being scored on detectors of different sensitivity: 75 ms of apparent
+    difference in a quantity where the recovered gap curves agreed to under a
+    millisecond.
+
+    So the rule now reads every card drawn on both of a pair of consecutive
+    frames. That is the same rule, on all the evidence each page has, and it is
+    identical on both. `codes` is accepted and ignored; it is kept so callers
+    that pass it do not need to know this changed.
     """
     last_move = lo
     for i in range(lo + 1, len(frames)):
         a, b = _cards(frames[i - 1]), _cards(frames[i])
-        moved = False
-        for c in codes:
-            if c in a and c in b:
-                if abs(b[c][0] - a[c][0]) > tol or abs(b[c][1] - a[c][1]) > tol:
-                    moved = True
-                    break
-        if moved:
-            last_move = i
+        for c in b:
+            p = a.get(c)
+            if p is None:
+                continue
+            if abs(b[c][0] - p[0]) > tol or abs(b[c][1] - p[1]) > tol:
+                last_move = i
+                break
     if last_move >= len(frames) - quiet:
         return None
     return last_move
@@ -198,16 +212,17 @@ def read_run(path: Path) -> dict:
         return out
     t_ready = F[ri]["t"]
     rows = progress_curve(F, ri, si, codes)
-    times = [F[i]["t"] for i in range(ri, si + 1)]
-    rel = [t - t_ready for t in times]
-    p50, p90 = [], []
-    for r in rows:
-        a = crossing(r["series"], rel, 0.5)
-        b = crossing(r["series"], rel, 0.9)
-        if a is not None:
-            p50.append(a)
-        if b is not None:
-            p90.append(b)
+    # The 50% and 90% crossings come from the RECOVERED GAP, not from per-card
+    # screen width. Width needs a card drawn at both ready and settle, and at
+    # 844x390 there is none on either page -- the cards on screen when the entry
+    # starts are not the cards on screen when it ends. The gap is the state
+    # variable, it is defined on any frame with three drawn cards, and it gives
+    # one definition for the contract, the gate and the pacing reader instead of
+    # three. `progress_curve` is kept for the per-card start/end directions,
+    # which is all it is now asked for.
+    gp = gap_progress(F, ri, vp or [1440, 900], INTRO_FROM_GAP, INTRO_REST_GAP)
+    p50 = gap_crossing(gp, 0.5, t_ready)
+    p90 = gap_crossing(gp, 0.9, t_ready)
 
     dom_at = lambda i: (F[i].get("dom") or {})
     out.update({
@@ -220,9 +235,14 @@ def read_run(path: Path) -> dict:
         "settleAtMs": F[si]["t"],
         "introMs": round(F[si]["t"] - t_ready, 1),
         "firstDrawRelMs": round(F[fd]["t"] - t_ready, 1),
-        "p50RelMs": round(sum(p50) / len(p50), 1) if p50 else None,
-        "p90RelMs": round(sum(p90) / len(p90), 1) if p90 else None,
-        "p50SpreadMs": round(max(p50) - min(p50), 1) if len(p50) > 1 else None,
+        "p50RelMs": p50,
+        "p90RelMs": p90,
+        "gapAtReady": round(gp[0]["gap"], 5) if gp else None,
+        "gapAtEnd": round(gp[-1]["gap"], 5) if gp else None,
+        "minGap": round(min(r["gap"] for r in gp), 5) if gp else None,
+        "worstGapResidualPx": round(max(r["residualPx"] for r in gp), 3) if gp else None,
+        "gapSolveFrames": len(gp),
+        "cardSolves": sum(r["cards"] for r in gp),
         "pctAtReady": (F[ri].get("loader") or {}).get("pct"),
         "pctMax": max([(f.get("loader") or {}).get("pct") or 0 for f in F[:ri + 1]] or [0]),
         # §七.2/3: which way does a card come in? Direction of travel and the
@@ -244,7 +264,9 @@ def read_run(path: Path) -> dict:
         # frame at or before ready. Measured, not assumed.
         "finalPoseFlashFrames": _flash(F, fd, ri, codes),
         "progressRows": rows,
-        "relTimes": [round(t, 2) for t in rel],
+        "gapSeries": [{"relMs": round(r["t"] - t_ready, 1), "gap": round(r["gap"], 5),
+                       "p": round(r["p"], 5), "residualPx": round(r["residualPx"], 3),
+                       "cards": r["cards"]} for r in gp[::6]],
     })
     return out
 
@@ -532,3 +554,52 @@ def spring_reference(from_v: float, to_v: float, stiffness: float, damping: floa
             break
         t += 0.5
     return value, vel, rest
+
+
+def gap_progress(frames, ri: int, viewport, from_gap: float, rest_gap: float,
+                 limit: int = 400):
+    """The entry's progress, as the gap itself, on every frame that has cards.
+
+    Why not the per-card screen width. Width worked at 1440x900 and returned
+    nothing at all at 844x390: it needs a card drawn at BOTH ready and settle,
+    and at a landscape phone the cards on screen when the entry starts are not
+    the cards on screen when it ends. That is coverage churn, and it is a
+    property of the entry rather than a fault -- at gap 3 the near columns are
+    off the sides of the screen and what is visible is a different set. The gap
+    has no such problem: it is the state variable, it is defined on any frame
+    with three drawn cards, and both pages have it.
+
+    The solve is seeded from the previous frame. The gap only ever decreases, so
+    the previous value is an upper bound, and searching under it instead of over
+    the whole range turns a 900-sample scan into a handful.
+    """
+    base = base_frame(viewport[0], viewport[1])
+    travel = from_gap - rest_gap
+    rows = []
+    hint = None
+    for i in range(ri, min(ri + limit, len(frames))):
+        obs = _cards(frames[i])
+        if len(obs) < 3:
+            continue
+        top = 3.05 if hint is None else min(3.05, hint + 0.02)
+        scan = 900 if hint is None else max(40, int(300 * top))
+        g, r = solve_gap(base, obs, hi=top, scan=scan)
+        if g is None:
+            continue
+        hint = g
+        rows.append({"t": frames[i]["t"], "gap": g, "residualPx": r,
+                     "cards": len(obs),
+                     "p": min(1.0, max(0.0, (from_gap - g) / travel))})
+    return rows
+
+
+def gap_crossing(rows, level: float, t0: float):
+    """When the gap progress first reaches `level`, relative to ready."""
+    prev = None
+    for r in rows:
+        if prev is not None and prev["p"] < level <= r["p"]:
+            span = r["p"] - prev["p"]
+            f = 0.0 if span == 0 else (level - prev["p"]) / span
+            return round(prev["t"] + (r["t"] - prev["t"]) * f - t0, 1)
+        prev = r
+    return None

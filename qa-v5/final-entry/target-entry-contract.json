@@ -1,7 +1,7 @@
 {
  "round": "MirrorWeb V5 -- Final Experience Convergence",
  "section": "§四 -- Target cold-load entry contract",
- "generatedAt": "2026-08-23T15:08:19+00:00",
+ "generatedAt": "2026-08-23T15:56:23+00:00",
  "branch": "sprint/final-entry-wt",
  "targetUrl": "https://infinite-liquid-glass.shader.se/?v=2",
  "bases": {
@@ -1769,10 +1769,10 @@
    },
    "introMs": {
     "n": 5,
-    "min": 867.0,
-    "median": 875.8,
-    "max": 892.5,
-    "rangeMs": 25.5
+    "min": 892.0,
+    "median": 899.8,
+    "max": 908.6,
+    "rangeMs": 16.6
    },
    "loaderFadeMs": {
     "n": 5,
@@ -1783,17 +1783,17 @@
    },
    "p50RelMs": {
     "n": 5,
-    "min": 127.5,
-    "median": 128.1,
-    "max": 128.5,
-    "rangeMs": 1.0
+    "min": 147.2,
+    "median": 148.2,
+    "max": 149.0,
+    "rangeMs": 1.8
    },
    "p90RelMs": {
     "n": 5,
-    "min": 303.5,
-    "median": 304.4,
-    "max": 305.4,
-    "rangeMs": 1.9
+    "min": 359.0,
+    "median": 359.5,
+    "max": 360.3,
+    "rangeMs": 1.3
    },
    "firstDrawRelMs": {
     "n": 5,
@@ -1831,10 +1831,10 @@
    },
    "introMs": {
     "n": 5,
-    "min": 866.0,
-    "median": 866.6,
-    "max": 874.0,
-    "rangeMs": 8.0
+    "min": 890.7,
+    "median": 908.2,
+    "max": 916.5,
+    "rangeMs": 25.8
    },
    "loaderFadeMs": {
     "n": 5,
@@ -1845,17 +1845,17 @@
    },
    "p50RelMs": {
     "n": 5,
-    "min": 126.3,
-    "median": 127.1,
-    "max": 127.8,
-    "rangeMs": 1.5
+    "min": 145.7,
+    "median": 146.4,
+    "max": 147.4,
+    "rangeMs": 1.7
    },
    "p90RelMs": {
     "n": 5,
-    "min": 302.8,
-    "median": 303.4,
-    "max": 304.1,
-    "rangeMs": 1.3
+    "min": 357.4,
+    "median": 358.5,
+    "max": 359.1,
+    "rangeMs": 1.7
    },
    "firstDrawRelMs": {
     "n": 5,
@@ -1893,10 +1893,10 @@
    },
    "introMs": {
     "n": 5,
-    "min": 709.4,
-    "median": 809.1,
-    "max": 817.4,
-    "rangeMs": 108.0
+    "min": 833.1,
+    "median": 842.6,
+    "max": 850.8,
+    "rangeMs": 17.7
    },
    "loaderFadeMs": {
     "n": 5,
@@ -1907,17 +1907,17 @@
    },
    "p50RelMs": {
     "n": 5,
-    "min": 95.1,
-    "median": 96.1,
-    "max": 97.1,
-    "rangeMs": 2.0
+    "min": 146.3,
+    "median": 147.5,
+    "max": 149.3,
+    "rangeMs": 3.0
    },
    "p90RelMs": {
     "n": 5,
-    "min": 215.3,
-    "median": 217.0,
-    "max": 219.0,
-    "rangeMs": 3.7
+    "min": 357.2,
+    "median": 358.5,
+    "max": 360.4,
+    "rangeMs": 3.2
    },
    "firstDrawRelMs": {
     "n": 5,
@@ -1955,10 +1955,10 @@
    },
    "introMs": {
     "n": 5,
-    "min": 740.9,
-    "median": 800.0,
-    "max": 808.0,
-    "rangeMs": 67.1
+    "min": 833.4,
+    "median": 841.7,
+    "max": 850.7,
+    "rangeMs": 17.3
    },
    "loaderFadeMs": {
     "n": 5,
@@ -1969,17 +1969,17 @@
    },
    "p50RelMs": {
     "n": 5,
-    "min": 95.3,
-    "median": 96.9,
-    "max": 97.3,
-    "rangeMs": 2.0
+    "min": 146.2,
+    "median": 147.6,
+    "max": 148.0,
+    "rangeMs": 1.8
    },
    "p90RelMs": {
     "n": 5,
-    "min": 217.2,
-    "median": 217.6,
-    "max": 218.3,
-    "rangeMs": 1.1
+    "min": 358.2,
+    "median": 358.3,
+    "max": 360.0,
+    "rangeMs": 1.8
    },
    "firstDrawRelMs": {
     "n": 5,
@@ -2017,10 +2017,10 @@
    "mobile-warm": 1442.6
   },
   "introMsMedian": {
-   "desktop-cold": 875.8,
-   "desktop-warm": 866.6,
-   "mobile-cold": 809.1,
-   "mobile-warm": 800.0
+   "desktop-cold": 899.8,
+   "desktop-warm": 908.2,
+   "mobile-cold": 842.6,
+   "mobile-warm": 841.7
   },
   "finding": "A warm cache reaches ready sooner and the entry itself is unchanged, which is what the source says: there is no cold-only or warm-only branch anywhere in the chain."
  },
@@ -2035,58 +2035,58 @@
   "targetWindows": {
    "desktop-cold": {
     "introMs": {
-     "min": 867.0,
-     "max": 892.5
+     "min": 892.0,
+     "max": 908.6
     },
     "p50RelMs": {
-     "min": 127.5,
-     "max": 128.5
+     "min": 147.2,
+     "max": 149.0
     },
     "p90RelMs": {
-     "min": 303.5,
-     "max": 305.4
+     "min": 359.0,
+     "max": 360.3
     }
    },
    "desktop-warm": {
     "introMs": {
-     "min": 866.0,
-     "max": 874.0
+     "min": 890.7,
+     "max": 916.5
     },
     "p50RelMs": {
-     "min": 126.3,
-     "max": 127.8
+     "min": 145.7,
+     "max": 147.4
     },
     "p90RelMs": {
-     "min": 302.8,
-     "max": 304.1
+     "min": 357.4,
+     "max": 359.1
     }
    },
    "mobile-cold": {
     "introMs": {
-     "min": 709.4,
-     "max": 817.4
+     "min": 833.1,
+     "max": 850.8
     },
     "p50RelMs": {
-     "min": 95.1,
-     "max": 97.1
+     "min": 146.3,
+     "max": 149.3
     },
     "p90RelMs": {
-     "min": 215.3,
-     "max": 219.0
+     "min": 357.2,
+     "max": 360.4
     }
    },
    "mobile-warm": {
     "introMs": {
-     "min": 740.9,
-     "max": 808.0
+     "min": 833.4,
+     "max": 850.7
     },
     "p50RelMs": {
-     "min": 95.3,
-     "max": 97.3
+     "min": 146.2,
+     "max": 148.0
     },
     "p90RelMs": {
-     "min": 217.2,
-     "max": 218.3
+     "min": 358.2,
+     "max": 360.0
     }
    }
   },

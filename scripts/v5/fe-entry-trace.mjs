@@ -56,11 +56,19 @@ for (const a of process.argv.slice(2)) {
   else if (a.startsWith("--routes=")) { opts.routes = "1"; opts.media = a.slice(9) || opts.media; }
 }
 
+/**
+ * §四's four LOAD conditions are the first four. The last two are §七's other
+ * two review viewports, which the gate needs and the cold/warm question does
+ * not: a landscape phone and a square. Both are cold, because a viewport's
+ * effect on the entry is a layout effect and the cache does not change it.
+ */
 const CONDITIONS = {
   "desktop-cold": { vp: [1440, 900], warm: false },
   "desktop-warm": { vp: [1440, 900], warm: true },
   "mobile-cold": { vp: [390, 844], warm: false },
   "mobile-warm": { vp: [390, 844], warm: true },
+  "landscape-cold": { vp: [844, 390], warm: false },
+  "square-cold": { vp: [700, 700], warm: false },
 };
 
 /**

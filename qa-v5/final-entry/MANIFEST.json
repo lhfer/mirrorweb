@@ -1,0 +1,132 @@
+{
+ "round": "MirrorWeb V5 -- Final Experience Convergence",
+ "reviewCandidateUrl": "http://127.0.0.1:5293/?review=target",
+ "reviewCurrentUrl": "http://127.0.0.1:5293/?review=current",
+ "howToServe": "npm run review",
+ "lanReview": {
+  "serve": "npm run review:lan",
+  "printAddresses": "npm run review:lan:url",
+  "liveStatusReadout": "add &status=1 to the candidate URL -- FPS, quality, sample tier, material-cache size, black-frame count. It is a QA surface and must be OFF for any capture.",
+  "realDevicePass": "NOT ASSERTED. This round guarantees the route is reachable from a device on the same network and nothing more."
+ },
+ "generatedAt": "2026-08-23T16:24:31+00:00",
+ "branch": "sprint/final-entry-wt",
+ "capturedAtHead": "37b39cbab467ca015e9ee9bfd6e2481654b9b068",
+ "reviewHead": "37b39cbab467ca015e9ee9bfd6e2481654b9b068",
+ "headSemantics": {
+  "capturedAtHead": "v5-final-entry-card-lifecycle-code -- the last commit that changes anything the page renders. Every still, recording and gate result in this round was taken from a build of this tree.",
+  "reviewHead": "the head this manifest was generated at, which is the same commit: the only thing after it is the evidence commit that CARRIES this file, and a manifest cannot contain the SHA of the commit it is committed in. That commit is the branch tip -- `git log -1 --format=%H rebuild/liquid-glass-v5-source-exact` -- and it touches only qa-v5/final-motion/ and scripts/v5/, no file under src/, so the rendered product at the tip is byte-identical to the product at capturedAtHead.",
+  "commitsListed": "the three commits that exist at generation time. The evidence commit is the fourth and is named in the round's commit plan; it is absent here for the same reason as above."
+ },
+ "baseline": "cfad89d942f4945a33bcf206bcbc85d2ec901a65 (Final Motion Convergence Sprint)",
+ "commits": [
+  "37b39cb v5-final-entry-card-lifecycle-code",
+  "71839c6 v5-final-entry-css3d-lifecycle-code",
+  "8c88d77 v5-final-entry-target-source-contract"
+ ],
+ "files": [
+  {
+   "file": "README.md",
+   "bytes": 15728,
+   "sha256": "ba30170613c4209d0e2dacdfc7b652e555585d325b24db2f596bb5e2ba50c5f5",
+   "verdict": null
+  },
+  {
+   "file": "css3d-lifecycle.json",
+   "bytes": 4684,
+   "sha256": "2df7b24c0fa4aa2057916342c4fddcaa105d786dad760f4b5f9c905d05468726",
+   "verdict": null
+  },
+  {
+   "file": "entry-gate.json",
+   "bytes": 22055,
+   "sha256": "47231abfd44b4c432b2b989c426568e46a9ce4350ea5d0c7a7a8ff3871dcd17a",
+   "verdict": "PASS"
+  },
+  {
+   "file": "frame-pacing.json",
+   "bytes": 25405,
+   "sha256": "0f8117d5fbddb21e7e30a8e0dc1a5325d9ac4ab44900a6cee31ebb6ca0ef409f",
+   "verdict": null
+  },
+  {
+   "file": "frozen-regressions.json",
+   "bytes": 5911,
+   "sha256": "bcb7bc29bebc40612a8fc6b8dc86c8c65621321c6158f670e66c50e310153b8e",
+   "verdict": null
+  },
+  {
+   "file": "product-state.json",
+   "bytes": 10012,
+   "sha256": "c10526f8da03b57cb566d8fd869ae35599a2850ddcac64639ad5e09b4e3782b7",
+   "verdict": "READY FOR ENTRY AND FRAME-PACING PRODUCT REVIEW"
+  },
+  {
+   "file": "target-entry-contract.json",
+   "bytes": 51179,
+   "sha256": "4fbb94baf9c87e7366a747fcc9090f173a93aea57278c7a504295900406e8684",
+   "verdict": null
+  }
+ ],
+ "privatePackage": {
+  "path": "qa-v5/private/v5-final-entry.zip",
+  "why": "Target pixels live there and nowhere else in this repo"
+ },
+ "notAsserted": [
+  "Target Visual PASS. Not asserted by this round and not asserted by any round so far.",
+  "A real-device pass. The LAN route was verified reachable off-host this round -- http://192.168.50.110:5293/ and /?status=1 both return 200 from the machine's own LAN address, not 127.0.0.1 -- and that is the whole of the claim: a reachable route is not a device pass. No phone or tablet ran this build. The product owner tests iPhone 17 Pro Max and desktop Chrome.",
+  "That the entry reads as 'cards gathering' at normal speed (§七.12) or that the improvement is clearly visible at 1x (§七.13). Both are judgements at 1x and belong to the product owner; the six recordings and four contact sheets exist to make them.",
+  "60 Hz emulation. §八 lists it and this round did not run it. Every pacing number here is from a 120 Hz-capable context under, at most, a 4x CPU throttle."
+ ],
+ "notTouched": [
+  "the SourceExact layout contract, cell pitch at rest, plane size, sphere radius and the camera base law",
+  "Glass, TargetOpticalBodyV5 and exposure -- no file under src/materials, src/rendering or src/scene was changed",
+  "Typography styling, the footer and the scrim",
+  "Media Fit / Focus and the device-tier sample law",
+  "motion constants: the scroll, pointer and magnitude springs, drag gain, the fling multiplier, the velocity window, rest thresholds and the dolly law",
+  "the WebGL card pool, still 256 slabs with the surplus inactive",
+  "the shipped optical default, still opticalBody=current; the shipped no-query default is still V3 and reaches none of this round's code",
+  "main -- not merged, not force-pushed, not touched"
+ ],
+ "finalProductState": "READY FOR ENTRY AND FRAME-PACING PRODUCT REVIEW",
+ "stateBasis": {
+  "entryChoreography": {
+   "gate": "§七, 11 of 11 self-scorable items PASS; items 12 and 13 are a judgement at 1x and are left to the product owner",
+   "whatItRestsOn": "the Target's entry is one spring on the grid gap ratio, read out of its bundle and then recovered from its live DOM at 3.00000 -> 0.04500 with a 0.001 px worst residual. The candidate runs the same law from the same constants and lands inside the Target's own run-to-run spread on every timing landmark at all four review viewports.",
+   "tightness": "the two crossings recovered from the gap curve agree to about a millisecond at every viewport: 50% at 146.7 vs 147.5, 147.5 vs 147.3, 147.3 vs 147.2 and 147.5 vs 147.4 ms; 90% at 358.6 vs 358.0, 358.5 vs 358.7, 358.2 vs 358.6 and 358.4 vs 359.1 ms.",
+   "theOneWideItem": "at 700x700 the visible-settle landmark passes inside a Target window that is 418 ms wide -- half its own median. That is a weaker statement than the p50/p90 agreement and is flagged as such in entry-gate.json -> windowQuality. The landmark is a threshold on visible pixel movement and the last cards to stop moving are the ones furthest off-centre; both pages are noisy on it."
+  },
+  "framePacing": {
+   "entry": "p50 8.3 ms on both pages at every condition; the candidate's longest entry frame is 9.3 ms against the Target's 9.4, and neither page drops a frame over 16.7 ms during the entry",
+   "orientation": "the worst main-thread block at a flip falls from 39.7 ms to 13.3 ms against the Target's 10.3 ms, and total blocked time from 47.9 ms to 26.1 ms -- which is the Target's own median exactly",
+   "mountedNodes": "the mounted CSS3D element count is now the Target's exactly at all four review viewports (100 / 96 / 80 / 120), and DOM nodes fall from 4155 to 1339 against the Target's 1423"
+  },
+  "frozenRegressions": "§十 passes: source contract 36/36, layout source 14/14, typography contract, source-exact runtime 64/64, render and label culling over 20164 frames with zero mismatches, card/label under motion 34/34, the nine-step resize walk, the route check, zero console and page errors, TypeScript clean, Vite build clean",
+  "frozenSmoke": {
+   "gate": "§十, 13 gates, all PASS",
+   "addedAfterFirstPass": "motion freeze smoke and touch/pointer cancel. §十 names both; the first table omitted them, and the O5R render trace had never run the two cancel sequences, so they were captured rather than carried over.",
+   "whyItIsTheLoadBearingOne": "the intro shares the Spring solver and tick() advances it before placement, so this gate is what proves motion did not move: 15/15 runs exact to floating point against our own frozen motion contract, 11/11 exact release velocities, 0 stranded gestures.",
+   "rawLandmarkComparison": "m3-motion-gate.py's Target-landmark comparison reports FAIL at 40/2570. The frozen baseline §一.5 accepted reports FAIL at 149/2570 over the identical comparison set. Pre-existing and fewer; not the freeze verdict; scoring rule unchanged."
+  }
+ },
+ "declaredDeviations": [
+  "input unlocks at ready, when the loader begins to fade, NOT when the entry completes",
+  "prefers-reduced-motion is not honoured by the entry",
+  "the last percentage a viewer sees is ~44% locally against the Target's ~90%",
+  "the loader's fade reaches invisibility about one frame later than the Target's",
+  "the CSS3D label remount is synchronous; the Target debounces its by 150 ms",
+  "the ready chain stalls in a hidden tab, on both pages"
+ ],
+ "openedForTheNextRound": [
+  "prefers-reduced-motion for the entry (deviation 2). It is a product accessibility decision, not a fidelity one.",
+  "60 Hz emulation for the pacing pass (§八), which this round did not run.",
+  "The Target's own labels carry a transform only once coverage has drawn them; ours are posed through CSS3DRenderer, whose style cache skips unchanged writes but which still walks every mounted object. The per-frame cost of that walk is now bounded by the Target's own mount count and was not the orientation cost this round removed."
+ ],
+ "commitOrderNote": "§十二 suggests card lifecycle before CSS3D lifecycle. They are committed the other way round so that EVERY commit compiles on its own: the card-lifecycle commit reads the CSS3D layer's new mount census for the device readout, and would not typecheck without it. §十二 also says the CSS3D commit is NONE if forensics disproves pool recycling. Forensics DID disprove recycling -- and found the Target's actual policy, which is to mount exactly cols x rows. That policy is bounded, it is derived from source rather than chosen, and §八's 'mounted CSS3D nodes materially approach the Target' is unreachable without it. It is isolated in its own commit so it can be dropped if the owner reads §十二 more strictly.",
+ "deliveryLimits": {
+  "publicFileLimit": 8,
+  "publicFiles": 8,
+  "imagesInPublicTree": [],
+  "pass": true
+ }
+}

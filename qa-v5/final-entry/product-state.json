@@ -1,0 +1,94 @@
+{
+ "round": "MirrorWeb V5 -- Final Experience Convergence",
+ "section": "§十三 -- the final state, and what it rests on",
+ "finalProductState": "READY FOR ENTRY AND FRAME-PACING PRODUCT REVIEW",
+ "stateBasis": {
+  "entryChoreography": {
+   "gate": "§七, 11 of 11 self-scorable items PASS; items 12 and 13 are a judgement at 1x and are left to the product owner",
+   "whatItRestsOn": "the Target's entry is one spring on the grid gap ratio, read out of its bundle and then recovered from its live DOM at 3.00000 -> 0.04500 with a 0.001 px worst residual. The candidate runs the same law from the same constants and lands inside the Target's own run-to-run spread on every timing landmark at all four review viewports.",
+   "tightness": "the two crossings recovered from the gap curve agree to about a millisecond at every viewport: 50% at 146.7 vs 147.5, 147.5 vs 147.3, 147.3 vs 147.2 and 147.5 vs 147.4 ms; 90% at 358.6 vs 358.0, 358.5 vs 358.7, 358.2 vs 358.6 and 358.4 vs 359.1 ms.",
+   "theOneWideItem": "at 700x700 the visible-settle landmark passes inside a Target window that is 418 ms wide -- half its own median. That is a weaker statement than the p50/p90 agreement and is flagged as such in entry-gate.json -> windowQuality. The landmark is a threshold on visible pixel movement and the last cards to stop moving are the ones furthest off-centre; both pages are noisy on it."
+  },
+  "framePacing": {
+   "entry": "p50 8.3 ms on both pages at every condition; the candidate's longest entry frame is 9.3 ms against the Target's 9.4, and neither page drops a frame over 16.7 ms during the entry",
+   "orientation": "the worst main-thread block at a flip falls from 39.7 ms to 13.3 ms against the Target's 10.3 ms, and total blocked time from 47.9 ms to 26.1 ms -- which is the Target's own median exactly",
+   "mountedNodes": "the mounted CSS3D element count is now the Target's exactly at all four review viewports (100 / 96 / 80 / 120), and DOM nodes fall from 4155 to 1339 against the Target's 1423"
+  },
+  "frozenRegressions": "§十 passes: source contract 36/36, layout source 14/14, typography contract, source-exact runtime 64/64, render and label culling over 20164 frames with zero mismatches, card/label under motion 34/34, the nine-step resize walk, the route check, zero console and page errors, TypeScript clean, Vite build clean",
+  "frozenSmoke": {
+   "gate": "§十, 13 gates, all PASS",
+   "addedAfterFirstPass": "motion freeze smoke and touch/pointer cancel. §十 names both; the first table omitted them, and the O5R render trace had never run the two cancel sequences, so they were captured rather than carried over.",
+   "whyItIsTheLoadBearingOne": "the intro shares the Spring solver and tick() advances it before placement, so this gate is what proves motion did not move: 15/15 runs exact to floating point against our own frozen motion contract, 11/11 exact release velocities, 0 stranded gestures.",
+   "rawLandmarkComparison": "m3-motion-gate.py's Target-landmark comparison reports FAIL at 40/2570. The frozen baseline §一.5 accepted reports FAIL at 149/2570 over the identical comparison set. Pre-existing and fewer; not the freeze verdict; scoring rule unchanged."
+  }
+ },
+ "notAsserted": [
+  "Target Visual PASS. Not asserted by this round and not asserted by any round so far.",
+  "A real-device pass. The LAN route was verified reachable off-host this round -- http://192.168.50.110:5293/ and /?status=1 both return 200 from the machine's own LAN address, not 127.0.0.1 -- and that is the whole of the claim: a reachable route is not a device pass. No phone or tablet ran this build. The product owner tests iPhone 17 Pro Max and desktop Chrome.",
+  "That the entry reads as 'cards gathering' at normal speed (§七.12) or that the improvement is clearly visible at 1x (§七.13). Both are judgements at 1x and belong to the product owner; the six recordings and four contact sheets exist to make them.",
+  "60 Hz emulation. §八 lists it and this round did not run it. Every pacing number here is from a 120 Hz-capable context under, at most, a 4x CPU throttle."
+ ],
+ "notTouched": [
+  "the SourceExact layout contract, cell pitch at rest, plane size, sphere radius and the camera base law",
+  "Glass, TargetOpticalBodyV5 and exposure -- no file under src/materials, src/rendering or src/scene was changed",
+  "Typography styling, the footer and the scrim",
+  "Media Fit / Focus and the device-tier sample law",
+  "motion constants: the scroll, pointer and magnitude springs, drag gain, the fling multiplier, the velocity window, rest thresholds and the dolly law",
+  "the WebGL card pool, still 256 slabs with the surplus inactive",
+  "the shipped optical default, still opticalBody=current; the shipped no-query default is still V3 and reaches none of this round's code",
+  "main -- not merged, not force-pushed, not touched"
+ ],
+ "declaredDeviations": [
+  {
+   "n": 1,
+   "deviation": "input unlocks at ready, when the loader begins to fade, NOT when the entry completes",
+   "basis": "SOURCE_READ",
+   "why": "The Target's drag surface is mounted from the first render and is never gated on ready; what blocks input beforehand is the loading overlay itself, which is opaque, covers the viewport at z-100 and drops pointer events on the first frame of its exit variant. So the Target is draggable while its cards are still converging. §五.6 reads naturally as a lock tied to entry completion; the Target has no such lock and this reproduction does not add one.",
+   "where": "config/target-entry-source-v1.json -> inputUnlock"
+  },
+  {
+   "n": 2,
+   "deviation": "prefers-reduced-motion is not honoured by the entry",
+   "basis": "SOURCE_READ",
+   "why": "There is no useReducedMotion, no MotionConfig reducedMotion prop and no skipAnimations anywhere in the Target's app code, and its framer-motion context default is reducedMotion:'never'. §五.13 says to copy it only if the Target supports it and otherwise to record the deviation separately. This is that record. Copying the behaviour would be copying an accessibility defect; fixing it silently would be a divergence nobody asked for. Recommended as its own product decision.",
+   "where": "config/target-entry-source-v1.json -> reducedMotion"
+  },
+  {
+   "n": 3,
+   "deviation": "the last percentage a viewer sees is ~44% locally against the Target's ~90%",
+   "basis": "RUNTIME_MEASURED",
+   "why": "Same rule, different load. Both pages show a spring chasing a monotonic progress value and both remove the loader before the spring catches up, so neither ever displays 100. Ours reaches ready far sooner because three local mp4s over localhost are not three HLS streams over the network, so the spring has climbed less far when the element is removed. On a real device over the LAN the number will sit higher. Nothing about the rule differs."
+  },
+  {
+   "n": 4,
+   "deviation": "the loader's fade reaches invisibility about one frame later than the Target's",
+   "basis": "RUNTIME_MEASURED",
+   "why": "8.3 ms at 120 Hz, consistently. The Target applies its exit style inline in the same React commit that flips ready; ours is a CSS class whose transition starts at the next style recalculation. Same 1150 ms duration, same cubic-bezier(0.16, 1, 0.3, 1) curve, one frame of offset."
+  },
+  {
+   "n": 5,
+   "deviation": "the CSS3D label remount is synchronous; the Target debounces its by 150 ms",
+   "basis": "SOURCE_READ, deliberate",
+   "why": "That debounce is exactly why the Target holds a partly relaid-out grid for about nine frames and teleports TWICE through an orientation change. §一.8 accepted the candidate's single atomic relayout and said not to reproduce the two teleports, so the debounce is not copied. Every orientation number in this round was measured on the synchronous remount.",
+   "where": "qa-v5/final-entry/css3d-lifecycle.json -> declaredDeviation"
+  },
+  {
+   "n": 6,
+   "deviation": "the ready chain stalls in a hidden tab, on both pages",
+   "basis": "SOURCE_READ plus code inspection",
+   "why": "Chrome does not deliver requestVideoFrameCallback to a hidden document and does not run rAF, so the Target's decode gate and its five warm frames both stop; ours stops for the same reasons. This round reproduces the Target rather than diverging from it. A fix for our half exists as an uncommitted change in another session's working tree and was deliberately NOT absorbed: §二 requires this round to start from a clean tree at cfad89d and not to include those files."
+  }
+ ],
+ "openedForTheNextRound": [
+  "prefers-reduced-motion for the entry (deviation 2). It is a product accessibility decision, not a fidelity one.",
+  "60 Hz emulation for the pacing pass (§八), which this round did not run.",
+  "The Target's own labels carry a transform only once coverage has drawn them; ours are posed through CSS3DRenderer, whose style cache skips unchanged writes but which still walks every mounted object. The per-frame cost of that walk is now bounded by the Target's own mount count and was not the orientation cost this round removed."
+ ],
+ "commits": [
+  "v5-final-entry-target-source-contract",
+  "v5-final-entry-css3d-lifecycle-code",
+  "v5-final-entry-card-lifecycle-code",
+  "v5-final-entry-product-evidence"
+ ],
+ "commitOrderNote": "§十二 suggests card lifecycle before CSS3D lifecycle. They are committed the other way round so that EVERY commit compiles on its own: the card-lifecycle commit reads the CSS3D layer's new mount census for the device readout, and would not typecheck without it. §十二 also says the CSS3D commit is NONE if forensics disproves pool recycling. Forensics DID disprove recycling -- and found the Target's actual policy, which is to mount exactly cols x rows. That policy is bounded, it is derived from source rather than chosen, and §八's 'mounted CSS3D nodes materially approach the Target' is unreachable without it. It is isolated in its own commit so it can be dropped if the owner reads §十二 more strictly."
+}

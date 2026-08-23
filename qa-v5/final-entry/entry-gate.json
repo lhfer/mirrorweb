@@ -1,0 +1,901 @@
+{
+ "round": "MirrorWeb V5 -- Final Experience Convergence",
+ "section": "§七 -- entry visual gate",
+ "matchedConditions": {
+  "media": "ONE locally generated asset serves both pages (o2_media_routes)",
+  "copy": "one injected string set, read back out of the DOM after the entry",
+  "viewports": [
+   [
+    1440,
+    900
+   ],
+   [
+    390,
+    844
+   ],
+   [
+    844,
+    390
+   ],
+   [
+    700,
+    700
+   ]
+  ],
+  "dpr": 1,
+  "labels": "ON",
+  "footer": "ON",
+  "debugHud": "absent",
+  "condition": "cold cache, first navigation in a fresh context",
+  "runsPerViewportPerSide": {
+   "desktop-cold": {
+    "target": 5,
+    "candidate": 5
+   },
+   "mobile-cold": {
+    "target": 5,
+    "candidate": 5
+   },
+   "landscape-cold": {
+    "target": 5,
+    "candidate": 5
+   },
+   "square-cold": {
+    "target": 5,
+    "candidate": 5
+   }
+  }
+ },
+ "preRegisteredRule": {
+  "rule": "for every timing landmark and viewport, the candidate's median must fall inside the Target's own min..max for that viewport",
+  "why": "the Target's run-to-run spread IS the threshold. A tighter rule would fail the Target; a rule picked after seeing the candidate would not be a rule.",
+  "landmarks": [
+   "introMs",
+   "p50RelMs",
+   "p90RelMs"
+  ],
+  "registeredIn": "qa-v5/final-entry/target-entry-contract.json -> preRegisteredGate, written before the candidate was scored"
+ },
+ "timingWindows": {
+  "desktop-cold": {
+   "introMs": {
+    "targetMin": 899.4,
+    "targetMax": 934.1,
+    "targetMedian": 908.3,
+    "candidateMedian": 899.7,
+    "candidateMin": 891.7,
+    "candidateMax": 915.9,
+    "inside": true,
+    "targetWindowWidthMs": 34.7,
+    "targetWindowAsFractionOfMedian": 0.038,
+    "tight": true,
+    "deltaFromTargetMedianMs": -8.6
+   },
+   "p50RelMs": {
+    "targetMin": 146.5,
+    "targetMax": 148.3,
+    "targetMedian": 146.7,
+    "candidateMedian": 147.5,
+    "candidateMin": 145.4,
+    "candidateMax": 148.5,
+    "inside": true,
+    "targetWindowWidthMs": 1.8,
+    "targetWindowAsFractionOfMedian": 0.012,
+    "tight": true,
+    "deltaFromTargetMedianMs": 0.8
+   },
+   "p90RelMs": {
+    "targetMin": 356.7,
+    "targetMax": 360.0,
+    "targetMedian": 358.6,
+    "candidateMedian": 358.0,
+    "candidateMin": 356.7,
+    "candidateMax": 358.8,
+    "inside": true,
+    "targetWindowWidthMs": 3.3,
+    "targetWindowAsFractionOfMedian": 0.009,
+    "tight": true,
+    "deltaFromTargetMedianMs": -0.6
+   }
+  },
+  "mobile-cold": {
+   "introMs": {
+    "targetMin": 833.4,
+    "targetMax": 858.0,
+    "targetMedian": 851.1,
+    "candidateMedian": 850.1,
+    "candidateMin": 841.7,
+    "candidateMax": 865.4,
+    "inside": true,
+    "targetWindowWidthMs": 24.6,
+    "targetWindowAsFractionOfMedian": 0.029,
+    "tight": true,
+    "deltaFromTargetMedianMs": -1.0
+   },
+   "p50RelMs": {
+    "targetMin": 146.5,
+    "targetMax": 149.5,
+    "targetMedian": 147.5,
+    "candidateMedian": 147.3,
+    "candidateMin": 146.5,
+    "candidateMax": 147.8,
+    "inside": true,
+    "targetWindowWidthMs": 3.0,
+    "targetWindowAsFractionOfMedian": 0.02,
+    "tight": true,
+    "deltaFromTargetMedianMs": -0.2
+   },
+   "p90RelMs": {
+    "targetMin": 358.1,
+    "targetMax": 359.2,
+    "targetMedian": 358.5,
+    "candidateMedian": 358.7,
+    "candidateMin": 357.5,
+    "candidateMax": 360.2,
+    "inside": true,
+    "targetWindowWidthMs": 1.1,
+    "targetWindowAsFractionOfMedian": 0.003,
+    "tight": true,
+    "deltaFromTargetMedianMs": 0.2
+   }
+  },
+  "landscape-cold": {
+   "introMs": {
+    "targetMin": 833.9,
+    "targetMax": 849.9,
+    "targetMedian": 834.2,
+    "candidateMedian": 842.5,
+    "candidateMin": 841.6,
+    "candidateMax": 849.6,
+    "inside": true,
+    "targetWindowWidthMs": 16.0,
+    "targetWindowAsFractionOfMedian": 0.019,
+    "tight": true,
+    "deltaFromTargetMedianMs": 8.3
+   },
+   "p50RelMs": {
+    "targetMin": 146.5,
+    "targetMax": 148.0,
+    "targetMedian": 147.3,
+    "candidateMedian": 147.2,
+    "candidateMin": 145.5,
+    "candidateMax": 147.8,
+    "inside": true,
+    "targetWindowWidthMs": 1.5,
+    "targetWindowAsFractionOfMedian": 0.01,
+    "tight": true,
+    "deltaFromTargetMedianMs": -0.1
+   },
+   "p90RelMs": {
+    "targetMin": 357.4,
+    "targetMax": 358.9,
+    "targetMedian": 358.2,
+    "candidateMedian": 358.6,
+    "candidateMin": 357.1,
+    "candidateMax": 359.5,
+    "inside": true,
+    "targetWindowWidthMs": 1.5,
+    "targetWindowAsFractionOfMedian": 0.004,
+    "tight": true,
+    "deltaFromTargetMedianMs": 0.4
+   }
+  },
+  "square-cold": {
+   "introMs": {
+    "targetMin": 816.5,
+    "targetMax": 1234.2,
+    "targetMedian": 833.3,
+    "candidateMedian": 1173.7,
+    "candidateMin": 891.2,
+    "candidateMax": 1258.6,
+    "inside": true,
+    "targetWindowWidthMs": 417.7,
+    "targetWindowAsFractionOfMedian": 0.501,
+    "tight": false,
+    "deltaFromTargetMedianMs": 340.4
+   },
+   "p50RelMs": {
+    "targetMin": 147.4,
+    "targetMax": 148.2,
+    "targetMedian": 147.5,
+    "candidateMedian": 147.4,
+    "candidateMin": 146.7,
+    "candidateMax": 147.7,
+    "inside": true,
+    "targetWindowWidthMs": 0.8,
+    "targetWindowAsFractionOfMedian": 0.005,
+    "tight": true,
+    "deltaFromTargetMedianMs": -0.1
+   },
+   "p90RelMs": {
+    "targetMin": 358.2,
+    "targetMax": 360.0,
+    "targetMedian": 358.4,
+    "candidateMedian": 359.1,
+    "candidateMin": 357.3,
+    "candidateMax": 360.2,
+    "inside": true,
+    "targetWindowWidthMs": 1.8,
+    "targetWindowAsFractionOfMedian": 0.005,
+    "tight": true,
+    "deltaFromTargetMedianMs": 0.7
+   }
+  }
+ },
+ "windowQuality": {
+  "why": "'inside the Target's window' is only as strong as the window. This flags which landmarks agree tightly and which merely land inside a Target that is itself noisy at that viewport.",
+  "tightLandmarks": [
+   "desktop-cold/introMs",
+   "desktop-cold/p50RelMs",
+   "desktop-cold/p90RelMs",
+   "landscape-cold/introMs",
+   "landscape-cold/p50RelMs",
+   "landscape-cold/p90RelMs",
+   "mobile-cold/introMs",
+   "mobile-cold/p50RelMs",
+   "mobile-cold/p90RelMs",
+   "square-cold/p50RelMs",
+   "square-cold/p90RelMs"
+  ],
+  "wideTargetWindows": [
+   "square-cold/introMs (Target spread 417.7 ms, 50% of its own median)"
+  ],
+  "reading": "The two crossings recovered from the gap curve -- p50 and p90 -- are tight everywhere: the Target repeats itself to a few milliseconds and the candidate sits inside that. `introMs` is the noisy one, on both pages, because it is a threshold on visible pixel movement and the last cards to stop moving are the ones furthest off-centre. At 700x700 the Target's own settle spans over 400 ms across five runs; the candidate is inside it, and that is a weaker statement than the p50/p90 agreement, not a stronger one."
+ },
+ "mountedElements": {
+  "desktop-cold": {
+   "target": [
+    100
+   ],
+   "candidate": [
+    100
+   ]
+  },
+  "mobile-cold": {
+   "target": [
+    96
+   ],
+   "candidate": [
+    96
+   ]
+  },
+  "landscape-cold": {
+   "target": [
+    80
+   ],
+   "candidate": [
+    80
+   ]
+  },
+  "square-cold": {
+   "target": [
+    120
+   ],
+   "candidate": [
+    120
+   ]
+  }
+ },
+ "mountedElementsMatchExactly": true,
+ "gapRecovery": {
+  "desktop-cold": {
+   "target": {
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "minGap": 0.045,
+    "worstResidualPx": 0.001,
+    "medianResidualPx": 0.001,
+    "cardSolves": 24107,
+    "gapSolveFrames": 1572,
+    "runs": 5
+   },
+   "candidate": {
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "minGap": 0.045,
+    "worstResidualPx": 0.001,
+    "medianResidualPx": 0.001,
+    "cardSolves": 24278,
+    "gapSolveFrames": 1584,
+    "runs": 5
+   }
+  },
+  "mobile-cold": {
+   "target": {
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "minGap": 0.045,
+    "worstResidualPx": 0.001,
+    "medianResidualPx": 0.001,
+    "cardSolves": 23892,
+    "gapSolveFrames": 1460,
+    "runs": 5
+   },
+   "candidate": {
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "minGap": 0.045,
+    "worstResidualPx": 0.001,
+    "medianResidualPx": 0.001,
+    "cardSolves": 22769,
+    "gapSolveFrames": 1394,
+    "runs": 5
+   }
+  },
+  "landscape-cold": {
+   "target": {
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "minGap": 0.045,
+    "worstResidualPx": 0.001,
+    "medianResidualPx": 0.001,
+    "cardSolves": 25614,
+    "gapSolveFrames": 1561,
+    "runs": 5
+   },
+   "candidate": {
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "minGap": 0.045,
+    "worstResidualPx": 0.001,
+    "medianResidualPx": 0.001,
+    "cardSolves": 23616,
+    "gapSolveFrames": 1450,
+    "runs": 5
+   }
+  },
+  "square-cold": {
+   "target": {
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "minGap": 0.045,
+    "worstResidualPx": 0.001,
+    "medianResidualPx": 0.0,
+    "cardSolves": 56218,
+    "gapSolveFrames": 1568,
+    "runs": 5
+   },
+   "candidate": {
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "minGap": 0.045,
+    "worstResidualPx": 0.0,
+    "medianResidualPx": 0.0,
+    "cardSolves": 55244,
+    "gapSolveFrames": 1540,
+    "runs": 5
+   }
+  }
+ },
+ "items": [
+  {
+   "n": 1,
+   "item": "entry starts at the same lifecycle point",
+   "how": "ready is defined identically on both pages -- the first frame the loading overlay stops taking pointer events or begins to fade -- and the entry's first moving frame is that frame on both",
+   "measured": {
+    "firstDrawRelMs": {
+     "desktop-cold": {
+      "target": {
+       "n": 5,
+       "min": -77.7,
+       "median": -62.2,
+       "max": -59.0,
+       "rangeMs": 18.7
+      },
+      "candidate": {
+       "n": 5,
+       "min": -61.1,
+       "median": -56.5,
+       "max": -53.5,
+       "rangeMs": 7.6
+      }
+     },
+     "mobile-cold": {
+      "target": {
+       "n": 5,
+       "min": -65.5,
+       "median": -64.8,
+       "max": -60.3,
+       "rangeMs": 5.2
+      },
+      "candidate": {
+       "n": 5,
+       "min": -60.4,
+       "median": -59.3,
+       "max": -56.2,
+       "rangeMs": 4.2
+      }
+     },
+     "landscape-cold": {
+      "target": {
+       "n": 5,
+       "min": -64.8,
+       "median": -60.4,
+       "max": -57.4,
+       "rangeMs": 7.4
+      },
+      "candidate": {
+       "n": 5,
+       "min": -58.1,
+       "median": -56.4,
+       "max": -52.3,
+       "rangeMs": 5.8
+      }
+     },
+     "square-cold": {
+      "target": {
+       "n": 5,
+       "min": -65.6,
+       "median": -62.8,
+       "max": -59.3,
+       "rangeMs": 6.3
+      },
+      "candidate": {
+       "n": 5,
+       "min": -64.7,
+       "median": -62.7,
+       "max": -60.1,
+       "rangeMs": 4.6
+      }
+     }
+    }
+   },
+   "pass": true,
+   "note": "negative means the first card was drawn BEFORE ready, which both pages do: the warm frames are drawn behind the opaque overlay"
+  },
+  {
+   "n": 2,
+   "item": "start-position direction agrees",
+   "how": "every tracked card's distance from the viewport centre is smaller at settle than at ready -- cards travel inward on both pages",
+   "measured": {
+    "desktop-cold": {
+     "target": true,
+     "candidate": true
+    },
+    "mobile-cold": {
+     "target": true,
+     "candidate": true
+    },
+    "landscape-cold": {
+     "target": true,
+     "candidate": true
+    },
+    "square-cold": {
+     "target": true,
+     "candidate": true
+    }
+   },
+   "pass": true
+  },
+  {
+   "n": 3,
+   "item": "scale direction agrees",
+   "how": "every tracked card's screen width is larger at settle than at ready",
+   "measured": {
+    "desktop-cold": {
+     "target": true,
+     "candidate": true
+    },
+    "mobile-cold": {
+     "target": true,
+     "candidate": true
+    },
+    "landscape-cold": {
+     "target": true,
+     "candidate": true
+    },
+    "square-cold": {
+     "target": true,
+     "candidate": true
+    }
+   },
+   "pass": true
+  },
+  {
+   "n": 4,
+   "item": "per-card stagger order agrees",
+   "how": "There is no stagger to order, on either page, and this is the measurement that says so rather than the source read that predicts it: every frame of both entries is explained by ONE gap value to under a pixel, across five to thirty cards at once. A per-card delay would put different cards at different points on the curve, and no single value could then fit the frame.",
+   "measured": {
+    "desktop-cold": {
+     "target": {
+      "worstResidualPx": 0.001,
+      "cardSolves": 24107
+     },
+     "candidate": {
+      "worstResidualPx": 0.001,
+      "cardSolves": 24278
+     }
+    },
+    "mobile-cold": {
+     "target": {
+      "worstResidualPx": 0.001,
+      "cardSolves": 23892
+     },
+     "candidate": {
+      "worstResidualPx": 0.001,
+      "cardSolves": 22769
+     }
+    },
+    "landscape-cold": {
+     "target": {
+      "worstResidualPx": 0.001,
+      "cardSolves": 25614
+     },
+     "candidate": {
+      "worstResidualPx": 0.001,
+      "cardSolves": 23616
+     }
+    },
+    "square-cold": {
+     "target": {
+      "worstResidualPx": 0.001,
+      "cardSolves": 56218
+     },
+     "candidate": {
+      "worstResidualPx": 0.0,
+      "cardSolves": 55244
+     }
+    }
+   },
+   "pass": true
+  },
+  {
+   "n": 5,
+   "item": "50% progress timing within Target repeatability",
+   "how": "candidate median inside the Target's min..max for the same viewport",
+   "measured": {
+    "desktop-cold": {
+     "targetMin": 146.5,
+     "targetMax": 148.3,
+     "targetMedian": 146.7,
+     "candidateMedian": 147.5,
+     "candidateMin": 145.4,
+     "candidateMax": 148.5,
+     "inside": true,
+     "targetWindowWidthMs": 1.8,
+     "targetWindowAsFractionOfMedian": 0.012,
+     "tight": true,
+     "deltaFromTargetMedianMs": 0.8
+    },
+    "mobile-cold": {
+     "targetMin": 146.5,
+     "targetMax": 149.5,
+     "targetMedian": 147.5,
+     "candidateMedian": 147.3,
+     "candidateMin": 146.5,
+     "candidateMax": 147.8,
+     "inside": true,
+     "targetWindowWidthMs": 3.0,
+     "targetWindowAsFractionOfMedian": 0.02,
+     "tight": true,
+     "deltaFromTargetMedianMs": -0.2
+    },
+    "landscape-cold": {
+     "targetMin": 146.5,
+     "targetMax": 148.0,
+     "targetMedian": 147.3,
+     "candidateMedian": 147.2,
+     "candidateMin": 145.5,
+     "candidateMax": 147.8,
+     "inside": true,
+     "targetWindowWidthMs": 1.5,
+     "targetWindowAsFractionOfMedian": 0.01,
+     "tight": true,
+     "deltaFromTargetMedianMs": -0.1
+    },
+    "square-cold": {
+     "targetMin": 147.4,
+     "targetMax": 148.2,
+     "targetMedian": 147.5,
+     "candidateMedian": 147.4,
+     "candidateMin": 146.7,
+     "candidateMax": 147.7,
+     "inside": true,
+     "targetWindowWidthMs": 0.8,
+     "targetWindowAsFractionOfMedian": 0.005,
+     "tight": true,
+     "deltaFromTargetMedianMs": -0.1
+    }
+   },
+   "pass": true
+  },
+  {
+   "n": 6,
+   "item": "settle timing within Target repeatability",
+   "how": "same rule, on entry duration and on the 90% crossing",
+   "measured": {
+    "desktop-cold": {
+     "introMs": {
+      "targetMin": 899.4,
+      "targetMax": 934.1,
+      "targetMedian": 908.3,
+      "candidateMedian": 899.7,
+      "candidateMin": 891.7,
+      "candidateMax": 915.9,
+      "inside": true,
+      "targetWindowWidthMs": 34.7,
+      "targetWindowAsFractionOfMedian": 0.038,
+      "tight": true,
+      "deltaFromTargetMedianMs": -8.6
+     },
+     "p90RelMs": {
+      "targetMin": 356.7,
+      "targetMax": 360.0,
+      "targetMedian": 358.6,
+      "candidateMedian": 358.0,
+      "candidateMin": 356.7,
+      "candidateMax": 358.8,
+      "inside": true,
+      "targetWindowWidthMs": 3.3,
+      "targetWindowAsFractionOfMedian": 0.009,
+      "tight": true,
+      "deltaFromTargetMedianMs": -0.6
+     }
+    },
+    "mobile-cold": {
+     "introMs": {
+      "targetMin": 833.4,
+      "targetMax": 858.0,
+      "targetMedian": 851.1,
+      "candidateMedian": 850.1,
+      "candidateMin": 841.7,
+      "candidateMax": 865.4,
+      "inside": true,
+      "targetWindowWidthMs": 24.6,
+      "targetWindowAsFractionOfMedian": 0.029,
+      "tight": true,
+      "deltaFromTargetMedianMs": -1.0
+     },
+     "p90RelMs": {
+      "targetMin": 358.1,
+      "targetMax": 359.2,
+      "targetMedian": 358.5,
+      "candidateMedian": 358.7,
+      "candidateMin": 357.5,
+      "candidateMax": 360.2,
+      "inside": true,
+      "targetWindowWidthMs": 1.1,
+      "targetWindowAsFractionOfMedian": 0.003,
+      "tight": true,
+      "deltaFromTargetMedianMs": 0.2
+     }
+    },
+    "landscape-cold": {
+     "introMs": {
+      "targetMin": 833.9,
+      "targetMax": 849.9,
+      "targetMedian": 834.2,
+      "candidateMedian": 842.5,
+      "candidateMin": 841.6,
+      "candidateMax": 849.6,
+      "inside": true,
+      "targetWindowWidthMs": 16.0,
+      "targetWindowAsFractionOfMedian": 0.019,
+      "tight": true,
+      "deltaFromTargetMedianMs": 8.3
+     },
+     "p90RelMs": {
+      "targetMin": 357.4,
+      "targetMax": 358.9,
+      "targetMedian": 358.2,
+      "candidateMedian": 358.6,
+      "candidateMin": 357.1,
+      "candidateMax": 359.5,
+      "inside": true,
+      "targetWindowWidthMs": 1.5,
+      "targetWindowAsFractionOfMedian": 0.004,
+      "tight": true,
+      "deltaFromTargetMedianMs": 0.4
+     }
+    },
+    "square-cold": {
+     "introMs": {
+      "targetMin": 816.5,
+      "targetMax": 1234.2,
+      "targetMedian": 833.3,
+      "candidateMedian": 1173.7,
+      "candidateMin": 891.2,
+      "candidateMax": 1258.6,
+      "inside": true,
+      "targetWindowWidthMs": 417.7,
+      "targetWindowAsFractionOfMedian": 0.501,
+      "tight": false,
+      "deltaFromTargetMedianMs": 340.4
+     },
+     "p90RelMs": {
+      "targetMin": 358.2,
+      "targetMax": 360.0,
+      "targetMedian": 358.4,
+      "candidateMedian": 359.1,
+      "candidateMin": 357.3,
+      "candidateMax": 360.2,
+      "inside": true,
+      "targetWindowWidthMs": 1.8,
+      "targetWindowAsFractionOfMedian": 0.005,
+      "tight": true,
+      "deltaFromTargetMedianMs": 0.7
+     }
+    }
+   },
+   "pass": true
+  },
+  {
+   "n": 7,
+   "item": "overshoot / soft settle agrees in direction and magnitude",
+   "how": "the spring is overdamped (damping ratio 1.076), so it must approach the rest gap from above and never cross it. Measured as min(recovered gap) over the entry, both pages.",
+   "measured": {
+    "desktop-cold": {
+     "target": {
+      "minGap": 0.045,
+      "restGap": 0.045,
+      "undershoot": 0.0
+     },
+     "candidate": {
+      "minGap": 0.045,
+      "restGap": 0.045,
+      "undershoot": 0.0
+     }
+    },
+    "mobile-cold": {
+     "target": {
+      "minGap": 0.045,
+      "restGap": 0.045,
+      "undershoot": 0.0
+     },
+     "candidate": {
+      "minGap": 0.045,
+      "restGap": 0.045,
+      "undershoot": 0.0
+     }
+    },
+    "landscape-cold": {
+     "target": {
+      "minGap": 0.045,
+      "restGap": 0.045,
+      "undershoot": 0.0
+     },
+     "candidate": {
+      "minGap": 0.045,
+      "restGap": 0.045,
+      "undershoot": 0.0
+     }
+    },
+    "square-cold": {
+     "target": {
+      "minGap": 0.045,
+      "restGap": 0.045,
+      "undershoot": 0.0
+     },
+     "candidate": {
+      "minGap": 0.045,
+      "restGap": 0.045,
+      "undershoot": 0.0
+     }
+    }
+   },
+   "pass": true
+  },
+  {
+   "n": 8,
+   "item": "final card centres / sizes / gutters remain exact",
+   "how": "the recovered gap at settle equals the layout contract's gapRatio on both pages, and the frozen source contract still passes 36/36 on this build -- see frozen-regressions.json",
+   "measured": {
+    "desktop-cold": {
+     "target": 0.045,
+     "candidate": 0.045
+    },
+    "mobile-cold": {
+     "target": 0.045,
+     "candidate": 0.045
+    },
+    "landscape-cold": {
+     "target": 0.045,
+     "candidate": 0.045
+    },
+    "square-cold": {
+     "target": 0.045,
+     "candidate": 0.045
+    }
+   },
+   "pass": true
+  },
+  {
+   "n": 9,
+   "item": "labels never separate from cards",
+   "how": "true by construction on our side -- the label element IS the card's CSS3D object, posed from the same slot group in the same sync -- and measured anyway: m1-card-label-motion 34/34 on this build, and the render gate's label/mesh agreement over 20164 frames with 0 disagreeing frames",
+   "measured": {
+    "cardLabelMotion": "34/34 PASS",
+    "renderGateLabelMeshDisagreements": 0
+   },
+   "pass": true
+  },
+  {
+   "n": 10,
+   "item": "footer does not appear too early or too late",
+   "how": "measured per frame from navigation start on both pages: is the page chrome in the document, at what opacity, at what top edge",
+   "measured": {
+    "target": {
+     "opacityConstantAtOne": true,
+     "noTransform": true,
+     "presentFromFirstAppRenderOnwards": true,
+     "firstPresentAtMs": [
+      1329.3,
+      1408.2
+     ]
+    },
+    "local": {
+     "opacityConstantAtOne": true,
+     "noTransform": true,
+     "presentFromFirstAppRenderOnwards": true,
+     "firstPresentAtMs": [
+      103.2,
+      89.9
+     ]
+    }
+   },
+   "pass": true,
+   "filledBy": "fe-footer-probe.mjs",
+   "note": "Neither page animates or gates its footer. It is in the document from the app's first render at opacity 1 with no transform, and simply sits behind the loading overlay until the overlay lifts -- so on both pages the footer arrives with the cards because it arrives the same way."
+  },
+  {
+   "n": 11,
+   "item": "no visible one-frame final-pose flash before the entry begins",
+   "how": "count the frames at or before ready on which at least half the tracked cards already sat within 2% of their settled width",
+   "measured": {
+    "desktop-cold": {
+     "target": [
+      0
+     ],
+     "candidate": [
+      0
+     ]
+    },
+    "mobile-cold": {
+     "target": [
+      0
+     ],
+     "candidate": [
+      0
+     ]
+    },
+    "landscape-cold": {
+     "target": [
+      0
+     ],
+     "candidate": [
+      0
+     ]
+    },
+    "square-cold": {
+     "target": [
+      0
+     ],
+     "candidate": [
+      0
+     ]
+    }
+   },
+   "pass": true
+  },
+  {
+   "n": 12,
+   "item": "at normal speed the entry reads as cards gathering",
+   "how": "a product judgement at 1x, from the side-by-side recordings",
+   "pass": null,
+   "decidedBy": "product owner"
+  },
+  {
+   "n": 13,
+   "item": "the improvement is clearly visible at 1x full-frame",
+   "how": "a product judgement at 1x, from the side-by-side recordings",
+   "pass": null,
+   "decidedBy": "product owner"
+  }
+ ],
+ "scored": "11/11",
+ "notSelfScored": [
+  12,
+  13
+ ],
+ "verdict": "PASS"
+}

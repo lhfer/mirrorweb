@@ -1,0 +1,102 @@
+{
+ "round": "MirrorWeb V5 -- Final Experience Convergence",
+ "section": "§六 -- CSS3D mount lifecycle and frame pacing",
+ "generatedAt": "2026-08-23T16:24:03+00:00",
+ "head": "37b39cbab467ca015e9ee9bfd6e2481654b9b068",
+ "question": "does the Target recycle a bounded CSS3D label pool?",
+ "answer": "NO. It mounts one element per pool slot -- cols x rows -- and recycles nothing.",
+ "basis": "SOURCE_READ, confirmed RUNTIME_MEASURED",
+ "sourceEvidence": [
+  "Pd: const c = useSyncExternalStore(Pl, Pu, Pc) where Pu = () => b1.get(); <div ...><div ...>{Array.from({length: c}, Ph)}</div></div>",
+  "b1 is set to cols*rows in the grid's layout effect: b1.set(e.cols * e.rows)",
+  "Ph mounts each label with style {transformStyle:'preserve-3d', willChange:'transform', visibility:'hidden', backfaceVisibility:'hidden'} and NO transform",
+  "L7 (the element ref array) is truncated or extended to match c in a layout effect; there is no free list, no overscan margin and no reuse of one element for a different slot index"
+ ],
+ "runtimeConfirmation": {
+  "how": "the mounted count read off the live Target every frame of twenty cold and warm loads",
+  "measured": {
+   "1440x900": 100,
+   "390x844": 96,
+   "844x390": 80,
+   "700x700": 120
+  },
+  "predictedByColsTimesRows": {
+   "1440x900": 100,
+   "390x844": 96,
+   "844x390": 80,
+   "700x700": 120
+  },
+  "agrees": true
+ },
+ "correctionToThePreviousRound": {
+  "whatWasReported": "Target 57 card elements against our 256, read as a mount-policy difference",
+  "whatItActuallyWas": "57 was the number of elements carrying a matrix3d transform -- the harness's card predicate requires one -- which on the Target is the count of labels EVER DRAWN, not the count mounted. The Target's mounted count at that viewport was 96.",
+  "bothNumbersAreReal": "a label is mounted at mount time and gets its transform the first time coverage draws it; the two counts measure different things and only one of them is the mount policy",
+  "whereItAppeared": "qa-v5/final-motion/orientation-truth.json -> scheduling.targetSingle.domCards, and the residual note in that round's README"
+ },
+ "whatChanged": {
+  "before": "a fixed 16x16 = 256 label elements, the WebGL pool's maximum, with the surplus marked inactive and hidden",
+  "after": "exactly frame.activeSlotCount = cols x rows, grown and trimmed at the END of the array so every surviving slot index keeps its own element, its ILG code and its bound copy",
+  "notTouched": [
+   "the WebGL card pool, still 256 slabs",
+   "the layout contract",
+   "the coverage rule and its 64 px margin",
+   "typography, text-plane depth, clipping",
+   "slot identity and the ILG code"
+  ]
+ },
+ "cost": {
+  "instrument": "scripts/v5/fm-orientation-trace.mjs and the previous round's block window, unchanged, so the numbers compare directly",
+  "window": "+-140/+260 ms around the page's first resize listener, gaps > 6 ms",
+  "scenario": "390x844 -> 844x390, one resize event, five runs",
+  "target": {
+   "medianWorstBlockMs": 10.3,
+   "medianTotalBlockedMs": 26.1,
+   "domNodes": 1423
+  },
+  "beforeThisRound": {
+   "medianWorstBlockMs": 39.7,
+   "medianTotalBlockedMs": 47.9,
+   "domNodes": 4155,
+   "domCards": 256
+  },
+  "afterThisRound": {
+   "medianWorstBlockMs": 13.3,
+   "medianTotalBlockedMs": 26.1,
+   "perRunWorstBlockMs": [
+    10.4,
+    13.3,
+    13.4,
+    15.0,
+    11.8
+   ],
+   "perRunTotalBlockedMs": [
+    10.4,
+    26.1,
+    38.4,
+    34.2,
+    25.1
+   ],
+   "resizeListenerMs": [
+    4.1,
+    6.2,
+    6.6,
+    5.9,
+    5.8
+   ],
+   "domNodes": [
+    1339
+   ],
+   "domCards": [
+    96
+   ]
+  },
+  "reading": "the worst block falls from 39.7 ms to 13.3 ms against the Target's 10.3 ms, and total blocked time from 47.9 ms to 26.1 ms against the Target's 26.1 ms",
+  "aCrudeMaxWillDisagree": "the maximum beat gap over a WHOLE run is around 85 ms on this build and was not measured by either round. It is dominated by the pre-ready shader compile, which happens once, behind an opaque overlay, and is nothing a viewer can see. The window above is the published definition."
+ },
+ "declaredDeviation": {
+  "what": "the Target debounces its cols/rows remount by 150 ms; we remount synchronously",
+  "sourceBasis": "The first layout runs immediately; every later one is debounced by 150 ms before cols, rows and the slot count change.",
+  "why": "that debounce is exactly why the Target holds a partly relaid-out grid for about nine frames and teleports TWICE through an orientation change, which the brief accepted as a difference and told us not to reproduce (§一.8). Copying the debounce would reintroduce the two teleports. The numbers above were measured on the synchronous remount."
+ }
+}

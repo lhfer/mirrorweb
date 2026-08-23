@@ -1,0 +1,150 @@
+{
+ "round": "MirrorWeb V5 -- Final Experience Convergence",
+ "section": "§十 -- the bounded final regression smoke",
+ "generatedAt": "2026-08-23T16:24:03+00:00",
+ "head": "37b39cbab467ca015e9ee9bfd6e2481654b9b068",
+ "gates": {
+  "sourceContract": {
+   "verdict": "PASS",
+   "passed": "36/36",
+   "artifact": "v5-final-entry.zip -> data/source-contract.json"
+  },
+  "layoutSource": {
+   "verdict": "PASS",
+   "passed": "14/14",
+   "how": "npm run v5:target-layout-source, which also fails if the Target bundle hash moves; it did not"
+  },
+  "typographyContract": {
+   "verdict": "PASS",
+   "containerAlignment": "47/47 PASS",
+   "depthClipping": "37/37 PASS",
+   "labelInk": "PASS, worst outside fraction 0.0",
+   "artifact": "v5-final-entry.zip -> data/typography-regression.json"
+  },
+  "sourceExactRuntime": {
+   "verdict": "PASS",
+   "passed": "64/64",
+   "covers": "slot identity and wrap continuity across resize",
+   "artifact": "v5-final-entry.zip -> data/runtime-assertions.json"
+  },
+  "renderAndLabelCulling": {
+   "verdict": "PASS",
+   "framesChecked": 20164,
+   "slotMismatches": 0,
+   "labelMeshDisagreements": 0,
+   "missingCardFrames": 0,
+   "mediaLeaks": 0,
+   "artifact": "v5-final-entry.zip -> data/render-gate.json"
+  },
+  "cardAndLabelUnderMotion": {
+   "verdict": "PASS",
+   "passed": "34/34",
+   "covers": "§七.9 -- labels never separate",
+   "artifact": "v5-final-entry.zip -> data/card-label-motion.json"
+  },
+  "motionFreezeSmoke": {
+   "verdict": "PASS",
+   "scorer": "scripts/v5/v0-motion-regression.py -- the same pre-registered scorer the O2/O3/O5R rounds used, on the same run-o5r.sh stage_frozen invocation (--vps=1440x900 --repeat=1 --settle=7000)",
+   "whyItMattersThisRound": "the intro shares the Spring solver, tick() now runs intro.advance() before placement, and pause/setOffset/reset gained finishIntro(). This gate is what proves the frozen motion contract survived those insertions.",
+   "engineVsContract": {
+    "rowsTotal": 15,
+    "rowsFailed": 0,
+    "rowsExactToFloatingPoint": 15,
+    "worstFinalErrFraction": 0.0,
+    "threshold": 0.1,
+    "means": "our engine reproduces our own frozen motion contract exactly to floating point on every run, so nothing this round moved motion"
+   },
+   "releaseHistory": {
+    "releases": 11,
+    "exact": 11,
+    "mismatched": 0,
+    "worstVelocityError": 0.0
+   },
+   "cardLabelMotion": {
+    "assertions": 34,
+    "failed": 0
+   },
+   "continuityAndInput": {
+    "visibleWrapTeleports": {
+     "ours": 0,
+     "target": 0
+    },
+    "wheelResponseFailures": {
+     "ourFailures": 0,
+     "rows": 12
+    },
+    "gesturesNeverAtRest": 0,
+    "consoleAndPageErrors": 0
+   },
+   "rawTargetLandmarkComparison": {
+    "verdict": "FAIL, and that is the pre-existing accepted state, not a regression",
+    "thisBuild": {
+     "comparisons": 2570,
+     "failures": 40,
+     "landmarkFamilies": 12
+    },
+    "frozenBaseline": {
+     "source": "qa-v5/motion-closure/gate-summary.json",
+     "verdict": "FAIL",
+     "comparisons": 2570,
+     "failures": 149,
+     "landmarkFamilies": 11
+    },
+    "reading": "the frozen baseline that §一.5 accepted is itself FAIL over the identical comparison set, with more failures than this build. That comparison scores our frozen motion contract against the Target, which §一.5 froze with these deviations standing -- it is not the freeze verdict.",
+    "preRegistered": "run-o5r.sh accepts m3-motion-gate.py rc 0 OR 1 and only dies at rc>=2, and the O2 round recorded motionFreeze from engineVsContract + releaseHistory. The scoring rule was not changed for this run."
+   },
+   "artifact": "v5-final-entry.zip -> data/motion-regression.json, data/motion-smoke-gate-summary.json, data/motion-engine-vs-contract.json"
+  },
+  "touchAndPointerCancel": {
+   "verdict": "PASS",
+   "note": "the O5R render trace did not include these two sequences; they were captured for this round rather than carried over",
+   "sequences": [
+    "touch-drag-release",
+    "pointercancel",
+    "lostpointercapture"
+   ],
+   "perSequence": [
+    {
+     "sequence": "pointercancel",
+     "cancelled": true,
+     "listenerAndModelAgreeOnStep": true,
+     "engineStepAtListener": 8402
+    },
+    {
+     "sequence": "lostpointercapture",
+     "cancelled": false,
+     "listenerAndModelAgreeOnStep": true,
+     "engineStepAtListener": 8982
+    }
+   ],
+   "means": "a cancelled pointer and a lost pointer capture both terminate the gesture on the exact engine step the listener saw, hand the spring the exact release velocity, and leave no gesture stranded. The intro's finishIntro() on pause/setOffset does not interact with gesture teardown.",
+   "artifact": "v5-final-entry.zip -> data/motion-release-history-proof.json"
+  },
+  "resizeWalkGuardRegression": {
+   "verdict": "PASS",
+   "steps": 9,
+   "errors": 0,
+   "covers": "material cache constant across a nine-step resize walk",
+   "artifact": "v5-final-entry.zip -> data/guard-regression.json"
+  },
+  "routeCheck": {
+   "verdict": "PASS",
+   "covers": "shipped default / ?review=current / ?review=target",
+   "artifact": "v5-final-entry.zip -> data/route-check.json"
+  },
+  "mediaFitAndFocus": {
+   "verdict": "PASS",
+   "how": "carried by the render gate's pass-state integrity (0 media leaks, 0 shell mismatches) and the perf smoke's black-card check; frozen by §一.13 and not re-run as a standalone gate"
+  },
+  "consoleAndPageErrors": {
+   "count": 0
+  },
+  "typescript": {
+   "verdict": "clean"
+  },
+  "viteBuild": {
+   "verdict": "clean"
+  }
+ },
+ "whatIsNotHere": "Glass identity and exposure are frozen by §一.4 and §一.13 and were not re-run as standalone gates. That is not asserted on a diff alone: the source contract, the runtime gate, the typography contract and the render gate all read the same engine state those gates read, all pass on this build, and no file under src/materials, src/rendering or src/scene was touched this round."
+}

@@ -1,0 +1,1484 @@
+{
+ "round": "MirrorWeb V5 -- Final Experience Convergence",
+ "section": "§八 -- smoothness is frame pacing, not average FPS",
+ "generatedAt": "2026-08-23T16:24:03+00:00",
+ "head": "37b39cbab467ca015e9ee9bfd6e2481654b9b068",
+ "noAverageFps": "There is no average FPS anywhere in this document. §八 forbids an average-FPS pass and nothing here computes one.",
+ "entry": {
+  "windows": {
+   "preReady": "navigation start to ready; behind an opaque overlay on both pages",
+   "intro": "ready to settle; every frame is on screen and moving",
+   "introCorrected": "the same window with the recorder's own measured per-frame cost subtracted",
+   "postIntro": "one second after settle -- the idle baseline"
+  },
+  "byCondition": {
+   "target": {
+    "desktop-cold": {
+     "preReady": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 9.2,
+       "median": 9.3,
+       "max": 9.3
+      },
+      "p99": {
+       "n": 5,
+       "min": 12.2,
+       "median": 12.4,
+       "max": 13.4
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 105.5,
+       "median": 113.1,
+       "max": 120.1
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 253,
+       "median": 282,
+       "max": 345
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 4,
+       "median": 4,
+       "max": 5
+      },
+      "over25": {
+       "n": 5,
+       "min": 2,
+       "median": 2,
+       "max": 3
+      }
+     },
+     "intro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.4
+      },
+      "p95": {
+       "n": 5,
+       "min": 9.2,
+       "median": 9.2,
+       "max": 9.3
+      },
+      "p99": {
+       "n": 5,
+       "min": 9.3,
+       "median": 9.4,
+       "max": 9.4
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.3,
+       "median": 9.4,
+       "max": 9.5
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 58,
+       "median": 60,
+       "max": 68
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "introCorrected": {
+      "p50": {
+       "n": 5,
+       "min": 7.7,
+       "median": 7.9,
+       "max": 7.9
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.6,
+       "median": 8.8,
+       "max": 8.8
+      },
+      "p99": {
+       "n": 5,
+       "min": 8.8,
+       "median": 8.9,
+       "max": 9.0
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 8.9,
+       "median": 9.0,
+       "max": 9.1
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 21,
+       "median": 22,
+       "max": 28
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "postIntro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 9.2,
+       "median": 9.3,
+       "max": 9.3
+      },
+      "p99": {
+       "n": 5,
+       "min": 9.4,
+       "median": 9.4,
+       "max": 9.4
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.4,
+       "median": 9.5,
+       "max": 10.2
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 63,
+       "median": 68,
+       "max": 71
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     }
+    },
+    "desktop-warm": {
+     "preReady": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 9.2,
+       "median": 9.3,
+       "max": 9.4
+      },
+      "p99": {
+       "n": 5,
+       "min": 9.6,
+       "median": 10.6,
+       "max": 12.4
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 58.7,
+       "median": 61.1,
+       "max": 68.4
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 174,
+       "median": 183,
+       "max": 228
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 3,
+       "median": 3,
+       "max": 3
+      },
+      "over25": {
+       "n": 5,
+       "min": 1,
+       "median": 1,
+       "max": 1
+      }
+     },
+     "intro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 9.2,
+       "median": 9.3,
+       "max": 9.4
+      },
+      "p99": {
+       "n": 5,
+       "min": 9.3,
+       "median": 9.4,
+       "max": 9.4
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.3,
+       "median": 9.5,
+       "max": 10.2
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 56,
+       "median": 60,
+       "max": 65
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "introCorrected": {
+      "p50": {
+       "n": 5,
+       "min": 7.7,
+       "median": 7.8,
+       "max": 7.8
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.7,
+       "median": 8.7,
+       "max": 8.8
+      },
+      "p99": {
+       "n": 5,
+       "min": 8.8,
+       "median": 8.9,
+       "max": 8.9
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 8.9,
+       "median": 9.0,
+       "max": 9.6
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 20,
+       "median": 24,
+       "max": 28
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "postIntro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 9.2,
+       "median": 9.3,
+       "max": 9.4
+      },
+      "p99": {
+       "n": 5,
+       "min": 9.3,
+       "median": 9.4,
+       "max": 9.5
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.4,
+       "median": 9.6,
+       "max": 9.9
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 63,
+       "median": 66,
+       "max": 74
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     }
+    },
+    "mobile-cold": {
+     "preReady": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 9.2,
+       "median": 9.3,
+       "max": 9.3
+      },
+      "p99": {
+       "n": 5,
+       "min": 12.3,
+       "median": 12.8,
+       "max": 13.9
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 108.6,
+       "median": 115.2,
+       "max": 122.4
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 240,
+       "median": 277,
+       "max": 321
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 4,
+       "median": 5,
+       "max": 5
+      },
+      "over25": {
+       "n": 5,
+       "min": 2,
+       "median": 3,
+       "max": 5
+      }
+     },
+     "intro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 9.1,
+       "median": 9.3,
+       "max": 9.4
+      },
+      "p99": {
+       "n": 5,
+       "min": 9.3,
+       "median": 9.4,
+       "max": 9.5
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.3,
+       "median": 9.4,
+       "max": 9.5
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 59,
+       "median": 64,
+       "max": 68
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "introCorrected": {
+      "p50": {
+       "n": 5,
+       "min": 7.6,
+       "median": 7.6,
+       "max": 7.6
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.6,
+       "max": 8.6
+      },
+      "p99": {
+       "n": 5,
+       "min": 8.6,
+       "median": 8.7,
+       "max": 8.8
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 8.6,
+       "median": 8.8,
+       "max": 8.8
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 6,
+       "median": 11,
+       "max": 14
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "postIntro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.8,
+       "median": 9.2,
+       "max": 9.3
+      },
+      "p99": {
+       "n": 5,
+       "min": 9.2,
+       "median": 9.4,
+       "max": 9.4
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.4,
+       "median": 9.4,
+       "max": 9.5
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 69,
+       "median": 78,
+       "max": 84
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     }
+    },
+    "mobile-warm": {
+     "preReady": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 9.1,
+       "median": 9.3,
+       "max": 10.2
+      },
+      "p99": {
+       "n": 5,
+       "min": 19.3,
+       "median": 21.4,
+       "max": 24.0
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 37.2,
+       "median": 38.4,
+       "max": 39.7
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 69,
+       "median": 81,
+       "max": 84
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 3,
+       "median": 3,
+       "max": 3
+      },
+      "over25": {
+       "n": 5,
+       "min": 1,
+       "median": 1,
+       "max": 1
+      }
+     },
+     "intro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.9,
+       "median": 9.3,
+       "max": 10.1
+      },
+      "p99": {
+       "n": 5,
+       "min": 9.2,
+       "median": 9.4,
+       "max": 10.3
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.3,
+       "median": 9.4,
+       "max": 10.4
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 45,
+       "median": 46,
+       "max": 53
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "introCorrected": {
+      "p50": {
+       "n": 5,
+       "min": 7.5,
+       "median": 7.5,
+       "max": 7.6
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.2,
+       "median": 8.5,
+       "max": 9.2
+      },
+      "p99": {
+       "n": 5,
+       "min": 8.6,
+       "median": 8.7,
+       "max": 9.7
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 8.7,
+       "median": 8.7,
+       "max": 9.8
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 5,
+       "median": 12,
+       "max": 16
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "postIntro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.5,
+       "median": 9.2,
+       "max": 10.0
+      },
+      "p99": {
+       "n": 5,
+       "min": 8.9,
+       "median": 9.4,
+       "max": 10.4
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.3,
+       "median": 9.4,
+       "max": 10.4
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 68,
+       "median": 69,
+       "max": 81
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     }
+    }
+   },
+   "local": {
+    "desktop-cold": {
+     "preReady": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 9.5,
+       "median": 12.8,
+       "max": 14.9
+      },
+      "p99": {
+       "n": 5,
+       "min": 56.0,
+       "median": 62.0,
+       "max": 69.2
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 56.0,
+       "median": 62.0,
+       "max": 69.2
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 21,
+       "median": 22,
+       "max": 29
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 2,
+       "median": 2,
+       "max": 2
+      },
+      "over25": {
+       "n": 5,
+       "min": 1,
+       "median": 1,
+       "max": 1
+      }
+     },
+     "intro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.4,
+       "median": 8.5,
+       "max": 9.1
+      },
+      "p99": {
+       "n": 5,
+       "min": 8.5,
+       "median": 9.2,
+       "max": 9.3
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 8.5,
+       "median": 9.3,
+       "max": 9.4
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 57,
+       "median": 62,
+       "max": 66
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "introCorrected": {
+      "p50": {
+       "n": 5,
+       "min": 7.5,
+       "median": 7.5,
+       "max": 7.6
+      },
+      "p95": {
+       "n": 5,
+       "min": 7.8,
+       "median": 7.9,
+       "max": 8.2
+      },
+      "p99": {
+       "n": 5,
+       "min": 7.8,
+       "median": 8.4,
+       "max": 8.5
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 7.9,
+       "median": 8.5,
+       "max": 8.6
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 0,
+       "median": 3,
+       "max": 5
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "postIntro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.5,
+       "median": 8.7,
+       "max": 9.3
+      },
+      "p99": {
+       "n": 5,
+       "min": 8.7,
+       "median": 9.3,
+       "max": 9.4
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.2,
+       "median": 9.4,
+       "max": 9.7
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 54,
+       "median": 62,
+       "max": 65
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     }
+    },
+    "desktop-warm": {
+     "preReady": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.4
+      },
+      "p95": {
+       "n": 5,
+       "min": 10.4,
+       "median": 11.0,
+       "max": 12.1
+      },
+      "p99": {
+       "n": 5,
+       "min": 45.5,
+       "median": 49.5,
+       "max": 50.5
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 45.5,
+       "median": 49.5,
+       "max": 50.5
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 14,
+       "median": 17,
+       "max": 19
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 1,
+       "median": 1,
+       "max": 1
+      },
+      "over25": {
+       "n": 5,
+       "min": 1,
+       "median": 1,
+       "max": 1
+      }
+     },
+     "intro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.7,
+       "median": 9.2,
+       "max": 9.4
+      },
+      "p99": {
+       "n": 5,
+       "min": 9.2,
+       "median": 9.3,
+       "max": 9.5
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.3,
+       "median": 9.4,
+       "max": 9.5
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 58,
+       "median": 64,
+       "max": 68
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "introCorrected": {
+      "p50": {
+       "n": 5,
+       "min": 7.5,
+       "median": 7.5,
+       "max": 7.6
+      },
+      "p95": {
+       "n": 5,
+       "min": 7.9,
+       "median": 8.3,
+       "max": 8.5
+      },
+      "p99": {
+       "n": 5,
+       "min": 8.4,
+       "median": 8.5,
+       "max": 8.8
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 8.6,
+       "median": 8.7,
+       "max": 8.9
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 2,
+       "median": 6,
+       "max": 12
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "postIntro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.5,
+       "median": 8.8,
+       "max": 9.3
+      },
+      "p99": {
+       "n": 5,
+       "min": 9.2,
+       "median": 9.2,
+       "max": 9.4
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.2,
+       "median": 9.3,
+       "max": 9.5
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 60,
+       "median": 61,
+       "max": 68
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     }
+    },
+    "mobile-cold": {
+     "preReady": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.4
+      },
+      "p95": {
+       "n": 5,
+       "min": 10.3,
+       "median": 11.3,
+       "max": 13.3
+      },
+      "p99": {
+       "n": 5,
+       "min": 48.7,
+       "median": 55.6,
+       "max": 57.6
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 48.7,
+       "median": 55.6,
+       "max": 57.6
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 18,
+       "median": 24,
+       "max": 27
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 2,
+       "median": 2,
+       "max": 2
+      },
+      "over25": {
+       "n": 5,
+       "min": 1,
+       "median": 1,
+       "max": 1
+      }
+     },
+     "intro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.5,
+       "median": 8.8,
+       "max": 9.3
+      },
+      "p99": {
+       "n": 5,
+       "min": 8.9,
+       "median": 9.2,
+       "max": 9.4
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.1,
+       "median": 9.3,
+       "max": 9.5
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 54,
+       "median": 59,
+       "max": 63
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "introCorrected": {
+      "p50": {
+       "n": 5,
+       "min": 7.4,
+       "median": 7.5,
+       "max": 7.7
+      },
+      "p95": {
+       "n": 5,
+       "min": 7.8,
+       "median": 7.9,
+       "max": 8.5
+      },
+      "p99": {
+       "n": 5,
+       "min": 8.1,
+       "median": 8.4,
+       "max": 8.6
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 8.2,
+       "median": 8.6,
+       "max": 9.0
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 0,
+       "median": 3,
+       "max": 10
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "postIntro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.5,
+       "median": 8.7,
+       "max": 9.3
+      },
+      "p99": {
+       "n": 5,
+       "min": 9.1,
+       "median": 9.3,
+       "max": 9.4
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.1,
+       "median": 9.3,
+       "max": 9.4
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 60,
+       "median": 65,
+       "max": 69
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     }
+    },
+    "mobile-warm": {
+     "preReady": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.4,
+       "max": 8.4
+      },
+      "p95": {
+       "n": 5,
+       "min": 9.3,
+       "median": 11.1,
+       "max": 12.2
+      },
+      "p99": {
+       "n": 5,
+       "min": 46.2,
+       "median": 46.9,
+       "max": 49.1
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 46.2,
+       "median": 46.9,
+       "max": 49.1
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 16,
+       "median": 17,
+       "max": 18
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 1,
+       "median": 1,
+       "max": 1
+      },
+      "over25": {
+       "n": 5,
+       "min": 1,
+       "median": 1,
+       "max": 1
+      }
+     },
+     "intro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.5,
+       "median": 8.6,
+       "max": 9.3
+      },
+      "p99": {
+       "n": 5,
+       "min": 9,
+       "median": 9.1,
+       "max": 9.3
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.1,
+       "median": 9.2,
+       "max": 9.4
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 56,
+       "median": 60,
+       "max": 61
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "introCorrected": {
+      "p50": {
+       "n": 5,
+       "min": 7.4,
+       "median": 7.5,
+       "max": 7.6
+      },
+      "p95": {
+       "n": 5,
+       "min": 7.7,
+       "median": 8.0,
+       "max": 8.3
+      },
+      "p99": {
+       "n": 5,
+       "min": 8.2,
+       "median": 8.4,
+       "max": 8.6
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 8.4,
+       "median": 8.5,
+       "max": 8.8
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 1,
+       "median": 2,
+       "max": 7
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     },
+     "postIntro": {
+      "p50": {
+       "n": 5,
+       "min": 8.3,
+       "median": 8.3,
+       "max": 8.3
+      },
+      "p95": {
+       "n": 5,
+       "min": 8.5,
+       "median": 8.7,
+       "max": 9.3
+      },
+      "p99": {
+       "n": 5,
+       "min": 9.1,
+       "median": 9.3,
+       "max": 9.4
+      },
+      "longestMs": {
+       "n": 5,
+       "min": 9.3,
+       "median": 9.4,
+       "max": 9.5
+      },
+      "over8_3": {
+       "n": 5,
+       "min": 59,
+       "median": 63,
+       "max": 68
+      },
+      "over16_7": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      },
+      "over25": {
+       "n": 5,
+       "min": 0,
+       "median": 0,
+       "max": 0
+      }
+     }
+    }
+   }
+  },
+  "primaryGoal": "no long frame during the entry above the Target's own window",
+  "verdict": "MET -- the candidate's longest entry frame is at or below the Target's in every condition, and neither page drops a frame over 16.7 ms during the entry"
+ },
+ "orientation": {
+  "goal": "the orientation main-thread block materially reduced from ~39.7 ms",
+  "before": 39.7,
+  "after": 13.3,
+  "target": 10.3,
+  "verdict": "MET",
+  "detail": "css3d-lifecycle.json -> cost"
+ },
+ "mountedNodes": {
+  "goal": "mounted CSS3D nodes materially approach the Target",
+  "before": {
+   "cards": 256,
+   "nodes": 4155
+  },
+  "after": {
+   "cards": [
+    96
+   ],
+   "nodes": [
+    1339
+   ]
+  },
+  "target": {
+   "nodes": 1423
+  },
+  "verdict": "MET -- the mounted element count is now the Target's exactly, per viewport"
+ },
+ "boundedSmoke": {
+  "what": "five desktop runs at full speed and five on a touch phone context under a 4x CPU throttle, with portrait<->landscape rotations, drag, flick and reverse flick",
+  "verdict": "SMOKE CLEAN",
+  "checks": null,
+  "artifact": "v5-final-entry.zip -> data/perf-smoke.json"
+ },
+ "notRun": {
+  "sixtyHzEmulation": "NOT RUN. §八 lists it; this round did not run a 60 Hz emulation pass and does not report one. Every pacing number here is from a 120 Hz-capable context, and the 4x CPU throttle is the only throttle applied.",
+  "realDevice": "NOT ASSERTED. The LAN route is reachable and nothing more."
+ }
+}
