@@ -1,0 +1,117 @@
+{
+ "$comment": "The Target's cold-load entry, read from its bundle. This file holds CONSTANTS ONLY -- every number here is a literal in the Target's own source, and every one carries the expression it was read from. The measured verification of these constants, and everything that is measured rather than read, lives in qa-v5/final-entry/target-entry-contract.json. Nothing in this file is fitted.",
+ "entryVersion": "target-entry-source-v1",
+ "target": {
+  "url": "https://infinite-liquid-glass.shader.se/?v=2",
+  "appBundle": "artifacts/optics-o2/live-bundle.js",
+  "appBundleSha256": "see config/target-layout-source-v2.json -> target.appBundleSha256; the same bundle, and npm run v5:target-layout-source fails if it moves",
+  "identicalCopyAt": "artifacts/f27/bundles/03lo820gl57km.js"
+ },
+
+ "intro": {
+  "what": "One spring on the grid GAP RATIO, started once, when the scene reports ready.",
+  "from": 3,
+  "to": "grid.gapRatio (0.045) -- config/target-layout-source-v2.json -> grid.gapRatio",
+  "spring": {
+   "stiffness": 100,
+   "damping": 18,
+   "mass": 0.7,
+   "restDelta": 0.0002,
+   "restSpeed": 0.01
+  },
+  "restSpeedBasis": "NOT a literal at the call site. animate() resolves an unset restSpeed from the travel: 0.01 when |to - from| < 5, else 2 (bundle: `let m8=.01,m5=2,m6=.005,m9=.5`). Travel here is 2.955, so 0.01. Recorded so the number is traceable rather than guessed; config/target-motion-source-v1.json -> springs.restDefaults records the same rule from an earlier round.",
+  "dampingRatio": 1.0757322936682373,
+  "regime": "overdamped",
+  "sourceEvidence": [
+   "b0 = mY(3) -- the gap MotionValue, module scope, initialised to 3.",
+   "b$ = {stiffness:100, damping:18, mass:.7, restDelta:2e-4}",
+   "Renderer: let [m,A] = useState(!1); e = () => {A(!0)}; useEffect(() => { if(!m) return; let e = bG(b0, E, {type:'spring', ...b$}); return () => e.stop() }, [m, E]) where E = v.grid.gapRatio and bG is framer-motion's animate().",
+   "config/target-motion-source-v1.json -> loadIn.gapRatioSpring records the same four constants, read in an earlier round and deferred there as out of scope."
+  ],
+  "consumedAs": {
+   "expression": "A = planeWidth * (1 + gap); y = planeHeight * (1 + gap); E = cols * A; S = rows * y",
+   "sourceEvidence": "the grid's useFrame: `let l=L6(r,s,t), d=l.planeWidth, h=l.planeHeight, m=b0.get(), A=d*(1+m), y=h*(1+m), E=f*A, S=p*y`",
+   "note": "cols (f) and rows (p) come from L6 with the STATIC gapRatio and do not move while the spring runs. Neither does planeWidth, planeHeight, sphereRadius, the camera or the card's own scale. The intro changes the SPACING and nothing else, which is why it can end at exact identity."
+  },
+  "perCardStagger": "NONE. One MotionValue drives every slot. A card's apparent travel is proportional to its distance from the grid origin, so the entry reads as a radial convergence without any per-card delay existing in the source.",
+  "cardOpacityAnimation": "NONE. No opacity is animated on a card or a label at any point in the entry.",
+  "cardScaleAnimation": "NONE in world space -- `t.scale.set(d, h, 1)` uses the static planeWidth/planeHeight throughout. A card's SCREEN size still grows during the entry, because at gap 3 it sits far around the sphere and the perspective camera sees it small. That is a consequence of the spacing, not a second animation."
+ },
+
+ "ready": {
+  "what": "The one event that starts the intro and releases the screen.",
+  "chain": [
+   {"step": "suspense", "detail": "the grid subtree is inside <Suspense fallback={null}> and hangs on use(PR()), the promise of all videos decoded"},
+   {"step": "progress 0.92", "detail": "b5(.92) immediately before compile"},
+   {"step": "compileAsync", "detail": "await gl.compileAsync(scene, camera), errors swallowed"},
+   {"step": "progress 0.96", "detail": "b5(.96), phase := warm"},
+   {"step": "warm frames", "detail": "five useFrame ticks, b5(.96 + .04 * n / 5) on each, so .968 .976 .984 .992 1.0"},
+   {"step": "progress 1", "detail": "b5(1), phase := done"},
+   {"step": "rAF x2", "detail": "requestAnimationFrame(() => requestAnimationFrame(onReady))"},
+   {"step": "ready", "detail": "onReady -> setReady(true): the loader unmounts through its exit transition and the gap spring starts, in the same commit"}
+  ],
+  "warmFrames": 5,
+  "rafHops": 2,
+  "sourceEvidence": "PF: useEffect(() => { (async () => { b5(.92); try { s.compileAsync && await s.compileAsync(o,l) } catch {} e || (u.current = 0, c.current = 'warm', b5(.96)) })() ...}); useFrame(() => { 'warm' !== c.current || (u.current = u.current + 1, b5(.96 + .04 * u.current / 5), u.current < 5 || (c.current = 'done', b5(1), requestAnimationFrame(() => requestAnimationFrame(a)))) })"
+ },
+
+ "progress": {
+  "what": "A monotonic 0..1 MotionValue. It can only go up.",
+  "clamp": "function b5(e){ e > b8.get() && b8.set(Math.min(1, e)) }",
+  "assetShare": 0.9,
+  "assetRule": "each video contributes min(1, buffered.end / duration), and the mean over videos times 0.9 is pushed through b5 on every `progress` event; a decoded video pushes its own share to 1",
+  "sourceEvidence": "o = e => { let r = Math.min(1, Math.max(Pw[t], e)); r !== Pw[t] && (Pw[t] = r, b5(Pw.reduce((e,t) => e+t, 0) / Pw.length * .9)) }",
+  "displaySpring": {"stiffness": 90, "damping": 24, "mass": 0.55, "restDelta": 0.001, "restSpeed": 0.01},
+  "displaySpringBasis": "useSpring(progress, {stiffness:90, damping:24, mass:.55}); useSpring supplies restDelta 0.001 and restSpeed 0.01 when the config omits them (bundle: `new vP({keyframes:[t,n], velocity:o, type:'spring', restDelta:.001, restSpeed:.01, ...r})`).",
+  "displayRule": "Math.round(100 * spring) -- so the number on screen LAGS the real progress, and the loader is usually removed before the spring catches up. The percentage never reaching 100 on screen is the Target's own behaviour, not a dropped frame."
+ },
+
+ "loader": {
+  "mountedWhile": "!ready",
+  "exit": {"opacity": 0, "pointerEvents": "none",
+           "durationMs": 1150, "ease": [0.16, 1, 0.3, 1]},
+  "sourceEvidence": "_U: !ready && <motion.div className='fixed inset-0 z-100 ... bg-[#0a0a0a] touch-none' initial={false} animate={{opacity:1}} exit={{opacity:0, pointerEvents:'none'}} transition={{duration:1.15, ease:[.16,1,.3,1]}} ...> inside <AnimatePresence>",
+  "background": "#0a0a0a",
+  "logoPulse": {"opacity": [0.62, 1, 0.62], "durationMs": 2800, "repeat": "infinite", "ease": "easeInOut"}
+ },
+
+ "inputUnlock": {
+  "at": "ready -- the moment the loader begins its exit, NOT the moment the entry settles",
+  "mechanism": "The drag surface (_G: a fixed inset-0 z-10 div carrying onPan/onPanEnd) is mounted from the first render and is NEVER gated on ready. What blocks input before ready is the loader itself, which is z-100, covers the viewport and is opaque; its exit variant sets pointerEvents:'none' on the first exit frame. So the page becomes draggable at the START of the 1.15 s fade, while the cards are still converging.",
+  "note": "This contradicts a natural reading of 'input lock tied to entry completion'. The Target has no such lock and this reproduction does not add one."
+ },
+
+ "reducedMotion": {
+  "supported": false,
+  "sourceEvidence": "No useReducedMotion, no MotionConfig reducedMotion prop and no skipAnimations anywhere in the app code; framer-motion's own default context is `{transformPagePoint, isStatic:!1, reducedMotion:'never'}` and animate() is called with no reduceMotion option.",
+  "consequence": "prefers-reduced-motion is not honoured by the Target's entry. Copying that would be copying an accessibility defect, so it is recorded as a declared product deviation rather than reproduced or silently fixed."
+ },
+
+ "css3dMountPolicy": {
+  "recycledPool": false,
+  "mountCount": "cols * rows -- exactly the pool size, one element per slot",
+  "sourceEvidence": [
+   "Pd: const c = useSyncExternalStore(Pl, Pu, Pc) where Pu = () => b1.get(); <div ...><div ...>{Array.from({length: c}, Ph)}</div></div>",
+   "b1 is set to cols*rows in the grid's layout effect: b1.set(e.cols * e.rows)",
+   "Ph mounts each label with style {transformStyle:'preserve-3d', willChange:'transform', visibility:'hidden', backfaceVisibility:'hidden'} and NO transform",
+   "L7 (the element ref array) is truncated or extended to match c in a layout effect; there is no free list, no overscan margin and no reuse of one element for a different slot index"
+  ],
+  "transformWrite": "only for a card the coverage test draws; a culled label keeps whatever transform it last had, and a label that has never been drawn has none at all",
+  "coverageMarginPx": 64,
+  "regridDebounceMs": 150,
+  "regridNote": "The first layout runs immediately; every later cols/rows change is debounced 150 ms, so a resize burst remounts once. Already recorded in config/target-motion-source-v1.json -> resize.",
+  "consequence": "The mounted element count is bounded by cols*rows and by nothing else. A capacity derived any other way -- an overscan pool, a free list, a hand-picked number -- would not be this source."
+ },
+
+ "replay": {
+  "onReload": "yes -- ready is component state and the whole chain re-runs",
+  "onVisibilityChange": "no -- nothing in the chain observes document visibility",
+  "onBackForwardRestore": "no -- a bfcache restore does not re-run effects, so the intro does not replay",
+  "coldVersusWarm": "The entry itself is identical. Only the TIME to reach ready differs, because the progress ladder is dominated by video buffering. There is no cold-only or warm-only branch in the source."
+ },
+
+ "notInTheEntry": [
+  "The canvas background (b6) is a static screen-space gradient node, mix(#0a1c3d, #000000, (screenUV.x - screenUV.y + 1) * .5). It is not driven by progress, by ready or by the gap, and it does not change during the entry.",
+  "The footer (PW) is plain markup with no entry animation and no ready gate: it is in the tree from the first render and its only transitions are hover states on the two links."
+ ]
+}

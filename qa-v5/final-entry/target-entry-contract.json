@@ -1,0 +1,2102 @@
+{
+ "round": "MirrorWeb V5 -- Final Experience Convergence",
+ "section": "§四 -- Target cold-load entry contract",
+ "generatedAt": "2026-08-23T15:08:19+00:00",
+ "branch": "sprint/final-entry-wt",
+ "targetUrl": "https://infinite-liquid-glass.shader.se/?v=2",
+ "bases": {
+  "SOURCE_READ": "read out of the Target's own bundle; the expression is quoted",
+  "RUNTIME_MEASURED": "measured on the live Target by scripts/v5/fe-entry-trace.mjs this round; 5 runs per condition, 4 conditions",
+  "INFERRED": "neither read nor measured -- a reading of the two, labelled"
+ },
+ "howMeasured": {
+  "recorder": "scripts/v5/fe_entry_instrument.mjs -- an init script armed before the first navigation, sampling every frame from navigation start until one second after the grid stops moving",
+  "sampleRateHz": [
+   117.1,
+   117.2,
+   117.3,
+   117.4,
+   118.5,
+   118.7,
+   118.8,
+   118.9,
+   119.0,
+   119.1
+  ],
+  "mediaRoutes": false,
+  "whyNoMatchedMedia": "the matched-media routes are fulfilled from memory on every navigation, which would erase the cold/warm cache difference §四 asks for -- and the Target's loading percentage is 90% video buffering. The §七 gate runs, which need matched pixels, use the routes; these do not. Card geometry does not depend on what is playing inside the card.",
+  "recorderOverheadMs": {
+   "median": 234.1
+  },
+  "clock": "performance.now(), i.e. navigation-relative. Landmarks are ALSO given relative to ready, because a cold Target load and a cold local load never reach ready at the same wall time.",
+  "readyRule": "the first frame the loading overlay stops taking pointer events or begins to fade. Applied identically to both pages; neither is asked for an internal flag.",
+  "settleRule": "the last frame a tracked card moved more than 0.15 px, with the stillness then holding for 24 frames. This is 'no longer visibly moving', not the spring's analytic rest: an overdamped spring spends its last 380 ms covering under two pixels."
+ },
+ "intro": {
+  "basis": "SOURCE_READ",
+  "what": "one spring on the grid gap ratio, from 3 to the layout contract's gapRatio, started once when the scene reports ready",
+  "constants": {
+   "stiffness": 100,
+   "damping": 18,
+   "mass": 0.7,
+   "restDelta": 0.0002,
+   "restSpeed": 0.01
+  },
+  "from": 3,
+  "to": 0.045,
+  "dampingRatio": 1.0757322936682372,
+  "regime": "overdamped",
+  "sourceEvidence": [
+   "b0 = mY(3) -- the gap MotionValue, module scope, initialised to 3.",
+   "b$ = {stiffness:100, damping:18, mass:.7, restDelta:2e-4}",
+   "Renderer: let [m,A] = useState(!1); e = () => {A(!0)}; useEffect(() => { if(!m) return; let e = bG(b0, E, {type:'spring', ...b$}); return () => e.stop() }, [m, E]) where E = v.grid.gapRatio and bG is framer-motion's animate().",
+   "config/target-motion-source-v1.json -> loadIn.gapRatioSpring records the same four constants, read in an earlier round and deferred there as out of scope."
+  ],
+  "consumedAs": {
+   "expression": "A = planeWidth * (1 + gap); y = planeHeight * (1 + gap); E = cols * A; S = rows * y",
+   "sourceEvidence": "the grid's useFrame: `let l=L6(r,s,t), d=l.planeWidth, h=l.planeHeight, m=b0.get(), A=d*(1+m), y=h*(1+m), E=f*A, S=p*y`",
+   "note": "cols (f) and rows (p) come from L6 with the STATIC gapRatio and do not move while the spring runs. Neither does planeWidth, planeHeight, sphereRadius, the camera or the card's own scale. The intro changes the SPACING and nothing else, which is why it can end at exact identity."
+  },
+  "perCardStagger": {
+   "basis": "SOURCE_READ",
+   "value": "NONE. One MotionValue drives every slot. A card's apparent travel is proportional to its distance from the grid origin, so the entry reads as a radial convergence without any per-card delay existing in the source."
+  },
+  "cardOpacityAnimation": {
+   "basis": "SOURCE_READ",
+   "value": "NONE. No opacity is animated on a card or a label at any point in the entry."
+  },
+  "cardScaleAnimation": {
+   "basis": "SOURCE_READ",
+   "value": "NONE in world space -- `t.scale.set(d, h, 1)` uses the static planeWidth/planeHeight throughout. A card's SCREEN size still grows during the entry, because at gap 3 it sits far around the sphere and the perspective camera sees it small. That is a consequence of the spacing, not a second animation."
+  }
+ },
+ "introVerification": {
+  "basis": "RUNTIME_MEASURED",
+  "question": "does the live Target actually run the spring the source declares?",
+  "method": "Neither page is asked for its gap. It is RECOVERED: each drawn card's ILG code gives its pool slot, the frozen layout law and camera give where that slot would project for a candidate gap, and the gap that best explains the whole frame is solved for. Every frame is over-determined -- five to thirty cards, two coordinates each, one unknown -- so the residual is a real check: a page whose entry moved anything OTHER than the gap could not be fitted by one number, and the residual would say so.",
+  "modelledQuantity": "the projected axis-aligned bounding box of the card, not the projection of its centre. A card off-centre on the sphere is tilted away from the camera, so its measured box centre is not its projected centre; fitting against centres left a 6.5 px residual that no gap could remove.",
+  "runs": [
+   {
+    "run": "desktop-cold-00.json",
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "cardsPerSolve": {
+     "min": 5,
+     "max": 27
+    },
+    "worstFitResidualPx": 0.001,
+    "medianFitResidualPx": 0.0,
+    "wrapBoundaryCardsTotal": 9,
+    "cardSolvesTotal": 2992,
+    "worstGapErrorVsSourceSpring": 0.04045,
+    "worstGapErrorAsFractionOfTravel": 0.01369,
+    "medianGapErrorVsSourceSpring": 0.000106,
+    "analyticRestMs": 1259.0,
+    "series": [
+     {
+      "relMs": 0.0,
+      "gap": 3.0,
+      "predicted": 3.0,
+      "medianResidualPx": 0.0,
+      "cards": 27,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 66.9,
+      "gap": 2.46303,
+      "predicted": 2.45211,
+      "medianResidualPx": 0.0,
+      "cards": 24,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 133.4,
+      "gap": 1.67562,
+      "predicted": 1.66042,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 3
+     },
+     {
+      "relMs": 199.5,
+      "gap": 1.01497,
+      "predicted": 1.05542,
+      "medianResidualPx": 0.0,
+      "cards": 6,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 266.8,
+      "gap": 0.65923,
+      "predicted": 0.65072,
+      "medianResidualPx": 0.0,
+      "cards": 5,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 333.5,
+      "gap": 0.40804,
+      "predicted": 0.40375,
+      "medianResidualPx": 0.0,
+      "cards": 7,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 399.7,
+      "gap": 0.25773,
+      "predicted": 0.25654,
+      "medianResidualPx": 0.0,
+      "cards": 11,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 466.0,
+      "gap": 0.1701,
+      "predicted": 0.16909,
+      "medianResidualPx": 0.0,
+      "cards": 14,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 533.5,
+      "gap": 0.1178,
+      "predicted": 0.11692,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 600.2,
+      "gap": 0.08766,
+      "predicted": 0.08691,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 666.0,
+      "gap": 0.06978,
+      "predicted": 0.06958,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 733.6,
+      "gap": 0.05939,
+      "predicted": 0.0592,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 800.2,
+      "gap": 0.05342,
+      "predicted": 0.05327,
+      "medianResidualPx": 0.001,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 866.0,
+      "gap": 0.04985,
+      "predicted": 0.04985,
+      "medianResidualPx": 0.001,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 932.9,
+      "gap": 0.04784,
+      "predicted": 0.04782,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1000.0,
+      "gap": 0.04665,
+      "predicted": 0.04663,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1066.8,
+      "gap": 0.04596,
+      "predicted": 0.04595,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1133.0,
+      "gap": 0.04556,
+      "predicted": 0.04555,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1200.2,
+      "gap": 0.04533,
+      "predicted": 0.04532,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1266.5,
+      "gap": 0.045,
+      "predicted": 0.04519,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1332.7,
+      "gap": 0.045,
+      "predicted": 0.04511,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1400.2,
+      "gap": 0.045,
+      "predicted": 0.04506,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1467.7,
+      "gap": 0.045,
+      "predicted": 0.04504,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1533.5,
+      "gap": 0.045,
+      "predicted": 0.04502,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1600.2,
+      "gap": 0.045,
+      "predicted": 0.04501,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     }
+    ]
+   },
+   {
+    "run": "desktop-cold-01.json",
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "cardsPerSolve": {
+     "min": 5,
+     "max": 27
+    },
+    "worstFitResidualPx": 0.001,
+    "medianFitResidualPx": 0.0,
+    "wrapBoundaryCardsTotal": 0,
+    "cardSolvesTotal": 2991,
+    "worstGapErrorVsSourceSpring": 0.02922,
+    "worstGapErrorAsFractionOfTravel": 0.00989,
+    "medianGapErrorVsSourceSpring": 9.8e-05,
+    "analyticRestMs": 1259.0,
+    "series": [
+     {
+      "relMs": 0.0,
+      "gap": 3.0,
+      "predicted": 3.0,
+      "medianResidualPx": 0.0,
+      "cards": 27,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 66.7,
+      "gap": 2.46303,
+      "predicted": 2.45454,
+      "medianResidualPx": 0.0,
+      "cards": 24,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 133.8,
+      "gap": 1.66476,
+      "predicted": 1.6561,
+      "medianResidualPx": 0.0,
+      "cards": 14,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 200.2,
+      "gap": 1.02222,
+      "predicted": 1.05019,
+      "medianResidualPx": 0.001,
+      "cards": 6,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 267.3,
+      "gap": 0.65449,
+      "predicted": 0.64837,
+      "medianResidualPx": 0.0,
+      "cards": 5,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 332.9,
+      "gap": 0.40804,
+      "predicted": 0.40546,
+      "medianResidualPx": 0.0,
+      "cards": 7,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 400.5,
+      "gap": 0.25773,
+      "predicted": 0.25518,
+      "medianResidualPx": 0.0,
+      "cards": 11,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 466.7,
+      "gap": 0.16909,
+      "predicted": 0.16839,
+      "medianResidualPx": 0.001,
+      "cards": 14,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 532.9,
+      "gap": 0.1178,
+      "predicted": 0.11727,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 599.5,
+      "gap": 0.08732,
+      "predicted": 0.08715,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 666.3,
+      "gap": 0.06958,
+      "predicted": 0.06952,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 733.8,
+      "gap": 0.05939,
+      "predicted": 0.05918,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 800.5,
+      "gap": 0.05342,
+      "predicted": 0.05325,
+      "medianResidualPx": 0.001,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 867.0,
+      "gap": 0.04985,
+      "predicted": 0.04981,
+      "medianResidualPx": 0.001,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 932.9,
+      "gap": 0.04784,
+      "predicted": 0.04782,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1000.5,
+      "gap": 0.04665,
+      "predicted": 0.04663,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1066.4,
+      "gap": 0.04596,
+      "predicted": 0.04595,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1133.0,
+      "gap": 0.04556,
+      "predicted": 0.04555,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1200.5,
+      "gap": 0.04533,
+      "predicted": 0.04532,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1267.2,
+      "gap": 0.045,
+      "predicted": 0.04519,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1333.1,
+      "gap": 0.045,
+      "predicted": 0.04511,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1399.7,
+      "gap": 0.045,
+      "predicted": 0.04506,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1467.3,
+      "gap": 0.045,
+      "predicted": 0.04504,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1533.0,
+      "gap": 0.045,
+      "predicted": 0.04502,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1600.1,
+      "gap": 0.045,
+      "predicted": 0.04501,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     }
+    ]
+   },
+   {
+    "run": "desktop-cold-02.json",
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "cardsPerSolve": {
+     "min": 5,
+     "max": 27
+    },
+    "worstFitResidualPx": 0.001,
+    "medianFitResidualPx": 0.0,
+    "wrapBoundaryCardsTotal": 6,
+    "cardSolvesTotal": 2993,
+    "worstGapErrorVsSourceSpring": 0.03076,
+    "worstGapErrorAsFractionOfTravel": 0.01041,
+    "medianGapErrorVsSourceSpring": 7.7e-05,
+    "analyticRestMs": 1259.0,
+    "series": [
+     {
+      "relMs": 0.0,
+      "gap": 3.0,
+      "predicted": 3.0,
+      "medianResidualPx": 0.0,
+      "cards": 27,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 66.5,
+      "gap": 2.46303,
+      "predicted": 2.45697,
+      "medianResidualPx": 0.0,
+      "cards": 24,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 133.3,
+      "gap": 1.67562,
+      "predicted": 1.66151,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 3
+     },
+     {
+      "relMs": 200.8,
+      "gap": 1.01497,
+      "predicted": 1.04573,
+      "medianResidualPx": 0.0,
+      "cards": 6,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 266.6,
+      "gap": 0.65449,
+      "predicted": 0.65166,
+      "medianResidualPx": 0.0,
+      "cards": 5,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 334.2,
+      "gap": 0.40517,
+      "predicted": 0.40176,
+      "medianResidualPx": 0.0,
+      "cards": 7,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 400.8,
+      "gap": 0.25773,
+      "predicted": 0.25468,
+      "medianResidualPx": 0.0,
+      "cards": 11,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 467.0,
+      "gap": 0.16909,
+      "predicted": 0.16809,
+      "medianResidualPx": 0.001,
+      "cards": 14,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 534.0,
+      "gap": 0.11722,
+      "predicted": 0.11663,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 600.8,
+      "gap": 0.08698,
+      "predicted": 0.0867,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 666.6,
+      "gap": 0.06958,
+      "predicted": 0.06946,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 733.9,
+      "gap": 0.05927,
+      "predicted": 0.05917,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 800.8,
+      "gap": 0.05329,
+      "predicted": 0.05323,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 866.8,
+      "gap": 0.04981,
+      "predicted": 0.04982,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 933.5,
+      "gap": 0.04781,
+      "predicted": 0.0478,
+      "medianResidualPx": 0.001,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1000.0,
+      "gap": 0.04663,
+      "predicted": 0.04663,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1066.6,
+      "gap": 0.04596,
+      "predicted": 0.04595,
+      "medianResidualPx": 0.001,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1134.1,
+      "gap": 0.04556,
+      "predicted": 0.04555,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1200.7,
+      "gap": 0.04532,
+      "predicted": 0.04532,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1266.6,
+      "gap": 0.045,
+      "predicted": 0.04519,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1333.6,
+      "gap": 0.045,
+      "predicted": 0.04511,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1400.9,
+      "gap": 0.045,
+      "predicted": 0.04506,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1467.1,
+      "gap": 0.045,
+      "predicted": 0.04504,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1534.2,
+      "gap": 0.045,
+      "predicted": 0.04502,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1600.0,
+      "gap": 0.045,
+      "predicted": 0.04501,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     }
+    ]
+   },
+   {
+    "run": "desktop-cold-03.json",
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "cardsPerSolve": {
+     "min": 5,
+     "max": 27
+    },
+    "worstFitResidualPx": 0.001,
+    "medianFitResidualPx": 0.0,
+    "wrapBoundaryCardsTotal": 0,
+    "cardSolvesTotal": 2991,
+    "worstGapErrorVsSourceSpring": 0.03009,
+    "worstGapErrorAsFractionOfTravel": 0.01018,
+    "medianGapErrorVsSourceSpring": 0.000124,
+    "analyticRestMs": 1259.0,
+    "series": [
+     {
+      "relMs": 0.0,
+      "gap": 3.0,
+      "predicted": 3.0,
+      "medianResidualPx": 0.0,
+      "cards": 27,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 66.5,
+      "gap": 2.47513,
+      "predicted": 2.45697,
+      "medianResidualPx": 0.0,
+      "cards": 24,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 133.0,
+      "gap": 1.66476,
+      "predicted": 1.66476,
+      "medianResidualPx": 0.0,
+      "cards": 14,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 200.7,
+      "gap": 1.02222,
+      "predicted": 1.04647,
+      "medianResidualPx": 0.001,
+      "cards": 6,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 267.2,
+      "gap": 0.65923,
+      "predicted": 0.64884,
+      "medianResidualPx": 0.0,
+      "cards": 5,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 333.8,
+      "gap": 0.40804,
+      "predicted": 0.4029,
+      "medianResidualPx": 0.0,
+      "cards": 7,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 399.9,
+      "gap": 0.25944,
+      "predicted": 0.2562,
+      "medianResidualPx": 0.0,
+      "cards": 11,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 466.3,
+      "gap": 0.1701,
+      "predicted": 0.16879,
+      "medianResidualPx": 0.0,
+      "cards": 14,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 533.8,
+      "gap": 0.11839,
+      "predicted": 0.11675,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 600.1,
+      "gap": 0.08732,
+      "predicted": 0.08694,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 667.2,
+      "gap": 0.06958,
+      "predicted": 0.06934,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 733.3,
+      "gap": 0.05951,
+      "predicted": 0.05924,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 800.6,
+      "gap": 0.05335,
+      "predicted": 0.05325,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 866.9,
+      "gap": 0.04989,
+      "predicted": 0.04981,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 933.2,
+      "gap": 0.04784,
+      "predicted": 0.04781,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1000.5,
+      "gap": 0.04665,
+      "predicted": 0.04663,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1067.2,
+      "gap": 0.04596,
+      "predicted": 0.04595,
+      "medianResidualPx": 0.001,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1133.1,
+      "gap": 0.04556,
+      "predicted": 0.04555,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1200.1,
+      "gap": 0.04533,
+      "predicted": 0.04532,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1266.5,
+      "gap": 0.045,
+      "predicted": 0.04519,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1333.9,
+      "gap": 0.045,
+      "predicted": 0.04511,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1400.6,
+      "gap": 0.045,
+      "predicted": 0.04506,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1466.3,
+      "gap": 0.045,
+      "predicted": 0.04504,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1534.0,
+      "gap": 0.045,
+      "predicted": 0.04502,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1600.6,
+      "gap": 0.045,
+      "predicted": 0.04501,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     }
+    ]
+   },
+   {
+    "run": "desktop-cold-04.json",
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "cardsPerSolve": {
+     "min": 5,
+     "max": 27
+    },
+    "worstFitResidualPx": 0.001,
+    "medianFitResidualPx": 0.0,
+    "wrapBoundaryCardsTotal": 6,
+    "cardSolvesTotal": 2992,
+    "worstGapErrorVsSourceSpring": 0.03756,
+    "worstGapErrorAsFractionOfTravel": 0.01271,
+    "medianGapErrorVsSourceSpring": 0.000117,
+    "analyticRestMs": 1259.0,
+    "series": [
+     {
+      "relMs": 0.0,
+      "gap": 3.0,
+      "predicted": 3.0,
+      "medianResidualPx": 0.0,
+      "cards": 27,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 67.4,
+      "gap": 2.47513,
+      "predicted": 2.44603,
+      "medianResidualPx": 0.0,
+      "cards": 24,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 133.5,
+      "gap": 1.68653,
+      "predicted": 1.65934,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 200.8,
+      "gap": 1.02222,
+      "predicted": 1.04573,
+      "medianResidualPx": 0.001,
+      "cards": 6,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 267.5,
+      "gap": 0.65449,
+      "predicted": 0.64744,
+      "medianResidualPx": 0.0,
+      "cards": 5,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 334.2,
+      "gap": 0.41093,
+      "predicted": 0.40176,
+      "medianResidualPx": 0.0,
+      "cards": 7,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 399.9,
+      "gap": 0.25773,
+      "predicted": 0.2562,
+      "medianResidualPx": 0.0,
+      "cards": 11,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 467.4,
+      "gap": 0.1701,
+      "predicted": 0.1677,
+      "medianResidualPx": 0.0,
+      "cards": 14,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 534.2,
+      "gap": 0.1178,
+      "predicted": 0.11652,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 600.5,
+      "gap": 0.08766,
+      "predicted": 0.08681,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 667.5,
+      "gap": 0.06958,
+      "predicted": 0.06928,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 734.1,
+      "gap": 0.05939,
+      "predicted": 0.05915,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 800.7,
+      "gap": 0.05342,
+      "predicted": 0.05324,
+      "medianResidualPx": 0.001,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 867.5,
+      "gap": 0.04989,
+      "predicted": 0.04979,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 933.9,
+      "gap": 0.04786,
+      "predicted": 0.04779,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1000.4,
+      "gap": 0.04665,
+      "predicted": 0.04663,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1067.0,
+      "gap": 0.04596,
+      "predicted": 0.04595,
+      "medianResidualPx": 0.001,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1133.3,
+      "gap": 0.04556,
+      "predicted": 0.04555,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1200.9,
+      "gap": 0.04533,
+      "predicted": 0.04532,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1266.9,
+      "gap": 0.045,
+      "predicted": 0.04519,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1333.4,
+      "gap": 0.045,
+      "predicted": 0.04511,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1400.6,
+      "gap": 0.045,
+      "predicted": 0.04506,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1466.6,
+      "gap": 0.045,
+      "predicted": 0.04504,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1534.3,
+      "gap": 0.045,
+      "predicted": 0.04502,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1600.9,
+      "gap": 0.045,
+      "predicted": 0.04501,
+      "medianResidualPx": 0.0,
+      "cards": 16,
+      "wrapBoundaryCards": 0
+     }
+    ]
+   },
+   {
+    "run": "mobile-cold-00.json",
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "cardsPerSolve": {
+     "min": 3,
+     "max": 41
+    },
+    "worstFitResidualPx": 0.001,
+    "medianFitResidualPx": 0.0,
+    "wrapBoundaryCardsTotal": 0,
+    "cardSolvesTotal": 3209,
+    "worstGapErrorVsSourceSpring": 0.01644,
+    "worstGapErrorAsFractionOfTravel": 0.00556,
+    "medianGapErrorVsSourceSpring": 4.6e-05,
+    "analyticRestMs": 1259.0,
+    "series": [
+     {
+      "relMs": 0.0,
+      "gap": 3.0,
+      "predicted": 3.0,
+      "medianResidualPx": 0.0,
+      "cards": 41,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 66.6,
+      "gap": 2.46303,
+      "predicted": 2.45575,
+      "medianResidualPx": 0.0,
+      "cards": 27,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 133.3,
+      "gap": 1.66476,
+      "predicted": 1.66151,
+      "medianResidualPx": 0.0,
+      "cards": 9,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 200.1,
+      "gap": 1.05168,
+      "predicted": 1.05094,
+      "medianResidualPx": 0.0,
+      "cards": 5,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 266.6,
+      "gap": 0.65449,
+      "predicted": 0.65166,
+      "medianResidualPx": 0.0,
+      "cards": 6,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 332.5,
+      "gap": 0.40517,
+      "predicted": 0.4066,
+      "medianResidualPx": 0.0,
+      "cards": 10,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 400.1,
+      "gap": 0.25603,
+      "predicted": 0.25586,
+      "medianResidualPx": 0.0,
+      "cards": 12,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 466.7,
+      "gap": 0.16809,
+      "predicted": 0.16839,
+      "medianResidualPx": 0.0,
+      "cards": 15,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 533.4,
+      "gap": 0.11722,
+      "predicted": 0.11698,
+      "medianResidualPx": 0.0,
+      "cards": 15,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 600.0,
+      "gap": 0.08697,
+      "predicted": 0.08698,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 666.7,
+      "gap": 0.06938,
+      "predicted": 0.06944,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 733.4,
+      "gap": 0.05927,
+      "predicted": 0.05923,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 800.1,
+      "gap": 0.05329,
+      "predicted": 0.05328,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 866.5,
+      "gap": 0.04985,
+      "predicted": 0.04983,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 933.3,
+      "gap": 0.04779,
+      "predicted": 0.04781,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1000.0,
+      "gap": 0.04663,
+      "predicted": 0.04663,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1066.6,
+      "gap": 0.04595,
+      "predicted": 0.04595,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1132.4,
+      "gap": 0.04555,
+      "predicted": 0.04556,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1199.9,
+      "gap": 0.04532,
+      "predicted": 0.04532,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1266.7,
+      "gap": 0.045,
+      "predicted": 0.04519,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1333.3,
+      "gap": 0.045,
+      "predicted": 0.04511,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1400.0,
+      "gap": 0.045,
+      "predicted": 0.04506,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1466.6,
+      "gap": 0.045,
+      "predicted": 0.04504,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1533.3,
+      "gap": 0.045,
+      "predicted": 0.04502,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1599.9,
+      "gap": 0.045,
+      "predicted": 0.04501,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     }
+    ]
+   },
+   {
+    "run": "mobile-cold-01.json",
+    "gapAtReady": 3.0,
+    "gapAtEnd": 0.045,
+    "cardsPerSolve": {
+     "min": 3,
+     "max": 41
+    },
+    "worstFitResidualPx": 0.001,
+    "medianFitResidualPx": 0.0,
+    "wrapBoundaryCardsTotal": 0,
+    "cardSolvesTotal": 3213,
+    "worstGapErrorVsSourceSpring": 0.0179,
+    "worstGapErrorAsFractionOfTravel": 0.00606,
+    "medianGapErrorVsSourceSpring": 4.8e-05,
+    "analyticRestMs": 1259.0,
+    "series": [
+     {
+      "relMs": 0.0,
+      "gap": 3.0,
+      "predicted": 3.0,
+      "medianResidualPx": 0.0,
+      "cards": 41,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 67.4,
+      "gap": 2.45089,
+      "predicted": 2.44603,
+      "medianResidualPx": 0.0,
+      "cards": 27,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 133.4,
+      "gap": 1.66476,
+      "predicted": 1.66042,
+      "medianResidualPx": 0.0,
+      "cards": 9,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 200.6,
+      "gap": 1.05168,
+      "predicted": 1.04722,
+      "medianResidualPx": 0.0,
+      "cards": 5,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 267.4,
+      "gap": 0.65449,
+      "predicted": 0.6479,
+      "medianResidualPx": 0.0,
+      "cards": 6,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 333.2,
+      "gap": 0.40517,
+      "predicted": 0.4046,
+      "medianResidualPx": 0.0,
+      "cards": 10,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 400.7,
+      "gap": 0.25603,
+      "predicted": 0.25485,
+      "medianResidualPx": 0.0,
+      "cards": 12,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 467.4,
+      "gap": 0.16809,
+      "predicted": 0.1677,
+      "medianResidualPx": 0.0,
+      "cards": 15,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 534.1,
+      "gap": 0.11722,
+      "predicted": 0.11658,
+      "medianResidualPx": 0.0,
+      "cards": 15,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 600.7,
+      "gap": 0.08697,
+      "predicted": 0.08674,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 667.5,
+      "gap": 0.06938,
+      "predicted": 0.06928,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 734.2,
+      "gap": 0.05927,
+      "predicted": 0.05913,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 800.7,
+      "gap": 0.05329,
+      "predicted": 0.05324,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 867.5,
+      "gap": 0.04981,
+      "predicted": 0.04979,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 934.1,
+      "gap": 0.04781,
+      "predicted": 0.04779,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1000.8,
+      "gap": 0.04663,
+      "predicted": 0.04662,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1067.3,
+      "gap": 0.04595,
+      "predicted": 0.04595,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1134.2,
+      "gap": 0.04555,
+      "predicted": 0.04555,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1200.7,
+      "gap": 0.04532,
+      "predicted": 0.04532,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1267.3,
+      "gap": 0.045,
+      "predicted": 0.04519,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1334.0,
+      "gap": 0.045,
+      "predicted": 0.04511,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1400.5,
+      "gap": 0.045,
+      "predicted": 0.04506,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1467.3,
+      "gap": 0.045,
+      "predicted": 0.04504,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1533.6,
+      "gap": 0.045,
+      "predicted": 0.04502,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     },
+     {
+      "relMs": 1600.8,
+      "gap": 0.045,
+      "predicted": 0.04501,
+      "medianResidualPx": 0.0,
+      "cards": 17,
+      "wrapBoundaryCards": 0
+     }
+    ]
+   }
+  ],
+  "verdict": "the Target's entry is one scalar, and that scalar is the source's spring"
+ },
+ "ready": {
+  "basis": "SOURCE_READ",
+  "what": "The one event that starts the intro and releases the screen.",
+  "chain": [
+   {
+    "step": "suspense",
+    "detail": "the grid subtree is inside <Suspense fallback={null}> and hangs on use(PR()), the promise of all videos decoded"
+   },
+   {
+    "step": "progress 0.92",
+    "detail": "b5(.92) immediately before compile"
+   },
+   {
+    "step": "compileAsync",
+    "detail": "await gl.compileAsync(scene, camera), errors swallowed"
+   },
+   {
+    "step": "progress 0.96",
+    "detail": "b5(.96), phase := warm"
+   },
+   {
+    "step": "warm frames",
+    "detail": "five useFrame ticks, b5(.96 + .04 * n / 5) on each, so .968 .976 .984 .992 1.0"
+   },
+   {
+    "step": "progress 1",
+    "detail": "b5(1), phase := done"
+   },
+   {
+    "step": "rAF x2",
+    "detail": "requestAnimationFrame(() => requestAnimationFrame(onReady))"
+   },
+   {
+    "step": "ready",
+    "detail": "onReady -> setReady(true): the loader unmounts through its exit transition and the gap spring starts, in the same commit"
+   }
+  ],
+  "warmFrames": 5,
+  "rafHops": 2,
+  "sourceEvidence": "PF: useEffect(() => { (async () => { b5(.92); try { s.compileAsync && await s.compileAsync(o,l) } catch {} e || (u.current = 0, c.current = 'warm', b5(.96)) })() ...}); useFrame(() => { 'warm' !== c.current || (u.current = u.current + 1, b5(.96 + .04 * u.current / 5), u.current < 5 || (c.current = 'done', b5(1), requestAnimationFrame(() => requestAnimationFrame(a)))) })"
+ },
+ "progress": {
+  "basis": "SOURCE_READ",
+  "what": "A monotonic 0..1 MotionValue. It can only go up.",
+  "clamp": "function b5(e){ e > b8.get() && b8.set(Math.min(1, e)) }",
+  "assetShare": 0.9,
+  "assetRule": "each video contributes min(1, buffered.end / duration), and the mean over videos times 0.9 is pushed through b5 on every `progress` event; a decoded video pushes its own share to 1",
+  "sourceEvidence": "o = e => { let r = Math.min(1, Math.max(Pw[t], e)); r !== Pw[t] && (Pw[t] = r, b5(Pw.reduce((e,t) => e+t, 0) / Pw.length * .9)) }",
+  "displaySpring": {
+   "stiffness": 90,
+   "damping": 24,
+   "mass": 0.55,
+   "restDelta": 0.001,
+   "restSpeed": 0.01
+  },
+  "displaySpringBasis": "useSpring(progress, {stiffness:90, damping:24, mass:.55}); useSpring supplies restDelta 0.001 and restSpeed 0.01 when the config omits them (bundle: `new vP({keyframes:[t,n], velocity:o, type:'spring', restDelta:.001, restSpeed:.01, ...r})`).",
+  "displayRule": "Math.round(100 * spring) -- so the number on screen LAGS the real progress, and the loader is usually removed before the spring catches up. The percentage never reaching 100 on screen is the Target's own behaviour, not a dropped frame."
+ },
+ "loader": {
+  "basis": "SOURCE_READ",
+  "mountedWhile": "!ready",
+  "exit": {
+   "opacity": 0,
+   "pointerEvents": "none",
+   "durationMs": 1150,
+   "ease": [
+    0.16,
+    1,
+    0.3,
+    1
+   ]
+  },
+  "sourceEvidence": "_U: !ready && <motion.div className='fixed inset-0 z-100 ... bg-[#0a0a0a] touch-none' initial={false} animate={{opacity:1}} exit={{opacity:0, pointerEvents:'none'}} transition={{duration:1.15, ease:[.16,1,.3,1]}} ...> inside <AnimatePresence>",
+  "background": "#0a0a0a",
+  "logoPulse": {
+   "opacity": [
+    0.62,
+    1,
+    0.62
+   ],
+   "durationMs": 2800,
+   "repeat": "infinite",
+   "ease": "easeInOut"
+  }
+ },
+ "inputUnlock": {
+  "basis": "SOURCE_READ",
+  "at": "ready -- the moment the loader begins its exit, NOT the moment the entry settles",
+  "mechanism": "The drag surface (_G: a fixed inset-0 z-10 div carrying onPan/onPanEnd) is mounted from the first render and is NEVER gated on ready. What blocks input before ready is the loader itself, which is z-100, covers the viewport and is opaque; its exit variant sets pointerEvents:'none' on the first exit frame. So the page becomes draggable at the START of the 1.15 s fade, while the cards are still converging.",
+  "note": "This contradicts a natural reading of 'input lock tied to entry completion'. The Target has no such lock and this reproduction does not add one."
+ },
+ "reducedMotion": {
+  "basis": "SOURCE_READ",
+  "supported": false,
+  "sourceEvidence": "No useReducedMotion, no MotionConfig reducedMotion prop and no skipAnimations anywhere in the app code; framer-motion's own default context is `{transformPagePoint, isStatic:!1, reducedMotion:'never'}` and animate() is called with no reduceMotion option.",
+  "consequence": "prefers-reduced-motion is not honoured by the Target's entry. Copying that would be copying an accessibility defect, so it is recorded as a declared product deviation rather than reproduced or silently fixed."
+ },
+ "css3dMountPolicy": {
+  "basis": "SOURCE_READ",
+  "recycledPool": false,
+  "mountCount": "cols * rows -- exactly the pool size, one element per slot",
+  "sourceEvidence": [
+   "Pd: const c = useSyncExternalStore(Pl, Pu, Pc) where Pu = () => b1.get(); <div ...><div ...>{Array.from({length: c}, Ph)}</div></div>",
+   "b1 is set to cols*rows in the grid's layout effect: b1.set(e.cols * e.rows)",
+   "Ph mounts each label with style {transformStyle:'preserve-3d', willChange:'transform', visibility:'hidden', backfaceVisibility:'hidden'} and NO transform",
+   "L7 (the element ref array) is truncated or extended to match c in a layout effect; there is no free list, no overscan margin and no reuse of one element for a different slot index"
+  ],
+  "transformWrite": "only for a card the coverage test draws; a culled label keeps whatever transform it last had, and a label that has never been drawn has none at all",
+  "coverageMarginPx": 64,
+  "regridDebounceMs": 150,
+  "regridNote": "The first layout runs immediately; every later cols/rows change is debounced 150 ms, so a resize burst remounts once. Already recorded in config/target-motion-source-v1.json -> resize.",
+  "consequence": "The mounted element count is bounded by cols*rows and by nothing else. A capacity derived any other way -- an overscan pool, a free list, a hand-picked number -- would not be this source.",
+  "measuredMountedElements": {
+   "desktop-cold": [
+    100
+   ],
+   "desktop-warm": [
+    100
+   ],
+   "mobile-cold": [
+    96
+   ],
+   "mobile-warm": [
+    96
+   ]
+  },
+  "measuredAgreesWithColsTimesRows": true,
+  "colsTimesRows": {
+   "1440x900": 100,
+   "390x844": 96
+  }
+ },
+ "replay": {
+  "basis": "SOURCE_READ",
+  "onReload": "yes -- ready is component state and the whole chain re-runs",
+  "onVisibilityChange": "no -- nothing in the chain observes document visibility",
+  "onBackForwardRestore": "no -- a bfcache restore does not re-run effects, so the intro does not replay",
+  "coldVersusWarm": "The entry itself is identical. Only the TIME to reach ready differs, because the progress ladder is dominated by video buffering. There is no cold-only or warm-only branch in the source."
+ },
+ "notInTheEntry": {
+  "basis": "SOURCE_READ",
+  "items": [
+   "The canvas background (b6) is a static screen-space gradient node, mix(#0a1c3d, #000000, (screenUV.x - screenUV.y + 1) * .5). It is not driven by progress, by ready or by the gap, and it does not change during the entry.",
+   "The footer (PW) is plain markup with no entry animation and no ready gate: it is in the tree from the first render and its only transitions are hover states on the two links."
+  ]
+ },
+ "measured": {
+  "desktop-cold": {
+   "readyAtMs": {
+    "n": 5,
+    "min": 4788.7,
+    "median": 5013.9,
+    "max": 6097.2,
+    "rangeMs": 1308.5
+   },
+   "introMs": {
+    "n": 5,
+    "min": 867.0,
+    "median": 875.8,
+    "max": 892.5,
+    "rangeMs": 25.5
+   },
+   "loaderFadeMs": {
+    "n": 5,
+    "min": 699.2,
+    "median": 700.0,
+    "max": 700.9,
+    "rangeMs": 1.7
+   },
+   "p50RelMs": {
+    "n": 5,
+    "min": 127.5,
+    "median": 128.1,
+    "max": 128.5,
+    "rangeMs": 1.0
+   },
+   "p90RelMs": {
+    "n": 5,
+    "min": 303.5,
+    "median": 304.4,
+    "max": 305.4,
+    "rangeMs": 1.9
+   },
+   "firstDrawRelMs": {
+    "n": 5,
+    "min": -63.0,
+    "median": -62.5,
+    "max": -57.0,
+    "rangeMs": 6.0
+   },
+   "mountedElements": [
+    100
+   ],
+   "domNodes": [
+    1763
+   ],
+   "percentShownAtReady": [
+    89,
+    90,
+    90,
+    90,
+    90
+   ],
+   "finalPoseFlashFrames": [
+    0
+   ],
+   "everyTrackedCardTravelsInward": true,
+   "everyTrackedCardGrows": true
+  },
+  "desktop-warm": {
+   "readyAtMs": {
+    "n": 5,
+    "min": 3086.8,
+    "median": 3308.8,
+    "max": 3737.8,
+    "rangeMs": 651.0
+   },
+   "introMs": {
+    "n": 5,
+    "min": 866.0,
+    "median": 866.6,
+    "max": 874.0,
+    "rangeMs": 8.0
+   },
+   "loaderFadeMs": {
+    "n": 5,
+    "min": 691.7,
+    "median": 699.9,
+    "max": 700.3,
+    "rangeMs": 8.6
+   },
+   "p50RelMs": {
+    "n": 5,
+    "min": 126.3,
+    "median": 127.1,
+    "max": 127.8,
+    "rangeMs": 1.5
+   },
+   "p90RelMs": {
+    "n": 5,
+    "min": 302.8,
+    "median": 303.4,
+    "max": 304.1,
+    "rangeMs": 1.3
+   },
+   "firstDrawRelMs": {
+    "n": 5,
+    "min": -64.2,
+    "median": -61.2,
+    "max": -55.9,
+    "rangeMs": 8.3
+   },
+   "mountedElements": [
+    100
+   ],
+   "domNodes": [
+    1763
+   ],
+   "percentShownAtReady": [
+    88,
+    89,
+    90,
+    90,
+    90
+   ],
+   "finalPoseFlashFrames": [
+    0
+   ],
+   "everyTrackedCardTravelsInward": true,
+   "everyTrackedCardGrows": true
+  },
+  "mobile-cold": {
+   "readyAtMs": {
+    "n": 5,
+    "min": 5339.2,
+    "median": 5667.4,
+    "max": 7211.2,
+    "rangeMs": 1872.0
+   },
+   "introMs": {
+    "n": 5,
+    "min": 709.4,
+    "median": 809.1,
+    "max": 817.4,
+    "rangeMs": 108.0
+   },
+   "loaderFadeMs": {
+    "n": 5,
+    "min": 691.8,
+    "median": 699.9,
+    "max": 701.1,
+    "rangeMs": 9.3
+   },
+   "p50RelMs": {
+    "n": 5,
+    "min": 95.1,
+    "median": 96.1,
+    "max": 97.1,
+    "rangeMs": 2.0
+   },
+   "p90RelMs": {
+    "n": 5,
+    "min": 215.3,
+    "median": 217.0,
+    "max": 219.0,
+    "rangeMs": 3.7
+   },
+   "firstDrawRelMs": {
+    "n": 5,
+    "min": -64.3,
+    "median": -60.2,
+    "max": -55.1,
+    "rangeMs": 9.2
+   },
+   "mountedElements": [
+    96
+   ],
+   "domNodes": [
+    1695
+   ],
+   "percentShownAtReady": [
+    83,
+    84,
+    84,
+    84,
+    85
+   ],
+   "finalPoseFlashFrames": [
+    0
+   ],
+   "everyTrackedCardTravelsInward": true,
+   "everyTrackedCardGrows": true
+  },
+  "mobile-warm": {
+   "readyAtMs": {
+    "n": 5,
+    "min": 1225.1,
+    "median": 1442.6,
+    "max": 1561.3,
+    "rangeMs": 336.2
+   },
+   "introMs": {
+    "n": 5,
+    "min": 740.9,
+    "median": 800.0,
+    "max": 808.0,
+    "rangeMs": 67.1
+   },
+   "loaderFadeMs": {
+    "n": 5,
+    "min": 699.1,
+    "median": 699.8,
+    "max": 700.7,
+    "rangeMs": 1.6
+   },
+   "p50RelMs": {
+    "n": 5,
+    "min": 95.3,
+    "median": 96.9,
+    "max": 97.3,
+    "rangeMs": 2.0
+   },
+   "p90RelMs": {
+    "n": 5,
+    "min": 217.2,
+    "median": 217.6,
+    "max": 218.3,
+    "rangeMs": 1.1
+   },
+   "firstDrawRelMs": {
+    "n": 5,
+    "min": -65.0,
+    "median": -62.5,
+    "max": -58.8,
+    "rangeMs": 6.2
+   },
+   "mountedElements": [
+    96
+   ],
+   "domNodes": [
+    1695
+   ],
+   "percentShownAtReady": [
+    69,
+    77,
+    78,
+    81,
+    82
+   ],
+   "finalPoseFlashFrames": [
+    0
+   ],
+   "everyTrackedCardTravelsInward": true,
+   "everyTrackedCardGrows": true
+  }
+ },
+ "coldVersusWarmMeasured": {
+  "basis": "RUNTIME_MEASURED",
+  "readyAtMsMedian": {
+   "desktop-cold": 5013.9,
+   "desktop-warm": 3308.8,
+   "mobile-cold": 5667.4,
+   "mobile-warm": 1442.6
+  },
+  "introMsMedian": {
+   "desktop-cold": 875.8,
+   "desktop-warm": 866.6,
+   "mobile-cold": 809.1,
+   "mobile-warm": 800.0
+  },
+  "finding": "A warm cache reaches ready sooner and the entry itself is unchanged, which is what the source says: there is no cold-only or warm-only branch anywhere in the chain."
+ },
+ "preRegisteredGate": {
+  "basis": "INFERRED -- thresholds derived from the Target runs above, registered BEFORE the candidate was scored",
+  "rule": "For each landmark and each of the four conditions, the candidate's median must fall inside the Target's own min..max for that condition. The Target's spread IS the threshold: a rule tighter than the Target's own repeatability would fail the Target.",
+  "landmarks": [
+   "introMs",
+   "p50RelMs",
+   "p90RelMs"
+  ],
+  "targetWindows": {
+   "desktop-cold": {
+    "introMs": {
+     "min": 867.0,
+     "max": 892.5
+    },
+    "p50RelMs": {
+     "min": 127.5,
+     "max": 128.5
+    },
+    "p90RelMs": {
+     "min": 303.5,
+     "max": 305.4
+    }
+   },
+   "desktop-warm": {
+    "introMs": {
+     "min": 866.0,
+     "max": 874.0
+    },
+    "p50RelMs": {
+     "min": 126.3,
+     "max": 127.8
+    },
+    "p90RelMs": {
+     "min": 302.8,
+     "max": 304.1
+    }
+   },
+   "mobile-cold": {
+    "introMs": {
+     "min": 709.4,
+     "max": 817.4
+    },
+    "p50RelMs": {
+     "min": 95.1,
+     "max": 97.1
+    },
+    "p90RelMs": {
+     "min": 215.3,
+     "max": 219.0
+    }
+   },
+   "mobile-warm": {
+    "introMs": {
+     "min": 740.9,
+     "max": 808.0
+    },
+    "p50RelMs": {
+     "min": 95.3,
+     "max": 97.3
+    },
+    "p90RelMs": {
+     "min": 217.2,
+     "max": 218.3
+    }
+   }
+  },
+  "exactItems": {
+   "mountedElements": "must equal the Target's exactly, per condition",
+   "gapAtReady": "3.00000 +- 0.001",
+   "gapAtEnd": "the layout contract's gapRatio exactly",
+   "overshoot": "min(gap) >= the contract gapRatio on BOTH pages -- an overdamped spring must not undershoot the rest value",
+   "finalPoseFlashFrames": "0 -- no frame at or before ready may show a tracked card already at its settled size",
+   "singleScalarFit": "the whole entry must be explained by one gap value per frame to under a pixel RMS on BOTH pages; this is what 'no per-card stagger' means as a measurement"
+  }
+ }
+}
