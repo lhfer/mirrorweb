@@ -1,0 +1,1950 @@
+{
+ "round": "MirrorWeb V5 -- Final Release Candidate",
+ "section": "§三 -- minimal acceptance smoke",
+ "realDevice": "NOT ASSERTED. No phone or tablet ran this build. Every number below came from Chrome on the build machine.",
+ "refreshContexts": {
+  "howTheyWereEstablished": "measured on the real product page while it was animating, not on an empty page. An empty page in headed Chrome reads 59.9 Hz, which is a property of ProMotion falling to 60 while idle, not of the browser. On the animating page both headed and headless Chrome run at 120.5 Hz, so no configuration on this machine gives an animating page a real 60 Hz vsync.",
+  "hz120": "headless Chrome, native vsync, 8.3 ms interval.",
+  "headed120": "a real Chrome window, native vsync, also 8.3 ms. Kept as a second 120 Hz-capable context; it was originally run believing it was the 60 Hz one, and it is reported as what it turned out to be.",
+  "hz60": "headless Chrome at 120 Hz vsync with the page handed every second frame, so the app's frame budget is 16.7 ms. This is a FRAME BUDGET emulation. It is not a 60 Hz display: the compositor underneath still runs at 120, and a compositing-side 60 Hz effect would not show up here."
+ },
+ "hz120": {
+  "context": "headless Chrome, default flags. Measured 8.30 ms median rAF interval on an empty page (120.5 Hz). This is the same class of context every prior round's pacing number came from.",
+  "contextMedianFrameMs": 8.3,
+  "soakMinutes": 10,
+  "entry": {
+   "note": "the entry is split where the accepted §八 evidence splits it. preReady is behind an opaque loading overlay -- nothing there is on screen moving. visibleIntro is ready to settle, where every frame IS on screen and moving.",
+   "cold": {
+    "preReady": {
+     "runs": 3,
+     "p50MsWorstRun": 8.3,
+     "p95MsWorstRun": 25.6,
+     "p99MsWorstRun": 58.4,
+     "longestMsAcrossRuns": 58.4,
+     "framesOver16_7msTotal": 6,
+     "framesOver1_5xContextIntervalTotal": 6
+    },
+    "visibleIntro": {
+     "runs": 3,
+     "p50MsWorstRun": 8.3,
+     "p95MsWorstRun": 9.1,
+     "p99MsWorstRun": 9.3,
+     "longestMsAcrossRuns": 9.4,
+     "framesOver16_7msTotal": 0,
+     "framesOver1_5xContextIntervalTotal": 0
+    },
+    "wallMs": [
+     2805,
+     2752,
+     2760
+    ],
+    "visibleIntroMs": [
+     1266.6,
+     1266.6,
+     1266.7
+    ]
+   },
+   "warm": {
+    "preReady": {
+     "runs": 3,
+     "p50MsWorstRun": 8.3,
+     "p95MsWorstRun": 9.3,
+     "p99MsWorstRun": 50.1,
+     "longestMsAcrossRuns": 50.1,
+     "framesOver16_7msTotal": 3,
+     "framesOver1_5xContextIntervalTotal": 3
+    },
+    "visibleIntro": {
+     "runs": 3,
+     "p50MsWorstRun": 8.3,
+     "p95MsWorstRun": 9.3,
+     "p99MsWorstRun": 9.4,
+     "longestMsAcrossRuns": 9.4,
+     "framesOver16_7msTotal": 0,
+     "framesOver1_5xContextIntervalTotal": 0
+    },
+    "wallMs": [
+     2627,
+     2621,
+     2615
+    ],
+    "visibleIntroMs": [
+     1267.1,
+     1266.7,
+     1265.7
+    ]
+   },
+   "allSettled": true,
+   "runs": [
+    {
+     "kind": "cold",
+     "run": 1,
+     "settled": true,
+     "entryWallMs": 2805,
+     "preReadyMs": 466.7,
+     "visibleIntroMs": 1266.6,
+     "preReady": {
+      "frames": 48,
+      "p50Ms": 8.3,
+      "p95Ms": 9.2,
+      "p99Ms": 58.2,
+      "longestMs": 58.2,
+      "framesOver16_7ms": 2,
+      "framesOver1_5xContextInterval": 2
+     },
+     "visibleIntro": {
+      "frames": 153,
+      "p50Ms": 8.3,
+      "p95Ms": 8.8,
+      "p99Ms": 9.3,
+      "longestMs": 9.3,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 200,
+      "p50Ms": 8.3,
+      "p95Ms": 9,
+      "p99Ms": 25,
+      "longestMs": 58.2,
+      "framesOver16_7ms": 2,
+      "framesOver1_5xContextInterval": 2
+     },
+     "postIntroIdle": {
+      "frames": 97,
+      "p50Ms": 8.3,
+      "p95Ms": 8.9,
+      "p99Ms": 9.3,
+      "longestMs": 9.3,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2806,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.593,
+       2.549,
+       2.489
+      ],
+      "heapMB": 20.6
+     },
+     "source": "loads-only re-run with the pre-ready / visible-intro split"
+    },
+    {
+     "kind": "cold",
+     "run": 2,
+     "settled": true,
+     "entryWallMs": 2752,
+     "preReadyMs": 367.4,
+     "visibleIntroMs": 1266.6,
+     "preReady": {
+      "frames": 36,
+      "p50Ms": 8.3,
+      "p95Ms": 25.6,
+      "p99Ms": 58.4,
+      "longestMs": 58.4,
+      "framesOver16_7ms": 2,
+      "framesOver1_5xContextInterval": 2
+     },
+     "visibleIntro": {
+      "frames": 153,
+      "p50Ms": 8.3,
+      "p95Ms": 8.7,
+      "p99Ms": 9.2,
+      "longestMs": 9.2,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 188,
+      "p50Ms": 8.3,
+      "p95Ms": 9,
+      "p99Ms": 25.6,
+      "longestMs": 58.4,
+      "framesOver16_7ms": 2,
+      "framesOver1_5xContextInterval": 2
+     },
+     "postIntroIdle": {
+      "frames": 96,
+      "p50Ms": 8.3,
+      "p95Ms": 8.8,
+      "p99Ms": 9.3,
+      "longestMs": 9.3,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2754,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.616,
+       2.575,
+       2.547
+      ],
+      "heapMB": 18.5
+     },
+     "source": "loads-only re-run with the pre-ready / visible-intro split"
+    },
+    {
+     "kind": "cold",
+     "run": 3,
+     "settled": true,
+     "entryWallMs": 2760,
+     "preReadyMs": 400,
+     "visibleIntroMs": 1266.7,
+     "preReady": {
+      "frames": 41,
+      "p50Ms": 8.3,
+      "p95Ms": 9.2,
+      "p99Ms": 49.9,
+      "longestMs": 49.9,
+      "framesOver16_7ms": 2,
+      "framesOver1_5xContextInterval": 2
+     },
+     "visibleIntro": {
+      "frames": 153,
+      "p50Ms": 8.3,
+      "p95Ms": 9.1,
+      "p99Ms": 9.3,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 193,
+      "p50Ms": 8.3,
+      "p95Ms": 9.2,
+      "p99Ms": 25.7,
+      "longestMs": 49.9,
+      "framesOver16_7ms": 2,
+      "framesOver1_5xContextInterval": 2
+     },
+     "postIntroIdle": {
+      "frames": 96,
+      "p50Ms": 8.3,
+      "p95Ms": 8.9,
+      "p99Ms": 9.3,
+      "longestMs": 9.3,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2755,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.6,
+       2.55,
+       2.507
+      ],
+      "heapMB": 24.3
+     },
+     "source": "loads-only re-run with the pre-ready / visible-intro split"
+    },
+    {
+     "kind": "warm",
+     "run": 1,
+     "settled": true,
+     "entryWallMs": 2627,
+     "preReadyMs": 274.5,
+     "visibleIntroMs": 1267.1,
+     "preReady": {
+      "frames": 28,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 50.1,
+      "longestMs": 50.1,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 1
+     },
+     "visibleIntro": {
+      "frames": 153,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 9.4,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 180,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 9.4,
+      "longestMs": 50.1,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 1
+     },
+     "postIntroIdle": {
+      "frames": 97,
+      "p50Ms": 8.3,
+      "p95Ms": 9.2,
+      "p99Ms": 9.4,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2632,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.53,
+       2.49,
+       2.453
+      ],
+      "heapMB": 26
+     },
+     "source": "loads-only re-run with the pre-ready / visible-intro split"
+    },
+    {
+     "kind": "warm",
+     "run": 2,
+     "settled": true,
+     "entryWallMs": 2621,
+     "preReadyMs": 266.6,
+     "visibleIntroMs": 1266.7,
+     "preReady": {
+      "frames": 28,
+      "p50Ms": 8.3,
+      "p95Ms": 9.1,
+      "p99Ms": 41.6,
+      "longestMs": 41.6,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 1
+     },
+     "visibleIntro": {
+      "frames": 153,
+      "p50Ms": 8.3,
+      "p95Ms": 9.1,
+      "p99Ms": 9.3,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 180,
+      "p50Ms": 8.3,
+      "p95Ms": 9.1,
+      "p99Ms": 9.4,
+      "longestMs": 41.6,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 1
+     },
+     "postIntroIdle": {
+      "frames": 97,
+      "p50Ms": 8.3,
+      "p95Ms": 8.9,
+      "p99Ms": 9.3,
+      "longestMs": 9.3,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2625,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.538,
+       2.493,
+       2.455
+      ],
+      "heapMB": 25.5
+     },
+     "source": "loads-only re-run with the pre-ready / visible-intro split"
+    },
+    {
+     "kind": "warm",
+     "run": 3,
+     "settled": true,
+     "entryWallMs": 2615,
+     "preReadyMs": 258.3,
+     "visibleIntroMs": 1265.7,
+     "preReady": {
+      "frames": 27,
+      "p50Ms": 8.3,
+      "p95Ms": 9.2,
+      "p99Ms": 41.7,
+      "longestMs": 41.7,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 1
+     },
+     "visibleIntro": {
+      "frames": 153,
+      "p50Ms": 8.3,
+      "p95Ms": 9.1,
+      "p99Ms": 9.3,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 179,
+      "p50Ms": 8.3,
+      "p95Ms": 9.2,
+      "p99Ms": 9.4,
+      "longestMs": 41.7,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 1
+     },
+     "postIntroIdle": {
+      "frames": 96,
+      "p50Ms": 8.3,
+      "p95Ms": 8.6,
+      "p99Ms": 9.3,
+      "longestMs": 9.3,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2624,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.539,
+       2.498,
+       2.461
+      ],
+      "heapMB": 26.3
+     },
+     "source": "loads-only re-run with the pre-ready / visible-intro split"
+    }
+   ]
+  },
+  "gestures": [
+   {
+    "name": "slow-drag",
+    "frames": 228,
+    "p50Ms": 8.3,
+    "p95Ms": 9.1,
+    "p99Ms": 9.3,
+    "longestMs": 9.4,
+    "framesOver16_7ms": 0,
+    "framesOver1_5xContextInterval": 0
+   },
+   {
+    "name": "fast-flick",
+    "frames": 231,
+    "p50Ms": 8.3,
+    "p95Ms": 9.3,
+    "p99Ms": 9.4,
+    "longestMs": 9.4,
+    "framesOver16_7ms": 0,
+    "framesOver1_5xContextInterval": 0
+   },
+   {
+    "name": "pointer-sweep",
+    "frames": 184,
+    "p50Ms": 8.3,
+    "p95Ms": 9.3,
+    "p99Ms": 9.4,
+    "longestMs": 9.4,
+    "framesOver16_7ms": 0,
+    "framesOver1_5xContextInterval": 0
+   },
+   {
+    "name": "long-wrap",
+    "frames": 379,
+    "p50Ms": 8.3,
+    "p95Ms": 9.3,
+    "p99Ms": 9.3,
+    "longestMs": 9.4,
+    "framesOver16_7ms": 0,
+    "framesOver1_5xContextInterval": 0
+   }
+  ],
+  "orientation": {
+   "what": "portrait 390x844 -> landscape 844x390 -> portrait, on a touch context",
+   "frames": {
+    "frames": 628,
+    "p50Ms": 8.3,
+    "p95Ms": 9.2,
+    "p99Ms": 9.3,
+    "longestMs": 9.4,
+    "framesOver16_7ms": 0,
+    "framesOver1_5xContextInterval": 0
+   },
+   "portraitBefore": {
+    "tMs": 2750,
+    "sampleTier": 3,
+    "opticalBody": "target-source-unclamped",
+    "quality": "high",
+    "adaptiveSampler": true,
+    "materialCacheSize": 2,
+    "rendererTextures": 6,
+    "css3dMounted": 96,
+    "css3dVisible": 17,
+    "css3dTransformWrites": 17,
+    "introState": "done",
+    "backend": "webgpu",
+    "clipsNotDecodable": 0,
+    "videoTimes": [
+     2.623,
+     2.578,
+     2.534
+    ],
+    "heapMB": 24.6
+   },
+   "landscape": {
+    "tMs": 5373,
+    "sampleTier": 3,
+    "opticalBody": "target-source-unclamped",
+    "quality": "high",
+    "adaptiveSampler": true,
+    "materialCacheSize": 2,
+    "rendererTextures": 6,
+    "css3dMounted": 80,
+    "css3dVisible": 18,
+    "css3dTransformWrites": 18,
+    "introState": "done",
+    "backend": "webgpu",
+    "clipsNotDecodable": 0,
+    "videoTimes": [
+     0.237,
+     0.194,
+     0.147
+    ],
+    "heapMB": 26.9
+   },
+   "portraitAfter": {
+    "tMs": 7985,
+    "sampleTier": 3,
+    "opticalBody": "target-source-unclamped",
+    "quality": "high",
+    "adaptiveSampler": true,
+    "materialCacheSize": 2,
+    "rendererTextures": 6,
+    "css3dMounted": 96,
+    "css3dVisible": 17,
+    "css3dTransformWrites": 17,
+    "introState": "done",
+    "backend": "webgpu",
+    "clipsNotDecodable": 0,
+    "videoTimes": [
+     2.85,
+     2.807,
+     2.76
+    ],
+    "heapMB": 26.2
+   },
+   "errors": 2
+  },
+  "soak": {
+   "minutes": 10,
+   "wallMs": 600725,
+   "frames": {
+    "frames": 72097,
+    "p50Ms": 8.3,
+    "p95Ms": 9.2,
+    "p99Ms": 9.3,
+    "longestMs": 10.5,
+    "framesOver16_7ms": 0,
+    "framesOver1_5xContextInterval": 0
+   },
+   "samples": 87,
+   "blackFrameProxy": {
+    "what": "SAMPLES on which at least one clip element was not decodable (readyState < 2 or videoWidth === 0). Not a pixel test.",
+    "hits": 0,
+    "of": 87
+   },
+   "videoAdvancing": true,
+   "videoTimesFirst": [
+    4.503,
+    4.457,
+    4.413
+   ],
+   "videoTimesLast": [
+    0.36,
+    0.36,
+    0.304
+   ],
+   "materialCacheSize": {
+    "first": 2,
+    "last": 2,
+    "max": 2
+   },
+   "css3dMounted": {
+    "first": 100,
+    "last": 100,
+    "distinct": [
+     100
+    ]
+   },
+   "css3dVisible": {
+    "first": 17,
+    "last": 15,
+    "min": 13,
+    "max": 18
+   },
+   "sampleTier": {
+    "distinct": [
+     5
+    ]
+   },
+   "quality": {
+    "distinct": [
+     "high"
+    ]
+   },
+   "heapMB": {
+    "first": 19.9,
+    "last": 20.7
+   },
+   "errors": 2
+  },
+  "consolePageErrors": 0,
+  "requestFailures": {
+   "count": 20,
+   "what": "all of them are <video> elements cancelling a partial range request (net::ERR_ABORTED). Normal media behaviour, not an error the page raised, and deliberately not counted as one."
+  }
+ },
+ "hz60": {
+  "context": "headless Chrome at its native 120 Hz vsync, with the page handed every SECOND vsync. The app's frame budget is therefore 16.7 ms, which is what §三B's 60 Hz emulation is asking about. It is a frame-budget emulation and not a 60 Hz display: the compositor underneath is still running at 120.",
+  "contextMedianFrameMs": 16.7,
+  "soakMinutes": 5,
+  "entry": {
+   "note": "the entry is split where the accepted §八 evidence splits it. preReady is behind an opaque loading overlay -- nothing there is on screen moving. visibleIntro is ready to settle, where every frame IS on screen and moving.",
+   "cold": {
+    "preReady": {
+     "runs": 3,
+     "p50MsWorstRun": 16.7,
+     "p95MsWorstRun": 33.3,
+     "p99MsWorstRun": 74.3,
+     "longestMsAcrossRuns": 74.3,
+     "framesOver16_7msTotal": 29,
+     "framesOver1_5xContextIntervalTotal": 6
+    },
+    "visibleIntro": {
+     "runs": 3,
+     "p50MsWorstRun": 16.7,
+     "p95MsWorstRun": 17.1,
+     "p99MsWorstRun": 17.7,
+     "longestMsAcrossRuns": 17.7,
+     "framesOver16_7msTotal": 102,
+     "framesOver1_5xContextIntervalTotal": 0
+    },
+    "wallMs": [
+     2967,
+     2887,
+     2874
+    ],
+    "visibleIntroMs": [
+     1266.6,
+     1265.9,
+     1266.6
+    ]
+   },
+   "warm": {
+    "preReady": {
+     "runs": 3,
+     "p50MsWorstRun": 16.8,
+     "p95MsWorstRun": 50,
+     "p99MsWorstRun": 50,
+     "longestMsAcrossRuns": 50,
+     "framesOver16_7msTotal": 25,
+     "framesOver1_5xContextIntervalTotal": 3
+    },
+    "visibleIntro": {
+     "runs": 3,
+     "p50MsWorstRun": 16.7,
+     "p95MsWorstRun": 17.5,
+     "p99MsWorstRun": 17.6,
+     "longestMsAcrossRuns": 17.6,
+     "framesOver16_7msTotal": 101,
+     "framesOver1_5xContextIntervalTotal": 0
+    },
+    "wallMs": [
+     2741,
+     2737,
+     2739
+    ],
+    "visibleIntroMs": [
+     1266.1,
+     1266.6,
+     1267.1
+    ]
+   },
+   "allSettled": true,
+   "runs": [
+    {
+     "kind": "cold",
+     "run": 1,
+     "settled": true,
+     "entryWallMs": 2967,
+     "preReadyMs": 533.3,
+     "visibleIntroMs": 1266.6,
+     "preReady": {
+      "frames": 28,
+      "p50Ms": 16.7,
+      "p95Ms": 33.3,
+      "p99Ms": 66.8,
+      "longestMs": 66.8,
+      "framesOver16_7ms": 11,
+      "framesOver1_5xContextInterval": 2
+     },
+     "visibleIntro": {
+      "frames": 77,
+      "p50Ms": 16.7,
+      "p95Ms": 17.1,
+      "p99Ms": 17.5,
+      "longestMs": 17.5,
+      "framesOver16_7ms": 31,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 104,
+      "p50Ms": 16.7,
+      "p95Ms": 17.4,
+      "p99Ms": 33.3,
+      "longestMs": 66.8,
+      "framesOver16_7ms": 42,
+      "framesOver1_5xContextInterval": 2
+     },
+     "postIntroIdle": {
+      "frames": 48,
+      "p50Ms": 16.7,
+      "p95Ms": 17.1,
+      "p99Ms": 17.6,
+      "longestMs": 17.6,
+      "framesOver16_7ms": 19,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2933,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.711,
+       2.663,
+       2.613
+      ],
+      "heapMB": 24.7
+     },
+     "source": "the single full run"
+    },
+    {
+     "kind": "cold",
+     "run": 2,
+     "settled": true,
+     "entryWallMs": 2887,
+     "preReadyMs": 441.8,
+     "visibleIntroMs": 1265.9,
+     "preReady": {
+      "frames": 22,
+      "p50Ms": 16.7,
+      "p95Ms": 33.3,
+      "p99Ms": 74.3,
+      "longestMs": 74.3,
+      "framesOver16_7ms": 11,
+      "framesOver1_5xContextInterval": 2
+     },
+     "visibleIntro": {
+      "frames": 77,
+      "p50Ms": 16.7,
+      "p95Ms": 17.1,
+      "p99Ms": 17.7,
+      "longestMs": 17.7,
+      "framesOver16_7ms": 32,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 98,
+      "p50Ms": 16.7,
+      "p95Ms": 17.4,
+      "p99Ms": 74.3,
+      "longestMs": 74.3,
+      "framesOver16_7ms": 42,
+      "framesOver1_5xContextInterval": 2
+     },
+     "postIntroIdle": {
+      "frames": 48,
+      "p50Ms": 16.7,
+      "p95Ms": 16.8,
+      "p99Ms": 17.2,
+      "longestMs": 17.2,
+      "framesOver16_7ms": 18,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2889,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.729,
+       2.694,
+       2.659
+      ],
+      "heapMB": 20.9
+     },
+     "source": "the single full run"
+    },
+    {
+     "kind": "cold",
+     "run": 3,
+     "settled": true,
+     "entryWallMs": 2874,
+     "preReadyMs": 466.8,
+     "visibleIntroMs": 1266.6,
+     "preReady": {
+      "frames": 24,
+      "p50Ms": 16.7,
+      "p95Ms": 33.2,
+      "p99Ms": 67.2,
+      "longestMs": 67.2,
+      "framesOver16_7ms": 7,
+      "framesOver1_5xContextInterval": 2
+     },
+     "visibleIntro": {
+      "frames": 77,
+      "p50Ms": 16.7,
+      "p95Ms": 17,
+      "p99Ms": 17.6,
+      "longestMs": 17.6,
+      "framesOver16_7ms": 39,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 100,
+      "p50Ms": 16.7,
+      "p95Ms": 17.3,
+      "p99Ms": 67.2,
+      "longestMs": 67.2,
+      "framesOver16_7ms": 45,
+      "framesOver1_5xContextInterval": 2
+     },
+     "postIntroIdle": {
+      "frames": 48,
+      "p50Ms": 16.7,
+      "p95Ms": 17.6,
+      "p99Ms": 17.7,
+      "longestMs": 17.7,
+      "framesOver16_7ms": 16,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2876,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.716,
+       2.665,
+       2.621
+      ],
+      "heapMB": 21.6
+     },
+     "source": "the single full run"
+    },
+    {
+     "kind": "warm",
+     "run": 1,
+     "settled": true,
+     "entryWallMs": 2741,
+     "preReadyMs": 333.4,
+     "visibleIntroMs": 1266.1,
+     "preReady": {
+      "frames": 18,
+      "p50Ms": 16.7,
+      "p95Ms": 49.9,
+      "p99Ms": 49.9,
+      "longestMs": 49.9,
+      "framesOver16_7ms": 9,
+      "framesOver1_5xContextInterval": 1
+     },
+     "visibleIntro": {
+      "frames": 77,
+      "p50Ms": 16.7,
+      "p95Ms": 17.5,
+      "p99Ms": 17.6,
+      "longestMs": 17.6,
+      "framesOver16_7ms": 32,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 94,
+      "p50Ms": 16.7,
+      "p95Ms": 17.6,
+      "p99Ms": 49.9,
+      "longestMs": 49.9,
+      "framesOver16_7ms": 41,
+      "framesOver1_5xContextInterval": 1
+     },
+     "postIntroIdle": {
+      "frames": 48,
+      "p50Ms": 16.7,
+      "p95Ms": 17.5,
+      "p99Ms": 17.6,
+      "longestMs": 17.6,
+      "framesOver16_7ms": 21,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2744,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.65,
+       2.602,
+       2.566
+      ],
+      "heapMB": 23.7
+     },
+     "source": "the single full run"
+    },
+    {
+     "kind": "warm",
+     "run": 2,
+     "settled": true,
+     "entryWallMs": 2737,
+     "preReadyMs": 316.8,
+     "visibleIntroMs": 1266.6,
+     "preReady": {
+      "frames": 17,
+      "p50Ms": 16.7,
+      "p95Ms": 50,
+      "p99Ms": 50,
+      "longestMs": 50,
+      "framesOver16_7ms": 7,
+      "framesOver1_5xContextInterval": 1
+     },
+     "visibleIntro": {
+      "frames": 77,
+      "p50Ms": 16.7,
+      "p95Ms": 17.1,
+      "p99Ms": 17.6,
+      "longestMs": 17.6,
+      "framesOver16_7ms": 33,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 93,
+      "p50Ms": 16.7,
+      "p95Ms": 17.1,
+      "p99Ms": 50,
+      "longestMs": 50,
+      "framesOver16_7ms": 40,
+      "framesOver1_5xContextInterval": 1
+     },
+     "postIntroIdle": {
+      "frames": 48,
+      "p50Ms": 16.7,
+      "p95Ms": 17,
+      "p99Ms": 17.1,
+      "longestMs": 17.1,
+      "framesOver16_7ms": 20,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2743,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.653,
+       2.613,
+       2.574
+      ],
+      "heapMB": 23.5
+     },
+     "source": "the single full run"
+    },
+    {
+     "kind": "warm",
+     "run": 3,
+     "settled": true,
+     "entryWallMs": 2739,
+     "preReadyMs": 316.4,
+     "visibleIntroMs": 1267.1,
+     "preReady": {
+      "frames": 17,
+      "p50Ms": 16.8,
+      "p95Ms": 49.9,
+      "p99Ms": 49.9,
+      "longestMs": 49.9,
+      "framesOver16_7ms": 9,
+      "framesOver1_5xContextInterval": 1
+     },
+     "visibleIntro": {
+      "frames": 77,
+      "p50Ms": 16.7,
+      "p95Ms": 17.5,
+      "p99Ms": 17.6,
+      "longestMs": 17.6,
+      "framesOver16_7ms": 36,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 93,
+      "p50Ms": 16.7,
+      "p95Ms": 17.5,
+      "p99Ms": 49.9,
+      "longestMs": 49.9,
+      "framesOver16_7ms": 45,
+      "framesOver1_5xContextInterval": 1
+     },
+     "postIntroIdle": {
+      "frames": 49,
+      "p50Ms": 16.7,
+      "p95Ms": 16.9,
+      "p99Ms": 17.6,
+      "longestMs": 17.6,
+      "framesOver16_7ms": 17,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2745,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.652,
+       2.608,
+       2.58
+      ],
+      "heapMB": 23.4
+     },
+     "source": "the single full run"
+    }
+   ]
+  },
+  "gestures": [
+   {
+    "name": "slow-drag",
+    "frames": 107,
+    "p50Ms": 16.7,
+    "p95Ms": 16.8,
+    "p99Ms": 17.2,
+    "longestMs": 17.8,
+    "framesOver16_7ms": 36,
+    "framesOver1_5xContextInterval": 0
+   },
+   {
+    "name": "fast-flick",
+    "frames": 115,
+    "p50Ms": 16.7,
+    "p95Ms": 16.9,
+    "p99Ms": 17.4,
+    "longestMs": 17.5,
+    "framesOver16_7ms": 25,
+    "framesOver1_5xContextInterval": 0
+   },
+   {
+    "name": "pointer-sweep",
+    "frames": 92,
+    "p50Ms": 16.7,
+    "p95Ms": 16.8,
+    "p99Ms": 17.1,
+    "longestMs": 17.1,
+    "framesOver16_7ms": 12,
+    "framesOver1_5xContextInterval": 0
+   }
+  ],
+  "orientation": {
+   "what": "portrait 390x844 -> landscape 844x390 -> portrait, on a touch context",
+   "frames": {
+    "frames": 313,
+    "p50Ms": 16.7,
+    "p95Ms": 17.5,
+    "p99Ms": 17.6,
+    "longestMs": 17.7,
+    "framesOver16_7ms": 98,
+    "framesOver1_5xContextInterval": 0
+   },
+   "portraitBefore": {
+    "tMs": 2869,
+    "sampleTier": 3,
+    "opticalBody": "target-source-unclamped",
+    "quality": "high",
+    "adaptiveSampler": true,
+    "materialCacheSize": 2,
+    "rendererTextures": 6,
+    "css3dMounted": 96,
+    "css3dVisible": 17,
+    "css3dTransformWrites": 17,
+    "introState": "done",
+    "backend": "webgpu",
+    "clipsNotDecodable": 0,
+    "videoTimes": [
+     2.716,
+     2.67,
+     2.628
+    ],
+    "heapMB": 20.4
+   },
+   "landscape": {
+    "tMs": 5481,
+    "sampleTier": 3,
+    "opticalBody": "target-source-unclamped",
+    "quality": "high",
+    "adaptiveSampler": true,
+    "materialCacheSize": 2,
+    "rendererTextures": 6,
+    "css3dMounted": 80,
+    "css3dVisible": 18,
+    "css3dTransformWrites": 18,
+    "introState": "done",
+    "backend": "webgpu",
+    "clipsNotDecodable": 0,
+    "videoTimes": [
+     0.322,
+     0.28,
+     0.235
+    ],
+    "heapMB": 19.8
+   },
+   "portraitAfter": {
+    "tMs": 8097,
+    "sampleTier": 3,
+    "opticalBody": "target-source-unclamped",
+    "quality": "high",
+    "adaptiveSampler": true,
+    "materialCacheSize": 2,
+    "rendererTextures": 6,
+    "css3dMounted": 96,
+    "css3dVisible": 17,
+    "css3dTransformWrites": 17,
+    "introState": "done",
+    "backend": "webgpu",
+    "clipsNotDecodable": 0,
+    "videoTimes": [
+     2.938,
+     2.896,
+     2.851
+    ],
+    "heapMB": 20.3
+   },
+   "errors": 1
+  },
+  "soak": {
+   "minutes": 5,
+   "wallMs": 300212,
+   "frames": {
+    "frames": 18010,
+    "p50Ms": 16.7,
+    "p95Ms": 17.5,
+    "p99Ms": 17.6,
+    "longestMs": 17.8,
+    "framesOver16_7ms": 7357,
+    "framesOver1_5xContextInterval": 0
+   },
+   "samples": 45,
+   "blackFrameProxy": {
+    "what": "SAMPLES on which at least one clip element was not decodable (readyState < 2 or videoWidth === 0). Not a pixel test.",
+    "hits": 0,
+    "of": 45
+   },
+   "videoAdvancing": true,
+   "videoTimesFirst": [
+    4.366,
+    4.324,
+    4.279
+   ],
+   "videoTimesLast": [
+    2.479,
+    2.478,
+    2.289
+   ],
+   "materialCacheSize": {
+    "first": 2,
+    "last": 2,
+    "max": 2
+   },
+   "css3dMounted": {
+    "first": 100,
+    "last": 100,
+    "distinct": [
+     100
+    ]
+   },
+   "css3dVisible": {
+    "first": 16,
+    "last": 15,
+    "min": 12,
+    "max": 17
+   },
+   "sampleTier": {
+    "distinct": [
+     5
+    ]
+   },
+   "quality": {
+    "distinct": [
+     "high"
+    ]
+   },
+   "heapMB": {
+    "first": 19.7,
+    "last": 31.7
+   },
+   "errors": 2
+  },
+  "consolePageErrors": 0,
+  "requestFailures": {
+   "count": 20,
+   "what": "all of them are <video> elements cancelling a partial range request (net::ERR_ABORTED). Normal media behaviour, not an error the page raised, and deliberately not counted as one."
+  }
+ },
+ "headed120": {
+  "context": "a real headed Chrome window, default flags. Measured 16.70 ms median rAF interval on an empty page (59.9 Hz) -- a real 60 Hz vsync, not a software emulation. It differs from the 120 Hz context in more than refresh rate: headed and headless are different GPU and compositing paths.",
+  "contextMedianFrameMs": 8.3,
+  "soakMinutes": 5,
+  "entry": {
+   "note": "the entry is split where the accepted §八 evidence splits it. preReady is behind an opaque loading overlay -- nothing there is on screen moving. visibleIntro is ready to settle, where every frame IS on screen and moving.",
+   "cold": {
+    "preReady": {
+     "runs": 3,
+     "p50MsWorstRun": 8.3,
+     "p95MsWorstRun": 16.3,
+     "p99MsWorstRun": 58.4,
+     "longestMsAcrossRuns": 58.4,
+     "framesOver16_7msTotal": 4,
+     "framesOver1_5xContextIntervalTotal": 5
+    },
+    "visibleIntro": {
+     "runs": 3,
+     "p50MsWorstRun": 8.3,
+     "p95MsWorstRun": 9.3,
+     "p99MsWorstRun": 9.4,
+     "longestMsAcrossRuns": 9.4,
+     "framesOver16_7msTotal": 0,
+     "framesOver1_5xContextIntervalTotal": 0
+    },
+    "wallMs": [
+     2869,
+     2749,
+     2743
+    ],
+    "visibleIntroMs": [
+     1267.3,
+     1266.3,
+     1267.7
+    ]
+   },
+   "warm": {
+    "preReady": {
+     "runs": 3,
+     "p50MsWorstRun": 8.3,
+     "p95MsWorstRun": 16.7,
+     "p99MsWorstRun": 50.1,
+     "longestMsAcrossRuns": 50.1,
+     "framesOver16_7msTotal": 3,
+     "framesOver1_5xContextIntervalTotal": 4
+    },
+    "visibleIntro": {
+     "runs": 3,
+     "p50MsWorstRun": 8.3,
+     "p95MsWorstRun": 9.3,
+     "p99MsWorstRun": 9.4,
+     "longestMsAcrossRuns": 9.4,
+     "framesOver16_7msTotal": 0,
+     "framesOver1_5xContextIntervalTotal": 0
+    },
+    "wallMs": [
+     2638,
+     2633,
+     2638
+    ],
+    "visibleIntroMs": [
+     1266.7,
+     1266.7,
+     1258.2
+    ]
+   },
+   "allSettled": true,
+   "runs": [
+    {
+     "kind": "cold",
+     "run": 1,
+     "settled": true,
+     "entryWallMs": 2869,
+     "preReadyMs": 491.1,
+     "visibleIntroMs": 1267.3,
+     "preReady": {
+      "frames": 51,
+      "p50Ms": 8.3,
+      "p95Ms": 16.3,
+      "p99Ms": 49.4,
+      "longestMs": 49.4,
+      "framesOver16_7ms": 2,
+      "framesOver1_5xContextInterval": 3
+     },
+     "visibleIntro": {
+      "frames": 153,
+      "p50Ms": 8.3,
+      "p95Ms": 9.2,
+      "p99Ms": 9.3,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 203,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 16.3,
+      "longestMs": 49.4,
+      "framesOver16_7ms": 2,
+      "framesOver1_5xContextInterval": 3
+     },
+     "postIntroIdle": {
+      "frames": 96,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 9.4,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2875,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 18,
+      "css3dTransformWrites": 18,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.656,
+       2.612,
+       2.551
+      ],
+      "heapMB": 19.3
+     },
+     "source": "the single full run"
+    },
+    {
+     "kind": "cold",
+     "run": 2,
+     "settled": true,
+     "entryWallMs": 2749,
+     "preReadyMs": 374.9,
+     "visibleIntroMs": 1266.3,
+     "preReady": {
+      "frames": 40,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 50,
+      "longestMs": 50,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 1
+     },
+     "visibleIntro": {
+      "frames": 153,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 9.3,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 192,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 9.4,
+      "longestMs": 50,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 1
+     },
+     "postIntroIdle": {
+      "frames": 95,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 9.3,
+      "longestMs": 9.3,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2753,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.629,
+       2.581,
+       2.537
+      ],
+      "heapMB": 23.6
+     },
+     "source": "the single full run"
+    },
+    {
+     "kind": "cold",
+     "run": 3,
+     "settled": true,
+     "entryWallMs": 2743,
+     "preReadyMs": 382.4,
+     "visibleIntroMs": 1267.7,
+     "preReady": {
+      "frames": 40,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 58.4,
+      "longestMs": 58.4,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 1
+     },
+     "visibleIntro": {
+      "frames": 153,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 9.4,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 192,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 9.4,
+      "longestMs": 58.4,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 1
+     },
+     "postIntroIdle": {
+      "frames": 96,
+      "p50Ms": 8.3,
+      "p95Ms": 9.1,
+      "p99Ms": 9.4,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2754,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.622,
+       2.578,
+       2.535
+      ],
+      "heapMB": 18.5
+     },
+     "source": "the single full run"
+    },
+    {
+     "kind": "warm",
+     "run": 1,
+     "settled": true,
+     "entryWallMs": 2638,
+     "preReadyMs": 258.3,
+     "visibleIntroMs": 1266.7,
+     "preReady": {
+      "frames": 27,
+      "p50Ms": 8.3,
+      "p95Ms": 9.5,
+      "p99Ms": 41.8,
+      "longestMs": 41.8,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 1
+     },
+     "visibleIntro": {
+      "frames": 153,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 9.4,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 179,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 9.5,
+      "longestMs": 41.8,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 1
+     },
+     "postIntroIdle": {
+      "frames": 96,
+      "p50Ms": 8.3,
+      "p95Ms": 9,
+      "p99Ms": 9.4,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2643,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 18,
+      "css3dTransformWrites": 18,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.543,
+       2.5,
+       2.462
+      ],
+      "heapMB": 27.3
+     },
+     "source": "the single full run"
+    },
+    {
+     "kind": "warm",
+     "run": 2,
+     "settled": true,
+     "entryWallMs": 2633,
+     "preReadyMs": 266.6,
+     "visibleIntroMs": 1266.7,
+     "preReady": {
+      "frames": 26,
+      "p50Ms": 8.3,
+      "p95Ms": 16.7,
+      "p99Ms": 50.1,
+      "longestMs": 50.1,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 2
+     },
+     "visibleIntro": {
+      "frames": 153,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 9.4,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 178,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 16.7,
+      "longestMs": 50.1,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 2
+     },
+     "postIntroIdle": {
+      "frames": 97,
+      "p50Ms": 8.3,
+      "p95Ms": 9.3,
+      "p99Ms": 9.4,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2640,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.545,
+       2.498,
+       2.463
+      ],
+      "heapMB": 35.1
+     },
+     "source": "the single full run"
+    },
+    {
+     "kind": "warm",
+     "run": 3,
+     "settled": true,
+     "entryWallMs": 2638,
+     "preReadyMs": 266.7,
+     "visibleIntroMs": 1258.2,
+     "preReady": {
+      "frames": 27,
+      "p50Ms": 8.3,
+      "p95Ms": 9.1,
+      "p99Ms": 50,
+      "longestMs": 50,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 1
+     },
+     "visibleIntro": {
+      "frames": 152,
+      "p50Ms": 8.3,
+      "p95Ms": 8.9,
+      "p99Ms": 9.2,
+      "longestMs": 9.3,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "wholeEntry": {
+      "frames": 178,
+      "p50Ms": 8.3,
+      "p95Ms": 8.9,
+      "p99Ms": 9.3,
+      "longestMs": 50,
+      "framesOver16_7ms": 1,
+      "framesOver1_5xContextInterval": 1
+     },
+     "postIntroIdle": {
+      "frames": 97,
+      "p50Ms": 8.3,
+      "p95Ms": 9.1,
+      "p99Ms": 9.4,
+      "longestMs": 9.4,
+      "framesOver16_7ms": 0,
+      "framesOver1_5xContextInterval": 0
+     },
+     "readout": {
+      "tMs": 2648,
+      "sampleTier": 5,
+      "opticalBody": "target-source-unclamped",
+      "quality": "high",
+      "adaptiveSampler": true,
+      "materialCacheSize": 2,
+      "rendererTextures": 6,
+      "css3dMounted": 100,
+      "css3dVisible": 16,
+      "css3dTransformWrites": 16,
+      "introState": "done",
+      "backend": "webgpu",
+      "clipsNotDecodable": 0,
+      "videoTimes": [
+       2.551,
+       2.509,
+       2.473
+      ],
+      "heapMB": 26.5
+     },
+     "source": "the single full run"
+    }
+   ]
+  },
+  "gestures": [
+   {
+    "name": "slow-drag",
+    "frames": 219,
+    "p50Ms": 8.3,
+    "p95Ms": 9.3,
+    "p99Ms": 9.4,
+    "longestMs": 9.4,
+    "framesOver16_7ms": 0,
+    "framesOver1_5xContextInterval": 0
+   },
+   {
+    "name": "fast-flick",
+    "frames": 231,
+    "p50Ms": 8.3,
+    "p95Ms": 9.2,
+    "p99Ms": 9.3,
+    "longestMs": 9.4,
+    "framesOver16_7ms": 0,
+    "framesOver1_5xContextInterval": 0
+   },
+   {
+    "name": "pointer-sweep",
+    "frames": 183,
+    "p50Ms": 8.3,
+    "p95Ms": 9.2,
+    "p99Ms": 9.3,
+    "longestMs": 9.4,
+    "framesOver16_7ms": 0,
+    "framesOver1_5xContextInterval": 0
+   }
+  ],
+  "orientation": {
+   "what": "portrait 390x844 -> landscape 844x390 -> portrait, on a touch context",
+   "frames": {
+    "frames": 628,
+    "p50Ms": 8.3,
+    "p95Ms": 9.1,
+    "p99Ms": 9.3,
+    "longestMs": 9.4,
+    "framesOver16_7ms": 0,
+    "framesOver1_5xContextInterval": 0
+   },
+   "portraitBefore": {
+    "tMs": 2744,
+    "sampleTier": 3,
+    "opticalBody": "target-source-unclamped",
+    "quality": "high",
+    "adaptiveSampler": true,
+    "materialCacheSize": 2,
+    "rendererTextures": 6,
+    "css3dMounted": 96,
+    "css3dVisible": 17,
+    "css3dTransformWrites": 17,
+    "introState": "done",
+    "backend": "webgpu",
+    "clipsNotDecodable": 0,
+    "videoTimes": [
+     2.605,
+     2.561,
+     2.518
+    ],
+    "heapMB": 19.1
+   },
+   "landscape": {
+    "tMs": 5359,
+    "sampleTier": 3,
+    "opticalBody": "target-source-unclamped",
+    "quality": "high",
+    "adaptiveSampler": true,
+    "materialCacheSize": 2,
+    "rendererTextures": 6,
+    "css3dMounted": 80,
+    "css3dVisible": 18,
+    "css3dTransformWrites": 18,
+    "introState": "done",
+    "backend": "webgpu",
+    "clipsNotDecodable": 0,
+    "videoTimes": [
+     0.212,
+     0.173,
+     0.127
+    ],
+    "heapMB": 22
+   },
+   "portraitAfter": {
+    "tMs": 7983,
+    "sampleTier": 3,
+    "opticalBody": "target-source-unclamped",
+    "quality": "high",
+    "adaptiveSampler": true,
+    "materialCacheSize": 2,
+    "rendererTextures": 6,
+    "css3dMounted": 96,
+    "css3dVisible": 17,
+    "css3dTransformWrites": 17,
+    "introState": "done",
+    "backend": "webgpu",
+    "clipsNotDecodable": 0,
+    "videoTimes": [
+     2.836,
+     2.797,
+     2.751
+    ],
+    "heapMB": 28.8
+   },
+   "errors": 2
+  },
+  "soak": {
+   "minutes": 5,
+   "wallMs": 302259,
+   "frames": {
+    "frames": 36253,
+    "p50Ms": 8.3,
+    "p95Ms": 9.1,
+    "p99Ms": 9.3,
+    "longestMs": 10.8,
+    "framesOver16_7ms": 0,
+    "framesOver1_5xContextInterval": 0
+   },
+   "samples": 45,
+   "blackFrameProxy": {
+    "what": "SAMPLES on which at least one clip element was not decodable (readyState < 2 or videoWidth === 0). Not a pixel test.",
+    "hits": 1,
+    "of": 45
+   },
+   "videoAdvancing": true,
+   "videoTimesFirst": [
+    4.462,
+    4.417,
+    4.376
+   ],
+   "videoTimesLast": [
+    4.326,
+    4.326,
+    4.155
+   ],
+   "materialCacheSize": {
+    "first": 2,
+    "last": 2,
+    "max": 2
+   },
+   "css3dMounted": {
+    "first": 100,
+    "last": 100,
+    "distinct": [
+     100
+    ]
+   },
+   "css3dVisible": {
+    "first": 16,
+    "last": 15,
+    "min": 13,
+    "max": 17
+   },
+   "sampleTier": {
+    "distinct": [
+     5
+    ]
+   },
+   "quality": {
+    "distinct": [
+     "high"
+    ]
+   },
+   "heapMB": {
+    "first": 21.8,
+    "last": 17.5
+   },
+   "errors": 4
+  },
+  "consolePageErrors": 0,
+  "requestFailures": {
+   "count": 21,
+   "what": "all of them are <video> elements cancelling a partial range request (net::ERR_ABORTED). Normal media behaviour, not an error the page raised, and deliberately not counted as one."
+  }
+ }
+}

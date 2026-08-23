@@ -1,0 +1,133 @@
+{
+ "what": "the accepted development build on ?review=target vs the release build on its naked default route, both in the same fixed state: intro landed at identity, clock paused, every clip pinned to t=1.25s, grid at a chosen offset, one synchronous frame drawn.",
+ "shots": 12,
+ "byteIdentical": 6,
+ "rows": [
+  {
+   "shot": "1440x900/drag-x-220.png",
+   "sha256Equal": true,
+   "maxChannelDelta": 0,
+   "differingPixels": 0,
+   "totalPixels": 1296000,
+   "bbox": null
+  },
+  {
+   "shot": "1440x900/drag-xy-260-180.png",
+   "sha256Equal": true,
+   "maxChannelDelta": 0,
+   "differingPixels": 0,
+   "totalPixels": 1296000,
+   "bbox": null
+  },
+  {
+   "shot": "1440x900/rest.png",
+   "sha256Equal": false,
+   "maxChannelDelta": 1,
+   "differingPixels": 479483,
+   "totalPixels": 1296000,
+   "bbox": [
+    0,
+    0,
+    1440,
+    879
+   ]
+  },
+  {
+   "shot": "390x844/drag-x-220.png",
+   "sha256Equal": false,
+   "maxChannelDelta": 1,
+   "differingPixels": 62990,
+   "totalPixels": 329160,
+   "bbox": [
+    0,
+    255,
+    390,
+    743
+   ]
+  },
+  {
+   "shot": "390x844/drag-xy-260-180.png",
+   "sha256Equal": true,
+   "maxChannelDelta": 0,
+   "differingPixels": 0,
+   "totalPixels": 329160,
+   "bbox": null
+  },
+  {
+   "shot": "390x844/rest.png",
+   "sha256Equal": false,
+   "maxChannelDelta": 1,
+   "differingPixels": 17696,
+   "totalPixels": 329160,
+   "bbox": [
+    0,
+    255,
+    390,
+    763
+   ]
+  },
+  {
+   "shot": "700x700/drag-x-220.png",
+   "sha256Equal": true,
+   "maxChannelDelta": 0,
+   "differingPixels": 0,
+   "totalPixels": 490000,
+   "bbox": null
+  },
+  {
+   "shot": "700x700/drag-xy-260-180.png",
+   "sha256Equal": true,
+   "maxChannelDelta": 0,
+   "differingPixels": 0,
+   "totalPixels": 490000,
+   "bbox": null
+  },
+  {
+   "shot": "700x700/rest.png",
+   "sha256Equal": false,
+   "maxChannelDelta": 1,
+   "differingPixels": 41237,
+   "totalPixels": 490000,
+   "bbox": [
+    0,
+    255,
+    700,
+    678
+   ]
+  },
+  {
+   "shot": "844x390/drag-x-220.png",
+   "sha256Equal": false,
+   "maxChannelDelta": 1,
+   "differingPixels": 121466,
+   "totalPixels": 329160,
+   "bbox": [
+    0,
+    0,
+    844,
+    368
+   ]
+  },
+  {
+   "shot": "844x390/drag-xy-260-180.png",
+   "sha256Equal": true,
+   "maxChannelDelta": 0,
+   "differingPixels": 0,
+   "totalPixels": 329160,
+   "bbox": null
+  },
+  {
+   "shot": "844x390/rest.png",
+   "sha256Equal": false,
+   "maxChannelDelta": 1,
+   "differingPixels": 74344,
+   "totalPixels": 329160,
+   "bbox": [
+    0,
+    0,
+    844,
+    389
+   ]
+  }
+ ]
+}

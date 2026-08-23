@@ -1,0 +1,712 @@
+{
+ "round": "MirrorWeb V5 -- Final Release Candidate",
+ "section": "§三 -- minimal acceptance smoke",
+ "context": "hz60",
+ "contextDetail": "headless Chrome at its native 120 Hz vsync, with the page handed every SECOND vsync. The app's frame budget is therefore 16.7 ms, which is what §三B's 60 Hz emulation is asking about. It is a frame-budget emulation and not a 60 Hz display: the compositor underneath is still running at 120.",
+ "pacing": "every second vsync delivered to the page",
+ "headed": false,
+ "url": "http://127.0.0.1:5294/?review=target&qa",
+ "generatedAt": "2026-08-23T19:01:57.810Z",
+ "realDevice": "NOT ASSERTED. Nothing in this file runs on a phone or a tablet.",
+ "loads": {
+  "cold": [
+   {
+    "run": 1,
+    "settled": true,
+    "entryWallMs": 2967,
+    "entryWindowMs": 1799.9,
+    "entryFrames": {
+     "frames": 104,
+     "p50Ms": 16.7,
+     "p95Ms": 17.4,
+     "p99Ms": 33.3,
+     "longestMs": 66.8,
+     "framesOver16_7ms": 42,
+     "framesOver1_5xContextInterval": 2
+    },
+    "preReadyFrames": {
+     "frames": 28,
+     "p50Ms": 16.7,
+     "p95Ms": 33.3,
+     "p99Ms": 66.8,
+     "longestMs": 66.8,
+     "framesOver16_7ms": 11,
+     "framesOver1_5xContextInterval": 2
+    },
+    "visibleIntroFrames": {
+     "frames": 77,
+     "p50Ms": 16.7,
+     "p95Ms": 17.1,
+     "p99Ms": 17.5,
+     "longestMs": 17.5,
+     "framesOver16_7ms": 31,
+     "framesOver1_5xContextInterval": 0
+    },
+    "preReadyMs": 533.3,
+    "visibleIntroMs": 1266.6,
+    "postIntroIdle": {
+     "frames": 48,
+     "p50Ms": 16.7,
+     "p95Ms": 17.1,
+     "p99Ms": 17.6,
+     "longestMs": 17.6,
+     "framesOver16_7ms": 19,
+     "framesOver1_5xContextInterval": 0
+    },
+    "readout": {
+     "tMs": 2933,
+     "sampleTier": 5,
+     "opticalBody": "target-source-unclamped",
+     "quality": "high",
+     "adaptiveSampler": true,
+     "materialCacheSize": 2,
+     "rendererTextures": 6,
+     "css3dMounted": 100,
+     "css3dVisible": 16,
+     "css3dTransformWrites": 16,
+     "introState": "done",
+     "backend": "webgpu",
+     "clipsNotDecodable": 0,
+     "videoTimes": [
+      2.711,
+      2.663,
+      2.613
+     ],
+     "heapMB": 24.7
+    },
+    "errors": 2
+   },
+   {
+    "run": 2,
+    "settled": true,
+    "entryWallMs": 2887,
+    "entryWindowMs": 1707.7,
+    "entryFrames": {
+     "frames": 98,
+     "p50Ms": 16.7,
+     "p95Ms": 17.4,
+     "p99Ms": 74.3,
+     "longestMs": 74.3,
+     "framesOver16_7ms": 42,
+     "framesOver1_5xContextInterval": 2
+    },
+    "preReadyFrames": {
+     "frames": 22,
+     "p50Ms": 16.7,
+     "p95Ms": 33.3,
+     "p99Ms": 74.3,
+     "longestMs": 74.3,
+     "framesOver16_7ms": 11,
+     "framesOver1_5xContextInterval": 2
+    },
+    "visibleIntroFrames": {
+     "frames": 77,
+     "p50Ms": 16.7,
+     "p95Ms": 17.1,
+     "p99Ms": 17.7,
+     "longestMs": 17.7,
+     "framesOver16_7ms": 32,
+     "framesOver1_5xContextInterval": 0
+    },
+    "preReadyMs": 441.8,
+    "visibleIntroMs": 1265.9,
+    "postIntroIdle": {
+     "frames": 48,
+     "p50Ms": 16.7,
+     "p95Ms": 16.8,
+     "p99Ms": 17.2,
+     "longestMs": 17.2,
+     "framesOver16_7ms": 18,
+     "framesOver1_5xContextInterval": 0
+    },
+    "readout": {
+     "tMs": 2889,
+     "sampleTier": 5,
+     "opticalBody": "target-source-unclamped",
+     "quality": "high",
+     "adaptiveSampler": true,
+     "materialCacheSize": 2,
+     "rendererTextures": 6,
+     "css3dMounted": 100,
+     "css3dVisible": 16,
+     "css3dTransformWrites": 16,
+     "introState": "done",
+     "backend": "webgpu",
+     "clipsNotDecodable": 0,
+     "videoTimes": [
+      2.729,
+      2.694,
+      2.659
+     ],
+     "heapMB": 20.9
+    },
+    "errors": 2
+   },
+   {
+    "run": 3,
+    "settled": true,
+    "entryWallMs": 2874,
+    "entryWindowMs": 1733.4,
+    "entryFrames": {
+     "frames": 100,
+     "p50Ms": 16.7,
+     "p95Ms": 17.3,
+     "p99Ms": 67.2,
+     "longestMs": 67.2,
+     "framesOver16_7ms": 45,
+     "framesOver1_5xContextInterval": 2
+    },
+    "preReadyFrames": {
+     "frames": 24,
+     "p50Ms": 16.7,
+     "p95Ms": 33.2,
+     "p99Ms": 67.2,
+     "longestMs": 67.2,
+     "framesOver16_7ms": 7,
+     "framesOver1_5xContextInterval": 2
+    },
+    "visibleIntroFrames": {
+     "frames": 77,
+     "p50Ms": 16.7,
+     "p95Ms": 17,
+     "p99Ms": 17.6,
+     "longestMs": 17.6,
+     "framesOver16_7ms": 39,
+     "framesOver1_5xContextInterval": 0
+    },
+    "preReadyMs": 466.8,
+    "visibleIntroMs": 1266.6,
+    "postIntroIdle": {
+     "frames": 48,
+     "p50Ms": 16.7,
+     "p95Ms": 17.6,
+     "p99Ms": 17.7,
+     "longestMs": 17.7,
+     "framesOver16_7ms": 16,
+     "framesOver1_5xContextInterval": 0
+    },
+    "readout": {
+     "tMs": 2876,
+     "sampleTier": 5,
+     "opticalBody": "target-source-unclamped",
+     "quality": "high",
+     "adaptiveSampler": true,
+     "materialCacheSize": 2,
+     "rendererTextures": 6,
+     "css3dMounted": 100,
+     "css3dVisible": 16,
+     "css3dTransformWrites": 16,
+     "introState": "done",
+     "backend": "webgpu",
+     "clipsNotDecodable": 0,
+     "videoTimes": [
+      2.716,
+      2.665,
+      2.621
+     ],
+     "heapMB": 21.6
+    },
+    "errors": 3
+   }
+  ],
+  "warm": [
+   {
+    "run": 1,
+    "settled": true,
+    "entryWallMs": 2741,
+    "entryWindowMs": 1599.5,
+    "entryFrames": {
+     "frames": 94,
+     "p50Ms": 16.7,
+     "p95Ms": 17.6,
+     "p99Ms": 49.9,
+     "longestMs": 49.9,
+     "framesOver16_7ms": 41,
+     "framesOver1_5xContextInterval": 1
+    },
+    "preReadyFrames": {
+     "frames": 18,
+     "p50Ms": 16.7,
+     "p95Ms": 49.9,
+     "p99Ms": 49.9,
+     "longestMs": 49.9,
+     "framesOver16_7ms": 9,
+     "framesOver1_5xContextInterval": 1
+    },
+    "visibleIntroFrames": {
+     "frames": 77,
+     "p50Ms": 16.7,
+     "p95Ms": 17.5,
+     "p99Ms": 17.6,
+     "longestMs": 17.6,
+     "framesOver16_7ms": 32,
+     "framesOver1_5xContextInterval": 0
+    },
+    "preReadyMs": 333.4,
+    "visibleIntroMs": 1266.1,
+    "postIntroIdle": {
+     "frames": 48,
+     "p50Ms": 16.7,
+     "p95Ms": 17.5,
+     "p99Ms": 17.6,
+     "longestMs": 17.6,
+     "framesOver16_7ms": 21,
+     "framesOver1_5xContextInterval": 0
+    },
+    "readout": {
+     "tMs": 2744,
+     "sampleTier": 5,
+     "opticalBody": "target-source-unclamped",
+     "quality": "high",
+     "adaptiveSampler": true,
+     "materialCacheSize": 2,
+     "rendererTextures": 6,
+     "css3dMounted": 100,
+     "css3dVisible": 16,
+     "css3dTransformWrites": 16,
+     "introState": "done",
+     "backend": "webgpu",
+     "clipsNotDecodable": 0,
+     "videoTimes": [
+      2.65,
+      2.602,
+      2.566
+     ],
+     "heapMB": 23.7
+    },
+    "errors": 3
+   },
+   {
+    "run": 2,
+    "settled": true,
+    "entryWallMs": 2737,
+    "entryWindowMs": 1583.4,
+    "entryFrames": {
+     "frames": 93,
+     "p50Ms": 16.7,
+     "p95Ms": 17.1,
+     "p99Ms": 50,
+     "longestMs": 50,
+     "framesOver16_7ms": 40,
+     "framesOver1_5xContextInterval": 1
+    },
+    "preReadyFrames": {
+     "frames": 17,
+     "p50Ms": 16.7,
+     "p95Ms": 50,
+     "p99Ms": 50,
+     "longestMs": 50,
+     "framesOver16_7ms": 7,
+     "framesOver1_5xContextInterval": 1
+    },
+    "visibleIntroFrames": {
+     "frames": 77,
+     "p50Ms": 16.7,
+     "p95Ms": 17.1,
+     "p99Ms": 17.6,
+     "longestMs": 17.6,
+     "framesOver16_7ms": 33,
+     "framesOver1_5xContextInterval": 0
+    },
+    "preReadyMs": 316.8,
+    "visibleIntroMs": 1266.6,
+    "postIntroIdle": {
+     "frames": 48,
+     "p50Ms": 16.7,
+     "p95Ms": 17,
+     "p99Ms": 17.1,
+     "longestMs": 17.1,
+     "framesOver16_7ms": 20,
+     "framesOver1_5xContextInterval": 0
+    },
+    "readout": {
+     "tMs": 2743,
+     "sampleTier": 5,
+     "opticalBody": "target-source-unclamped",
+     "quality": "high",
+     "adaptiveSampler": true,
+     "materialCacheSize": 2,
+     "rendererTextures": 6,
+     "css3dMounted": 100,
+     "css3dVisible": 16,
+     "css3dTransformWrites": 16,
+     "introState": "done",
+     "backend": "webgpu",
+     "clipsNotDecodable": 0,
+     "videoTimes": [
+      2.653,
+      2.613,
+      2.574
+     ],
+     "heapMB": 23.5
+    },
+    "errors": 3
+   },
+   {
+    "run": 3,
+    "settled": true,
+    "entryWallMs": 2739,
+    "entryWindowMs": 1583.5,
+    "entryFrames": {
+     "frames": 93,
+     "p50Ms": 16.7,
+     "p95Ms": 17.5,
+     "p99Ms": 49.9,
+     "longestMs": 49.9,
+     "framesOver16_7ms": 45,
+     "framesOver1_5xContextInterval": 1
+    },
+    "preReadyFrames": {
+     "frames": 17,
+     "p50Ms": 16.8,
+     "p95Ms": 49.9,
+     "p99Ms": 49.9,
+     "longestMs": 49.9,
+     "framesOver16_7ms": 9,
+     "framesOver1_5xContextInterval": 1
+    },
+    "visibleIntroFrames": {
+     "frames": 77,
+     "p50Ms": 16.7,
+     "p95Ms": 17.5,
+     "p99Ms": 17.6,
+     "longestMs": 17.6,
+     "framesOver16_7ms": 36,
+     "framesOver1_5xContextInterval": 0
+    },
+    "preReadyMs": 316.4,
+    "visibleIntroMs": 1267.1,
+    "postIntroIdle": {
+     "frames": 49,
+     "p50Ms": 16.7,
+     "p95Ms": 16.9,
+     "p99Ms": 17.6,
+     "longestMs": 17.6,
+     "framesOver16_7ms": 17,
+     "framesOver1_5xContextInterval": 0
+    },
+    "readout": {
+     "tMs": 2745,
+     "sampleTier": 5,
+     "opticalBody": "target-source-unclamped",
+     "quality": "high",
+     "adaptiveSampler": true,
+     "materialCacheSize": 2,
+     "rendererTextures": 6,
+     "css3dMounted": 100,
+     "css3dVisible": 16,
+     "css3dTransformWrites": 16,
+     "introState": "done",
+     "backend": "webgpu",
+     "clipsNotDecodable": 0,
+     "videoTimes": [
+      2.652,
+      2.608,
+      2.58
+     ],
+     "heapMB": 23.4
+    },
+    "errors": 2
+   }
+  ]
+ },
+ "gestures": [
+  {
+   "name": "slow-drag",
+   "frames": 107,
+   "p50Ms": 16.7,
+   "p95Ms": 16.8,
+   "p99Ms": 17.2,
+   "longestMs": 17.8,
+   "framesOver16_7ms": 36,
+   "framesOver1_5xContextInterval": 0
+  },
+  {
+   "name": "fast-flick",
+   "frames": 115,
+   "p50Ms": 16.7,
+   "p95Ms": 16.9,
+   "p99Ms": 17.4,
+   "longestMs": 17.5,
+   "framesOver16_7ms": 25,
+   "framesOver1_5xContextInterval": 0
+  },
+  {
+   "name": "pointer-sweep",
+   "frames": 92,
+   "p50Ms": 16.7,
+   "p95Ms": 16.8,
+   "p99Ms": 17.1,
+   "longestMs": 17.1,
+   "framesOver16_7ms": 12,
+   "framesOver1_5xContextInterval": 0
+  }
+ ],
+ "orientation": {
+  "what": "portrait 390x844 -> landscape 844x390 -> portrait, on a touch context",
+  "frames": {
+   "frames": 313,
+   "p50Ms": 16.7,
+   "p95Ms": 17.5,
+   "p99Ms": 17.6,
+   "longestMs": 17.7,
+   "framesOver16_7ms": 98,
+   "framesOver1_5xContextInterval": 0
+  },
+  "portraitBefore": {
+   "tMs": 2869,
+   "sampleTier": 3,
+   "opticalBody": "target-source-unclamped",
+   "quality": "high",
+   "adaptiveSampler": true,
+   "materialCacheSize": 2,
+   "rendererTextures": 6,
+   "css3dMounted": 96,
+   "css3dVisible": 17,
+   "css3dTransformWrites": 17,
+   "introState": "done",
+   "backend": "webgpu",
+   "clipsNotDecodable": 0,
+   "videoTimes": [
+    2.716,
+    2.67,
+    2.628
+   ],
+   "heapMB": 20.4
+  },
+  "landscape": {
+   "tMs": 5481,
+   "sampleTier": 3,
+   "opticalBody": "target-source-unclamped",
+   "quality": "high",
+   "adaptiveSampler": true,
+   "materialCacheSize": 2,
+   "rendererTextures": 6,
+   "css3dMounted": 80,
+   "css3dVisible": 18,
+   "css3dTransformWrites": 18,
+   "introState": "done",
+   "backend": "webgpu",
+   "clipsNotDecodable": 0,
+   "videoTimes": [
+    0.322,
+    0.28,
+    0.235
+   ],
+   "heapMB": 19.8
+  },
+  "portraitAfter": {
+   "tMs": 8097,
+   "sampleTier": 3,
+   "opticalBody": "target-source-unclamped",
+   "quality": "high",
+   "adaptiveSampler": true,
+   "materialCacheSize": 2,
+   "rendererTextures": 6,
+   "css3dMounted": 96,
+   "css3dVisible": 17,
+   "css3dTransformWrites": 17,
+   "introState": "done",
+   "backend": "webgpu",
+   "clipsNotDecodable": 0,
+   "videoTimes": [
+    2.938,
+    2.896,
+    2.851
+   ],
+   "heapMB": 20.3
+  },
+  "errors": 1
+ },
+ "soak": {
+  "minutes": 5,
+  "wallMs": 300212,
+  "frames": {
+   "frames": 18010,
+   "p50Ms": 16.7,
+   "p95Ms": 17.5,
+   "p99Ms": 17.6,
+   "longestMs": 17.8,
+   "framesOver16_7ms": 7357,
+   "framesOver1_5xContextInterval": 0
+  },
+  "samples": 45,
+  "blackFrameProxy": {
+   "what": "SAMPLES on which at least one clip element was not decodable (readyState < 2 or videoWidth === 0). Not a pixel test.",
+   "hits": 0,
+   "of": 45
+  },
+  "videoAdvancing": true,
+  "videoTimesFirst": [
+   4.366,
+   4.324,
+   4.279
+  ],
+  "videoTimesLast": [
+   2.479,
+   2.478,
+   2.289
+  ],
+  "materialCacheSize": {
+   "first": 2,
+   "last": 2,
+   "max": 2
+  },
+  "css3dMounted": {
+   "first": 100,
+   "last": 100,
+   "distinct": [
+    100
+   ]
+  },
+  "css3dVisible": {
+   "first": 16,
+   "last": 15,
+   "min": 12,
+   "max": 17
+  },
+  "sampleTier": {
+   "distinct": [
+    5
+   ]
+  },
+  "quality": {
+   "distinct": [
+    "high"
+   ]
+  },
+  "heapMB": {
+   "first": 19.7,
+   "last": 31.7
+  },
+  "errors": 2
+ },
+ "errorPolicy": "console.error and pageerror are the §三 `console/page errors` count. requestfailed is recorded separately: a <video> element cancelling a partial range request reports net::ERR_ABORTED, which is normal media behaviour and not an error the page raised.",
+ "gestureReadout": {
+  "tMs": 7969,
+  "sampleTier": 5,
+  "opticalBody": "target-source-unclamped",
+  "quality": "high",
+  "adaptiveSampler": true,
+  "materialCacheSize": 2,
+  "rendererTextures": 6,
+  "css3dMounted": 100,
+  "css3dVisible": 16,
+  "css3dTransformWrites": 16,
+  "introState": "done",
+  "backend": "webgpu",
+  "clipsNotDecodable": 0,
+  "videoTimes": [
+   2.821,
+   2.777,
+   2.739
+  ],
+  "heapMB": 16.1
+ },
+ "contextMedianFrameMs": 16.7,
+ "consolePageErrors": [],
+ "requestFailures": [
+  {
+   "where": "cold-1",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "cold-1",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/pelican-ai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "cold-2",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "cold-2",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "cold-3",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "cold-3",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "cold-3",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/pelican-ai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "warm-1",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "warm-1",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "warm-1",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/pelican-ai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "warm-2",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "warm-2",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "warm-2",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/pelican-ai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "warm-3",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "warm-3",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "gestures",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "gestures",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "orientation",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "soak",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/cursor-niulai.mp4 net::ERR_ABORTED"
+  },
+  {
+   "where": "soak",
+   "kind": "requestfailed",
+   "text": "http://127.0.0.1:5294/clips/pelican-ai.mp4 net::ERR_ABORTED"
+  }
+ ],
+ "consolePageErrorCount": 0,
+ "requestFailureCount": 20
+}

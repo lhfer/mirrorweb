@@ -1,0 +1,75 @@
+diff --git a/scripts/v5/fe-package.py b/scripts/v5/fe-package.py
+index ddc557d..82d2cee 100644
+--- a/scripts/v5/fe-package.py
++++ b/scripts/v5/fe-package.py
+@@ -240,6 +240,23 @@ def main() -> int:
+     out = Path(args["out"]) if "out" in args else private_dir() / "v5-final-entry.zip"
+     crf = int(args.get("crf", 30))
+     captured = anchor("^v5-final-entry-card-lifecycle-code")
++    # Release Candidate §五 moves reviewHead to the branch tip. When this file
++    # was written the tip was a DRAFT inside its own amend cycle, so pointing at
++    # it would have recorded a sha about to be orphaned -- hence `reviewHead =
++    # captured`. That is no longer the situation: 8de671f is pushed, permanent
++    # and the ref the release brief names. It is still resolved by commit
++    # message, never by `git rev-parse HEAD`, for exactly the original reason.
++    review = anchor("^v5-final-entry-product-evidence")
++    # The claim that the branch tip renders the same page as the tree every
++    # pixel here was captured from is checked, not asserted. If anything under
++    # src/, config/, index.html or public/ moved between the two commits, the
++    # package would be describing a build it does not contain.
++    product_diff = git("diff", "--stat", captured, review, "--",
++                       "src", "config", "index.html", "public")
++    if product_diff:
++        raise SystemExit(
++            "capturedAtHead and reviewHead do not render the same page; the "
++            f"package would be mislabelled:\n{product_diff}")
+ 
+     if STAGE.exists():
+         shutil.rmtree(STAGE)
+@@ -343,22 +360,35 @@ def main() -> int:
+                       "&status=1 for the live readout -- it is a QA surface and was "
+                       "off for every capture here except video 6.",
+         "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+-        "branch": git("rev-parse", "--abbrev-ref", "HEAD"),
++        # `--abbrev-ref` prints "HEAD" in the detached worktree this rebuild runs
++        # from, which names nothing. Report the branch that actually contains the
++        # two anchors instead.
++        "branch": next((b for b in git("branch", "--format=%(refname:short)",
++                                       "--contains", review).splitlines()
++                        if b and not b.startswith("(")), "(detached)"),
+         "capturedAtHead": captured,
+-        "reviewHead": captured,
++        "reviewHead": review,
+         "headSemantics": {
+             "capturedAtHead": "v5-final-entry-card-lifecycle-code -- the last commit "
+                               "that changes anything the page renders. Every still and "
+                               "recording here was taken from a build of this tree.",
+-            "reviewHead": "the same commit, and deliberately so. The only thing after "
+-                          "it is the evidence commit that carries this package's public "
+-                          "half, and it touches nothing under src/ -- so the rendered "
+-                          "product at the branch tip is byte-identical to the product "
+-                          "at capturedAtHead. Both are resolved by COMMIT MESSAGE, never "
+-                          "by `git rev-parse HEAD`: this file is regenerated inside the "
+-                          "evidence commit's own amend cycle, where HEAD is the draft "
+-                          "the amend is about to orphan.",
+-            "bothReachable": {"capturedAtHead": reachable(captured)},
++            "reviewHead": "v5-final-entry-product-evidence -- the accepted development "
++                          "HEAD, and the ref the Release Candidate brief names. It is "
++                          "one commit past capturedAtHead and touches nothing under "
++                          "src/ or config/, so the rendered product at the branch tip "
++                          "is byte-identical to the product every pixel here was taken "
++                          "from; that equality is asserted below rather than claimed. "
++                          "Both are resolved by COMMIT MESSAGE, never by `git rev-parse "
++                          "HEAD` -- this file is regenerated inside an amend cycle where "
++                          "HEAD can be a draft about to be orphaned.",
++            "bothReachable": {"capturedAtHead": reachable(captured),
++                              "reviewHead": reachable(review)},
++            "productTreeIdenticalBetweenThem": {
++                "what": "checked at package time, not asserted: `git diff --stat "
++                        "capturedAtHead reviewHead -- src config index.html public` "
++                        "must be empty or this package does not build.",
++                "diffWasEmpty": True,
++            },
+         },
+         "matchedContent": "every still and every Target/candidate video pair was "
+                           "captured with one locally generated media asset served to "
