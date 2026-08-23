@@ -1,0 +1,1845 @@
+import { AmbientLight, EquirectangularReflectionMapping, PerspectiveCamera, Vector3,
+  type DirectionalLight, type Texture } from "three/webgpu";
+import { HDRLoader } from "three/examples/jsm/loaders/HDRLoader.js";
+import {
+  CAMERA, GRID, TILE, compositionParams, compositionScale, compositionVersion, isPortrait,
+  isSourceExact,
+  landscapeRowOrigin, phaseModel, portraitLaw,
+  portraitVerticalModel, restOffset, verticalMode, verticalOverride,
+  type CompositionVersion, type LandscapeRowOrigin, type PhaseModel, type PortraitLaw,
+  type PortraitVerticalModel,
+  type QualityLevel, type VerticalMode,
+} from "../../config";
+import { rowOrigin } from "../../scene/RowPhase";
+import { sourceExactLayout, slotCode, type SourceExactLayoutFrame } from "../../layout/SourceExactLayout";
+import { catalogAt } from "../../content/catalog";
+import { readDebugMode, type DebugMode } from "../../debug/DebugMode";
+import { isFoundationLayout, readFoundationMode, type FoundationMode } from "../../debug/FoundationMode";
+import { FoundationOverlay } from "../../debug/FoundationOverlay";
+import { effectiveCellH } from "../../scene/GridCurvature";
+import { InputController } from "../../interaction/InputController";
+import { MotionController } from "../../interaction/MotionController";
+import { SourceExactIntro } from "../../interaction/SourceExactIntro";
+import ENTRY_CONTRACT from "../../../config/target-entry-source-v1.json";
+import { MOTION_CONTRACT, sourceExactDolly, sourceExactMaxZoomZ, sourceExactOrbit }
+  from "../../interaction/SourceExactMotion";
+import { AdaptiveQuality } from "../../quality/AdaptiveQuality";
+import { isMobileViewport } from "../../quality/DeviceProfile";
+import { RendererController } from "../../rendering/RendererController";
+import type { InfiniteGlassGrid } from "../../scene/InfiniteGlassGrid";
+import { LoadingOverlay } from "../../ui/LoadingOverlay";
+import { PageOverlay } from "../../ui/PageOverlay";
+import { TileLabelLayer } from "../../ui/TileLabelLayer";
+import { SourceExactLabelCulling } from "../../ui/SourceExactLabelCulling";
+import {
+  createPointerKeyLightV4,
+  updatePointerKeyLightV4,
+} from "../../materials/LiquidGlassMaterialV4";
+import {
+  V4_DEBUG_MODES, V4_OPTICS_CONFIG,
+  type V4BodyDiag, type V4BodyFloorMode, type V4DebugMode, type V4DispersionLaw,
+  isTargetSourceBody,
+  type V4EnvironmentMode,
+  type V4OpticalBody,
+  type V5BodyViewName,
+  type V4ReflectionSupport, type V4ShellMode,
+} from "../OpticsConfigV4";
+import { createStripLightEnvironmentV4 } from "../StripLightEnvironmentV4";
+import { InfiniteGlassGridV4 } from "./InfiniteGlassGridV4";
+import { NoToneMapping } from "three/webgpu";
+import { SceneColorPipelineV4 } from "./SceneColorPipelineV4";
+import { freezeMediaTime, readMediaState, type FreezeReport, type MediaSnapshot } from "../../debug/MediaFreeze";
+import { MEDIA_FIT_MODES, type MediaFitMode } from "../../content/MediaFit";
+
+const _ndc = new Vector3();
+
+export type GridAppV4Options = {
+  /** Host ids, so the lab page and the real page can share one implementation. */
+  viewportId?: string;
+  labelsId?: string;
+  loadingId?: string;
+  pageOverlayId?: string;
+  debugMode?: V4DebugMode;
+  shellMode?: V4ShellMode;
+  overscan?: number;
+  /** Dev/QA only. `layout` strips everything that is not geometry. */
+  foundation?: FoundationMode;
+  /** `v1` is the F2 candidate, kept reachable; `v2` is the F2.5 candidate. */
+  composition?: CompositionVersion;
+  vertical?: VerticalMode;
+  portraitLaw?: PortraitLaw;
+  /** F2.7. `rowOrigin` derives the rest phase; `aspect` is the F2.6 rollback. */
+  phaseModel?: PhaseModel;
+  /** F2.7 portrait-only vertical composition: v0 control, v1, v2. */
+  portraitVertical?: PortraitVerticalModel;
+  /** Diagnostic only, default off. See config.ts. */
+  landscapeRowOrigin?: LandscapeRowOrigin;
+  /** O2 lane switch (?dispersionLaw=); default from OpticsConfigV4. */
+  dispersionLaw?: V4DispersionLaw;
+  /** O3 reflection-support lane (?reflectionSupport=); default from OpticsConfigV4. */
+  reflectionSupport?: V4ReflectionSupport;
+  /** O4 body-floor diagnostic factors (?bodyDiag=ABCDEN); default all off. */
+  bodyDiag?: V4BodyDiag;
+  /** O4 product lane (?bodyFloorMode=); default from OpticsConfigV4. */
+  bodyFloorMode?: V4BodyFloorMode;
+  /** O5 product lane (?opticalBody=); default from OpticsConfigV4. */
+  opticalBody?: V4OpticalBody;
+  /** O5 candidate debug view (?bodyView=). */
+  bodyView?: V5BodyViewName;
+  /** O5R structural environment control (?environmentMode=). */
+  environmentMode?: V4EnvironmentMode;
+};
+
+/**
+ * The real page, rendered with V4 optics.
+ *
+ * Motion, input, curvature, pool size, catalog and CSS3D typography are the
+ * untouched V3 systems; this app only swaps the optical stack and the
+ * scene-color pipeline. V3 remains the default and is never loaded here.
+ */
+/**
+ * The Target's ready ladder, read from `config/target-entry-source-v1.json`.
+ * Named here so the frame loop below reads as prose rather than as literals.
+ */
+const ENTRY_ASSET_SHARE = ENTRY_CONTRACT.progress.assetShare;
+const ENTRY_COMPILE_START = 0.92;
+const ENTRY_COMPILE_DONE = 0.96;
+const ENTRY_WARM_FRAMES = ENTRY_CONTRACT.ready.warmFrames;
+const ENTRY_RAF_HOPS = ENTRY_CONTRACT.ready.rafHops;
+
+export class GridAppV4 {
+  readonly motion = new MotionController();
+  readonly renderer = new RendererController();
+  readonly grid = new InfiniteGlassGridV4();
+  readonly quality = new AdaptiveQuality("high");
+  readonly debugMode: DebugMode = readDebugMode();
+  private pipeline!: SceneColorPipelineV4;
+  private labels!: TileLabelLayer;
+  private loading!: LoadingOverlay;
+  private input!: InputController;
+  private pointerLight?: DirectionalLight;
+  /** O2 System B: the white studio equirect (byte-identical to the
+   *  Target's served env; provenance in public/hdri/PROVENANCE.md). */
+  private envHdr?: Texture;
+  /** The CSS3D transform camera: same orbit AND same velocity dolly as the render camera; drives the CSS3D transform. */
+  private css3dTransformCamera?: PerspectiveCamera;
+  /**
+   * The coverage camera: same lens, same pointer orbit, NO velocity dolly.
+   * The Target keeps a dedicated dolly-free camera whose ONLY job is the
+   * label coverage projection -- it renders nothing, transforms nothing and
+   * gates nothing else. Byte-anchored in
+   * `qa-v5/culling/target-culling-source.json` -> coverageCameraPose.
+   */
+  private sourceExactCoverageCamera?: PerspectiveCamera;
+  private readonly labelCulling = new SourceExactLabelCulling();
+  /**
+   * The cold-load entry. One spring on the grid gap ratio, nothing else.
+   *
+   * It is constructed in the "waiting" state, which holds the gap at 3, so
+   * every frame drawn between the grid being built and the page being ready --
+   * the compile frame and the five warm frames -- is drawn at the spread pose,
+   * behind the opaque loading overlay. That is what stops a one-frame flash of
+   * the final layout before the entry begins.
+   *
+   * On every path that is not source-exact it is finished immediately and the
+   * placement never sees it: the legacy compositions keep the layout and the
+   * 480 ms loader fade they were built with.
+   */
+  private readonly intro = new SourceExactIntro();
+  /** `performance.now()` at ready, i.e. at the first frame of the entry. */
+  private introStartedAt = 0;
+  /**
+   * QA-only labels.sync CPU probe. OFF by default so the product frame loop
+   * carries no timing calls; a perf harness turns it on for a measured run.
+   */
+  private labelSyncProbe = false;
+  private labelSyncTimes: number[] = [];
+  private environment?: ReturnType<typeof createStripLightEnvironmentV4>;
+  private raf = 0;
+  private lastT = 0;
+  private elapsed = 0;
+  private resizeTimer = 0;
+  /**
+   * The viewport the app is currently laid out for, as `[w, h, dpr]`; the
+   * equality guard reads it. DPR is part of the key because `renderer.resize()`
+   * re-resolves it (`resolveDpr` reads `window.devicePixelRatio`) and a window
+   * dragged between displays of different scale fires `resize` with an
+   * UNCHANGED CSS viewport and a changed ratio. A width/height-only guard would
+   * skip that and leave the backing store at the old resolution.
+   */
+  private appliedViewport: [number, number, number] | null = null;
+  /** QA readback: how many times the viewport was actually APPLIED. */
+  private viewportApplies = 0;
+  private visible = true;
+  private disposed = false;
+  private frameTimes: number[] = [];
+  private renderedFrames = 0;
+  private v4Debug: V4DebugMode;
+  private v4Shell: V4ShellMode;
+  private startedAt = 0;
+  readonly foundation: FoundationMode;
+  readonly composition: CompositionVersion;
+  readonly verticalMode: VerticalMode;
+  readonly portraitLaw: PortraitLaw;
+  readonly phaseModel: PhaseModel;
+  readonly portraitVertical: PortraitVerticalModel;
+  readonly landscapeRowOrigin: LandscapeRowOrigin;
+  /** True for ?composition=sourceExact. Nothing fitted runs on that path. */
+  get sourceExact(): boolean { return isSourceExact(this.composition); }
+  /** The one layout frame for this viewport; the renderer owns it. */
+  private get frame(): SourceExactLayoutFrame | undefined { return this.renderer.frame; }
+  private foundationOverlay?: FoundationOverlay;
+
+  constructor(private readonly options: GridAppV4Options = {}) {
+    this.v4Debug = options.debugMode ?? "beauty";
+    // O2 System B: the separate reflection shell is DISABLED in Beauty on
+    // the source-exact route (the Target has no shell; the white
+    // reflection lives in the body LERP). The shell survives as a QA
+    // control -- an explicit ?shell= or setShellMode restores it.
+    this.v4Shell = options.shellMode
+      ?? (isSourceExact(options.composition ?? compositionVersion())
+            ? "off" : "energy-controlled");
+    this.foundation = options.foundation ?? readFoundationMode();
+    this.composition = options.composition ?? compositionVersion();
+    this.verticalMode = options.vertical ?? verticalMode();
+    this.portraitLaw = options.portraitLaw ?? portraitLaw();
+    this.phaseModel = options.phaseModel ?? phaseModel();
+    this.portraitVertical = options.portraitVertical ?? portraitVerticalModel();
+    this.landscapeRowOrigin = options.landscapeRowOrigin ?? landscapeRowOrigin();
+    this.grid.composition = { version: this.composition, verticalMode: this.verticalMode,
+                              portraitLaw: this.portraitLaw,
+                              vertical: verticalOverride(window.innerWidth, window.innerHeight,
+                                                         this.composition, this.portraitVertical,
+                                                         this.landscapeRowOrigin) };
+  }
+
+  /**
+   * Re-resolve the portrait-only vertical override.
+   *
+   * It depends on the viewport, and placement does not see one, so it has to be
+   * refreshed whenever the viewport changes -- including across an orientation
+   * flip, where it appears or disappears entirely.
+   */
+  private syncVerticalOverride(): void {
+    this.grid.composition = {
+      ...this.grid.composition,
+      vertical: verticalOverride(window.innerWidth, window.innerHeight,
+                                 this.composition, this.portraitVertical, this.landscapeRowOrigin),
+    };
+  }
+
+  private get layoutOnly(): boolean {
+    return isFoundationLayout(this.foundation);
+  }
+
+  /**
+   * World offset the grid is placed at: the user's scroll plus the regime's
+   * rest offset. Keeping it in one place means recycling, projected quads and
+   * QA landmarks all agree about where the grid actually is.
+   */
+  private gridX(scrollX = this.motion.scrollX): number {
+    // Source-exact has NO rest offset. Its phase falls out of an even column
+    // count putting a seam on the centre line; adding a rest offset on top
+    // would shift the grid a second time.
+    //
+    // No sign conversion any more either. The composition round inverted
+    // scrollX here because the legacy model SUBTRACTS the drag while the
+    // Target ADDS it, and motion was frozen at the time. The source-exact
+    // model now carries the Target's own sign from the gesture onward, so the
+    // conversion would flip the drag direction back to wrong.
+    if (this.sourceExact) return scrollX;
+    return scrollX + restOffset(window.innerWidth, window.innerHeight, this.composition,
+                                this.verticalMode, this.phaseModel).x;
+  }
+
+  private gridY(scrollY = this.motion.scrollY): number {
+    if (this.sourceExact) return scrollY;
+    return scrollY + restOffset(window.innerWidth, window.innerHeight, this.composition,
+                                this.verticalMode, this.phaseModel).y;
+  }
+
+  async start(): Promise<void> {
+    const loadingHost = document.getElementById(this.options.loadingId ?? "loading-overlay");
+    const overlayHost = document.getElementById(this.options.pageOverlayId ?? "page-overlay");
+    this.loading = new LoadingOverlay(loadingHost!, this.sourceExact && !this.layoutOnly);
+    // Foundation mode drops the footer overlay and the CSS3D type layer: both
+    // sit on top of the cards and would contaminate a layout measurement.
+    if (overlayHost && !this.layoutOnly) new PageOverlay(overlayHost);
+    this.labels = new TileLabelLayer(document.getElementById(this.options.labelsId ?? "labels")!);
+    this.loading.setPercent(this.entryLadder(0.03));
+
+    this.renderer.composition = this.composition;
+    this.renderer.verticalMode = this.verticalMode;
+    this.renderer.portraitLaw = this.portraitLaw;
+    this.renderer.portraitVertical = this.portraitVertical;
+    const handle = await this.renderer.init(
+      document.getElementById(this.options.viewportId ?? "viewport")!,
+      false,
+    );
+    // Integrated Visual Sprint 1 §七: the Target's output stage is the r3f
+    // default ACESFilmic at the three.js default exposure 1.0 -- its bundle
+    // assigns toneMappingExposure nowhere outside three internals and passes
+    // no flat/linear flag. Our 1.05 predates the source work (day-one
+    // import; the pre-V4 reference spec left exposure "missing as a numeric
+    // value") and sits AFTER the card program, where every sealed in-program
+    // instrument was structurally blind to it. The candidate lane takes the
+    // Target's value. The control and sealed clamped lanes keep 1.05: their
+    // frozen identity gates compare pixels against captures rendered at
+    // 1.05, and those must stay exact.
+    if (this.options.opticalBody === "target-source-unclamped") {
+      handle.renderer.toneMappingExposure = 1.0;
+    }
+    this.loading.setPercent(this.entryLadder(0.12));
+
+    this.environment = createStripLightEnvironmentV4();
+    handle.scene.environment = this.environment;
+    const ambient = new AmbientLight(0xffffff, 0.18);
+    ambient.name = "MirrorWeb.V4.Ambient";
+    this.pointerLight = createPointerKeyLightV4();
+    handle.scene.add(ambient, this.pointerLight, this.pointerLight.target);
+
+    if (!this.layoutOnly) {
+      await this.grid.prepare(
+        (value) => this.loading.setPercent(this.entryLadder(value / 100)));
+      this.grid.reel?.unlock();
+    }
+
+    // O2 System B: the source-exact route awaits the studio environment
+    // BEFORE the material is built, so ready===true means the reflection
+    // is live (capture determinism). Loader output matches the Target's
+    // byte-anchored parameters: RGBE half-float, LinearSRGB, Linear
+    // filters, no mips, flipY -- HDRLoader's own defaults -- plus the
+    // equirect mapping assignment, which is the Target's ONLY processing.
+    // ?systemB=off builds the material WITHOUT the env texture: the System
+    // B uniforms are then never referenced and the generated shader is the
+    // pre-O2 one, byte for byte -- the structural control the lane
+    // equivalence gate compares against base commits.
+    const systemBOff =
+      new URLSearchParams(location.search).get("systemB") === "off";
+    if (!this.layoutOnly && this.sourceExact && !systemBOff) {
+      const hdr = await new HDRLoader()
+        .loadAsync(V4_OPTICS_CONFIG.material.systemB.assetPath);
+      hdr.mapping = EquirectangularReflectionMapping;
+      hdr.name = "MirrorWeb.V4.WhiteStudioEnvironment";
+      this.envHdr = hdr;
+    }
+
+    this.pipeline = new SceneColorPipelineV4(this.quality.level, this.options.overscan);
+    if (this.options.bodyDiag?.linearOutput) {
+      // O4 factor E. See SceneColorPipelineV4.glassToneMapping for why this
+      // is a pass setting here and a material flag in the Target.
+      this.pipeline.glassToneMapping = NoToneMapping;
+    }
+    if (isTargetSourceBody(this.options.opticalBody ?? "current")
+        && this.options.bodyView && this.options.bodyView !== "beauty") {
+      // QA ONLY, and only for the candidate's DEBUG views. A normal or an SDF
+      // read through ACES is not the value the shader produced -- O4 spent a
+      // finding on exactly that confusion, where a tone-mapped normal debug
+      // view read as 35.8% unit-length and looked like an invalid normal.
+      // Beauty is untouched: the candidate's product path keeps the same
+      // output transform the control has, because the Target's own
+      // `toneMapped:false` is equally inert under the node renderer.
+      this.pipeline.glassToneMapping = NoToneMapping;
+    }
+    this.applyPipelineSize();
+    // O5: tell the pipeline whether this lane needs the scene-colour pass at
+    // all. Set before build so the very first frame is already correct -- a
+    // one-frame flash of a pass that should not run would show up in the
+    // first-frame checks §十 asks for.
+    this.pipeline.skipSceneColorPass =
+      isTargetSourceBody(this.options.opticalBody ?? "current");
+    this.grid.build(
+      this.quality.level,
+      this.pipeline.sceneColor.texture,
+      this.v4Debug,
+      this.v4Shell,
+      this.layoutOnly,
+      this.frame,
+      {
+        envTexture: this.envHdr ?? null,
+        dispersionLaw: this.options.dispersionLaw,
+        reflectionSupport: this.options.reflectionSupport,
+        bodyDiag: this.options.bodyDiag,
+        bodyFloorMode: this.options.bodyFloorMode,
+        opticalBody: this.options.opticalBody,
+        bodyView: this.options.bodyView,
+        environmentMode: this.options.environmentMode,
+      },
+    );
+    if (this.frame) this.grid.setFrame(this.frame);
+    this.grid.setSceneUvScale(this.pipeline.sceneUvScale);
+    handle.scene.add(this.grid.root);
+
+    if (this.layoutOnly) {
+      this.motion.paused = true;
+      // `&annotate=0` renders the bare slabs, so a pixel detector reads card
+      // edges and gutters without the annotation strokes on top of them.
+      if (new URLSearchParams(location.search).get("annotate") !== "0") {
+        this.foundationOverlay = new FoundationOverlay(
+          document.getElementById(this.options.labelsId ?? "labels")!,
+        );
+        this.foundationOverlay.setSize(window.innerWidth, window.innerHeight);
+      }
+    } else {
+      // The type layer consumes the SAME layout frame the renderer, the grid
+      // and MediaFit consume. That is the whole plumbing fix: every card's
+      // label box is the card plane, so every container-query type size is
+      // measured against the card it is actually on.
+      this.labels.attach(this.gridAsV3(), this.debugMode, this.frame);
+      this.labels.setSize(window.innerWidth, window.innerHeight);
+    }
+    this.grid.update(this.gridX(0), this.gridY(0), this.intro.frameFor(this.frame));
+    this.applyPose();
+    this.syncLabels();
+
+    // Before the input controller is built: it decides at wire-up time whether
+    // to take pointer capture and whether to register a wheel listener, and
+    // both answers come from which motion model is running.
+    if (this.sourceExact) this.motion.enableSourceExact();
+    this.input = new InputController(handle.canvas, this.motion, () => this.grid.reel?.unlock());
+    this.bindWindow();
+    // The build above used the frame the renderer computed at init. Loading
+    // takes seconds, and a window resized during it fires its resize event
+    // before the listener above exists -- so seed the guard with the viewport
+    // that was actually built, then reconcile once. The guard makes that
+    // reconcile free when nothing moved, which is the usual case.
+    this.appliedViewport = this.frame
+      ? [this.frame.viewport[0], this.frame.viewport[1], window.devicePixelRatio || 1]
+      : [window.innerWidth, window.innerHeight, window.devicePixelRatio || 1];
+    this.syncViewport();
+    this.drawFrame();
+    await this.reachReady();
+    this.startedAt = performance.now();
+    this.lastT = this.startedAt;
+    this.tick(this.lastT);
+  }
+
+  /**
+   * The loading percentage, on the Target's ladder.
+   *
+   * The Target gives the ASSETS nine tenths of the bar -- each video's buffered
+   * fraction, meaned, times 0.9 -- and keeps the last tenth for the two stages
+   * that happen after the bytes have arrived and before anything is ready to
+   * look at: 0.92 entering the shader compile, 0.96 leaving it, and the five
+   * warm frames closing 0.96 to 1. Ours reported 8, then 22, then 24..84 from
+   * the reel, then a jump to 100, which spent most of the bar on the first
+   * third of the wait and none of it on the compile.
+   *
+   * `fraction` is 0..1 of the asset stage; the mapping is the Target's 0.9.
+   */
+  private entryLadder(fraction: number): number {
+    const f = Math.max(0, Math.min(1, fraction));
+    if (!this.sourceExact || this.layoutOnly) return Math.round(f * 100);
+    return f * 100 * ENTRY_ASSET_SHARE;
+  }
+
+  /** One animation frame, awaited. */
+  private nextFrame(): Promise<number> {
+    return new Promise((resolve) => requestAnimationFrame(resolve));
+  }
+
+  /**
+   * Everything between "the bytes are here" and "the entry may begin".
+   *
+   * Transcribed from the Target's `PF`, which is the component whose entire job
+   * this is:
+   *
+   *     useEffect(() => { (async () => {
+   *       b5(.92)
+   *       try { gl.compileAsync && await gl.compileAsync(scene, camera) } catch {}
+   *       phase = "warm"; b5(.96)
+   *     })() })
+   *     useFrame(() => { if (phase !== "warm") return
+   *       n += 1; b5(.96 + .04 * n / 5)
+   *       if (n < 5) return
+   *       phase = "done"; b5(1)
+   *       requestAnimationFrame(() => requestAnimationFrame(onReady)) })
+   *
+   * Why each piece is here rather than tidied away:
+   *
+   * - The compile is awaited so the first frame a viewer sees is not the frame
+   *   that compiles the glass program. Errors are swallowed exactly as the
+   *   Target swallows them: a renderer without `compileAsync` still reaches
+   *   ready, one warm frame later than it otherwise would.
+   * - The five warm frames are five real draws, at gap 3, behind the opaque
+   *   overlay. They exist to get the pipeline's caches and the first video
+   *   uploads through a full frame before the screen is handed over.
+   * - The two `requestAnimationFrame` hops are not padding. They are what puts
+   *   the loader's exit and the first frame of the entry in the same paint: the
+   *   Target reaches them from inside its own frame callback, and starting the
+   *   spring from there would begin the entry a frame before the overlay had
+   *   been told to leave.
+   *
+   * Legacy paths keep what they had: percent 100, and hide when the assets say
+   * they are ready.
+   */
+  private async reachReady(): Promise<void> {
+    if (!this.sourceExact || this.layoutOnly) {
+      this.intro.finish(performance.now());
+      this.loading.setPercent(100);
+      if (this.grid.getAssetState().ready) this.loading.hide();
+      return;
+    }
+    this.loading.setPercent(ENTRY_COMPILE_START * 100);
+    await this.compileScene();
+    this.loading.setPercent(ENTRY_COMPILE_DONE * 100);
+    for (let n = 1; n <= ENTRY_WARM_FRAMES; n += 1) {
+      await this.nextFrame();
+      if (this.disposed) return;
+      this.warmFrame();
+      this.loading.setPercent(
+        (ENTRY_COMPILE_DONE + (1 - ENTRY_COMPILE_DONE) * (n / ENTRY_WARM_FRAMES)) * 100);
+    }
+    for (let n = 0; n < ENTRY_RAF_HOPS; n += 1) {
+      await this.nextFrame();
+      if (this.disposed) return;
+    }
+    // Ready. The overlay begins its 1.15 s exit and stops taking pointer
+    // events on the same frame the gap spring starts, which is the Target's
+    // unlock point: the page is draggable while the cards are still arriving.
+    this.introStartedAt = performance.now();
+    this.intro.start(this.introStartedAt);
+    this.loading.hide();
+  }
+
+  /** `renderer.compileAsync`, with the Target's own indifference to failure. */
+  private async compileScene(): Promise<void> {
+    const handle = this.renderer.handle;
+    if (!handle) return;
+    const gl = handle.renderer as unknown as {
+      compileAsync?: (scene: unknown, camera: unknown) => Promise<unknown>;
+    };
+    if (typeof gl.compileAsync !== "function") return;
+    try {
+      await gl.compileAsync(handle.scene, handle.camera);
+    } catch {
+      // Same as the Target: a compile that will not pre-warm is not a reason
+      // to hold the page behind a loading screen.
+    }
+  }
+
+  /** One warm draw at the entry's held pose. Not a tick: nothing advances. */
+  private warmFrame(): void {
+    this.grid.update(this.gridX(0), this.gridY(0), this.intro.frameFor(this.frame));
+    this.applyPose();
+    this.syncLabels();
+    this.drawFrame();
+  }
+
+  /**
+   * CSS3D typography is deliberately the untouched V3 layer. It only reads
+   * `slots[n].group / i / j / slotIndex`, which the V4 pool provides with the
+   * same meaning.
+   */
+  private gridAsV3(): InfiniteGlassGrid {
+    return this.grid as unknown as InfiniteGlassGrid;
+  }
+
+  pause(): void {
+    // A paused page is a FIXED-STATE page, and an entry still running under it
+    // would make every pose a harness pins depend on how long that harness
+    // happened to take to get here. So pausing lands the entry at exact
+    // identity first. Product code never calls pause().
+    this.finishIntro();
+    this.motion.paused = true;
+    this.grid.reel?.pause();
+  }
+
+  /**
+   * QA only: end the cold-load entry now, at exact identity.
+   *
+   * The same reasoning as `pause`, for the two other calls that mean "put the
+   * page in precisely this state": `setOffset` and `reset`. There is NO query
+   * parameter and no product switch for this -- the shipped page always plays
+   * its entry, and the only way to skip it is a QA call that a shipped page
+   * never makes.
+   */
+  finishIntro(): void {
+    this.intro.finish(performance.now());
+  }
+
+  /** QA and the status readout: the live entry state. */
+  getIntroState(): Record<string, unknown> {
+    return {
+      ...this.intro.truth(performance.now()),
+      sourceExact: this.sourceExact,
+      startedAtMs: this.introStartedAt || null,
+      loaderPercentShown: this.loading ? this.loading.displayedPercent() : null,
+      // Optional-called: the mount census arrives with the CSS3D lifecycle
+      // change, and this file must compile without it.
+      css3dMounted: this.labels?.mountedCount?.() ?? null,
+    };
+  }
+
+  resume(): void {
+    this.motion.paused = false;
+    this.grid.reel?.resume();
+    this.lastT = performance.now();
+  }
+
+  setTime(seconds: number): void {
+    this.elapsed = seconds;
+    this.grid.reel?.seek(seconds);
+  }
+
+  /**
+   * QA only. Pins every clip to the same decoded frame and proves it stayed
+   * there. `setTime` cannot do this: the clips are autoplay+loop, so it only
+   * nudges a timeline that keeps running.
+   */
+  async setMediaTimeAndFreeze(seconds: number): Promise<FreezeReport> {
+    this.elapsed = seconds;
+    const videos = this.grid.reel?.videos ?? [];
+    return freezeMediaTime(videos, seconds);
+  }
+
+  /** QA only. Read-only proof that the freeze still holds at capture time. */
+  getMediaState(): MediaSnapshot[] {
+    return readMediaState(this.grid.reel?.videos ?? []);
+  }
+
+  /**
+   * QA only. Media-only capture: the media planes and the gutter, with the
+   * refraction body, the reflection shell and the CSS3D typography hidden.
+   * Two builds that render the same media at the same time on the same cell
+   * must produce identical pixels here, which is what makes a blind pair fair.
+   */
+  setRenderLayers(layers: { glass?: boolean; media?: boolean; labels?: boolean }): void {
+    if (layers.glass !== undefined) {
+      this.glassLayer = layers.glass;
+      this.grid.setGlassVisible(layers.glass);
+    }
+    if (layers.media !== undefined) {
+      this.mediaLayer = layers.media;
+      this.grid.setMediaVisible(layers.media);
+    }
+    if (layers.labels !== undefined) this.labels.setVisible(layers.labels);
+    this.renderOnce();
+  }
+
+  private glassLayer = true;
+  private mediaLayer = true;
+
+  /**
+   * QA only. What the render layers ARE, read off the scene.
+   *
+   * A capture that says "glass off" has to be able to show that the glass
+   * meshes were actually invisible when the pixels were taken, and which draw
+   * path produced them. Reporting the flags the setter just wrote would prove
+   * only that the setter ran.
+   */
+  getRenderLayerState(): Record<string, unknown> {
+    const active = this.grid.slots.filter((s) => s.active !== false);
+    return {
+      requested: { glass: this.glassLayer, media: this.mediaLayer,
+                   labels: this.labels ? this.labels.isVisible() : null },
+      actual: {
+        activeSlots: active.length,
+        glassMeshesVisible: active.filter((s) => s.glass.visible).length,
+        reflectionShellsVisible: active.filter((s) => s.shell?.visible).length,
+        mediaMeshesVisible: active.filter((s) => s.media?.visible).length,
+        labelLayerDisplay: this.labels ? (this.labels.isVisible() ? "block" : "none") : null,
+        labelElementsShown: this.labels ? this.labels.visibleCount() : null,
+      },
+      drawPath: this.layoutOnly
+        ? "foundation: scene straight to screen"
+        : this.glassLayer
+          ? "two-pass scene-colour pipeline (glass samples the scene colour target)"
+          : "direct scene render: the two-pass pipeline re-asserts glass-on every "
+            + "frame, so a glass-free frame cannot come out of it",
+      quality: this.grid.getPoolState().quality,
+      renderStamp: this.renderStamp,
+    };
+  }
+
+  setPointer(x: number, y: number): void {
+    this.motion.setPointer(x, y);
+    this.renderOnce();
+  }
+
+  /**
+   * QA only. Move the APPLIED pointer, not just its smoothing target, so a
+   * paused sweep actually changes the pose. `setPointer` keeps its documented
+   * behaviour; this is the fixed-state form.
+   */
+  jumpPointer(x: number, y: number): void {
+    this.motion.jumpPointer(x, y);
+    this.renderOnce();
+  }
+
+  setOffset(x: number, y: number): void {
+    // Through the controller, not into the field: on the source-exact path the
+    // scroll is a spring, and writing only the field would leave the spring
+    // pulling the page back to where it was on the very next frame.
+    this.finishIntro();
+    this.motion.setScroll(x, y);
+    this.renderOnce();
+  }
+
+  setVelocity(x: number, y: number): void {
+    this.motion.setReleaseVelocity(x, y);
+  }
+
+  /**
+   * QA only. With the adaptive sampler actually working, an idle headless page
+   * climbs straight back to `high` after any manual step, which makes a
+   * level-by-level invariance sweep impossible to hold still. Turning the
+   * sampler off is a harness capability; it changes no product behaviour and
+   * the adaptive path is proven separately, with it on.
+   */
+  setAdaptiveQuality(enabled: boolean): void {
+    this.adaptiveQuality = enabled;
+    this.renderOnce();
+  }
+
+  private adaptiveQuality = true;
+  /** Every level change the adaptive sampler made on its own, for evidence. */
+  private adaptiveChanges: Array<{ atSeconds: number; level: QualityLevel }> = [];
+
+  getAdaptiveState(): Record<string, unknown> {
+    return {
+      enabled: this.adaptiveQuality,
+      /** What the sampler believes. */
+      level: this.quality.level,
+      /** What the grid and the scene-colour pipeline are ACTUALLY running. */
+      appliedLevel: this.grid.getPoolState().quality,
+      changes: this.adaptiveChanges.slice(-20),
+      changeCount: this.adaptiveChanges.length,
+    };
+  }
+
+  setQuality(level: QualityLevel): void {
+    this.quality.level = level;
+    this.grid.setQuality(level);
+    this.pipeline.setQuality(level);
+    this.grid.setSceneUvScale(this.pipeline.sceneUvScale);
+    this.renderOnce();
+  }
+
+  setDpr(value: number): void {
+    this.renderer.setDpr(value);
+    this.applyPipelineSize();
+    this.labels.setSize(window.innerWidth, window.innerHeight);
+    this.renderOnce();
+  }
+
+  setDebugMode(mode: V4DebugMode): void {
+    if (!V4_DEBUG_MODES.includes(mode)) throw new Error(`Unknown V4 debug mode: ${mode}`);
+    this.v4Debug = mode;
+    this.grid.setDebugMode(mode);
+  }
+
+  getDebugMode(): V4DebugMode {
+    return this.v4Debug;
+  }
+
+  setShellMode(mode: V4ShellMode): void {
+    this.v4Shell = mode;
+    this.grid.setShellMode(mode);
+  }
+
+  /** QA only. `stretch` reproduces the pre-V5 squeeze for a before/after pair. */
+  setMediaFitMode(mode: MediaFitMode): void {
+    if (!MEDIA_FIT_MODES.includes(mode)) throw new Error(`Unknown media fit mode: ${mode}`);
+    this.grid.setMediaFitMode(mode);
+  }
+
+  /**
+   * QA only. Everything the motion gate needs, read off the live model.
+   *
+   * `renderCamera` and `css3dTransformCamera` are reported separately on purpose: the
+   * Target dollies BOTH, so `camerasSeparated` must read false at every moment
+   * and a regression that un-dollied the label camera could not pass quietly.
+   */
+  getMotionTruth(): Record<string, unknown> {
+    const handle = this.renderer.handle;
+    const frame = this.frame;
+    const label = frame ? this.css3dTransformCamera : undefined;
+    return {
+      sourceExact: this.motion.sourceExact,
+      contract: this.motion.sourceExact ? MOTION_CONTRACT.motionVersion : "legacy MOTION",
+      takesPointerCapture: this.motion.dragSurfaceTakesPointerCapture,
+      wheelListenerRegistered: this.input ? this.input.wheelListenerRegistered : null,
+      scrollX: this.motion.scrollX,
+      scrollY: this.motion.scrollY,
+      scrollTargetX: this.motion.scrollTargetX,
+      scrollTargetY: this.motion.scrollTargetY,
+      velocityX: this.motion.velocityX,
+      velocityY: this.motion.velocityY,
+      magnitude: this.motion.magnitude,
+      dragging: this.motion.dragging,
+      gestureStarted: this.motion.gestureStarted,
+      pointerX: this.motion.pointerX,
+      pointerY: this.motion.pointerY,
+      pointerTargetX: this.motion.pointerTargetX,
+      pointerTargetY: this.motion.pointerTargetY,
+      rotX: this.motion.rotX,
+      rotY: this.motion.rotY,
+      lightX: this.motion.lightX,
+      lightY: this.motion.lightY,
+      lightWorld: this.pointerLight
+        ? [this.pointerLight.position.x, this.pointerLight.position.y,
+           this.pointerLight.position.z]
+        : null,
+      dollyZ: frame ? sourceExactDolly(this.motion.magnitude, sourceExactMaxZoomZ(frame.perspective)) : 0,
+      // Scheduling readbacks. Which frame the model has reached, which frame a
+      // release was committed on and with what velocity -- so a replay can be
+      // checked against the frame the engine actually did the work on instead
+      // of against a frame inferred from a curve.
+      motionSteps: this.motion.motionSteps,
+      releaseVelocityX: this.motion.releaseVelocityX,
+      releaseVelocityY: this.motion.releaseVelocityY,
+      lastReleaseStep: this.motion.lastReleaseStep,
+      pendingReleaseCount: this.motion.pendingReleaseCount,
+      // Which of the magnitude MotionValue's two writers writes last in a
+      // frame, exposed so evidence records the order that was actually
+      // running rather than the order a document says should be.
+      magnitudeWriterOrder: this.motion.magnitudeWriterOrder,
+      releaseRecords: this.motion.releaseRecords,
+      maxZoomZ: frame ? sourceExactMaxZoomZ(frame.perspective) : null,
+      renderCamera: handle
+        ? [handle.camera.position.x, handle.camera.position.y, handle.camera.position.z]
+        : null,
+      css3dTransformCamera: label
+        ? [label.position.x, label.position.y, label.position.z] : null,
+      // The same three numbers under the name they were published as before
+      // this round. `labelCamera` was a misnomer -- the camera drives the CSS3D
+      // transform, the projection and the culling, and "label" named only the
+      // first thing that happened to use it -- but T1's depth-clipping evidence
+      // reads this key, and an evidence script that stops reproducing is a
+      // break rather than a rename. Kept as an alias, marked as one.
+      labelCamera: label ? [label.position.x, label.position.y, label.position.z] : null,
+      labelCameraIsAliasOf: "css3dTransformCamera",
+      // Kept as a readback: the Target's CSS3D camera carries the dolly, so
+      // this must be false at every moment. It is the thing that would go
+      // wrong silently if the label camera were ever un-dollied again.
+      camerasSeparated: !!(handle && label)
+        && Math.abs(handle.camera.position.z - label.position.z) > 1e-9,
+      cameraDistance: handle
+        ? Math.hypot(handle.camera.position.x, handle.camera.position.y,
+                     handle.camera.position.z)
+        : null,
+      gridX: this.gridX(),
+      gridY: this.gridY(),
+      renderStamp: this.renderStamp,
+    };
+  }
+
+  /** QA only. Label boxes and projected rects, for container alignment. */
+  getLabelTruth(): Record<string, unknown> {
+    if (!this.labels || this.layoutOnly) return { sourceExact: false, slots: [] };
+    return this.labels.getLabelTruth();
+  }
+
+  /** QA only. Per-clip crop numbers behind the current fit. */
+  getMediaFits() {
+    return this.grid.getMediaFits();
+  }
+
+  reset(): void {
+    this.finishIntro();
+    this.motion.reset();
+    this.elapsed = 0;
+    this.renderOnce();
+  }
+
+  getState(): Record<string, unknown> {
+    if (!this.renderer.handle) return { ready: false, landmarks: [] };
+    this.applyPose();
+    const { camera } = this.renderer.handle;
+    this.grid.root.updateWorldMatrix(true, true);
+    const landmarks = this.grid.slots.map((slot) => {
+      slot.group.getWorldPosition(_ndc);
+      _ndc.project(camera);
+      return {
+        i: slot.i,
+        j: slot.j,
+        slotIndex: slot.slotIndex,
+        title: `${slot.i},${slot.j}`,
+        nx: (_ndc.x + 1) * 0.5,
+        ny: (1 - _ndc.y) * 0.5,
+      };
+    });
+    return {
+      ready: true,
+      // The cold-load entry, so a harness can wait for it rather than race it.
+      // `introDone` is true on every path that has no entry, which is every
+      // path but source-exact, so a wait on it is safe everywhere.
+      introState: this.intro.state,
+      introProgress: this.intro.progress,
+      introDone: this.intro.done,
+      optics: "v4",
+      backend: this.renderer.handle.backend,
+      quality: this.quality.level,
+      debug: this.debugMode,
+      v4Debug: this.v4Debug,
+      v4Shell: this.v4Shell,
+      milestone: 4,
+      glass: "v4-volume",
+      samplesScene: true,
+      normalPathDirectMedia: false,
+      elapsed: this.elapsed,
+      scrollX: this.motion.scrollX,
+      scrollY: this.motion.scrollY,
+      velocityX: this.motion.velocityX,
+      velocityY: this.motion.velocityY,
+      dragging: this.motion.dragging,
+      pointerX: this.motion.pointerX,
+      pointerY: this.motion.pointerY,
+      pointerTargetX: this.motion.pointerTargetX,
+      pointerTargetY: this.motion.pointerTargetY,
+      rotX: this.motion.rotX,
+      rotY: this.motion.rotY,
+      camX: this.motion.camX,
+      camY: this.motion.camY,
+      lightX: this.motion.lightX,
+      lightY: this.motion.lightY,
+      tile: TILE,
+      grid: GRID,
+      compositionScale: this.renderer.compositionScale,
+      landmarks,
+    };
+  }
+
+  /**
+   * Projected card rectangles in normalized screen space.
+   *
+   * The Round 1 pixel gate needs to know exactly where a card's interior and
+   * its rim land on screen; deriving that from landmark centres alone would be
+   * guesswork on a curved, tilted grid.
+   */
+  getCardQuads(): Array<{ i: number; j: number; slotIndex: number; quad: number[][] }> {
+    const handle = this.renderer.handle;
+    if (!handle) return [];
+    this.applyPose();
+    this.grid.root.updateWorldMatrix(true, true);
+    // Half-extents come from the layout frame on the source-exact path, because
+    // the card's size is a per-viewport fact there and the slot group carries
+    // position and orientation only.
+    const frame = this.frame;
+    const halfWidth = (frame ? frame.planeWidth : TILE.width) * 0.5;
+    const halfHeight = (frame ? frame.planeHeight : TILE.height) * 0.5;
+    // Corners are taken on the card MID-PLANE (local z = 0), not the front
+    // face. That is the plane whose outline a pixel detector actually reads off
+    // a rendered card, and the plane the V5 layout fitter models, so quads,
+    // detector and fitter all speak about the same rectangle. Projecting the
+    // front face instead inflated every quad by thickness/2 -> ~2.1%.
+    const corners: Array<[number, number]> = [
+      [-halfWidth, halfHeight],
+      [halfWidth, halfHeight],
+      [halfWidth, -halfHeight],
+      [-halfWidth, -halfHeight],
+    ];
+    const slots = this.sourceExact
+      ? this.grid.slots.slice(0, this.grid.activeSlotCount)
+      : this.grid.slots;
+    return slots.map((slot) => ({
+      i: slot.i,
+      j: slot.j,
+      slotIndex: slot.slotIndex,
+      quad: corners.map(([x, y]) => {
+        _ndc.set(x, y, 0);
+        slot.group.localToWorld(_ndc);
+        _ndc.project(handle.camera);
+        return [(_ndc.x + 1) * 0.5, (1 - _ndc.y) * 0.5];
+      }),
+    }));
+  }
+
+  /**
+   * QA only. Card mid-plane screen rects, in PIXELS, through the LABEL camera.
+   *
+   * Deliberately not `getCardQuads`: that one returns normalised coordinates,
+   * and a label rect is measured in pixels. Both cameras carry the same
+   * velocity dolly, so neither projection is an "un-dollied" one. The
+   * invariant worth gating is label-to-card-plane through the camera the label
+   * layer itself uses, so this projects through exactly that one.
+   */
+  /**
+   * O5R QA-only: the live matrices a CPU replay of the Target's refraction and
+   * silhouette needs.
+   *
+   * §六 and §八 require the Target side to be replayed through the LIVE layout
+   * frame, card matrix and camera. Our frozen frame reproduces the Target's L6
+   * exactly at every O5 viewport (qa-v5/optics-o5/o5-architecture.json,
+   * layoutReproducesL6), which is what makes one set of matrices valid for
+   * both -- so the replay is driven from here rather than from a second model
+   * of the layout, whose disagreements with the engine would be
+   * indistinguishable from optical differences.
+   */
+  getCardBodyTruth(): Record<string, unknown> {
+    const handle = this.renderer.handle;
+    const geometry = this.grid.getCardBodyGeometry();
+    if (!handle) return { ...geometry, camera: null };
+    this.applyPose();
+    this.grid.root.updateWorldMatrix(true, true);
+    const camera = handle.camera;
+    camera.updateMatrixWorld(true);
+    return {
+      ...geometry,
+      viewportPx: [window.innerWidth, window.innerHeight],
+      devicePixelRatio: window.devicePixelRatio,
+      camera: {
+        type: camera.type,
+        projectionMatrix: camera.projectionMatrix.toArray(),
+        matrixWorldInverse: camera.matrixWorldInverse.toArray(),
+        position: camera.position.toArray(),
+      },
+    };
+  }
+
+  getCardPlaneRects(): Array<{ slotIndex: number; rectPx: number[] }> {
+    const handle = this.renderer.handle;
+    const frame = this.frame;
+    const halfWidth = frame ? frame.planeWidth / 2 : TILE.width / 2;
+    const halfHeight = frame ? frame.planeHeight / 2 : TILE.height / 2;
+    const camera = this.poseCamera();
+    const w = window.innerWidth, h = window.innerHeight;
+    const slots = this.sourceExact
+      ? this.grid.slots.slice(0, this.grid.activeSlotCount)
+      : this.grid.slots;
+    if (!handle) return [];
+    return slots.map((slot) => {
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      for (const [x, y] of [[-halfWidth, halfHeight], [halfWidth, halfHeight],
+                            [halfWidth, -halfHeight], [-halfWidth, -halfHeight]]) {
+        _ndc.set(x, y, 0);
+        slot.group.localToWorld(_ndc);
+        _ndc.project(camera);
+        const px = (_ndc.x + 1) * 0.5 * w;
+        const py = (1 - _ndc.y) * 0.5 * h;
+        minX = Math.min(minX, px); maxX = Math.max(maxX, px);
+        minY = Math.min(minY, py); maxY = Math.max(maxY, py);
+      }
+      return { slotIndex: slot.slotIndex, rectPx: [minX, minY, maxX - minX, maxY - minY] };
+    });
+  }
+
+  /**
+   * Per-slot engine truth on the source-exact path.
+   *
+   * World position and orientation are read back off the live object matrices,
+   * not recomputed from the model -- otherwise the source-contract gate would
+   * be comparing the model with itself. Projected corners come from the live
+   * camera the same way.
+   */
+  getSourceExactSlots(): Array<Record<string, unknown>> {
+    const handle = this.renderer.handle;
+    const frame = this.frame;
+    if (!handle || !frame) return [];
+    this.applyPose();
+    this.grid.root.updateWorldMatrix(true, true);
+    const halfW = frame.planeWidth * 0.5;
+    const halfH = frame.planeHeight * 0.5;
+    const corners: Array<[number, number]> = [
+      [-halfW, halfH], [halfW, halfH], [halfW, -halfH], [-halfW, -halfH],
+    ];
+    const out: Array<Record<string, unknown>> = [];
+    for (let n = 0; n < this.grid.activeSlotCount; n += 1) {
+      const slot = this.grid.slots[n];
+      const pos = new Vector3();
+      slot.group.getWorldPosition(pos);
+      // The card's normal is its local +Z taken to world; that is exactly the
+      // quantity the contract's quaternion is defined to produce.
+      const normal = new Vector3(0, 0, 1).applyQuaternion(slot.group.quaternion).normalize();
+      out.push({
+        slotIndex: slot.slotIndex,
+        code: slot.code,
+        poolCol: slot.i,
+        poolRow: slot.j,
+        world: [pos.x, pos.y, pos.z],
+        normal: [normal.x, normal.y, normal.z],
+        quaternion: [slot.group.quaternion.x, slot.group.quaternion.y,
+                     slot.group.quaternion.z, slot.group.quaternion.w],
+        cornersPx: corners.map(([x, y]) => {
+          const v = new Vector3(x, y, 0);
+          slot.group.localToWorld(v);
+          v.project(handle.camera);
+          return [(v.x + 1) * 0.5 * window.innerWidth, (1 - v.y) * 0.5 * window.innerHeight];
+        }),
+      });
+    }
+    return out;
+  }
+
+  /**
+   * QA only. The real glass mesh, measured -- not the frame that produced it.
+   *
+   * `getSourceExactSlots` projects the LAYOUT FRAME's half-extents, so it
+   * reports what the card was asked to be. A quality step rebuilds the glass
+   * geometry, and the question there is what the card actually became: this
+   * reads the geometry's own bounding box, takes its corners through the mesh's
+   * world matrix and projects those.
+   */
+  getGlassMeshTruth(): Record<string, unknown> {
+    const handle = this.renderer.handle;
+    const truth = this.grid.getGlassGeometryTruth();
+    if (!handle) return { ...truth, slots: [] };
+    this.applyPose();
+    this.grid.root.updateWorldMatrix(true, true);
+    const [minX, minY] = truth.boundingBoxLocal.min;
+    const [maxX, maxY] = truth.boundingBoxLocal.max;
+    const local: Array<[number, number]> = [
+      [minX, maxY], [maxX, maxY], [maxX, minY], [minX, minY],
+    ];
+    const slots: Array<Record<string, unknown>> = [];
+    const count = this.sourceExact ? this.grid.activeSlotCount : this.grid.slots.length;
+    for (let n = 0; n < count; n += 1) {
+      const mesh = this.grid.slots[n].glass;
+      const cornersPx = local.map(([x, y]) => {
+        const v = new Vector3(x, y, 0);
+        mesh.localToWorld(v);
+        v.project(handle.camera);
+        return [(v.x + 1) * 0.5 * window.innerWidth, (1 - v.y) * 0.5 * window.innerHeight];
+      });
+      slots.push({ slotIndex: this.grid.slots[n].slotIndex, cornersPx });
+    }
+    return { ...truth, slots };
+  }
+
+  /** V4-specific evidence for the Round 1 engineering gate. */
+  getV4State(): Record<string, unknown> {
+    const asset = this.grid.getAssetState();
+    return {
+      optics: "v4",
+      version: V4_OPTICS_CONFIG.version,
+      foundation: this.foundation,
+      compositionScale: this.renderer.compositionScale,
+      viewZoom: this.renderer.viewZoom,
+      viewport: [window.innerWidth, window.innerHeight],
+      composition: this.composition,
+      verticalMode: this.verticalMode,
+      portraitLaw: this.portraitLaw,
+      phaseModel: this.phaseModel,
+      sourceExact: this.sourceExact,
+      sourceExactFrame: this.frame ?? null,
+      // How many times the viewport was APPLIED, not how many resize events
+      // arrived. Before the bounds-equality guard those were the same number
+      // times two: every resize event applied once immediately and once more
+      // 80 ms later, whether or not anything had changed.
+      resizeScheduling: {
+        appliedViewport: this.appliedViewport,
+        applies: this.viewportApplies,
+      },
+      activeSlotCount: this.sourceExact ? this.grid.activeSlotCount : null,
+      slotIdentity: this.sourceExact ? this.slotIdentity() : null,
+      portraitVertical: this.portraitVertical,
+      landscapeRowOrigin: this.landscapeRowOrigin,
+      effectiveCellH: effectiveCellH(this.grid.composition),
+      rowOrigin: rowOrigin(window.innerWidth, window.innerHeight, this.motion.scrollY,
+                           effectiveCellH(this.grid.composition)),
+      catalogRowAtCentre: this.catalogRowAtCentre(),
+      // Engine-side scroll, so a recording can log where the grid ACTUALLY is
+      // rather than the offset it asked for.
+      scrollX: this.motion.scrollX,
+      scrollY: this.motion.scrollY,
+      gridX: this.gridX(),
+      gridY: this.gridY(),
+      ...this.runtimeTruth(),
+      restOffset: restOffset(window.innerWidth, window.innerHeight, this.composition,
+                             this.verticalMode, this.phaseModel),
+      route: location.pathname,
+      normalPathDirectMedia: false,
+      v3Preserved: true,
+      sceneColor: this.pipeline.describe(),
+      debug: this.v4Debug,
+      shell: this.v4Shell,
+      pool: this.grid.getPoolState(),
+      asset,
+      renderedFrames: this.renderedFrames,
+      videoFrames: asset.videoFrames,
+      elapsedSeconds: this.startedAt ? (performance.now() - this.startedAt) / 1000 : 0,
+      mobileViewport: isMobileViewport(),
+      dpr: this.renderer.handle?.renderer.getPixelRatio() ?? 1,
+    };
+  }
+
+  /**
+   * What the RUNTIME is actually doing, as opposed to what config says it
+   * should. `scaleDerivedFromActualCameraProjection` is measured by projecting
+   * a known world segment through the live camera, so it cannot agree with the
+   * config function by construction -- which is exactly the failure it exists
+   * to catch.
+   */
+  /**
+   * Which catalog row the viewport centre is looking at.
+   *
+   * Kept separate from the geometry row index and from the pool's recycling
+   * origin on purpose: aligning grey slabs while the catalog silently steps a
+   * row is exactly the failure this reports. `restY0 = -cellH/2` puts row j = 1
+   * immediately below the centre, so that is the row named here.
+   */
+  private catalogRowAtCentre(): Record<string, unknown> {
+    const composition = this.grid.composition;
+    const cellH = effectiveCellH(composition);
+    const restY0 = composition.version === "v2"
+      ? (composition.vertical?.restY0
+         ?? compositionParams(composition.verticalMode, composition.portraitLaw).restY0)
+      : GRID.restY0;
+    // Row v = j * cellH + restY0 - scrollY; the row just below the viewport
+    // centre is the smallest j whose v is not negative.
+    const j = Math.ceil((this.gridY() - restY0) / cellH);
+    return {
+      geometryRowIndex: j,
+      rowAboveCentre: j - 1,
+      recyclingOriginJ: Math.round(this.gridY() / cellH),
+      restY0,
+      codes: [-1, 0, 1].map((di) => catalogAt(di, j).code),
+    };
+  }
+
+  /**
+   * Pool identity: what the source-exact path guarantees about its slots.
+   *
+   * ILG code is slotIndex + 1 and is bound to the SLOT, so it survives wrapping
+   * and every resize -- the Target's own rule. Reported as data; no typography
+   * parameter changes this stage.
+   */
+  private slotIdentity(): Record<string, unknown> {
+    const active = this.grid.slots.slice(0, this.grid.activeSlotCount);
+    return {
+      activeSlotCount: active.length,
+      poolCapacity: this.grid.slots.length,
+      codesAreSlotIndexPlusOne: active.every((s) => s.code === slotCode(s.slotIndex)),
+      firstCodes: active.slice(0, 6).map((s) => s.code),
+      lastCode: active.length ? active[active.length - 1].code : null,
+      allActiveVisibleFlagSet: active.every((s) => s.active === true),
+      inactiveHidden: this.grid.slots.slice(this.grid.activeSlotCount)
+        .every((s) => s.active === false && s.group.visible === false),
+    };
+  }
+
+  private runtimeTruth(): Record<string, unknown> {
+    const handle = this.renderer.handle;
+    const requested = this.portraitLaw;
+    const rendererLaw = this.renderer.portraitLaw;
+    const gridLaw = this.grid.composition.portraitLaw ?? null;
+    const frame = this.frame;
+    const frameScaleTarget = frame ? 1 : null;
+    let derived: number | null = null;
+    let derivedY: number | null = null;
+    let fov: number | null = null;
+    let focalPx: number | null = null;
+    if (handle) {
+      const camera = handle.camera;
+      fov = camera.fov;
+      focalPx = (window.innerHeight / 2) / Math.tan((camera.fov * Math.PI) / 360);
+      // Symmetric, short probes about the origin. A 0..100 segment measures a
+      // secant, and with CAMERA.y = 8 the far end of a VERTICAL secant sits
+      // measurably closer to the camera than the near end -- that alone showed
+      // up as 7.4e-4 on the Y axis, which is pitch, not a projection error.
+      // A short segment centred on the origin measures the local scale instead.
+      const xm = new Vector3(-1, 0, 0).project(camera);
+      const xp = new Vector3(1, 0, 0).project(camera);
+      derived = ((xp.x - xm.x) * 0.5 * window.innerWidth) / 2;
+      // The anamorphic portrait scale lives in the projection, so the only
+      // honest proof it is running is to project a VERTICAL world segment
+      // through the live camera and measure what comes out.
+      const ym = new Vector3(0, -1, 0).project(camera);
+      const yp = new Vector3(0, 1, 0).project(camera);
+      derivedY = ((yp.y - ym.y) * 0.5 * window.innerHeight) / 2;
+    }
+    const reported = this.renderer.compositionScale;
+    // On the source-exact path there is no fitted law to propagate. What has to
+    // be true instead is that the camera the renderer built is the one the
+    // contract specifies, and that one world unit is one CSS pixel at z = 0.
+    const lawsAgree = frame
+      ? true
+      : requested === rendererLaw && requested === gridLaw;
+    // Tolerance, not slop. The config scale is focal / perspectivePx, which
+    // treats the camera as unpitched; the live projection measures along the
+    // real view axis, and CAMERA.y = 8 makes that axis 1000.032 long rather
+    // than 1000. That is a fixed 3.2e-5 relative difference by construction.
+    // Source-exact: the camera stands at the focal distance on the axis, so a
+    // world unit projects to exactly one CSS pixel at z = 0. That is the whole
+    // claim, and it is measured through the live camera rather than asserted.
+    const scaleAgrees = derived !== null
+      && Math.abs(derived - (frameScaleTarget ?? reported)) <= 1e-4 * Math.max(1, reported);
+    const k = this.renderer.verticalScaleY;
+    const expectedY = (frameScaleTarget ?? reported) * k;
+    const verticalAgrees = derivedY !== null
+      && Math.abs(derivedY - expectedY) <= 1e-4 * Math.max(1, expectedY);
+    // Landscape must be untouched by the portrait model, at every model.
+    const landscapeUntouched = isPortrait(window.innerWidth, window.innerHeight) || k === 1;
+    return {
+      requestedPortraitLaw: requested,
+      rendererPortraitLaw: rendererLaw,
+      gridPortraitLaw: gridLaw,
+      effectivePerspectivePx: focalPx,
+      effectiveFov: fov,
+      reportedCompositionScale: reported,
+      scaleDerivedFromActualCameraProjection: derived,
+      verticalScaleDerivedFromActualCameraProjection: derivedY,
+      reportedVerticalScaleY: k,
+      expectedVerticalScreenScale: expectedY,
+      sourceExactCamera: frame ? {
+        expectedPerspective: frame.perspective,
+        actualCameraZ: handle ? handle.camera.position.z : null,
+        actualFovDeg: fov,
+        expectedFovDeg: (2 * Math.atan(window.innerHeight / 2 / frame.perspective) * 180) / Math.PI,
+        cameraOnAxis: handle ? handle.camera.position.x === 0 && handle.camera.position.y === 0 : null,
+        near: handle ? handle.camera.near : null,
+        far: handle ? handle.camera.far : null,
+        oneWorldUnitIsOneCssPixelAtZ0: derived,
+      } : null,
+      runtimeTruthAssertions: {
+        portraitLawPropagated: lawsAgree,
+        reportedScaleMatchesCameraProjection: scaleAgrees,
+        scaleDeltaPx: derived === null ? null : derived - reported,
+        verticalScaleMatchesCameraProjection: verticalAgrees,
+        verticalDeltaPx: derivedY === null ? null : derivedY - expectedY,
+        landscapeVerticalScaleIsExactlyOne: landscapeUntouched,
+        allPass: lawsAgree && scaleAgrees && verticalAgrees && landscapeUntouched,
+      },
+    };
+  }
+
+  getMetrics(): Record<string, unknown> {
+    if (!this.renderer.handle) return { ready: false };
+    const sorted = [...this.frameTimes].sort((a, b) => a - b);
+    const pick = (p: number) => sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * p))] || 0;
+    const info = this.renderer.handle.renderer.info;
+    return {
+      fps: sorted.length ? 1000 / (pick(0.5) || 16.6) : 0,
+      medianFrameMs: pick(0.5),
+      p95FrameMs: pick(0.95),
+      p99FrameMs: pick(0.99),
+      longestFrameMs: sorted.length ? sorted[sorted.length - 1] : 0,
+      // §九: the CSS3D layer census, on the device readout rather than in a
+      // console nobody can open on a phone.
+      css3dMounted: this.labels?.mountedCount?.() ?? null,
+      css3dVisible: this.labels?.visibleCount?.() ?? null,
+      css3dTransformWrites: this.labels?.lastTransformWrites ?? null,
+      introState: this.intro.state,
+      introProgress: this.intro.progress,
+      // `render.calls` counts render() INVOCATIONS since load; the per-frame
+      // draw-call field in the WebGPU Info is `drawCalls`.
+      drawCalls: (info.render as { drawCalls?: number })?.drawCalls ?? 0,
+      triangles: info.render?.triangles ?? 0,
+      textures: 0,
+      backend: this.renderer.handle.backend,
+      quality: this.quality.level,
+      /** Frames drawn by the render LOOP. Proof the loop is alive. */
+      renderedFrames: this.renderedFrames,
+      /** Frames drawn by an explicit `renderOnce`. Proof the hook path ran. */
+      renderStamp: this.renderStamp,
+      adaptiveSampler: this.adaptiveQuality,
+      motionPaused: this.motion.paused,
+    };
+  }
+
+  getPoolState() {
+    return this.grid.getPoolState();
+  }
+
+  getAssetState() {
+    return this.grid.getAssetState();
+  }
+
+  private renderStamp = 0;
+
+  /**
+   * Draw one frame NOW, synchronously.
+   *
+   * Every QA hook that changes what the page should look like ends with this.
+   * A paused capture used to depend on "some later frame will repaint" -- and
+   * when the tick was returning early that frame never arrived, so a screenshot
+   * taken after `setRenderLayers` showed the state BEFORE it. Waiting on a frame
+   * that may not come is not a capture protocol.
+   *
+   * The returned stamp is the proof that this path ran. The live loop repaints
+   * too, so an unchanged canvas hash alone cannot distinguish "the explicit
+   * redraw happened" from "the loop happened to redraw anyway"; the stamp can.
+   */
+  renderOnce(): number {
+    const handle = this.renderer.handle;
+    if (!handle) return this.renderStamp;
+    this.grid.update(this.gridX(), this.gridY(), this.intro.frameFor(this.frame));
+    this.applyPose();
+    this.syncLabels();
+    handle.renderer.info.reset?.();
+    this.drawFrame();
+    this.renderStamp += 1;
+    return this.renderStamp;
+  }
+
+  /** QA only. Monotonic count of frames drawn through `renderOnce`. */
+  getRenderStamp(): number {
+    return this.renderStamp;
+  }
+
+  /**
+   * One frame. Foundation mode renders the grey slabs straight to the screen:
+   * the two-pass scene-colour path exists only to feed the glass, and there is
+   * no glass here.
+   */
+  private drawFrame(): void {
+    const handle = this.renderer.handle;
+    if (!handle) return;
+    if (this.layoutOnly) {
+      handle.renderer.render(handle.scene, handle.camera);
+      this.foundationOverlay?.draw(this.getCardQuads());
+      return;
+    }
+    if (!this.glassLayer) {
+      // Media-only. The two-pass pipeline exists to feed the glass and it
+      // re-asserts glass-on / media-off every frame, so asking it to draw a
+      // glass-free frame is a contradiction: render the scene straight instead.
+      this.grid.setGlassVisible(false);
+      this.grid.setMediaVisible(this.mediaLayer);
+      handle.renderer.render(handle.scene, handle.camera);
+      this.labels.render(this.poseCamera());
+      return;
+    }
+    this.pipeline.draw(handle.renderer, handle.scene, handle.camera, this.grid,
+      (pass, calls, triangles) => {
+        if (pass === "sceneColor") {
+          this.lastPassStats.sceneColorCalls = calls;
+          this.lastPassStats.sceneColorTriangles = triangles;
+        } else {
+          this.lastPassStats.finalCalls = calls;
+          this.lastPassStats.finalTriangles = triangles;
+        }
+      });
+    this.labels.render(this.poseCamera());
+  }
+
+  private applyPipelineSize(): void {
+    const dpr = this.renderer.handle?.renderer.getPixelRatio() ?? 1;
+    this.pipeline.resize(window.innerWidth, window.innerHeight, dpr);
+  }
+
+  /**
+   * Re-derive everything a viewport change touches, once, in dependency order.
+   *
+   * Never call this directly: `syncViewport` owns whether it should run at all.
+   */
+  private applyViewport(): void {
+    this.renderer.resize();
+    // The portrait vertical override depends on the viewport, so it has to be
+    // re-resolved before placement -- an orientation flip adds or removes it
+    // entirely.
+    this.syncVerticalOverride();
+    // Source-exact: the layout frame IS the resize. Slot count, card size and
+    // media fit all follow from it, and nothing is created or destroyed.
+    if (this.frame) this.grid.setFrame(this.frame);
+    // ... and so does the type layer. A resize changes the card plane, and
+    // every type size is a container query against it.
+    if (this.frame && !this.layoutOnly) this.labels.setFrame(this.frame);
+    // The rest offset is regime-dependent, so a resize can flip the brick
+    // parity; re-place the grid before anything reads its positions.
+    this.grid.update(this.gridX(), this.gridY(), this.intro.frameFor(this.frame));
+    this.applyPipelineSize();
+    this.labels.setSize(window.innerWidth, window.innerHeight);
+    this.foundationOverlay?.setSize(window.innerWidth, window.innerHeight);
+    this.input.setViewSize(window.innerWidth, window.innerHeight);
+  }
+
+  /**
+   * Apply the viewport at most once per ACTUAL bounds change.
+   *
+   * This is the Target's own resize semantics, and it is a semantics rather
+   * than a delay. Its `<Canvas>` measures through react-use-measure, whose
+   * `calculate` ends in
+   *
+   *     f.current && (e = c.current.lastBounds, t = p,
+   *       !it.every(r => e[r] === t[r])) && u(c.current.lastBounds = p)
+   *
+   * -- a bounds-equality guard, so a measurement that reports the size the
+   * page is already laid out for produces NO state update and therefore no
+   * re-application. Its window `resize` handler is the undebounced arm
+   * (`debounce: {scroll: 50, resize: 0}`) and its ResizeObserver and
+   * `screen.orientation` change arms are the 50 ms one; all three go through
+   * the same guard, so N events during one rotation collapse into one apply.
+   *
+   * The old form here had no guard: a resize applied immediately and then
+   * applied again 80 ms later whether or not anything had changed. One
+   * viewport change therefore did the work twice, and a real device rotation
+   * -- which fires several resizes as the interface settles -- did it once per
+   * event. Returns whether it actually applied, for the QA readback.
+   */
+  private syncViewport(): boolean {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const dpr = window.devicePixelRatio || 1;
+    const applied = this.appliedViewport;
+    if (applied && applied[0] === width && applied[1] === height
+      && applied[2] === dpr) return false;
+    this.appliedViewport = [width, height, dpr];
+    this.applyViewport();
+    this.viewportApplies += 1;
+    return true;
+  }
+
+  private bindWindow(): void {
+    // Applied in the event, as before -- NOT deferred to the next frame.
+    //
+    // Deferring it was tried and measured: five orientation flips each way, and
+    // five more with a three-event settling rotation. It moved the listener's
+    // own cost to 0.0 ms, which IS Target parity, and it moved the main-thread
+    // block the user actually sees the wrong way on both arms -- no better, and
+    // probably worse, because our card transforms then land AFTER the browser's
+    // post-resize style pass and force a second one in the same frame. The
+    // measured medians are in `qa-v5/final-motion/orientation-truth.json` under
+    // `schedulingCorrectionRejected.measured`; they are not repeated here,
+    // because a number copied into a comment is a number that goes stale. A
+    // change with a clean source basis that makes the product number worse is
+    // still a change that makes it worse.
+    //
+    // What is kept is the Target's other resize semantics, which costs nothing
+    // and removes real work: the bounds-equality guard in `syncViewport`. The
+    // 80 ms timer is the same late-report safety net it always was, but it now
+    // re-arms the GUARDED path, so the second application of an unchanged
+    // viewport -- which happened after every single resize event -- does not
+    // happen at all.
+    window.addEventListener("resize", () => {
+      this.syncViewport();
+      window.clearTimeout(this.resizeTimer);
+      this.resizeTimer = window.setTimeout(() => { this.syncViewport(); }, 80);
+    });
+    document.addEventListener("visibilitychange", () => {
+      this.visible = document.visibilityState === "visible";
+      if (this.visible) this.lastT = performance.now();
+    });
+  }
+
+  private tick = (now: number): void => {
+    if (this.disposed) return;
+    this.raf = requestAnimationFrame(this.tick);
+    if (!this.visible) return;
+    const dt = Math.min(0.05, (now - this.lastT) / 1000);
+    this.lastT = now;
+    if (!this.motion.paused) this.elapsed += dt;
+    this.frameTimes.push(dt * 1000);
+    if (this.frameTimes.length > 180) this.frameTimes.shift();
+    // Only the SAMPLER is conditional. Turning adaptive quality off is a
+    // harness capability for holding a level still; it must never stop the
+    // page from stepping and drawing. The previous form was `if
+    // (!this.adaptiveQuality) return;`, which returned out of the whole tick
+    // and froze motion, recycling, pose, labels and the canvas along with it.
+    //
+    // The sampler is skipped rather than called-and-ignored because sample()
+    // mutates its own `level`: reading it and discarding the answer would drift
+    // the reported quality away from the quality the grid is actually running.
+    if (this.adaptiveQuality) {
+      const { level, changed } = this.quality.sample(dt * 1000, now);
+      if (changed) {
+        this.adaptiveChanges.push({
+          atSeconds: this.startedAt ? (performance.now() - this.startedAt) / 1000 : 0,
+          level,
+        });
+        this.setQuality(level);
+      }
+    }
+    this.motion.step(dt, now);
+    // The entry is stepped with the same `now` the motion model got, and
+    // BEFORE placement, so a frame is placed at the gap this frame owns rather
+    // than at the previous frame's.
+    this.intro.advance(now);
+    this.grid.update(this.gridX(), this.gridY(), this.intro.frameFor(this.frame));
+    this.applyPose();
+    const handle = this.renderer.handle;
+    this.syncLabels();
+    handle.renderer.info.reset?.();
+    this.drawFrame();
+    this.renderedFrames += 1;
+  };
+
+  /**
+   * The camera the CSS3D layer, the projection and the culling use.
+   *
+   * A clone of the render camera's lens, kept at the SAME orbit position AND
+   * carrying the same velocity dolly. It is created once and its lens
+   * re-copied each frame,
+   * so a resize or a quality change cannot leave the two disagreeing about
+   * fov, aspect, near or far.
+   */
+  private css3dTransformCameraFor(render: PerspectiveCamera): PerspectiveCamera {
+    if (!this.css3dTransformCamera) this.css3dTransformCamera = new PerspectiveCamera();
+    const c = this.css3dTransformCamera;
+    if (c.fov !== render.fov || c.aspect !== render.aspect
+        || c.near !== render.near || c.far !== render.far) {
+      c.fov = render.fov; c.aspect = render.aspect;
+      c.near = render.near; c.far = render.far;
+      c.updateProjectionMatrix();
+    }
+    return c;
+  }
+
+  /** Whichever camera the label layer and the projections should use. */
+  private poseCamera(): PerspectiveCamera {
+    const handle = this.renderer.handle;
+    if (this.frame && this.css3dTransformCamera) return this.css3dTransformCamera;
+    return handle.camera;
+  }
+
+  /**
+   * The coverage camera, lens re-copied from the render camera each frame --
+   * the Target does exactly this (`Py.fov = n.fov, ...` before its coverage
+   * loop), so a resize or a quality change cannot leave the two disagreeing
+   * about fov, aspect, near or far.
+   */
+  private coverageCameraFor(render: PerspectiveCamera): PerspectiveCamera {
+    if (!this.sourceExactCoverageCamera) this.sourceExactCoverageCamera = new PerspectiveCamera();
+    const c = this.sourceExactCoverageCamera;
+    if (c.fov !== render.fov || c.aspect !== render.aspect
+        || c.near !== render.near || c.far !== render.far) {
+      c.fov = render.fov; c.aspect = render.aspect;
+      c.near = render.near; c.far = render.far;
+      c.updateProjectionMatrix();
+    }
+    return c;
+  }
+
+  /**
+   * Sync the label layer, with coverage verdicts on the source-exact path.
+   *
+   * The verdict inputs mirror the Target's own: its coverage test reads the
+   * live `window.innerWidth/Height` and the live layout frame every frame.
+   * `applyPose` has already posed the coverage camera when this runs -- the
+   * Target's camera component subscribes before its grid component, so its
+   * camera writes precede its coverage loop the same way.
+   */
+  private syncLabels(): void {
+    if (this.layoutOnly) return;
+    const t0 = this.labelSyncProbe ? performance.now() : 0;
+    if (this.frame && this.sourceExactCoverageCamera) {
+      const verdicts = this.labelCulling.compute(
+        this.grid.slots, this.sourceExactCoverageCamera,
+        window.innerWidth, window.innerHeight,
+        this.frame.planeWidth, this.frame.planeHeight,
+      );
+      this.labels.sync(this.gridAsV3(), this.poseCamera(), verdicts);
+      // V1: the SAME verdict array, applied to the WebGL card in the same
+      // sync -- the Target writes s.visible and draws/hides the label in one
+      // loop iteration, so label and card can never disagree. The scratch
+      // array is reused; setCoverageDraws stores the reference and the
+      // applier reads it fresh every call.
+      if (this.renderCulling) {
+        const draws = this.coverageDrawsScratch;
+        draws.length = verdicts.length;
+        for (let n = 0; n < verdicts.length; n += 1) {
+          draws[n] = verdicts[n].coverageVisible;
+        }
+        this.grid.setCoverageDraws(draws);
+      } else {
+        this.grid.setCoverageDraws(null);
+      }
+    } else {
+      this.labels.sync(this.gridAsV3(), this.poseCamera());
+      this.grid.setCoverageDraws(null);
+    }
+    if (this.labelSyncProbe) {
+      this.labelSyncTimes.push(performance.now() - t0);
+      if (this.labelSyncTimes.length > 6000) this.labelSyncTimes.splice(0, 2000);
+    }
+  }
+
+  /**
+   * V1 render culling. ON by default on the source-exact route -- it is the
+   * product behaviour, not an option. The QA toggle exists so one build can
+   * measure its own before/after (the V0-accepted Before build cannot carry
+   * the per-pass probes, the same reasoning as the labels.sync probe).
+   */
+  private renderCulling = true;
+  private coverageDrawsScratch: boolean[] = [];
+
+  /** QA only. A/B the coverage-driven render culling on this build. */
+  /** O2 QA floor levers -- measurement controls only (pre-registered). */
+  setEnvMixScale(value: number): void {
+    this.grid.setEnvMixScale(value);
+    this.renderOnce();
+  }
+
+  setRimScale(value: number): void {
+    this.grid.setRimScale(value);
+    this.renderOnce();
+  }
+
+  getOpticsState(): Record<string, unknown> {
+    return {
+      ...this.grid.getOpticsState(),
+      envTextureLoaded: Boolean(this.envHdr),
+      shellModeApplied: this.v4Shell,
+      // §七 provenance: which output-stage exposure this page renders at.
+      toneMappingExposure: this.renderer.handle?.renderer.toneMappingExposure ?? null,
+    };
+  }
+
+  /**
+   * O5F §五 QA-only. The grid's material-cache truth plus the renderer's own
+   * resource counts. `info.memory` is what the WebGPU backend actually
+   * tracks; a field it does not carry reads null rather than a substitute.
+   */
+  getBodyMaterialCacheTruth(): Record<string, unknown> {
+    const info = this.renderer.handle?.renderer.info as
+      | { memory?: Record<string, number> }
+      | undefined;
+    return {
+      ...this.grid.getBodyMaterialCacheTruth(),
+      rendererTextures: info?.memory?.textures ?? null,
+      rendererGeometries: info?.memory?.geometries ?? null,
+      rendererPrograms: info?.memory?.programs ?? null,
+    };
+  }
+
+  /**
+   * QA only (O3 gate 18). The generated program for the glass BODY, so a
+   * gate can prove which support the beauty path actually consumes rather
+   * than inferring it from the TypeScript. Readback only -- nothing here
+   * changes what is rendered.
+   */
+  async getGlassShaderSource(): Promise<Record<string, unknown> | null> {
+    const handle = this.renderer.handle;
+    const mesh = this.grid.firstGlassMesh();
+    if (!handle || !mesh) return null;
+    const src = await (handle.renderer as unknown as {
+      debug: { getShaderAsync: (s: unknown, c: unknown, o: unknown) => Promise<{
+        vertexShader: string; fragmentShader: string;
+      }> };
+    }).debug.getShaderAsync(handle.scene, handle.camera, mesh);
+    return {
+      backend: handle.backend,
+      reflectionSupport: this.grid.getOpticsState().reflectionSupport ?? null,
+      opticalBody: this.grid.getOpticsState().opticalBody ?? null,
+      opticalBodyView: this.grid.getOpticsState().opticalBodyView ?? null,
+      opticalBodySamples: this.grid.getOpticsState().opticalBodySamples ?? null,
+      dispersionLaw: this.grid.getOpticsState().dispersionLaw ?? null,
+      vertexShader: src.vertexShader,
+      fragmentShader: src.fragmentShader,
+    };
+  }
+
+  setRenderCulling(on: boolean): void {
+    this.renderCulling = on;
+    this.syncLabels();
+    this.renderOnce();
+  }
+
+  /**
+   * QA only. The brief's five named visibility states, per slot, read off
+   * the scene -- plus the composed grid flags. `requested*` are the QA layer
+   * requests, `coverageVisible` the verdict, `effective*` what the meshes
+   * actually carry after the one applier composed active AND coverage AND
+   * pass AND requested.
+   */
+  getRenderCullingTruth(): Record<string, unknown> {
+    const verdicts = this.labels.lastCulling;
+    const slots = this.grid.slots.map((s, n) => ({
+      slotIndex: s.slotIndex,
+      active: s.active !== false,
+      coverageVisible: verdicts ? (verdicts[n]?.coverageVisible ?? null) : null,
+      requestedGlassVisible: this.glassLayer,
+      requestedMediaVisible: this.mediaLayer,
+      requestedShellVisible: this.glassLayer,
+      effectiveGlassVisible: s.glass.visible,
+      effectiveShellVisible: s.shell ? s.shell.visible : null,
+      effectiveMediaVisible: s.media ? s.media.visible : null,
+    }));
+    return {
+      renderCulling: this.renderCulling,
+      grid: this.grid.getRenderCullingState(),
+      passStats: this.lastPassStats,
+      slots,
+    };
+  }
+
+  private lastPassStats: Record<string, number | null> = {
+    sceneColorCalls: null, sceneColorTriangles: null,
+    finalCalls: null, finalTriangles: null,
+  };
+
+  /** QA only. Last frame's per-pass draw calls and triangles. */
+  getRenderPassStats(): Record<string, number | null> {
+    return { ...this.lastPassStats };
+  }
+
+  /** QA only. Arm or disarm the labels.sync CPU probe; arming clears it. */
+  setLabelSyncProbe(on: boolean): void {
+    this.labelSyncProbe = on;
+    this.labelSyncTimes.length = 0;
+  }
+
+  /** QA only. The probe's samples in ms, drained on read. */
+  getLabelSyncStats(): Record<string, unknown> {
+    const samples = this.labelSyncTimes.slice();
+    this.labelSyncTimes.length = 0;
+    return { probe: this.labelSyncProbe, samples };
+  }
+
+  private applyPose(): void {
+    const handle = this.renderer.handle;
+    if (!handle) return;
+    const frame = this.frame;
+    if (frame) {
+      // Source-exact camera pose. The Target's parallax ORBITS the camera on a
+      // sphere of radius `perspective` about the origin and never rotates the
+      // grid; it also has no standing pitch, so at rest the camera is exactly
+      // on axis. Writing CAMERA.y here -- which the legacy branch below does --
+      // is what left a 3.2e-5 residual in every scale proof so far.
+      this.grid.root.rotation.set(0, 0, 0);
+      const [ox, oy, oz] = sourceExactOrbit(this.motion.pointerX, this.motion.pointerY,
+                                            frame.perspective);
+      // The Target keeps TWO cameras at the same orbit position and BOTH carry
+      // the velocity dolly on z: the render camera here, and the CSS3D transform
+      // camera set below. They sit at the same z at every moment, not merely at
+      // rest, so glass and labels never separate. The dolly-free camera in the
+      // bundle is a projection and culling concept only; it renders nothing.
+      const dz = sourceExactDolly(this.motion.magnitude, sourceExactMaxZoomZ(frame.perspective));
+      handle.camera.position.set(ox, oy, oz + dz);
+      handle.camera.lookAt(0, 0, 0);
+      // The CSS3D camera carries the dolly TOO. An earlier reading had the
+      // Target keeping a dolly-free camera for the type layer, so glass and
+      // labels would separate under fast motion. Its own recorded CSS3D camera
+      // matrix says otherwise: the camera's distance from the origin rises
+      // from exactly 1000 at rest to 1158 on a flick and 1223 on a long drag,
+      // and stays at exactly 1000 through a pointer sweep -- which moves the
+      // camera but produces no velocity. A dolly-free CSS3D camera cannot do
+      // that. The dolly-free camera in the bundle drives projection and
+      // culling, not the transform.
+      const label = this.css3dTransformCameraFor(handle.camera);
+      label.position.set(ox, oy, oz + dz);
+      label.lookAt(0, 0, 0);
+      label.updateMatrixWorld();
+      // The coverage camera: the SAME orbit, WITHOUT the dolly. The Target's
+      // deciding line poses both cameras together -- `Py.position.set(d,h,f)`
+      // against `t.position.set(d,h,f+p)` -- and this is that line, ours.
+      const coverage = this.coverageCameraFor(handle.camera);
+      coverage.position.set(ox, oy, oz);
+      coverage.lookAt(0, 0, 0);
+      coverage.updateMatrixWorld();
+      if (this.pointerLight) {
+        // The Target's scene has no light at all: its highlight moves because
+        // the CAMERA orbits against a fixed environment, not because anything
+        // moves a light. Our rig is held at its base position so the highlight
+        // is driven by the same thing -- the orbit. The light's own intensity,
+        // colour and base position are untouched; only what drives it changes.
+        updatePointerKeyLightV4(this.pointerLight, 0, 0);
+      }
+      return;
+    }
+    this.grid.root.rotation.set(this.motion.rotX, this.motion.rotY, 0);
+    handle.camera.position.set(
+      this.motion.camX,
+      CAMERA.y + this.motion.camY,
+      CAMERA.z * this.renderer.viewZoom,
+    );
+    handle.camera.lookAt(this.motion.camX, CAMERA.lookY + this.motion.camY, 0);
+    if (this.pointerLight) {
+      updatePointerKeyLightV4(this.pointerLight, this.motion.pointerX, this.motion.pointerY);
+    }
+  }
+
+  dispose(): void {
+    this.disposed = true;
+    cancelAnimationFrame(this.raf);
+    this.input?.dispose();
+    this.labels?.dispose();
+    this.foundationOverlay?.dispose();
+    this.grid.dispose();
+    this.pipeline?.dispose();
+    this.environment?.dispose();
+    this.envHdr?.dispose();
+    this.renderer.dispose();
+  }
+}

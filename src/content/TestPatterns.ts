@@ -1,6 +1,7 @@
 import { CanvasTexture, LinearFilter, SRGBColorSpace } from "three/webgpu";
 
 export const TEST_BACKGROUNDS = [
+  "calibration",
   "checker",
   "h-lines",
   "v-lines",
@@ -36,6 +37,10 @@ export function paintPattern(
   height: number,
   time: number,
 ) {
+  if (kind === "calibration") {
+    paintCalibration(ctx, width, height);
+    return;
+  }
   if (kind === "white") {
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, width, height);
@@ -96,4 +101,62 @@ export function paintPattern(
   }
   ctx.fillStyle = "#ffcc00";
   ctx.fillRect(0, (time * 90) % height, width, 18);
+}
+
+/**
+ * Aspect-calibration target for MediaFit.
+ *
+ * Circles and squares laid out in source-pixel units. Rendered through a
+ * correct `cover` fit they stay circles and squares; through `stretch` they
+ * become ellipses and rectangles, and the ratio of the measured axes is the
+ * aspect error.
+ */
+export function paintCalibration(ctx: CanvasRenderingContext2D, width: number, height: number) {
+  ctx.fillStyle = "#101014";
+  ctx.fillRect(0, 0, width, height);
+
+  const step = Math.round(Math.min(width, height) / 6);
+  ctx.strokeStyle = "#3a3a48";
+  ctx.lineWidth = 1;
+  for (let x = 0; x <= width; x += step) {
+    ctx.beginPath();
+    ctx.moveTo(x + 0.5, 0);
+    ctx.lineTo(x + 0.5, height);
+    ctx.stroke();
+  }
+  for (let y = 0; y <= height; y += step) {
+    ctx.beginPath();
+    ctx.moveTo(0, y + 0.5);
+    ctx.lineTo(width, y + 0.5);
+    ctx.stroke();
+  }
+
+  const r = Math.round(step * 0.72);
+  const cx = width / 2;
+  const cy = height / 2;
+  // Centre circle: survives every cover crop, so it is the primary probe.
+  ctx.fillStyle = "#ffffff";
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.fill();
+  // Centre square, same nominal size as the circle's diameter.
+  ctx.strokeStyle = "#ff2d55";
+  ctx.lineWidth = 4;
+  ctx.strokeRect(cx - r, cy - r, r * 2, r * 2);
+
+  // Satellites, close enough to the centre to survive a 16:9 -> 1.35:1 crop.
+  ctx.fillStyle = "#00e676";
+  for (const [ox, oy] of [[-1, -1], [1, -1], [-1, 1], [1, 1]] as const) {
+    ctx.beginPath();
+    ctx.arc(cx + ox * step * 1.4, cy + oy * step * 1.4, step * 0.34, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Source-edge markers, so a crop preview shows how much was cut.
+  ctx.fillStyle = "#00b0ff";
+  ctx.fillRect(0, 0, 10, height);
+  ctx.fillRect(width - 10, 0, 10, height);
+  ctx.fillStyle = "#ffcc00";
+  ctx.fillRect(0, 0, width, 10);
+  ctx.fillRect(0, height - 10, width, 10);
 }

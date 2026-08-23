@@ -1,11 +1,12 @@
 import { Color, Group, Mesh, MeshBasicMaterial, PlaneGeometry, type Material, type Texture } from "three/webgpu";
 import { TILE, GRID, type QualityLevel } from "../config";
 import { catalogAt } from "../content/catalog";
-import { loadClipTextures, type ClipReel } from "../content/VideoClips";
+import { clipFocus, loadClipTextures, type ClipReel } from "../content/VideoClips";
+import { applyMediaFit, computeMediaFit, readMediaFitMode } from "../content/MediaFit";
 import { isGlassDebug, isLayoutDebug, type DebugMode, type GlassDebugMode } from "../debug/DebugMode";
 import { createGlassMaterial, createGlassParams, type GlassMaterialHandle } from "../materials/LiquidGlassMaterial";
 import { createConvexGlassGeometry } from "./ConvexGlassGeometry";
-import { placeTile, type TilePose } from "./GridCurvature";
+import { effectiveCellH, placeTile, V1_COMPOSITION, type Composition, type TilePose } from "./GridCurvature";
 
 export type Slot = {
   group: Group;
@@ -14,6 +15,14 @@ export type Slot = {
   i: number;
   j: number;
   slotIndex: number;
+  /**
+   * Source-exact pool identity. The Target binds a card's label to its slot,
+   * so its ILG code is `slotIndex + 1` and survives wrapping. Undefined on the
+   * legacy paths, where the label is still bound to the world cell.
+   */
+  code?: number;
+  /** False while a slot sits outside the active cols x rows. */
+  active?: boolean;
 };
 
 const pose: TilePose = { x: 0, y: 0, z: 0, rotX: 0, rotY: 0 };
@@ -47,6 +56,7 @@ export class InfiniteGlassGrid {
   private mediaMaterials: MeshBasicMaterial[] = [];
   private debugMode: DebugMode = "off";
   private params = createGlassParams();
+  composition: Composition = V1_COMPOSITION;
 
   async prepare(onProgress: (value: number) => void) {
     this.reel = await loadClipTextures(onProgress);
@@ -67,9 +77,25 @@ export class InfiniteGlassGrid {
         createGlassMaterial(sceneMap, this.params, glassDebug, map),
       );
       this.glassHandle = this.glassHandles[0];
-      this.mediaMaterials = this.reel.textures.map(
-        (map) => new MeshBasicMaterial({ map, toneMapped: true }),
-      );
+      // Aspect-correct crop for the media planes. V3's glass body samples the
+      // clip texture directly through a TSL texture node, which does not read
+      // the texture matrix, so the media INSIDE V3 glass stays uncropped. V3 is
+      // not the page under review and its optics are out of scope this session;
+      // recorded in docs/v5/FOUNDATION_FIT.md as a known gap.
+      const mode = readMediaFitMode();
+      this.mediaMaterials = this.reel.textures.map((map, index) => {
+        const video = this.reel!.videos[index];
+        const fit = computeMediaFit(
+          video?.videoWidth ?? 0,
+          video?.videoHeight ?? 0,
+          TILE.width,
+          TILE.height,
+          mode,
+          clipFocus(index),
+        );
+        if (video?.videoWidth) applyMediaFit(map, fit);
+        return new MeshBasicMaterial({ map, toneMapped: true });
+      });
     } else if (!layout && sceneMap) {
       this.glassHandle = createGlassMaterial(sceneMap, this.params, glassDebug);
     }
@@ -129,7 +155,7 @@ export class InfiniteGlassGrid {
 
   update(scrollX: number, scrollY: number) {
     const originI = Math.round(scrollX / GRID.cellW);
-    const originJ = Math.round(scrollY / GRID.cellH);
+    const originJ = Math.round(scrollY / effectiveCellH(this.composition));
     const halfCols = Math.floor(GRID.cols / 2);
     const halfRows = Math.floor(GRID.rows / 2);
     let n = 0;
@@ -150,7 +176,7 @@ export class InfiniteGlassGrid {
             if (slot.media) slot.media.material = this.mediaFor(i, j);
           }
         }
-        placeTile(i, j, scrollX, scrollY, pose);
+        placeTile(i, j, scrollX, scrollY, pose, this.composition);
         slot.group.position.set(pose.x, pose.y, pose.z);
         slot.group.rotation.set(pose.rotX, pose.rotY, 0);
       }

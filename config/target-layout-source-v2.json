@@ -1,0 +1,83 @@
+{
+  "$comment": "THE source contract. Every Target layout constant lives here once. TypeScript (src/layout/SourceExactLayout.ts) and Python (scripts/v5/source_layout.py) both READ this file; neither keeps its own copy, because two hand-maintained copies drift and the drift is invisible until a gate disagrees. Verified by `npm run v5:target-layout-source`.",
+  "layoutVersion": "target-layout-source-v2",
+  "acceptance": {
+    "status": "ACCEPTED",
+    "acceptedAs": "SourceExact Composition Baseline",
+    "engineeringPass": true,
+    "targetVisualPass": "NOT ASSERTED",
+    "frozen": [
+      "every constant under `grid`",
+      "sourceExactLayout()",
+      "sphere placement",
+      "perspective and sphereRadius formulas",
+      "planeWidthRatio and planeWidthRatioPortrait",
+      "cell pitch formula",
+      "rows/cols coverage law",
+      "pool slot phase",
+      "slot identity"
+    ],
+    "note": "These are frozen by product decision. Changing any of them requires a new product authorisation and a re-derivation from source forensics, not an edit to this file.",
+    "supersedes": "The old F0 layout baseline is a Historical Accepted Baseline, superseded by the SourceExact composition. v1 and v2 remain reachable."
+  },
+  "target": {
+    "url": "https://infinite-liquid-glass.shader.se/?v=2",
+    "captureTimestampUtc": "2026-08-20T08:25:00Z",
+    "appBundlePath": "/_next/static/immutable/chunks/03lo820gl57km.js",
+    "appBundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+    "method": "read-only source forensics plus live CSS3D world transforms; no Target code is stored in this repository and nothing was modified or republished",
+    "otherBundles": {
+      "3r5716256bwc-.js": "4f52109529c6eb6523339a330825b1ee58495d17feb1b5cbcbb40a828911b05c",
+      "1s19wbg2gjkv0.js": "1e3ab0d8a23109ef8d66a856fade259c84fc24b292a592d3c221d245f9e1ac9b",
+      "0w2iwebs5-c-n.js": "588e974ee815caa67cf8c99720b10aa44f94caed5fda4cb80d749569f019f7d0",
+      "2c5x84gieuvai.js": "2e7f40b2884bba4c8c1a660127354c9b4853c500088f820c887c03db461681ef",
+      "2l6r176tw29k7.js": "bbbc1a25996cf2776b4e1d9e6b734bb93893100e439fd97ef216c3c2d2899d4d",
+      "1xaeaw6ztv3gm.js": "af4cdb98b480c02123a996babd29cee1f6d07704bae76252960342844098f2f7",
+      "2fxvkdsdfb39m.js": "1ab1f44ac0599703e4abfea614f37c4c19859f1e999ca81663dbd080c16da350",
+      "25kvgcvbp6c14.js": "8a943b00599e56b53569f36f4341e3465ae7705c1391562cd6c7e1f290c0c387",
+      "turbopack-1pkwdr4knmj6d.js": "c2c24fbf5e8cfb98601e39e5e96ca0283ee9a070970b381263225f8a0bded9cc"
+    }
+  },
+  "grid": {
+    "perspective": 1200,
+    "sphereRadius": 5000,
+    "planeAspect": 1.3333333333333333,
+    "planeAspectExact": "4/3",
+    "planeWidthRatio": 0.38,
+    "planeWidthRatioPortrait": 0.72,
+    "gapRatio": 0.045,
+    "referenceWidth": 1728,
+    "coverageMargin": 1.15,
+    "minCols": 4,
+    "maxCols": 16,
+    "minRows": 4,
+    "maxRows": 16
+  },
+  "camera": {
+    "position": "(0, 0, perspective)",
+    "lookAt": "(0, 0, 0)",
+    "fov": "2 * atan(height / 2 / perspective)",
+    "near": 0.1,
+    "far": 10000,
+    "pitch": 0
+  },
+  "derivation": {
+    "s": "max(width, height) / referenceWidth",
+    "perspective": "grid.perspective * s",
+    "sphereRadius": "grid.sphereRadius * s",
+    "planeWidth": "width * (height > width ? planeWidthRatioPortrait : planeWidthRatio)",
+    "planeHeight": "planeWidth / planeAspect",
+    "cellW": "planeWidth * (1 + gapRatio)",
+    "cellH": "planeHeight * (1 + gapRatio)",
+    "maxZoomZ": "0.1 * perspective",
+    "coverX": "0.5 * width * coverageMargin + tan(0.05) * perspective + maxZoomZ",
+    "coverY": "0.5 * height * coverageMargin + tan(0.05) * perspective + maxZoomZ",
+    "cols": "even(clamp(2 * arcToCover(coverX, planeWidth/2) / cellW + 4, minCols, maxCols))",
+    "rows": "even(clamp(2 * arcToCover(coverY, planeHeight/2) / cellH + 4, minRows, maxRows))",
+    "edgeAt": "radius*persp*sin(arc/radius)/denom - half*persp/denom, denom = persp + radius*(1 - cos(arc/radius))",
+    "arcToCover": "24-step bisection on edgeAt between 0 and radius*acos(radius/(persp+radius))",
+    "placement": "xArc = wrap((col - (cols-1)/2)*cellW + scrollX + (poolRow % 2)*cellW/2, cols*cellW); yArc = wrap(-(poolRow - (rows-1)/2)*cellH - scrollY, rows*cellH); thetaX = xArc/R; thetaY = yArc/R; normal = (sin(thetaX)cos(thetaY), sin(thetaY), cos(thetaX)cos(thetaY)); position = normal*R - (0,0,R); orientation takes local +Z to normal",
+    "initialScroll": "(0, 0) at every viewport; the Target's scroll springs are constructed at zero and nothing seeds them",
+    "slotIdentity": "ILG code = slotIndex + 1, bound to the POOL SLOT and not to a world cell"
+  }
+}
