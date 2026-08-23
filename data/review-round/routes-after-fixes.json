@@ -1,0 +1,96 @@
+{
+ "origin": "http://127.0.0.1:5295",
+ "rows": [
+  {
+   "route": "/?qa",
+   "errors": [],
+   "opticalBody": "target-source-unclamped",
+   "sampleTier": 5,
+   "shellModeApplied": "off",
+   "environmentModeApplied": "source",
+   "envTextureLoaded": true,
+   "shellVisible": null,
+   "backend": "webgpu",
+   "mounted": 100,
+   "introState": "done"
+  },
+  {
+   "route": "/?review=target&qa",
+   "errors": [],
+   "opticalBody": "target-source-unclamped",
+   "sampleTier": 5,
+   "shellModeApplied": "off",
+   "environmentModeApplied": "source",
+   "envTextureLoaded": true,
+   "shellVisible": null,
+   "backend": "webgpu",
+   "mounted": 100,
+   "introState": "done"
+  },
+  {
+   "route": "/?review=current&qa",
+   "errors": [],
+   "opticalBody": "current",
+   "sampleTier": null,
+   "shellModeApplied": "energy-controlled",
+   "environmentModeApplied": null,
+   "envTextureLoaded": true,
+   "shellVisible": null,
+   "backend": "webgpu",
+   "mounted": 100,
+   "introState": "done"
+  },
+  {
+   "route": "/?gl=1&qa",
+   "errors": [],
+   "opticalBody": "target-source-unclamped",
+   "sampleTier": 5,
+   "shellModeApplied": "off",
+   "environmentModeApplied": "source",
+   "envTextureLoaded": true,
+   "shellVisible": null,
+   "backend": "webgl2",
+   "mounted": 100,
+   "introState": "done"
+  },
+  {
+   "route": "/?systemB=off&qa",
+   "errors": [],
+   "opticalBody": "target-source-unclamped",
+   "sampleTier": 5,
+   "shellModeApplied": "off",
+   "environmentModeApplied": "off",
+   "envTextureLoaded": false,
+   "shellVisible": null,
+   "backend": "webgpu",
+   "mounted": 100,
+   "introState": "done"
+  },
+  {
+   "route": "/?mediacal=1&qa",
+   "errors": [],
+   "opticalBody": "target-source-unclamped",
+   "sampleTier": 5,
+   "shellModeApplied": "off",
+   "environmentModeApplied": "source",
+   "envTextureLoaded": true,
+   "shellVisible": null,
+   "backend": "webgpu",
+   "mounted": 100,
+   "introState": "done"
+  },
+  {
+   "route": "/?review=current&shell=off&qa",
+   "errors": [],
+   "opticalBody": "current",
+   "sampleTier": null,
+   "shellModeApplied": "off",
+   "environmentModeApplied": null,
+   "envTextureLoaded": true,
+   "shellVisible": null,
+   "backend": "webgpu",
+   "mounted": 100,
+   "introState": "done"
+  }
+ ]
+}

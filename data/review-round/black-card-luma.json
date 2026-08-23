@@ -1,0 +1,399 @@
+{
+ "what": "card-plane luma on stills from the PR-review build, naked route, 3 minute driven soak",
+ "blackCardCriterion": "a card whose BRIGHTEST pixel is below 12/255",
+ "stillsWithABlackCard": 0,
+ "rows": [
+  {
+   "n": 0,
+   "dip": false,
+   "cards": 23,
+   "minMean": 123.89453125,
+   "minOfMax": 218
+  },
+  {
+   "n": 1,
+   "dip": true,
+   "cards": 26,
+   "minMean": 95.3828125,
+   "minOfMax": 226
+  },
+  {
+   "n": 4,
+   "dip": true,
+   "cards": 23,
+   "minMean": 111.515625,
+   "minOfMax": 222
+  },
+  {
+   "n": 8,
+   "dip": true,
+   "cards": 25,
+   "minMean": 113.33984375,
+   "minOfMax": 207
+  },
+  {
+   "n": 12,
+   "dip": true,
+   "cards": 29,
+   "minMean": 104.26171875,
+   "minOfMax": 220
+  },
+  {
+   "n": 15,
+   "dip": true,
+   "cards": 24,
+   "minMean": 110.48828125,
+   "minOfMax": 228
+  },
+  {
+   "n": 16,
+   "dip": false,
+   "cards": 24,
+   "minMean": 95.25390625,
+   "minOfMax": 205
+  },
+  {
+   "n": 19,
+   "dip": true,
+   "cards": 24,
+   "minMean": 96.28515625,
+   "minOfMax": 223
+  },
+  {
+   "n": 20,
+   "dip": false,
+   "cards": 24,
+   "minMean": 102.9453125,
+   "minOfMax": 218
+  },
+  {
+   "n": 22,
+   "dip": true,
+   "cards": 24,
+   "minMean": 158.27734375,
+   "minOfMax": 220
+  },
+  {
+   "n": 24,
+   "dip": false,
+   "cards": 23,
+   "minMean": 111.01953125,
+   "minOfMax": 222
+  },
+  {
+   "n": 26,
+   "dip": true,
+   "cards": 25,
+   "minMean": 109.01171875,
+   "minOfMax": 202
+  },
+  {
+   "n": 28,
+   "dip": false,
+   "cards": 26,
+   "minMean": 108.56640625,
+   "minOfMax": 221
+  },
+  {
+   "n": 29,
+   "dip": true,
+   "cards": 23,
+   "minMean": 93.41796875,
+   "minOfMax": 219
+  },
+  {
+   "n": 32,
+   "dip": false,
+   "cards": 24,
+   "minMean": 45.66796875,
+   "minOfMax": 198
+  },
+  {
+   "n": 33,
+   "dip": true,
+   "cards": 26,
+   "minMean": 101.02734375,
+   "minOfMax": 224
+  },
+  {
+   "n": 36,
+   "dip": true,
+   "cards": 26,
+   "minMean": 107.37890625,
+   "minOfMax": 223
+  },
+  {
+   "n": 40,
+   "dip": true,
+   "cards": 24,
+   "minMean": 97.42578125,
+   "minOfMax": 213
+  },
+  {
+   "n": 44,
+   "dip": false,
+   "cards": 26,
+   "minMean": 115.73046875,
+   "minOfMax": 220
+  },
+  {
+   "n": 47,
+   "dip": true,
+   "cards": 24,
+   "minMean": 90.43359375,
+   "minOfMax": 137
+  },
+  {
+   "n": 48,
+   "dip": false,
+   "cards": 24,
+   "minMean": 81.765625,
+   "minOfMax": 226
+  },
+  {
+   "n": 50,
+   "dip": true,
+   "cards": 28,
+   "minMean": 97.49609375,
+   "minOfMax": 194
+  },
+  {
+   "n": 51,
+   "dip": true,
+   "cards": 23,
+   "minMean": 97.41015625,
+   "minOfMax": 218
+  },
+  {
+   "n": 52,
+   "dip": false,
+   "cards": 23,
+   "minMean": 111.66796875,
+   "minOfMax": 211
+  },
+  {
+   "n": 54,
+   "dip": true,
+   "cards": 24,
+   "minMean": 116.13671875,
+   "minOfMax": 221
+  },
+  {
+   "n": 56,
+   "dip": false,
+   "cards": 23,
+   "minMean": 60.4765625,
+   "minOfMax": 198
+  },
+  {
+   "n": 57,
+   "dip": true,
+   "cards": 23,
+   "minMean": 100.80078125,
+   "minOfMax": 222
+  },
+  {
+   "n": 60,
+   "dip": false,
+   "cards": 25,
+   "minMean": 76.1328125,
+   "minOfMax": 221
+  },
+  {
+   "n": 64,
+   "dip": true,
+   "cards": 23,
+   "minMean": 119.38671875,
+   "minOfMax": 218
+  },
+  {
+   "n": 65,
+   "dip": true,
+   "cards": 24,
+   "minMean": 121.6171875,
+   "minOfMax": 204
+  },
+  {
+   "n": 68,
+   "dip": true,
+   "cards": 23,
+   "minMean": 113.08203125,
+   "minOfMax": 218
+  },
+  {
+   "n": 72,
+   "dip": true,
+   "cards": 27,
+   "minMean": 70.87109375,
+   "minOfMax": 119
+  },
+  {
+   "n": 75,
+   "dip": true,
+   "cards": 23,
+   "minMean": 121.01953125,
+   "minOfMax": 200
+  },
+  {
+   "n": 76,
+   "dip": false,
+   "cards": 23,
+   "minMean": 95.48828125,
+   "minOfMax": 222
+  },
+  {
+   "n": 79,
+   "dip": true,
+   "cards": 23,
+   "minMean": 65.8203125,
+   "minOfMax": 122
+  },
+  {
+   "n": 80,
+   "dip": false,
+   "cards": 23,
+   "minMean": 133.87109375,
+   "minOfMax": 214
+  },
+  {
+   "n": 82,
+   "dip": true,
+   "cards": 27,
+   "minMean": 71.60546875,
+   "minOfMax": 221
+  },
+  {
+   "n": 84,
+   "dip": false,
+   "cards": 23,
+   "minMean": 64.5703125,
+   "minOfMax": 115
+  },
+  {
+   "n": 86,
+   "dip": true,
+   "cards": 24,
+   "minMean": 100.51953125,
+   "minOfMax": 205
+  },
+  {
+   "n": 88,
+   "dip": false,
+   "cards": 29,
+   "minMean": 109.5,
+   "minOfMax": 222
+  },
+  {
+   "n": 89,
+   "dip": true,
+   "cards": 22,
+   "minMean": 81.19140625,
+   "minOfMax": 194
+  },
+  {
+   "n": 92,
+   "dip": false,
+   "cards": 26,
+   "minMean": 42.51171875,
+   "minOfMax": 214
+  },
+  {
+   "n": 93,
+   "dip": true,
+   "cards": 28,
+   "minMean": 105.5859375,
+   "minOfMax": 224
+  },
+  {
+   "n": 96,
+   "dip": true,
+   "cards": 24,
+   "minMean": 97.16015625,
+   "minOfMax": 220
+  },
+  {
+   "n": 100,
+   "dip": true,
+   "cards": 23,
+   "minMean": 87.5703125,
+   "minOfMax": 223
+  },
+  {
+   "n": 104,
+   "dip": true,
+   "cards": 26,
+   "minMean": 97.984375,
+   "minOfMax": 202
+  },
+  {
+   "n": 107,
+   "dip": true,
+   "cards": 24,
+   "minMean": 125.7421875,
+   "minOfMax": 221
+  },
+  {
+   "n": 108,
+   "dip": false,
+   "cards": 24,
+   "minMean": 121.64453125,
+   "minOfMax": 216
+  },
+  {
+   "n": 111,
+   "dip": true,
+   "cards": 25,
+   "minMean": 113.23046875,
+   "minOfMax": 219
+  },
+  {
+   "n": 112,
+   "dip": false,
+   "cards": 24,
+   "minMean": 120.875,
+   "minOfMax": 226
+  },
+  {
+   "n": 114,
+   "dip": true,
+   "cards": 25,
+   "minMean": 116.3984375,
+   "minOfMax": 222
+  },
+  {
+   "n": 116,
+   "dip": false,
+   "cards": 23,
+   "minMean": 90.45703125,
+   "minOfMax": 211
+  },
+  {
+   "n": 118,
+   "dip": true,
+   "cards": 24,
+   "minMean": 118.71875,
+   "minOfMax": 210
+  },
+  {
+   "n": 120,
+   "dip": false,
+   "cards": 28,
+   "minMean": 45.49609375,
+   "minOfMax": 227
+  },
+  {
+   "n": 124,
+   "dip": false,
+   "cards": 24,
+   "minMean": 125.2421875,
+   "minOfMax": 223
+  },
+  {
+   "n": 125,
+   "dip": true,
+   "cards": 25,
+   "minMean": 103.12890625,
+   "minOfMax": 188
+  }
+ ]
+}

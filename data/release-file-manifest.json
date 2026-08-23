@@ -1,17 +1,17 @@
 {
  "what": "MirrorWeb v1.0.0 release file manifest. Every file in the release tree, where it came from, and why it is here.",
- "generatedAt": "2026-08-23T19:26:36+00:00",
+ "generatedAt": "2026-08-23T20:11:09+00:00",
  "releaseBranch": "release/v1.0.0",
  "sourceRef": "8de671f",
  "sourceBranch": "rebuild/liquid-glass-v5-source-exact",
  "basedOn": "e37bc539e127870d4c1428f12402319f1c98fbc3",
  "howTheAllowlistWasDerived": "The release build has one Rollup entry (index.html). It was built with sourcemaps and every repo file listed as a `sources` entry in the emitted maps is on the allowlist, with the chunk that pulled it in recorded as its reason. Three classes a sourcemap structurally cannot report -- ambient *.d.ts declarations, public/ assets copied verbatim, and the build's own inputs -- are an explicit table with a written reason each.",
  "counts": {
-  "files": 65,
-  "identicalToSource": 58,
-  "changedForRelease": 7,
-  "graphDerived": 45,
-  "explicitExtras": 17
+  "files": 64,
+  "identicalToSource": 55,
+  "changedForRelease": 9,
+  "graphDerived": 44,
+  "explicitExtras": 20
  },
  "removedFromMain": {
   "what": "files that existed on origin/main and are NOT in the release tree. main is the V3-era tree; leaving its src/, scripts/, tests/ and docs/ in place would put stale sources next to the accepted ones and inside tsconfig's `include`. Every one of them remains in git history, on the research branch, and in the archive bundle.",
@@ -50,6 +50,9 @@
    "tests/responsive.spec.ts",
    "tests/visual.spec.ts"
   ]
+ },
+ "excludedAfterReview": {
+  "src/content/TestPatterns.ts": "dead after the ?mediacal=1 route was removed in PR #1 review -- createTestPattern had exactly one caller, the calibration branch."
  },
  "excludedFromTheDevelopmentTree": {
   "what": "trees present at the source ref and deliberately not imported.",
@@ -231,15 +234,6 @@
    "sourceSha256": "9c0b2578349a77611b1d75e436d446232772fe5d9ec0f577fe77cf89959aab06",
    "identicalToSource": true,
    "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
-   "changedForRelease": null
-  },
-  {
-   "releasePath": "src/content/TestPatterns.ts",
-   "releaseSha256": "f44b08f87cca2e05a7dc93d1985270e39fed348a91eddabb6cf959f84259f10b",
-   "sourcePath": "src/content/TestPatterns.ts",
-   "sourceSha256": "f44b08f87cca2e05a7dc93d1985270e39fed348a91eddabb6cf959f84259f10b",
-   "identicalToSource": true,
-   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
    "changedForRelease": null
   },
   {
@@ -595,21 +589,21 @@
   },
   {
    "releasePath": "src/v4/preview/GridAppV4.ts",
-   "releaseSha256": "50b9faddbd5923f091f0a2656097986ce8a79224bdd157d297b90eff7031c0c4",
+   "releaseSha256": "7f578842df9a9c2bf2ba966da12e2e8749a83ee4e04f43b8446c2f4d2f5c7387",
    "sourcePath": "src/v4/preview/GridAppV4.ts",
    "sourceSha256": "50b9faddbd5923f091f0a2656097986ce8a79224bdd157d297b90eff7031c0c4",
-   "identicalToSource": true,
+   "identicalToSource": false,
    "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
-   "changedForRelease": null
+   "changedForRelease": "PR #1 review, three P2 threads. (1) the default reflection shell is derived from the optical BODY instead of the composition, so ?review=current gets the O2 stack's separate shell back and is a valid rollback again. (2) ?gl=1 is parsed and forwarded to RendererController.init, which was hard-coded to false. (3) ?systemB=off now forces environmentMode to off, so the environment branch is omitted from the program instead of falling back to sampling the card's own video texture. The accepted / route is byte-unchanged by all three: it is a target-source body (shell already off), passes no gl=1 and no systemB=off."
   },
   {
    "releasePath": "src/v4/preview/InfiniteGlassGridV4.ts",
-   "releaseSha256": "a0ead6963d4fd868e08e86bea64952d7b7137560ad5d90132d9733f09085a4cd",
+   "releaseSha256": "61d0002590cb0c9969b0eab2f95444bd9b6897acc77f174bf752c86d537e4e4c",
    "sourcePath": "src/v4/preview/InfiniteGlassGridV4.ts",
    "sourceSha256": "a0ead6963d4fd868e08e86bea64952d7b7137560ad5d90132d9733f09085a4cd",
-   "identicalToSource": true,
+   "identicalToSource": false,
    "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
-   "changedForRelease": null
+   "changedForRelease": "PR #1 review, one P2 thread. The ?mediacal=1 route is removed rather than rewired: its calibration patterns only ever reached the QA media planes while the candidate body builds its textures straight from the video elements, so on the shipped lane it photographed production clips and labelled them calibration. Routing them into the accepted body is optics work this release is not authorised to do; calibration belongs to the research tree, with the harness that reads it."
   },
   {
    "releasePath": "src/v4/preview/SceneColorPipelineV4.ts",

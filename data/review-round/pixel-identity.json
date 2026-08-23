@@ -1,0 +1,275 @@
+{
+ "what": "fixed-state stills -- intro landed at identity, clock paused, clips pinned to t=1.25s, grid at a chosen offset, one synchronous frame -- at four viewports x three grid positions.",
+ "comparisons": {
+  "nakedRoute_beforeFixes_vs_afterFixes": {
+   "rows": [
+    {
+     "shot": "1440x900/drag-x-220.png",
+     "identical": true,
+     "maxChannelDelta": 0,
+     "differingPixels": 0,
+     "totalPixels": 1296000
+    },
+    {
+     "shot": "1440x900/drag-xy-260-180.png",
+     "identical": true,
+     "maxChannelDelta": 0,
+     "differingPixels": 0,
+     "totalPixels": 1296000
+    },
+    {
+     "shot": "1440x900/rest.png",
+     "identical": false,
+     "maxChannelDelta": 1,
+     "differingPixels": 60734,
+     "totalPixels": 1296000
+    },
+    {
+     "shot": "390x844/drag-x-220.png",
+     "identical": false,
+     "maxChannelDelta": 1,
+     "differingPixels": 66683,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "390x844/drag-xy-260-180.png",
+     "identical": true,
+     "maxChannelDelta": 0,
+     "differingPixels": 0,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "390x844/rest.png",
+     "identical": false,
+     "maxChannelDelta": 1,
+     "differingPixels": 129499,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "700x700/drag-x-220.png",
+     "identical": false,
+     "maxChannelDelta": 1,
+     "differingPixels": 10949,
+     "totalPixels": 490000
+    },
+    {
+     "shot": "700x700/drag-xy-260-180.png",
+     "identical": true,
+     "maxChannelDelta": 0,
+     "differingPixels": 0,
+     "totalPixels": 490000
+    },
+    {
+     "shot": "700x700/rest.png",
+     "identical": false,
+     "maxChannelDelta": 1,
+     "differingPixels": 204473,
+     "totalPixels": 490000
+    },
+    {
+     "shot": "844x390/drag-x-220.png",
+     "identical": false,
+     "maxChannelDelta": 1,
+     "differingPixels": 89759,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "844x390/drag-xy-260-180.png",
+     "identical": true,
+     "maxChannelDelta": 0,
+     "differingPixels": 0,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "844x390/rest.png",
+     "identical": false,
+     "maxChannelDelta": 1,
+     "differingPixels": 74441,
+     "totalPixels": 329160
+    }
+   ],
+   "byteIdentical": 5,
+   "maxChannelDelta": 1
+  },
+  "nakedRoute_vs_acceptedDevBuild_8de671f": {
+   "rows": [
+    {
+     "shot": "1440x900/drag-x-220.png",
+     "identical": true,
+     "maxChannelDelta": 0,
+     "differingPixels": 0,
+     "totalPixels": 1296000
+    },
+    {
+     "shot": "1440x900/drag-xy-260-180.png",
+     "identical": true,
+     "maxChannelDelta": 0,
+     "differingPixels": 0,
+     "totalPixels": 1296000
+    },
+    {
+     "shot": "1440x900/rest.png",
+     "identical": false,
+     "maxChannelDelta": 1,
+     "differingPixels": 438173,
+     "totalPixels": 1296000
+    },
+    {
+     "shot": "390x844/drag-x-220.png",
+     "identical": false,
+     "maxChannelDelta": 1,
+     "differingPixels": 7251,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "390x844/drag-xy-260-180.png",
+     "identical": true,
+     "maxChannelDelta": 0,
+     "differingPixels": 0,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "390x844/rest.png",
+     "identical": false,
+     "maxChannelDelta": 1,
+     "differingPixels": 16255,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "700x700/drag-x-220.png",
+     "identical": true,
+     "maxChannelDelta": 0,
+     "differingPixels": 0,
+     "totalPixels": 490000
+    },
+    {
+     "shot": "700x700/drag-xy-260-180.png",
+     "identical": true,
+     "maxChannelDelta": 0,
+     "differingPixels": 0,
+     "totalPixels": 490000
+    },
+    {
+     "shot": "700x700/rest.png",
+     "identical": false,
+     "maxChannelDelta": 1,
+     "differingPixels": 56518,
+     "totalPixels": 490000
+    },
+    {
+     "shot": "844x390/drag-x-220.png",
+     "identical": false,
+     "maxChannelDelta": 1,
+     "differingPixels": 9315,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "844x390/drag-xy-260-180.png",
+     "identical": true,
+     "maxChannelDelta": 0,
+     "differingPixels": 0,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "844x390/rest.png",
+     "identical": false,
+     "maxChannelDelta": 1,
+     "differingPixels": 49425,
+     "totalPixels": 329160
+    }
+   ],
+   "byteIdentical": 6,
+   "maxChannelDelta": 1
+  },
+  "currentRoute_beforeFixes_vs_afterFixes": {
+   "rows": [
+    {
+     "shot": "1440x900/drag-x-220.png",
+     "identical": false,
+     "maxChannelDelta": 154,
+     "differingPixels": 699485,
+     "totalPixels": 1296000
+    },
+    {
+     "shot": "1440x900/drag-xy-260-180.png",
+     "identical": false,
+     "maxChannelDelta": 223,
+     "differingPixels": 665982,
+     "totalPixels": 1296000
+    },
+    {
+     "shot": "1440x900/rest.png",
+     "identical": false,
+     "maxChannelDelta": 213,
+     "differingPixels": 855546,
+     "totalPixels": 1296000
+    },
+    {
+     "shot": "390x844/drag-x-220.png",
+     "identical": false,
+     "maxChannelDelta": 197,
+     "differingPixels": 176280,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "390x844/drag-xy-260-180.png",
+     "identical": false,
+     "maxChannelDelta": 192,
+     "differingPixels": 175842,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "390x844/rest.png",
+     "identical": false,
+     "maxChannelDelta": 201,
+     "differingPixels": 216166,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "700x700/drag-x-220.png",
+     "identical": false,
+     "maxChannelDelta": 178,
+     "differingPixels": 259990,
+     "totalPixels": 490000
+    },
+    {
+     "shot": "700x700/drag-xy-260-180.png",
+     "identical": false,
+     "maxChannelDelta": 170,
+     "differingPixels": 265680,
+     "totalPixels": 490000
+    },
+    {
+     "shot": "700x700/rest.png",
+     "identical": false,
+     "maxChannelDelta": 206,
+     "differingPixels": 266871,
+     "totalPixels": 490000
+    },
+    {
+     "shot": "844x390/drag-x-220.png",
+     "identical": false,
+     "maxChannelDelta": 206,
+     "differingPixels": 203484,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "844x390/drag-xy-260-180.png",
+     "identical": false,
+     "maxChannelDelta": 130,
+     "differingPixels": 167216,
+     "totalPixels": 329160
+    },
+    {
+     "shot": "844x390/rest.png",
+     "identical": false,
+     "maxChannelDelta": 119,
+     "differingPixels": 240701,
+     "totalPixels": 329160
+    }
+   ],
+   "byteIdentical": 0,
+   "maxChannelDelta": 223
+  }
+ }
+}
