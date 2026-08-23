@@ -131,6 +131,17 @@ export class GridAppV4 {
   private lastT = 0;
   private elapsed = 0;
   private resizeTimer = 0;
+  /**
+   * The viewport the app is currently laid out for, as `[w, h, dpr]`; the
+   * equality guard reads it. DPR is part of the key because `renderer.resize()`
+   * re-resolves it (`resolveDpr` reads `window.devicePixelRatio`) and a window
+   * dragged between displays of different scale fires `resize` with an
+   * UNCHANGED CSS viewport and a changed ratio. A width/height-only guard would
+   * skip that and leave the backing store at the old resolution.
+   */
+  private appliedViewport: [number, number, number] | null = null;
+  /** QA readback: how many times the viewport was actually APPLIED. */
+  private viewportApplies = 0;
   private visible = true;
   private disposed = false;
   private frameTimes: number[] = [];
@@ -358,6 +369,15 @@ export class GridAppV4 {
     if (this.sourceExact) this.motion.enableSourceExact();
     this.input = new InputController(handle.canvas, this.motion, () => this.grid.reel?.unlock());
     this.bindWindow();
+    // The build above used the frame the renderer computed at init. Loading
+    // takes seconds, and a window resized during it fires its resize event
+    // before the listener above exists -- so seed the guard with the viewport
+    // that was actually built, then reconcile once. The guard makes that
+    // reconcile free when nothing moved, which is the usual case.
+    this.appliedViewport = this.frame
+      ? [this.frame.viewport[0], this.frame.viewport[1], window.devicePixelRatio || 1]
+      : [window.innerWidth, window.innerHeight, window.devicePixelRatio || 1];
+    this.syncViewport();
     this.drawFrame();
     this.loading.setPercent(100);
     if (this.grid.getAssetState().ready) this.loading.hide();
@@ -914,6 +934,14 @@ export class GridAppV4 {
       phaseModel: this.phaseModel,
       sourceExact: this.sourceExact,
       sourceExactFrame: this.frame ?? null,
+      // How many times the viewport was APPLIED, not how many resize events
+      // arrived. Before the bounds-equality guard those were the same number
+      // times two: every resize event applied once immediately and once more
+      // 80 ms later, whether or not anything had changed.
+      resizeScheduling: {
+        appliedViewport: this.appliedViewport,
+        applies: this.viewportApplies,
+      },
       activeSlotCount: this.sourceExact ? this.grid.activeSlotCount : null,
       slotIdentity: this.sourceExact ? this.slotIdentity() : null,
       portraitVertical: this.portraitVertical,
@@ -1194,31 +1222,93 @@ export class GridAppV4 {
     this.pipeline.resize(window.innerWidth, window.innerHeight, dpr);
   }
 
+  /**
+   * Re-derive everything a viewport change touches, once, in dependency order.
+   *
+   * Never call this directly: `syncViewport` owns whether it should run at all.
+   */
+  private applyViewport(): void {
+    this.renderer.resize();
+    // The portrait vertical override depends on the viewport, so it has to be
+    // re-resolved before placement -- an orientation flip adds or removes it
+    // entirely.
+    this.syncVerticalOverride();
+    // Source-exact: the layout frame IS the resize. Slot count, card size and
+    // media fit all follow from it, and nothing is created or destroyed.
+    if (this.frame) this.grid.setFrame(this.frame);
+    // ... and so does the type layer. A resize changes the card plane, and
+    // every type size is a container query against it.
+    if (this.frame && !this.layoutOnly) this.labels.setFrame(this.frame);
+    // The rest offset is regime-dependent, so a resize can flip the brick
+    // parity; re-place the grid before anything reads its positions.
+    this.grid.update(this.gridX(), this.gridY());
+    this.applyPipelineSize();
+    this.labels.setSize(window.innerWidth, window.innerHeight);
+    this.foundationOverlay?.setSize(window.innerWidth, window.innerHeight);
+    this.input.setViewSize(window.innerWidth, window.innerHeight);
+  }
+
+  /**
+   * Apply the viewport at most once per ACTUAL bounds change.
+   *
+   * This is the Target's own resize semantics, and it is a semantics rather
+   * than a delay. Its `<Canvas>` measures through react-use-measure, whose
+   * `calculate` ends in
+   *
+   *     f.current && (e = c.current.lastBounds, t = p,
+   *       !it.every(r => e[r] === t[r])) && u(c.current.lastBounds = p)
+   *
+   * -- a bounds-equality guard, so a measurement that reports the size the
+   * page is already laid out for produces NO state update and therefore no
+   * re-application. Its window `resize` handler is the undebounced arm
+   * (`debounce: {scroll: 50, resize: 0}`) and its ResizeObserver and
+   * `screen.orientation` change arms are the 50 ms one; all three go through
+   * the same guard, so N events during one rotation collapse into one apply.
+   *
+   * The old form here had no guard: a resize applied immediately and then
+   * applied again 80 ms later whether or not anything had changed. One
+   * viewport change therefore did the work twice, and a real device rotation
+   * -- which fires several resizes as the interface settles -- did it once per
+   * event. Returns whether it actually applied, for the QA readback.
+   */
+  private syncViewport(): boolean {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const dpr = window.devicePixelRatio || 1;
+    const applied = this.appliedViewport;
+    if (applied && applied[0] === width && applied[1] === height
+      && applied[2] === dpr) return false;
+    this.appliedViewport = [width, height, dpr];
+    this.applyViewport();
+    this.viewportApplies += 1;
+    return true;
+  }
+
   private bindWindow(): void {
-    const apply = () => {
-      this.renderer.resize();
-      // The portrait vertical override depends on the viewport, so it has to be
-      // re-resolved before placement -- an orientation flip adds or removes it
-      // entirely.
-      this.syncVerticalOverride();
-      // Source-exact: the layout frame IS the resize. Slot count, card size and
-      // media fit all follow from it, and nothing is created or destroyed.
-      if (this.frame) this.grid.setFrame(this.frame);
-      // ... and so does the type layer. A resize changes the card plane, and
-      // every type size is a container query against it.
-      if (this.frame && !this.layoutOnly) this.labels.setFrame(this.frame);
-      // The rest offset is regime-dependent, so a resize can flip the brick
-      // parity; re-place the grid before anything reads its positions.
-      this.grid.update(this.gridX(), this.gridY());
-      this.applyPipelineSize();
-      this.labels.setSize(window.innerWidth, window.innerHeight);
-      this.foundationOverlay?.setSize(window.innerWidth, window.innerHeight);
-      this.input.setViewSize(window.innerWidth, window.innerHeight);
-    };
+    // Applied in the event, as before -- NOT deferred to the next frame.
+    //
+    // Deferring it was tried and measured: five orientation flips each way, and
+    // five more with a three-event settling rotation. It moved the listener's
+    // own cost to 0.0 ms, which IS Target parity, and it moved the main-thread
+    // block the user actually sees the wrong way on both arms -- no better, and
+    // probably worse, because our card transforms then land AFTER the browser's
+    // post-resize style pass and force a second one in the same frame. The
+    // measured medians are in `qa-v5/final-motion/orientation-truth.json` under
+    // `schedulingCorrectionRejected.measured`; they are not repeated here,
+    // because a number copied into a comment is a number that goes stale. A
+    // change with a clean source basis that makes the product number worse is
+    // still a change that makes it worse.
+    //
+    // What is kept is the Target's other resize semantics, which costs nothing
+    // and removes real work: the bounds-equality guard in `syncViewport`. The
+    // 80 ms timer is the same late-report safety net it always was, but it now
+    // re-arms the GUARDED path, so the second application of an unchanged
+    // viewport -- which happened after every single resize event -- does not
+    // happen at all.
     window.addEventListener("resize", () => {
-      apply();
+      this.syncViewport();
       window.clearTimeout(this.resizeTimer);
-      this.resizeTimer = window.setTimeout(apply, 80);
+      this.resizeTimer = window.setTimeout(() => { this.syncViewport(); }, 80);
     });
     document.addEventListener("visibilitychange", () => {
       this.visible = document.visibilityState === "visible";

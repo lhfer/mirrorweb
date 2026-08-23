@@ -119,6 +119,13 @@ export async function startGridPreviewV4(options: GridAppV4Options = {}): Promis
   });
   await app.start();
 
+  // §六: the real-device status readout. Off unless asked for by query, and it
+  // must stay off for every capture and review pass -- §五 says no debug HUD.
+  if (query.get("status") === "1") {
+    const { mountStatusReadout } = await import("../../debug/StatusReadout");
+    mountStatusReadout(app);
+  }
+
   const enabled = import.meta.env.DEV || query.has("qa");
   if (enabled) {
     const api: GridQaV4 = {

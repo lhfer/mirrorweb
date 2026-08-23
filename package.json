@@ -10,6 +10,8 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --port 5280 --strictPort",
     "review": "npm run build && vite preview --host 127.0.0.1 --port 5293 --strictPort",
+    "review:lan": "npm run build && vite preview --host 0.0.0.0 --port 5293 --strictPort",
+    "review:lan:url": "node scripts/v5/fm-lan-url.mjs",
     "capture:reference": "node scripts/capture-reference.mjs",
     "capture:local": "node scripts/capture-local.mjs",
     "test:visual": "playwright test tests/visual.spec.ts",
