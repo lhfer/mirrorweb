@@ -7,7 +7,7 @@ import {
   type Texture,
 } from "three/webgpu";
 import {
-  CanvasTexture, ClampToEdgeWrapping, LinearFilter, SRGBColorSpace, VideoTexture,
+  ClampToEdgeWrapping, LinearFilter, SRGBColorSpace, VideoTexture,
 } from "three/webgpu";
 import { GRID, TILE, type QualityLevel } from "../../config";
 import {
@@ -17,7 +17,6 @@ import {
 import { Quaternion, Vector3 } from "three/webgpu";
 import { catalogAt } from "../../content/catalog";
 import { clipFocus } from "../../content/VideoClips";
-import { createTestPattern } from "../../content/TestPatterns";
 import {
   applyMediaFit,
   computeMediaFit,
@@ -135,7 +134,6 @@ export class InfiniteGlassGridV4 {
   activeSlotCount = 0;
   private sourceExact = false;
   private mediaFits: MediaFitResult[] = [];
-  private calibrationTextures: CanvasTexture[] = [];
   /** O5 lane. "current" is the accepted O2 body; see OpticsConfigV4. */
   private opticalBody: V4OpticalBody = "current";
   private bodyUniforms?: TargetOpticalBodyUniformsV5;
@@ -222,8 +220,16 @@ export class InfiniteGlassGridV4 {
     this.shellEnabled = shellMode !== "off";
     this.debugShellOn = debugMode === "beauty" || debugMode === "reflection";
     this.mediaFitMode = readMediaFitMode();
-    const calibration = new URLSearchParams(location.search).get("mediacal") === "1";
-    const maps = calibration ? this.buildCalibrationTextures() : (this.reel?.textures ?? []);
+    // `?mediacal=1` used to swap calibration patterns in here. It is gone from
+    // the release: the patterns only ever reached the QA media planes, while
+    // the candidate body builds its own textures straight from the video
+    // elements -- so on the shipped target-source lane a calibration capture
+    // photographed the production clips and called them calibration patterns.
+    // Rather than thread the patterns into the accepted body's material path,
+    // which is optics work this release is not authorised to do, the route is
+    // removed. Calibration belongs to the research tree, where the harness
+    // that reads it also lives.
+    const maps = this.reel?.textures ?? [];
     this.mediaMaterials = maps.map((map, index) => {
       const material = new MeshBasicMaterial({ map, toneMapped: true });
       material.name = `MirrorWeb.V4.Media.${index}`;
@@ -552,26 +558,10 @@ export class InfiniteGlassGridV4 {
   }
 
   /**
-   * Calibration stand-ins for the three clips, at the clips' own 960x540 pixel
-   * size, so `?mediacal=1` exercises exactly the same fit maths the videos do.
-   */
-  private buildCalibrationTextures(): CanvasTexture[] {
-    this.calibrationTextures = [0, 1, 2].map(() => {
-      const texture = createTestPattern("calibration", 960, 540);
-      texture.colorSpace = SRGBColorSpace;
-      texture.minFilter = LinearFilter;
-      texture.magFilter = LinearFilter;
-      texture.generateMipmaps = false;
-      return texture;
-    });
-    return this.calibrationTextures;
-  }
-
-  /**
    * Fit every clip onto the card. Card aspect is the same for every cell, and
    * each clip owns its own texture, so one texture matrix per clip is enough.
-   * Source size comes from the decoded video (or the calibration canvas), never
-   * from a hard-coded assumption.
+   * Source size comes from the decoded video, never from a hard-coded
+   * assumption.
    */
   private applyMediaFits(): void {
     this.mediaFits = [];
@@ -1187,8 +1177,6 @@ export class InfiniteGlassGridV4 {
     this.handle = undefined;
     for (const material of this.mediaMaterials) material.dispose();
     this.mediaMaterials.length = 0;
-    for (const texture of this.calibrationTextures) texture.dispose();
-    this.calibrationTextures.length = 0;
     // O5F §四.8 -- every cached set is disposed here, exactly once, and
     // nowhere else. bodyHandles aliases one of these sets, so it is cleared
     // without a second dispose pass over the same materials.

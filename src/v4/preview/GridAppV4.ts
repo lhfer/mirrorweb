@@ -192,12 +192,21 @@ export class GridAppV4 {
 
   constructor(private readonly options: GridAppV4Options = {}) {
     this.v4Debug = options.debugMode ?? "beauty";
-    // O2 System B: the separate reflection shell is DISABLED in Beauty on
-    // the source-exact route (the Target has no shell; the white
-    // reflection lives in the body LERP). The shell survives as a QA
-    // control -- an explicit ?shell= or setShellMode restores it.
+    // O2 System B: the separate reflection shell is DISABLED for the
+    // target-source bodies, because those bodies do not have one -- the
+    // Target has no shell and its white reflection lives in the body LERP.
+    // That is a property of the BODY, not of the composition, and deriving it
+    // from the composition was wrong: `?review=current` expands to
+    // composition=sourceExact + opticalBody=current, and `current` is the
+    // O2 stack that does have a separate reflection shell, which
+    // InfiniteGlassGridV4 builds for that lane. Keying off the composition
+    // turned the shell off there too, so the advertised rollback route was
+    // rendering with a major component of the previous optical default
+    // hidden -- not a valid rollback and not a valid side-by-side control.
+    // The shell survives as a QA control either way: an explicit ?shell= or
+    // setShellMode is still authoritative.
     this.v4Shell = options.shellMode
-      ?? (isSourceExact(options.composition ?? compositionVersion())
+      ?? (isTargetSourceBody(options.opticalBody ?? "current")
             ? "off" : "energy-controlled");
     this.foundation = options.foundation ?? readFoundationMode();
     this.composition = options.composition ?? compositionVersion();
@@ -272,9 +281,16 @@ export class GridAppV4 {
     this.renderer.verticalMode = this.verticalMode;
     this.renderer.portraitLaw = this.portraitLaw;
     this.renderer.portraitVertical = this.portraitVertical;
+    // `?gl=1` is the force-WebGL knob, with the same meaning it has had on the
+    // V3 path since day one (see App.ts). It was hard-coded to false here
+    // while V4 was opt-in and nothing shipped through this path; after the
+    // default-route switch this IS the shipped path, so the knob has to work
+    // where it matters most -- a browser that advertises WebGPU but cannot
+    // initialise the renderer reliably.
+    const forceWebGL = new URLSearchParams(location.search).get("gl") === "1";
     const handle = await this.renderer.init(
       document.getElementById(this.options.viewportId ?? "viewport")!,
-      false,
+      forceWebGL,
     );
     // Integrated Visual Sprint 1 §七: the Target's output stage is the r3f
     // default ACESFilmic at the three.js default exposure 1.0 -- its bundle
@@ -363,7 +379,18 @@ export class GridAppV4 {
         bodyFloorMode: this.options.bodyFloorMode,
         opticalBody: this.options.opticalBody,
         bodyView: this.options.bodyView,
-        environmentMode: this.options.environmentMode,
+        // ?systemB=off has to omit the environment BRANCH, not just skip the
+        // HDR fetch. Skipping the fetch alone left environmentMode at
+        // "source", and the material's `environment` input falls back to the
+        // card's own video texture when no env texture was loaded -- so the
+        // supposedly disabled System B still ran an environment sample, over
+        // unrelated video pixels. A structural control that still samples
+        // something cannot establish the pre-System-B comparison it exists
+        // for. The omission wins over an explicit ?environmentMode=source,
+        // because "off" here means the program has no environment block at
+        // all; see TargetOpticalBodyV5, where "off" removes it rather than
+        // multiplying it by zero.
+        environmentMode: systemBOff ? "off" : this.options.environmentMode,
       },
     );
     if (this.frame) this.grid.setFrame(this.frame);
