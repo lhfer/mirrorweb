@@ -148,6 +148,9 @@ export class TileLabelLayer {
    */
   private frame?: SourceExactLayoutFrame;
 
+  /** The pool the labels were attached to; `setFrame` needs it to re-mount. */
+  private grid?: InfiniteGlassGrid;
+
   /**
    * The verdicts of the most recent `sync`, kept for QA readbacks only.
    * Undefined on the legacy paths and before the first culled sync.
@@ -163,12 +166,58 @@ export class TileLabelLayer {
     host.appendChild(this.renderer.domElement);
   }
 
+  /**
+   * How many label elements this layer should have mounted.
+   *
+   * On the source-exact path: `cols * rows` for the CURRENT viewport, and
+   * nothing else. The Target renders `Array.from({length: b1.get()}, ...)`
+   * where `b1` is set to `cols * rows` in the grid's own layout effect, so a
+   * 1440x900 desktop has 100 label elements in its document and a 390x844
+   * phone has 96 -- not the pool maximum, and not an overscanned pool around
+   * the visible set. There is no recycling and no free list in the Target: an
+   * element belongs to one slot index for as long as it is mounted, and a
+   * cols/rows change adds or removes elements at the end of the array.
+   *
+   * We were mounting the WebGL pool's fixed 16x16 = 256 regardless, and hiding
+   * the surplus. Those 156 extra elements are inert to look at and expensive to
+   * own: they are 2.5x the Target's document, they are restyled on every
+   * viewport change, and the previous round measured the cost of carrying them
+   * as most of a ~40 ms main-thread block at an orientation flip against the
+   * Target's ~10 ms.
+   *
+   * The WebGL pool is NOT touched by any of this -- it stays 256 slabs with the
+   * surplus marked inactive, which is what the layout contract and every frozen
+   * optical gate were measured against.
+   */
+  private mountCountFor(grid: InfiniteGlassGrid, frame?: SourceExactLayoutFrame): number {
+    if (!frame) return grid.slots.length;
+    return Math.max(0, Math.min(frame.activeSlotCount, grid.slots.length));
+  }
+
   attach(grid: InfiniteGlassGrid, mode: DebugMode, frame?: SourceExactLayoutFrame) {
     this.clear();
     this.mode = mode;
     this.frame = frame;
+    this.grid = grid;
     this.renderer.domElement.style.display = "block";
-    for (const slot of grid.slots) {
+    this.mountTo(this.mountCountFor(grid, frame));
+    this.applyBox();
+  }
+
+  /** Add or remove elements at the end of the array until there are `want`. */
+  private mountTo(want: number): void {
+    const grid = this.grid;
+    if (!grid) return;
+    for (let n = this.objects.length; n > want; n -= 1) {
+      const object = this.objects[n - 1];
+      this.scene.remove(object);
+      object.element.remove();
+      this.objects.pop();
+      this.boundKey.pop();
+    }
+    for (let n = this.objects.length; n < want; n += 1) {
+      const slot = grid.slots[n];
+      if (!slot) break;
       const el = document.createElement("div");
       el.style.containerType = "inline-size";
       // Source-exact: the Target's label element carries
@@ -177,16 +226,23 @@ export class TileLabelLayer {
       // A coverage-drawn but back-facing card must hide at paint, not render
       // mirrored. Byte-anchored in qa-v5/culling/target-culling-source.json
       // -> labelInitialStyle.
-      if (frame) el.style.backfaceVisibility = "hidden";
-      if (slot.code !== undefined) bindSlotCard(el, slot.code, slot.slotIndex, mode);
-      else bindCard(el, slot.i, slot.j, slot.slotIndex, mode);
+      if (this.frame) {
+        el.style.backfaceVisibility = "hidden";
+        // The Target mounts every label hidden and writes no transform until
+        // the coverage test first draws it (`Ph`'s inline style is
+        // `{transformStyle, willChange, visibility:"hidden",
+        // backfaceVisibility}`, with no transform). An element that appears
+        // mid-entry therefore cannot flash at the origin on its mount frame.
+        el.style.visibility = "hidden";
+      }
+      if (slot.code !== undefined) bindSlotCard(el, slot.code, slot.slotIndex, this.mode);
+      else bindCard(el, slot.i, slot.j, slot.slotIndex, this.mode);
       const object = new CSS3DObject(el);
       this.scene.add(object);
       this.objects.push(object);
       // Slot-bound cards never rebind: their identity does not change.
       this.boundKey.push(slot.code !== undefined ? Number.NaN : slot.i * 10007 + slot.j);
     }
-    this.applyBox();
   }
 
   /**
@@ -199,8 +255,16 @@ export class TileLabelLayer {
    */
   setFrame(frame: SourceExactLayoutFrame): void {
     this.frame = frame;
+    // A viewport change can change cols x rows, and with it how many labels
+    // should exist. Elements are added or removed at the END of the array, so
+    // every slot index that survives keeps its own element, its ILG code and
+    // its bound copy -- the identity gates read exactly that.
+    if (this.grid) this.mountTo(this.mountCountFor(this.grid, frame));
     this.applyBox();
   }
+
+  /** How many label elements are in the document. */
+  mountedCount(): number { return this.objects.length; }
 
   /** Write the current card box onto every label element. */
   private applyBox(): void {
@@ -276,7 +340,13 @@ export class TileLabelLayer {
    */
   sync(grid: InfiniteGlassGrid, camera: PerspectiveCamera, culling?: LabelCullingVerdict[]) {
     this.lastCulling = culling;
-    for (let n = 0; n < grid.slots.length; n += 1) {
+    this.lastTransformWrites = 0;
+    // Bounded by the LABELS, not by the pool. On the source-exact path there
+    // are fewer labels than slots by design (see `mountCountFor`), and the
+    // verdict array is still per-slot, so index n means the same thing in
+    // both -- the labels are slots 0..mounted-1, which are exactly the active
+    // ones.
+    for (let n = 0; n < this.objects.length; n += 1) {
       const slot = grid.slots[n];
       const object = this.objects[n];
       if (slot.active === false) {
@@ -307,6 +377,7 @@ export class TileLabelLayer {
     slot: InfiniteGlassGrid["slots"][number], object: CSS3DObject, camera: PerspectiveCamera,
     skipBackfaceVisibility: boolean,
   ) {
+    this.lastTransformWrites += 1;
     slot.group.getWorldPosition(object.position);
     object.quaternion.copy(slot.group.getWorldQuaternion(_quat));
     slot.group.getWorldDirection(_dir);
@@ -333,6 +404,7 @@ export class TileLabelLayer {
     }
     this.objects.length = 0;
     this.boundKey.length = 0;
+    this.grid = undefined;
   }
 
   /**
@@ -347,6 +419,19 @@ export class TileLabelLayer {
   isVisible(): boolean {
     return this.renderer.domElement.style.display !== "none";
   }
+
+  /**
+   * CSS3D transform writes issued on the LAST sync.
+   *
+   * The engine-side count: how many labels this layer posed. It is not the
+   * number of `style.transform` assignments the browser saw -- CSS3DRenderer
+   * keeps its own cache and skips a write whose matrix string has not changed
+   * -- so this is an upper bound on the DOM writes and a lower bound on
+   * nothing. §九 asks for it on the device readout; it is counted here rather
+   * than by patching the renderer, because patching the renderer to measure it
+   * would change the thing being measured.
+   */
+  lastTransformWrites = 0;
 
   /** How many label elements are currently drawable. */
   visibleCount(): number {
