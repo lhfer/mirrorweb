@@ -226,19 +226,28 @@ def main() -> int:
         raise SystemExit(f"video budget exceeded: {len(videos)}")
 
     data = []
-    for p in [*sorted(QA.glob("*.json")),
+    for p in [QA / "README.md", *sorted(QA.glob("*.json")),
               ART / "chrome-truth-before.json", ART / "chrome-truth-after.json",
               ART / "recording-band.json", ART / "recon.json", ART / "recon-after.json",
               ART / "route-check.json", ART / "frozen/source-contract.json",
               ART / "frozen/typography-contract.json", ART / "perf/perf-smoke-raw.json"]:
         if not p.exists():
             continue
-        dst = STAGE / "data" / (f"{p.parent.name}-{p.name}" if p.parent.name == "frozen"
-                                else p.name)
+        # The public tree's own README/MANIFEST travel as `public-*` so they are
+        # never confused with this package's manifest at the stage root.
+        name = (f"{p.parent.name}-{p.name}" if p.parent.name == "frozen"
+                else f"public-{p.name}" if p.name in ("README.md", "MANIFEST.json")
+                else p.name)
+        dst = STAGE / "data" / name
         dst.write_bytes(p.read_bytes())
         data.append(f"data/{dst.name}")
 
     head = git("rev-parse", "HEAD")
+    # The captures were taken from the working tree that became the product-code
+    # commit. Every commit after it touches docs, evidence and instruments only,
+    # so the rendered product is the same -- but the honest field is the commit
+    # whose tree was actually photographed.
+    captured = git("rev-list", "-1", "--grep=^v5-visual-convergence-product-code", "HEAD") or head
     manifest = {
         "what": "VC2 §十 private review package. The ONLY place Target pixels live.",
         "reviewCandidateUrl": "http://127.0.0.1:5293/?review=target",
@@ -246,13 +255,16 @@ def main() -> int:
         "howToServe": "npm run review   (builds, then serves 127.0.0.1:5293; no remote preview "
                       "exists for this branch)",
         "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "capturedAtHead": head,
+        "capturedAtHead": captured,
         "reviewHead": head,
         "headSemantics": {
-            "capturedAtHead": "the product-code commit; the before-stills and the pre-fix card "
-                              "trajectories were captured at its parent, which is named in "
-                              "data/p0-decision.json and in the commit history",
-            "reviewHead": "the head this package was assembled at",
+            "capturedAtHead": "v5-visual-convergence-product-code -- the tree the after-stills "
+                              "and after-recordings were photographed from. The before-stills "
+                              "and the pre-fix card trajectories were captured at its parent, "
+                              "v5-visual-convergence-p0-decision.",
+            "reviewHead": "the head this package was assembled at; every commit between it and "
+                          "capturedAtHead touches docs, evidence and instruments only -- no "
+                          "src/ file changed, so the rendered product is identical",
         },
         "matchedContent": "every matched still and every video pair was captured with the same "
                           "locally generated media asset served to both pages and the same "
@@ -272,7 +284,7 @@ def main() -> int:
     files = sorted(p for p in STAGE.rglob("*") if p.is_file())
     manifest["files"] = [{"path": str(p.relative_to(STAGE)), "bytes": p.stat().st_size,
                           "sha256": sha256(p)} for p in files
-                         if p.name != "MANIFEST.json"]
+                         if p.relative_to(STAGE) != Path("MANIFEST.json")]
     listed = {f["path"] for f in manifest["files"]}
     referenced = ({s["file"] for s in stills} | set(sheets)
                   | {v["file"] for v in videos} | set(data))
