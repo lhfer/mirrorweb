@@ -1,0 +1,548 @@
+{
+ "what": "VC2 §七/§八 -- the one product change this round, and the ten-condition visible-advance gate it has to clear.",
+ "p0": "C. Typography / Footer / Brand -- the page chrome band",
+ "change": {
+  "files": [
+   "src/ui/PageOverlay.ts",
+   "src/style.css (chrome/footer block only)"
+  ],
+  "what": [
+   "Added the bottom scrim the Target paints and we did not: a 144 px full-width gradient from 60% black at the last screen row to transparent, in the overlay layer so it grounds the cards and their labels the way the Target's does.",
+   "Replaced our footer's own responsive law with the Target's: the footer row never stacks and carries its inset as padding; only the caption+wordmark link stacks, and only below the Target's lg breakpoint; the row is centred on a phone and bottom-aligned above it.",
+   "Gave the wordmark the Target's box -- width min(26vw, 148px) with drop-shadow(0 2px 12px rgba(0,0,0,.45)) -- and rebuilt our own ATELIER mark as inline SVG at the same 7.46 aspect so it scales inside that box. The Target's logo is its own studio mark and is not reproduced.",
+   "Added the CTA pill's top sheen (white/24 to transparent at .7 opacity)."
+  ],
+  "notTouched": [
+   "layout contract",
+   "motion",
+   "glass/optics",
+   "card label markup",
+   "card typography CSS",
+   "culling",
+   "shipped optical default"
+  ]
+ },
+ "conditions": [
+  {
+   "n": 1,
+   "condition": "Target / Before / After use the same media and the same copy",
+   "pass": true,
+   "detail": {
+    "copyBodyShas": {
+     "139365c167de2ac5": 40
+    },
+    "mediaFreezeTimes": {
+     "(2,)": 40
+    },
+    "source": "artifacts/visual-convergence/stills-{before,after}/**/index.json"
+   }
+  },
+  {
+   "n": 2,
+   "condition": "the change can be pointed at in a 1x full frame",
+   "pass": true,
+   "detail": {
+    "1440x900": "scrim ramp +11.18 -> -1.16 luma (89.6% closed); last row +18.94 -> +1.04",
+    "390x844": "scrim ramp +13.15 -> -3.36 luma (74.4% closed); last row +16.25 -> -0.62",
+    "844x390": "scrim ramp +11.02 -> -3.06 luma (72.2% closed); last row +24.98 -> +0.48",
+    "700x700": "scrim ramp +16.80 -> -1.35 luma (92.0% closed); last row +43.22 -> +0.37"
+   }
+  },
+  {
+   "n": 3,
+   "condition": "at least three viewports improve in the same direction",
+   "pass": true,
+   "detail": {
+    "improved": [
+     "1440x900",
+     "390x844",
+     "844x390",
+     "700x700"
+    ],
+    "of": [
+     "1440x900",
+     "390x844",
+     "844x390",
+     "700x700"
+    ]
+   }
+  },
+  {
+   "n": 4,
+   "condition": "no regression on desktop or mobile: the page outside the chrome band is unchanged",
+   "pass": true,
+   "detail": {
+    "above144BandDelta": {
+     "1440x900": {
+      "before": 2.008,
+      "after": 2.008,
+      "moved": 0.0
+     },
+     "390x844": {
+      "before": 3.901,
+      "after": 3.901,
+      "moved": 0.0
+     },
+     "844x390": {
+      "before": 3.471,
+      "after": 3.471,
+      "moved": 0.0
+     },
+     "700x700": {
+      "before": 2.11,
+      "after": 2.11,
+      "moved": 0.0
+     }
+    },
+    "why": "the fix is confined to the bottom 144 rows; the band above it must not move"
+   }
+  },
+  {
+   "n": 5,
+   "condition": "holds under real drag / flick / touch: across every frame of the six real-input recordings the bottom-144-row luma tracks the Target's",
+   "pass": true,
+   "detail": {
+    "perScenarioBandDelta": {
+     "desktop-fast-flick": {
+      "mean": -1.14,
+      "median": -2.066,
+      "p95Abs": 2.085,
+      "maxAbs": 2.093
+     },
+     "desktop-pointer-sweep": {
+      "mean": 0.883,
+      "median": 0.883,
+      "p95Abs": 0.972,
+      "maxAbs": 0.992
+     },
+     "desktop-slow-drag": {
+      "mean": 0.286,
+      "median": 0.076,
+      "p95Abs": 0.826,
+      "maxAbs": 0.826
+     },
+     "mobile-long-drag-wrap": {
+      "mean": 0.896,
+      "median": 0.605,
+      "p95Abs": 2.197,
+      "maxAbs": 2.724
+     },
+     "mobile-touch-drag": {
+      "mean": 1.015,
+      "median": 1.381,
+      "p95Abs": 1.546,
+      "maxAbs": 2.195
+     },
+     "orientation-change": {
+      "mean": 0.966,
+      "median": 0.965,
+      "p95Abs": 1.553,
+      "maxAbs": 1.966
+     }
+    },
+    "beforeReference": "the same band read +13 to +19 luma on stills before the fix",
+    "source": "artifacts/visual-convergence/recording-band.json"
+   }
+  },
+  {
+   "n": 6,
+   "condition": "the previously shipped default is still reachable and unchanged in optics",
+   "pass": true,
+   "detail": {
+    "what": "VC2 §八.6 route check",
+    "origin": "http://127.0.0.1:5293",
+    "checkedAt": "2026-08-23T06:31:47.397Z",
+    "rows": [
+     {
+      "route": "shipped-default",
+      "vp": "1440x900",
+      "url": "/",
+      "hasQa": false,
+      "opticalBody": null,
+      "toneMappingExposure": null,
+      "scrim": [
+       0,
+       756,
+       1440,
+       144
+      ],
+      "footer": [
+       0,
+       832.41,
+       1440,
+       67.59
+      ],
+      "wordmark": [
+       175.78,
+       860.19,
+       148,
+       19.81
+      ],
+      "scrimBackground": "linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0))",
+      "canvas": true,
+      "opticalBodyExpected": null,
+      "opticalBodyOk": true,
+      "chromePresent": true,
+      "errors": []
+     },
+     {
+      "route": "shipped-default",
+      "vp": "390x844",
+      "url": "/",
+      "hasQa": false,
+      "opticalBody": null,
+      "toneMappingExposure": null,
+      "scrim": [
+       0,
+       700,
+       390,
+       144
+      ],
+      "footer": [
+       0,
+       782.81,
+       390,
+       61.19
+      ],
+      "wordmark": [
+       20,
+       809.58,
+       101.39,
+       13.58
+      ],
+      "scrimBackground": "linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0))",
+      "canvas": true,
+      "opticalBodyExpected": null,
+      "opticalBodyOk": true,
+      "chromePresent": true,
+      "errors": []
+     },
+     {
+      "route": "review-current",
+      "vp": "1440x900",
+      "url": "/?review=current&qa",
+      "hasQa": true,
+      "opticalBody": "current",
+      "toneMappingExposure": 1.05,
+      "scrim": [
+       0,
+       756,
+       1440,
+       144
+      ],
+      "footer": [
+       0,
+       832.41,
+       1440,
+       67.59
+      ],
+      "wordmark": [
+       175.78,
+       860.19,
+       148,
+       19.81
+      ],
+      "scrimBackground": "linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0))",
+      "canvas": true,
+      "opticalBodyExpected": "current",
+      "opticalBodyOk": true,
+      "chromePresent": true,
+      "errors": []
+     },
+     {
+      "route": "review-current",
+      "vp": "390x844",
+      "url": "/?review=current&qa",
+      "hasQa": true,
+      "opticalBody": "current",
+      "toneMappingExposure": 1.05,
+      "scrim": [
+       0,
+       700,
+       390,
+       144
+      ],
+      "footer": [
+       0,
+       782.81,
+       390,
+       61.19
+      ],
+      "wordmark": [
+       20,
+       809.58,
+       101.39,
+       13.58
+      ],
+      "scrimBackground": "linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0))",
+      "canvas": true,
+      "opticalBodyExpected": "current",
+      "opticalBodyOk": true,
+      "chromePresent": true,
+      "errors": []
+     },
+     {
+      "route": "review-target",
+      "vp": "1440x900",
+      "url": "/?review=target&qa",
+      "hasQa": true,
+      "opticalBody": "target-source-unclamped",
+      "toneMappingExposure": 1,
+      "scrim": [
+       0,
+       756,
+       1440,
+       144
+      ],
+      "footer": [
+       0,
+       832.41,
+       1440,
+       67.59
+      ],
+      "wordmark": [
+       175.78,
+       860.19,
+       148,
+       19.81
+      ],
+      "scrimBackground": "linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0))",
+      "canvas": true,
+      "opticalBodyExpected": "target-source-unclamped",
+      "opticalBodyOk": true,
+      "chromePresent": true,
+      "errors": []
+     },
+     {
+      "route": "review-target",
+      "vp": "390x844",
+      "url": "/?review=target&qa",
+      "hasQa": true,
+      "opticalBody": "target-source-unclamped",
+      "toneMappingExposure": 1,
+      "scrim": [
+       0,
+       700,
+       390,
+       144
+      ],
+      "footer": [
+       0,
+       782.81,
+       390,
+       61.19
+      ],
+      "wordmark": [
+       20,
+       809.58,
+       101.39,
+       13.58
+      ],
+      "scrimBackground": "linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0))",
+      "canvas": true,
+      "opticalBodyExpected": "target-source-unclamped",
+      "opticalBodyOk": true,
+      "chromePresent": true,
+      "errors": []
+     }
+    ],
+    "errors": [],
+    "pass": true
+   }
+  },
+  {
+   "n": 7,
+   "condition": "zero console and page errors on the review routes and the shipped default",
+   "pass": true,
+   "detail": "none"
+  },
+  {
+   "n": 8,
+   "condition": "TypeScript PASS",
+   "pass": true,
+   "detail": "clean"
+  },
+  {
+   "n": 9,
+   "condition": "Vite build PASS",
+   "pass": true,
+   "detail": "- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit."
+  },
+  {
+   "n": 10,
+   "condition": "frozen layout / card typography / motion / culling unchanged by the change",
+   "pass": true,
+   "detail": {
+    "sourceContract": {
+     "verdict": "PASS",
+     "passed": "36/36"
+    },
+    "cardTypography": {
+     "verdict": "PASS",
+     "matched": "29/29"
+    },
+    "motionDeterministicWorstP95": {
+     "rest": 0.0,
+     "desktop-slow-drag": 0.689,
+     "desktop-pointer-sweep": 0.066,
+     "mobile-touch-drag": 1.109
+    },
+    "motionEnvelopeContained": {
+     "desktop-fast-flick": true,
+     "mobile-long-drag-wrap": true,
+     "orientation-change": true
+    }
+   }
+  }
+ ],
+ "grade": {
+  "value": "MATERIAL AND POINTABLE AT 1x",
+  "basis": "worst scrim-specific luma ramp across the four review viewports went 16.80 -> 3.36; §八 fails the round if the best available grade is SUBTLE-BUT-PAGE-WIDE."
+ },
+ "verdict": "READY FOR MATCHED-CONTENT VISUAL PRODUCT REVIEW",
+ "chromeBandMeasurement": {
+  "what": "mean luma of the bottom 144 screen rows on matched full-page stills, candidate minus target; scrimRamp isolates the scrim by subtracting the delta of the 144 rows above it",
+  "source": "artifacts/visual-convergence/chrome-truth-{before,after}.json",
+  "viewports": {
+   "1440x900": {
+    "bottom144DeltaBefore": 13.189,
+    "bottom144DeltaAfter": 0.845,
+    "scrimRampBefore": 11.181,
+    "scrimRampAfter": -1.163,
+    "lastRowDeltaBefore": 18.938,
+    "lastRowDeltaAfter": 1.036,
+    "above144DeltaBefore": 2.008,
+    "above144DeltaAfter": 2.008,
+    "rampClosedPct": 89.6
+   },
+   "390x844": {
+    "bottom144DeltaBefore": 17.049,
+    "bottom144DeltaAfter": 0.539,
+    "scrimRampBefore": 13.148,
+    "scrimRampAfter": -3.362,
+    "lastRowDeltaBefore": 16.253,
+    "lastRowDeltaAfter": -0.621,
+    "above144DeltaBefore": 3.901,
+    "above144DeltaAfter": 3.901,
+    "rampClosedPct": 74.4
+   },
+   "844x390": {
+    "bottom144DeltaBefore": 14.494,
+    "bottom144DeltaAfter": 0.41,
+    "scrimRampBefore": 11.023,
+    "scrimRampAfter": -3.061,
+    "lastRowDeltaBefore": 24.983,
+    "lastRowDeltaAfter": 0.484,
+    "above144DeltaBefore": 3.471,
+    "above144DeltaAfter": 3.471,
+    "rampClosedPct": 72.2
+   },
+   "700x700": {
+    "bottom144DeltaBefore": 18.914,
+    "bottom144DeltaAfter": 0.764,
+    "scrimRampBefore": 16.804,
+    "scrimRampAfter": -1.346,
+    "lastRowDeltaBefore": 43.224,
+    "lastRowDeltaAfter": 0.368,
+    "above144DeltaBefore": 2.11,
+    "above144DeltaAfter": 2.11,
+    "rampClosedPct": 92.0
+   }
+  },
+  "signNote": "the after ramps are slightly NEGATIVE (-1.16 to -3.36) where the before ramps were strongly positive. That is expected, not an overshoot: the scrimmed band now matches the Target while the band ABOVE it still carries the +2.0 to +3.9 luma page-wide residual that §一.2 closed for this round, and the ramp is the difference of the two. The absolute band delta -- the number that says how close the bottom of the page now is -- went from +13.2/+17.0/+14.5/+18.9 to +0.85/+0.54/+0.41/+0.76 luma."
+ },
+ "motionUnchangedByTheFix": {
+  "what": "the candidate's own card geometry before and after the change. The chrome fix touches no motion code, and this is the measurement that says so.",
+  "deterministicScenariosP95DeltaPx": {
+   "rest": {
+    "centreX": 0.0,
+    "centreY": 0.0,
+    "projectedWidth": 0.0,
+    "hGutter": 0.0,
+    "vGutter": 0.0,
+    "rowStagger": 0.0
+   },
+   "desktop-slow-drag": {
+    "centreX": 0.689,
+    "centreY": 0.158,
+    "projectedWidth": 0.176,
+    "hGutter": 0.021,
+    "vGutter": 0.085,
+    "rowStagger": 0.056
+   },
+   "desktop-pointer-sweep": {
+    "centreX": 0.06,
+    "centreY": 0.053,
+    "projectedWidth": 0.066,
+    "hGutter": 0.016,
+    "vGutter": 0.023,
+    "rowStagger": 0.015
+   },
+   "mobile-touch-drag": {
+    "centreX": 1.109,
+    "centreY": 0.307,
+    "projectedWidth": 0.292,
+    "hGutter": 0.083,
+    "vGutter": 0.079,
+    "rowStagger": 0.1
+   }
+  },
+  "nonDeterministicScenariosTravelEnvelope": {
+   "desktop-fast-flick": {
+    "postFixTravelPx": [
+     815.55,
+     815.76,
+     833.07
+    ],
+    "preFixTravelPx": [
+     832.15,
+     815.55
+    ],
+    "postFixEnvelope": [
+     815.55,
+     833.07
+    ],
+    "targetOwnTravelSpreadPx": 2.43,
+    "toleranceSource": "the Target's own travel spread across its three repeats of this same gesture",
+    "preFixInsideEnvelope": true
+   },
+   "mobile-long-drag-wrap": {
+    "postFixTravelPx": [
+     360.79,
+     361.71,
+     362.7
+    ],
+    "preFixTravelPx": [
+     361.98,
+     363.55
+    ],
+    "postFixEnvelope": [
+     360.79,
+     362.7
+    ],
+    "targetOwnTravelSpreadPx": 1.94,
+    "toleranceSource": "the Target's own travel spread across its three repeats of this same gesture",
+    "preFixInsideEnvelope": true
+   },
+   "orientation-change": {
+    "postFixTravelPx": [
+     623.51,
+     623.42,
+     624.62
+    ],
+    "preFixTravelPx": [
+     623.44,
+     623.36
+    ],
+    "postFixEnvelope": [
+     623.42,
+     624.62
+    ],
+    "targetOwnTravelSpreadPx": 1.86,
+    "toleranceSource": "the Target's own travel spread across its three repeats of this same gesture",
+    "preFixInsideEnvelope": true
+   }
+  },
+  "why": "flick, wrap and orientation do not repeat to sub-pixel on this page -- the flick is bimodal -- so a before/after p95 there measures the page's own spread, not the change. Envelope containment is the test that survives that."
+ }
+}

@@ -13,7 +13,7 @@ The still budget is smaller than §四's own matrix (four viewports x six kinds
 out is named in the manifest rather than silently dropped. The contact sheets
 carry the overflow.
 
-Usage: vc2-package.py [--out=<zip>] [--still-q=90] [--crf=30]
+Usage: vc2-package.py [--out=<zip>] [--still-q=96] [--crf=20]
 """
 from __future__ import annotations
 
@@ -146,8 +146,8 @@ def encode_side_by_side(scenario: str, dst: Path, crf: int) -> dict:
 def main() -> int:
     args = dict(a[2:].split("=", 1) for a in sys.argv[1:] if a.startswith("--"))
     zip_p = REPO / args.get("out", "qa-v5/private/vc2-visual-convergence.zip")
-    q = int(args.get("still-q", 90))
-    crf = int(args.get("crf", 30))
+    q = int(args.get("still-q", 96))
+    crf = int(args.get("crf", 20))
 
     if STAGE.exists():
         shutil.rmtree(STAGE)

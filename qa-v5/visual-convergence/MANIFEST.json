@@ -1,0 +1,82 @@
+{
+ "round": "MirrorWeb V5 -- Visual Convergence Sprint 2",
+ "reviewCandidateUrl": "http://127.0.0.1:5293/?review=target",
+ "reviewCurrentUrl": "http://127.0.0.1:5293/?review=current",
+ "howToServe": "npm run review",
+ "generatedAt": "2026-08-23T07:01:07+00:00",
+ "branch": "rebuild/liquid-glass-v5-source-exact",
+ "reviewHead": "3046e923b3de0593cba1ba14d3615dd8f265ef6d",
+ "baseline": "7672ec3d8feab7defb2aa30265b6ff528fe2bf1b (Integrated Visual Sprint 1)",
+ "commits": [
+  "3046e92 v5-visual-convergence-product-code",
+  "2081ca1 v5-visual-convergence-p0-decision",
+  "27a8304 v5-visual-convergence-matched-content-harness"
+ ],
+ "files": [
+  {
+   "file": "README.md",
+   "bytes": 6605,
+   "sha256": "163171c72f799b05156f69296228bd6d43b26369ca2c6744d0721338dfd23d65",
+   "verdict": null
+  },
+  {
+   "file": "card-trajectory-thresholds.json",
+   "bytes": 8490,
+   "sha256": "87ad14ba39a857136d71e39eda4549e23ad1bf2083a46103901fdb8043219c7c",
+   "verdict": null
+  },
+  {
+   "file": "card-trajectory-truth.json",
+   "bytes": 45249,
+   "sha256": "8f65eca801e07b08c8c996f48e3735529994f3e2bcf5126271a97f2aebeaec01",
+   "verdict": "CARD GEOMETRY DIVERGENCE FOUND"
+  },
+  {
+   "file": "matched-content-contract.json",
+   "bytes": 35432,
+   "sha256": "fde97d19571c193dc7acceb0857ed5b8a5bef3da48615718686d7af4a480c85a",
+   "verdict": "MATCHED-CONTENT HARNESS PROVEN"
+  },
+  {
+   "file": "p0-decision.json",
+   "bytes": 12937,
+   "sha256": "6756a558d5d8e4e9d14fbbe25eb455a80b32c46f5a6130df258160ead3f3a299",
+   "verdict": null
+  },
+  {
+   "file": "perf-smoke.json",
+   "bytes": 7051,
+   "sha256": "4e06bd10264e52d96cee6f8273129cf8a83644f094108541ccf41862a0668eed",
+   "verdict": "SMOKE CLEAN"
+  },
+  {
+   "file": "product-closure.json",
+   "bytes": 14296,
+   "sha256": "a15da353d1fe18512e4429eee3b45cfefe8266ba3cc331d2302625c8b1e56533",
+   "verdict": "READY FOR MATCHED-CONTENT VISUAL PRODUCT REVIEW"
+  }
+ ],
+ "privatePackage": {
+  "path": "qa-v5/private/vc2-visual-convergence.zip",
+  "why": "Target pixels live there and nowhere else in this repo"
+ },
+ "notAsserted": [
+  "Target Visual PASS"
+ ],
+ "notTouched": [
+  "the shipped optical default (opticalBody=current)",
+  "main",
+  "motion code",
+  "the SourceExact layout contract",
+  "TargetOpticalBodyV5 and every optical constant",
+  "card label markup and card typography CSS"
+ ],
+ "finalProductState": "READY FOR MATCHED-CONTENT VISUAL PRODUCT REVIEW",
+ "stateBasis": "§八's ten conditions all pass and the honest grade is MATERIAL AND POINTABLE AT 1x -- the bottom 144 rows of all four review viewports went from 13-19 luma levels off the Target to under 0.9, and the footer geometry from a 59 px mobile displacement to under 0.05 px. See product-closure.json.",
+ "deliveryLimits": {
+  "publicFileLimit": 10,
+  "publicFiles": 8,
+  "imagesInPublicTree": [],
+  "pass": true
+ }
+}
