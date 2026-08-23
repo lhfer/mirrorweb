@@ -1,0 +1,1687 @@
+{
+ "what": "VC2 §三 matched-content contract: the proof that Glass and Typography judgements this round are made on the same media and the same copy.",
+ "startedAt": "2026-08-23T05:52:11.307Z",
+ "target": "https://infinite-liquid-glass.shader.se/?v=2",
+ "local": "http://127.0.0.1:5293/?review=target&qa",
+ "copy": {
+  "category": "Matched content",
+  "metaRightA": "Selected work",
+  "metaRightB": "2026",
+  "title": "Quiet Circuit",
+  "deck": "A long exposure of empty platforms after rain, held open until the last train stops."
+ },
+ "mediaCategories": [
+  {
+   "key": "dark-cinematic",
+   "asset": "dark-highlight",
+   "why": "near-black field with one blown highlight -- the dark-shoulder case"
+  },
+  {
+   "key": "bright-lowsat",
+   "asset": "bright-lowsat",
+   "why": "high-key, low saturation -- where a milky glass reads worst"
+  },
+  {
+   "key": "warm-skin",
+   "asset": "warm-skin",
+   "why": "warm mid-tone content"
+  },
+  {
+   "key": "cool-blue",
+   "asset": "cool-blue",
+   "why": "cool mid-tone content"
+  },
+  {
+   "key": "high-texture",
+   "asset": "hf-checker",
+   "why": "8 px checker -- every dispersion and blur artefact is legible"
+  },
+  {
+   "key": "bw-structured",
+   "asset": "bw-split",
+   "why": "hard black/white edge -- edge transfer and shoulder placement"
+  }
+ ],
+ "mediaRows": [
+  {
+   "category": "dark-cinematic",
+   "asset": "dark-highlight",
+   "sides": {
+    "target": {
+     "servedSha": [
+      "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4",
+      "860c71abcb25bd586d638f2911b219a7489983b199a0200e53e7e478b75b86df",
+      "4400ff82654b3a46fa8e7d6ccf49a31922e1eb91fcdcd597b879fdec33f97477",
+      "da346d9b65c738043c7c1609a1fd7f82b8be5f1ba5f9393ab17a72222068cbd3"
+     ],
+     "servedFiles": 76,
+     "elementaryStreamSha256": "e842389120331d37ecb04eb190609e6402ccd1ca77b0cb25b16e5027dbf5055e",
+     "mp4Sha256": "e20d77c79ef2c40177eb1b18a353a6f2f882878afa5a45fc0f6007f54c3dd4f0",
+     "frozenAt": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "decoded": {
+      "size": [
+       1200,
+       900
+      ],
+      "frameHashFnv1a": "c74fbaca",
+      "landmarks": {
+       "dark": [
+        41,
+        40,
+        49
+       ],
+       "highlight": [
+        255,
+        255,
+        255
+       ]
+      }
+     },
+     "landmarkVerdict": {
+      "pass": true,
+      "tolerance": 12,
+      "rows": [
+       {
+        "landmark": "dark",
+        "expected": [
+         43,
+         43,
+         53
+        ],
+        "got": [
+         41,
+         40,
+         49
+        ],
+        "maxChannelDelta": 4,
+        "pass": true
+       },
+       {
+        "landmark": "highlight",
+        "expected": [
+         255,
+         255,
+         255
+        ],
+        "got": [
+         255,
+         255,
+         255
+        ],
+        "maxChannelDelta": 0,
+        "pass": true
+       }
+      ]
+     },
+     "copy": {
+      "cards": 41,
+      "failures": [],
+      "reasserts": 0,
+      "bodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+      "uniform": true,
+      "sample": "[\"Matched content\",\"Selected work\",\"2026\",\"Quiet Circuit\",\"A long exposure of empty platforms after rain, held open until the last train stops.\"]"
+     },
+     "visibleCodes": 16,
+     "pageErrors": []
+    },
+    "local": {
+     "servedSha": [
+      "e20d77c79ef2c40177eb1b18a353a6f2f882878afa5a45fc0f6007f54c3dd4f0"
+     ],
+     "servedFiles": 3,
+     "elementaryStreamSha256": "e842389120331d37ecb04eb190609e6402ccd1ca77b0cb25b16e5027dbf5055e",
+     "mp4Sha256": "e20d77c79ef2c40177eb1b18a353a6f2f882878afa5a45fc0f6007f54c3dd4f0",
+     "frozenAt": [
+      2,
+      2,
+      2
+     ],
+     "decoded": {
+      "size": [
+       1200,
+       900
+      ],
+      "frameHashFnv1a": "bb70d897",
+      "landmarks": {
+       "dark": [
+        41,
+        40,
+        49
+       ],
+       "highlight": [
+        255,
+        255,
+        255
+       ]
+      }
+     },
+     "landmarkVerdict": {
+      "pass": true,
+      "tolerance": 12,
+      "rows": [
+       {
+        "landmark": "dark",
+        "expected": [
+         43,
+         43,
+         53
+        ],
+        "got": [
+         41,
+         40,
+         49
+        ],
+        "maxChannelDelta": 4,
+        "pass": true
+       },
+       {
+        "landmark": "highlight",
+        "expected": [
+         255,
+         255,
+         255
+        ],
+        "got": [
+         255,
+         255,
+         255
+        ],
+        "maxChannelDelta": 0,
+        "pass": true
+       }
+      ]
+     },
+     "copy": {
+      "cards": 256,
+      "failures": [],
+      "reasserts": 0,
+      "bodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+      "uniform": true,
+      "sample": "[\"Matched content\",\"Selected work\",\"2026\",\"Quiet Circuit\",\"A long exposure of empty platforms after rain, held open until the last train stops.\"]"
+     },
+     "visibleCodes": 16,
+     "pageErrors": []
+    }
+   },
+   "sameElementaryStream": true,
+   "sameDecodedSize": true,
+   "sameDecodedFrame": false,
+   "sameFreezeTime": true,
+   "sameCopySha": true,
+   "decodeDiff": {
+    "size": [
+     1200,
+     900
+    ],
+    "identical": false,
+    "maxChannelDelta": 3,
+    "meanAbsDelta": 7.4e-05,
+    "differingPixels": 60,
+    "differingPixelFraction": 5.556e-05,
+    "pixelsOverGate": 0
+   }
+  },
+  {
+   "category": "bright-lowsat",
+   "asset": "bright-lowsat",
+   "sides": {
+    "target": {
+     "servedSha": [
+      "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4",
+      "347886d079fa3cd203f43a7bfcf4630dbff433fbe7ee5edc73dd351d8e54241e",
+      "81a9bb25a392446ad6291e4a6d102fec16e0ef902dc6c3b01a5bcfde8c628056",
+      "35dde1de31be623391e65e174ef53a7583a15df1af79c315b11c1d4f2ec9e590"
+     ],
+     "servedFiles": 76,
+     "elementaryStreamSha256": "b91768d5ee101c28a2984f47075462f8cc0196c44947a6d20289e935dd2c76fa",
+     "mp4Sha256": "4076ffa0f4fd7649371ccf4ceb6a05f5f89471da1ad72bb2e723f7ba3cdc74b2",
+     "frozenAt": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "decoded": {
+      "size": [
+       1200,
+       900
+      ],
+      "frameHashFnv1a": "436053bd",
+      "landmarks": {
+       "mid": [
+        206,
+        188,
+        180
+       ]
+      }
+     },
+     "landmarkVerdict": {
+      "pass": true,
+      "tolerance": 12,
+      "rows": [
+       {
+        "landmark": "mid",
+        "expected": [
+         207,
+         189,
+         181
+        ],
+        "got": [
+         206,
+         188,
+         180
+        ],
+        "maxChannelDelta": 1,
+        "pass": true
+       }
+      ]
+     },
+     "copy": {
+      "cards": 41,
+      "failures": [],
+      "reasserts": 0,
+      "bodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+      "uniform": true,
+      "sample": "[\"Matched content\",\"Selected work\",\"2026\",\"Quiet Circuit\",\"A long exposure of empty platforms after rain, held open until the last train stops.\"]"
+     },
+     "visibleCodes": 16,
+     "pageErrors": []
+    },
+    "local": {
+     "servedSha": [
+      "4076ffa0f4fd7649371ccf4ceb6a05f5f89471da1ad72bb2e723f7ba3cdc74b2"
+     ],
+     "servedFiles": 3,
+     "elementaryStreamSha256": "b91768d5ee101c28a2984f47075462f8cc0196c44947a6d20289e935dd2c76fa",
+     "mp4Sha256": "4076ffa0f4fd7649371ccf4ceb6a05f5f89471da1ad72bb2e723f7ba3cdc74b2",
+     "frozenAt": [
+      2,
+      2,
+      2
+     ],
+     "decoded": {
+      "size": [
+       1200,
+       900
+      ],
+      "frameHashFnv1a": "436053bd",
+      "landmarks": {
+       "mid": [
+        206,
+        188,
+        180
+       ]
+      }
+     },
+     "landmarkVerdict": {
+      "pass": true,
+      "tolerance": 12,
+      "rows": [
+       {
+        "landmark": "mid",
+        "expected": [
+         207,
+         189,
+         181
+        ],
+        "got": [
+         206,
+         188,
+         180
+        ],
+        "maxChannelDelta": 1,
+        "pass": true
+       }
+      ]
+     },
+     "copy": {
+      "cards": 256,
+      "failures": [],
+      "reasserts": 0,
+      "bodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+      "uniform": true,
+      "sample": "[\"Matched content\",\"Selected work\",\"2026\",\"Quiet Circuit\",\"A long exposure of empty platforms after rain, held open until the last train stops.\"]"
+     },
+     "visibleCodes": 16,
+     "pageErrors": []
+    }
+   },
+   "sameElementaryStream": true,
+   "sameDecodedSize": true,
+   "sameDecodedFrame": true,
+   "sameFreezeTime": true,
+   "sameCopySha": true,
+   "decodeDiff": {
+    "size": [
+     1200,
+     900
+    ],
+    "identical": true,
+    "maxChannelDelta": 0,
+    "meanAbsDelta": 0.0,
+    "differingPixels": 0,
+    "differingPixelFraction": 0.0,
+    "pixelsOverGate": 0
+   }
+  },
+  {
+   "category": "warm-skin",
+   "asset": "warm-skin",
+   "sides": {
+    "target": {
+     "servedSha": [
+      "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4",
+      "be059a880b2667c46b660fde492dcde684e2ce7b8cf2716f5c76c51ff45336d2",
+      "24e4b1999da5f83e612d00cae0d824ebf26657a142fdb72b8fc4eaa8451585f6",
+      "d109733d142121d4eaeccfe73a5e3152fcdb9363535059dfbaa892c854774be4"
+     ],
+     "servedFiles": 76,
+     "elementaryStreamSha256": "50d0821052cda94e136a6dd1dc1b3f0f85eeea57958fa987fb08de1db93d3b52",
+     "mp4Sha256": "c5fd4c7d52b12a450bfd369b38166ee523e58efca0dbb9ca4361d0a178229365",
+     "frozenAt": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "decoded": {
+      "size": [
+       1200,
+       900
+      ],
+      "frameHashFnv1a": "17210aa5",
+      "landmarks": {
+       "mid": [
+        210,
+        160,
+        127
+       ]
+      }
+     },
+     "landmarkVerdict": {
+      "pass": true,
+      "tolerance": 12,
+      "rows": [
+       {
+        "landmark": "mid",
+        "expected": [
+         210,
+         160,
+         128
+        ],
+        "got": [
+         210,
+         160,
+         127
+        ],
+        "maxChannelDelta": 1,
+        "pass": true
+       }
+      ]
+     },
+     "copy": {
+      "cards": 41,
+      "failures": [],
+      "reasserts": 0,
+      "bodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+      "uniform": true,
+      "sample": "[\"Matched content\",\"Selected work\",\"2026\",\"Quiet Circuit\",\"A long exposure of empty platforms after rain, held open until the last train stops.\"]"
+     },
+     "visibleCodes": 16,
+     "pageErrors": []
+    },
+    "local": {
+     "servedSha": [
+      "c5fd4c7d52b12a450bfd369b38166ee523e58efca0dbb9ca4361d0a178229365"
+     ],
+     "servedFiles": 3,
+     "elementaryStreamSha256": "50d0821052cda94e136a6dd1dc1b3f0f85eeea57958fa987fb08de1db93d3b52",
+     "mp4Sha256": "c5fd4c7d52b12a450bfd369b38166ee523e58efca0dbb9ca4361d0a178229365",
+     "frozenAt": [
+      2,
+      2,
+      2
+     ],
+     "decoded": {
+      "size": [
+       1200,
+       900
+      ],
+      "frameHashFnv1a": "17210aa5",
+      "landmarks": {
+       "mid": [
+        210,
+        160,
+        127
+       ]
+      }
+     },
+     "landmarkVerdict": {
+      "pass": true,
+      "tolerance": 12,
+      "rows": [
+       {
+        "landmark": "mid",
+        "expected": [
+         210,
+         160,
+         128
+        ],
+        "got": [
+         210,
+         160,
+         127
+        ],
+        "maxChannelDelta": 1,
+        "pass": true
+       }
+      ]
+     },
+     "copy": {
+      "cards": 256,
+      "failures": [],
+      "reasserts": 0,
+      "bodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+      "uniform": true,
+      "sample": "[\"Matched content\",\"Selected work\",\"2026\",\"Quiet Circuit\",\"A long exposure of empty platforms after rain, held open until the last train stops.\"]"
+     },
+     "visibleCodes": 16,
+     "pageErrors": []
+    }
+   },
+   "sameElementaryStream": true,
+   "sameDecodedSize": true,
+   "sameDecodedFrame": true,
+   "sameFreezeTime": true,
+   "sameCopySha": true,
+   "decodeDiff": {
+    "size": [
+     1200,
+     900
+    ],
+    "identical": true,
+    "maxChannelDelta": 0,
+    "meanAbsDelta": 0.0,
+    "differingPixels": 0,
+    "differingPixelFraction": 0.0,
+    "pixelsOverGate": 0
+   }
+  },
+  {
+   "category": "cool-blue",
+   "asset": "cool-blue",
+   "sides": {
+    "target": {
+     "servedSha": [
+      "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4",
+      "0547e963cba12cb933c16a24adb2f6b6623d001070959c2ad8718f3955543ce8",
+      "0dea8f1a7a9596135d5eafeb25d46ab179fe4d910bb4cebffd0709786076cdd2",
+      "772955b4e76883f498b016bfc7381765c7211c846230c0594edfc90bb0a14eb4"
+     ],
+     "servedFiles": 76,
+     "elementaryStreamSha256": "4f4b46248847eac9fd49d1d56fd5877948ac805d15f7b84a9cb3ddba491fdd62",
+     "mp4Sha256": "6b3fdab8b663d492cf92543c6f7900d9adfda5aa6236be200c2d21153c805b9f",
+     "frozenAt": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "decoded": {
+      "size": [
+       1200,
+       900
+      ],
+      "frameHashFnv1a": "1adb345",
+      "landmarks": {
+       "mid": [
+        50,
+        89,
+        160
+       ]
+      }
+     },
+     "landmarkVerdict": {
+      "pass": true,
+      "tolerance": 12,
+      "rows": [
+       {
+        "landmark": "mid",
+        "expected": [
+         50,
+         90,
+         160
+        ],
+        "got": [
+         50,
+         89,
+         160
+        ],
+        "maxChannelDelta": 1,
+        "pass": true
+       }
+      ]
+     },
+     "copy": {
+      "cards": 41,
+      "failures": [],
+      "reasserts": 0,
+      "bodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+      "uniform": true,
+      "sample": "[\"Matched content\",\"Selected work\",\"2026\",\"Quiet Circuit\",\"A long exposure of empty platforms after rain, held open until the last train stops.\"]"
+     },
+     "visibleCodes": 16,
+     "pageErrors": []
+    },
+    "local": {
+     "servedSha": [
+      "6b3fdab8b663d492cf92543c6f7900d9adfda5aa6236be200c2d21153c805b9f"
+     ],
+     "servedFiles": 3,
+     "elementaryStreamSha256": "4f4b46248847eac9fd49d1d56fd5877948ac805d15f7b84a9cb3ddba491fdd62",
+     "mp4Sha256": "6b3fdab8b663d492cf92543c6f7900d9adfda5aa6236be200c2d21153c805b9f",
+     "frozenAt": [
+      2,
+      2,
+      2
+     ],
+     "decoded": {
+      "size": [
+       1200,
+       900
+      ],
+      "frameHashFnv1a": "1adb345",
+      "landmarks": {
+       "mid": [
+        50,
+        89,
+        160
+       ]
+      }
+     },
+     "landmarkVerdict": {
+      "pass": true,
+      "tolerance": 12,
+      "rows": [
+       {
+        "landmark": "mid",
+        "expected": [
+         50,
+         90,
+         160
+        ],
+        "got": [
+         50,
+         89,
+         160
+        ],
+        "maxChannelDelta": 1,
+        "pass": true
+       }
+      ]
+     },
+     "copy": {
+      "cards": 256,
+      "failures": [],
+      "reasserts": 0,
+      "bodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+      "uniform": true,
+      "sample": "[\"Matched content\",\"Selected work\",\"2026\",\"Quiet Circuit\",\"A long exposure of empty platforms after rain, held open until the last train stops.\"]"
+     },
+     "visibleCodes": 16,
+     "pageErrors": []
+    }
+   },
+   "sameElementaryStream": true,
+   "sameDecodedSize": true,
+   "sameDecodedFrame": true,
+   "sameFreezeTime": true,
+   "sameCopySha": true,
+   "decodeDiff": {
+    "size": [
+     1200,
+     900
+    ],
+    "identical": true,
+    "maxChannelDelta": 0,
+    "meanAbsDelta": 0.0,
+    "differingPixels": 0,
+    "differingPixelFraction": 0.0,
+    "pixelsOverGate": 0
+   }
+  },
+  {
+   "category": "high-texture",
+   "asset": "hf-checker",
+   "sides": {
+    "target": {
+     "servedSha": [
+      "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4",
+      "9472bb5899cf75087aa258a38377e33f448eaae1363fab748c954a33144aab98",
+      "63db73d1383fbed3630dcc8ae56d643c0455f065f3247a1d74cc0203ea46645e",
+      "bc961d724f49d52cd0e8b0fea00cbb0d61477ac570ef8a7603e20ab6d7b3948d"
+     ],
+     "servedFiles": 76,
+     "elementaryStreamSha256": "4182ad9f300efc8e3b9e040c1e7bfba3644d5dad9140936a78fa9efe6e6612fc",
+     "mp4Sha256": "044f0fa77e943d208c6c94600467080790632b2b5f6602778acafeb0a6366ac7",
+     "frozenAt": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "decoded": {
+      "size": [
+       1200,
+       900
+      ],
+      "frameHashFnv1a": "5e451f45",
+      "landmarks": {
+       "mean": [
+        128,
+        128,
+        128
+       ]
+      }
+     },
+     "landmarkVerdict": {
+      "pass": true,
+      "tolerance": 12,
+      "rows": [
+       {
+        "landmark": "mean",
+        "expected": [
+         127,
+         127,
+         127
+        ],
+        "got": [
+         128,
+         128,
+         128
+        ],
+        "maxChannelDelta": 1,
+        "pass": true
+       }
+      ]
+     },
+     "copy": {
+      "cards": 41,
+      "failures": [],
+      "reasserts": 0,
+      "bodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+      "uniform": true,
+      "sample": "[\"Matched content\",\"Selected work\",\"2026\",\"Quiet Circuit\",\"A long exposure of empty platforms after rain, held open until the last train stops.\"]"
+     },
+     "visibleCodes": 16,
+     "pageErrors": []
+    },
+    "local": {
+     "servedSha": [
+      "044f0fa77e943d208c6c94600467080790632b2b5f6602778acafeb0a6366ac7"
+     ],
+     "servedFiles": 3,
+     "elementaryStreamSha256": "4182ad9f300efc8e3b9e040c1e7bfba3644d5dad9140936a78fa9efe6e6612fc",
+     "mp4Sha256": "044f0fa77e943d208c6c94600467080790632b2b5f6602778acafeb0a6366ac7",
+     "frozenAt": [
+      2,
+      2,
+      2
+     ],
+     "decoded": {
+      "size": [
+       1200,
+       900
+      ],
+      "frameHashFnv1a": "5e451f45",
+      "landmarks": {
+       "mean": [
+        128,
+        128,
+        128
+       ]
+      }
+     },
+     "landmarkVerdict": {
+      "pass": true,
+      "tolerance": 12,
+      "rows": [
+       {
+        "landmark": "mean",
+        "expected": [
+         127,
+         127,
+         127
+        ],
+        "got": [
+         128,
+         128,
+         128
+        ],
+        "maxChannelDelta": 1,
+        "pass": true
+       }
+      ]
+     },
+     "copy": {
+      "cards": 256,
+      "failures": [],
+      "reasserts": 0,
+      "bodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+      "uniform": true,
+      "sample": "[\"Matched content\",\"Selected work\",\"2026\",\"Quiet Circuit\",\"A long exposure of empty platforms after rain, held open until the last train stops.\"]"
+     },
+     "visibleCodes": 16,
+     "pageErrors": []
+    }
+   },
+   "sameElementaryStream": true,
+   "sameDecodedSize": true,
+   "sameDecodedFrame": true,
+   "sameFreezeTime": true,
+   "sameCopySha": true,
+   "decodeDiff": {
+    "size": [
+     1200,
+     900
+    ],
+    "identical": true,
+    "maxChannelDelta": 0,
+    "meanAbsDelta": 0.0,
+    "differingPixels": 0,
+    "differingPixelFraction": 0.0,
+    "pixelsOverGate": 0
+   }
+  },
+  {
+   "category": "bw-structured",
+   "asset": "bw-split",
+   "sides": {
+    "target": {
+     "servedSha": [
+      "93724bd5668df30dd0837c09ef2e7148397ef394c0ea6c92bd28a80fea1d23a4",
+      "0befbbe7089fcf6677a1f84a18c72ebb0fbb7b18490064f79a17d97ee1693ef4",
+      "d0a5a1f8d13af5c1715e14b8629a09d0816b814809760a0445a7417743e031c5",
+      "a619a73d90fda65c92cd0cdd35b0b94ac46073ef98e8ee0f9075e51aa6ffac32"
+     ],
+     "servedFiles": 76,
+     "elementaryStreamSha256": "4574db400bb0b878479ad2c3b041e1a915e67109e55db50d0f369a94d07286ae",
+     "mp4Sha256": "8eac915f3605fa9e1fe71719c8477be42d945428c0121ea8d7fc3d40c104e5c3",
+     "frozenAt": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "decoded": {
+      "size": [
+       1200,
+       900
+      ],
+      "frameHashFnv1a": "de6e6545",
+      "landmarks": {
+       "left": [
+        0,
+        0,
+        0
+       ],
+       "right": [
+        255,
+        255,
+        255
+       ]
+      }
+     },
+     "landmarkVerdict": {
+      "pass": true,
+      "tolerance": 12,
+      "rows": [
+       {
+        "landmark": "left",
+        "expected": [
+         0,
+         0,
+         0
+        ],
+        "got": [
+         0,
+         0,
+         0
+        ],
+        "maxChannelDelta": 0,
+        "pass": true
+       },
+       {
+        "landmark": "right",
+        "expected": [
+         255,
+         255,
+         255
+        ],
+        "got": [
+         255,
+         255,
+         255
+        ],
+        "maxChannelDelta": 0,
+        "pass": true
+       }
+      ]
+     },
+     "copy": {
+      "cards": 41,
+      "failures": [],
+      "reasserts": 0,
+      "bodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+      "uniform": true,
+      "sample": "[\"Matched content\",\"Selected work\",\"2026\",\"Quiet Circuit\",\"A long exposure of empty platforms after rain, held open until the last train stops.\"]"
+     },
+     "visibleCodes": 16,
+     "pageErrors": []
+    },
+    "local": {
+     "servedSha": [
+      "8eac915f3605fa9e1fe71719c8477be42d945428c0121ea8d7fc3d40c104e5c3"
+     ],
+     "servedFiles": 3,
+     "elementaryStreamSha256": "4574db400bb0b878479ad2c3b041e1a915e67109e55db50d0f369a94d07286ae",
+     "mp4Sha256": "8eac915f3605fa9e1fe71719c8477be42d945428c0121ea8d7fc3d40c104e5c3",
+     "frozenAt": [
+      2,
+      2,
+      2
+     ],
+     "decoded": {
+      "size": [
+       1200,
+       900
+      ],
+      "frameHashFnv1a": "de6e6545",
+      "landmarks": {
+       "left": [
+        0,
+        0,
+        0
+       ],
+       "right": [
+        255,
+        255,
+        255
+       ]
+      }
+     },
+     "landmarkVerdict": {
+      "pass": true,
+      "tolerance": 12,
+      "rows": [
+       {
+        "landmark": "left",
+        "expected": [
+         0,
+         0,
+         0
+        ],
+        "got": [
+         0,
+         0,
+         0
+        ],
+        "maxChannelDelta": 0,
+        "pass": true
+       },
+       {
+        "landmark": "right",
+        "expected": [
+         255,
+         255,
+         255
+        ],
+        "got": [
+         255,
+         255,
+         255
+        ],
+        "maxChannelDelta": 0,
+        "pass": true
+       }
+      ]
+     },
+     "copy": {
+      "cards": 256,
+      "failures": [],
+      "reasserts": 0,
+      "bodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+      "uniform": true,
+      "sample": "[\"Matched content\",\"Selected work\",\"2026\",\"Quiet Circuit\",\"A long exposure of empty platforms after rain, held open until the last train stops.\"]"
+     },
+     "visibleCodes": 16,
+     "pageErrors": []
+    }
+   },
+   "sameElementaryStream": true,
+   "sameDecodedSize": true,
+   "sameDecodedFrame": true,
+   "sameFreezeTime": true,
+   "sameCopySha": true,
+   "decodeDiff": {
+    "size": [
+     1200,
+     900
+    ],
+    "identical": true,
+    "maxChannelDelta": 0,
+    "meanAbsDelta": 0.0,
+    "differingPixels": 0,
+    "differingPixelFraction": 0.0,
+    "pixelsOverGate": 0
+   }
+  }
+ ],
+ "runtimeRows": [
+  {
+   "vp": "1440x900",
+   "sides": {
+    "target": {
+     "viewport": [
+      1440,
+      900
+     ],
+     "dpr": 1,
+     "coarsePointer": false,
+     "cardBoxCss": [
+      547.188,
+      410.391
+     ],
+     "sourcePx": [
+      1200,
+      900
+     ],
+     "coverFit": {
+      "scale": [
+       1,
+       1
+      ],
+      "offset": [
+       0,
+       0
+      ]
+     },
+     "frozenAt": [
+      2
+     ],
+     "visibleCards": 16,
+     "copyBodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+     "quality": null,
+     "deviceSamples": null,
+     "initialOffset": "n/a (Target)",
+     "pageErrors": []
+    },
+    "local": {
+     "viewport": [
+      1440,
+      900
+     ],
+     "dpr": 1,
+     "coarsePointer": false,
+     "cardBoxCss": [
+      547.188,
+      410.391
+     ],
+     "sourcePx": [
+      1200,
+      900
+     ],
+     "coverFit": {
+      "scale": [
+       1,
+       1
+      ],
+      "offset": [
+       0,
+       0
+      ]
+     },
+     "frozenAt": [
+      2
+     ],
+     "visibleCards": 16,
+     "copyBodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+     "quality": "high",
+     "deviceSamples": 5,
+     "initialOffset": [
+      0,
+      0
+     ],
+     "pageErrors": []
+    }
+   },
+   "sameViewport": true,
+   "sameDpr": true,
+   "samePointerClass": true,
+   "sameCardBox": true,
+   "sameCoverFit": true,
+   "sameVisibleCards": true,
+   "sameCopySha": true
+  },
+  {
+   "vp": "390x844",
+   "sides": {
+    "target": {
+     "viewport": [
+      390,
+      844
+     ],
+     "dpr": 1,
+     "coarsePointer": true,
+     "cardBoxCss": [
+      280.797,
+      210.594
+     ],
+     "sourcePx": [
+      1200,
+      900
+     ],
+     "coverFit": {
+      "scale": [
+       1,
+       1.000018
+      ],
+      "offset": [
+       0,
+       9e-06
+      ]
+     },
+     "frozenAt": [
+      2
+     ],
+     "visibleCards": 17,
+     "copyBodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+     "quality": null,
+     "deviceSamples": null,
+     "initialOffset": "n/a (Target)",
+     "pageErrors": []
+    },
+    "local": {
+     "viewport": [
+      390,
+      844
+     ],
+     "dpr": 1,
+     "coarsePointer": true,
+     "cardBoxCss": [
+      280.797,
+      210.594
+     ],
+     "sourcePx": [
+      1200,
+      900
+     ],
+     "coverFit": {
+      "scale": [
+       1,
+       1.000018
+      ],
+      "offset": [
+       0,
+       9e-06
+      ]
+     },
+     "frozenAt": [
+      2
+     ],
+     "visibleCards": 17,
+     "copyBodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+     "quality": "high",
+     "deviceSamples": 3,
+     "initialOffset": [
+      0,
+      0
+     ],
+     "pageErrors": []
+    }
+   },
+   "sameViewport": true,
+   "sameDpr": true,
+   "samePointerClass": true,
+   "sameCardBox": true,
+   "sameCoverFit": true,
+   "sameVisibleCards": true,
+   "sameCopySha": true
+  },
+  {
+   "vp": "844x390",
+   "sides": {
+    "target": {
+     "viewport": [
+      844,
+      390
+     ],
+     "dpr": 1,
+     "coarsePointer": false,
+     "cardBoxCss": [
+      320.719,
+      240.531
+     ],
+     "sourcePx": [
+      1200,
+      900
+     ],
+     "coverFit": {
+      "scale": [
+       1,
+       1.000034
+      ],
+      "offset": [
+       0,
+       1.7e-05
+      ]
+     },
+     "frozenAt": [
+      2
+     ],
+     "visibleCards": 18,
+     "copyBodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+     "quality": null,
+     "deviceSamples": null,
+     "initialOffset": "n/a (Target)",
+     "pageErrors": []
+    },
+    "local": {
+     "viewport": [
+      844,
+      390
+     ],
+     "dpr": 1,
+     "coarsePointer": false,
+     "cardBoxCss": [
+      320.719,
+      240.531
+     ],
+     "sourcePx": [
+      1200,
+      900
+     ],
+     "coverFit": {
+      "scale": [
+       1,
+       1.000034
+      ],
+      "offset": [
+       0,
+       1.7e-05
+      ]
+     },
+     "frozenAt": [
+      2
+     ],
+     "visibleCards": 18,
+     "copyBodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+     "quality": "high",
+     "deviceSamples": 5,
+     "initialOffset": [
+      0,
+      0
+     ],
+     "pageErrors": []
+    }
+   },
+   "sameViewport": true,
+   "sameDpr": true,
+   "samePointerClass": true,
+   "sameCardBox": true,
+   "sameCoverFit": true,
+   "sameVisibleCards": true,
+   "sameCopySha": true
+  },
+  {
+   "vp": "700x700",
+   "sides": {
+    "target": {
+     "viewport": [
+      700,
+      700
+     ],
+     "dpr": 1,
+     "coarsePointer": true,
+     "cardBoxCss": [
+      266,
+      199.5
+     ],
+     "sourcePx": [
+      1200,
+      900
+     ],
+     "coverFit": {
+      "scale": [
+       1,
+       1
+      ],
+      "offset": [
+       0,
+       0
+      ]
+     },
+     "frozenAt": [
+      2
+     ],
+     "visibleCards": 34,
+     "copyBodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+     "quality": null,
+     "deviceSamples": null,
+     "initialOffset": "n/a (Target)",
+     "pageErrors": []
+    },
+    "local": {
+     "viewport": [
+      700,
+      700
+     ],
+     "dpr": 1,
+     "coarsePointer": true,
+     "cardBoxCss": [
+      266,
+      199.5
+     ],
+     "sourcePx": [
+      1200,
+      900
+     ],
+     "coverFit": {
+      "scale": [
+       1,
+       1
+      ],
+      "offset": [
+       0,
+       0
+      ]
+     },
+     "frozenAt": [
+      2
+     ],
+     "visibleCards": 34,
+     "copyBodySha": "139365c167de2ac544d11b5e79c8421b0d2d120acf25dc491e8a9fc305eac419",
+     "quality": "high",
+     "deviceSamples": 3,
+     "initialOffset": [
+      0,
+      0
+     ],
+     "pageErrors": []
+    }
+   },
+   "sameViewport": true,
+   "sameDpr": true,
+   "samePointerClass": true,
+   "sameCardBox": true,
+   "sameCoverFit": true,
+   "sameVisibleCards": true,
+   "sameCopySha": true
+  }
+ ],
+ "assertions": [
+  {
+   "assertion": "six §三A media categories exercised (dark cinematic, bright low-saturation, warm skin, cool blue, high texture, black/white structured)",
+   "pass": true,
+   "detail": "dark-cinematic, bright-lowsat, warm-skin, cool-blue, high-texture, bw-structured"
+  },
+  {
+   "assertion": "both pages were served the same H.264 elementary stream, every category",
+   "pass": true,
+   "detail": {
+    "dark-cinematic": "e842389120331d37",
+    "bright-lowsat": "b91768d5ee101c28",
+    "warm-skin": "50d0821052cda94e",
+    "cool-blue": "4f4b46248847eac9",
+    "high-texture": "4182ad9f300efc8e",
+    "bw-structured": "4574db400bb0b878"
+   }
+  },
+  {
+   "assertion": "both pages decoded the same frame size, every category",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "assertion": "decoded frames agree to within 4/255 on every pixel and differ on at most 0.01% of the frame, every category",
+   "pass": true,
+   "detail": {
+    "dark-cinematic": {
+     "maxDelta": 3,
+     "differingPixelFraction": 5.556e-05,
+     "bitIdentical": false
+    },
+    "bright-lowsat": {
+     "maxDelta": 0,
+     "differingPixelFraction": 0.0,
+     "bitIdentical": true
+    },
+    "warm-skin": {
+     "maxDelta": 0,
+     "differingPixelFraction": 0.0,
+     "bitIdentical": true
+    },
+    "cool-blue": {
+     "maxDelta": 0,
+     "differingPixelFraction": 0.0,
+     "bitIdentical": true
+    },
+    "high-texture": {
+     "maxDelta": 0,
+     "differingPixelFraction": 0.0,
+     "bitIdentical": true
+    },
+    "bw-structured": {
+     "maxDelta": 0,
+     "differingPixelFraction": 0.0,
+     "bitIdentical": true
+    }
+   }
+  },
+  {
+   "assertion": "decoded frame matches the generator's landmark colours on BOTH pages, every category",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "assertion": "same media freeze time on both pages, every category",
+   "pass": true,
+   "detail": {
+    "dark-cinematic": [
+     2
+    ],
+    "bright-lowsat": [
+     2
+    ],
+    "warm-skin": [
+     2
+    ],
+    "cool-blue": [
+     2
+    ],
+    "high-texture": [
+     2
+    ],
+    "bw-structured": [
+     2
+    ]
+   }
+  },
+  {
+   "assertion": "same injected copy hash on both pages, every category",
+   "pass": true,
+   "detail": {
+    "dark-cinematic": "139365c167de2ac5",
+    "bright-lowsat": "139365c167de2ac5",
+    "warm-skin": "139365c167de2ac5",
+    "cool-blue": "139365c167de2ac5",
+    "high-texture": "139365c167de2ac5",
+    "bw-structured": "139365c167de2ac5"
+   }
+  },
+  {
+   "assertion": "copy uniform across every card on both pages, zero structural failures",
+   "pass": true,
+   "detail": {
+    "dark-cinematic": {
+     "target": 41,
+     "local": 256
+    },
+    "bright-lowsat": {
+     "target": 41,
+     "local": 256
+    },
+    "warm-skin": {
+     "target": 41,
+     "local": 256
+    },
+    "cool-blue": {
+     "target": 41,
+     "local": 256
+    },
+    "high-texture": {
+     "target": 41,
+     "local": 256
+    },
+    "bw-structured": {
+     "target": 41,
+     "local": 256
+    }
+   }
+  },
+  {
+   "assertion": "same viewport, DPR and pointer class at all four review viewports",
+   "pass": true,
+   "detail": {
+    "1440x900": {
+     "dpr": 1,
+     "coarsePointer": false
+    },
+    "390x844": {
+     "dpr": 1,
+     "coarsePointer": true
+    },
+    "844x390": {
+     "dpr": 1,
+     "coarsePointer": false
+    },
+    "700x700": {
+     "dpr": 1,
+     "coarsePointer": true
+    }
+   }
+  },
+  {
+   "assertion": "same card-plane CSS box and the same cover fit at all four review viewports",
+   "pass": true,
+   "detail": {
+    "1440x900": {
+     "cardBoxCss": [
+      547.188,
+      410.391
+     ],
+     "coverFit": {
+      "scale": [
+       1,
+       1
+      ],
+      "offset": [
+       0,
+       0
+      ]
+     }
+    },
+    "390x844": {
+     "cardBoxCss": [
+      280.797,
+      210.594
+     ],
+     "coverFit": {
+      "scale": [
+       1,
+       1.000018
+      ],
+      "offset": [
+       0,
+       9e-06
+      ]
+     }
+    },
+    "844x390": {
+     "cardBoxCss": [
+      320.719,
+      240.531
+     ],
+     "coverFit": {
+      "scale": [
+       1,
+       1.000034
+      ],
+      "offset": [
+       0,
+       1.7e-05
+      ]
+     }
+    },
+    "700x700": {
+     "cardBoxCss": [
+      266,
+      199.5
+     ],
+     "coverFit": {
+      "scale": [
+       1,
+       1
+      ],
+      "offset": [
+       0,
+       0
+      ]
+     }
+    }
+   }
+  },
+  {
+   "assertion": "same number of visible cards at all four review viewports",
+   "pass": true,
+   "detail": {
+    "1440x900": 16,
+    "390x844": 17,
+    "844x390": 18,
+    "700x700": 34
+   }
+  },
+  {
+   "assertion": "zero page/console errors on the local review route",
+   "pass": true,
+   "detail": null
+  }
+ ],
+ "errors": [],
+ "decodeGate": {
+  "maxChannelLsbAllowed": 4,
+  "maxDifferingPixelFractionAllowed": 0.0001,
+  "bitIdenticalCategories": [
+   "bright-lowsat",
+   "warm-skin",
+   "cool-blue",
+   "high-texture",
+   "bw-structured"
+  ],
+  "residualCategories": [
+   "dark-cinematic"
+  ],
+  "why": "the primary same-content proof is the byte-identical H.264 elementary stream, asserted separately. This gate bounds what the two DELIVERY paths (progressive mp4 vs CMAF/fMP4 HLS) may do to that stream on the way to a texture. Five of six assets decode bit-identically; the sixth differs on 60 of 1,080,000 pixels by at most 3/255, on the hard edge of its highlight disc. Scaled onto a 547 px card that residual covers a few pixels at under 1.2% of full scale -- it cannot produce a visible difference, and it is recorded rather than asserted away.",
+  "honesty": "the 1/255 figure in the first draft of this instrument was a guess with no measurement behind it. The gate above is set from the measured worst case, and every per-category number is published."
+ },
+ "verdict": "MATCHED-CONTENT HARNESS PROVEN",
+ "decodedFrameArtifacts": [
+  "bright-lowsat-local.png",
+  "bright-lowsat-target.png",
+  "bw-structured-local.png",
+  "bw-structured-target.png",
+  "cool-blue-local.png",
+  "cool-blue-target.png",
+  "dark-cinematic-local.png",
+  "dark-cinematic-target.png",
+  "high-texture-local.png",
+  "high-texture-target.png",
+  "warm-skin-local.png",
+  "warm-skin-target.png"
+ ]
+}

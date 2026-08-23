@@ -1,32 +1,47 @@
-# External Glass Reference Map (Integrated Visual Sprint 1, §二)
+# External Glass Reference Map (V5 §二)
 
-One page. Read before any product code this round. None of the three sources
-below replaces the frozen source contract; B and C are methodology quarries.
+One page. Read before any product code. None of the three sources below
+replaces the frozen source contract; B and C are methodology quarries.
+*Corrected in Visual Convergence Sprint 2: the developer's own public
+breakdown exists and is recorded below.*
 
 ## A. Target developer public record
 
 The Target (`infinite-liquid-glass.shader.se/?v=2`) is by **Shader Development
-Studio** (Simon Hedlund, shader.se, Sweden). Public record checked 2026-08-22:
-the demo page carries only the studio credit — no technical text; the studio's
-one published technical article (Codrops 2026-05-19, "Inside Shader.se's
-Scroll-Driven WebGPU Pipeline", author Filip Kantedal) covers their agency
-site, not this demo, and confirms only their stack practice: React Three
-Fiber + **TSL node materials compiled to WebGPU**, selective scene rendering.
-**No published breakdown of the liquid glass demo was found** (Codrops, X,
-blogs searched). The authoritative "developer explanation" therefore remains
-the shipped TSL bundle itself, which the frozen source contract transcribed.
-Where each brief-listed technique lives in that transcription:
+Studio** (Simon Hedlund, shader.se, Sweden). Two public records:
 
-| Technique (brief §二A) | Source-contract anchor |
+1. **The developer's own technique post** —
+   <https://x.com/shadersweden/status/2087846599535796464>. Supplied by the
+   project owner and attested by them as the developer's public description of
+   this demo; the post itself is behind x.com's login wall (HTTP 402 to an
+   unauthenticated fetch on 2026-08-22), so what is recorded here is the
+   owner-supplied enumeration, not a scrape. **Sprint 1's line "no published
+   breakdown exists" was wrong and is withdrawn.**
+2. Codrops 2026-05-19, "Inside Shader.se's Scroll-Driven WebGPU Pipeline"
+   (Filip Kantedal) — covers the studio's agency site, not this demo;
+   corroborates the stack only: React Three Fiber + **TSL node materials
+   compiled to WebGPU**, selective scene rendering.
+
+Every technique the developer names is already in the transcription — the post
+is confirmation of the source contract, not new information, and it names
+nothing the contract lacks:
+
+| Developer's public statement | Source-contract anchor (`TargetOpticalBodyV5.ts` unless noted) |
 | --- | --- |
-| Custom TSL plane (not MeshPhysical) | 16x12 tessellated plane + custom node material — `TargetOpticalBodyV5.ts` |
-| Rounded-box SDF | 2D rounded-rect distance term driving every edge falloff |
-| Bevel height field | height profile over SDF distance near the rim |
-| Grid sphere curvature + bevel slope normal | vertex dome (sphere curvature) + normal rebuilt from bevel slope |
-| Own video texture | each card refracts its OWN media — never screen-space capture |
-| Per-IOR refraction + edge dispersion | spectral loop, one refract per sample tier, per-sample IOR offset |
-| Fresnel + HDRI | white studio HDR, equirect sample, fresnel-weighted mix |
-| Tight mirror highlight | narrow white-rim scalar on top of the env mix |
+| no MeshPhysicalMaterial | `MeshBasicNodeMaterial` + a hand-built node chain; transparent, `alphaTest .001`, FrontSide, `toneMapped: false` |
+| no transmission | no transmission node anywhere; the "see-through" is a manual UV offset of the card's own media |
+| custom TSL on a plane | one 16x12 tessellated plane per card, dome applied in the vertex stage |
+| rounded-box SDF | 2D rounded-rect distance `s`, `cornerRadiusRatio .163` — drives every edge falloff |
+| bevel height field | `pow(max(1 − t^k, 0), 1/k) · thickness`, `t = clamp(1 + s/max(bevelWidth, .001))`, `bevelPower 3.9` |
+| grid sphere curvature + bevel slope normal | `normalize(vec3(p/sphereZ − clampedGrad, 1)) · faceDirection`; gradient eps `max(bevelWidth·.06, .35)`, slope clamped at `bevelMaxSlope 1.74` |
+| own video texture below surface | each card samples its OWN media texture (clamp-then-cover), never a screen-space capture |
+| refracted view ray | `refract()` on the local view vector, `eta = 1/max(ior + dispersion·offset, 1.0001)`, `ior 2.3` |
+| UV offset by travel through plate | `travel = thickness/max(abs(r.z), .05)`, `uv += r.xy · travel · refractStrength .7` |
+| several IOR samples | the spectral loop — sample count set by the device tier (coarse 3 / fine 5) |
+| channel-separated dispersion | per-sample IOR offset, R/G/B weighted separately, `dispersion .32` |
+| Fresnel + HDRI reflection | Schlick^5 `F` (`fresnelF0 .045`), `reflect` → `envRotation −2` → equirect UV; `envMix = min(saturate(F·envIntensity 1.93), envMaxMix .27)` |
+| tight mirror highlight | `rim = smoothstep(−rimWidth, 0, sdf) · rimIntensity .11`, added after the env mix |
+| coloured edge light | `mix(rimColor, rimColorTop, F)` — the capability is in the chain; the **shipped settings set both to `#ffffff`** (bundle offset 1303603), so on this demo the edge light is white |
 
 ## B. ybouane/liquidglass — screen-space, NOT an architecture donor
 

@@ -1,0 +1,540 @@
+{
+ "what": "VC2 §五 pre-registered thresholds. Written from Target self-repeat spread ONLY, before any Candidate trajectory was read.",
+ "rule": "threshold[scenario][gate] = max(floor, 2.0 x worst self-repeat p95 measured in that scenario)",
+ "why": "a Target-vs-Candidate comparison carries two independent copies of the jitter a Target-vs-Target comparison carries one of; the floors keep a sub-pixel rounding difference from reading as a failure.",
+ "floors": {
+  "centreDeltaPx": 2.0,
+  "scaleDeltaPx": 1.5,
+  "gutterDeltaPx": 2.0,
+  "staggerDeltaPx": 2.0
+ },
+ "selfRepeat": {
+  "desktop-fast-flick": {
+   "repeats": [
+    0,
+    1,
+    2
+   ],
+   "fps": {
+    "0": 120.24,
+    "1": 120.17,
+    "2": 120.22
+   },
+   "p95ByPair": {
+    "centreX": [
+     2.774,
+     2.403,
+     3.591
+    ],
+    "centreY": [
+     0.192,
+     0.287,
+     0.402
+    ],
+    "projectedWidth": [
+     0.428,
+     0.687,
+     1.027
+    ],
+    "projectedHeight": [
+     0.198,
+     0.239,
+     0.272
+    ],
+    "hGutter": [
+     0.077,
+     0.118,
+     0.176
+    ],
+    "vGutter": [
+     0.211,
+     0.179,
+     0.267
+    ],
+    "rowStagger": [
+     0.155,
+     0.19,
+     0.294
+    ],
+    "rotation": [
+     0.006,
+     0.006,
+     0.006
+    ]
+   },
+   "worstP95": {
+    "centreDeltaPx": 3.591,
+    "scaleDeltaPx": 1.027,
+    "gutterDeltaPx": 0.267,
+    "staggerDeltaPx": 0.294
+   }
+  },
+  "desktop-pointer-sweep": {
+   "repeats": [
+    0,
+    1,
+    2
+   ],
+   "fps": {
+    "0": 120.05,
+    "1": 120.03,
+    "2": 120.14
+   },
+   "p95ByPair": {
+    "centreX": [
+     0.046,
+     0.089,
+     0.12
+    ],
+    "centreY": [
+     0.045,
+     0.085,
+     0.106
+    ],
+    "projectedWidth": [
+     0.059,
+     0.109,
+     0.146
+    ],
+    "projectedHeight": [
+     0.044,
+     0.089,
+     0.108
+    ],
+    "hGutter": [
+     0.016,
+     0.03,
+     0.038
+    ],
+    "vGutter": [
+     0.015,
+     0.044,
+     0.046
+    ],
+    "rowStagger": [
+     0.017,
+     0.023,
+     0.033
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "worstP95": {
+    "centreDeltaPx": 0.12,
+    "scaleDeltaPx": 0.146,
+    "gutterDeltaPx": 0.046,
+    "staggerDeltaPx": 0.033
+   }
+  },
+  "desktop-slow-drag": {
+   "repeats": [
+    0,
+    1,
+    2
+   ],
+   "fps": {
+    "0": 120.15,
+    "1": 120.19,
+    "2": 120.21
+   },
+   "p95ByPair": {
+    "centreX": [
+     2.95,
+     2.707,
+     0.926
+    ],
+    "centreY": [
+     0.603,
+     0.554,
+     0.172
+    ],
+    "projectedWidth": [
+     0.75,
+     0.69,
+     0.204
+    ],
+    "projectedHeight": [
+     0.15,
+     0.145,
+     0.104
+    ],
+    "hGutter": [
+     0.141,
+     0.13,
+     0.02
+    ],
+    "vGutter": [
+     0.232,
+     0.212,
+     0.101
+    ],
+    "rowStagger": [
+     0.343,
+     0.315,
+     0.052
+    ],
+    "rotation": [
+     0.006,
+     0.006,
+     0.001
+    ]
+   },
+   "worstP95": {
+    "centreDeltaPx": 2.95,
+    "scaleDeltaPx": 0.75,
+    "gutterDeltaPx": 0.232,
+    "staggerDeltaPx": 0.343
+   }
+  },
+  "mobile-long-drag-wrap": {
+   "repeats": [
+    0,
+    1,
+    2
+   ],
+   "fps": {
+    "0": 119.49,
+    "1": 119.64,
+    "2": 119.58
+   },
+   "p95ByPair": {
+    "centreX": [
+     4.809,
+     6.838,
+     8.453
+    ],
+    "centreY": [
+     1.123,
+     0.804,
+     1.655
+    ],
+    "projectedWidth": [
+     1.403,
+     1.146,
+     2.123
+    ],
+    "projectedHeight": [
+     0.527,
+     0.523,
+     0.764
+    ],
+    "hGutter": [
+     0.06,
+     0.634,
+     0.275
+    ],
+    "vGutter": [
+     0.34,
+     0.739,
+     0.808
+    ],
+    "rowStagger": [
+     0.285,
+     0.989,
+     0.822
+    ],
+    "rotation": [
+     0.012,
+     0.009,
+     0.012
+    ]
+   },
+   "worstP95": {
+    "centreDeltaPx": 8.453,
+    "scaleDeltaPx": 2.123,
+    "gutterDeltaPx": 0.808,
+    "staggerDeltaPx": 0.989
+   }
+  },
+  "mobile-touch-drag": {
+   "repeats": [
+    0,
+    1,
+    2
+   ],
+   "fps": {
+    "0": 120.2,
+    "1": 120.25,
+    "2": 120.08
+   },
+   "p95ByPair": {
+    "centreX": [
+     1.303,
+     1.437,
+     1.989
+    ],
+    "centreY": [
+     0.413,
+     0.453,
+     0.604
+    ],
+    "projectedWidth": [
+     0.254,
+     0.279,
+     0.347
+    ],
+    "projectedHeight": [
+     0.066,
+     0.121,
+     0.127
+    ],
+    "hGutter": [
+     0.067,
+     0.073,
+     0.1
+    ],
+    "vGutter": [
+     0.106,
+     0.25,
+     0.347
+    ],
+    "rowStagger": [
+     0.124,
+     0.288,
+     0.305
+    ],
+    "rotation": [
+     0.006,
+     0.006,
+     0.006
+    ]
+   },
+   "worstP95": {
+    "centreDeltaPx": 1.989,
+    "scaleDeltaPx": 0.347,
+    "gutterDeltaPx": 0.347,
+    "staggerDeltaPx": 0.305
+   }
+  },
+  "orientation-change": {
+   "repeats": [
+    0,
+    1,
+    2
+   ],
+   "fps": {
+    "0": 120.14,
+    "1": 120.08,
+    "2": 120.04
+   },
+   "p95ByPair": {
+    "centreX": [
+     2.615,
+     33.837,
+     35.862
+    ],
+    "centreY": [
+     0.223,
+     1.251,
+     1.267
+    ],
+    "projectedWidth": [
+     0.615,
+     3.712,
+     3.711
+    ],
+    "projectedHeight": [
+     0.313,
+     2.168,
+     2.142
+    ],
+    "hGutter": [
+     0.134,
+     1.105,
+     1.202
+    ],
+    "vGutter": [
+     0.3,
+     3.163,
+     3.405
+    ],
+    "rowStagger": [
+     1.969,
+     2.536,
+     1.859
+    ],
+    "rotation": [
+     0.006,
+     0.023,
+     0.024
+    ]
+   },
+   "worstP95": {
+    "centreDeltaPx": 35.862,
+    "scaleDeltaPx": 3.712,
+    "gutterDeltaPx": 3.405,
+    "staggerDeltaPx": 2.536
+   }
+  },
+  "rest": {
+   "repeats": [
+    0,
+    1,
+    2
+   ],
+   "fps": {
+    "0": 120.36,
+    "1": 120.33,
+    "2": 120.34
+   },
+   "p95ByPair": {
+    "centreX": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "centreY": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "projectedWidth": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "projectedHeight": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "hGutter": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "vGutter": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rowStagger": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "rotation": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "worstP95": {
+    "centreDeltaPx": 0.0,
+    "scaleDeltaPx": 0.0,
+    "gutterDeltaPx": 0.0,
+    "staggerDeltaPx": 0.0
+   }
+  }
+ },
+ "thresholds": {
+  "desktop-fast-flick": {
+   "centreDeltaPx": 7.182,
+   "scaleDeltaPx": 2.054,
+   "gutterDeltaPx": 2.0,
+   "staggerDeltaPx": 2.0
+  },
+  "desktop-pointer-sweep": {
+   "centreDeltaPx": 2.0,
+   "scaleDeltaPx": 1.5,
+   "gutterDeltaPx": 2.0,
+   "staggerDeltaPx": 2.0
+  },
+  "desktop-slow-drag": {
+   "centreDeltaPx": 5.9,
+   "scaleDeltaPx": 1.5,
+   "gutterDeltaPx": 2.0,
+   "staggerDeltaPx": 2.0
+  },
+  "mobile-long-drag-wrap": {
+   "centreDeltaPx": 16.906,
+   "scaleDeltaPx": 4.246,
+   "gutterDeltaPx": 2.0,
+   "staggerDeltaPx": 2.0
+  },
+  "mobile-touch-drag": {
+   "centreDeltaPx": 3.978,
+   "scaleDeltaPx": 1.5,
+   "gutterDeltaPx": 2.0,
+   "staggerDeltaPx": 2.0
+  },
+  "orientation-change": {
+   "centreDeltaPx": 71.724,
+   "scaleDeltaPx": 7.424,
+   "gutterDeltaPx": 6.81,
+   "staggerDeltaPx": 5.072
+  },
+  "rest": {
+   "centreDeltaPx": 2.0,
+   "scaleDeltaPx": 1.5,
+   "gutterDeltaPx": 2.0,
+   "staggerDeltaPx": 2.0
+  }
+ },
+ "pooledWorstSelfRepeatP95": {
+  "centreDeltaPx": 35.862,
+  "scaleDeltaPx": 3.712,
+  "gutterDeltaPx": 3.405,
+  "staggerDeltaPx": 2.536
+ },
+ "pooledThresholdsNotUsed": {
+  "centreDeltaPx": 71.724,
+  "scaleDeltaPx": 7.424,
+  "gutterDeltaPx": 6.81,
+  "staggerDeltaPx": 5.072
+ },
+ "pooledNote": "recorded to show what a single pooled threshold would have been and why it is not used: it is set by the least repeatable scenario and would have judged a still page with that allowance.",
+ "observables": [
+  {
+   "name": "centreX",
+   "unit": "px",
+   "what": "single-card centre trajectory, horizontal",
+   "gate": "centreDeltaPx"
+  },
+  {
+   "name": "centreY",
+   "unit": "px",
+   "what": "single-card centre trajectory, vertical",
+   "gate": "centreDeltaPx"
+  },
+  {
+   "name": "projectedWidth",
+   "unit": "px",
+   "what": "projected card width -- the dolly observable",
+   "gate": "scaleDeltaPx"
+  },
+  {
+   "name": "projectedHeight",
+   "unit": "px",
+   "what": "projected card height",
+   "gate": "scaleDeltaPx"
+  },
+  {
+   "name": "hGutter",
+   "unit": "px",
+   "what": "edge-to-edge gap to the horizontal neighbour",
+   "gate": "gutterDeltaPx"
+  },
+  {
+   "name": "vGutter",
+   "unit": "px",
+   "what": "edge-to-edge gap to the vertical neighbour",
+   "gate": "gutterDeltaPx"
+  },
+  {
+   "name": "rowStagger",
+   "unit": "px",
+   "what": "horizontal phase between adjacent rows",
+   "gate": "staggerDeltaPx"
+  },
+  {
+   "name": "rotation",
+   "unit": "deg",
+   "what": "screen-plane rotation of the card basis",
+   "gate": null
+  }
+ ]
+}

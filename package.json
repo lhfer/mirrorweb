@@ -9,6 +9,7 @@
     "dev": "vite --port 5280 --strictPort",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --port 5280 --strictPort",
+    "review": "npm run build && vite preview --host 127.0.0.1 --port 5293 --strictPort",
     "capture:reference": "node scripts/capture-reference.mjs",
     "capture:local": "node scripts/capture-local.mjs",
     "test:visual": "playwright test tests/visual.spec.ts",
