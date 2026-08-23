@@ -354,7 +354,12 @@ def main() -> int:
                           "src/interaction and no motion constant. The frozen §五 "
                           "results stand."},
         }
-    doc["head"] = git("rev-parse", "HEAD")
+    # The commit whose tree these runs measured, resolved by MESSAGE rather
+    # than `git rev-parse HEAD`: the evidence commit that carries this file
+    # gets amended after it is written, so a HEAD stamp names a draft that
+    # the amend orphans -- unreachable from any ref and never pushed.
+    doc["head"] = git("rev-list", "-1",
+                      "--grep=^v5-final-motion-flick-source-and-code", "HEAD")
     out_p.parent.mkdir(parents=True, exist_ok=True)
     out_p.write_text(json.dumps(doc, indent=1, ensure_ascii=False))
     for k, v in arms.items():

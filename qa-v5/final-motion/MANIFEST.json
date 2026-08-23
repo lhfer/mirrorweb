@@ -1,0 +1,102 @@
+{
+ "round": "MirrorWeb V5 -- Final Motion Convergence Sprint",
+ "reviewCandidateUrl": "http://127.0.0.1:5293/?review=target",
+ "reviewCurrentUrl": "http://127.0.0.1:5293/?review=current",
+ "howToServe": "npm run review",
+ "lanReview": {
+  "serve": "npm run review:lan",
+  "printAddresses": "npm run review:lan:url",
+  "liveStatusReadout": "add &status=1 to the candidate URL -- FPS, quality, sample tier, material-cache size, black-frame count. It is a QA surface and must be OFF for any capture.",
+  "realDevicePass": "NOT ASSERTED. This round guarantees the route is reachable from a device on the same network and nothing more."
+ },
+ "generatedAt": "2026-08-23T13:29:30+00:00",
+ "branch": "rebuild/liquid-glass-v5-source-exact",
+ "capturedAtHead": "f51014e5716d1fb0f1e8707f1dffbf6a1b13d729",
+ "reviewHead": "f51014e5716d1fb0f1e8707f1dffbf6a1b13d729",
+ "headSemantics": {
+  "capturedAtHead": "v5-final-motion-flick-source-and-code -- the last commit that changes anything the page renders. Every still, recording and gate result in this round was taken from a build of this tree.",
+  "reviewHead": "the head this manifest was generated at, which is the same commit: the only thing after it is the evidence commit that CARRIES this file, and a manifest cannot contain the SHA of the commit it is committed in. That commit is the branch tip -- `git log -1 --format=%H rebuild/liquid-glass-v5-source-exact` -- and it touches only qa-v5/final-motion/ and scripts/v5/, no file under src/, so the rendered product at the tip is byte-identical to the product at capturedAtHead.",
+  "commitsListed": "the three commits that exist at generation time. The evidence commit is the fourth and is named in the round's commit plan; it is absent here for the same reason as above."
+ },
+ "baseline": "d48fc6f53d3e21b265db00e60d88b7d02fe0c909 (Visual Convergence Sprint 2)",
+ "commits": [
+  "f51014e v5-final-motion-flick-source-and-code",
+  "868e014 v5-final-motion-orientation-code",
+  "950b4dd v5-final-motion-orientation-source"
+ ],
+ "files": [
+  {
+   "file": "README.md",
+   "bytes": 11502,
+   "sha256": "a768e42cdcabac0035f27c1488f3a4bc05db611ca846e6048acd469bcd202e5b",
+   "verdict": null
+  },
+  {
+   "file": "flick-truth.json",
+   "bytes": 18907,
+   "sha256": "80ecddc002f610219521eaa94c31c2c120cc02042a33b1c61b98e34cfcf3af4f",
+   "verdict": null
+  },
+  {
+   "file": "frozen-regressions.json",
+   "bytes": 3830,
+   "sha256": "a049a0f6288f5f42fbba7ff30824271e2cc8f12603122978591b7c01d941b514",
+   "verdict": null
+  },
+  {
+   "file": "orientation-truth.json",
+   "bytes": 21159,
+   "sha256": "326caeb18d650fc95b2fa4843891180116e8e8d59268aba15ef26a3705e8dce8",
+   "verdict": null
+  },
+  {
+   "file": "perf-smoke.json",
+   "bytes": 7786,
+   "sha256": "450781c87d48b6f298c94cf3a722ababac9389ba8cafafdcc9a8e6c2e0eb0774",
+   "verdict": "SMOKE CLEAN"
+  },
+  {
+   "file": "product-state.json",
+   "bytes": 4580,
+   "sha256": "8c1c81ef1adea0549128bbcc0dbc8eaaf125a547ecabf0952bd262bde102fd77",
+   "verdict": "READY FOR FINAL REVIEW WITH DECLARED INTERMITTENT FLING RESIDUAL"
+  }
+ ],
+ "privatePackage": {
+  "path": "qa-v5/private/v5-final-motion.zip",
+  "why": "Target pixels live there and nowhere else in this repo"
+ },
+ "notAsserted": [
+  "Target Visual PASS",
+  "any real-device result -- §六 delivers a reachable LAN review route and nothing more"
+ ],
+ "notTouched": [
+  "SourceExact Layout Contract",
+  "plane size",
+  "cell pitch",
+  "sphere radius",
+  "camera base law",
+  "Glass / TargetOpticalBodyV5",
+  "exposure",
+  "Typography",
+  "Footer / Scrim",
+  "Culling",
+  "Media Fit / Focus",
+  "device-tier sample law",
+  "every motion constant (dragGain, fling multiplier, spring stiffness / damping / mass, velocity-window duration, rest thresholds, dolly law)",
+  "the shipped opticalBody default"
+ ],
+ "finalProductState": "READY FOR FINAL REVIEW WITH DECLARED INTERMITTENT FLING RESIDUAL",
+ "stateBasis": "§四 says: if no Source Mismatch is found, do not adjust constants and report this state. None was found -- at ten runs a side the second fling mode is on the Target too -- so no constant was touched and the residual is declared rather than masked.",
+ "declaredResiduals": [
+  "the fast-flick second mode is still there",
+  "the orientation flip still stalls the main thread",
+  "§三's pre-registered orientation gate item reports FAIL on its own arithmetic"
+ ],
+ "deliveryLimits": {
+  "publicFileLimit": 8,
+  "publicFiles": 7,
+  "imagesInPublicTree": [],
+  "pass": true
+ }
+}

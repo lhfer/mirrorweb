@@ -32,7 +32,12 @@ const opts = { out: path.join(REPO, "artifacts/visual-convergence/perf"),
                desktopMin: 5, mobileMin: 5, throttle: 4,
                url: "http://127.0.0.1:5293/?review=target&qa" };
 for (const a of process.argv.slice(2)) {
-  const [k, v] = a.replace(/^--/, "").split("=");
+  // Split on the FIRST `=` only: a --url value contains several of its own, and
+  // a plain split silently truncated it to the origin plus half a query, which
+  // then loaded a page with no QA surface and timed out looking for one.
+  const eq = a.indexOf("=");
+  const k = (eq < 0 ? a : a.slice(0, eq)).replace(/^--/, "");
+  const v = eq < 0 ? undefined : a.slice(eq + 1);
   if (k === "out") opts.out = path.resolve(REPO, v);
   else if (k === "desktop-min") opts.desktopMin = Number(v);
   else if (k === "mobile-min") opts.mobileMin = Number(v);
@@ -135,6 +140,11 @@ async function driveMobile(page, cdp, minutes) {
     }
     await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
   };
+  // Final Motion §七 adds orientation changes to the smoke, because this round's
+  // one product change is on the resize path. Each cycle flips the phone to
+  // landscape, drags there, and flips back -- so the guard is exercised under
+  // load and under the CPU throttle, not only in the clean orientation trace.
+  let cycles = 0;
   while (Date.now() < end) {
     await drag(300, 560, -220, -80, 30, 900);
     await sleep(1400);
@@ -142,7 +152,17 @@ async function driveMobile(page, cdp, minutes) {
     await sleep(900);
     await drag(120, 500, 240, 60, 24, 700);
     await sleep(1500);
+    if (cycles % 2 === 0) {
+      await page.setViewportSize({ width: 844, height: 390 });
+      await sleep(1200);
+      await drag(700, 260, -420, -40, 30, 800);
+      await sleep(900);
+      await page.setViewportSize({ width: 390, height: 844 });
+      await sleep(1200);
+    }
+    cycles += 1;
   }
+  await page.setViewportSize({ width: 390, height: 844 });
 }
 
 const browser = await chromium.launch({ channel: "chrome", headless: true,

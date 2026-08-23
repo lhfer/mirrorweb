@@ -1,0 +1,303 @@
+{
+ "what": "VC2 §九 bounded candidate smoke -- ten minutes, real input, High/Medium/Low exercised, and one phase under a 4x CPU throttle.",
+ "url": "http://127.0.0.1:5294/?review=target&qa",
+ "startedAt": "2026-08-23T09:28:30.453Z",
+ "realDeviceCaveat": "the mobile phase runs under Emulation.setCPUThrottlingRate(4). That throttles the CPU only -- the GPU is this machine's. A headless 120 Hz run, throttled or not, is NOT a real-device PASS and is not reported as one.",
+ "gestureCoverage": {
+  "desktop": "drag, hard flick, long wrap-length drag; High/Medium/Low each pinned for 9 s with adaptive off, adaptive back on in between",
+  "mobile": "touch drag, long wrap drag, reverse drag, plus a portrait->landscape->portrait rotation every other cycle with a drag taken in landscape. The rotation was added this round because the one product change is on the resize path, and it belongs under load and under the CPU throttle rather than only in a clean trace.",
+  "samplerNote": "the 5 s sampler runs through the rotations; a sample that lands mid-resize is dropped by its own try/catch. Sample counts per phase are reported below -- if the mobile phase is short of the desktop phase, that is why."
+ },
+ "phases": [
+  {
+   "name": "desktop",
+   "vp": "1440x900",
+   "minutes": 5,
+   "cpuThrottlingRate": 1,
+   "samples": 62,
+   "heapMB": {
+    "first": 27.24,
+    "last": 17.24,
+    "min": 15.31,
+    "max": 42.14,
+    "slopeMBPerMin": -0.577,
+    "floorFirstThird": 16.84,
+    "floorLastThird": 15.31
+   },
+   "fpsMean": {
+    "min": 120,
+    "median": 120
+   },
+   "frameP95ms": {
+    "max": 9.3,
+    "median": 9.2
+   },
+   "qualityLevelsSeen": [
+    "high",
+    "medium",
+    "low"
+   ],
+   "qualitySeries": "HHHHHHHHMMHHHHHHHHHLLHHHHHHHHHHHHHHHHHHHHMHHHHHHHHHLLHHHHHHHHH",
+   "materialCache": {
+    "first": {
+     "cacheSize": 2,
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "activeSamples": 5,
+     "deviceTier": {
+      "low": false,
+      "pointerCoarse": false,
+      "hardwareConcurrency": 18,
+      "deviceMemory": 32,
+      "samples": 5
+     },
+     "rendererTextures": 6
+    },
+    "last": {
+     "cacheSize": 2,
+     "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "activeSamples": 5,
+     "deviceTier": {
+      "low": false,
+      "pointerCoarse": false,
+      "hardwareConcurrency": 18,
+      "deviceMemory": 32,
+      "samples": 5
+     },
+     "rendererTextures": 6
+    },
+    "constant": true
+   },
+   "videoAdvancing": true,
+   "blackCards": [
+    {
+     "still": "desktop-still-0.png",
+     "cardRects": 100,
+     "minRectLuma": 39.94
+    },
+    {
+     "still": "desktop-still-1.png",
+     "cardRects": 100,
+     "minRectLuma": 61.21
+    },
+    {
+     "still": "desktop-still-2.png",
+     "cardRects": 100,
+     "minRectLuma": 61.77
+    }
+   ],
+   "errors": []
+  },
+  {
+   "name": "mobile-cpu4x",
+   "vp": "390x844",
+   "minutes": 5,
+   "cpuThrottlingRate": 4,
+   "samples": 62,
+   "heapMB": {
+    "first": 27.42,
+    "last": 29.97,
+    "min": 16.12,
+    "max": 45.61,
+    "slopeMBPerMin": 2.092,
+    "floorFirstThird": 16.12,
+    "floorLastThird": 18.25
+   },
+   "fpsMean": {
+    "min": 117.5,
+    "median": 120
+   },
+   "frameP95ms": {
+    "max": 9.3,
+    "median": 9.2
+   },
+   "qualityLevelsSeen": [
+    "high"
+   ],
+   "qualitySeries": "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH",
+   "materialCache": {
+    "first": {
+     "cacheSize": 2,
+     "activeKey": "samples=3|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "activeSamples": 3,
+     "deviceTier": {
+      "low": true,
+      "pointerCoarse": true,
+      "hardwareConcurrency": 18,
+      "deviceMemory": 32,
+      "samples": 3
+     },
+     "rendererTextures": 6
+    },
+    "last": {
+     "cacheSize": 2,
+     "activeKey": "samples=3|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+     "activeSamples": 3,
+     "deviceTier": {
+      "low": true,
+      "pointerCoarse": true,
+      "hardwareConcurrency": 18,
+      "deviceMemory": 32,
+      "samples": 3
+     },
+     "rendererTextures": 6
+    },
+    "constant": true
+   },
+   "videoAdvancing": true,
+   "blackCards": [
+    {
+     "still": "mobile-cpu4x-still-0.png",
+     "cardRects": 96,
+     "minRectLuma": 41.3
+    },
+    {
+     "still": "mobile-cpu4x-still-1.png",
+     "cardRects": 80,
+     "minRectLuma": 59.1
+    },
+    {
+     "still": "mobile-cpu4x-still-2.png",
+     "cardRects": 96,
+     "minRectLuma": 75.05
+    }
+   ],
+   "errors": []
+  }
+ ],
+ "assertions": [
+  {
+   "assertion": "no card rect went black in any sampled still",
+   "pass": true,
+   "detail": {
+    "desktop": [
+     39.94,
+     61.21,
+     61.77
+    ],
+    "mobile-cpu4x": [
+     41.3,
+     59.1,
+     75.05
+    ]
+   }
+  },
+  {
+   "assertion": "the material cache neither grew nor churned across either phase",
+   "pass": true,
+   "detail": {
+    "desktop": {
+     "first": {
+      "cacheSize": 2,
+      "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+      "activeSamples": 5,
+      "deviceTier": {
+       "low": false,
+       "pointerCoarse": false,
+       "hardwareConcurrency": 18,
+       "deviceMemory": 32,
+       "samples": 5
+      },
+      "rendererTextures": 6
+     },
+     "last": {
+      "cacheSize": 2,
+      "activeKey": "samples=5|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+      "activeSamples": 5,
+      "deviceTier": {
+       "low": false,
+       "pointerCoarse": false,
+       "hardwareConcurrency": 18,
+       "deviceMemory": 32,
+       "samples": 5
+      },
+      "rendererTextures": 6
+     },
+     "constant": true
+    },
+    "mobile-cpu4x": {
+     "first": {
+      "cacheSize": 2,
+      "activeKey": "samples=3|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+      "activeSamples": 3,
+      "deviceTier": {
+       "low": true,
+       "pointerCoarse": true,
+       "hardwareConcurrency": 18,
+       "deviceMemory": 32,
+       "samples": 3
+      },
+      "rendererTextures": 6
+     },
+     "last": {
+      "cacheSize": 2,
+      "activeKey": "samples=3|view=beauty|env=source|clamp=unclamped|lane=target-source-unclamped",
+      "activeSamples": 3,
+      "deviceTier": {
+       "low": true,
+       "pointerCoarse": true,
+       "hardwareConcurrency": 18,
+       "deviceMemory": 32,
+       "samples": 3
+      },
+      "rendererTextures": 6
+     },
+     "constant": true
+    }
+   }
+  },
+  {
+   "assertion": "no heap retention: the GC floor rises by at most 6 MB across either phase",
+   "pass": true,
+   "detail": {
+    "desktop": {
+     "first": 27.24,
+     "last": 17.24,
+     "min": 15.31,
+     "max": 42.14,
+     "slopeMBPerMin": -0.577,
+     "floorFirstThird": 16.84,
+     "floorLastThird": 15.31
+    },
+    "mobile-cpu4x": {
+     "first": 27.42,
+     "last": 29.97,
+     "min": 16.12,
+     "max": 45.61,
+     "slopeMBPerMin": 2.092,
+     "floorFirstThird": 16.12,
+     "floorLastThird": 18.25
+    }
+   }
+  },
+  {
+   "assertion": "all three quality levels were actually exercised on the desktop phase",
+   "pass": true,
+   "detail": [
+    "high",
+    "medium",
+    "low"
+   ]
+  },
+  {
+   "assertion": "media kept advancing on both phases",
+   "pass": true
+  },
+  {
+   "assertion": "zero console or page errors",
+   "pass": true,
+   "detail": {
+    "desktop": [],
+    "mobile-cpu4x": []
+   }
+  }
+ ],
+ "heapResidual": {
+  "what": "what the floor test allows and does not claim to be zero",
+  "floorRiseMB": {
+   "desktop": -1.53,
+   "mobile-cpu4x": 2.13
+  },
+  "note": "a five-minute window is short for a retention estimate. The mobile floor rise is the number to re-measure if a longer run is ever asked for; it is not asserted to be zero here."
+ },
+ "verdict": "SMOKE CLEAN"
+}

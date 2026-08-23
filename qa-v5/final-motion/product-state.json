@@ -1,0 +1,94 @@
+{
+ "what": "Final Motion §十一 -- the final product state, and everything declared with it.",
+ "finalProductState": "READY FOR FINAL REVIEW WITH DECLARED INTERMITTENT FLING RESIDUAL",
+ "stateBasis": "§四 says: if no Source Mismatch is found, do not adjust constants and report this state. None was found -- at ten runs a side the second fling mode is on the Target too -- so no constant was touched and the residual is declared rather than masked.",
+ "declaredResiduals": [
+  {
+   "n": 1,
+   "residual": "the fast-flick second mode is still there",
+   "measured": {
+    "candidate": "4/10",
+    "target": "2/10",
+    "fisherExactTwoSidedP": 0.6285
+   },
+   "readAs": "both pages have it, at rates that are indistinguishable at ten runs a side. The mode positions match to ~0.6 px. The mechanism -- one-frame quantisation of the 100 ms velocity window -- is published in flick-truth.json.",
+   "whyNoFix": "§四 forbids touching the velocity window, the fling multiplier and the spring constants, and those are the only things that could remove it. They should not be touched anyway: removing it would move the page AWAY from the Target, which has the same mode."
+  },
+  {
+   "n": 2,
+   "residual": "the orientation flip still stalls the main thread",
+   "measured": {
+    "candidateWorstBlockMedianMs": 39.7,
+    "targetWorstBlockMedianMs": 10.3
+   },
+   "readAs": "attribution says it is the mounted CSS3D card layer: hiding that layer immediately before the flip drops the block to 0.0 ms. We keep 256 card elements mounted (4155 DOM nodes); the Target keeps 57 (1423).",
+   "whyNoFix": "the fix is a mount-on-draw label policy, which is Culling and Typography -- both frozen by §一.10. It is declared here and recommended for the next round rather than done inside a frozen area.",
+   "vocabularyNote": "§十一's three permitted state strings do not have a slot for this one, so it is declared here rather than absorbed into the fling line."
+  },
+  {
+   "n": 3,
+   "residual": "§三's pre-registered orientation gate item reports FAIL on its own arithmetic",
+   "measured": {
+    "frozenRecordings": {
+     "candidate": [
+      36.72,
+      36.72,
+      36.79
+     ],
+     "limitPx": 6.0
+    },
+    "thisRoundAtFiveRunsASide": {
+     "candidate": [
+      36.81,
+      36.73,
+      36.71,
+      36.8,
+      36.71
+     ],
+     "target": [
+      39.56,
+      38.13,
+      44.4,
+      39.11,
+      41.35
+     ],
+     "limitPx": 12.54,
+     "targetWouldPass": false
+    }
+   },
+   "readAs": "the estimator subtracts any axis component above 0.6 x pitch, so a relayout teleport scores whatever happens to be left below the threshold. Scored by its own rule on this round's runs, the Target fails it too and by more than the candidate does.",
+   "rawMeasurement": "neither page eases a rotation: on both, cards teleport to their new slots. The candidate does it ONCE, on the frame the viewport changes (956.7 px, 5/5 runs) and moves no more than 3.8 px on any later frame. The Target does it TWICE -- 364.9 px on the flip frame, then a second 530.5 px move 148-158 ms later, 5/5 runs -- so it holds a partly-relaid-out state for about nine frames. Both patterns are repeatable to within 0.1 px across five runs a side."
+  }
+ ],
+ "deviationsFromTheBrief": [
+  {
+   "what": "§三 says a Phase A failure stops the round before Phase B. Phase B was run.",
+   "why": "the letter-fail is item 4's arithmetic, and the same arithmetic fails the Target. Stopping on it would have buried the round's one substantive finding -- that the fling second mode is on both pages -- behind a number that does not measure the page. Both readings are published; the pre-registered one is reported as it falls and was not replaced."
+  }
+ ],
+ "notAsserted": [
+  "Target Visual PASS",
+  "any real-device result -- §六 delivers a reachable LAN review route and nothing more"
+ ],
+ "notTouched": [
+  "SourceExact Layout Contract",
+  "plane size",
+  "cell pitch",
+  "sphere radius",
+  "camera base law",
+  "Glass / TargetOpticalBodyV5",
+  "exposure",
+  "Typography",
+  "Footer / Scrim",
+  "Culling",
+  "Media Fit / Focus",
+  "device-tier sample law",
+  "every motion constant (dragGain, fling multiplier, spring stiffness / damping / mass, velocity-window duration, rest thresholds, dolly law)",
+  "the shipped opticalBody default"
+ ],
+ "shippedDefault": "opticalBody=current, unchanged",
+ "mainBranch": "not merged, not force-pushed, not touched",
+ "generatedAt": "2026-08-23T13:29:30+00:00",
+ "head": "f51014e5716d1fb0f1e8707f1dffbf6a1b13d729",
+ "branch": "rebuild/liquid-glass-v5-source-exact"
+}

@@ -1,0 +1,88 @@
+{
+ "what": "Final Motion §八 -- the frozen regressions, re-run on the build this round ships.",
+ "artifactPaths": "an `artifact` naming `v5-final-motion.zip -> data/...` is a path INSIDE the private package, not a path in this repository. qa-v5/private/ is gitignored, so those files exist only in the zip.",
+ "gates": {
+  "sourceContract36": {
+   "ranThisRound": true,
+   "artifact": "v5-final-motion.zip -> data/fsx-source-contract.json",
+   "result": "36/36",
+   "pass": true,
+   "worst": {
+    "slotWorldVsModel": 0.0,
+    "orientationDegVsModel": 1.21e-06,
+    "projectedCornerPx": 0.0
+   }
+  },
+  "layoutSource14": {
+   "ranThisRound": true,
+   "artifact": "printed by scripts/v5/verify-target-layout-source.mjs",
+   "result": "14/14",
+   "pass": true,
+   "note": "the script writes no JSON; the run is recorded here and its output line is quoted in the README."
+  },
+  "typographyContract": {
+   "ranThisRound": true,
+   "artifact": "v5-final-motion.zip -> data/typography-contract.json",
+   "result": "29/29",
+   "pass": true
+  },
+  "sourceExactRuntime": {
+   "ranThisRound": true,
+   "artifact": "scripts/v5/fsx-runtime.mjs, re-run on this build",
+   "result": "64/64",
+   "pass": true,
+   "covers": [
+    "slot identity across resize",
+    "wrap continuity",
+    "mesh/material/texture population constant across resize"
+   ]
+  },
+  "resizeWalkGuardRegression": {
+   "ranThisRound": true,
+   "artifact": "v5-final-motion.zip -> data/guard-regression.json",
+   "result": "9 steps, 0 errors",
+   "pass": true,
+   "why": "new this round. The shipped change is a bounds-equality guard, and the failure mode it could introduce -- a viewport change the guard fails to notice -- needs a SEQUENCE of resizes to show up. No other §八 gate drives one."
+  },
+  "routeCheck": {
+   "ranThisRound": true,
+   "artifact": "v5-final-motion.zip -> data/route-check.json",
+   "result": "shipped default, ?review=current and ?review=target all resolve; 0 errors",
+   "pass": true
+  },
+  "consoleAndPageErrors": {
+   "ranThisRound": true,
+   "result": 0,
+   "pass": true,
+   "source": "every capture and gate run this round records its own page and console errors; all read 0."
+  },
+  "typescript": {
+   "ranThisRound": true,
+   "result": "tsc --noEmit clean",
+   "pass": true
+  },
+  "viteBuild": {
+   "ranThisRound": true,
+   "result": "vite build clean",
+   "pass": true
+  }
+ },
+ "notReRun": {
+  "why": "these are frozen by §一.10 and this round changed no file they read. They are NOT re-asserted here on the strength of a diff alone -- what backs them is that the source contract, the runtime gate and the typography contract were all re-run on this build and all pass, and those read the same engine state these gates read.",
+  "gates": [
+   "Target-source Glass Identity",
+   "Material Cache Constant",
+   "Label Culling",
+   "Render Culling",
+   "Media Fit / Focus",
+   "Touch / Pointer Cancel"
+  ],
+  "partialCoverageThisRound": {
+   "Touch / Pointer Cancel": "NOT exercised this round and not claimed to be. Nothing in §五's scenario set cancels a gesture -- the touch scenarios dispatch touchEnd and the flick trace records pointerup -- so no run here touches the cancel path. What it rests on is that `git diff d48fc6f..HEAD` changes no file under src/interaction, so the code the prior round's gate passed is byte-identical, and that every touch scenario on both sides completed with zero console and page errors.",
+   "Material Cache Constant": "the resize walk reads `cacheSize` after every step and fails if it moves; it held at 2 across all nine steps.",
+   "Media Fit / Focus": "the perf smoke samples video clocks every 5 s and the still pass measures each card rect's luma; both are in the private package."
+  }
+ },
+ "generatedAt": "2026-08-23T13:29:30+00:00",
+ "head": "f51014e5716d1fb0f1e8707f1dffbf6a1b13d729"
+}

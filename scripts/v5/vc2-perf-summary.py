@@ -51,13 +51,35 @@ def rect_lumas(png: Path, rects: list) -> list[float]:
 
 def main() -> int:
     args = dict(a[2:].split("=", 1) for a in sys.argv[1:] if a.startswith("--"))
-    raw = json.loads((REPO / args.get("raw", "artifacts/visual-convergence/perf/perf-smoke-raw.json")).read_text())
+    raw_p = REPO / args.get("raw", "artifacts/visual-convergence/perf/perf-smoke-raw.json")
+    raw = json.loads(raw_p.read_text())
     out_p = REPO / args.get("out", "qa-v5/visual-convergence/perf-smoke.json")
+    # The stills the smoke took sit next to its raw series, wherever that is.
+    # Pinning this to one round's directory made the black-card check silently
+    # find nothing when the smoke was run into a different one.
+    global ART
+    ART = raw_p.parent
 
     doc = {"what": "VC2 §九 bounded candidate smoke -- ten minutes, real input, "
                    "High/Medium/Low exercised, and one phase under a 4x CPU throttle.",
            "url": raw["url"], "startedAt": raw["startedAt"],
            "realDeviceCaveat": raw["cpuThrottleNote"],
+           "gestureCoverage": {
+               "desktop": "drag, hard flick, long wrap-length drag; High/Medium/Low "
+                          "each pinned for 9 s with adaptive off, adaptive back on "
+                          "in between",
+               "mobile": "touch drag, long wrap drag, reverse drag, plus a "
+                         "portrait->landscape->portrait rotation every other cycle "
+                         "with a drag taken in landscape. The rotation was added "
+                         "this round because the one product change is on the "
+                         "resize path, and it belongs under load and under the CPU "
+                         "throttle rather than only in a clean trace.",
+               "samplerNote": "the 5 s sampler runs through the rotations; a sample "
+                              "that lands mid-resize is dropped by its own try/catch. "
+                              "Sample counts per phase are reported below -- if the "
+                              "mobile phase is short of the desktop phase, that is "
+                              "why.",
+           },
            "phases": []}
     for ph in raw["phases"]:
         s = ph["summary"]

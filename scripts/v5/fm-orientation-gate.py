@@ -361,10 +361,14 @@ def main() -> int:
                                  "re-application. All three of the Target's arms "
                                  "(window resize undebounced, ResizeObserver and "
                                  "screen.orientation at 50 ms) pass through it.",
-            "whatItRemoves": "the old code applied the whole viewport pipeline twice "
-                             "per resize event -- immediately, then again 80 ms later, "
-                             "unconditionally. `viewportApplies` reads 1 on a "
-                             "single-viewport rotation and 3 on the three-event "
+            "whatItRemoves": "the old code applied the whole viewport pipeline "
+                             "immediately on EVERY resize event, then once more 80 ms "
+                             "after the last one, with no check that anything had "
+                             "changed. The trailing apply was already coalesced -- the "
+                             "handler cleared its timer before re-arming -- so a burst "
+                             "of N events cost N+1 applies rather than 2N; an isolated "
+                             "resize cost exactly two. `viewportApplies` now reads 1 on "
+                             "a single-viewport rotation and 3 on the three-event "
                              "settling rotation, i.e. exactly one application per "
                              "distinct bounds. Under the old code those would have "
                              "been 2 and 4.",
@@ -409,7 +413,7 @@ def main() -> int:
                     "not a candidate state.",
             "readAs": "the card layer is the whole of it: without it the flip costs "
                       "less than the Target's, with it four to five times the "
-                      "Target's. We keep 257 CSS3D card elements mounted at every "
+                      "Target's. We keep 256 CSS3D card elements mounted at every "
                       "viewport (4155 nodes) and hide culled ones with "
                       "visibility:hidden, which still lays out; the Target keeps 57 "
                       "(1423 nodes).",
@@ -484,7 +488,12 @@ def main() -> int:
         },
     }
     doc["generatedAt"] = git("log", "-1", "--format=%cI") or None
-    doc["head"] = git("rev-parse", "HEAD")
+    # The commit whose tree these runs measured, resolved by MESSAGE rather
+    # than `git rev-parse HEAD`: the evidence commit that carries this file
+    # gets amended after it is written, so a HEAD stamp names a draft that
+    # the amend orphans -- unreachable from any ref and never pushed.
+    doc["head"] = git("rev-list", "-1",
+                      "--grep=^v5-final-motion-flick-source-and-code", "HEAD")
     out_p.parent.mkdir(parents=True, exist_ok=True)
     out_p.write_text(json.dumps(doc, indent=1, ensure_ascii=False))
     print(f"pre-registered gate: {'PASS' if doc['preRegisteredGate']['pass'] else 'FAIL'} "

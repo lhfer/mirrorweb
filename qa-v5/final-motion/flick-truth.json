@@ -1,0 +1,786 @@
+{
+ "what": "Final Motion Convergence §四 -- the fast flick, ten runs a side, with the release scheduling recorded rather than inferred.",
+ "gesture": "mouse, from (1020,460), 7 steps of -61.43 px, 8 ms apart, released; 1440x900, matched media and matched copy. The §五 gesture verbatim.",
+ "instrument": "scripts/v5/fm_resize_instrument.mjs -- one init script on both pages, wrapping the page's OWN pointer listeners and rAF callbacks in a single seq space.",
+ "arms": {
+  "target": {
+   "runs": 10,
+   "travelPx": [
+    818.21,
+    817.39,
+    816.57,
+    833.07,
+    816.57,
+    816.16,
+    816.37,
+    832.84,
+    815.35,
+    817.39
+   ],
+   "travelMedian": 816.98,
+   "travelSpread": 17.72,
+   "dollyExcursion": [
+    0.5793,
+    0.5803,
+    0.5799,
+    0.5786,
+    0.5794,
+    0.5792,
+    0.5806,
+    0.5739,
+    0.5791,
+    0.58
+   ],
+   "dollyMedian": 0.5794,
+   "dollySpread": 0.0067,
+   "clusters": [
+    {
+     "n": 8,
+     "min": 815.35,
+     "max": 818.21,
+     "median": 816.57
+    },
+    {
+     "n": 2,
+     "min": 832.84,
+     "max": 833.07,
+     "median": 832.96
+    }
+   ],
+   "perRun": [
+    {
+     "repeat": 0,
+     "travelPx": 818.21,
+     "dollyExcursion": 0.5793,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 11.8,
+      "lastMoveAtMs": 114.4,
+      "releaseAtMs": 126.2,
+      "movesSeen": 31,
+      "releaseHandlerMs": 0.1
+     },
+     "release": null,
+     "errors": []
+    },
+    {
+     "repeat": 1,
+     "travelPx": 817.39,
+     "dollyExcursion": 0.5803,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 11.8,
+      "lastMoveAtMs": 117.1,
+      "releaseAtMs": 128.9,
+      "movesSeen": 31,
+      "releaseHandlerMs": 0.2
+     },
+     "release": null,
+     "errors": []
+    },
+    {
+     "repeat": 2,
+     "travelPx": 816.57,
+     "dollyExcursion": 0.5799,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 11.6,
+      "lastMoveAtMs": 117.1,
+      "releaseAtMs": 128.7,
+      "movesSeen": 31,
+      "releaseHandlerMs": 0.1
+     },
+     "release": null,
+     "errors": []
+    },
+    {
+     "repeat": 3,
+     "travelPx": 833.07,
+     "dollyExcursion": 0.5786,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 12.1,
+      "lastMoveAtMs": 110.7,
+      "releaseAtMs": 122.8,
+      "movesSeen": 31,
+      "releaseHandlerMs": 0.2
+     },
+     "release": null,
+     "errors": []
+    },
+    {
+     "repeat": 4,
+     "travelPx": 816.57,
+     "dollyExcursion": 0.5794,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 11.5,
+      "lastMoveAtMs": 115.1,
+      "releaseAtMs": 126.6,
+      "movesSeen": 31,
+      "releaseHandlerMs": 0.2
+     },
+     "release": null,
+     "errors": []
+    },
+    {
+     "repeat": 5,
+     "travelPx": 816.16,
+     "dollyExcursion": 0.5792,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 10.4,
+      "lastMoveAtMs": 109.4,
+      "releaseAtMs": 119.8,
+      "movesSeen": 31,
+      "releaseHandlerMs": 0.1
+     },
+     "release": null,
+     "errors": []
+    },
+    {
+     "repeat": 6,
+     "travelPx": 816.37,
+     "dollyExcursion": 0.5806,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 11.7,
+      "lastMoveAtMs": 112.6,
+      "releaseAtMs": 124.3,
+      "movesSeen": 31,
+      "releaseHandlerMs": 0.1
+     },
+     "release": null,
+     "errors": []
+    },
+    {
+     "repeat": 7,
+     "travelPx": 832.84,
+     "dollyExcursion": 0.5739,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 12.1,
+      "lastMoveAtMs": 110.6,
+      "releaseAtMs": 122.7,
+      "movesSeen": 31,
+      "releaseHandlerMs": 0.1
+     },
+     "release": null,
+     "errors": []
+    },
+    {
+     "repeat": 8,
+     "travelPx": 815.35,
+     "dollyExcursion": 0.5791,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 11.7,
+      "lastMoveAtMs": 113.2,
+      "releaseAtMs": 124.9,
+      "movesSeen": 31,
+      "releaseHandlerMs": 0.1
+     },
+     "release": null,
+     "errors": []
+    },
+    {
+     "repeat": 9,
+     "travelPx": 817.39,
+     "dollyExcursion": 0.58,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 11.5,
+      "lastMoveAtMs": 109.2,
+      "releaseAtMs": 120.7,
+      "movesSeen": 31,
+      "releaseHandlerMs": 0.2
+     },
+     "release": null,
+     "errors": []
+    }
+   ],
+   "errors": 0
+  },
+  "candidate": {
+   "runs": 10,
+   "travelPx": [
+    813.55,
+    816.77,
+    815.55,
+    831.46,
+    815.35,
+    831.46,
+    833.3,
+    815.55,
+    816.37,
+    833.3
+   ],
+   "travelMedian": 816.57,
+   "travelSpread": 19.75,
+   "dollyExcursion": [
+    0.5808,
+    0.5784,
+    0.5778,
+    0.576,
+    0.5777,
+    0.5791,
+    0.5766,
+    0.5778,
+    0.5781,
+    0.5762
+   ],
+   "dollyMedian": 0.5778,
+   "dollySpread": 0.0048,
+   "clusters": [
+    {
+     "n": 6,
+     "min": 813.55,
+     "max": 816.77,
+     "median": 815.55
+    },
+    {
+     "n": 4,
+     "min": 831.46,
+     "max": 833.3,
+     "median": 832.38
+    }
+   ],
+   "perRun": [
+    {
+     "repeat": 0,
+     "travelPx": 813.55,
+     "dollyExcursion": 0.5808,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 12.2,
+      "lastMoveAtMs": 115.9,
+      "releaseAtMs": 128.1,
+      "movesSeen": 8,
+      "releaseHandlerMs": 0
+     },
+     "release": {
+      "historyCount": 15,
+      "windowDtMs": 109.3,
+      "clampedToSecondPoint": false,
+      "newestUsed": [
+       590,
+       460,
+       8440.8
+      ],
+      "oldestUsed": [
+       958.5714111328125,
+       460,
+       8331.5
+      ],
+      "computedVelocityX": -3372.11,
+      "flingDeltaX": -337.21,
+      "targetXBefore": -645.0,
+      "targetXAfter": -982.21,
+      "recordedAtStep": 961,
+      "commitStep": 962,
+      "commitLagFrames": 1
+     },
+     "errors": []
+    },
+    {
+     "repeat": 1,
+     "travelPx": 816.77,
+     "dollyExcursion": 0.5784,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 11.8,
+      "lastMoveAtMs": 112.8,
+      "releaseAtMs": 124.6,
+      "movesSeen": 8,
+      "releaseHandlerMs": 0
+     },
+     "release": {
+      "historyCount": 15,
+      "windowDtMs": 107.7,
+      "clampedToSecondPoint": false,
+      "newestUsed": [
+       590,
+       460,
+       8356.3
+      ],
+      "oldestUsed": [
+       958.5714111328125,
+       460,
+       8248.6
+      ],
+      "computedVelocityX": -3422.2,
+      "flingDeltaX": -342.22,
+      "targetXBefore": -645.0,
+      "targetXAfter": -987.22,
+      "recordedAtStep": 957,
+      "commitStep": 958,
+      "commitLagFrames": 1
+     },
+     "errors": []
+    },
+    {
+     "repeat": 2,
+     "travelPx": 815.55,
+     "dollyExcursion": 0.5778,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 11.9,
+      "lastMoveAtMs": 114.4,
+      "releaseAtMs": 126.3,
+      "movesSeen": 8,
+      "releaseHandlerMs": 0
+     },
+     "release": {
+      "historyCount": 15,
+      "windowDtMs": 108.3,
+      "clampedToSecondPoint": false,
+      "newestUsed": [
+       590,
+       460,
+       8349.4
+      ],
+      "oldestUsed": [
+       958.5714111328125,
+       460,
+       8241.1
+      ],
+      "computedVelocityX": -3403.24,
+      "flingDeltaX": -340.32,
+      "targetXBefore": -645.0,
+      "targetXAfter": -985.32,
+      "recordedAtStep": 957,
+      "commitStep": 958,
+      "commitLagFrames": 1
+     },
+     "errors": []
+    },
+    {
+     "repeat": 3,
+     "travelPx": 831.46,
+     "dollyExcursion": 0.576,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 10.9,
+      "lastMoveAtMs": 112.4,
+      "releaseAtMs": 123.3,
+      "movesSeen": 8,
+      "releaseHandlerMs": 0
+     },
+     "release": {
+      "historyCount": 15,
+      "windowDtMs": 100.9,
+      "clampedToSecondPoint": false,
+      "newestUsed": [
+       590,
+       460,
+       8374.1
+      ],
+      "oldestUsed": [
+       958.5714111328125,
+       460,
+       8273.2
+      ],
+      "computedVelocityX": -3652.84,
+      "flingDeltaX": -365.28,
+      "targetXBefore": -645.0,
+      "targetXAfter": -1010.28,
+      "recordedAtStep": 960,
+      "commitStep": 961,
+      "commitLagFrames": 1
+     },
+     "errors": []
+    },
+    {
+     "repeat": 4,
+     "travelPx": 815.35,
+     "dollyExcursion": 0.5777,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 11.9,
+      "lastMoveAtMs": 112.4,
+      "releaseAtMs": 124.3,
+      "movesSeen": 8,
+      "releaseHandlerMs": 0
+     },
+     "release": {
+      "historyCount": 15,
+      "windowDtMs": 108.4,
+      "clampedToSecondPoint": false,
+      "newestUsed": [
+       590,
+       460,
+       8372.5
+      ],
+      "oldestUsed": [
+       958.5714111328125,
+       460,
+       8264.1
+      ],
+      "computedVelocityX": -3400.11,
+      "flingDeltaX": -340.01,
+      "targetXBefore": -645.0,
+      "targetXAfter": -985.01,
+      "recordedAtStep": 962,
+      "commitStep": 963,
+      "commitLagFrames": 1
+     },
+     "errors": []
+    },
+    {
+     "repeat": 5,
+     "travelPx": 831.46,
+     "dollyExcursion": 0.5791,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 11.7,
+      "lastMoveAtMs": 110,
+      "releaseAtMs": 121.7,
+      "movesSeen": 8,
+      "releaseHandlerMs": 0
+     },
+     "release": {
+      "historyCount": 15,
+      "windowDtMs": 100.9,
+      "clampedToSecondPoint": false,
+      "newestUsed": [
+       590,
+       460,
+       8401.1
+      ],
+      "oldestUsed": [
+       958.5714111328125,
+       460,
+       8300.2
+      ],
+      "computedVelocityX": -3652.84,
+      "flingDeltaX": -365.28,
+      "targetXBefore": -645.0,
+      "targetXAfter": -1010.28,
+      "recordedAtStep": 959,
+      "commitStep": 960,
+      "commitLagFrames": 1
+     },
+     "errors": []
+    },
+    {
+     "repeat": 6,
+     "travelPx": 833.3,
+     "dollyExcursion": 0.5766,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 11.8,
+      "lastMoveAtMs": 113.4,
+      "releaseAtMs": 125.2,
+      "movesSeen": 8,
+      "releaseHandlerMs": 0
+     },
+     "release": {
+      "historyCount": 15,
+      "windowDtMs": 100.1,
+      "clampedToSecondPoint": false,
+      "newestUsed": [
+       590,
+       460,
+       8359.2
+      ],
+      "oldestUsed": [
+       958.5714111328125,
+       460,
+       8259.1
+      ],
+      "computedVelocityX": -3682.03,
+      "flingDeltaX": -368.2,
+      "targetXBefore": -645.0,
+      "targetXAfter": -1013.2,
+      "recordedAtStep": 958,
+      "commitStep": 959,
+      "commitLagFrames": 1
+     },
+     "errors": []
+    },
+    {
+     "repeat": 7,
+     "travelPx": 815.55,
+     "dollyExcursion": 0.5778,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 12.3,
+      "lastMoveAtMs": 117.1,
+      "releaseAtMs": 129.4,
+      "movesSeen": 8,
+      "releaseHandlerMs": 0.1
+     },
+     "release": {
+      "historyCount": 15,
+      "windowDtMs": 108.3,
+      "clampedToSecondPoint": false,
+      "newestUsed": [
+       590,
+       460,
+       8364.2
+      ],
+      "oldestUsed": [
+       958.5714111328125,
+       460,
+       8255.9
+      ],
+      "computedVelocityX": -3403.24,
+      "flingDeltaX": -340.32,
+      "targetXBefore": -645.0,
+      "targetXAfter": -985.32,
+      "recordedAtStep": 961,
+      "commitStep": 962,
+      "commitLagFrames": 1
+     },
+     "errors": []
+    },
+    {
+     "repeat": 8,
+     "travelPx": 816.37,
+     "dollyExcursion": 0.5781,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 11.6,
+      "lastMoveAtMs": 115.9,
+      "releaseAtMs": 127.5,
+      "movesSeen": 8,
+      "releaseHandlerMs": 0
+     },
+     "release": {
+      "historyCount": 15,
+      "windowDtMs": 107.9,
+      "clampedToSecondPoint": false,
+      "newestUsed": [
+       590,
+       460,
+       8367.3
+      ],
+      "oldestUsed": [
+       958.5714111328125,
+       460,
+       8259.4
+      ],
+      "computedVelocityX": -3415.86,
+      "flingDeltaX": -341.59,
+      "targetXBefore": -645.0,
+      "targetXAfter": -986.59,
+      "recordedAtStep": 962,
+      "commitStep": 963,
+      "commitLagFrames": 1
+     },
+     "errors": []
+    },
+    {
+     "repeat": 9,
+     "travelPx": 833.3,
+     "dollyExcursion": 0.5762,
+     "interleave": {
+      "resolved": true,
+      "framesBetweenLastMoveAndRelease": 2,
+      "lastMoveToReleaseMs": 11.3,
+      "lastMoveAtMs": 111.5,
+      "releaseAtMs": 122.8,
+      "movesSeen": 8,
+      "releaseHandlerMs": 0
+     },
+     "release": {
+      "historyCount": 15,
+      "windowDtMs": 100.1,
+      "clampedToSecondPoint": false,
+      "newestUsed": [
+       590,
+       460,
+       8356.9
+      ],
+      "oldestUsed": [
+       958.5714111328125,
+       460,
+       8256.8
+      ],
+      "computedVelocityX": -3682.03,
+      "flingDeltaX": -368.2,
+      "targetXBefore": -645.0,
+      "targetXAfter": -1013.2,
+      "recordedAtStep": 959,
+      "commitStep": 960,
+      "commitLagFrames": 1
+     },
+     "errors": []
+    }
+   ],
+   "errors": 0
+  }
+ },
+ "finding": {
+  "headline": "the second mode is on BOTH pages. It is not a candidate defect and there is no source mismatch to correct.",
+  "why the last round did not see it": "§五 recorded three runs a side. The Target's three all landed in the first mode, ours did not, and the difference was read as a divergence. At ten runs a side the Target shows 2/10 in the second mode and the candidate 4/10.",
+  "mechanism": "one-frame quantisation of the 100 ms velocity window. `velocityOfHistory` walks back through the gesture history -- one point per frame, ~8.3 ms apart at 120 Hz -- until the span exceeds VELOCITY.sampleWindowMs, so the span it settles on is either just over the boundary or one frame further back. Every candidate run has the SAME history length (15) and the SAME number of frames between the last move and the release (2); only the window dt differs, and the velocity, the fling and the travel follow it.",
+  "measuredOnTheCandidate": {
+   "modeA": {
+    "windowDtMs": "107.7-109.3",
+    "releaseVelocityXPxPerS": "-3372 to -3422",
+    "flingDeltaXPx": "-337.2 to -342.2"
+   },
+   "modeB": {
+    "windowDtMs": "100.1-100.9",
+    "releaseVelocityXPxPerS": "-3653 to -3682",
+    "flingDeltaXPx": "-365.3 to -368.2"
+   },
+   "note": "the fling is exactly velocity/10 on both modes -- the 0.1 s multiplier is doing nothing unusual. A ~7.5% shorter velocity window gives a ~7.5% larger velocity, ~26 px more fling target and ~16 px more measured travel."
+  },
+  "thereforeNoChange": "§四 forbids touching the velocity-window duration, the fling multiplier and the spring constants, and those are the only things that could remove this mode. They should not be touched anyway: removing it would move us AWAY from the Target, which has it."
+ },
+ "modes": {
+  "target": {
+   "modeA": [
+    815.35,
+    816.16,
+    816.37,
+    816.57,
+    816.57,
+    817.39,
+    817.39,
+    818.21
+   ],
+   "modeB": [
+    832.84,
+    833.07
+   ],
+   "modeBRate": "2/10",
+   "modeAMedian": 816.57,
+   "modeBMedian": 832.96
+  },
+  "candidate": {
+   "modeA": [
+    813.55,
+    815.35,
+    815.55,
+    815.55,
+    816.37,
+    816.77
+   ],
+   "modeB": [
+    831.46,
+    831.46,
+    833.3,
+    833.3
+   ],
+   "modeBRate": "4/10",
+   "modeAMedian": 815.55,
+   "modeBMedian": 832.38
+  },
+  "splitAt825Px": "825 px is a descriptive divider drawn between the two observed groups, not a threshold anything was tested against. The clusters above are found by gap, without it.",
+  "rateDifferenceIsNotSignificant": {
+   "candidate": "4/10",
+   "target": "2/10",
+   "fisherExactTwoSidedP": 0.6285,
+   "readAs": "at ten runs a side these rates are indistinguishable. The finding is that both pages have the mode, NOT that one has it more often; a reviewer reading the two fractions side by side should not take the difference as real."
+  }
+ },
+ "gate": {
+  "1. no second separated mode in ten candidate runs": {
+   "pass": false,
+   "candidateClusters": [
+    {
+     "n": 6,
+     "min": 813.55,
+     "max": 816.77,
+     "median": 815.55
+    },
+    {
+     "n": 4,
+     "min": 831.46,
+     "max": 833.3,
+     "median": 832.38
+    }
+   ],
+   "targetClusters": [
+    {
+     "n": 8,
+     "min": 815.35,
+     "max": 818.21,
+     "median": 816.57
+    },
+    {
+     "n": 2,
+     "min": 832.84,
+     "max": 833.07,
+     "median": 832.96
+    }
+   ],
+   "readAs": "fails on the letter. The Target fails it identically, on the same instrument and the same input, which is what the condition was written without knowing."
+  },
+  "2. travel window": {
+   "rule": "abs(candidate - Target median) <= max(2 x Target run spread, 5 px)",
+   "targetRunSpreadPx": 17.72,
+   "limitPx": 35.44,
+   "targetMedianPx": 816.98,
+   "worstCandidateDeviationPx": 16.32,
+   "pass": true
+  },
+  "3. no two candidate clusters more than 8 px apart": {
+   "pass": false,
+   "readAs": "same finding as 1; the Target's two clusters are 16.4 px apart and the candidate's 16.0 px."
+  },
+  "4. release velocity distribution not bimodal": {
+   "pass": false,
+   "readAs": "it is bimodal, and it is the CAUSE, not a symptom: the two velocity clusters are the two velocity-window lengths. Not readable on the Target from outside, but its travel is bimodal with the same separation, which the same mechanism predicts."
+  },
+  "5. dolly excursion within Target repeatability": {
+   "pass": true,
+   "candidate": [
+    0.5808,
+    0.5784,
+    0.5778,
+    0.576,
+    0.5777,
+    0.5791,
+    0.5766,
+    0.5778,
+    0.5781,
+    0.5762
+   ],
+   "target": [
+    0.5793,
+    0.5803,
+    0.5799,
+    0.5786,
+    0.5794,
+    0.5792,
+    0.5806,
+    0.5739,
+    0.5791,
+    0.58
+   ],
+   "candidateMedian": 0.5778,
+   "targetMedian": 0.5794,
+   "targetSpread": 0.0067,
+   "limit": 0.02,
+   "readAs": "measured on these twenty runs rather than carried forward, using §五's own derivation: each tracked card's projected width against its own rest width, max minus min over the run."
+  },
+  "6-8. slow drag / mobile touch / long wrap regressions": {
+   "pass": true,
+   "readAs": "unchanged by construction: this round touched no file under src/interaction and no motion constant. The frozen §五 results stand."
+  }
+ },
+ "head": "f51014e5716d1fb0f1e8707f1dffbf6a1b13d729"
+}

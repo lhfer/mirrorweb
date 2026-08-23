@@ -1,0 +1,882 @@
+{
+ "what": "Final Motion Convergence §三 -- the portrait->landscape relayout: what the pre-registered estimator measured, and what the flip actually costs.",
+ "instrument": {
+  "file": "scripts/v5/fm_resize_instrument.mjs",
+  "installedOn": "both pages, as an init script, before the first navigation",
+  "records": [
+   "every resize/orientationchange/pointer listener the page registered, timed",
+   "every rAF callback, timed",
+   "every ResizeObserver callback, timed",
+   "longtask entries",
+   "a self-rescheduling zero timeout as a main-thread heartbeat"
+  ],
+  "perturbation": "the wrappers add one performance.now() pair per callback and the heartbeat costs one timer tick every ~4 ms. Both are on BOTH pages and neither is subtracted.",
+  "twoClocks": "frames carry the rAF timestamp AND performance.now(). The §五 recorder stored only the first; a resize can move that series without a frame having been dropped, so every gap quoted here is the wall clock."
+ },
+ "metricCorrection": {
+  "claimUnderReview": "'one ~36.7 px single-frame step through the portrait-to-landscape relayout, against the Target's 4.5 px maximum' (p0-decision.json, card-trajectory-truth.json -> orientation-change.wrap)",
+  "finding": "NOT SUPPORTED. The number is the sub-threshold component of a super-threshold jump. At the flip frame every sampled card moves hundreds of px on both pages; the unwrap erases any axis component above 0.6 x pitch (65.35 px) and keeps whatever is below it. Our card 3 moved (723.90, -36.72) px, so X was erased and -36.72 survived; the Target's card 3 moved (247.24, -268.36) px, so both axes were erased and it scored 0.00.",
+  "targetSideIsNotTheSameArtefact": "the Target's 3.89/4.50/3.71 maxima are real single-frame moves during the drag ~2.3 s after the flip, on cards whose deltas are far below the threshold. The published comparison therefore put an artefact next to a measurement.",
+  "likeForLike": {
+   "what": "largest single-frame card step EXCLUDING the one frame across which the viewport changed -- i.e. the number the Target's own maxima already are",
+   "target": [
+    3.89,
+    4.5,
+    3.71
+   ],
+   "candidate": [
+    3.82,
+    3.59,
+    3.27
+   ],
+   "candidateWithinTargetRange": true
+  },
+  "originalNumbersRepublished": {
+   "target": [
+    3.89,
+    4.5,
+    3.71
+   ],
+   "candidate": [
+    36.72,
+    36.72,
+    36.79
+   ]
+  },
+  "disclosure": "this correction was written after reading the frozen §五 recordings that produced the original number. No threshold was changed and no recording was re-taken."
+ },
+ "scheduling": {
+  "targetSingle": {
+   "runs": 5,
+   "flipMode": "single",
+   "flipSteps": null,
+   "suppressed": null,
+   "domNodes": 1423,
+   "domCards": 57,
+   "worstBlockMs": [
+    12.7,
+    9.1,
+    10.3,
+    17.0,
+    10.1
+   ],
+   "medianWorstBlockMs": 10.3,
+   "medianTotalBlockedMs": 26.1,
+   "resizeListenerMs": [
+    0.2,
+    0.1,
+    0.5,
+    0.2,
+    0.3
+   ],
+   "medianResizeListenerMs": 0.2,
+   "frameGapWallMs": [
+    16.0,
+    13.2,
+    14.2,
+    17.7,
+    14.6
+   ],
+   "medianFrameGapWallMs": 14.6,
+   "viewportApplies": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "errors": 0
+  },
+  "beforeSingle": {
+   "runs": 5,
+   "flipMode": "single",
+   "flipSteps": null,
+   "suppressed": null,
+   "domNodes": 4155,
+   "domCards": 256,
+   "worstBlockMs": [
+    37.6,
+    41.6,
+    52.5,
+    17.6,
+    49.9
+   ],
+   "medianWorstBlockMs": 41.6,
+   "medianTotalBlockedMs": 52.5,
+   "resizeListenerMs": [
+    10.5,
+    10.6,
+    12.1,
+    11.2,
+    11
+   ],
+   "medianResizeListenerMs": 11.0,
+   "frameGapWallMs": [
+    38.3,
+    42.4,
+    52.4,
+    20.7,
+    49.6
+   ],
+   "medianFrameGapWallMs": 42.4,
+   "viewportApplies": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "errors": 0
+  },
+  "shippedGuardSingle": {
+   "runs": 5,
+   "flipMode": "single",
+   "flipSteps": [
+    [
+     844,
+     390
+    ]
+   ],
+   "suppressed": null,
+   "domNodes": 4155,
+   "domCards": 256,
+   "worstBlockMs": [
+    17.3,
+    42.2,
+    39.7,
+    48.8,
+    39.7
+   ],
+   "medianWorstBlockMs": 39.7,
+   "medianTotalBlockedMs": 47.9,
+   "resizeListenerMs": [
+    10.7,
+    10.3,
+    10,
+    11,
+    10.2
+   ],
+   "medianResizeListenerMs": 10.3,
+   "frameGapWallMs": [
+    20.1,
+    46.0,
+    39.7,
+    49.7,
+    40.4
+   ],
+   "medianFrameGapWallMs": 40.4,
+   "viewportApplies": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "errors": 0
+  },
+  "rejectedDeferSingle": {
+   "runs": 5,
+   "flipMode": "single",
+   "flipSteps": null,
+   "suppressed": null,
+   "domNodes": 4155,
+   "domCards": 256,
+   "worstBlockMs": [
+    45.7,
+    24.0,
+    49.2,
+    46.0,
+    53.7
+   ],
+   "medianWorstBlockMs": 46.0,
+   "medianTotalBlockedMs": 53.4,
+   "resizeListenerMs": [
+    0,
+    0.1,
+    0.1,
+    0,
+    0
+   ],
+   "medianResizeListenerMs": 0.0,
+   "frameGapWallMs": [
+    52.0,
+    23.2,
+    49.3,
+    51.6,
+    51.8
+   ],
+   "medianFrameGapWallMs": 51.6,
+   "viewportApplies": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "errors": 0
+  },
+  "targetSettling": {
+   "runs": 5,
+   "flipMode": "settling",
+   "flipSteps": [
+    [
+     844,
+     844
+    ],
+    [
+     844,
+     617
+    ],
+    [
+     844,
+     390
+    ]
+   ],
+   "suppressed": null,
+   "domNodes": 1423,
+   "domCards": 57,
+   "worstBlockMs": [
+    12.0,
+    10.4,
+    10.2,
+    9.3,
+    12.0
+   ],
+   "medianWorstBlockMs": 10.4,
+   "medianTotalBlockedMs": 35.0,
+   "resizeListenerMs": [
+    0.3,
+    0.3,
+    0.3,
+    0.7,
+    0.3
+   ],
+   "medianResizeListenerMs": 0.3,
+   "frameGapWallMs": [
+    10.3,
+    11.2,
+    10.6,
+    9.9,
+    11.0
+   ],
+   "medianFrameGapWallMs": 10.6,
+   "viewportApplies": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "errors": 0
+  },
+  "beforeSettling": {
+   "runs": 5,
+   "flipMode": "settling",
+   "flipSteps": [
+    [
+     844,
+     844
+    ],
+    [
+     844,
+     617
+    ],
+    [
+     844,
+     390
+    ]
+   ],
+   "suppressed": null,
+   "domNodes": 4155,
+   "domCards": 256,
+   "worstBlockMs": [
+    51.1,
+    56.1,
+    24.8,
+    54.8,
+    54.7
+   ],
+   "medianWorstBlockMs": 54.7,
+   "medianTotalBlockedMs": 61.1,
+   "resizeListenerMs": [
+    12.5,
+    13.9,
+    15.7,
+    13.6,
+    14.8
+   ],
+   "medianResizeListenerMs": 13.9,
+   "frameGapWallMs": [
+    52.5,
+    54.4,
+    25.1,
+    53.3,
+    54.8
+   ],
+   "medianFrameGapWallMs": 53.3,
+   "viewportApplies": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "errors": 0
+  },
+  "shippedGuardSettling": {
+   "runs": 5,
+   "flipMode": "settling",
+   "flipSteps": [
+    [
+     844,
+     844
+    ],
+    [
+     844,
+     617
+    ],
+    [
+     844,
+     390
+    ]
+   ],
+   "suppressed": null,
+   "domNodes": 4155,
+   "domCards": 256,
+   "worstBlockMs": [
+    22.6,
+    18.9,
+    49.1,
+    20.2,
+    40.3
+   ],
+   "medianWorstBlockMs": 22.6,
+   "medianTotalBlockedMs": 47.5,
+   "resizeListenerMs": [
+    13.0,
+    12.4,
+    12.0,
+    11.6,
+    11.5
+   ],
+   "medianResizeListenerMs": 12.0,
+   "frameGapWallMs": [
+    22.1,
+    23.3,
+    51.5,
+    20.6,
+    43.4
+   ],
+   "medianFrameGapWallMs": 23.3,
+   "viewportApplies": [
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "errors": 0
+  },
+  "rejectedDeferSettling": {
+   "runs": 5,
+   "flipMode": "settling",
+   "flipSteps": [
+    [
+     844,
+     844
+    ],
+    [
+     844,
+     617
+    ],
+    [
+     844,
+     390
+    ]
+   ],
+   "suppressed": null,
+   "domNodes": 4155,
+   "domCards": 256,
+   "worstBlockMs": [
+    49.3,
+    54.1,
+    27.3,
+    58.2,
+    20.9
+   ],
+   "medianWorstBlockMs": 49.3,
+   "medianTotalBlockedMs": 69.4,
+   "resizeListenerMs": [
+    0,
+    0.1,
+    0.1,
+    0,
+    0.2
+   ],
+   "medianResizeListenerMs": 0.1,
+   "frameGapWallMs": [
+    49.4,
+    53.7,
+    26.2,
+    60.0,
+    24.0
+   ],
+   "medianFrameGapWallMs": 49.4,
+   "viewportApplies": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "errors": 0
+  },
+  "attributionNoCardLayer": {
+   "runs": 1,
+   "flipMode": "single",
+   "flipSteps": null,
+   "suppressed": {
+    "suppressed": "labels",
+    "n": 256,
+    "host": "DIV"
+   },
+   "domNodes": 4155,
+   "domCards": 256,
+   "worstBlockMs": [
+    0.0
+   ],
+   "medianWorstBlockMs": 0.0,
+   "medianTotalBlockedMs": 0.0,
+   "resizeListenerMs": [
+    0.7
+   ],
+   "medianResizeListenerMs": 0.7,
+   "frameGapWallMs": [
+    9.7
+   ],
+   "medianFrameGapWallMs": 9.7,
+   "viewportApplies": [
+    null
+   ],
+   "errors": 0
+  },
+  "attributionNoCanvas": {
+   "runs": 1,
+   "flipMode": "single",
+   "flipSteps": null,
+   "suppressed": {
+    "suppressed": "canvas",
+    "n": 1
+   },
+   "domNodes": 4155,
+   "domCards": 256,
+   "worstBlockMs": [
+    26.5
+   ],
+   "medianWorstBlockMs": 26.5,
+   "medianTotalBlockedMs": 47.2,
+   "resizeListenerMs": [
+    17.1
+   ],
+   "medianResizeListenerMs": 17.1,
+   "frameGapWallMs": [
+    27.2
+   ],
+   "medianFrameGapWallMs": 27.2,
+   "viewportApplies": [
+    null
+   ],
+   "errors": 0
+  }
+ },
+ "schedulingCorrectionShipped": {
+  "change": "GridAppV4: the viewport is applied at most once per ACTUAL bounds change (`syncViewport`'s equality guard). The apply still happens in the resize listener, where it always did.",
+  "targetSourceBasis": "react-use-measure's `calculate`, as bundled in the Target: `!it.every(r => e[r] === t[r]) && u(c.current.lastBounds = p)` -- a measurement that reports the size the page is already laid out for produces no state update and therefore no re-application. All three of the Target's arms (window resize undebounced, ResizeObserver and screen.orientation at 50 ms) pass through it.",
+  "whatItRemoves": "the old code applied the whole viewport pipeline immediately on EVERY resize event, then once more 80 ms after the last one, with no check that anything had changed. The trailing apply was already coalesced -- the handler cleared its timer before re-arming -- so a burst of N events cost N+1 applies rather than 2N; an isolated resize cost exactly two. `viewportApplies` now reads 1 on a single-viewport rotation and 3 on the three-event settling rotation, i.e. exactly one application per distinct bounds. Under the old code those would have been 2 and 4.",
+  "whatItDoesNotDo": "it does not shorten the flip stall and is not claimed to. The before/after medians are in `scheduling` above and move by less than the per-run spread within either arm, which is noise, not a result.",
+  "whatItDoesNotDoMeasured": {
+   "beforeSingle": {
+    "medianWorstBlockMs": 41.6,
+    "perRunWorstBlockMs": [
+     37.6,
+     41.6,
+     52.5,
+     17.6,
+     49.9
+    ],
+    "medianTotalBlockedMs": 52.5
+   },
+   "shippedGuardSingle": {
+    "medianWorstBlockMs": 39.7,
+    "perRunWorstBlockMs": [
+     17.3,
+     42.2,
+     39.7,
+     48.8,
+     39.7
+    ],
+    "medianTotalBlockedMs": 47.9
+   },
+   "beforeSettling": {
+    "medianWorstBlockMs": 54.7,
+    "perRunWorstBlockMs": [
+     51.1,
+     56.1,
+     24.8,
+     54.8,
+     54.7
+    ],
+    "medianTotalBlockedMs": 61.1
+   },
+   "shippedGuardSettling": {
+    "medianWorstBlockMs": 22.6,
+    "perRunWorstBlockMs": [
+     22.6,
+     18.9,
+     49.1,
+     20.2,
+     40.3
+    ],
+    "medianTotalBlockedMs": 47.5
+   }
+  }
+ },
+ "schedulingCorrectionRejected": {
+  "change": "deferring the whole apply out of the resize listener to the top of the next animation frame, which is where the Target does its equivalent work (its listeners cost 0.0-0.2 ms and touch nothing but bounds state).",
+  "measuredAndRejected": "it moved our listener to Target parity and moved the product number the wrong way on both arms. The likely mechanism is that our card transforms then land after the browser's post-resize style pass and force a second one in the same frame.",
+  "measured": {
+   "beforeSingle": {
+    "medianResizeListenerMs": 11.0,
+    "medianWorstBlockMs": 41.6,
+    "medianTotalBlockedMs": 52.5
+   },
+   "rejectedDeferSingle": {
+    "medianResizeListenerMs": 0.0,
+    "medianWorstBlockMs": 46.0,
+    "medianTotalBlockedMs": 53.4
+   },
+   "beforeSettling": {
+    "medianResizeListenerMs": 13.9,
+    "medianWorstBlockMs": 54.7,
+    "medianTotalBlockedMs": 61.1
+   },
+   "rejectedDeferSettling": {
+    "medianResizeListenerMs": 0.1,
+    "medianWorstBlockMs": 49.3,
+    "medianTotalBlockedMs": 69.4
+   }
+  },
+  "why": "a change with a clean source basis that makes the product number worse is still a change that makes it worse. Both arms are published above so the rejection can be checked rather than taken."
+ },
+ "attribution": {
+  "what": "the flip's cost, with one layer taken out of the document immediately before it. Measurement only -- a suppressed run is not a candidate state.",
+  "readAs": "the card layer is the whole of it: without it the flip costs less than the Target's, with it four to five times the Target's. We keep 256 CSS3D card elements mounted at every viewport (4155 nodes) and hide culled ones with visibility:hidden, which still lays out; the Target keeps 57 (1423 nodes).",
+  "outOfScopeThisRound": "the mount-on-draw label policy that would close it is Culling / Typography, both frozen by §一.10."
+ },
+ "preRegisteredGate": {
+  "rule": "candidate max single-frame card step <= max(2 x Target repeatability, 6 px)",
+  "targetRepeatabilitySpreadPx": 0.79,
+  "limitPx": 6.0,
+  "candidate": [
+   36.72,
+   36.72,
+   36.79
+  ],
+  "pass": false,
+  "runsPerSide": {
+   "target": 3,
+   "candidate": 3,
+   "source": "the frozen §五 recordings the number was pre-registered on"
+  },
+  "note": "reported as it falls. The estimator is the one this round inherited; the correction above says what its number means, and does not replace it.",
+  "atFiveRunsASide": {
+   "why": "§三 gate item 1 asks for >= 5 runs a side. Same estimator, this round's own runs, on the shipped build.",
+   "runsPerSide": {
+    "target": 5,
+    "candidate": 5
+   },
+   "targetRepeatabilitySpreadPx": 6.27,
+   "limitPx": 12.54,
+   "reportedMaxStepPx": {
+    "target": [
+     39.56,
+     38.13,
+     44.4,
+     39.11,
+     41.35
+    ],
+    "candidate": [
+     36.81,
+     36.73,
+     36.71,
+     36.8,
+     36.71
+    ]
+   },
+   "pass": false,
+   "targetScoredByTheSameRule": {
+    "targetMaxPx": 44.4,
+    "targetWouldPass": false,
+    "note": "the gate's own rule, applied to the page it is derived from. On this round's runs the Target scores 38.13-44.40 against a 12.54 px limit and the candidate scores 36.71-36.81 -- i.e. the candidate is LOWER than the Target on the pre-registered estimator, and both are above the limit. A gate the reference fails is measuring the estimator, not the page."
+   },
+   "likeForLikeMaxStepPx": {
+    "target": [
+     39.56,
+     38.13,
+     44.4,
+     39.11,
+     41.35
+    ],
+    "candidate": [
+     3.31,
+     3.24,
+     3.84,
+     3.72,
+     3.72
+    ]
+   },
+   "likeForLikePass": true,
+   "rawSingleFrameStep": {
+    "what": "the card centre's ACTUAL frame-to-frame move, nothing subtracted -- the only one of these numbers a viewer could see.",
+    "onTheFlipFramePx": {
+     "target": [
+      364.9,
+      364.9,
+      364.9,
+      364.9,
+      364.9
+     ],
+     "candidate": [
+      956.7,
+      956.7,
+      956.7,
+      956.8,
+      956.7
+     ]
+    },
+    "maxOutsideTheFlipFramePx": {
+     "target": [
+      530.4,
+      530.5,
+      530.5,
+      530.5,
+      530.5
+     ],
+     "candidate": [
+      3.3,
+      3.2,
+      3.8,
+      3.7,
+      3.7
+     ]
+    },
+    "discreteEventsOver50Px": {
+     "target": [
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "candidate": [
+      1,
+      1,
+      1,
+      1,
+      1
+     ]
+    },
+    "reading": "neither page eases a rotation: on both, cards teleport to their new slots. The candidate does it ONCE, on the frame the viewport changes (956.7 px, 5/5 runs) and moves no more than 3.8 px on any later frame. The Target does it TWICE -- 364.9 px on the flip frame, then a second 530.5 px move 148-158 ms later, 5/5 runs -- so it holds a partly-relaid-out state for about nine frames. Both patterns are repeatable to within 0.1 px across five runs a side.",
+    "whichIsWorse": "not asserted here. The candidate's single frame is the bigger jump; the Target's is the one with an intermediate state. §三's gate item 4 asks for the absence of an intermediate wrong phase from two layout applications, and the candidate has none -- `viewportApplies` reads 1. This is a product-review call at 1x speed, not a metric one."
+   },
+   "perRun": {
+    "target": [
+     {
+      "run": "orientation-r0.json",
+      "flipFrame": 190,
+      "unwrapThresholdPx": 65.35,
+      "reportedMaxStepPx": 39.56,
+      "maxStepExcludingTheRelayoutFramePx": 39.56,
+      "rawStepOnTheFlipFramePx": 364.9,
+      "rawMaxStepExcludingTheFlipFramePx": 530.4,
+      "discreteEvents": [
+       {
+        "msFromFlipFrame": -8.0,
+        "maxCardMovePx": 364.9
+       },
+       {
+        "msFromFlipFrame": 150.0,
+        "maxCardMovePx": 530.4
+       }
+      ],
+      "discreteEventCount": 2
+     },
+     {
+      "run": "orientation-r1.json",
+      "flipFrame": 193,
+      "unwrapThresholdPx": 65.35,
+      "reportedMaxStepPx": 38.13,
+      "maxStepExcludingTheRelayoutFramePx": 38.13,
+      "rawStepOnTheFlipFramePx": 364.9,
+      "rawMaxStepExcludingTheFlipFramePx": 530.5,
+      "discreteEvents": [
+       {
+        "msFromFlipFrame": -8.0,
+        "maxCardMovePx": 364.9
+       },
+       {
+        "msFromFlipFrame": 150.0,
+        "maxCardMovePx": 530.5
+       }
+      ],
+      "discreteEventCount": 2
+     },
+     {
+      "run": "orientation-r2.json",
+      "flipFrame": 191,
+      "unwrapThresholdPx": 65.35,
+      "reportedMaxStepPx": 44.4,
+      "maxStepExcludingTheRelayoutFramePx": 44.4,
+      "rawStepOnTheFlipFramePx": 364.9,
+      "rawMaxStepExcludingTheFlipFramePx": 530.5,
+      "discreteEvents": [
+       {
+        "msFromFlipFrame": -9.0,
+        "maxCardMovePx": 364.9
+       },
+       {
+        "msFromFlipFrame": 150.0,
+        "maxCardMovePx": 530.5
+       }
+      ],
+      "discreteEventCount": 2
+     },
+     {
+      "run": "orientation-r3.json",
+      "flipFrame": 192,
+      "unwrapThresholdPx": 65.35,
+      "reportedMaxStepPx": 39.11,
+      "maxStepExcludingTheRelayoutFramePx": 39.11,
+      "rawStepOnTheFlipFramePx": 364.9,
+      "rawMaxStepExcludingTheFlipFramePx": 530.5,
+      "discreteEvents": [
+       {
+        "msFromFlipFrame": -8.0,
+        "maxCardMovePx": 364.9
+       },
+       {
+        "msFromFlipFrame": 158.0,
+        "maxCardMovePx": 530.5
+       }
+      ],
+      "discreteEventCount": 2
+     },
+     {
+      "run": "orientation-r4.json",
+      "flipFrame": 190,
+      "unwrapThresholdPx": 65.35,
+      "reportedMaxStepPx": 41.35,
+      "maxStepExcludingTheRelayoutFramePx": 41.35,
+      "rawStepOnTheFlipFramePx": 364.9,
+      "rawMaxStepExcludingTheFlipFramePx": 530.5,
+      "discreteEvents": [
+       {
+        "msFromFlipFrame": -10.0,
+        "maxCardMovePx": 364.9
+       },
+       {
+        "msFromFlipFrame": 148.0,
+        "maxCardMovePx": 530.5
+       }
+      ],
+      "discreteEventCount": 2
+     }
+    ],
+    "candidate": [
+     {
+      "run": "orientation-r0.json",
+      "flipFrame": 188,
+      "unwrapThresholdPx": 65.35,
+      "reportedMaxStepPx": 36.81,
+      "maxStepExcludingTheRelayoutFramePx": 3.31,
+      "rawStepOnTheFlipFramePx": 956.7,
+      "rawMaxStepExcludingTheFlipFramePx": 3.3,
+      "discreteEvents": [
+       {
+        "msFromFlipFrame": -8.0,
+        "maxCardMovePx": 956.7
+       }
+      ],
+      "discreteEventCount": 1
+     },
+     {
+      "run": "orientation-r1.json",
+      "flipFrame": 189,
+      "unwrapThresholdPx": 65.35,
+      "reportedMaxStepPx": 36.73,
+      "maxStepExcludingTheRelayoutFramePx": 3.24,
+      "rawStepOnTheFlipFramePx": 956.7,
+      "rawMaxStepExcludingTheFlipFramePx": 3.2,
+      "discreteEvents": [
+       {
+        "msFromFlipFrame": -9.0,
+        "maxCardMovePx": 956.7
+       }
+      ],
+      "discreteEventCount": 1
+     },
+     {
+      "run": "orientation-r2.json",
+      "flipFrame": 191,
+      "unwrapThresholdPx": 65.35,
+      "reportedMaxStepPx": 36.71,
+      "maxStepExcludingTheRelayoutFramePx": 3.84,
+      "rawStepOnTheFlipFramePx": 956.7,
+      "rawMaxStepExcludingTheFlipFramePx": 3.8,
+      "discreteEvents": [
+       {
+        "msFromFlipFrame": -8.0,
+        "maxCardMovePx": 956.7
+       }
+      ],
+      "discreteEventCount": 1
+     },
+     {
+      "run": "orientation-r3.json",
+      "flipFrame": 190,
+      "unwrapThresholdPx": 65.35,
+      "reportedMaxStepPx": 36.8,
+      "maxStepExcludingTheRelayoutFramePx": 3.72,
+      "rawStepOnTheFlipFramePx": 956.8,
+      "rawMaxStepExcludingTheFlipFramePx": 3.7,
+      "discreteEvents": [
+       {
+        "msFromFlipFrame": -9.0,
+        "maxCardMovePx": 956.8
+       }
+      ],
+      "discreteEventCount": 1
+     },
+     {
+      "run": "orientation-r4.json",
+      "flipFrame": 191,
+      "unwrapThresholdPx": 65.35,
+      "reportedMaxStepPx": 36.71,
+      "maxStepExcludingTheRelayoutFramePx": 3.72,
+      "rawStepOnTheFlipFramePx": 956.7,
+      "rawMaxStepExcludingTheFlipFramePx": 3.7,
+      "discreteEvents": [
+       {
+        "msFromFlipFrame": -8.0,
+        "maxCardMovePx": 956.7
+       }
+      ],
+      "discreteEventCount": 1
+     }
+    ]
+   }
+  }
+ },
+ "generatedAt": "2026-08-23T02:58:08-07:00",
+ "head": "f51014e5716d1fb0f1e8707f1dffbf6a1b13d729"
+}
