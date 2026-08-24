@@ -21,6 +21,8 @@ Result: **12/12 PASS**, maximum channel delta **0**, changed pixels **0**.
 - `admin-mobile.png`: 390×844 admin-only draft view using the real renderer.
 - `admin-browser-qa.json`: local CRUD, safe-text, navigation, preview geometry,
   fallback and console verdicts.
+- `supabase-live-qa.json`: hosted migrations, 52/52 pgTAP, RLS, Storage,
+  Advisors and remote-content browser evidence.
 
 This proves seeded-content product identity. It does not claim live Supabase,
 RLS, Storage or Magic Link completion; those require an authenticated project

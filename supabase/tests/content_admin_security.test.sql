@@ -2,6 +2,12 @@ begin;
 
 create extension if not exists pgtap with schema extensions;
 
+-- Supabase Storage's protect_delete trigger only permits object-row deletion
+-- from the Storage API execution context. The pgTAP transaction sets the same
+-- local flag so DELETE assertions reach our RLS policies; it is rolled back
+-- with all test fixtures and does not weaken the hosted trigger.
+set local storage.allow_delete_query = 'true';
+
 select extensions.plan(52);
 
 insert into auth.users (id, email)

@@ -98,6 +98,10 @@ create table public.content_drafts (
   constraint content_drafts_revision_nonnegative check (revision >= 0)
 );
 
+create index content_drafts_updated_by_idx
+  on public.content_drafts (updated_by)
+  where updated_by is not null;
+
 create table public.content_versions (
   id uuid primary key default gen_random_uuid(),
   version integer not null unique,
@@ -1567,9 +1571,12 @@ revoke execute on function private.finalize_media_asset_purge_impl(uuid, text, t
 grant usage on schema private to anon, authenticated;
 
 -- media_assets exposes authenticated INSERT/UPDATE under RLS, and its CHECK
--- constraints call this immutable validator. The private schema is not exposed
--- through the Data API, so this does not create an RPC surface.
+-- constraints call is_media_url, which delegates HTTPS validation to
+-- is_https_url. The private schema is not exposed through the Data API, so
+-- these grants do not create an RPC surface.
 grant execute on function private.is_media_url(text)
+  to authenticated;
+grant execute on function private.is_https_url(text)
   to authenticated;
 
 grant execute on function private.get_active_content_manifest_impl()

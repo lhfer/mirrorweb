@@ -3,11 +3,25 @@
 ## Current status
 
 The repository contains reproducible migrations, seed data, RLS/Storage
-policies, RPCs, and database tests. They were not applied to a hosted Supabase
-project in this implementation pass: the connected plugin returned
-`USER_NOT_LOGGED_IN`, and no project reference or credentials were available.
-Treat the backend as unconfigured until the steps below are completed and
-observed against the intended project.
+policies, RPCs, and database tests. On 2026-08-24 they were applied through the
+connected Supabase plugin to the only available, empty project
+`xrdwaputkfeeogryanbq` (`ACTIVE_HEALTHY`, `us-west-2`). Hosted verification
+observed:
+
+- four recorded migrations, including the validator-grant and platform-helper
+  hardening follow-ups;
+- 52/52 pgTAP assertions passing inside a rolled-back transaction;
+- five public content tables with RLS enabled;
+- one active v1 manifest containing 24 enabled cards and three seed media rows;
+- a public `card-media` bucket with a 100 MiB limit and the intended MIME list;
+- zero Supabase Security Advisor findings;
+- a production build loading `source=remote`, `version=1` with zero console
+  warnings or errors.
+
+The remaining hosted setup is Auth configuration: create/invite the intended
+administrator, insert that UUID into `admin_users`, and verify the exact Site
+URL and Redirect URLs in the Auth dashboard. No administrator was guessed from
+the project name, so `admin_users` intentionally remains empty.
 
 Never put a secret key, legacy `service_role` JWT, database password, or
 personal access token in Vite variables, browser code, source files, logs, or
@@ -232,7 +246,7 @@ headline or card order.
 - public fallback, four-viewport pixel identity, frame pacing, and zero console
   errors are verified independently.
 
-Until the hosted migration, Auth settings, redirect URLs, first admin, and live
-RLS/Storage tests are observed, report the release state as:
+Until Auth settings, redirect URLs, the first administrator, and a real Magic
+Link login are observed, report the release state as:
 
 `CONTENT ADMIN BLOCKED BY BACKEND CONFIGURATION`.

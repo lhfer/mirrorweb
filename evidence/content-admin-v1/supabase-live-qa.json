@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "gate": "hosted-supabase-content-admin",
+  "observedAt": "2026-08-24",
+  "project": {
+    "ref": "xrdwaputkfeeogryanbq",
+    "region": "us-west-2",
+    "status": "ACTIVE_HEALTHY"
+  },
+  "migrations": [
+    "content_admin_schema",
+    "seed_v1_content",
+    "fix_media_url_validator_grant",
+    "harden_platform_helpers_and_indexes"
+  ],
+  "database": {
+    "publicRlsTables": 5,
+    "draftRows": 1,
+    "versionRows": 1,
+    "activeVersion": 1,
+    "activeCards": 24,
+    "enabledCards": 24,
+    "mediaRows": 3,
+    "adminRows": 0,
+    "testFixtureRows": 0
+  },
+  "storage": {
+    "bucket": "card-media",
+    "public": true,
+    "fileSizeLimit": 104857600,
+    "policies": 3
+  },
+  "pgtap": {
+    "planned": 52,
+    "passed": 52,
+    "rolledBack": true
+  },
+  "advisors": {
+    "securityLints": 0,
+    "performanceLints": 7,
+    "performanceDisposition": "New-database unused-index informational notices only; retain until real usage exists."
+  },
+  "browser": {
+    "publicContentSource": "remote",
+    "publicContentVersion": 1,
+    "publicWarnings": 0,
+    "publicErrors": 0,
+    "adminUsesLiveAuthGate": true,
+    "adminLocalSandbox": false,
+    "adminWarnings": 0,
+    "adminErrors": 0
+  },
+  "remaining": [
+    "Create or invite the intended Supabase Auth user.",
+    "Insert that user's UUID into public.admin_users.",
+    "Verify production Site URL and exact Magic Link redirect URLs.",
+    "Exercise one real Magic Link login and one real Storage upload/purge flow."
+  ]
+}
