@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "gate": "content-admin-local-production-build",
+  "environment": "LOCAL SANDBOX",
+  "viewports": [
+    [1440, 900],
+    [390, 844]
+  ],
+  "checks": {
+    "desktopCardsLoaded": true,
+    "createCard": true,
+    "xssShapedTitleRenderedAsText": true,
+    "debouncedSaveAdvancedRevision": true,
+    "removeCardReturnedToOriginalCount": true,
+    "mobileCards": true,
+    "mobileMediaLibrary": true,
+    "mobileSiteSettings": true,
+    "mobilePublishHistory": true,
+    "mobileDraftPreview": true,
+    "draftPreviewUsesProductionRenderer": true,
+    "desktopPresetVisibleInsideStage": true,
+    "portraitPresetVisibleInsideStage": true,
+    "landscapePresetVisibleInsideStage": true,
+    "adminConsoleWarnings": 0,
+    "adminConsoleErrors": 0,
+    "publicFallbackWarnings": 1,
+    "publicConsoleErrors": 0
+  },
+  "publicFallbackWarning": "Supabase is not configured; last-known-good manifest was unavailable or invalid. Using bundled content for this boot.",
+  "screenshots": [
+    "admin-desktop.png",
+    "admin-mobile-cards.png",
+    "admin-mobile.png"
+  ],
+  "limitations": [
+    "Magic Link, hosted RLS, Storage upload and SQL RPC behavior were not exercised without a callable Supabase project.",
+    "The single public warning is the required non-crashing bundled fallback for an unconfigured backend."
+  ]
+}

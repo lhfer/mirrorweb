@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "gate": "v1.0.0-seed-vs-v1.1.0-bundled-manifest",
+  "baselineCommit": "8d893cd9cdc414fb5ef3240150bea9ffceaa13ca",
+  "baselineTag": "v1.0.0",
+  "candidateBranch": "feature/content-admin-v1",
+  "renderer": "real production SourceExact + target-source-unclamped",
+  "capture": {
+    "mediaTimeSeconds": 1.25,
+    "introFinished": true,
+    "renderPaused": true,
+    "pointer": [0, 0],
+    "viewports": [
+      [1440, 900],
+      [390, 844],
+      [844, 390],
+      [700, 700]
+    ],
+    "gridOffsets": [
+      [0, 0],
+      [0.72, -0.34],
+      [-0.68, 0.42]
+    ]
+  },
+  "baselineRepeatability": {
+    "comparisons": 12,
+    "maxChannelDelta": 0,
+    "changedPixels": 0
+  },
+  "candidateComparison": {
+    "comparisons": 12,
+    "maxChannelDelta": 0,
+    "changedPixels": 0,
+    "allowedMaxChannelDelta": 0,
+    "status": "PASS"
+  },
+  "notes": [
+    "The public manifest request was allowed to fall back to bundled content before the renderer was frozen.",
+    "The admin and draft-preview entries are separate bundles and are not part of these product pixels.",
+    "Baseline and candidate PNGs are retained beside this report."
+  ]
+}
