@@ -5,6 +5,8 @@ export type LiquidGlassQA = {
   pause: () => void;
   resume: () => void;
   setTime: (seconds: number) => void;
+  setMediaTimeAndFreeze: (seconds: number) => Promise<unknown>;
+  getMediaState: () => unknown;
   setOffset: (x: number, y: number) => void;
   setVelocity: (x: number, y: number) => void;
   setQuality: (level: QualityLevel) => void;
@@ -24,6 +26,8 @@ export function installQAHooks(app: App) {
     pause: () => app.pause(),
     resume: () => app.resume(),
     setTime: (seconds) => app.setTime(seconds),
+    setMediaTimeAndFreeze: (seconds) => app.setMediaTimeAndFreeze(seconds),
+    getMediaState: () => app.getMediaState(),
     setOffset: (x, y) => app.setOffset(x, y),
     setVelocity: (x, y) => app.setVelocity(x, y),
     setQuality: (level) => app.setQuality(level),

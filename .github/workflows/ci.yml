@@ -1,0 +1,24 @@
+name: CI
+
+# §九's minimum: prove the release tree builds from a clean checkout. Nothing
+# here captures pixels, reaches the Target, or reads any QA evidence -- none of
+# those trees are in this branch, and CI is not where visual review happens.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          # package.json declares engines.node >= 22.
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      # `npm run build` is `tsc --noEmit && vite build`, so this is a typecheck
+      # and a production build in one step.
+      - run: npm run build

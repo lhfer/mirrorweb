@@ -7,7 +7,8 @@
     "noEmit": true,
     "skipLibCheck": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "resolveJsonModule": true
   },
-  "include": ["src"]
+  "include": ["src", "config/*.json"]
 }

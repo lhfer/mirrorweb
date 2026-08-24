@@ -1,0 +1,654 @@
+{
+ "what": "MirrorWeb v1.0.0 release file manifest. Every file in the release tree, where it came from, and why it is here.",
+ "generatedAt": "2026-08-23T20:11:09+00:00",
+ "releaseBranch": "release/v1.0.0",
+ "sourceRef": "8de671f",
+ "sourceBranch": "rebuild/liquid-glass-v5-source-exact",
+ "basedOn": "e37bc539e127870d4c1428f12402319f1c98fbc3",
+ "howTheAllowlistWasDerived": "The release build has one Rollup entry (index.html). It was built with sourcemaps and every repo file listed as a `sources` entry in the emitted maps is on the allowlist, with the chunk that pulled it in recorded as its reason. Three classes a sourcemap structurally cannot report -- ambient *.d.ts declarations, public/ assets copied verbatim, and the build's own inputs -- are an explicit table with a written reason each.",
+ "counts": {
+  "files": 64,
+  "identicalToSource": 55,
+  "changedForRelease": 9,
+  "graphDerived": 44,
+  "explicitExtras": 20
+ },
+ "removedFromMain": {
+  "what": "files that existed on origin/main and are NOT in the release tree. main is the V3-era tree; leaving its src/, scripts/, tests/ and docs/ in place would put stale sources next to the accepted ones and inside tsconfig's `include`. Every one of them remains in git history, on the research branch, and in the archive bundle.",
+  "count": 32,
+  "files": [
+   ".gitignore",
+   "docs/00-root-cause-audit.md",
+   "docs/01-rebuild-plan.md",
+   "docs/02-glass-model.md",
+   "docs/03-motion-model.md",
+   "docs/implementation-plan.md",
+   "docs/reference-spec.md",
+   "glass-lab.html",
+   "playwright.config.ts",
+   "scripts/capture-local.mjs",
+   "scripts/capture-reference.mjs",
+   "scripts/lib/capture-utils.mjs",
+   "scripts/lib/measure-png.py",
+   "scripts/measure-landmarks.mjs",
+   "scripts/probe-audit-fix.mjs",
+   "scripts/probe-local.mjs",
+   "scripts/probe-reference.mjs",
+   "scripts/qa.mjs",
+   "scripts/snapshot-rest.mjs",
+   "src/content/PlaceholderTexture.ts",
+   "src/lab/lab.css",
+   "src/lab/main.ts",
+   "src/materials/ContentMaterial.ts",
+   "src/scene/GlassTileGeometry.ts",
+   "tests/blackband.spec.ts",
+   "tests/glass-lab.spec.ts",
+   "tests/global.d.ts",
+   "tests/infinite-loop.spec.ts",
+   "tests/interaction.spec.ts",
+   "tests/performance.spec.ts",
+   "tests/responsive.spec.ts",
+   "tests/visual.spec.ts"
+  ]
+ },
+ "excludedAfterReview": {
+  "src/content/TestPatterns.ts": "dead after the ?mediacal=1 route was removed in PR #1 review -- createTestPattern had exactly one caller, the calibration branch."
+ },
+ "excludedFromTheDevelopmentTree": {
+  "what": "trees present at the source ref and deliberately not imported.",
+  "trees": [
+   "qa-v4/",
+   "qa-v5/",
+   "qa/",
+   "artifacts/ (untracked)",
+   "scripts/",
+   "tests/",
+   "docs/",
+   ".claude/agents/",
+   "glass-lab.html",
+   "glass-lab-v4.html",
+   "grid-lab-v4.html",
+   "phase-1b-review.html",
+   "playwright.config.ts"
+  ],
+  "why": "QA instruments, captured evidence, historical development docs and lab HTML surfaces. None is reachable from the production entry's import graph; the build proves it, because the graph was read off the build."
+ },
+ "files": [
+  {
+   "releasePath": ".github/workflows/ci.yml",
+   "releaseSha256": "b9fa12556a0caa514e0bf0a7c1f8207b9c737e910075ccfff99d70aed3ba1b78",
+   "sourcePath": null,
+   "sourceSha256": null,
+   "identicalToSource": false,
+   "reason": "§九 -- added.",
+   "changedForRelease": "§九 -- added."
+  },
+  {
+   "releasePath": ".gitignore",
+   "releaseSha256": "4e41a6b17d9ae170d7845dc546e5b380e8a4c7907674e2b9852593e08dcb7368",
+   "sourcePath": ".gitignore",
+   "sourceSha256": "210ee3d186935eb95c91163544e547dda382daa3d67aa110f086c6b4610ce56b",
+   "identicalToSource": false,
+   "reason": "authored for the release -- main's ignore file is a map of the QA and evidence trees, none of which exist here.",
+   "changedForRelease": "authored for the release -- main's ignore file is a map of the QA and evidence trees, none of which exist here."
+  },
+  {
+   "releasePath": "README.md",
+   "releaseSha256": "049785bdf6c79575ec115d800f65e0fa006481862f670f2e2f5b871280852e23",
+   "sourcePath": null,
+   "sourceSha256": null,
+   "identicalToSource": false,
+   "reason": "authored for the release -- the routes and how to build. NOT runtime-required; it is documentation and is listed as such.",
+   "changedForRelease": "authored for the release -- the routes and how to build. NOT runtime-required; it is documentation and is listed as such."
+  },
+  {
+   "releasePath": "config/target-entry-source-v1.json",
+   "releaseSha256": "86ee085d7e968749ccfe298db4fb541c927bf23a2fdbce2cfd67ff6c92a03e8a",
+   "sourcePath": "config/target-entry-source-v1.json",
+   "sourceSha256": "86ee085d7e968749ccfe298db4fb541c927bf23a2fdbce2cfd67ff6c92a03e8a",
+   "identicalToSource": true,
+   "reason": "runtime contract -- statically imported by src/interaction/SourceExactIntro.ts, src/ui/LoadingOverlay.ts and src/v4/preview/GridAppV4.ts. Vite inlines JSON without mapping the original path, so the import graph cannot report it.",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "config/target-layout-source-v2.json",
+   "releaseSha256": "ad0aef38ef8eeec1b4561be52188295f01ad0ca2598219a301ceaca6d384bc55",
+   "sourcePath": "config/target-layout-source-v2.json",
+   "sourceSha256": "ad0aef38ef8eeec1b4561be52188295f01ad0ca2598219a301ceaca6d384bc55",
+   "identicalToSource": true,
+   "reason": "runtime contract -- statically imported by src/layout/SourceExactLayout.ts. Same JSON-inlining blind spot.",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "config/target-motion-source-v1.json",
+   "releaseSha256": "bb3073334517a9a6aaf01fbcd24f5c159e7d157344e5d6e0ea827d4d2c39bcec",
+   "sourcePath": "config/target-motion-source-v1.json",
+   "sourceSha256": "bb3073334517a9a6aaf01fbcd24f5c159e7d157344e5d6e0ea827d4d2c39bcec",
+   "identicalToSource": true,
+   "reason": "runtime contract -- statically imported by src/interaction/SourceExactMotion.ts. Same JSON-inlining blind spot.",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "index.html",
+   "releaseSha256": "b6edd91c77cc1a46fc4e92de3c2a6fa6778a8c4d0be30d49baa848e8e152fb43",
+   "sourcePath": "index.html",
+   "sourceSha256": "b6edd91c77cc1a46fc4e92de3c2a6fa6778a8c4d0be30d49baa848e8e152fb43",
+   "identicalToSource": true,
+   "reason": "build input -- the single Rollup entry; loads /src/main.ts",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "package-lock.json",
+   "releaseSha256": "e3854d11abc996a5ece6d906443e51532d95f721d9da8079e4b2092f9650c04d",
+   "sourcePath": "package-lock.json",
+   "sourceSha256": "6ad19431aeb52a35efd4b69714d62c64509bd8c06ea2bf2c932fcf83a26055fd",
+   "identicalToSource": false,
+   "reason": "build input -- pins the exact dependency tree `npm ci` installs",
+   "changedForRelease": "§八 -- regenerated for the pruned dependency set so `npm ci` resolves against the manifest it is given."
+  },
+  {
+   "releasePath": "package.json",
+   "releaseSha256": "9fb6126d652ba246d67c0af6aa11fe42ba6968f65395126f8dbb668d117e12e1",
+   "sourcePath": "package.json",
+   "sourceSha256": "c79e8c428147ed77abd2a0b9dcc045aab8c8efd5bb6207b551ffc6bac1576b6a",
+   "identicalToSource": false,
+   "reason": "build input -- scripts and dependency set for `npm ci && npm run build`",
+   "changedForRelease": "§八 -- QA scripts referencing qa-v4, qa-v5, scripts/v5, scripts/v4 and tests/ are removed because those trees are not in the release; playwright is dropped from devDependencies for the same reason. dev / build / preview / review / review:lan are kept."
+  },
+  {
+   "releasePath": "public/clips/cursor-niulai.mp4",
+   "releaseSha256": "d13233b63e2fd5f07e1de92311cbee3630d13455428edd5e84009f2121afb8c6",
+   "sourcePath": "public/clips/cursor-niulai.mp4",
+   "sourceSha256": "d13233b63e2fd5f07e1de92311cbee3630d13455428edd5e84009f2121afb8c6",
+   "identicalToSource": true,
+   "reason": "static asset -- src/content/VideoClips.ts -> /clips/cursor-niulai.mp4",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "public/clips/niulai-intro.mp4",
+   "releaseSha256": "bf0a8c05af950e9381653c155ccb5fc37497ae91c04f841d483628b7c894b404",
+   "sourcePath": "public/clips/niulai-intro.mp4",
+   "sourceSha256": "bf0a8c05af950e9381653c155ccb5fc37497ae91c04f841d483628b7c894b404",
+   "identicalToSource": true,
+   "reason": "static asset -- src/content/VideoClips.ts -> /clips/niulai-intro.mp4",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "public/clips/pelican-ai.mp4",
+   "releaseSha256": "f99086ad8abbd22c3bc5e9fd1654a3ccf798b87195506f4cee621d170f1798e1",
+   "sourcePath": "public/clips/pelican-ai.mp4",
+   "sourceSha256": "f99086ad8abbd22c3bc5e9fd1654a3ccf798b87195506f4cee621d170f1798e1",
+   "identicalToSource": true,
+   "reason": "static asset -- src/content/VideoClips.ts -> /clips/pelican-ai.mp4",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "public/favicon.svg",
+   "releaseSha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5",
+   "sourcePath": "public/favicon.svg",
+   "sourceSha256": "6b737c19a0691feb881f661999f1303cd1c9a358aa8d1654f135b3a7ce5bd3b5",
+   "identicalToSource": true,
+   "reason": "static asset -- `<link rel=icon href=/favicon.svg>` in index.html",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "public/hdri/PROVENANCE.md",
+   "releaseSha256": "d868fd3f86ead92b87e72790d8d5886bf22a772a7448c41e8135bf54578d74b6",
+   "sourcePath": "public/hdri/PROVENANCE.md",
+   "sourceSha256": "d868fd3f86ead92b87e72790d8d5886bf22a772a7448c41e8135bf54578d74b6",
+   "identicalToSource": true,
+   "reason": "licence and provenance for the HDR above (CC0 1.0, Poly Haven via the pinned pmndrs/drei-assets copy). §六 names HDR provenance and licence files as production files.",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "public/hdri/studio_small_03_1k.hdr",
+   "releaseSha256": "29267a4aa8c10de26cae758e4e3c4daadde88673798666ad657724bab7224a35",
+   "sourcePath": "public/hdri/studio_small_03_1k.hdr",
+   "sourceSha256": "29267a4aa8c10de26cae758e4e3c4daadde88673798666ad657724bab7224a35",
+   "identicalToSource": true,
+   "reason": "static asset -- src/v4/OpticsConfigV4.ts -> /hdri/studio_small_03_1k.hdr, the scene environment",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/app/App.ts",
+   "releaseSha256": "f07695d038ce0de4b4d67f5247db0c7cf2b93567763c38f54235b3a583be7a39",
+   "sourcePath": "src/app/App.ts",
+   "sourceSha256": "f07695d038ce0de4b4d67f5247db0c7cf2b93567763c38f54235b3a583be7a39",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into index-Bq8z46rB.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/config.ts",
+   "releaseSha256": "7c95418b0ea9e3ed0f9d53f1afc47cc7a667e51eb919e196a498233b601bc10f",
+   "sourcePath": "src/config.ts",
+   "sourceSha256": "7c95418b0ea9e3ed0f9d53f1afc47cc7a667e51eb919e196a498233b601bc10f",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/content/MediaFit.ts",
+   "releaseSha256": "9c0b2578349a77611b1d75e436d446232772fe5d9ec0f577fe77cf89959aab06",
+   "sourcePath": "src/content/MediaFit.ts",
+   "sourceSha256": "9c0b2578349a77611b1d75e436d446232772fe5d9ec0f577fe77cf89959aab06",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/content/VideoClips.ts",
+   "releaseSha256": "3aa1b0b536d8d7e335d8a6e6c7b7901ce364e17ebec11c2ba59d6b98d5e16716",
+   "sourcePath": "src/content/VideoClips.ts",
+   "sourceSha256": "3aa1b0b536d8d7e335d8a6e6c7b7901ce364e17ebec11c2ba59d6b98d5e16716",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/content/catalog.ts",
+   "releaseSha256": "ebe5f9e461fdb8d2b2dd51a4913187a03d95c006952df13b36b0f905b7f45075",
+   "sourcePath": "src/content/catalog.ts",
+   "sourceSha256": "ebe5f9e461fdb8d2b2dd51a4913187a03d95c006952df13b36b0f905b7f45075",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/debug/DebugHud.ts",
+   "releaseSha256": "be8ed595319075056ccefc1bc786bd204d5f870bf508cf4c1be4e16c9123e34e",
+   "sourcePath": "src/debug/DebugHud.ts",
+   "sourceSha256": "be8ed595319075056ccefc1bc786bd204d5f870bf508cf4c1be4e16c9123e34e",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into index-Bq8z46rB.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/debug/DebugMode.ts",
+   "releaseSha256": "c9da7f1dbe70d7dea9d358d88a78df5e8a16cc575d322489ff1b0edc01141584",
+   "sourcePath": "src/debug/DebugMode.ts",
+   "sourceSha256": "c9da7f1dbe70d7dea9d358d88a78df5e8a16cc575d322489ff1b0edc01141584",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/debug/FoundationMode.ts",
+   "releaseSha256": "cc361ebcd7eb87623d72c35cee646b223c41e8d2938b94847e3f336ebf2ce507",
+   "sourcePath": "src/debug/FoundationMode.ts",
+   "sourceSha256": "cc361ebcd7eb87623d72c35cee646b223c41e8d2938b94847e3f336ebf2ce507",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/debug/FoundationOverlay.ts",
+   "releaseSha256": "4b7eb2f8e11c57a3ddb1ba3753f92f8b85c9cf7b5033ce4b1d47be15e35ac8cf",
+   "sourcePath": "src/debug/FoundationOverlay.ts",
+   "sourceSha256": "4b7eb2f8e11c57a3ddb1ba3753f92f8b85c9cf7b5033ce4b1d47be15e35ac8cf",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/debug/MediaFreeze.ts",
+   "releaseSha256": "552efcccd3f65a40bb96325703c9e527865b5e742bab3114ac113dd34bcd0fa0",
+   "sourcePath": "src/debug/MediaFreeze.ts",
+   "sourceSha256": "552efcccd3f65a40bb96325703c9e527865b5e742bab3114ac113dd34bcd0fa0",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/debug/QAHooks.ts",
+   "releaseSha256": "8d4332630ff1be81bda0989804ca8105abcf9f95b2bbdb7139dc77b00c7b59cd",
+   "sourcePath": "src/debug/QAHooks.ts",
+   "sourceSha256": "8d4332630ff1be81bda0989804ca8105abcf9f95b2bbdb7139dc77b00c7b59cd",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into index-Bq8z46rB.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/debug/StatusReadout.ts",
+   "releaseSha256": "34057db21f81199a9dac6df284e28d7d719c4ec45c2e888ad320d3255f105228",
+   "sourcePath": "src/debug/StatusReadout.ts",
+   "sourceSha256": "34057db21f81199a9dac6df284e28d7d719c4ec45c2e888ad320d3255f105228",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into StatusReadout-BXvfiWgw.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/gpu.d.ts",
+   "releaseSha256": "1582f1eaf126ad96c35e1fb118e5d9ace521c7d6276d77ee216b33b04b2cb196",
+   "sourcePath": "src/gpu.d.ts",
+   "sourceSha256": "1582f1eaf126ad96c35e1fb118e5d9ace521c7d6276d77ee216b33b04b2cb196",
+   "identicalToSource": true,
+   "reason": "ambient declaration -- same: WebGPU globals the renderer types against, invisible to the import graph and required by `tsc --noEmit`",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/interaction/InputController.ts",
+   "releaseSha256": "939a233d0daf23f0c0eaeb4855060c0a7d007b1bc068ea787117e84db1e96425",
+   "sourcePath": "src/interaction/InputController.ts",
+   "sourceSha256": "939a233d0daf23f0c0eaeb4855060c0a7d007b1bc068ea787117e84db1e96425",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/interaction/MotionController.ts",
+   "releaseSha256": "dcf8f9811a51d1e6f7de5c48ba0b1d7d1b25ac350823a131fbffe49220686b75",
+   "sourcePath": "src/interaction/MotionController.ts",
+   "sourceSha256": "dcf8f9811a51d1e6f7de5c48ba0b1d7d1b25ac350823a131fbffe49220686b75",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/interaction/SourceExactIntro.ts",
+   "releaseSha256": "b26837577ee6a10843d5268b8ba4318b3197cadab763dbe6ce68b2635d8bcb7c",
+   "sourcePath": "src/interaction/SourceExactIntro.ts",
+   "sourceSha256": "b26837577ee6a10843d5268b8ba4318b3197cadab763dbe6ce68b2635d8bcb7c",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/interaction/SourceExactMotion.ts",
+   "releaseSha256": "b8ce18e9b74328554edad485669fe6106b0506aaa7047c6a8ccc96ebc48a7d79",
+   "sourcePath": "src/interaction/SourceExactMotion.ts",
+   "sourceSha256": "b8ce18e9b74328554edad485669fe6106b0506aaa7047c6a8ccc96ebc48a7d79",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/layout/SourceExactLayout.ts",
+   "releaseSha256": "afb1fb52a32af38deca3c5e62bdaa62c973699c76a56ca02cb30ffdd8b158490",
+   "sourcePath": "src/layout/SourceExactLayout.ts",
+   "sourceSha256": "afb1fb52a32af38deca3c5e62bdaa62c973699c76a56ca02cb30ffdd8b158490",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/main.ts",
+   "releaseSha256": "397e5a31ff361bcb5027776a03e67a26dec0eadb70cc88638a1c4bd2a552e520",
+   "sourcePath": "src/main.ts",
+   "sourceSha256": "08bee9a21f891706e3065c8e336bde1b3df4f0f56963e255e09ead1d1d0cd5aa",
+   "identicalToSource": false,
+   "reason": "import graph -- bundled into index-Bq8z46rB.js",
+   "changedForRelease": "§七 -- the no-query production route now boots the accepted candidate instead of V3. Only the route resolution changed; the expansion it performs is the one ?review=target has always performed, so the shipped page and the accepted review page are the same page."
+  },
+  {
+   "releasePath": "src/materials/LiquidGlassMaterial.ts",
+   "releaseSha256": "70de5d3b93349900e6477d5c9b1ae46b933c7ed15807a117d8937c68ee90563d",
+   "sourcePath": "src/materials/LiquidGlassMaterial.ts",
+   "sourceSha256": "70de5d3b93349900e6477d5c9b1ae46b933c7ed15807a117d8937c68ee90563d",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into index-Bq8z46rB.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/materials/LiquidGlassMaterialV4.ts",
+   "releaseSha256": "1ed6a893569fc7063851f939470945187e89688320b5e7fd778af0e77f566602",
+   "sourcePath": "src/materials/LiquidGlassMaterialV4.ts",
+   "sourceSha256": "1ed6a893569fc7063851f939470945187e89688320b5e7fd778af0e77f566602",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/materials/TargetBevelFieldV4.ts",
+   "releaseSha256": "c63247ebad22a563d1c052bb9813b3d027715afc3725f0d8bb06e77031e96f0b",
+   "sourcePath": "src/materials/TargetBevelFieldV4.ts",
+   "sourceSha256": "c63247ebad22a563d1c052bb9813b3d027715afc3725f0d8bb06e77031e96f0b",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/materials/TargetOpticalBodyV5.ts",
+   "releaseSha256": "6623bc9d61bd13c3cf08f650388f2d70bc69c5a747af10dd19ce674fdac2b78a",
+   "sourcePath": "src/materials/TargetOpticalBodyV5.ts",
+   "sourceSha256": "6623bc9d61bd13c3cf08f650388f2d70bc69c5a747af10dd19ce674fdac2b78a",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/quality/AdaptiveQuality.ts",
+   "releaseSha256": "e306d883f9a5d16c1337eacd5903c915e16ee190da5bc9059119354a3b275a36",
+   "sourcePath": "src/quality/AdaptiveQuality.ts",
+   "sourceSha256": "e306d883f9a5d16c1337eacd5903c915e16ee190da5bc9059119354a3b275a36",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/quality/DeviceProfile.ts",
+   "releaseSha256": "f1763eb486923052b5c86520c97ddf515b58d25c5ba20d22beb547d307699d45",
+   "sourcePath": "src/quality/DeviceProfile.ts",
+   "sourceSha256": "f1763eb486923052b5c86520c97ddf515b58d25c5ba20d22beb547d307699d45",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/rendering/RenderPipeline.ts",
+   "releaseSha256": "6ccc6858a88ce83b17286d6e43206e138f9d057668c2151d6cff15e3d772ca63",
+   "sourcePath": "src/rendering/RenderPipeline.ts",
+   "sourceSha256": "6ccc6858a88ce83b17286d6e43206e138f9d057668c2151d6cff15e3d772ca63",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into index-Bq8z46rB.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/rendering/RendererController.ts",
+   "releaseSha256": "db2c0d1c54541428e148d785f2d9fd2797cf0dc7faffe890bd787866dff37705",
+   "sourcePath": "src/rendering/RendererController.ts",
+   "sourceSha256": "db2c0d1c54541428e148d785f2d9fd2797cf0dc7faffe890bd787866dff37705",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/rendering/SceneColorTargetV4.ts",
+   "releaseSha256": "a7ea5d7c415e82b173abe59ef9c38264ec63a3f66d2dc838324a1af3388e8457",
+   "sourcePath": "src/rendering/SceneColorTargetV4.ts",
+   "sourceSha256": "a7ea5d7c415e82b173abe59ef9c38264ec63a3f66d2dc838324a1af3388e8457",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/rendering/StudioEnvironment.ts",
+   "releaseSha256": "284e6f5b6b936adc6a568b6d5eeb79a4455220a6966c4c5a596bb28b12a87d30",
+   "sourcePath": "src/rendering/StudioEnvironment.ts",
+   "sourceSha256": "284e6f5b6b936adc6a568b6d5eeb79a4455220a6966c4c5a596bb28b12a87d30",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into index-Bq8z46rB.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/scene/ConvexGlassGeometry.ts",
+   "releaseSha256": "e4543a5313d7c2a3b5066cffb61621062e23401dfa8a13e180d54516a8131bda",
+   "sourcePath": "src/scene/ConvexGlassGeometry.ts",
+   "sourceSha256": "e4543a5313d7c2a3b5066cffb61621062e23401dfa8a13e180d54516a8131bda",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into index-Bq8z46rB.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/scene/ConvexGlassGeometryV4.ts",
+   "releaseSha256": "7225e057b20bf077896ca5b92db6f363557881e0bbad9410409200a397b90f37",
+   "sourcePath": "src/scene/ConvexGlassGeometryV4.ts",
+   "sourceSha256": "7225e057b20bf077896ca5b92db6f363557881e0bbad9410409200a397b90f37",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/scene/GridCurvature.ts",
+   "releaseSha256": "5add8c0dbcb9459983cd26f93b7ec3a475cf018a7dbbda56c41c77a9573603d0",
+   "sourcePath": "src/scene/GridCurvature.ts",
+   "sourceSha256": "5add8c0dbcb9459983cd26f93b7ec3a475cf018a7dbbda56c41c77a9573603d0",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/scene/InfiniteGlassGrid.ts",
+   "releaseSha256": "f7cf9884e0013a17fbb043faa4a5d7c2e6b400dc39035fabf51e5849419cb6d5",
+   "sourcePath": "src/scene/InfiniteGlassGrid.ts",
+   "sourceSha256": "f7cf9884e0013a17fbb043faa4a5d7c2e6b400dc39035fabf51e5849419cb6d5",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into index-Bq8z46rB.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/scene/RowPhase.ts",
+   "releaseSha256": "b50ce352e730fceaa4128ba525a5acb48737fc54a3700138354f5a2b0e6545ca",
+   "sourcePath": "src/scene/RowPhase.ts",
+   "sourceSha256": "b50ce352e730fceaa4128ba525a5acb48737fc54a3700138354f5a2b0e6545ca",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/style.css",
+   "releaseSha256": "2f6d46949dbf0333de91f99aad8adae314f663f66817988c01eac0d2fda15d60",
+   "sourcePath": "src/style.css",
+   "sourceSha256": "2f6d46949dbf0333de91f99aad8adae314f663f66817988c01eac0d2fda15d60",
+   "identicalToSource": true,
+   "reason": "stylesheet -- `import \"./style.css\"` is the first line of src/main.ts. Vite emits it as its own asset and writes no CSS sourcemap, so no JS map can list it; the page has no layout without it.",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/ui/LoadingOverlay.ts",
+   "releaseSha256": "fb252b1000c26519156d2969ab0d2d865ea37ae85d6104e01f8a7e832757e20b",
+   "sourcePath": "src/ui/LoadingOverlay.ts",
+   "sourceSha256": "fb252b1000c26519156d2969ab0d2d865ea37ae85d6104e01f8a7e832757e20b",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/ui/PageOverlay.ts",
+   "releaseSha256": "bd34d09ea35e22fb37758addedf0555d9c98c82087918b5c323b0358acc7c8fb",
+   "sourcePath": "src/ui/PageOverlay.ts",
+   "sourceSha256": "bd34d09ea35e22fb37758addedf0555d9c98c82087918b5c323b0358acc7c8fb",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/ui/SourceExactLabelCulling.ts",
+   "releaseSha256": "b2c57ba32b0623829dffebbb70d8b343a4bfd4e06f18c9287715c149bfc7cab3",
+   "sourcePath": "src/ui/SourceExactLabelCulling.ts",
+   "sourceSha256": "b2c57ba32b0623829dffebbb70d8b343a4bfd4e06f18c9287715c149bfc7cab3",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/ui/TileLabelLayer.ts",
+   "releaseSha256": "8d66ab043be15ffdd1484f6338c2d88e7bf54a6171131ab184cdc8ed612bd39f",
+   "sourcePath": "src/ui/TileLabelLayer.ts",
+   "sourceSha256": "8d66ab043be15ffdd1484f6338c2d88e7bf54a6171131ab184cdc8ed612bd39f",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into MediaFreeze-CCj0XxVR.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/v4/OpticsConfigV4.ts",
+   "releaseSha256": "e2e2f82569d08a05ba1af5ac08442bd4e5c65ff1e937c043b803713a13a3d830",
+   "sourcePath": "src/v4/OpticsConfigV4.ts",
+   "sourceSha256": "e2e2f82569d08a05ba1af5ac08442bd4e5c65ff1e937c043b803713a13a3d830",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/v4/StripLightEnvironmentV4.ts",
+   "releaseSha256": "8b78be55c636ef9f629a7c08fe95834e9de8087bcdbe84a7d803d8f623846ef2",
+   "sourcePath": "src/v4/StripLightEnvironmentV4.ts",
+   "sourceSha256": "8b78be55c636ef9f629a7c08fe95834e9de8087bcdbe84a7d803d8f623846ef2",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/v4/preview/ClipReelV4.ts",
+   "releaseSha256": "8437b31d95ea430c2610bffa1678ecaadcb48bd41dec6f86b8eaa8565ccb97e1",
+   "sourcePath": "src/v4/preview/ClipReelV4.ts",
+   "sourceSha256": "8437b31d95ea430c2610bffa1678ecaadcb48bd41dec6f86b8eaa8565ccb97e1",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/v4/preview/GridAppV4.ts",
+   "releaseSha256": "7f578842df9a9c2bf2ba966da12e2e8749a83ee4e04f43b8446c2f4d2f5c7387",
+   "sourcePath": "src/v4/preview/GridAppV4.ts",
+   "sourceSha256": "50b9faddbd5923f091f0a2656097986ce8a79224bdd157d297b90eff7031c0c4",
+   "identicalToSource": false,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": "PR #1 review, three P2 threads. (1) the default reflection shell is derived from the optical BODY instead of the composition, so ?review=current gets the O2 stack's separate shell back and is a valid rollback again. (2) ?gl=1 is parsed and forwarded to RendererController.init, which was hard-coded to false. (3) ?systemB=off now forces environmentMode to off, so the environment branch is omitted from the program instead of falling back to sampling the card's own video texture. The accepted / route is byte-unchanged by all three: it is a target-source body (shell already off), passes no gl=1 and no systemB=off."
+  },
+  {
+   "releasePath": "src/v4/preview/InfiniteGlassGridV4.ts",
+   "releaseSha256": "61d0002590cb0c9969b0eab2f95444bd9b6897acc77f174bf752c86d537e4e4c",
+   "sourcePath": "src/v4/preview/InfiniteGlassGridV4.ts",
+   "sourceSha256": "a0ead6963d4fd868e08e86bea64952d7b7137560ad5d90132d9733f09085a4cd",
+   "identicalToSource": false,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": "PR #1 review, one P2 thread. The ?mediacal=1 route is removed rather than rewired: its calibration patterns only ever reached the QA media planes while the candidate body builds its textures straight from the video elements, so on the shipped lane it photographed production clips and labelled them calibration. Routing them into the accepted body is optics work this release is not authorised to do; calibration belongs to the research tree, with the harness that reads it."
+  },
+  {
+   "releasePath": "src/v4/preview/SceneColorPipelineV4.ts",
+   "releaseSha256": "e7281381f9d6a4aa3859bb9daa05de4412782379fea6ee539dec20aeb0347444",
+   "sourcePath": "src/v4/preview/SceneColorPipelineV4.ts",
+   "sourceSha256": "e7281381f9d6a4aa3859bb9daa05de4412782379fea6ee539dec20aeb0347444",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/v4/preview/entry.ts",
+   "releaseSha256": "915d8c755053551f4589e25deaa5469e089b2094870e1b7b3e400e6deffd4b75",
+   "sourcePath": "src/v4/preview/entry.ts",
+   "sourceSha256": "915d8c755053551f4589e25deaa5469e089b2094870e1b7b3e400e6deffd4b75",
+   "identicalToSource": true,
+   "reason": "import graph -- bundled into entry-Bwn_u4a0.js",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "src/vite-env.d.ts",
+   "releaseSha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
+   "sourcePath": "src/vite-env.d.ts",
+   "sourceSha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
+   "identicalToSource": true,
+   "reason": "ambient declaration -- erased before any chunk exists, so no sourcemap lists it, but `tsc --noEmit` fails without it (`types: [\"vite/client\"]`)",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "tsconfig.json",
+   "releaseSha256": "d4aa92c253a100284800c94add13aeee86b8a160673661dd61a0535fdc888c7c",
+   "sourcePath": "tsconfig.json",
+   "sourceSha256": "d4aa92c253a100284800c94add13aeee86b8a160673661dd61a0535fdc888c7c",
+   "identicalToSource": true,
+   "reason": "build config -- read by `tsc --noEmit`, the first half of `npm run build`",
+   "changedForRelease": null
+  },
+  {
+   "releasePath": "vite.config.ts",
+   "releaseSha256": "aa076ee446a68684ec1176b52ab47ae3de948bdbf86e164c5c1e1ff12271d745",
+   "sourcePath": "vite.config.ts",
+   "sourceSha256": "8700b3d443251ed684ba60880fa6114aef65414354383e6024ae624b5478703d",
+   "identicalToSource": false,
+   "reason": "build config -- read by `vite build` and `vite preview`",
+   "changedForRelease": "§六/§八 -- the four lab and review HTML entries are QA surfaces and are not in the release tree, so the build has one entry. The dev-server middleware that hid private QA reference assets goes with them: there are no private assets left to hide."
+  }
+ ]
+}

@@ -1,0 +1,204 @@
+{
+  "$comment": "THE source contract for motion. Every Target motion constant lives here once, read out of the Target's own application bundle rather than fitted to a recording. TypeScript (src/interaction/SourceExactMotion.ts) and Python (scripts/v5/source_motion.py) both READ this file; neither keeps its own copy. Verified against the live Target by scripts/v5/m0-motion-trace.mjs plus scripts/v5/m0-motion-contract.py, which replay the Target's own recorded input through this model and compare the predicted scroll trajectory with the observed one.",
+  "motionVersion": "target-motion-source-v1",
+  "acceptance": {
+    "status": "CANDIDATE",
+    "note": "Not yet accepted by the product owner. Nothing here may be edited to make a candidate agree with a measurement; a disagreement means the model is wrong, not the number."
+  },
+  "target": {
+    "url": "https://infinite-liquid-glass.shader.se/?v=2",
+    "appBundlePath": "/_next/static/immutable/chunks/03lo820gl57km.js",
+    "appBundleSha256": "4983307288d9e6c544751d1f969a0bc5c4fdb86ebbe5c93ee97aa74ceb0b3754",
+    "method": "read-only source forensics on the public bundle, plus live input-driven DOM traces. No Target code is stored in this repository, nothing was modified or republished, and no Target pixel is committed.",
+    "settingsAreLiveValues": "The settings object is created once as a React useState initial value and its setter is never called anywhere in the bundle; there is no debug panel, no query-string override and no runtime mutation path. The literals below are therefore the live values, and the live follow-ratio measurement confirms it."
+  },
+  "input": {
+    "gesture": {
+      "library": "framer-motion PanSession, as bundled",
+      "surface": "a single full-viewport div, `fixed inset-0 z-10 touch-none cursor-grab active:cursor-grabbing`, with onPan and onPanEnd. Nothing else in the app handles drag.",
+      "listeners": [
+        "pointerdown on the element",
+        "pointermove on window (capture, passive)",
+        "pointerup on window (capture, passive)",
+        "pointercancel on window (capture, passive)"
+      ],
+      "pointerCapture": false,
+      "pointerCaptureNote": "PanSession never calls setPointerCapture. It listens on window in the capture phase, so a pointer that leaves the element still drives the gesture and `lostpointercapture` is never involved.",
+      "touchAndMouseSharePath": true,
+      "touchAndMouseNote": "One pointer-event path for both. `touch-action: none` on the surface, so a touch drag is not stolen by the browser's own scrolling.",
+      "distanceThresholdPx": 3,
+      "distanceThresholdNote": "Pan does not start until |offset from pointerdown| >= 3 px. Below that no onPan and no onPanEnd fire at all, so a tap moves nothing.",
+      "firstDeltaIncludesPreThresholdOffset": true,
+      "firstDeltaNote": "Before the threshold is crossed updatePoint returns without pushing to history, so the first delta handed to onPan is measured from the pointerdown point and carries the whole pre-threshold movement.",
+      "dispatchCadence": "per animation frame",
+      "dispatchNote": "handlePointerMove only stores the event; updatePoint is scheduled on the frame loop, so onPan fires at most once per frame and its `delta` is the accumulated movement since the previous frame."
+    },
+    "velocityEstimation": {
+      "method": "finite difference between the newest history point and the oldest history point still inside the window",
+      "sampleWindowMs": 100,
+      "fallback": "if the only in-window point is history[0], history has more than 2 entries and the gap exceeds 2x the window, history[1] is used instead",
+      "unit": "css px per second",
+      "infinityGuard": "a non-finite component is replaced with 0",
+      "maxVelocity": null,
+      "maxVelocityNote": "There is no clamp anywhere: no maxSpeed, no velocity ceiling, no per-axis limit."
+    },
+    "wheel": {
+      "handled": false,
+      "note": "The application registers no wheel listener. The only addEventListener(\"wheel\") in the whole bundle is inside three.js OrbitControls, which the app never mounts. Wheel and trackpad therefore produce no motion, at any deltaMode.",
+      "deltaModeHandling": "none",
+      "gain": 0
+    },
+    "pointerPosition": {
+      "listener": "window pointermove",
+      "normalisation": "clamp(clientX / innerWidth * 2 - 1, -1, 1), clamp(clientY / innerHeight * 2 - 1, -1, 1)",
+      "range": [
+        -1,
+        1
+      ],
+      "usesSameEventStreamAsDrag": true,
+      "note": "A separate window listener from the pan gesture, but the same pointermove events, so touch drives it too.",
+      "retargetClock": "The pointer spring's retarget is stamped with the FRAME's clock, not the event's: the passive effect records the target on the event and the solve is rebuilt on the frame loop, where driver.now() is that frame's timestamp. Stamping it with the event time, or worse with the previous frame's, starts the pointer spring on a different clock from the scroll spring."
+    }
+  },
+  "drag": {
+    "gain": 1.5,
+    "gainNote": "scrollTarget += gain * panDelta, on BOTH axes. World units per css pixel. At the z = 0 tangent plane one world unit is one css pixel, so content moves 1.5x the finger.",
+    "signX": 1,
+    "signY": 1,
+    "signNote": "Both axes are positive on the scroll TARGET. The placement law consumes them as xArc = wrap(colTerm + scrollX + rowOffset, periodX) and yArc = wrap(-rowTerm - scrollY, periodY), which makes content follow the finger on both axes.",
+    "fling": 0.1,
+    "flingNote": "On pan end the scroll target jumps by releaseVelocity * fling, once. There is no separate inertia integrator and no decay law of its own: the spring below carries the release.",
+    "stopCondition": "the spring's own rest test; there is no stopThreshold and no explicit zeroing of velocity"
+  },
+  "springs": {
+    "$note": "framer-motion springs, integrated by its closed-form solution rather than a step integrator. On every target change a new solve is started from the current value carrying the current generator velocity.",
+    "scroll": {
+      "stiffness": 100,
+      "damping": 16,
+      "mass": 0.5,
+      "restDelta": 1e-05,
+      "restSpeed": 0.01,
+      "dampingRatio": 1.1313708498984762,
+      "regime": "overdamped",
+      "appliesTo": "scrollX and scrollY, one spring each, same constants"
+    },
+    "magnitude": {
+      "stiffness": 140,
+      "damping": 24,
+      "mass": 0.6,
+      "restDelta": 0.001,
+      "restSpeed": 0.01,
+      "dampingRatio": 1.3093073414159542,
+      "regime": "overdamped",
+      "appliesTo": "the scalar hypot(velocityX, velocityY) that drives the camera dolly",
+      "source": "hypot of the two scroll MotionValues' getVelocity(), NOT the springs' analytic velocity. getVelocity() in the bundle is (current - prevFrameValue) / min(updatedAt - prevUpdatedAt, 30) * 1000, and returns 0 outright once more than 30 ms have passed since the value last changed. The two agree mid-run and diverge exactly where the dolly is most visible: at a direction change, and in the last stretch before the spring rests, where the analytic velocity decays smoothly and this one drops to zero.",
+      "sourceEvidence": "artifacts/f27/bundles/03lo820gl57km.js: g.set(_O(f.getVelocity(), p.getVelocity())) inside the scroll springs' on(\"change\") handlers, where f and p are the two useSpring outputs; getVelocity() at the MotionValue class."
+    },
+    "pointer": {
+      "stiffness": 80,
+      "damping": 18,
+      "mass": 0.8,
+      "restDelta": 0.001,
+      "restSpeed": 0.01,
+      "dampingRatio": 1.125,
+      "regime": "overdamped",
+      "appliesTo": "the normalised pointer x and y that drive the camera orbit"
+    },
+    "restDefaults": {
+      "restSpeedWhenUnset": "0.01 for a delta below 5 units, else 2",
+      "restDeltaWhenUnset": "0.005 for a delta below 5 units, else 0.5",
+      "note": "The scroll spring supplies restDelta explicitly; restSpeed falls back to the 0.01 written at the call site, not to the delta-dependent default."
+    }
+  },
+  "velocityMagnitude": {
+    "rawSource": "hypot of the two scroll springs' own generator velocities, refreshed on every spring change, and additionally set directly from the gesture velocity on pan and on pan end",
+    "smoothedBy": "springs.magnitude"
+  },
+  "camera": {
+    "orbit": {
+      "law": "yaw = -pointerGain * pointerX, pitch = pointerGain * pointerY, both in radians; position = (sin(yaw) cos(pitch) P, sin(pitch) P, cos(yaw) cos(pitch) P), lookAt origin",
+      "pointerGain": 0.05,
+      "pointerGainDeg": 2.8647889756541165,
+      "radius": "P, the layout frame's perspective; the orbit does not change the camera's distance from the origin",
+      "note": "The cards are not tilted and the camera is not translated. The whole pointer response is an orbit of the camera about the origin at the base radius, so the base camera law is untouched at pointer (0, 0)."
+    },
+    "velocityDolly": {
+      "law": "dz = 3 * maxZoomZ * tanh(0.04 * smoothedMagnitude / (3 * maxZoomZ))",
+      "maxZoomZ": "0.1 * perspective",
+      "maxZoomZFactor": 0.1,
+      "asymptote": "0.3 * perspective",
+      "appliedTo": "the z of BOTH cameras, added after the orbit: the render camera and the CSS3D transform camera sit at the same dollied z, so glass and labels never separate. The dolly-free camera is a projection and culling concept only, never a rendering camera.",
+      "note": "Zero at rest, so it changes nothing the layout contract measures."
+    },
+    "css3dCameraExcludesDolly": false,
+    "css3dCameraNote": "CORRECTED. An earlier reading had the Target keeping a dolly-free second camera for the CSS3D transform, so glass and labels would separate under fast motion. Its own recorded CSS3D camera matrix refutes that: the camera's distance from the origin is exactly 1000.000 at rest, rises to 1158.13 during a fast flick and 1223.01 during a long drag, and stays at exactly 1000.000 through an entire pointer sweep -- which moves the camera but produces no velocity, hence no dolly. A dolly-free CSS3D camera cannot do that. The dolly-free camera in the bundle drives projection and culling, not the transform. Measured at 1440x900 on artifacts/motion/target.",
+    "dollyFreeCameraUsedFor": "projection and .project() culling only, not the CSS3D transform"
+  },
+  "light": {
+    "pointerDrivenLight": false,
+    "velocityDrivenLight": false,
+    "note": "The Target's scene contains no light object at all -- only groups and meshes. Its highlight moves because the CAMERA orbits relative to a fixed studio environment map, not because anything moves a light. There is therefore no pointer-to-light gain to reproduce; the correct source-exact value is zero travel."
+  },
+  "resize": {
+    "motionStatePreserved": true,
+    "note": "The scroll, velocity and pointer motion values are module-scope and are never reset. A resize recomputes the layout frame only.",
+    "regridDebounceMs": 150,
+    "regridNote": "The first layout runs immediately; every later one is debounced by 150 ms before cols, rows and the slot count change."
+  },
+  "loadIn": {
+    "gapRatioSpring": {
+      "stiffness": 100,
+      "damping": 18,
+      "mass": 0.7,
+      "restDelta": 0.0002
+    },
+    "from": 3,
+    "to": "grid.gapRatio",
+    "note": "A one-shot intro that animates the grid gap from 3 down to the contract gap ratio once the scene is ready. Recorded because it is a spring in the same file; it is a load-in animation, not motion input, and is out of scope for this stage."
+  },
+  "deadCode": {
+    "rawVelocityMotionValues": "The raw per-axis velocities are published to two motion values that nothing in the bundle ever reads. Only the smoothed magnitude is consumed."
+  },
+  "notInTheTarget": [
+    "wheel or trackpad handling of any kind",
+    "a maximum velocity clamp",
+    "a stop threshold separate from the spring rest test",
+    "an exponential inertia decay term",
+    "a card tilt driven by the pointer",
+    "a camera translation driven by the pointer",
+    "a light position driven by the pointer or by velocity",
+    "pointer capture on the drag surface"
+  ],
+  "renderDelay": {
+    "frames": 1,
+    "what": "What the Target PAINTS on a frame is what its model produced on the PREVIOUS frame.",
+    "mechanism": "The Target runs TWO frame loops. framer-motion has its own (mz/mH), started lazily by the first schedule() call, which does not happen until the first gesture. The renderer that consumes the motion values is react-three-fiber's loop, whose single useFrame both READS the scroll motion values and WRITES the CSS3D matrix3d strings. What reaches the screen is therefore one frame behind what framer-motion computed.",
+    "sourceEvidence": [
+      "artifacts/f27/bundles/03lo820gl57km.js: the scheduler's schedule(callback, keepAlive, immediate) puts a callback in the nextFrame set unless immediate is true AND that step is already processing.",
+      "PanSession.handlePointerMove calls mH.update(this.updatePoint, !0) -- keepAlive, not immediate.",
+      "useSpring's passiveEffect records the new target and calls mH.postRender(u); u rebuilds the animation, and play() stamps startTime = driver.now(), which inside the frame loop is that frame's timestamp."
+    ],
+    "measured": {
+      "how": "the model replayed on the Target's own recorded input, compared with the Target's own recovered trajectory, at 0, 1 and 2 frames of output delay; 120 non-wheel runs at four viewports",
+      "medianRawPeakErrorFractionOfTravel": {
+        "0": 0.03364,
+        "1": 0.0076,
+        "2": 0.02158
+      },
+      "medianBestFitTimeShiftMs": {
+        "0": 10.5,
+        "1": 2.0,
+        "2": -6.0
+      },
+      "note": "one frame wins on every sequence and two frames overshoots on every sequence; the systematic +10.5 ms lead that M0 had aligned away is what this removes"
+    },
+    "consequence": "A reproduction that paints the model's CURRENT frame responds one frame sooner than the Target at every viewport and on every sequence. It is small -- 7.75 ms at the 120 Hz these pages run at -- and perfectly systematic, which is why a threshold floor written for 60 Hz let it pass.",
+    "mechanismConfidence": "The two-loop structure and the read-and-write-in-one-useFrame are read from the bundle and are certain. WHICH loop's callback runs first in a given browser frame is NOT a readable property of a bundle, and the replay fit cannot separate an output delay from an input delay or a start-time delay. So the SIZE and SIGN of the delay are measured; the attribution to callback order is the best available reading and is stated as such, not as source-read fact.",
+    "notTheMechanism": [
+      "It is NOT lazy start-time assignment. vP.play() stamps startTime = driver.now() eagerly at construction; inside the frame loop that is the current frame's timestamp.",
+      "It is NOT the intra-framer chain, which costs zero extra frames: handlePointerMove schedules updatePoint on update/nextFrame (frame N); the app's onPan is re-scheduled with immediate=true while update is already processing, so it runs in the SAME step; useSpring's passiveEffect schedules the rebuild on postRender, which still runs in frame N; the driver's first tick lands on frame N+1 with one frame of elapsed time. Our twin does exactly this."
+    ],
+    "framesIsNotFitted": "A frame count is an integer, and the bracket 0/1/2 was evaluated end to end: 3.36% / 0.76% / 2.16% median raw peak error and +10.5 / +2.0 / -6.0 ms median time shift. One wins on every sequence and two overshoots on every sequence. There is no continuum here to tune along.",
+    "residualAfterTheFix": "+2.0 ms median, still positive in 79% of runs. That is a quarter of a frame and it is NOT claimed to be finished -- it is reported as a remaining signed-systematic lead."
+  }
+}

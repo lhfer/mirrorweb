@@ -9,19 +9,12 @@
     "dev": "vite --port 5280 --strictPort",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --port 5280 --strictPort",
-    "capture:reference": "node scripts/capture-reference.mjs",
-    "capture:local": "node scripts/capture-local.mjs",
-    "test:visual": "playwright test tests/visual.spec.ts",
-    "test:interaction": "playwright test tests/interaction.spec.ts",
-    "test:performance": "playwright test tests/performance.spec.ts",
-    "test:responsive": "playwright test tests/responsive.spec.ts",
-    "test:infinite-loop": "playwright test tests/infinite-loop.spec.ts",
-    "qa": "node scripts/qa.mjs"
+    "review": "npm run build && vite preview --host 127.0.0.1 --port 5293 --strictPort",
+    "review:lan": "npm run build && vite preview --host 0.0.0.0 --port 5293 --strictPort"
   },
   "devDependencies": {
     "@types/node": "22.15.21",
-    "@types/three": "0.185.4",
-    "playwright": "1.59.1"
+    "@types/three": "0.185.4"
   },
   "dependencies": {
     "@fontsource-variable/geist": "5.3.0",
