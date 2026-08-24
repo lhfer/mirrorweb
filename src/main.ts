@@ -1,6 +1,6 @@
 import "./style.css";
-import { App } from "./app/App";
-import { installQAHooks } from "./debug/QAHooks";
+import { bootPublicContent, getContentManifest } from "./content/ContentRepository";
+import { mountContentBootLoader } from "./ui/LoadingOverlay";
 
 // `?review=target` / `?review=current` are the product routes: one URL, no
 // hand-assembled query, the complete page. `target` is the accepted candidate
@@ -47,6 +47,12 @@ const DEFAULT_ROUTE = "target";
   }
 }
 const query = new URLSearchParams(location.search);
+const bootLoader = mountContentBootLoader(
+  document.getElementById("loading-overlay")!,
+  query.get("composition") === "sourceExact",
+);
+await bootPublicContent((fraction) => bootLoader.setProgress(fraction));
+bootLoader.setBrandText(getContentManifest().site.loaderBrandText);
 // Any V5 composition selects the V4 build, because that is the build those
 // compositions exist in. V3 is still here and still reachable -- an explicit
 // `?composition=` naming something outside this set boots it -- because the
@@ -57,6 +63,10 @@ if (query.get("optics") === "v4" || query.get("foundation") === "layout"
   const { startGridPreviewV4 } = await import("./v4/preview/entry");
   await startGridPreviewV4();
 } else {
+  const [{ App }, { installQAHooks }] = await Promise.all([
+    import("./app/App"),
+    import("./debug/QAHooks"),
+  ]);
   const app = new App();
   await app.start();
   installQAHooks(app);

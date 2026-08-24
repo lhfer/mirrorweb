@@ -1,53 +1,34 @@
-import { LinearFilter, SRGBColorSpace, VideoTexture } from "three/webgpu";
+import {
+  CanvasTexture,
+  LinearFilter,
+  SRGBColorSpace,
+  Texture,
+  VideoTexture,
+} from "three/webgpu";
+import {
+  getContentRuntime,
+  type ContentMediaBinding,
+  type ContentMediaSource,
+} from "./ContentRepository";
 
-/**
- * `focusX` / `focusY` / `zoom` drive MediaFit's cover crop. All three sources
- * are 16:9-ish and the card is ~1.35:1, so cover crops left and right; the
- * focus point decides which part of the frame survives. 0.5/0.5/1 is a centred,
- * tightest-possible crop.
- */
-export const CLIPS = [
-  {
-    src: "/clips/niulai-intro.mp4",
-    code: "NL—01",
-    category: "GAME INTRO",
-    title: "牛来开场",
-    deck: "开场封面动画，截取约 5 秒。",
-    accent: "#ffcc66",
-    focusX: 0.5,
-    focusY: 0.5,
-    zoom: 1,
-  },
-  {
-    src: "/clips/cursor-niulai.mp4",
-    code: "NL—02",
-    category: "STUDIO CLIP",
-    title: "Cursor 牛来",
-    deck: "Cursor 里的牛来片段，截取约 5 秒。",
-    accent: "#8ff7ff",
-    focusX: 0.5,
-    focusY: 0.5,
-    zoom: 1,
-  },
-  {
-    src: "/clips/pelican-ai.mp4",
-    code: "NL—03",
-    category: "FIELD TEST",
-    title: "鹈鹕测 AI",
-    deck: "无 BGM 版，从 15 秒起截取 5 秒。",
-    accent: "#ff9ad5",
-    // Product review, 2026-08-20: nudge the crop up slightly and tighten it.
-    // zoom 1.06 still MINIFIES the source (1.275 source px per card px, down
-    // from 1.351), so it cannot introduce magnification blur.
-    focusX: 0.5,
-    focusY: 0.46,
-    zoom: 1.06,
-  },
-] as const;
+const MEDIA_READY_TIMEOUT_MS = 12_000;
+const POSTER_READY_TIMEOUT_MS = 6_000;
+let mediaWarningIssued = false;
 
-export function clipFocus(index: number) {
-  const clip = CLIPS[index % CLIPS.length];
-  return { focusX: clip.focusX, focusY: clip.focusY, zoom: clip.zoom };
+type LoadedMediaSource = {
+  definition: ContentMediaSource;
+  video: HTMLVideoElement;
+  playable: boolean;
+  poster?: HTMLImageElement;
+};
+
+export function getClipBindings(): readonly ContentMediaBinding[] {
+  return getContentRuntime().mediaBindings;
+}
+
+export function clipFocus(index: number): ContentMediaBinding {
+  const bindings = getClipBindings();
+  return bindings[((index % bindings.length) + bindings.length) % bindings.length];
 }
 
 function attachHiddenVideo(src: string): HTMLVideoElement {
@@ -65,104 +46,257 @@ function attachHiddenVideo(src: string): HTMLVideoElement {
   video.setAttribute("muted", "");
   video.preload = "auto";
   video.controls = false;
-  video.style.cssText = "position:fixed;left:-64px;top:-64px;width:16px;height:16px;opacity:0;pointer-events:none";
+  video.style.cssText =
+    "position:fixed;left:-64px;top:-64px;width:16px;height:16px;opacity:0;pointer-events:none";
   document.body.appendChild(video);
   return video;
 }
 
-async function waitDecoded(video: HTMLVideoElement) {
+async function waitDecoded(video: HTMLVideoElement): Promise<void> {
   if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA || video.videoWidth === 0) {
     await new Promise<void>((resolve, reject) => {
-      const finish = () => {
-        cleanup();
-        resolve();
+      const timeout = window.setTimeout(
+        () => finish(new DOMException("Video readiness timed out", "TimeoutError")),
+        MEDIA_READY_TIMEOUT_MS,
+      );
+      const loaded = () => {
+        if (video.videoWidth > 0 && video.videoHeight > 0) finish();
       };
-      const fail = () => {
-        cleanup();
-        reject(new Error(`clip failed: ${video.src}`));
+      const failed = () => finish(new Error("Video failed to decode"));
+      const finish = (error?: Error) => {
+        window.clearTimeout(timeout);
+        video.removeEventListener("loadeddata", loaded);
+        video.removeEventListener("canplay", loaded);
+        video.removeEventListener("error", failed);
+        if (error) reject(error);
+        else resolve();
       };
-      const cleanup = () => {
-        video.removeEventListener("loadeddata", finish);
-        video.removeEventListener("canplay", finish);
-        video.removeEventListener("error", fail);
-      };
-      video.addEventListener("loadeddata", finish, { once: true });
-      video.addEventListener("canplay", finish, { once: true });
-      video.addEventListener("error", fail, { once: true });
+      video.addEventListener("loadeddata", loaded);
+      video.addEventListener("canplay", loaded);
+      video.addEventListener("error", failed, { once: true });
       video.load();
     });
   }
+
   await video.play().catch(() => undefined);
   if ("requestVideoFrameCallback" in video) {
     await new Promise<void>((resolve) => {
-      video.requestVideoFrameCallback(() => resolve());
+      let callbackId = 0;
+      const timeout = window.setTimeout(() => {
+        if (callbackId && "cancelVideoFrameCallback" in video) {
+          video.cancelVideoFrameCallback(callbackId);
+        }
+        resolve();
+      }, 1_500);
+      callbackId = video.requestVideoFrameCallback(() => {
+        window.clearTimeout(timeout);
+        resolve();
+      });
     });
   }
 }
 
+async function loadPoster(src: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.crossOrigin = "anonymous";
+    const timeout = window.setTimeout(() => finish(new Error("Poster readiness timed out")),
+      POSTER_READY_TIMEOUT_MS);
+    const finish = (error?: Error) => {
+      window.clearTimeout(timeout);
+      image.onload = null;
+      image.onerror = null;
+      if (error) reject(error);
+      else resolve(image);
+    };
+    image.onload = () => finish();
+    image.onerror = () => finish(new Error("Poster failed to load"));
+    image.src = src;
+  });
+}
+
+function safeTextureCanvas(binding: ContentMediaBinding): HTMLCanvasElement {
+  const canvas = document.createElement("canvas");
+  canvas.width = 64;
+  canvas.height = 48;
+  const context = canvas.getContext("2d");
+  if (!context) return canvas;
+  const gradient = context.createLinearGradient(0, 0, canvas.width, canvas.height);
+  gradient.addColorStop(0, binding.fallbackPalette[2]);
+  gradient.addColorStop(1, binding.fallbackPalette[3]);
+  context.fillStyle = gradient;
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.globalAlpha = 0.34;
+  context.fillStyle = binding.fallbackPalette[1];
+  context.fillRect(0, canvas.height * 0.62, canvas.width, canvas.height * 0.38);
+  context.globalAlpha = 1;
+  return canvas;
+}
+
+function configureTexture(texture: Texture, name: string): Texture {
+  texture.name = name;
+  texture.colorSpace = SRGBColorSpace;
+  texture.minFilter = LinearFilter;
+  texture.magFilter = LinearFilter;
+  texture.generateMipmaps = false;
+  texture.needsUpdate = true;
+  return texture;
+}
+
+/**
+ * Owns one DOM video per unique mediaAssetId, while exposing a binding-indexed
+ * video array for the frozen V3/V4 callers. Repeated array entries are the same
+ * element; the DOM never receives duplicates for repeated card selections.
+ */
 export class ClipReel {
   readonly videos: HTMLVideoElement[] = [];
-  readonly textures: VideoTexture[] = [];
+  readonly textures: Texture[] = [];
+  protected readonly sources: LoadedMediaSource[] = [];
+  protected bindings: readonly ContentMediaBinding[] = [];
+  private loaded = false;
 
-  async load(onProgress: (value: number) => void) {
-    for (let i = 0; i < CLIPS.length; i += 1) {
-      const video = attachHiddenVideo(CLIPS[i].src);
-      await waitDecoded(video);
-      const texture = new VideoTexture(video);
-      texture.colorSpace = SRGBColorSpace;
-      texture.minFilter = LinearFilter;
-      texture.magFilter = LinearFilter;
-      texture.generateMipmaps = false;
-      texture.needsUpdate = true;
-      this.videos.push(video);
-      this.textures.push(texture);
-      onProgress(24 + Math.round(((i + 1) / CLIPS.length) * 60));
+  async load(onProgress: (value: number) => void): Promise<void> {
+    this.bindings = getClipBindings();
+    const definitions = getContentRuntime().mediaSources;
+    for (let index = 0; index < definitions.length; index += 1) {
+      const definition = definitions[index];
+      const video = attachHiddenVideo(definition.mediaUrl);
+      let playable = false;
+      let poster: HTMLImageElement | undefined;
+      try {
+        await waitDecoded(video);
+        playable = true;
+      } catch {
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+        video.remove();
+        if (definition.posterUrl) {
+          try {
+            poster = await loadPoster(definition.posterUrl);
+          } catch {
+            poster = undefined;
+          }
+        }
+      }
+      this.sources.push({ definition, video, playable, ...(poster ? { poster } : {}) });
+      onProgress(24 + Math.round(((index + 1) / definitions.length) * 60));
+    }
+
+    for (const binding of this.bindings) {
+      this.videos.push(this.sources[binding.sourceIndex].video);
+    }
+    this.textures.push(...this.createTextureSet("MirrorWeb.Clip"));
+    this.loaded = true;
+
+    if (this.fallbackCount > 0 && !mediaWarningIssued) {
+      mediaWarningIssued = true;
+      console.warn(
+        `[MirrorWeb media] ${this.fallbackCount} card media binding(s) use a poster or safe texture.`,
+      );
     }
   }
 
-  seek(seconds: number) {
-    for (const video of this.videos) {
-      if (video.duration && Number.isFinite(video.duration)) {
+  createTextureSet(namePrefix: string): Texture[] {
+    return this.bindings.map((binding, index) => {
+      const source = this.sources[binding.sourceIndex];
+      const texture = source.playable
+        ? new VideoTexture(source.video)
+        : source.poster
+          ? new Texture(source.poster)
+          : new CanvasTexture(safeTextureCanvas(binding));
+      return configureTexture(texture, `${namePrefix}.${index}`);
+    });
+  }
+
+  dimensionsForBinding(index: number): readonly [number, number] {
+    const binding = this.bindings[index];
+    const source = binding ? this.sources[binding.sourceIndex] : undefined;
+    if (source?.playable) return [source.video.videoWidth, source.video.videoHeight];
+    if (source?.poster) return [source.poster.naturalWidth, source.poster.naturalHeight];
+    return [64, 48];
+  }
+
+  isFallbackBinding(index: number): boolean {
+    const binding = this.bindings[index];
+    return binding ? !this.sources[binding.sourceIndex]?.playable : true;
+  }
+
+  get uniqueVideoElements(): readonly HTMLVideoElement[] {
+    return this.sources.filter((source) => source.playable).map((source) => source.video);
+  }
+
+  get uniqueVideoCount(): number {
+    return this.sources.filter((source) => source.playable).length;
+  }
+
+  get fallbackCount(): number {
+    let count = 0;
+    for (let index = 0; index < this.bindings.length; index += 1) {
+      if (this.isFallbackBinding(index)) count += 1;
+    }
+    return count;
+  }
+
+  seek(seconds: number): void {
+    for (const source of this.sources) {
+      const video = source.video;
+      if (source.playable && video.duration && Number.isFinite(video.duration)) {
         video.currentTime = ((seconds % video.duration) + video.duration) % video.duration;
       }
     }
   }
 
-  unlock() {
-    for (const video of this.videos) {
-      video.muted = true;
-      video.volume = 0;
-      void video.play().catch(() => undefined);
+  unlock(): void {
+    for (const source of this.sources) {
+      if (!source.playable) continue;
+      source.video.muted = true;
+      source.video.volume = 0;
+      void source.video.play().catch(() => undefined);
     }
   }
 
-  update() {
-    for (const texture of this.textures) texture.update();
+  pause(): void {
+    for (const source of this.sources) source.video.pause();
   }
 
-  get ready() {
-    return this.videos.length === CLIPS.length && this.videos.every((video) => video.readyState >= 2 && video.videoWidth > 0);
+  resume(): void {
+    this.unlock();
   }
 
-  dispose() {
-    for (const video of this.videos) {
+  update(): void {
+    for (const texture of this.textures) {
+      if (texture instanceof VideoTexture) texture.update();
+    }
+  }
+
+  get ready(): boolean {
+    return this.loaded && this.textures.length === this.bindings.length;
+  }
+
+  dispose(): void {
+    for (const source of this.sources) {
+      const video = source.video;
       video.pause();
       video.removeAttribute("src");
       video.load();
       video.remove();
     }
     for (const texture of this.textures) texture.dispose();
+    this.sources.length = 0;
     this.videos.length = 0;
     this.textures.length = 0;
+    this.bindings = [];
+    this.loaded = false;
   }
 }
 
-export async function loadClipTextures(onProgress: (value: number) => void) {
+export async function loadClipTextures(onProgress: (value: number) => void): Promise<ClipReel> {
   const reel = new ClipReel();
   await reel.load(onProgress);
   return reel;
 }
 
-export function unlockClipPlayback(reel: { unlock?: () => void } | undefined) {
+export function unlockClipPlayback(reel: { unlock?: () => void } | undefined): void {
   reel?.unlock?.();
 }

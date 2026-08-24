@@ -40,32 +40,43 @@ const TYPE_Z_SOURCE_EXACT = 0;
 
 function bindDebugCard(el: HTMLElement, i: number, j: number, slotIndex: number, mode: DebugMode) {
   el.className = "tile-card tile-card-debug";
-  el.innerHTML = `
-    <div class="tile-card-top">
-      <span>${mode.toUpperCase()}</span>
-      <span>SLOT ${slotIndex}</span>
-    </div>
-    <div class="tile-card-bottom">
-      <h2>${i},${j}</h2>
-    </div>
-  `;
+  const top = document.createElement("div");
+  top.className = "tile-card-top";
+  const modeLabel = document.createElement("span");
+  modeLabel.textContent = mode.toUpperCase();
+  const slotLabel = document.createElement("span");
+  slotLabel.textContent = `SLOT ${slotIndex}`;
+  top.append(modeLabel, slotLabel);
+  const bottom = document.createElement("div");
+  bottom.className = "tile-card-bottom";
+  const title = document.createElement("h2");
+  title.textContent = `${i},${j}`;
+  bottom.appendChild(title);
+  el.replaceChildren(top, bottom);
 }
 
 function bindCatalogCard(el: HTMLElement, i: number, j: number, mode: DebugMode) {
   const item = catalogAt(i, j);
   el.className = mode === "typography" ? "tile-card is-type-debug" : "tile-card";
   el.style.setProperty("--accent", item.accent);
-  el.innerHTML = `
-    <div class="tile-card-top">
-      <span>${item.code} ${item.category}</span>
-      <span>SELECTED WORK — 2026</span>
-    </div>
-    <div class="tile-card-bottom">
-      <h2>${item.title}</h2>
-      <div class="tile-rule"></div>
-      <p class="tile-deck">${item.deck}</p>
-    </div>
-  `;
+  const top = document.createElement("div");
+  top.className = "tile-card-top";
+  const meta = document.createElement("span");
+  meta.textContent = `${item.code} ${item.category}`;
+  const selectedWork = document.createElement("span");
+  selectedWork.textContent = "SELECTED WORK — 2026";
+  top.append(meta, selectedWork);
+  const bottom = document.createElement("div");
+  bottom.className = "tile-card-bottom";
+  const title = document.createElement("h2");
+  title.textContent = item.title;
+  const rule = document.createElement("div");
+  rule.className = "tile-rule";
+  const deck = document.createElement("p");
+  deck.className = "tile-deck";
+  deck.textContent = item.deck;
+  bottom.append(title, rule, deck);
+  el.replaceChildren(top, bottom);
 }
 
 function bindCard(el: HTMLElement, i: number, j: number, slotIndex: number, mode: DebugMode) {
@@ -106,25 +117,47 @@ function bindSlotCard(el: HTMLElement, code: number, slotIndex: number, mode: De
   el.dataset.slot = String(slotIndex);
   el.dataset.ilg = String(code);
   const label = `ILG\u2014${String(code).padStart(2, "0")}`;
-  el.innerHTML = `
-    <div class="se-clip">
-      <div class="se-content">
-        <div class="se-meta">
-          <div class="se-meta-left">
-            <span>${label}</span><span class="se-dim">${item.category}</span>
-          </div>
-          <div class="se-meta-right">
-            <span>SELECTED WORK</span><span class="se-dot"></span><span>2026</span>
-          </div>
-        </div>
-        <div class="se-bottom">
-          <div class="se-rule"></div>
-          <h2 class="se-title">${item.title}</h2>
-          <div class="se-deck-row"><p class="se-deck">${item.deck}</p></div>
-        </div>
-      </div>
-    </div>
-  `;
+  const clip = document.createElement("div");
+  clip.className = "se-clip";
+  const content = document.createElement("div");
+  content.className = "se-content";
+  const meta = document.createElement("div");
+  meta.className = "se-meta";
+  const metaLeft = document.createElement("div");
+  metaLeft.className = "se-meta-left";
+  const codeLabel = document.createElement("span");
+  codeLabel.textContent = label;
+  const category = document.createElement("span");
+  category.className = "se-dim";
+  category.textContent = item.category;
+  metaLeft.append(codeLabel, category);
+  const metaRight = document.createElement("div");
+  metaRight.className = "se-meta-right";
+  const selectedWork = document.createElement("span");
+  selectedWork.textContent = "SELECTED WORK";
+  const dot = document.createElement("span");
+  dot.className = "se-dot";
+  const year = document.createElement("span");
+  year.textContent = "2026";
+  metaRight.append(selectedWork, dot, year);
+  meta.append(metaLeft, metaRight);
+  const bottom = document.createElement("div");
+  bottom.className = "se-bottom";
+  const rule = document.createElement("div");
+  rule.className = "se-rule";
+  const title = document.createElement("h2");
+  title.className = "se-title";
+  title.textContent = item.title;
+  const deckRow = document.createElement("div");
+  deckRow.className = "se-deck-row";
+  const deck = document.createElement("p");
+  deck.className = "se-deck";
+  deck.textContent = item.deck;
+  deckRow.appendChild(deck);
+  bottom.append(rule, title, deckRow);
+  content.append(meta, bottom);
+  clip.appendChild(content);
+  el.replaceChildren(clip);
 }
 
 export class TileLabelLayer {

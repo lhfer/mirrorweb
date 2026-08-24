@@ -1,60 +1,101 @@
-/**
- * The page chrome: the bottom scrim and the footer that sits on it.
- *
- * The Target's own chrome is one fixed, full-width, bottom-anchored container
- * holding two things (read from its live DOM, `artifacts/visual-convergence/
- * recon.json`): a 144 px gradient scrim across the whole width, and a row that
- * is bottom-aligned on desktop and centred on a phone. The scrim sits ABOVE
- * the cards and their labels, so it grounds the bottom of the page rather than
- * tinting a background nobody can see.
- *
- * We had the row and not the scrim. On matched media and matched copy the
- * bottom 144 rows of our page read 13 to 19 luma levels brighter than the
- * Target's at the four review viewports, and up to 43 levels brighter at the
- * last screen row (`qa-v5/visual-convergence/p0-decision.json`).
- *
- * The wordmark is ours, not the Target's -- its logo is its own studio mark
- * and is never copied here. What is matched is the PRESENTATION: a box of
- * width `min(26vw, 148px)` carrying a drop shadow, so the mark scales with the
- * viewport the way the Target's does instead of staying 132 px wide on a
- * phone. Inline SVG rather than an image, because the mark is type and inline
- * SVG uses the page's own loaded face.
- */
-const WORDMARK = `
-  <span class="footer-wordmark" role="img" aria-label="ATELIER">
-    <svg viewBox="0 0 265 35.5" aria-hidden="true" focusable="false">
-      <defs>
-        <linearGradient id="ilg-wordmark-mark" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#ff3b30" />
-          <stop offset="16%" stop-color="#ff9500" />
-          <stop offset="33%" stop-color="#ffcc00" />
-          <stop offset="50%" stop-color="#34c759" />
-          <stop offset="66%" stop-color="#007aff" />
-          <stop offset="83%" stop-color="#5856d6" />
-          <stop offset="100%" stop-color="#af52de" />
-        </linearGradient>
-      </defs>
-      <rect x="0" y="3.75" width="56" height="28" rx="14" fill="url(#ilg-wordmark-mark)" />
-      <text class="footer-wordmark-text" x="76" y="31.75"
-            textLength="189" lengthAdjust="spacing">ATELIER</text>
-    </svg>
-  </span>`;
+import { getContentManifest } from "../content/ContentRepository";
 
+const SVG_NS = "http://www.w3.org/2000/svg";
+
+function svgElement<K extends keyof SVGElementTagNameMap>(name: K): SVGElementTagNameMap[K] {
+  return document.createElementNS(SVG_NS, name);
+}
+
+/**
+ * The page chrome remains the accepted v1.0 tree and classes. Only its text
+ * nodes and safe links now come from the once-installed content manifest.
+ */
 export class PageOverlay {
   constructor(host: HTMLElement) {
-    host.innerHTML = `
-      <div class="page-chrome-scrim" aria-hidden="true"></div>
-      <footer class="page-footer">
-        <a class="experiment-link" href="https://shader.se/" target="_blank" rel="noreferrer">
-          <span class="experiment-caption">AN EXPERIMENT BY</span>
-          ${WORDMARK}
-        </a>
-        <a class="cta-link" href="https://cal.com/simon-hedlund-kglzne" target="_blank" rel="noreferrer">
-          <span class="cta-sheen" aria-hidden="true"></span>
-          <span class="cta-label">Book a Call</span>
-          <span class="cta-arrow">↗</span>
-        </a>
-      </footer>
-    `;
+    const { site } = getContentManifest();
+
+    const scrim = document.createElement("div");
+    scrim.className = "page-chrome-scrim";
+    scrim.setAttribute("aria-hidden", "true");
+
+    const footer = document.createElement("footer");
+    footer.className = "page-footer";
+
+    const experimentLink = document.createElement("a");
+    experimentLink.className = "experiment-link";
+    experimentLink.href = site.brandUrl;
+    experimentLink.target = "_blank";
+    experimentLink.rel = "noreferrer";
+    const caption = document.createElement("span");
+    caption.className = "experiment-caption";
+    caption.textContent = site.footerCaption;
+
+    const wordmark = document.createElement("span");
+    wordmark.className = "footer-wordmark";
+    wordmark.setAttribute("role", "img");
+    wordmark.setAttribute("aria-label", site.brandText);
+    const svg = svgElement("svg");
+    svg.setAttribute("viewBox", "0 0 265 35.5");
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute("focusable", "false");
+    const defs = svgElement("defs");
+    const gradient = svgElement("linearGradient");
+    gradient.id = "ilg-wordmark-mark";
+    gradient.setAttribute("x1", "0");
+    gradient.setAttribute("y1", "0");
+    gradient.setAttribute("x2", "0");
+    gradient.setAttribute("y2", "1");
+    const stops: readonly [string, string][] = [
+      ["0%", "#ff3b30"],
+      ["16%", "#ff9500"],
+      ["33%", "#ffcc00"],
+      ["50%", "#34c759"],
+      ["66%", "#007aff"],
+      ["83%", "#5856d6"],
+      ["100%", "#af52de"],
+    ];
+    for (const [offset, colour] of stops) {
+      const stop = svgElement("stop");
+      stop.setAttribute("offset", offset);
+      stop.setAttribute("stop-color", colour);
+      gradient.appendChild(stop);
+    }
+    defs.appendChild(gradient);
+    const mark = svgElement("rect");
+    mark.setAttribute("x", "0");
+    mark.setAttribute("y", "3.75");
+    mark.setAttribute("width", "56");
+    mark.setAttribute("height", "28");
+    mark.setAttribute("rx", "14");
+    mark.setAttribute("fill", "url(#ilg-wordmark-mark)");
+    const text = svgElement("text");
+    text.classList.add("footer-wordmark-text");
+    text.setAttribute("x", "76");
+    text.setAttribute("y", "31.75");
+    text.setAttribute("textLength", "189");
+    text.setAttribute("lengthAdjust", "spacing");
+    text.textContent = site.brandText;
+    svg.append(defs, mark, text);
+    wordmark.appendChild(svg);
+    experimentLink.append(caption, wordmark);
+
+    const cta = document.createElement("a");
+    cta.className = "cta-link";
+    cta.href = site.ctaUrl;
+    cta.target = "_blank";
+    cta.rel = "noreferrer";
+    const sheen = document.createElement("span");
+    sheen.className = "cta-sheen";
+    sheen.setAttribute("aria-hidden", "true");
+    const label = document.createElement("span");
+    label.className = "cta-label";
+    label.textContent = site.ctaLabel;
+    const arrow = document.createElement("span");
+    arrow.className = "cta-arrow";
+    arrow.textContent = "↗";
+    cta.append(sheen, label, arrow);
+
+    footer.append(experimentLink, cta);
+    host.replaceChildren(scrim, footer);
   }
 }

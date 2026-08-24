@@ -1,4 +1,5 @@
 import { ClampToEdgeWrapping, type Texture } from "three/webgpu";
+import { MAX_MEDIA_ZOOM, MIN_MEDIA_ZOOM } from "./ContentManifest";
 
 /**
  * Aspect-correct fitting of a media source onto a card.
@@ -84,7 +85,7 @@ export function computeMediaFit(
       repeatY = sourceAspect / cardAspect;
       croppedAxis = "y";
     }
-    const zoom = Math.max(1, focus.zoom);
+    const zoom = clamp(focus.zoom, MIN_MEDIA_ZOOM, MAX_MEDIA_ZOOM);
     repeatX /= zoom;
     repeatY /= zoom;
     if (zoom > 1) croppedAxis = croppedAxis === "none" ? "x" : croppedAxis;

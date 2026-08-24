@@ -6,9 +6,7 @@ import {
   type BufferGeometry,
   type Texture,
 } from "three/webgpu";
-import {
-  ClampToEdgeWrapping, LinearFilter, SRGBColorSpace, VideoTexture,
-} from "three/webgpu";
+import { ClampToEdgeWrapping, LinearFilter } from "three/webgpu";
 import { GRID, TILE, type QualityLevel } from "../../config";
 import {
   placeSourceExactSlot, slotCode, REFERENCE_PLANE_WIDTH,
@@ -144,7 +142,7 @@ export class InfiniteGlassGridV4 {
    * textures the control lane shares: doing so would change control pixels
    * and forfeit the exact-identity proof the whole round rests on.
    */
-  private ownMediaTextures: VideoTexture[] = [];
+  private ownMediaTextures: Texture[] = [];
   private bodyView: V5BodyView = "beauty";
   /** O5R §十: the environment as a structural choice, not a multiply. */
   private environmentMode: V4EnvironmentMode = "source";
@@ -341,18 +339,14 @@ export class InfiniteGlassGridV4 {
     // The candidate's OWN textures, over the same video elements. sRGB and
     // ClampToEdge as the Target sets them; no mipmaps, so there is no chain to
     // sample even if a LOD were asked for.
-    const videos = this.reel?.videos ?? [];
-    this.ownMediaTextures = videos.map((video, index) => {
-      const texture = new VideoTexture(video);
-      texture.colorSpace = SRGBColorSpace;
+    this.ownMediaTextures = this.reel?.createTextureSet("MirrorWeb.V5.OwnMedia") ?? [];
+    for (const texture of this.ownMediaTextures) {
       texture.wrapS = ClampToEdgeWrapping;
       texture.wrapT = ClampToEdgeWrapping;
       texture.minFilter = LinearFilter;
       texture.magFilter = LinearFilter;
       texture.generateMipmaps = false;
-      texture.name = `MirrorWeb.V5.OwnMedia.${index}`;
-      return texture;
-    });
+    }
 
     // One material per CLIP, as the Target does. Cover values come from the
     // FROZEN MediaFit result, never from the Target's centred formula: media
@@ -379,7 +373,7 @@ export class InfiniteGlassGridV4 {
 
     for (let n = 0; n < SOURCE_EXACT_POOL; n += 1) {
       const group = new Group();
-      const body = this.bodyHandles[n % this.bodyHandles.length];
+      const body = this.bodyHandles[this.bindingForSlot(n)];
       const glass = new Mesh(this.bodyGeometry, body.material);
       glass.name = "MirrorWeb.V5.TargetOpticalBody";
       glass.renderOrder = 10;
@@ -506,7 +500,7 @@ export class InfiniteGlassGridV4 {
     this.bodyHandles = entry.handles;
     for (const slot of this.slots) {
       slot.glass.material =
-        entry.handles[slot.slotIndex % entry.handles.length].material;
+        entry.handles[this.bindingForSlot(slot.slotIndex)].material;
     }
   }
 
@@ -565,14 +559,11 @@ export class InfiniteGlassGridV4 {
    */
   private applyMediaFits(): void {
     this.mediaFits = [];
-    const videos = this.reel?.videos ?? [];
     for (let index = 0; index < this.mediaMaterials.length; index += 1) {
       const map = this.mediaMaterials[index].map;
       if (!map) continue;
-      const video = videos[index];
-      const image = map.image as { width?: number; height?: number } | undefined;
-      const sourceWidth = video?.videoWidth || image?.width || 0;
-      const sourceHeight = video?.videoHeight || image?.height || 0;
+      const [sourceWidth, sourceHeight] =
+        this.reel?.dimensionsForBinding(index) ?? [0, 0];
       if (!sourceWidth || !sourceHeight) continue;
       // Card size is a per-viewport fact on the source-exact path, so the cover
       // matrix is recomputed from the layout frame rather than from the fixed
@@ -588,7 +579,7 @@ export class InfiniteGlassGridV4 {
         clipFocus(index),
       );
       applyMediaFit(map, fit);
-      this.mediaFits.push(fit);
+      this.mediaFits[index] = fit;
       // Same fit, expressed as the Target's uniforms. repeat/offset IS
       // coverScale/coverOffset -- three's texture matrix and the Target's
       // `clamp(uv,0,1)*coverScale + coverOffset` are the same convention, so
@@ -845,11 +836,12 @@ export class InfiniteGlassGridV4 {
       source: { ...S },
       samples: this.bodyHandles[0]?.samples ?? null,
       cards: slots.map((slot) => {
-        const fit = this.mediaFits[slot.slotIndex % Math.max(1, this.mediaFits.length)];
+        const clipIndex = this.bindingForSlot(slot.slotIndex);
+        const fit = this.mediaFits[clipIndex];
         return {
           slotIndex: slot.slotIndex,
           clipIndex: this.bodyHandles.length
-            ? slot.slotIndex % this.bodyHandles.length
+            ? clipIndex
             : null,
           active: slot.active !== false,
           matrixWorld: slot.glass.matrixWorld.toArray(),
@@ -1127,7 +1119,7 @@ export class InfiniteGlassGridV4 {
       materials: 2 + this.mediaMaterials.length,
       geometries: 2,
       textures: this.reel?.textures.length ?? 0,
-      videos: this.reel?.videos.length ?? 0,
+      videos: this.reel?.uniqueVideoCount ?? 0,
       glass: "v4-volume",
     };
   }
@@ -1147,27 +1139,41 @@ export class InfiniteGlassGridV4 {
       };
     }
     const ready = Boolean(this.reel?.ready);
+    const fallbackTiles = this.reel
+      ? this.slots.filter((slot) => {
+          if (slot.active === false) return false;
+          const index = this.sourceExact
+            ? this.bindingForSlot(slot.slotIndex)
+            : catalogAt(slot.i, slot.j).clipIndex;
+          return this.reel!.isFallbackBinding(index);
+        }).length
+      : 0;
     return {
-      videos: this.reel?.videos.length ?? 0,
+      videos: this.reel?.uniqueVideoCount ?? 0,
       textures: this.reel?.textures.length ?? 0,
       ready,
-      media: ready ? "video" : "loading",
+      media: ready ? (fallbackTiles ? "poster-or-safe-texture" : "video") : "loading",
       glass: "v4-volume",
       videoFrames: this.reel?.videoFrames ?? 0,
       videoFrameCallback: this.reel?.usesFrameCallback ?? false,
-      placeholderTileCount: 0,
+      placeholderTileCount: fallbackTiles,
       unreadyVisibleTileCount: ready ? 0 : this.slots.length,
     };
   }
 
   /** Deterministic clip binding by pool slot. Never re-evaluated after build. */
   private mediaForSlot(slotIndex: number): MeshBasicMaterial {
-    return this.mediaMaterials[slotIndex % Math.max(1, this.mediaMaterials.length)];
+    return this.mediaMaterials[this.bindingForSlot(slotIndex)];
+  }
+
+  /** Explicit manifest media binding for the catalog card owned by this slot. */
+  private bindingForSlot(slotIndex: number): number {
+    return catalogAt(slotIndex, 0).clipIndex;
   }
 
   private mediaFor(i: number, j: number): MeshBasicMaterial {
     const item = catalogAt(i, j);
-    return this.mediaMaterials[(item.clipIndex ?? 0) % Math.max(1, this.mediaMaterials.length)];
+    return this.mediaMaterials[item.clipIndex];
   }
 
   private disposePool(): void {
