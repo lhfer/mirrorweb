@@ -16,8 +16,8 @@
   "database": {
     "publicRlsTables": 5,
     "draftRows": 1,
-    "versionRows": 1,
-    "activeVersion": 1,
+    "versionRowsAtObservation": 3,
+    "activeVersionAtObservation": 3,
     "activeCards": 24,
     "enabledCards": 24,
     "mediaRows": 3,
@@ -32,7 +32,9 @@
     "siteUrl": "http://127.0.0.1:5280/admin.html",
     "redirectUrls": 2,
     "magicLinkRequestSucceeded": true,
-    "authenticatedAdminEditorObserved": false
+    "magicLinkLoginSucceeded": true,
+    "authenticatedAdminEditorObserved": true,
+    "sessionRecoveryObserved": true
   },
   "storage": {
     "bucket": "card-media",
@@ -52,7 +54,8 @@
   },
   "browser": {
     "publicContentSource": "remote",
-    "publicContentVersion": 1,
+    "publicContentVersionAtObservation": 3,
+    "publishedUserEditVisible": true,
     "publicWarnings": 0,
     "publicErrors": 0,
     "adminUsesLiveAuthGate": true,
@@ -61,7 +64,7 @@
     "adminErrors": 0
   },
   "remaining": [
-    "Open the latest Magic Link in the same browser and observe the authenticated editor and logout/session recovery.",
-    "Exercise one real Magic Link login and one real Storage upload/purge flow."
+    "Exercise one real Storage upload/archive/purge flow.",
+    "Replace local Auth URLs with the final production HTTPS origin before deployment."
   ]
 }

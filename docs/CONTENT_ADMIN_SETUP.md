@@ -20,10 +20,11 @@ observed:
 
 Auth setup now has one invited and email-confirmed administrator, one matching
 `admin_users` allowlist row, public signups disabled, and exact local Site URL
-and Redirect URLs configured. A real `shouldCreateUser:false` Magic Link was
-successfully requested from the production admin build. The only pending Auth
-evidence is opening that latest link in the same browser and observing the
-authenticated editor plus logout/session recovery.
+and Redirect URLs configured. A real `shouldCreateUser:false` Magic Link login
+opened the authenticated `SUPABASE LIVE` editor, and a fresh tab recovered the
+same session with zero console warnings or errors. User-driven draft edits and
+publishes advanced the active remote manifest from v1 to v3; a public reload
+then loaded `source=remote`, `version=3` and displayed the published edit.
 
 Never put a secret key, legacy `service_role` JWT, database password, or
 personal access token in Vite variables, browser code, source files, logs, or
@@ -250,7 +251,8 @@ headline or card order.
 - public fallback, four-viewport pixel identity, frame pacing, and zero console
   errors are verified independently.
 
-Until Auth settings, redirect URLs, the first administrator, and a real Magic
-Link login are observed, report the release state as:
+The hosted database, Auth, RLS, draft, publish and public reload gates are now
+observed. A real Storage upload/archive/purge and the eventual production HTTPS
+Site URL remain deployment follow-ups. Report the v1.1 branch state as:
 
-`CONTENT ADMIN BLOCKED BY BACKEND CONFIGURATION`.
+`READY FOR CONTENT ADMIN PRODUCT REVIEW`.
