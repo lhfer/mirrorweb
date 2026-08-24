@@ -1,12 +1,13 @@
 import { defineConfig } from "vite";
+import { fileURLToPath } from "node:url";
 
 /**
- * v1.0.0.
+ * v1.1.0 multi-page build.
  *
- * The development tree built five HTML entries: the product page plus four lab
- * and review surfaces (glass-lab, glass-lab-v4, grid-lab-v4, phase-1b-review).
- * Those four are QA instruments and are not in this branch, so there is one
- * entry and Vite finds it at the root without being told.
+ * The public product, content admin and authenticated draft preview are three
+ * separate Rollup entries. The admin and preview may share content-domain code,
+ * but the public product must never import either entry and therefore never
+ * downloads their UI/auth modules.
  *
  * The dev-server middleware that used to 404 private QA reference assets went
  * with them. It existed to stop `qa-v4/review/`, `.private/` and the frozen
@@ -24,5 +25,13 @@ export default defineConfig({
   build: {
     target: "es2022",
     sourcemap: true,
+    manifest: true,
+    rollupOptions: {
+      input: {
+        product: fileURLToPath(new URL("./index.html", import.meta.url)),
+        admin: fileURLToPath(new URL("./admin.html", import.meta.url)),
+        draftPreview: fileURLToPath(new URL("./draft-preview.html", import.meta.url)),
+      },
+    },
   },
 });
