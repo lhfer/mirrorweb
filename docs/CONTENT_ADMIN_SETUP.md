@@ -18,10 +18,12 @@ observed:
 - a production build loading `source=remote`, `version=1` with zero console
   warnings or errors.
 
-The remaining hosted setup is Auth configuration: create/invite the intended
-administrator, insert that UUID into `admin_users`, and verify the exact Site
-URL and Redirect URLs in the Auth dashboard. No administrator was guessed from
-the project name, so `admin_users` intentionally remains empty.
+Auth setup now has one invited and email-confirmed administrator, one matching
+`admin_users` allowlist row, public signups disabled, and exact local Site URL
+and Redirect URLs configured. A real `shouldCreateUser:false` Magic Link was
+successfully requested from the production admin build. The only pending Auth
+evidence is opening that latest link in the same browser and observing the
+authenticated editor plus logout/session recovery.
 
 Never put a secret key, legacy `service_role` JWT, database password, or
 personal access token in Vite variables, browser code, source files, logs, or
@@ -65,7 +67,9 @@ CLI says the target is local before running it. It should apply, in order:
 
 1. `20260823090000_content_admin_schema.sql`;
 2. `20260823090100_seed_v1_content.sql`;
-3. `content_admin_security.test.sql` inside a transaction that rolls back.
+3. `20260824070000_fix_media_url_validator_grant.sql`;
+4. `20260824073000_harden_platform_helpers_and_indexes.sql`;
+5. `content_admin_security.test.sql` inside a transaction that rolls back.
 
 After reset, verify these invariants with the local SQL editor or `psql`:
 

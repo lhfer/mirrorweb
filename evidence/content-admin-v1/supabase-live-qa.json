@@ -21,8 +21,18 @@
     "activeCards": 24,
     "enabledCards": 24,
     "mediaRows": 3,
-    "adminRows": 0,
+    "adminRows": 1,
     "testFixtureRows": 0
+  },
+  "auth": {
+    "users": 1,
+    "emailConfirmedUsers": 1,
+    "allowlistedAdmins": 1,
+    "publicSignupsAllowed": false,
+    "siteUrl": "http://127.0.0.1:5280/admin.html",
+    "redirectUrls": 2,
+    "magicLinkRequestSucceeded": true,
+    "authenticatedAdminEditorObserved": false
   },
   "storage": {
     "bucket": "card-media",
@@ -51,9 +61,7 @@
     "adminErrors": 0
   },
   "remaining": [
-    "Create or invite the intended Supabase Auth user.",
-    "Insert that user's UUID into public.admin_users.",
-    "Verify production Site URL and exact Magic Link redirect URLs.",
+    "Open the latest Magic Link in the same browser and observe the authenticated editor and logout/session recovery.",
     "Exercise one real Magic Link login and one real Storage upload/purge flow."
   ]
 }

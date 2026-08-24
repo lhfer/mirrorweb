@@ -225,6 +225,7 @@ export class AdminApp {
     email.autocomplete = "email";
     const status = element("p", "auth-status", "仅预先批准的管理员邮箱可以进入。");
     const submit = textButton("发送 Magic Link", "button button-accent", () => undefined);
+    submit.type = "submit";
     const form = element(
       "form",
       "auth-form",

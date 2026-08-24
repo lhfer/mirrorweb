@@ -34,3 +34,11 @@ test("browser source never names a service-role environment variable", async () 
   }
   assert.deepEqual(violations, []);
 });
+
+test("the Magic Link control submits the authentication form", async () => {
+  const source = await readFile(resolve(process.cwd(), "src/admin/app.ts"), "utf8");
+  assert.match(
+    source,
+    /const submit = textButton\("发送 Magic Link"[^;]+;\s+submit\.type = "submit";/,
+  );
+});
